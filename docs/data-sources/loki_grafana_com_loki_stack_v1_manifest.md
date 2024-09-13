@@ -153,7 +153,6 @@ Optional:
 Optional:
 
 - `ingestion` (Attributes) IngestionLimits defines the limits applied on ingested log streams. (see [below for nested schema](#nestedatt--spec--limits--global--ingestion))
-- `otlp` (Attributes) OTLP to configure which resource, scope and log attributesto store as labels or structured metadata or drop them altogetherfor all tenants. (see [below for nested schema](#nestedatt--spec--limits--global--otlp))
 - `queries` (Attributes) QueryLimits defines the limit applied on querying log streams. (see [below for nested schema](#nestedatt--spec--limits--global--queries))
 - `retention` (Attributes) Retention defines how long logs are kept in storage. (see [below for nested schema](#nestedatt--spec--limits--global--retention))
 
@@ -172,62 +171,6 @@ Optional:
 - `per_stream_desired_rate` (Number) PerStreamDesiredRate defines the desired ingestion rate per second that LokiStack shouldtarget applying automatic stream sharding. Units MB.
 - `per_stream_rate_limit` (Number) PerStreamRateLimit defines the maximum byte rate per second per stream. Units MB.
 - `per_stream_rate_limit_burst` (Number) PerStreamRateLimitBurst defines the maximum burst bytes per stream. Units MB.
-
-
-<a id="nestedatt--spec--limits--global--otlp"></a>
-### Nested Schema for `spec.limits.global.otlp`
-
-Optional:
-
-- `indexed_resource_attributes` (List of String) IndexedResourceAttributes contains the global configuration for resource attributesto store them as index labels or structured metadata or drop them altogether.
-- `log_attributes` (Attributes List) LogAttributes contains the configuration for log attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--log_attributes))
-- `resource_attributes` (Attributes) ResourceAttributes contains the configuration for resource attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--resource_attributes))
-- `scope_attributes` (Attributes List) ScopeAttributes contains the configuration for scope attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--scope_attributes))
-
-<a id="nestedatt--spec--limits--global--otlp--log_attributes"></a>
-### Nested Schema for `spec.limits.global.otlp.log_attributes`
-
-Required:
-
-- `action` (String) Action defines the indexing action for the selected attributes. Theycan be either added to structured metadata or drop altogether.
-
-Optional:
-
-- `attributes` (List of String) Attributes allows choosing the attributes by listing their names.
-- `regex` (String) Regex allows choosing the attributes by matching a regular expression.
-
-
-<a id="nestedatt--spec--limits--global--otlp--resource_attributes"></a>
-### Nested Schema for `spec.limits.global.otlp.resource_attributes`
-
-Optional:
-
-- `attributes` (Attributes List) Attributes contains the configuration for resource attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--resource_attributes--attributes))
-- `ignore_defaults` (Boolean) IgnoreDefaults controls whether to ignore the global configuration for resource attributesindexed as labels.If IgnoreDefaults is true, then this spec needs to contain at least one mapping to a index label.
-
-<a id="nestedatt--spec--limits--global--otlp--resource_attributes--attributes"></a>
-### Nested Schema for `spec.limits.global.otlp.resource_attributes.attributes`
-
-Optional:
-
-- `action` (String) Action defines the indexing action for the selected resoure attributes. Theycan be either indexed as labels, added to structured metadata or drop altogether.
-- `attributes` (List of String) Attributes is the list of attributes to configure indexing or drop themaltogether.
-- `regex` (String) Regex allows choosing the attributes by matching a regular expression.
-
-
-
-<a id="nestedatt--spec--limits--global--otlp--scope_attributes"></a>
-### Nested Schema for `spec.limits.global.otlp.scope_attributes`
-
-Required:
-
-- `action` (String) Action defines the indexing action for the selected attributes. Theycan be either added to structured metadata or drop altogether.
-
-Optional:
-
-- `attributes` (List of String) Attributes allows choosing the attributes by listing their names.
-- `regex` (String) Regex allows choosing the attributes by matching a regular expression.
-
 
 
 <a id="nestedatt--spec--limits--global--queries"></a>
@@ -275,7 +218,6 @@ Optional:
 Optional:
 
 - `ingestion` (Attributes) IngestionLimits defines the limits applied on ingested log streams. (see [below for nested schema](#nestedatt--spec--limits--tenants--ingestion))
-- `otlp` (Attributes) OTLP to configure which resource, scope and log attributesto store as labels or structured metadata or drop them altogetherfor a single tenants. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp))
 - `queries` (Attributes) QueryLimits defines the limit applied on querying log streams. (see [below for nested schema](#nestedatt--spec--limits--tenants--queries))
 - `retention` (Attributes) Retention defines how long logs are kept in storage. (see [below for nested schema](#nestedatt--spec--limits--tenants--retention))
 
@@ -294,61 +236,6 @@ Optional:
 - `per_stream_desired_rate` (Number) PerStreamDesiredRate defines the desired ingestion rate per second that LokiStack shouldtarget applying automatic stream sharding. Units MB.
 - `per_stream_rate_limit` (Number) PerStreamRateLimit defines the maximum byte rate per second per stream. Units MB.
 - `per_stream_rate_limit_burst` (Number) PerStreamRateLimitBurst defines the maximum burst bytes per stream. Units MB.
-
-
-<a id="nestedatt--spec--limits--tenants--otlp"></a>
-### Nested Schema for `spec.limits.tenants.otlp`
-
-Optional:
-
-- `log_attributes` (Attributes List) LogAttributes contains the configuration for log attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--log_attributes))
-- `resource_attributes` (Attributes) ResourceAttributes contains the configuration for resource attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--resource_attributes))
-- `scope_attributes` (Attributes List) ScopeAttributes contains the configuration for scope attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--scope_attributes))
-
-<a id="nestedatt--spec--limits--tenants--otlp--log_attributes"></a>
-### Nested Schema for `spec.limits.tenants.otlp.log_attributes`
-
-Required:
-
-- `action` (String) Action defines the indexing action for the selected attributes. Theycan be either added to structured metadata or drop altogether.
-
-Optional:
-
-- `attributes` (List of String) Attributes allows choosing the attributes by listing their names.
-- `regex` (String) Regex allows choosing the attributes by matching a regular expression.
-
-
-<a id="nestedatt--spec--limits--tenants--otlp--resource_attributes"></a>
-### Nested Schema for `spec.limits.tenants.otlp.resource_attributes`
-
-Optional:
-
-- `attributes` (Attributes List) Attributes contains the configuration for resource attributesto store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--resource_attributes--attributes))
-- `ignore_defaults` (Boolean) IgnoreDefaults controls whether to ignore the global configuration for resource attributesindexed as labels.If IgnoreDefaults is true, then this spec needs to contain at least one mapping to a index label.
-
-<a id="nestedatt--spec--limits--tenants--otlp--resource_attributes--attributes"></a>
-### Nested Schema for `spec.limits.tenants.otlp.resource_attributes.attributes`
-
-Optional:
-
-- `action` (String) Action defines the indexing action for the selected resoure attributes. Theycan be either indexed as labels, added to structured metadata or drop altogether.
-- `attributes` (List of String) Attributes is the list of attributes to configure indexing or drop themaltogether.
-- `regex` (String) Regex allows choosing the attributes by matching a regular expression.
-
-
-
-<a id="nestedatt--spec--limits--tenants--otlp--scope_attributes"></a>
-### Nested Schema for `spec.limits.tenants.otlp.scope_attributes`
-
-Required:
-
-- `action` (String) Action defines the indexing action for the selected attributes. Theycan be either added to structured metadata or drop altogether.
-
-Optional:
-
-- `attributes` (List of String) Attributes allows choosing the attributes by listing their names.
-- `regex` (String) Regex allows choosing the attributes by matching a regular expression.
-
 
 
 <a id="nestedatt--spec--limits--tenants--queries"></a>

@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_cidr_group_v2alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peersoutside the clusters) that can be referenced as a single entity fromCiliumNetworkPolicies.
+  CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.
 ---
 
 # k8s_cilium_io_cilium_cidr_group_v2alpha1_manifest (Data Source)
 
-CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peersoutside the clusters) that can be referenced as a single entity fromCiliumNetworkPolicies.
+CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.
 
 ## Example Usage
 
@@ -16,7 +16,9 @@ CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peersoutside t
 data "k8s_cilium_io_cilium_cidr_group_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
-
+  }
+  spec = {
+    external_cidrs = []
   }
 }
 ```
@@ -51,4 +53,4 @@ Optional:
 
 Required:
 
-- `external_cid_rs` (List of String) ExternalCIDRs is a list of CIDRs selecting peers outside the clusters.
+- `external_cidrs` (List of String) ExternalCIDRs is a list of CIDRs selecting peers outside the clusters.

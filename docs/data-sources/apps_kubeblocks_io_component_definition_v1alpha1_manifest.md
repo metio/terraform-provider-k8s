@@ -3376,11 +3376,11 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
+- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
 
 - `as_env_from` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0.Use 'injectEnvTo' instead.
-- `as_secret` (Boolean) Whether to store the final rendered parameters as a secret.
 - `constraint_ref` (String) Specifies the name of the referenced configuration constraints object.
 - `default_mode` (Number) The operator attempts to set default file permissions for scripts (0555) and configurations (0444).However, certain database engines may require different file permissions.You can specify the desired file permissions here.Must be specified as an octal value between 0000 and 0777 (inclusive),or as a decimal value between 0 and 511 (inclusive).YAML supports both octal and decimal values for file permissions.Please note that this setting only affects the permissions of the files themselves.Directories within the specified path are not impacted by this setting.It's important to be aware that this setting might conflict with other optionsthat influence the file mode, such as fsGroup.In such cases, the resulting file mode may have additional bits set.Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.
 - `inject_env_to` (List of String) Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.
@@ -3389,7 +3389,6 @@ Optional:
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
 - `re_render_resource_types` (List of String) Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.In some scenarios, the configuration may need to be updated to reflect the changes in resource allocationor cluster topology. Examples:- Redis: adjust maxmemory after v-scale operation.- MySQL: increase max connections after v-scale operation.- Zookeeper: update zoo.cfg with new node addresses after h-scale operation.
 - `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
-- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 <a id="nestedatt--spec--configs--legacy_rendered_config_spec"></a>
 ### Nested Schema for `spec.configs.legacy_rendered_config_spec`
@@ -4817,13 +4816,13 @@ Optional:
 Required:
 
 - `name` (String) Specifies the name of the configuration template.
+- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 Optional:
 
 - `default_mode` (Number) The operator attempts to set default file permissions for scripts (0555) and configurations (0444).However, certain database engines may require different file permissions.You can specify the desired file permissions here.Must be specified as an octal value between 0000 and 0777 (inclusive),or as a decimal value between 0 and 511 (inclusive).YAML supports both octal and decimal values for file permissions.Please note that this setting only affects the permissions of the files themselves.Directories within the specified path are not impacted by this setting.It's important to be aware that this setting might conflict with other optionsthat influence the file mode, such as fsGroup.In such cases, the resulting file mode may have additional bits set.Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.
 - `namespace` (String) Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.
 - `template_ref` (String) Specifies the name of the referenced configuration template ConfigMap object.
-- `volume_name` (String) Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.
 
 
 <a id="nestedatt--spec--service_ref_declarations"></a>
@@ -5001,7 +5000,7 @@ Optional:
 
 Optional:
 
-- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinitioncustom resource (CR) used by the component that the referent object resident in.If not specified, the component itself will be used.
+- `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in.If not specified, the component itself will be used.
 - `component_name` (String) Reference to the name of the Component object.
 - `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef.If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--component_var_ref--multiple_cluster_object_option))
 - `name` (String) Name of the referent object.
@@ -5081,7 +5080,7 @@ Optional:
 
 Optional:
 
-- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinitioncustom resource (CR) used by the component that the referent object resident in.If not specified, the component itself will be used.
+- `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in.If not specified, the component itself will be used.
 - `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef.If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--credential_var_ref--multiple_cluster_object_option))
 - `name` (String) Name of the referent object.
 - `optional` (Boolean) Specify whether the object must be defined.
@@ -5125,7 +5124,7 @@ Required:
 
 Optional:
 
-- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinitioncustom resource (CR) used by the component that the referent object resident in.If not specified, the component itself will be used.
+- `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in.If not specified, the component itself will be used.
 - `container` (Attributes) ContainerVars defines the vars that can be referenced from a Container. (see [below for nested schema](#nestedatt--spec--vars--value_from--host_network_var_ref--container))
 - `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef.If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--host_network_var_ref--multiple_cluster_object_option))
 - `name` (String) Name of the referent object.
@@ -5202,7 +5201,7 @@ Optional:
 
 Optional:
 
-- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinitioncustom resource (CR) used by the component that the referent object resident in.If not specified, the component itself will be used.
+- `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in.If not specified, the component itself will be used.
 - `endpoint` (String) VarOption defines whether a variable is required or optional.
 - `host` (String) VarOption defines whether a variable is required or optional.
 - `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef.If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_ref_var_ref--multiple_cluster_object_option))
@@ -5249,7 +5248,7 @@ Required:
 
 Optional:
 
-- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinitioncustom resource (CR) used by the component that the referent object resident in.If not specified, the component itself will be used.
+- `comp_def` (String) CompDef specifies the definition used by the component that the referent object resident in.If not specified, the component itself will be used.
 - `host` (String) VarOption defines whether a variable is required or optional.
 - `load_balancer` (String) LoadBalancer represents the LoadBalancer ingress point of the service.If multiple ingress points are available, the first one will be used automatically, choosing between IP and Hostname.
 - `multiple_cluster_object_option` (Attributes) This option defines the behavior when multiple component objects match the specified @CompDef.If not provided, an error will be raised when handling multiple matches. (see [below for nested schema](#nestedatt--spec--vars--value_from--service_var_ref--multiple_cluster_object_option))

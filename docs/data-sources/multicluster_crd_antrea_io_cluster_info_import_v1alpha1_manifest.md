@@ -57,7 +57,7 @@ Optional:
 
 - `cluster_id` (String) ClusterID of the member cluster.
 - `gateway_infos` (Attributes List) GatewayInfos has information of Gateways (see [below for nested schema](#nestedatt--spec--gateway_infos))
-- `pod_cid_rs` (List of String) PodCIDRs is the Pod IP address CIDRs.
+- `pod_cidrs` (List of String) PodCIDRs is the Pod IP address CIDRs.
 - `service_cidr` (String) ServiceCIDR is the IP ranges used by Service ClusterIP.
 - `wire_guard` (Attributes) WireGuardInfo includes information of a WireGuard tunnel. (see [below for nested schema](#nestedatt--spec--wire_guard))
 

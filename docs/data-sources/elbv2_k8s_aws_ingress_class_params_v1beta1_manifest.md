@@ -56,7 +56,7 @@ Optional:
 
 - `certificate_arn` (List of String) CertificateArn specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.
 - `group` (Attributes) Group defines the IngressGroup for all Ingresses that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--group))
-- `inbound_cid_rs` (List of String) InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.
+- `inbound_cidrs` (List of String) InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.
 - `ip_address_type` (String) IPAddressType defines the ip address type for all Ingresses that belong to IngressClass with this IngressClassParams.
 - `load_balancer_attributes` (Attributes List) LoadBalancerAttributes define the custom attributes to LoadBalancers for all Ingress that that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--load_balancer_attributes))
 - `namespace_selector` (Attributes) NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams.* if absent or present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))

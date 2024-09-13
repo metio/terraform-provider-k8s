@@ -30,7 +30,7 @@ data "k8s_vpcresources_k8s_aws_cni_node_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) Important: Run 'make' to regenerate code after modifying this fileCNINodeSpec defines the desired state of CNINode (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Important: Run 'make' to regenerate code after modifying this file CNINodeSpec defines the desired state of CNINode (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

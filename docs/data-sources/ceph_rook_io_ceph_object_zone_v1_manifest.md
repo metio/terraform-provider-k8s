@@ -300,31 +300,11 @@ Optional:
 <a id="nestedatt--spec--shared_pools"></a>
 ### Nested Schema for `spec.shared_pools`
 
-Optional:
+Required:
 
 - `data_pool_name` (String) The data pool used for creating RADOS namespaces in the object store
 - `metadata_pool_name` (String) The metadata pool used for creating RADOS namespaces in the object store
-- `pool_placements` (Attributes List) PoolPlacements control which Pools are associated with a particular RGW bucket.Once PoolPlacements are defined, RGW client will be able to associate poolwith ObjectStore bucket by providing '<LocationConstraint>' during s3 bucket creationor 'X-Storage-Policy' header during swift container creation.See: https://docs.ceph.com/en/latest/radosgw/placement/#placement-targetsPoolPlacement with name: 'default' will be used as a default pool if no optionis provided during bucket creation.If default placement is not provided, spec.sharedPools.dataPoolName and spec.sharedPools.MetadataPoolName will be used as default pools.If spec.sharedPools are also empty, then RGW pools (spec.dataPool and spec.metadataPool) will be used as defaults. (see [below for nested schema](#nestedatt--spec--shared_pools--pool_placements))
-- `preserve_rados_namespace_data_on_delete` (Boolean) Whether the RADOS namespaces should be preserved on deletion of the object store
-
-<a id="nestedatt--spec--shared_pools--pool_placements"></a>
-### Nested Schema for `spec.shared_pools.pool_placements`
-
-Required:
-
-- `data_pool_name` (String) The data pool used to store ObjectStore objects data.
-- `metadata_pool_name` (String) The metadata pool used to store ObjectStore bucket index.
-- `name` (String) Pool placement name. Name can be arbitrary. Placement with name 'default' will be used as default.
 
 Optional:
 
-- `data_non_ec_pool_name` (String) The data pool used to store ObjectStore data that cannot use erasure coding (ex: multi-part uploads).If dataPoolName is not erasure coded, then there is no need for dataNonECPoolName.
-- `storage_classes` (Attributes List) StorageClasses can be selected by user to override dataPoolName during object creation.Each placement has default STANDARD StorageClass pointing to dataPoolName.This list allows defining additional StorageClasses on top of default STANDARD storage class. (see [below for nested schema](#nestedatt--spec--shared_pools--pool_placements--storage_classes))
-
-<a id="nestedatt--spec--shared_pools--pool_placements--storage_classes"></a>
-### Nested Schema for `spec.shared_pools.pool_placements.storage_classes`
-
-Required:
-
-- `data_pool_name` (String) DataPoolName is the data pool used to store ObjectStore objects data.
-- `name` (String) Name is the StorageClass name. Ceph allows arbitrary name for StorageClasses,however most clients/libs insist on AWS names so it is recommended to useone of the valid x-amz-storage-class values for better compatibility:REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE | OUTPOSTS | GLACIER_IR | SNOW | EXPRESS_ONEZONESee AWS docs: https://aws.amazon.com/de/s3/storage-classes/
+- `preserve_rados_namespace_data_on_delete` (Boolean) Whether the RADOS namespaces should be preserved on deletion of the object store

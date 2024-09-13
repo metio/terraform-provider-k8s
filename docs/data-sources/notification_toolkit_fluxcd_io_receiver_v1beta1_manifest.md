@@ -21,6 +21,9 @@ data "k8s_notification_toolkit_fluxcd_io_receiver_v1beta1_manifest" "example" {
   spec = {
     type      = "generic"
     resources = []
+    secret_ref = {
+      name = "some-secret"
+    }
   }
 }
 ```
@@ -60,12 +63,12 @@ Optional:
 Required:
 
 - `resources` (Attributes List) A list of resources to be notified about changes. (see [below for nested schema](#nestedatt--spec--resources))
-- `secret_ref` (Attributes) Secret reference containing the token usedto validate the payload authenticity (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `type` (String) Type of webhook sender, used to determinethe validation procedure and payload deserialization.
 
 Optional:
 
 - `events` (List of String) A list of events to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.
+- `secret_ref` (Attributes) Secret reference containing the token usedto validate the payload authenticity (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `suspend` (Boolean) This flag tells the controller to suspend subsequent events handling.Defaults to false.
 
 <a id="nestedatt--spec--resources"></a>
@@ -73,12 +76,12 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of the referent
 - `name` (String) Name of the referent
 
 Optional:
 
 - `api_version` (String) API version of the referent
+- `kind` (String) Kind of the referent
 - `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `namespace` (String) Namespace of the referent
 

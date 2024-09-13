@@ -413,7 +413,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters.Deprecated: for backward compatibility.
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `kind` (String) Allows to explicitly select the desired deployment kind between 'deployment', 'cron-job' or 'knative-service' when creating the resources for running the integration.
-- `use_ssa` (Boolean) Deprecated: won't be able to enforce client side update in the future.Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.
+- `use_ssa` (Boolean) Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.
 
 
 <a id="nestedatt--spec--traits--deployment"></a>

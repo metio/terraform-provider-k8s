@@ -53,27 +53,24 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `resources` (List of Map of String) Envoy xDS resources, a list of the following Envoy resource types:type.googleapis.com/envoy.config.listener.v3.Listener,type.googleapis.com/envoy.config.route.v3.RouteConfiguration,type.googleapis.com/envoy.config.cluster.v3.Cluster,type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, andtype.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.
-
 Optional:
 
-- `backend_services` (Attributes List) BackendServices specifies Kubernetes services whose backendsare automatically synced to Envoy using EDS.  Traffic for theseservices is not forwarded to an Envoy listener. This allows anEnvoy listener load balance traffic to these backends whilenormal Cilium service load balancing takes care of balancingtraffic for these services at the same time. (see [below for nested schema](#nestedatt--spec--backend_services))
-- `node_selector` (Attributes) NodeSelector is a label selector that determines to which nodesthis configuration applies.If nil, then this config applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
-- `services` (Attributes List) Services specifies Kubernetes services for which traffic isforwarded to an Envoy listener for L7 load balancing. Backendsof these services are automatically synced to Envoy usign EDS. (see [below for nested schema](#nestedatt--spec--services))
+- `backend_services` (Attributes List) BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS.  Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time. (see [below for nested schema](#nestedatt--spec--backend_services))
+- `node_selector` (Attributes) NodeSelector is a label selector that determines to which nodes this configuration applies. If nil, then this config applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
+- `resources` (List of Map of String) Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.
+- `services` (Attributes List) Services specifies Kubernetes services for which traffic is forwarded to an Envoy listener for L7 load balancing. Backends of these services are automatically synced to Envoy usign EDS. (see [below for nested schema](#nestedatt--spec--services))
 
 <a id="nestedatt--spec--backend_services"></a>
 ### Nested Schema for `spec.backend_services`
 
 Required:
 
-- `name` (String) Name is the name of a destination Kubernetes service that identifies trafficto be redirected.
+- `name` (String) Name is the name of a destination Kubernetes service that identifies traffic to be redirected.
 
 Optional:
 
-- `namespace` (String) Namespace is the Kubernetes service namespace.In CiliumEnvoyConfig namespace defaults to the namespace of the CEC,In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
-- `number` (List of String) Ports is a set of port numbers, which can be used for filtering in case of underlyingis exposing multiple port numbers.
+- `namespace` (String) Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace defaults to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
+- `number` (List of String) Ports is a set of port numbers, which can be used for filtering in case of underlying is exposing multiple port numbers.
 
 
 <a id="nestedatt--spec--node_selector"></a>
@@ -82,7 +79,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.node_selector.match_expressions`
@@ -90,11 +87,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -103,10 +100,10 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the name of a destination Kubernetes service that identifies trafficto be redirected.
+- `name` (String) Name is the name of a destination Kubernetes service that identifies traffic to be redirected.
 
 Optional:
 
-- `listener` (String) Listener specifies the name of the Envoy listener theservice traffic is redirected to. The listener must bespecified in the Envoy 'resources' of the sameCiliumEnvoyConfig.If omitted, the first listener specified in 'resources' isused.
-- `namespace` (String) Namespace is the Kubernetes service namespace.In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC,In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
-- `ports` (List of String) Ports is a set of service's frontend ports that should be redirected to the Envoylistener. By default all frontend ports of the service are redirected.
+- `listener` (String) Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.
+- `namespace` (String) Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
+- `ports` (List of String) Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.

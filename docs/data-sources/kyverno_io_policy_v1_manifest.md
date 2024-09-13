@@ -74,7 +74,6 @@ Optional:
 
 Required:
 
-- `match` (Attributes) MatchResources defines when this policy rule should be applied. The matchcriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the user name or role.At least one kind is required. (see [below for nested schema](#nestedatt--spec--rules--match))
 - `name` (String) Name is a label to identify the rule, It must be unique within the policy.
 
 Optional:
@@ -84,266 +83,13 @@ Optional:
 - `exclude` (Attributes) ExcludeResources defines when this policy rule should not be applied. The excludecriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the name or role. (see [below for nested schema](#nestedatt--spec--rules--exclude))
 - `generate` (Attributes) Generation is used to create new resources. (see [below for nested schema](#nestedatt--spec--rules--generate))
 - `image_extractors` (Map of String) ImageExtractors defines a mapping from kinds to ImageExtractorConfigs.This config is only valid for verifyImages rules.
+- `match` (Attributes) MatchResources defines when this policy rule should be applied. The matchcriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the user name or role.At least one kind is required. (see [below for nested schema](#nestedatt--spec--rules--match))
 - `mutate` (Attributes) Mutation is used to modify matching resources. (see [below for nested schema](#nestedatt--spec--rules--mutate))
 - `preconditions` (Map of String) Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements. A direct listof conditions (without 'any' or 'all' statements is supported for backwards compatibility butwill be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/preconditions/
 - `report_properties` (Map of String) ReportProperties are the additional properties from the rule that will be added to the policy report result
 - `skip_background_requests` (Boolean) SkipBackgroundRequests bypasses admission requests that are sent by the background controller.The default value is set to 'true', it must be set to 'false' to applygenerate and mutateExisting rules to those requests.
 - `validate` (Attributes) Validation is used to validate matching resources. (see [below for nested schema](#nestedatt--spec--rules--validate))
 - `verify_images` (Attributes List) VerifyImages is used to verify image signatures and mutate them to add a digest (see [below for nested schema](#nestedatt--spec--rules--verify_images))
-
-<a id="nestedatt--spec--rules--match"></a>
-### Nested Schema for `spec.rules.match`
-
-Optional:
-
-- `all` (Attributes List) All allows specifying resources which will be ANDed (see [below for nested schema](#nestedatt--spec--rules--match--all))
-- `any` (Attributes List) Any allows specifying resources which will be ORed (see [below for nested schema](#nestedatt--spec--rules--match--any))
-- `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified.Requires at least one tag to be specified when under MatchResources.Specifying ResourceDescription directly under match is being deprecated.Please specify under 'any' or 'all' instead. (see [below for nested schema](#nestedatt--spec--rules--match--resources))
-- `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--subjects))
-
-<a id="nestedatt--spec--rules--match--all"></a>
-### Nested Schema for `spec.rules.match.all`
-
-Optional:
-
-- `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources))
-- `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--all--subjects))
-
-<a id="nestedatt--spec--rules--match--all--resources"></a>
-### Nested Schema for `spec.rules.match.all.resources`
-
-Optional:
-
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
-- `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--selector))
-
-<a id="nestedatt--spec--rules--match--all--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.all.resources.namespace_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--match--all--resources--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.all.resources.namespace_selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-<a id="nestedatt--spec--rules--match--all--resources--selector"></a>
-### Nested Schema for `spec.rules.match.all.resources.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--match--all--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.all.resources.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-
-<a id="nestedatt--spec--rules--match--all--subjects"></a>
-### Nested Schema for `spec.rules.match.all.subjects`
-
-Required:
-
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
-- `name` (String) Name of the object being referenced.
-
-Optional:
-
-- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
-
-
-
-<a id="nestedatt--spec--rules--match--any"></a>
-### Nested Schema for `spec.rules.match.any`
-
-Optional:
-
-- `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
-- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources))
-- `roles` (List of String) Roles is the list of namespaced role names for the user.
-- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--any--subjects))
-
-<a id="nestedatt--spec--rules--match--any--resources"></a>
-### Nested Schema for `spec.rules.match.any.resources`
-
-Optional:
-
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
-- `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
-
-<a id="nestedatt--spec--rules--match--any--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.any.resources.namespace_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--match--any--resources--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.any.resources.namespace_selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-<a id="nestedatt--spec--rules--match--any--resources--selector"></a>
-### Nested Schema for `spec.rules.match.any.resources.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-
-<a id="nestedatt--spec--rules--match--any--subjects"></a>
-### Nested Schema for `spec.rules.match.any.subjects`
-
-Required:
-
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
-- `name` (String) Name of the object being referenced.
-
-Optional:
-
-- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
-
-
-
-<a id="nestedatt--spec--rules--match--resources"></a>
-### Nested Schema for `spec.rules.match.resources`
-
-Optional:
-
-- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
-- `kinds` (List of String) Kinds is a list of resource kinds.
-- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
-- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--resources--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
-- `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--resources--selector))
-
-<a id="nestedatt--spec--rules--match--resources--namespace_selector"></a>
-### Nested Schema for `spec.rules.match.resources.namespace_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--resources--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--match--resources--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.resources.namespace_selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-<a id="nestedatt--spec--rules--match--resources--selector"></a>
-### Nested Schema for `spec.rules.match.resources.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--match--resources--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.match.resources.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-
-<a id="nestedatt--spec--rules--match--subjects"></a>
-### Nested Schema for `spec.rules.match.subjects`
-
-Required:
-
-- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
-- `name` (String) Name of the object being referenced.
-
-Optional:
-
-- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
-
-
 
 <a id="nestedatt--spec--rules--cel_preconditions"></a>
 ### Nested Schema for `spec.rules.cel_preconditions`
@@ -375,7 +121,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--data))
-- `default` (Map of String) Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--service))
@@ -400,16 +146,6 @@ Required:
 Optional:
 
 - `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
-- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--service--headers))
-
-<a id="nestedatt--spec--rules--context--api_call--service--headers"></a>
-### Nested Schema for `spec.rules.context.api_call.service.headers`
-
-Required:
-
-- `key` (String) Key is the header key
-- `value` (String) Value is the header value
-
 
 
 
@@ -863,7 +599,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--data))
-- `default` (Map of String) Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--service))
@@ -888,16 +624,6 @@ Required:
 Optional:
 
 - `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
-- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--service--headers))
-
-<a id="nestedatt--spec--rules--generate--foreach--context--api_call--service--headers"></a>
-### Nested Schema for `spec.rules.generate.foreach.context.api_call.service.headers`
-
-Required:
-
-- `key` (String) Key is the header key
-- `value` (String) Value is the header value
-
 
 
 
@@ -992,6 +718,260 @@ Optional:
 
 
 
+<a id="nestedatt--spec--rules--match"></a>
+### Nested Schema for `spec.rules.match`
+
+Optional:
+
+- `all` (Attributes List) All allows specifying resources which will be ANDed (see [below for nested schema](#nestedatt--spec--rules--match--all))
+- `any` (Attributes List) Any allows specifying resources which will be ORed (see [below for nested schema](#nestedatt--spec--rules--match--any))
+- `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified.Requires at least one tag to be specified when under MatchResources.Specifying ResourceDescription directly under match is being deprecated.Please specify under 'any' or 'all' instead. (see [below for nested schema](#nestedatt--spec--rules--match--resources))
+- `roles` (List of String) Roles is the list of namespaced role names for the user.
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--subjects))
+
+<a id="nestedatt--spec--rules--match--all"></a>
+### Nested Schema for `spec.rules.match.all`
+
+Optional:
+
+- `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources))
+- `roles` (List of String) Roles is the list of namespaced role names for the user.
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--all--subjects))
+
+<a id="nestedatt--spec--rules--match--all--resources"></a>
+### Nested Schema for `spec.rules.match.all.resources`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
+- `kinds` (List of String) Kinds is a list of resource kinds.
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--selector))
+
+<a id="nestedatt--spec--rules--match--all--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.match.all.resources.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--match--all--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.all.resources.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--rules--match--all--resources--selector"></a>
+### Nested Schema for `spec.rules.match.all.resources.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--all--resources--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--match--all--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.all.resources.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--rules--match--all--subjects"></a>
+### Nested Schema for `spec.rules.match.all.subjects`
+
+Required:
+
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `name` (String) Name of the object being referenced.
+
+Optional:
+
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
+
+
+
+<a id="nestedatt--spec--rules--match--any"></a>
+### Nested Schema for `spec.rules.match.any`
+
+Optional:
+
+- `cluster_roles` (List of String) ClusterRoles is the list of cluster-wide role names for the user.
+- `resources` (Attributes) ResourceDescription contains information about the resource being created or modified. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources))
+- `roles` (List of String) Roles is the list of namespaced role names for the user.
+- `subjects` (Attributes List) Subjects is the list of subject names like users, user groups, and service accounts. (see [below for nested schema](#nestedatt--spec--rules--match--any--subjects))
+
+<a id="nestedatt--spec--rules--match--any--resources"></a>
+### Nested Schema for `spec.rules.match.any.resources`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
+- `kinds` (List of String) Kinds is a list of resource kinds.
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector))
+
+<a id="nestedatt--spec--rules--match--any--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.match.any.resources.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--match--any--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.any.resources.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--rules--match--any--resources--selector"></a>
+### Nested Schema for `spec.rules.match.any.resources.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--any--resources--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--match--any--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.any.resources.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--rules--match--any--subjects"></a>
+### Nested Schema for `spec.rules.match.any.subjects`
+
+Required:
+
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `name` (String) Name of the object being referenced.
+
+Optional:
+
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
+
+
+
+<a id="nestedatt--spec--rules--match--resources"></a>
+### Nested Schema for `spec.rules.match.resources`
+
+Optional:
+
+- `annotations` (Map of String) Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).
+- `kinds` (List of String) Kinds is a list of resource kinds.
+- `name` (String) Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.
+- `names` (List of String) Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--resources--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).
+- `operations` (List of String) Operations can contain values ['CREATE, 'UPDATE', 'CONNECT', 'DELETE'], which are used to match a specific action.
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set. (see [below for nested schema](#nestedatt--spec--rules--match--resources--selector))
+
+<a id="nestedatt--spec--rules--match--resources--namespace_selector"></a>
+### Nested Schema for `spec.rules.match.resources.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--resources--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--match--resources--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.resources.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+<a id="nestedatt--spec--rules--match--resources--selector"></a>
+### Nested Schema for `spec.rules.match.resources.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--match--resources--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--match--resources--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.match.resources.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--rules--match--subjects"></a>
+### Nested Schema for `spec.rules.match.subjects`
+
+Required:
+
+- `kind` (String) Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.
+- `name` (String) Name of the object being referenced.
+
+Optional:
+
+- `api_group` (String) APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
+- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.
+
+
+
 <a id="nestedatt--spec--rules--mutate"></a>
 ### Nested Schema for `spec.rules.mutate`
 
@@ -1037,7 +1017,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--data))
-- `default` (Map of String) Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--service))
@@ -1062,16 +1042,6 @@ Required:
 Optional:
 
 - `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
-- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--service--headers))
-
-<a id="nestedatt--spec--rules--mutate--foreach--context--api_call--service--headers"></a>
-### Nested Schema for `spec.rules.mutate.foreach.context.api_call.service.headers`
-
-Required:
-
-- `key` (String) Key is the header key
-- `value` (String) Value is the header value
-
 
 
 
@@ -1199,7 +1169,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--data))
-- `default` (Map of String) Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--service))
@@ -1224,16 +1194,6 @@ Required:
 Optional:
 
 - `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
-- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--service--headers))
-
-<a id="nestedatt--spec--rules--mutate--targets--context--api_call--service--headers"></a>
-### Nested Schema for `spec.rules.mutate.targets.context.api_call.service.headers`
-
-Required:
-
-- `key` (String) Key is the header key
-- `value` (String) Value is the header value
-
 
 
 
@@ -1476,7 +1436,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--data))
-- `default` (Map of String) Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--service))
@@ -1501,16 +1461,6 @@ Required:
 Optional:
 
 - `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
-- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--service--headers))
-
-<a id="nestedatt--spec--rules--validate--foreach--context--api_call--service--headers"></a>
-### Nested Schema for `spec.rules.validate.foreach.context.api_call.service.headers`
-
-Required:
-
-- `key` (String) Key is the header key
-- `value` (String) Value is the header value
-
 
 
 

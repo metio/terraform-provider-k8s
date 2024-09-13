@@ -555,7 +555,6 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--jwt--providers))
-- `validation_policy` (String)
 
 <a id="nestedatt--spec--virtual_host--options--jwt--providers"></a>
 ### Nested Schema for `spec.virtual_host.options.jwt.providers`
@@ -660,7 +659,6 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--jwt_staged--after_ext_auth--providers))
-- `validation_policy` (String)
 
 <a id="nestedatt--spec--virtual_host--options--jwt_staged--after_ext_auth--providers"></a>
 ### Nested Schema for `spec.virtual_host.options.jwt_staged.after_ext_auth.providers`
@@ -757,7 +755,6 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--jwt_staged--before_ext_auth--providers))
-- `validation_policy` (String)
 
 <a id="nestedatt--spec--virtual_host--options--jwt_staged--before_ext_auth--providers"></a>
 ### Nested Schema for `spec.virtual_host.options.jwt_staged.before_ext_auth.providers`
@@ -3889,37 +3886,7 @@ Optional:
 
 Optional:
 
-- `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--azure_openai))
 - `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--openai))
-
-<a id="nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--azure_openai"></a>
-### Nested Schema for `spec.virtual_host.routes.options.ai.rag.embedding.azure_openai`
-
-Optional:
-
-- `api_version` (String)
-- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--azure_openai--auth_token))
-- `deployment_name` (String)
-- `endpoint` (String)
-
-<a id="nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--azure_openai--auth_token"></a>
-### Nested Schema for `spec.virtual_host.routes.options.ai.rag.embedding.azure_openai.auth_token`
-
-Optional:
-
-- `inline` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--azure_openai--auth_token--secret_ref))
-
-<a id="nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--azure_openai--auth_token--secret_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.options.ai.rag.embedding.azure_openai.auth_token.secret_ref`
-
-Optional:
-
-- `name` (String)
-- `namespace` (String)
-
-
-
 
 <a id="nestedatt--spec--virtual_host--routes--options--ai--rag--embedding--openai"></a>
 ### Nested Schema for `spec.virtual_host.routes.options.ai.rag.embedding.openai`
@@ -3981,37 +3948,7 @@ Optional:
 
 Optional:
 
-- `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--azure_openai))
 - `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--openai))
-
-<a id="nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--azure_openai"></a>
-### Nested Schema for `spec.virtual_host.routes.options.ai.semantic_cache.embedding.azure_openai`
-
-Optional:
-
-- `api_version` (String)
-- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--azure_openai--auth_token))
-- `deployment_name` (String)
-- `endpoint` (String)
-
-<a id="nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--azure_openai--auth_token"></a>
-### Nested Schema for `spec.virtual_host.routes.options.ai.semantic_cache.embedding.azure_openai.auth_token`
-
-Optional:
-
-- `inline` (String)
-- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--azure_openai--auth_token--secret_ref))
-
-<a id="nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--azure_openai--auth_token--secret_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.options.ai.semantic_cache.embedding.azure_openai.auth_token.secret_ref`
-
-Optional:
-
-- `name` (String)
-- `namespace` (String)
-
-
-
 
 <a id="nestedatt--spec--virtual_host--routes--options--ai--semantic_cache--embedding--openai"></a>
 ### Nested Schema for `spec.virtual_host.routes.options.ai.semantic_cache.embedding.openai`
@@ -4470,7 +4407,6 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--jwt_providers_staged--after_ext_auth--providers))
-- `validation_policy` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--options--jwt_providers_staged--after_ext_auth--providers"></a>
 ### Nested Schema for `spec.virtual_host.routes.options.jwt_providers_staged.after_ext_auth.providers`
@@ -4567,7 +4503,6 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--jwt_providers_staged--before_ext_auth--providers))
-- `validation_policy` (String)
 
 <a id="nestedatt--spec--virtual_host--routes--options--jwt_providers_staged--before_ext_auth--providers"></a>
 ### Nested Schema for `spec.virtual_host.routes.options.jwt_providers_staged.before_ext_auth.providers`
