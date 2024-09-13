@@ -44,9 +44,17 @@ type GatewayNginxOrgNginxProxyV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		DisableHTTP2 *bool   `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
-		IpFamily     *string `tfsdk:"ip_family" json:"ipFamily,omitempty"`
-		Telemetry    *struct {
+		DisableHTTP2    *bool   `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
+		IpFamily        *string `tfsdk:"ip_family" json:"ipFamily,omitempty"`
+		RewriteClientIP *struct {
+			Mode             *string `tfsdk:"mode" json:"mode,omitempty"`
+			SetIPRecursively *bool   `tfsdk:"set_ip_recursively" json:"setIPRecursively,omitempty"`
+			TrustedAddresses *[]struct {
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"trusted_addresses" json:"trustedAddresses,omitempty"`
+		} `tfsdk:"rewrite_client_ip" json:"rewriteClientIP,omitempty"`
+		Telemetry *struct {
 			Exporter *struct {
 				BatchCount *int64  `tfsdk:"batch_count" json:"batchCount,omitempty"`
 				BatchSize  *int64  `tfsdk:"batch_size" json:"batchSize,omitempty"`
@@ -146,6 +154,64 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 						},
 					},
 
+					"rewrite_client_ip": schema.SingleNestedAttribute{
+						Description:         "RewriteClientIP defines configuration for rewriting the client IP to the original client's IP.",
+						MarkdownDescription: "RewriteClientIP defines configuration for rewriting the client IP to the original client's IP.",
+						Attributes: map[string]schema.Attribute{
+							"mode": schema.StringAttribute{
+								Description:         "Mode defines how NGINX will rewrite the client's IP address.There are two possible modes:- ProxyProtocol: NGINX will rewrite the client's IP using the PROXY protocol header.- XForwardedFor: NGINX will rewrite the client's IP using the X-Forwarded-For header.Sets NGINX directive real_ip_header: https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header",
+								MarkdownDescription: "Mode defines how NGINX will rewrite the client's IP address.There are two possible modes:- ProxyProtocol: NGINX will rewrite the client's IP using the PROXY protocol header.- XForwardedFor: NGINX will rewrite the client's IP using the X-Forwarded-For header.Sets NGINX directive real_ip_header: https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("ProxyProtocol", "XForwardedFor"),
+								},
+							},
+
+							"set_ip_recursively": schema.BoolAttribute{
+								Description:         "SetIPRecursively configures whether recursive search is used when selecting the client's address fromthe X-Forwarded-For header. It is used in conjunction with TrustedAddresses.If enabled, NGINX will recurse on the values in X-Forwarded-Header from the end of arrayto start of array and select the first untrusted IP.For example, if X-Forwarded-For is [11.11.11.11, 22.22.22.22, 55.55.55.1],and TrustedAddresses is set to 55.55.55.1/32, NGINX will rewrite the client IP to 22.22.22.22.If disabled, NGINX will select the IP at the end of the array.In the previous example, 55.55.55.1 would be selected.Sets NGINX directive real_ip_recursive: https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive",
+								MarkdownDescription: "SetIPRecursively configures whether recursive search is used when selecting the client's address fromthe X-Forwarded-For header. It is used in conjunction with TrustedAddresses.If enabled, NGINX will recurse on the values in X-Forwarded-Header from the end of arrayto start of array and select the first untrusted IP.For example, if X-Forwarded-For is [11.11.11.11, 22.22.22.22, 55.55.55.1],and TrustedAddresses is set to 55.55.55.1/32, NGINX will rewrite the client IP to 22.22.22.22.If disabled, NGINX will select the IP at the end of the array.In the previous example, 55.55.55.1 would be selected.Sets NGINX directive real_ip_recursive: https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"trusted_addresses": schema.ListNestedAttribute{
+								Description:         "TrustedAddresses specifies the addresses that are trusted to send correct client IP information.If a request comes from a trusted address, NGINX will rewrite the client IP information,and forward it to the backend in the X-Forwarded-For* and X-Real-IP headers.If the request does not come from a trusted address, NGINX will not rewrite the client IP information.TrustedAddresses only supports CIDR blocks: 192.33.21.1/24, fe80::1/64.To trust all addresses (not recommended for production), set to 0.0.0.0/0.If no addresses are provided, NGINX will not rewrite the client IP information.Sets NGINX directive set_real_ip_from: https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_fromThis field is required if mode is set.",
+								MarkdownDescription: "TrustedAddresses specifies the addresses that are trusted to send correct client IP information.If a request comes from a trusted address, NGINX will rewrite the client IP information,and forward it to the backend in the X-Forwarded-For* and X-Real-IP headers.If the request does not come from a trusted address, NGINX will not rewrite the client IP information.TrustedAddresses only supports CIDR blocks: 192.33.21.1/24, fe80::1/64.To trust all addresses (not recommended for production), set to 0.0.0.0/0.If no addresses are provided, NGINX will not rewrite the client IP information.Sets NGINX directive set_real_ip_from: https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_fromThis field is required if mode is set.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"type": schema.StringAttribute{
+											Description:         "Type specifies the type of address.Default is 'cidr' which specifies that the address is a CIDR block.",
+											MarkdownDescription: "Type specifies the type of address.Default is 'cidr' which specifies that the address is a CIDR block.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("cidr"),
+											},
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value specifies the address value.",
+											MarkdownDescription: "Value specifies the address value.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"telemetry": schema.SingleNestedAttribute{
 						Description:         "Telemetry specifies the OpenTelemetry configuration.",
 						MarkdownDescription: "Telemetry specifies the OpenTelemetry configuration.",
@@ -194,7 +260,7 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.RegexMatches(regexp.MustCompile(`^\d{1,4}(ms|s)?$`), ""),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]{1,4}(ms|s|m|h)?$`), ""),
 										},
 									},
 								},

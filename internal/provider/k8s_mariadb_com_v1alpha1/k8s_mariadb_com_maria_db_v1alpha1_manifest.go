@@ -1235,7 +1235,8 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					} `tfsdk:"metadata" json:"metadata,omitempty"`
-					Resources *struct {
+					PodAffinity *bool `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
+					Resources   *struct {
 						Claims *[]struct {
 							Name    *string `tfsdk:"name" json:"name,omitempty"`
 							Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -12414,6 +12415,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"pod_affinity": schema.BoolAttribute{
+												Description:         "PodAffinity indicates whether the recovery Jobs should run in the same Node as the MariaDB Pods. It defaults to true.",
+												MarkdownDescription: "PodAffinity indicates whether the recovery Jobs should run in the same Node as the MariaDB Pods. It defaults to true.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"resources": schema.SingleNestedAttribute{

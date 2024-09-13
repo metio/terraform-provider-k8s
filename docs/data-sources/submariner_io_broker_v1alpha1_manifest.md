@@ -55,6 +55,8 @@ Optional:
 
 Optional:
 
+- `clusterset_ip_enabled` (Boolean) Enable ClustersetIP default for connecting clusters.
+- `clusterset_ipcidr_range` (String) ClustersetIP supernet range for allocating ClustersetIPCIDRs to each cluster.
 - `components` (List of String) List of the components to be installed - any of [service-discovery, connectivity].
 - `default_custom_domains` (List of String) List of domains to use for multi-cluster service discovery.
 - `default_globalnet_cluster_size` (Number) Default cluster size for GlobalCIDR allocated to each cluster (amount of global IPs).

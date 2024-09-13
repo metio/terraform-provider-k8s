@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.
+  CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructingCilium's BGP control plane to create virtual BGP routers.
 ---
 
 # k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1_manifest (Data Source)
 
-CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.
+CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructingCilium's BGP control plane to create virtual BGP routers.
 
 ## Example Usage
 
@@ -54,59 +54,59 @@ Optional:
 
 Required:
 
-- `virtual_routers` (Attributes List) A list of CiliumBGPVirtualRouter(s) which instructs the BGP control plane how to instantiate virtual BGP routers. (see [below for nested schema](#nestedatt--spec--virtual_routers))
+- `virtual_routers` (Attributes List) A list of CiliumBGPVirtualRouter(s) which instructsthe BGP control plane how to instantiate virtual BGP routers. (see [below for nested schema](#nestedatt--spec--virtual_routers))
 
 Optional:
 
-- `node_selector` (Attributes) NodeSelector selects a group of nodes where this BGP Peering Policy applies.  If empty / nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
+- `node_selector` (Attributes) NodeSelector selects a group of nodes where this BGP PeeringPolicy applies.If empty / nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
 
 <a id="nestedatt--spec--virtual_routers"></a>
 ### Nested Schema for `spec.virtual_routers`
 
 Required:
 
-- `local_asn` (Number) LocalASN is the ASN of this virtual router. Supports extended 32bit ASNs
+- `local_asn` (Number) LocalASN is the ASN of this virtual router.Supports extended 32bit ASNs
 - `neighbors` (Attributes List) Neighbors is a list of neighboring BGP peers for this virtual router (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors))
 
 Optional:
 
-- `export_pod_cidr` (Boolean) ExportPodCIDR determines whether to export the Node's private CIDR block to the configured neighbors.
-- `pod_ip_pool_selector` (Attributes) PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector))
-- `service_advertisements` (List of String) ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.
-- `service_selector` (Attributes) ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--service_selector))
+- `export_pod_cidr` (Boolean) ExportPodCIDR determines whether to export the Node's private CIDR blockto the configured neighbors.
+- `pod_ip_pool_selector` (Attributes) PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtualrouter will announce allocated CIDRs of matching CiliumPodIPPools.If empty / nil no CiliumPodIPPools will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector))
+- `service_advertisements` (List of String) ServiceAdvertisements selects a group of BGP Advertisement(s) to advertisefor the selected services.
+- `service_selector` (Attributes) ServiceSelector selects a group of load balancer services which thisvirtual router will announce. The loadBalancerClass for a service mustbe nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'.Refer to the following document for additional details regarding load balancerclasses:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-classIf empty / nil no services will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--service_selector))
 
 <a id="nestedatt--spec--virtual_routers--neighbors"></a>
 ### Nested Schema for `spec.virtual_routers.neighbors`
 
 Required:
 
-- `peer_address` (String) PeerAddress is the IP address of the peer. This must be in CIDR notation and use a /32 to express a single host.
-- `peer_asn` (Number) PeerASN is the ASN of the peer BGP router. Supports extended 32bit ASNs
+- `peer_address` (String) PeerAddress is the IP address of the peer.This must be in CIDR notation and use a /32 to expressa single host.
+- `peer_asn` (Number) PeerASN is the ASN of the peer BGP router.Supports extended 32bit ASNs
 
 Optional:
 
-- `advertised_path_attributes` (Attributes List) AdvertisedPathAttributes can be used to apply additional path attributes to selected routes when advertising them to the peer. If empty / nil, no additional path attributes are advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes))
-- `auth_secret_ref` (String) AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.
+- `advertised_path_attributes` (Attributes List) AdvertisedPathAttributes can be used to apply additional path attributesto selected routes when advertising them to the peer.If empty / nil, no additional path attributes are advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes))
+- `auth_secret_ref` (String) AuthSecretRef is the name of the secret to use to fetch a TCPauthentication password for this peer.
 - `connect_retry_time_seconds` (Number) ConnectRetryTimeSeconds defines the initial value for the BGP ConnectRetryTimer (RFC 4271, Section 8).
-- `e_bgp_multihop_ttl` (Number) EBGPMultihopTTL controls the multi-hop feature for eBGP peers. Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor. The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed). This field is ignored for iBGP peers.
-- `families` (Attributes List) Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--families))
-- `graceful_restart` (Attributes) GracefulRestart defines graceful restart parameters which are negotiated with this neighbor. If empty / nil, the graceful restart capability is disabled. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--graceful_restart))
-- `hold_time_seconds` (Number) HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2). Updating this value will cause a session reset.
-- `keep_alive_time_seconds` (Number) KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8). It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.
-- `peer_port` (Number) PeerPort is the TCP port of the peer. 1-65535 is the range of valid port numbers that can be specified. If unset, defaults to 179.
+- `e_bgp_multihop_ttl` (Number) EBGPMultihopTTL controls the multi-hop feature for eBGP peers.Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor.The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed).This field is ignored for iBGP peers.
+- `families` (Attributes List) Families, if provided, defines a set of AFI/SAFIs the speaker willnegotiate with it's peer.If this slice is not provided the default families of IPv6 and IPv4 willbe provided. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--families))
+- `graceful_restart` (Attributes) GracefulRestart defines graceful restart parameters which are negotiatedwith this neighbor. If empty / nil, the graceful restart capability is disabled. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--graceful_restart))
+- `hold_time_seconds` (Number) HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2).Updating this value will cause a session reset.
+- `keep_alive_time_seconds` (Number) KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8).It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.
+- `peer_port` (Number) PeerPort is the TCP port of the peer. 1-65535 is the range ofvalid port numbers that can be specified. If unset, defaults to 179.
 
 <a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes"></a>
 ### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes`
 
 Required:
 
-- `selector_type` (String) SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools). - For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).
+- `selector_type` (String) SelectorType defines the object type on which the Selector applies:- For 'PodCIDR' the Selector matches k8s CiliumNode resources  (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes.  Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs.- For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources  (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).- For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources  (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).
 
 Optional:
 
-- `communities` (Attributes) Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--communities))
-- `local_preference` (Number) LocalPreference defines the preference value advertised in the BGP Local Preference path attribute. As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers (no Local Preference path attribute will be advertised). If nil / not set, the default Local Preference of 100 will be advertised in the Local Preference path attribute for iBGP peers.
-- `selector` (Attributes) Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector))
+- `communities` (Attributes) Communities defines a set of community values advertised in the supported BGP Communities path attributes.If nil / not set, no BGP Communities path attribute will be advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--communities))
+- `local_preference` (Number) LocalPreference defines the preference value advertised in the BGP Local Preference path attribute.As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers(no Local Preference path attribute will be advertised).If nil / not set, the default Local Preference of 100 will be advertised inthe Local Preference path attribute for iBGP peers.
+- `selector` (Attributes) Selector selects a group of objects of the SelectorTyperesulting into routes that will be announced with the configured Attributes.If nil / not set, all objects of the SelectorType are selected. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector))
 
 <a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--communities"></a>
 ### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes.communities`
@@ -115,7 +115,7 @@ Optional:
 
 - `large` (List of String) Large holds a list of the BGP Large Communities Attribute (RFC 8092) values.
 - `standard` (List of String) Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as numeric values.
-- `well_known` (List of String) WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.
+- `well_known` (List of String) WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined aswell-known string aliases to their numeric values.
 
 
 <a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector"></a>
@@ -124,7 +124,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes--selector--match_expressions"></a>
 ### Nested Schema for `spec.virtual_routers.neighbors.advertised_path_attributes.selector.match_expressions`
@@ -132,11 +132,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -159,7 +159,7 @@ Required:
 
 Optional:
 
-- `restart_time_seconds` (Number) RestartTimeSeconds is the estimated time it will take for the BGP session to be re-established with peer after a restart. After this period, peer will remove stale routes. This is described RFC 4724 section 4.2.
+- `restart_time_seconds` (Number) RestartTimeSeconds is the estimated time it will take for the BGPsession to be re-established with peer after a restart.After this period, peer will remove stale routes. This isdescribed RFC 4724 section 4.2.
 
 
 
@@ -169,7 +169,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--virtual_routers--pod_ip_pool_selector--match_expressions"></a>
 ### Nested Schema for `spec.virtual_routers.pod_ip_pool_selector.match_expressions`
@@ -177,11 +177,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -191,7 +191,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--virtual_routers--service_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--virtual_routers--service_selector--match_expressions"></a>
 ### Nested Schema for `spec.virtual_routers.service_selector.match_expressions`
@@ -199,11 +199,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -214,7 +214,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.node_selector.match_expressions`
@@ -222,8 +222,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.

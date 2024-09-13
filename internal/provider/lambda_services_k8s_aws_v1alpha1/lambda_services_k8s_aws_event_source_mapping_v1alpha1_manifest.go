@@ -60,7 +60,8 @@ type LambdaServicesK8SAwsEventSourceMappingV1Alpha1ManifestData struct {
 		EventSourceARN *string `tfsdk:"event_source_arn" json:"eventSourceARN,omitempty"`
 		EventSourceRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"event_source_ref" json:"eventSourceRef,omitempty"`
 		FilterCriteria *struct {
@@ -71,7 +72,8 @@ type LambdaServicesK8SAwsEventSourceMappingV1Alpha1ManifestData struct {
 		FunctionName *string `tfsdk:"function_name" json:"functionName,omitempty"`
 		FunctionRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"function_ref" json:"functionRef,omitempty"`
 		FunctionResponseTypes          *[]string `tfsdk:"function_response_types" json:"functionResponseTypes,omitempty"`
@@ -81,7 +83,8 @@ type LambdaServicesK8SAwsEventSourceMappingV1Alpha1ManifestData struct {
 		ParallelizationFactor          *int64    `tfsdk:"parallelization_factor" json:"parallelizationFactor,omitempty"`
 		QueueRefs                      *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"queue_refs" json:"queueRefs,omitempty"`
 		Queues        *[]string `tfsdk:"queues" json:"queues,omitempty"`
@@ -289,6 +292,14 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -345,6 +356,14 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -413,6 +432,14 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

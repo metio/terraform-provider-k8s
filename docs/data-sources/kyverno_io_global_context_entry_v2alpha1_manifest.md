@@ -85,6 +85,16 @@ Required:
 Optional:
 
 - `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
+- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--api_call--service--headers))
+
+<a id="nestedatt--spec--api_call--service--headers"></a>
+### Nested Schema for `spec.api_call.service.headers`
+
+Required:
+
+- `key` (String) Key is the header key
+- `value` (String) Value is the header value
+
 
 
 

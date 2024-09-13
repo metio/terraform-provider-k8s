@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_external_workload_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumExternalWorkload is a Kubernetes Custom Resource that contains a specification for an external workload that can join the cluster.  The name of the CRD is the FQDN of the external workload, and it needs to match the name in the workload registration. The labels on the CRD object are the labels that will be used to allocate a Cilium Identity for the external workload. If 'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labels are not explicitly specified, they will be defaulted to 'default' and , respectively. 'io.cilium.k8s.policy.cluster' will always be defined as the name of the current cluster, which defaults to 'default'.
+  CiliumExternalWorkload is a Kubernetes Custom Resource thatcontains a specification for an external workload that can join thecluster.  The name of the CRD is the FQDN of the external workload,and it needs to match the name in the workload registration. Thelabels on the CRD object are the labels that will be used toallocate a Cilium Identity for the external workload. If'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labelsare not explicitly specified, they will be defaulted to 'default'and , respectively. 'io.cilium.k8s.policy.cluster'will always be defined as the name of the current cluster, whichdefaults to 'default'.
 ---
 
 # k8s_cilium_io_cilium_external_workload_v2_manifest (Data Source)
 
-CiliumExternalWorkload is a Kubernetes Custom Resource that contains a specification for an external workload that can join the cluster.  The name of the CRD is the FQDN of the external workload, and it needs to match the name in the workload registration. The labels on the CRD object are the labels that will be used to allocate a Cilium Identity for the external workload. If 'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labels are not explicitly specified, they will be defaulted to 'default' and <workload name>, respectively. 'io.cilium.k8s.policy.cluster' will always be defined as the name of the current cluster, which defaults to 'default'.
+CiliumExternalWorkload is a Kubernetes Custom Resource thatcontains a specification for an external workload that can join thecluster.  The name of the CRD is the FQDN of the external workload,and it needs to match the name in the workload registration. Thelabels on the CRD object are the labels that will be used toallocate a Cilium Identity for the external workload. If'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labelsare not explicitly specified, they will be defaulted to 'default'and <workload name>, respectively. 'io.cilium.k8s.policy.cluster'will always be defined as the name of the current cluster, whichdefaults to 'default'.
 
 ## Example Usage
 
@@ -54,5 +54,5 @@ Optional:
 
 Optional:
 
-- `ipv4_alloc_cidr` (String) IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.
-- `ipv6_alloc_cidr` (String) IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.
+- `ipv4_alloc_cidr` (String) IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload canuse to allocate IP addresses for the tunnel device and the health endpoint.
+- `ipv6_alloc_cidr` (String) IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload canuse to allocate IP addresses for the tunnel device and the health endpoint.

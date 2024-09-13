@@ -53,13 +53,16 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `image` (String) Image is the name of the image repository
+- `interval` (String) Interval is the length of time to wait betweenscans of the image repository.
+
 Optional:
 
 - `access_from` (Attributes) AccessFrom defines an ACL for allowing cross-namespace referencesto the ImageRepository object based on the caller's namespace labels. (see [below for nested schema](#nestedatt--spec--access_from))
 - `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a secret containingeither or both of - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile') and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
 - `exclusion_list` (List of String) ExclusionList is a list of regex strings used to exclude certain tagsfrom being stored in the database.
-- `image` (String) Image is the name of the image repository
-- `interval` (String) Interval is the length of time to wait betweenscans of the image repository.
 - `secret_ref` (Attributes) SecretRef can be given the name of a secret containingcredentials to use for the image registry. The secret should becreated with 'kubectl create secret docker-registry', or theequivalent. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `service_account_name` (String) ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets.
 - `suspend` (Boolean) This flag tells the controller to suspend subsequent image scans.It does not apply to already started scans. Defaults to false.

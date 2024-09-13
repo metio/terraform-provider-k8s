@@ -199,16 +199,16 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Manifest) Schema(_ context.Co
 					"image": schema.StringAttribute{
 						Description:         "Image is the name of the image repository",
 						MarkdownDescription: "Image is the name of the image repository",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
 					"interval": schema.StringAttribute{
 						Description:         "Interval is the length of time to wait betweenscans of the image repository.",
 						MarkdownDescription: "Interval is the length of time to wait betweenscans of the image repository.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),

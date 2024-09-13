@@ -53,15 +53,19 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `image` (String) Image is the name of the image repository
+- `interval` (String) Interval is the length of time to wait betweenscans of the image repository.
+
 Optional:
 
 - `access_from` (Attributes) AccessFrom defines an ACL for allowing cross-namespace referencesto the ImageRepository object based on the caller's namespace labels. (see [below for nested schema](#nestedatt--spec--access_from))
 - `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theregistry. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.Note: Support for the 'caFile', 'certFile' and 'keyFile' keys hasbeen deprecated. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
 - `exclusion_list` (List of String) ExclusionList is a list of regex strings used to exclude certain tagsfrom being stored in the database.
-- `image` (String) Image is the name of the image repository
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS HTTP container registry.
-- `interval` (String) Interval is the length of time to wait betweenscans of the image repository.
 - `provider` (String) The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.
+- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `secret_ref` (Attributes) SecretRef can be given the name of a secret containingcredentials to use for the image registry. The secret should becreated with 'kubectl create secret docker-registry', or theequivalent. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `service_account_name` (String) ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets.
 - `suspend` (Boolean) This flag tells the controller to suspend subsequent image scans.It does not apply to already started scans. Defaults to false.
@@ -85,6 +89,14 @@ Optional:
 
 <a id="nestedatt--spec--cert_secret_ref"></a>
 ### Nested Schema for `spec.cert_secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.
+
+
+<a id="nestedatt--spec--proxy_secret_ref"></a>
+### Nested Schema for `spec.proxy_secret_ref`
 
 Required:
 

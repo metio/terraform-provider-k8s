@@ -53,6 +53,7 @@ type AppsKubeblocksIoConfigurationV1Alpha1ManifestData struct {
 			} `tfsdk:"config_file_params" json:"configFileParams,omitempty"`
 			ConfigSpec *struct {
 				AsEnvFrom                *[]string `tfsdk:"as_env_from" json:"asEnvFrom,omitempty"`
+				AsSecret                 *bool     `tfsdk:"as_secret" json:"asSecret,omitempty"`
 				ConstraintRef            *string   `tfsdk:"constraint_ref" json:"constraintRef,omitempty"`
 				DefaultMode              *int64    `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 				InjectEnvTo              *[]string `tfsdk:"inject_env_to" json:"injectEnvTo,omitempty"`
@@ -217,6 +218,14 @@ func (r *AppsKubeblocksIoConfigurationV1Alpha1Manifest) Schema(_ context.Context
 											Computed:            false,
 										},
 
+										"as_secret": schema.BoolAttribute{
+											Description:         "Whether to store the final rendered parameters as a secret.",
+											MarkdownDescription: "Whether to store the final rendered parameters as a secret.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"constraint_ref": schema.StringAttribute{
 											Description:         "Specifies the name of the referenced configuration constraints object.",
 											MarkdownDescription: "Specifies the name of the referenced configuration constraints object.",
@@ -345,8 +354,8 @@ func (r *AppsKubeblocksIoConfigurationV1Alpha1Manifest) Schema(_ context.Context
 										"volume_name": schema.StringAttribute{
 											Description:         "Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.",
 											MarkdownDescription: "Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.",
-											Required:            true,
-											Optional:            false,
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
 												stringvalidator.LengthAtMost(63),

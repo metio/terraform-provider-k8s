@@ -66,7 +66,11 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 					Method   *string            `tfsdk:"method" json:"method,omitempty"`
 					Service  *struct {
 						CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-						Url      *string `tfsdk:"url" json:"url,omitempty"`
+						Headers  *[]struct {
+							Key   *string `tfsdk:"key" json:"key,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"headers" json:"headers,omitempty"`
+						Url *string `tfsdk:"url" json:"url,omitempty"`
 					} `tfsdk:"service" json:"service,omitempty"`
 					UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 				} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -212,7 +216,11 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-								Url      *string `tfsdk:"url" json:"url,omitempty"`
+								Headers  *[]struct {
+									Key   *string `tfsdk:"key" json:"key,omitempty"`
+									Value *string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"headers" json:"headers,omitempty"`
+								Url *string `tfsdk:"url" json:"url,omitempty"`
 							} `tfsdk:"service" json:"service,omitempty"`
 							UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 						} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -353,7 +361,11 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-								Url      *string `tfsdk:"url" json:"url,omitempty"`
+								Headers  *[]struct {
+									Key   *string `tfsdk:"key" json:"key,omitempty"`
+									Value *string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"headers" json:"headers,omitempty"`
+								Url *string `tfsdk:"url" json:"url,omitempty"`
 							} `tfsdk:"service" json:"service,omitempty"`
 							UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 						} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -417,7 +429,11 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-								Url      *string `tfsdk:"url" json:"url,omitempty"`
+								Headers  *[]struct {
+									Key   *string `tfsdk:"key" json:"key,omitempty"`
+									Value *string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"headers" json:"headers,omitempty"`
+								Url *string `tfsdk:"url" json:"url,omitempty"`
 							} `tfsdk:"service" json:"service,omitempty"`
 							UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 						} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -546,7 +562,11 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-								Url      *string `tfsdk:"url" json:"url,omitempty"`
+								Headers  *[]struct {
+									Key   *string `tfsdk:"key" json:"key,omitempty"`
+									Value *string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"headers" json:"headers,omitempty"`
+								Url *string `tfsdk:"url" json:"url,omitempty"`
 							} `tfsdk:"service" json:"service,omitempty"`
 							UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 						} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -1073,8 +1093,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"default": schema.MapAttribute{
-														Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
-														MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+														Description:         "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
+														MarkdownDescription: "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1110,6 +1130,33 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+
+															"headers": schema.ListNestedAttribute{
+																Description:         "Headers is a list of optional HTTP headers to be included in the request.",
+																MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "Key is the header key",
+																			MarkdownDescription: "Key is the header key",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"value": schema.StringAttribute{
+																			Description:         "Value is the header value",
+																			MarkdownDescription: "Value is the header value",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
 															},
 
 															"url": schema.StringAttribute{
@@ -2072,8 +2119,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			Description:         "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2109,6 +2156,33 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																				},
+
+																				"headers": schema.ListNestedAttribute{
+																					Description:         "Headers is a list of optional HTTP headers to be included in the request.",
+																					MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "Key is the header key",
+																								MarkdownDescription: "Key is the header key",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"value": schema.StringAttribute{
+																								Description:         "Value is the header value",
+																								MarkdownDescription: "Value is the header value",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
 																				},
 
 																				"url": schema.StringAttribute{
@@ -3014,8 +3088,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											Computed: false,
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -3066,8 +3140,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			Description:         "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3103,6 +3177,33 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																				},
+
+																				"headers": schema.ListNestedAttribute{
+																					Description:         "Headers is a list of optional HTTP headers to be included in the request.",
+																					MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "Key is the header key",
+																								MarkdownDescription: "Key is the header key",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"value": schema.StringAttribute{
+																								Description:         "Value is the header value",
+																								MarkdownDescription: "Value is the header value",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
 																				},
 
 																				"url": schema.StringAttribute{
@@ -3522,8 +3623,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			Description:         "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3559,6 +3660,33 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																				},
+
+																				"headers": schema.ListNestedAttribute{
+																					Description:         "Headers is a list of optional HTTP headers to be included in the request.",
+																					MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "Key is the header key",
+																								MarkdownDescription: "Key is the header key",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"value": schema.StringAttribute{
+																								Description:         "Value is the header value",
+																								MarkdownDescription: "Value is the header value",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
 																				},
 
 																				"url": schema.StringAttribute{
@@ -4424,8 +4552,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"default": schema.MapAttribute{
-																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
-																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			Description:         "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the contextvalue is set to, if the apiCall returns error.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -4461,6 +4589,33 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																				},
+
+																				"headers": schema.ListNestedAttribute{
+																					Description:         "Headers is a list of optional HTTP headers to be included in the request.",
+																					MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "Key is the header key",
+																								MarkdownDescription: "Key is the header key",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"value": schema.StringAttribute{
+																								Description:         "Value is the header value",
+																								MarkdownDescription: "Value is the header value",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
 																				},
 
 																				"url": schema.StringAttribute{

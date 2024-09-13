@@ -1968,8 +1968,8 @@ func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Schema(_ context.Context, _ d
 							"migrate_db_on_start_up": schema.BoolAttribute{
 								Description:         "Whether to migrate database on service startup?",
 								MarkdownDescription: "Whether to migrate database on service startup?",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 

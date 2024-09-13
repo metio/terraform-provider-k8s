@@ -116,8 +116,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Metadata(_ context.Cont
 
 func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
-		MarkdownDescription: "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
+		Description:         "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructingCilium's BGP control plane to create virtual BGP routers.",
+		MarkdownDescription: "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructingCilium's BGP control plane to create virtual BGP routers.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -176,8 +176,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "Spec is a human readable description of a BGP peering policy",
 				Attributes: map[string]schema.Attribute{
 					"node_selector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector selects a group of nodes where this BGP Peering Policy applies.  If empty / nil this policy applies to all nodes.",
-						MarkdownDescription: "NodeSelector selects a group of nodes where this BGP Peering Policy applies.  If empty / nil this policy applies to all nodes.",
+						Description:         "NodeSelector selects a group of nodes where this BGP PeeringPolicy applies.If empty / nil this policy applies to all nodes.",
+						MarkdownDescription: "NodeSelector selects a group of nodes where this BGP PeeringPolicy applies.If empty / nil this policy applies to all nodes.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -193,8 +193,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -204,8 +204,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -219,8 +219,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -233,21 +233,21 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"virtual_routers": schema.ListNestedAttribute{
-						Description:         "A list of CiliumBGPVirtualRouter(s) which instructs the BGP control plane how to instantiate virtual BGP routers.",
-						MarkdownDescription: "A list of CiliumBGPVirtualRouter(s) which instructs the BGP control plane how to instantiate virtual BGP routers.",
+						Description:         "A list of CiliumBGPVirtualRouter(s) which instructsthe BGP control plane how to instantiate virtual BGP routers.",
+						MarkdownDescription: "A list of CiliumBGPVirtualRouter(s) which instructsthe BGP control plane how to instantiate virtual BGP routers.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"export_pod_cidr": schema.BoolAttribute{
-									Description:         "ExportPodCIDR determines whether to export the Node's private CIDR block to the configured neighbors.",
-									MarkdownDescription: "ExportPodCIDR determines whether to export the Node's private CIDR block to the configured neighbors.",
+									Description:         "ExportPodCIDR determines whether to export the Node's private CIDR blockto the configured neighbors.",
+									MarkdownDescription: "ExportPodCIDR determines whether to export the Node's private CIDR blockto the configured neighbors.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"local_asn": schema.Int64Attribute{
-									Description:         "LocalASN is the ASN of this virtual router. Supports extended 32bit ASNs",
-									MarkdownDescription: "LocalASN is the ASN of this virtual router. Supports extended 32bit ASNs",
+									Description:         "LocalASN is the ASN of this virtual router.Supports extended 32bit ASNs",
+									MarkdownDescription: "LocalASN is the ASN of this virtual router.Supports extended 32bit ASNs",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -263,13 +263,13 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"advertised_path_attributes": schema.ListNestedAttribute{
-												Description:         "AdvertisedPathAttributes can be used to apply additional path attributes to selected routes when advertising them to the peer. If empty / nil, no additional path attributes are advertised.",
-												MarkdownDescription: "AdvertisedPathAttributes can be used to apply additional path attributes to selected routes when advertising them to the peer. If empty / nil, no additional path attributes are advertised.",
+												Description:         "AdvertisedPathAttributes can be used to apply additional path attributesto selected routes when advertising them to the peer.If empty / nil, no additional path attributes are advertised.",
+												MarkdownDescription: "AdvertisedPathAttributes can be used to apply additional path attributesto selected routes when advertising them to the peer.If empty / nil, no additional path attributes are advertised.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"communities": schema.SingleNestedAttribute{
-															Description:         "Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised.",
-															MarkdownDescription: "Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised.",
+															Description:         "Communities defines a set of community values advertised in the supported BGP Communities path attributes.If nil / not set, no BGP Communities path attribute will be advertised.",
+															MarkdownDescription: "Communities defines a set of community values advertised in the supported BGP Communities path attributes.If nil / not set, no BGP Communities path attribute will be advertised.",
 															Attributes: map[string]schema.Attribute{
 																"large": schema.ListAttribute{
 																	Description:         "Large holds a list of the BGP Large Communities Attribute (RFC 8092) values.",
@@ -290,8 +290,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 																},
 
 																"well_known": schema.ListAttribute{
-																	Description:         "WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.",
-																	MarkdownDescription: "WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.",
+																	Description:         "WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined aswell-known string aliases to their numeric values.",
+																	MarkdownDescription: "WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined aswell-known string aliases to their numeric values.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -304,8 +304,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 														},
 
 														"local_preference": schema.Int64Attribute{
-															Description:         "LocalPreference defines the preference value advertised in the BGP Local Preference path attribute. As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers (no Local Preference path attribute will be advertised). If nil / not set, the default Local Preference of 100 will be advertised in the Local Preference path attribute for iBGP peers.",
-															MarkdownDescription: "LocalPreference defines the preference value advertised in the BGP Local Preference path attribute. As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers (no Local Preference path attribute will be advertised). If nil / not set, the default Local Preference of 100 will be advertised in the Local Preference path attribute for iBGP peers.",
+															Description:         "LocalPreference defines the preference value advertised in the BGP Local Preference path attribute.As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers(no Local Preference path attribute will be advertised).If nil / not set, the default Local Preference of 100 will be advertised inthe Local Preference path attribute for iBGP peers.",
+															MarkdownDescription: "LocalPreference defines the preference value advertised in the BGP Local Preference path attribute.As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers(no Local Preference path attribute will be advertised).If nil / not set, the default Local Preference of 100 will be advertised inthe Local Preference path attribute for iBGP peers.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -316,8 +316,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 														},
 
 														"selector": schema.SingleNestedAttribute{
-															Description:         "Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected.",
-															MarkdownDescription: "Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected.",
+															Description:         "Selector selects a group of objects of the SelectorTyperesulting into routes that will be announced with the configured Attributes.If nil / not set, all objects of the SelectorType are selected.",
+															MarkdownDescription: "Selector selects a group of objects of the SelectorTyperesulting into routes that will be announced with the configured Attributes.If nil / not set, all objects of the SelectorType are selected.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -333,8 +333,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -344,8 +344,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -359,8 +359,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -373,8 +373,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 														},
 
 														"selector_type": schema.StringAttribute{
-															Description:         "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools). - For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).",
-															MarkdownDescription: "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools). - For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).",
+															Description:         "SelectorType defines the object type on which the Selector applies:- For 'PodCIDR' the Selector matches k8s CiliumNode resources  (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes.  Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs.- For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources  (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).- For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources  (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).",
+															MarkdownDescription: "SelectorType defines the object type on which the Selector applies:- For 'PodCIDR' the Selector matches k8s CiliumNode resources  (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes.  Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs.- For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources  (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).- For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources  (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -390,8 +390,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"auth_secret_ref": schema.StringAttribute{
-												Description:         "AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.",
-												MarkdownDescription: "AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.",
+												Description:         "AuthSecretRef is the name of the secret to use to fetch a TCPauthentication password for this peer.",
+												MarkdownDescription: "AuthSecretRef is the name of the secret to use to fetch a TCPauthentication password for this peer.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -410,8 +410,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"e_bgp_multihop_ttl": schema.Int64Attribute{
-												Description:         "EBGPMultihopTTL controls the multi-hop feature for eBGP peers. Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor. The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed). This field is ignored for iBGP peers.",
-												MarkdownDescription: "EBGPMultihopTTL controls the multi-hop feature for eBGP peers. Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor. The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed). This field is ignored for iBGP peers.",
+												Description:         "EBGPMultihopTTL controls the multi-hop feature for eBGP peers.Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor.The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed).This field is ignored for iBGP peers.",
+												MarkdownDescription: "EBGPMultihopTTL controls the multi-hop feature for eBGP peers.Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor.The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed).This field is ignored for iBGP peers.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -422,8 +422,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"families": schema.ListNestedAttribute{
-												Description:         "Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided.",
-												MarkdownDescription: "Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided.",
+												Description:         "Families, if provided, defines a set of AFI/SAFIs the speaker willnegotiate with it's peer.If this slice is not provided the default families of IPv6 and IPv4 willbe provided.",
+												MarkdownDescription: "Families, if provided, defines a set of AFI/SAFIs the speaker willnegotiate with it's peer.If this slice is not provided the default families of IPv6 and IPv4 willbe provided.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"afi": schema.StringAttribute{
@@ -455,8 +455,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"graceful_restart": schema.SingleNestedAttribute{
-												Description:         "GracefulRestart defines graceful restart parameters which are negotiated with this neighbor. If empty / nil, the graceful restart capability is disabled.",
-												MarkdownDescription: "GracefulRestart defines graceful restart parameters which are negotiated with this neighbor. If empty / nil, the graceful restart capability is disabled.",
+												Description:         "GracefulRestart defines graceful restart parameters which are negotiatedwith this neighbor. If empty / nil, the graceful restart capability is disabled.",
+												MarkdownDescription: "GracefulRestart defines graceful restart parameters which are negotiatedwith this neighbor. If empty / nil, the graceful restart capability is disabled.",
 												Attributes: map[string]schema.Attribute{
 													"enabled": schema.BoolAttribute{
 														Description:         "Enabled flag, when set enables graceful restart capability.",
@@ -467,8 +467,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 													},
 
 													"restart_time_seconds": schema.Int64Attribute{
-														Description:         "RestartTimeSeconds is the estimated time it will take for the BGP session to be re-established with peer after a restart. After this period, peer will remove stale routes. This is described RFC 4724 section 4.2.",
-														MarkdownDescription: "RestartTimeSeconds is the estimated time it will take for the BGP session to be re-established with peer after a restart. After this period, peer will remove stale routes. This is described RFC 4724 section 4.2.",
+														Description:         "RestartTimeSeconds is the estimated time it will take for the BGPsession to be re-established with peer after a restart.After this period, peer will remove stale routes. This isdescribed RFC 4724 section 4.2.",
+														MarkdownDescription: "RestartTimeSeconds is the estimated time it will take for the BGPsession to be re-established with peer after a restart.After this period, peer will remove stale routes. This isdescribed RFC 4724 section 4.2.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -484,8 +484,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"hold_time_seconds": schema.Int64Attribute{
-												Description:         "HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2). Updating this value will cause a session reset.",
-												MarkdownDescription: "HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2). Updating this value will cause a session reset.",
+												Description:         "HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2).Updating this value will cause a session reset.",
+												MarkdownDescription: "HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2).Updating this value will cause a session reset.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -496,8 +496,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"keep_alive_time_seconds": schema.Int64Attribute{
-												Description:         "KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8). It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.",
-												MarkdownDescription: "KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8). It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.",
+												Description:         "KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8).It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.",
+												MarkdownDescription: "KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8).It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -508,8 +508,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"peer_asn": schema.Int64Attribute{
-												Description:         "PeerASN is the ASN of the peer BGP router. Supports extended 32bit ASNs",
-												MarkdownDescription: "PeerASN is the ASN of the peer BGP router. Supports extended 32bit ASNs",
+												Description:         "PeerASN is the ASN of the peer BGP router.Supports extended 32bit ASNs",
+												MarkdownDescription: "PeerASN is the ASN of the peer BGP router.Supports extended 32bit ASNs",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -520,16 +520,16 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"peer_address": schema.StringAttribute{
-												Description:         "PeerAddress is the IP address of the peer. This must be in CIDR notation and use a /32 to express a single host.",
-												MarkdownDescription: "PeerAddress is the IP address of the peer. This must be in CIDR notation and use a /32 to express a single host.",
+												Description:         "PeerAddress is the IP address of the peer.This must be in CIDR notation and use a /32 to expressa single host.",
+												MarkdownDescription: "PeerAddress is the IP address of the peer.This must be in CIDR notation and use a /32 to expressa single host.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"peer_port": schema.Int64Attribute{
-												Description:         "PeerPort is the TCP port of the peer. 1-65535 is the range of valid port numbers that can be specified. If unset, defaults to 179.",
-												MarkdownDescription: "PeerPort is the TCP port of the peer. 1-65535 is the range of valid port numbers that can be specified. If unset, defaults to 179.",
+												Description:         "PeerPort is the TCP port of the peer. 1-65535 is the range ofvalid port numbers that can be specified. If unset, defaults to 179.",
+												MarkdownDescription: "PeerPort is the TCP port of the peer. 1-65535 is the range ofvalid port numbers that can be specified. If unset, defaults to 179.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -546,8 +546,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"pod_ip_pool_selector": schema.SingleNestedAttribute{
-									Description:         "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced.",
-									MarkdownDescription: "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced.",
+									Description:         "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtualrouter will announce allocated CIDRs of matching CiliumPodIPPools.If empty / nil no CiliumPodIPPools will be announced.",
+									MarkdownDescription: "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtualrouter will announce allocated CIDRs of matching CiliumPodIPPools.If empty / nil no CiliumPodIPPools will be announced.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -563,8 +563,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -574,8 +574,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -589,8 +589,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -603,8 +603,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"service_advertisements": schema.ListAttribute{
-									Description:         "ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.",
-									MarkdownDescription: "ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.",
+									Description:         "ServiceAdvertisements selects a group of BGP Advertisement(s) to advertisefor the selected services.",
+									MarkdownDescription: "ServiceAdvertisements selects a group of BGP Advertisement(s) to advertisefor the selected services.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -612,8 +612,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"service_selector": schema.SingleNestedAttribute{
-									Description:         "ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced.",
-									MarkdownDescription: "ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced.",
+									Description:         "ServiceSelector selects a group of load balancer services which thisvirtual router will announce. The loadBalancerClass for a service mustbe nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'.Refer to the following document for additional details regarding load balancerclasses:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-classIf empty / nil no services will be announced.",
+									MarkdownDescription: "ServiceSelector selects a group of load balancer services which thisvirtual router will announce. The loadBalancerClass for a service mustbe nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'.Refer to the following document for additional details regarding load balancerclasses:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-classIf empty / nil no services will be announced.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -629,8 +629,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -640,8 +640,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -655,8 +655,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

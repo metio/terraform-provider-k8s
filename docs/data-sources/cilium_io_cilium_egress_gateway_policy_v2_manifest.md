@@ -54,25 +54,25 @@ Optional:
 
 Required:
 
-- `destination_cid_rs` (List of String) DestinationCIDRs is a list of destination CIDRs for destination IP addresses. If a destination IP matches any one CIDR, it will be selected.
+- `destination_cid_rs` (List of String) DestinationCIDRs is a list of destination CIDRs for destination IP addresses.If a destination IP matches any one CIDR, it will be selected.
 - `egress_gateway` (Attributes) EgressGateway is the gateway node responsible for SNATing traffic. (see [below for nested schema](#nestedatt--spec--egress_gateway))
-- `selectors` (Attributes List) Egress represents a list of rules by which egress traffic is filtered from the source pods. (see [below for nested schema](#nestedatt--spec--selectors))
+- `selectors` (Attributes List) Egress represents a list of rules by which egress traffic isfiltered from the source pods. (see [below for nested schema](#nestedatt--spec--selectors))
 
 Optional:
 
-- `excluded_cid_rs` (List of String) ExcludedCIDRs is a list of destination CIDRs that will be excluded from the egress gateway redirection and SNAT logic. Should be a subset of destinationCIDRs otherwise it will not have any effect.
+- `excluded_cid_rs` (List of String) ExcludedCIDRs is a list of destination CIDRs that will be excludedfrom the egress gateway redirection and SNAT logic.Should be a subset of destinationCIDRs otherwise it will not have anyeffect.
 
 <a id="nestedatt--spec--egress_gateway"></a>
 ### Nested Schema for `spec.egress_gateway`
 
 Required:
 
-- `node_selector` (Attributes) This is a label selector which selects the node that should act as egress gateway for the given policy. In case multiple nodes are selected, only the first one in the lexical ordering over the node names will be used. This field follows standard label selector semantics. (see [below for nested schema](#nestedatt--spec--egress_gateway--node_selector))
+- `node_selector` (Attributes) This is a label selector which selects the node that should act asegress gateway for the given policy.In case multiple nodes are selected, only the first one in thelexical ordering over the node names will be used.This field follows standard label selector semantics. (see [below for nested schema](#nestedatt--spec--egress_gateway--node_selector))
 
 Optional:
 
-- `egress_ip` (String) EgressIP is the source IP address that the egress traffic is SNATed with.  Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.
-- `interface` (String) Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned.  Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.
+- `egress_ip` (String) EgressIP is the source IP address that the egress traffic is SNATedwith.Example:When set to '192.168.1.100', matching egress traffic will beredirected to the node matching the NodeSelector field and SNATedwith IP address 192.168.1.100.When none of the Interface or EgressIP fields is specified, thepolicy will use the first IPv4 assigned to the interface with thedefault route.
+- `interface` (String) Interface is the network interface to which the egress IP addressthat the traffic is SNATed with is assigned.Example:When set to 'eth1', matching egress traffic will be redirected to thenode matching the NodeSelector field and SNATed with the first IPv4address assigned to the eth1 interface.When none of the Interface or EgressIP fields is specified, thepolicy will use the first IPv4 assigned to the interface with thedefault route.
 
 <a id="nestedatt--spec--egress_gateway--node_selector"></a>
 ### Nested Schema for `spec.egress_gateway.node_selector`
@@ -80,7 +80,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress_gateway--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--egress_gateway--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.egress_gateway.node_selector.match_expressions`
@@ -88,11 +88,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -102,8 +102,8 @@ Optional:
 
 Optional:
 
-- `namespace_selector` (Attributes) Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--selectors--namespace_selector))
-- `pod_selector` (Attributes) This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods. (see [below for nested schema](#nestedatt--spec--selectors--pod_selector))
+- `namespace_selector` (Attributes) Selects Namespaces using cluster-scoped labels. This field follows standard labelselector semantics; if present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--selectors--namespace_selector))
+- `pod_selector` (Attributes) This is a label selector which selects Pods. This field follows standard labelselector semantics; if present but empty, it selects all pods. (see [below for nested schema](#nestedatt--spec--selectors--pod_selector))
 
 <a id="nestedatt--spec--selectors--namespace_selector"></a>
 ### Nested Schema for `spec.selectors.namespace_selector`
@@ -111,7 +111,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selectors--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--selectors--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.selectors.namespace_selector.match_expressions`
@@ -119,11 +119,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -133,7 +133,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selectors--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--selectors--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.selectors.pod_selector.match_expressions`
@@ -141,8 +141,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
