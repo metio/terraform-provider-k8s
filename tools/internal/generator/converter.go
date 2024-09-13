@@ -317,6 +317,7 @@ func terraformAttributeName(str string, rootPath bool) string {
 		clean = strings.Replace(clean, "$", "Dollar", 1)
 	}
 	clean = strings.ReplaceAll(clean, "URL", "Url")
+	clean = strings.ReplaceAll(clean, "CIDR", "Cidr")
 	clean = toSnakeCase(clean)
 	return clean
 }
