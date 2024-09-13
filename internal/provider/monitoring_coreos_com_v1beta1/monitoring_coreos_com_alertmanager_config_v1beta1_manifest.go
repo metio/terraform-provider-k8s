@@ -90,8 +90,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -153,10 +152,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -281,8 +278,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -344,10 +340,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -432,8 +426,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -495,10 +488,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -583,8 +574,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -646,10 +636,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -736,8 +724,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -799,10 +786,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -912,8 +897,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -975,10 +959,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1056,8 +1038,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -1119,10 +1100,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1214,8 +1193,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -1277,10 +1255,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1356,8 +1332,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -1419,10 +1394,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1491,8 +1464,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -1554,10 +1526,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1623,8 +1593,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -1686,10 +1655,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1766,8 +1733,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						Key  *string `tfsdk:"key" json:"key,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 					Oauth2          *struct {
 						ClientId *struct {
 							ConfigMap *struct {
@@ -1829,10 +1795,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
-					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
-					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-					TlsConfig            *struct {
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
 						Ca *struct {
 							ConfigMap *struct {
 								Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -2301,14 +2265,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -2431,16 +2387,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2448,8 +2404,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2721,32 +2677,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -3600,14 +3536,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -3730,16 +3658,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3747,8 +3675,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4020,32 +3948,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -4631,14 +4539,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -4761,16 +4661,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4778,8 +4678,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5051,32 +4951,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -5666,14 +5546,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -5796,16 +5668,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5813,8 +5685,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6086,32 +5958,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -6711,14 +6563,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -6841,16 +6685,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6858,8 +6702,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7131,32 +6975,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -7950,14 +7774,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -8080,16 +7896,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8097,8 +7913,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -8370,32 +8186,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -8934,14 +8730,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -9064,16 +8852,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -9081,8 +8869,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9354,32 +9142,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -10006,14 +9774,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -10136,16 +9896,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -10153,8 +9913,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -10426,32 +10186,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -10972,14 +10712,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -11102,16 +10834,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -11119,8 +10851,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11392,32 +11124,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -11885,14 +11597,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -12015,16 +11719,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -12032,8 +11736,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -12305,32 +12009,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -12774,14 +12458,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -12904,16 +12580,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -12921,8 +12597,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -13194,32 +12870,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{
@@ -13749,14 +13405,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed:            false,
 													},
 
-													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"oauth2": schema.SingleNestedAttribute{
 														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
@@ -13879,16 +13527,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -13896,8 +13544,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -14169,32 +13817,12 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
-													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"proxy_url": schema.StringAttribute{
-														Description:         "'proxyURL' defines the HTTP proxy server to use.",
-														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
-														},
 													},
 
 													"tls_config": schema.SingleNestedAttribute{

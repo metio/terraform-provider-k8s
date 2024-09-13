@@ -371,8 +371,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"preserve_static_i_ps": schema.BoolAttribute{
-						Description:         "Preserve static IPs of VMs in vSphere",
-						MarkdownDescription: "Preserve static IPs of VMs in vSphere",
+						Description:         "Preserve static IPs of VMs in vSphere (Windows only)",
+						MarkdownDescription: "Preserve static IPs of VMs in vSphere (Windows only)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

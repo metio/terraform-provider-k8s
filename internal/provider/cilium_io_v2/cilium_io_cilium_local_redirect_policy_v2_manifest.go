@@ -89,8 +89,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Metadata(_ context.Context
 
 func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains aspecification to redirect traffic locally within a node.",
-		MarkdownDescription: "CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains aspecification to redirect traffic locally within a node.",
+		Description:         "CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains a specification to redirect traffic locally within a node.",
+		MarkdownDescription: "CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains a specification to redirect traffic locally within a node.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -161,16 +161,16 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Spec is the desired behavior of the local redirect policy.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
-						Description:         "Description can be used by the creator of the policy to describe thepurpose of this policy.",
-						MarkdownDescription: "Description can be used by the creator of the policy to describe thepurpose of this policy.",
+						Description:         "Description can be used by the creator of the policy to describe the purpose of this policy.",
+						MarkdownDescription: "Description can be used by the creator of the policy to describe the purpose of this policy.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"redirect_backend": schema.SingleNestedAttribute{
-						Description:         "RedirectBackend specifies backend configuration to redirect traffic to.It can not be empty.",
-						MarkdownDescription: "RedirectBackend specifies backend configuration to redirect traffic to.It can not be empty.",
+						Description:         "RedirectBackend specifies backend configuration to redirect traffic to. It can not be empty.",
+						MarkdownDescription: "RedirectBackend specifies backend configuration to redirect traffic to. It can not be empty.",
 						Attributes: map[string]schema.Attribute{
 							"local_endpoint_selector": schema.SingleNestedAttribute{
 								Description:         "LocalEndpointSelector selects node local pod(s) where traffic is redirected to.",
@@ -190,8 +190,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -201,8 +201,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -216,8 +216,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -230,13 +230,13 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 							},
 
 							"to_ports": schema.ListNestedAttribute{
-								Description:         "ToPorts is a list of L4 ports with protocol of node local pod(s) where trafficis redirected to.When multiple ports are specified, the ports must be named.",
-								MarkdownDescription: "ToPorts is a list of L4 ports with protocol of node local pod(s) where trafficis redirected to.When multiple ports are specified, the ports must be named.",
+								Description:         "ToPorts is a list of L4 ports with protocol of node local pod(s) where traffic is redirected to. When multiple ports are specified, the ports must be named.",
+								MarkdownDescription: "ToPorts is a list of L4 ports with protocol of node local pod(s) where traffic is redirected to. When multiple ports are specified, the ports must be named.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.",
-											MarkdownDescription: "Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.",
+											Description:         "Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+											MarkdownDescription: "Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -257,8 +257,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 										},
 
 										"protocol": schema.StringAttribute{
-											Description:         "Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'",
-											MarkdownDescription: "Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'",
+											Description:         "Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'",
+											MarkdownDescription: "Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -279,16 +279,16 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 					},
 
 					"redirect_frontend": schema.SingleNestedAttribute{
-						Description:         "RedirectFrontend specifies frontend configuration to redirect traffic from.It can not be empty.",
-						MarkdownDescription: "RedirectFrontend specifies frontend configuration to redirect traffic from.It can not be empty.",
+						Description:         "RedirectFrontend specifies frontend configuration to redirect traffic from. It can not be empty.",
+						MarkdownDescription: "RedirectFrontend specifies frontend configuration to redirect traffic from. It can not be empty.",
 						Attributes: map[string]schema.Attribute{
 							"address_matcher": schema.SingleNestedAttribute{
-								Description:         "AddressMatcher is a tuple {IP, port, protocol} that matches traffic to beredirected.",
-								MarkdownDescription: "AddressMatcher is a tuple {IP, port, protocol} that matches traffic to beredirected.",
+								Description:         "AddressMatcher is a tuple {IP, port, protocol} that matches traffic to be redirected.",
+								MarkdownDescription: "AddressMatcher is a tuple {IP, port, protocol} that matches traffic to be redirected.",
 								Attributes: map[string]schema.Attribute{
 									"ip": schema.StringAttribute{
-										Description:         "IP is a destination ip address for traffic to be redirected.Example:When it is set to '169.254.169.254', traffic destined to'169.254.169.254' is redirected.",
-										MarkdownDescription: "IP is a destination ip address for traffic to be redirected.Example:When it is set to '169.254.169.254', traffic destined to'169.254.169.254' is redirected.",
+										Description:         "IP is a destination ip address for traffic to be redirected.  Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.",
+										MarkdownDescription: "IP is a destination ip address for traffic to be redirected.  Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -298,13 +298,13 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination L4 ports with protocol for trafficto be redirected.When multiple ports are specified, the ports must be named.Example:When set to Port: '53' and Protocol: UDP, traffic destined to port '53'with UDP protocol is redirected.",
-										MarkdownDescription: "ToPorts is a list of destination L4 ports with protocol for trafficto be redirected.When multiple ports are specified, the ports must be named.Example:When set to Port: '53' and Protocol: UDP, traffic destined to port '53'with UDP protocol is redirected.",
+										Description:         "ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named.  Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected.",
+										MarkdownDescription: "ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named.  Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.",
-													MarkdownDescription: "Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.",
+													Description:         "Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+													MarkdownDescription: "Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -325,8 +325,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 												},
 
 												"protocol": schema.StringAttribute{
-													Description:         "Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'",
-													MarkdownDescription: "Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'",
+													Description:         "Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'",
+													MarkdownDescription: "Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -347,33 +347,33 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 							},
 
 							"service_matcher": schema.SingleNestedAttribute{
-								Description:         "ServiceMatcher specifies Kubernetes service and port that matchestraffic to be redirected.",
-								MarkdownDescription: "ServiceMatcher specifies Kubernetes service and port that matchestraffic to be redirected.",
+								Description:         "ServiceMatcher specifies Kubernetes service and port that matches traffic to be redirected.",
+								MarkdownDescription: "ServiceMatcher specifies Kubernetes service and port that matches traffic to be redirected.",
 								Attributes: map[string]schema.Attribute{
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace is the Kubernetes service namespace.The service namespace must match the namespace of the parent LocalRedirect Policy.  For Cluster-wide Local Redirect Policy, thiscan be any namespace.",
-										MarkdownDescription: "Namespace is the Kubernetes service namespace.The service namespace must match the namespace of the parent LocalRedirect Policy.  For Cluster-wide Local Redirect Policy, thiscan be any namespace.",
+										Description:         "Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy.  For Cluster-wide Local Redirect Policy, this can be any namespace.",
+										MarkdownDescription: "Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy.  For Cluster-wide Local Redirect Policy, this can be any namespace.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"service_name": schema.StringAttribute{
-										Description:         "Name is the name of a destination Kubernetes service that identifies trafficto be redirected.The service type needs to be ClusterIP.Example:When this field is populated with 'serviceName:myService', all the trafficdestined to the cluster IP of this service at the (specified)service port(s) will be redirected.",
-										MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies trafficto be redirected.The service type needs to be ClusterIP.Example:When this field is populated with 'serviceName:myService', all the trafficdestined to the cluster IP of this service at the (specified)service port(s) will be redirected.",
+										Description:         "Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP.  Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.",
+										MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP.  Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination service L4 ports with protocol fortraffic to be redirected. If not specified, traffic for all the serviceports will be redirected.When multiple ports are specified, the ports must be named.",
-										MarkdownDescription: "ToPorts is a list of destination service L4 ports with protocol fortraffic to be redirected. If not specified, traffic for all the serviceports will be redirected.When multiple ports are specified, the ports must be named.",
+										Description:         "ToPorts is a list of destination service L4 ports with protocol for traffic to be redirected. If not specified, traffic for all the service ports will be redirected. When multiple ports are specified, the ports must be named.",
+										MarkdownDescription: "ToPorts is a list of destination service L4 ports with protocol for traffic to be redirected. If not specified, traffic for all the service ports will be redirected. When multiple ports are specified, the ports must be named.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.",
-													MarkdownDescription: "Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.",
+													Description:         "Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
+													MarkdownDescription: "Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -394,8 +394,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 												},
 
 												"protocol": schema.StringAttribute{
-													Description:         "Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'",
-													MarkdownDescription: "Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'",
+													Description:         "Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'",
+													MarkdownDescription: "Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -421,8 +421,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 					},
 
 					"skip_redirect_from_backend": schema.BoolAttribute{
-						Description:         "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontendfrom RedirectBackend should skip redirection, and hence the traffic willbe forwarded as-is.The default is false which means traffic matching RedirectFrontend willget redirected from all pods, including the RedirectBackend(s).Example: If RedirectFrontend is configured to '169.254.169.254:80' as the trafficthat needs to be redirected to backends selected by RedirectBackend, ifSkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80'from such backends will not be redirected back to the backends. Instead,the matched traffic from the backends will be forwarded to the originaldestination '169.254.169.254:80'.",
-						MarkdownDescription: "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontendfrom RedirectBackend should skip redirection, and hence the traffic willbe forwarded as-is.The default is false which means traffic matching RedirectFrontend willget redirected from all pods, including the RedirectBackend(s).Example: If RedirectFrontend is configured to '169.254.169.254:80' as the trafficthat needs to be redirected to backends selected by RedirectBackend, ifSkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80'from such backends will not be redirected back to the backends. Instead,the matched traffic from the backends will be forwarded to the originaldestination '169.254.169.254:80'.",
+						Description:         "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
+						MarkdownDescription: "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -43,8 +43,6 @@ type SubmarinerIoBrokerV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ClustersetIPCIDRRange       *string   `tfsdk:"clusterset_ipcidr_range" json:"clustersetIPCIDRRange,omitempty"`
-		ClustersetIPEnabled         *bool     `tfsdk:"clusterset_ip_enabled" json:"clustersetIPEnabled,omitempty"`
 		Components                  *[]string `tfsdk:"components" json:"components,omitempty"`
 		DefaultCustomDomains        *[]string `tfsdk:"default_custom_domains" json:"defaultCustomDomains,omitempty"`
 		DefaultGlobalnetClusterSize *int64    `tfsdk:"default_globalnet_cluster_size" json:"defaultGlobalnetClusterSize,omitempty"`
@@ -130,22 +128,6 @@ func (r *SubmarinerIoBrokerV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 				Description:         "BrokerSpec defines the desired state of Broker.",
 				MarkdownDescription: "BrokerSpec defines the desired state of Broker.",
 				Attributes: map[string]schema.Attribute{
-					"clusterset_ipcidr_range": schema.StringAttribute{
-						Description:         "ClustersetIP supernet range for allocating ClustersetIPCIDRs to each cluster.",
-						MarkdownDescription: "ClustersetIP supernet range for allocating ClustersetIPCIDRs to each cluster.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"clusterset_ip_enabled": schema.BoolAttribute{
-						Description:         "Enable ClustersetIP default for connecting clusters.",
-						MarkdownDescription: "Enable ClustersetIP default for connecting clusters.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"components": schema.ListAttribute{
 						Description:         "List of the components to be installed - any of [service-discovery, connectivity].",
 						MarkdownDescription: "List of the components to be installed - any of [service-discovery, connectivity].",

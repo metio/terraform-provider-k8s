@@ -9799,8 +9799,8 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"use_ssa": schema.BoolAttribute{
-										Description:         "Deprecated: won't be able to enforce client side update in the future.Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
-										MarkdownDescription: "Deprecated: won't be able to enforce client side update in the future.Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
+										Description:         "Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
+										MarkdownDescription: "Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

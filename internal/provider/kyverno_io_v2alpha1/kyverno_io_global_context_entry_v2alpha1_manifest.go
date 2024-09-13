@@ -53,11 +53,7 @@ type KyvernoIoGlobalContextEntryV2Alpha1ManifestData struct {
 			RetryLimit      *int64  `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 			Service         *struct {
 				CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-				Headers  *[]struct {
-					Key   *string `tfsdk:"key" json:"key,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"headers" json:"headers,omitempty"`
-				Url *string `tfsdk:"url" json:"url,omitempty"`
+				Url      *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"service" json:"service,omitempty"`
 			UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 		} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -207,33 +203,6 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
-									},
-
-									"headers": schema.ListNestedAttribute{
-										Description:         "Headers is a list of optional HTTP headers to be included in the request.",
-										MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "Key is the header key",
-													MarkdownDescription: "Key is the header key",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"value": schema.StringAttribute{
-													Description:         "Value is the header value",
-													MarkdownDescription: "Value is the header value",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
 									},
 
 									"url": schema.StringAttribute{

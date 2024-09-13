@@ -233,8 +233,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta2Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

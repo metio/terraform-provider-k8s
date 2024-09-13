@@ -81,7 +81,6 @@ type OperatorTigeraIoApplicationLayerV1ManifestData struct {
 			LogIntervalSeconds     *int64  `tfsdk:"log_interval_seconds" json:"logIntervalSeconds,omitempty"`
 			LogRequestsPerInterval *int64  `tfsdk:"log_requests_per_interval" json:"logRequestsPerInterval,omitempty"`
 		} `tfsdk:"log_collection" json:"logCollection,omitempty"`
-		SidecarInjection       *string `tfsdk:"sidecar_injection" json:"sidecarInjection,omitempty"`
 		WebApplicationFirewall *string `tfsdk:"web_application_firewall" json:"webApplicationFirewall,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -157,9 +156,6 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("Enabled", "Disabled"),
-						},
 					},
 
 					"envoy": schema.SingleNestedAttribute{
@@ -370,9 +366,6 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("Enabled", "Disabled"),
-								},
 							},
 
 							"log_interval_seconds": schema.Int64Attribute{
@@ -396,26 +389,12 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
-					"sidecar_injection": schema.StringAttribute{
-						Description:         "SidecarInjection controls whether or not sidecar injection is enabled for the cluster.When enabled, pods with the label'applicationlayer.projectcalico.org/sidecar'='true' will have their L7 functionalitysuch as WAF and ALP implemented using an injected sidecar instead of a per-host proxy.The per-host proxy will continue to be used for pods without this label.",
-						MarkdownDescription: "SidecarInjection controls whether or not sidecar injection is enabled for the cluster.When enabled, pods with the label'applicationlayer.projectcalico.org/sidecar'='true' will have their L7 functionalitysuch as WAF and ALP implemented using an injected sidecar instead of a per-host proxy.The per-host proxy will continue to be used for pods without this label.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("Enabled", "Disabled"),
-						},
-					},
-
 					"web_application_firewall": schema.StringAttribute{
 						Description:         "WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster.When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.",
 						MarkdownDescription: "WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster.When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("Enabled", "Disabled"),
-						},
 					},
 				},
 				Required: false,

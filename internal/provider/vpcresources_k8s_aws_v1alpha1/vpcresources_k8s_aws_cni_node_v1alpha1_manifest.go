@@ -112,8 +112,8 @@ func (r *VpcresourcesK8SAwsCninodeV1Alpha1Manifest) Schema(_ context.Context, _ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Important: Run 'make' to regenerate code after modifying this fileCNINodeSpec defines the desired state of CNINode",
-				MarkdownDescription: "Important: Run 'make' to regenerate code after modifying this fileCNINodeSpec defines the desired state of CNINode",
+				Description:         "Important: Run 'make' to regenerate code after modifying this file CNINodeSpec defines the desired state of CNINode",
+				MarkdownDescription: "Important: Run 'make' to regenerate code after modifying this file CNINodeSpec defines the desired state of CNINode",
 				Attributes: map[string]schema.Attribute{
 					"features": schema.ListNestedAttribute{
 						Description:         "",

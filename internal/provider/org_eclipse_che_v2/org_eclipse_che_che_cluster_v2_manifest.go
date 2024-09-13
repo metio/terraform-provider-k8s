@@ -298,9 +298,6 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			Organization *string `tfsdk:"organization" json:"organization,omitempty"`
 		} `tfsdk:"container_registry" json:"containerRegistry,omitempty"`
 		DevEnvironments *struct {
-			AllowedSource *struct {
-				Urls *[]string `tfsdk:"urls" json:"urls,omitempty"`
-			} `tfsdk:"allowed_source" json:"allowedSource,omitempty"`
 			ContainerBuildConfiguration *struct {
 				OpenShiftSecurityContextConstraint *string `tfsdk:"open_shift_security_context_constraint" json:"openShiftSecurityContextConstraint,omitempty"`
 			} `tfsdk:"container_build_configuration" json:"containerBuildConfiguration,omitempty"`
@@ -2541,24 +2538,6 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 						Description:         "Development environment default configuration options.",
 						MarkdownDescription: "Development environment default configuration options.",
 						Attributes: map[string]schema.Attribute{
-							"allowed_source": schema.SingleNestedAttribute{
-								Description:         "AllowedSource defines the allowed sources on which workspaces can be started.",
-								MarkdownDescription: "AllowedSource defines the allowed sources on which workspaces can be started.",
-								Attributes: map[string]schema.Attribute{
-									"urls": schema.ListAttribute{
-										Description:         "The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only beinitiated from these URLs.",
-										MarkdownDescription: "The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only beinitiated from these URLs.",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"container_build_configuration": schema.SingleNestedAttribute{
 								Description:         "Container build configuration.",
 								MarkdownDescription: "Container build configuration.",

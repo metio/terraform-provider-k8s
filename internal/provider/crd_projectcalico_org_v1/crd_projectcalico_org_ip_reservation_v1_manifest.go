@@ -42,7 +42,7 @@ type CrdProjectcalicoOrgIpreservationV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ReservedCIDRs *[]string `tfsdk:"reserved_cid_rs" json:"reservedCIDRs,omitempty"`
+		ReservedCIDRs *[]string `tfsdk:"reserved_cidrs" json:"reservedCIDRs,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -111,7 +111,7 @@ func (r *CrdProjectcalicoOrgIpreservationV1Manifest) Schema(_ context.Context, _
 				Description:         "IPReservationSpec contains the specification for an IPReservation resource.",
 				MarkdownDescription: "IPReservationSpec contains the specification for an IPReservation resource.",
 				Attributes: map[string]schema.Attribute{
-					"reserved_cid_rs": schema.ListAttribute{
+					"reserved_cidrs": schema.ListAttribute{
 						Description:         "ReservedCIDRs is a list of CIDRs and/or IP addresses that Calico IPAM will exclude from new allocations.",
 						MarkdownDescription: "ReservedCIDRs is a list of CIDRs and/or IP addresses that Calico IPAM will exclude from new allocations.",
 						ElementType:         types.StringType,

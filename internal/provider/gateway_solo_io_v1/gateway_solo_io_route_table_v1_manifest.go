@@ -131,18 +131,6 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"postgres" json:"postgres,omitempty"`
 						} `tfsdk:"datastore" json:"datastore,omitempty"`
 						Embedding *struct {
-							AzureOpenai *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								AuthToken  *struct {
-									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
-									SecretRef *struct {
-										Name      *string `tfsdk:"name" json:"name,omitempty"`
-										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-								} `tfsdk:"auth_token" json:"authToken,omitempty"`
-								DeploymentName *string `tfsdk:"deployment_name" json:"deploymentName,omitempty"`
-								Endpoint       *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-							} `tfsdk:"azure_openai" json:"azureOpenai,omitempty"`
 							Openai *struct {
 								AuthToken *struct {
 									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
@@ -163,18 +151,6 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"redis" json:"redis,omitempty"`
 						} `tfsdk:"datastore" json:"datastore,omitempty"`
 						Embedding *struct {
-							AzureOpenai *struct {
-								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-								AuthToken  *struct {
-									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
-									SecretRef *struct {
-										Name      *string `tfsdk:"name" json:"name,omitempty"`
-										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-								} `tfsdk:"auth_token" json:"authToken,omitempty"`
-								DeploymentName *string `tfsdk:"deployment_name" json:"deploymentName,omitempty"`
-								Endpoint       *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-							} `tfsdk:"azure_openai" json:"azureOpenai,omitempty"`
 							Openai *struct {
 								AuthToken *struct {
 									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
@@ -398,7 +374,6 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								QueryParams *[]string `tfsdk:"query_params" json:"queryParams,omitempty"`
 							} `tfsdk:"token_source" json:"tokenSource,omitempty"`
 						} `tfsdk:"providers" json:"providers,omitempty"`
-						ValidationPolicy *string `tfsdk:"validation_policy" json:"validationPolicy,omitempty"`
 					} `tfsdk:"after_ext_auth" json:"afterExtAuth,omitempty"`
 					BeforeExtAuth *struct {
 						AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
@@ -436,7 +411,6 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								QueryParams *[]string `tfsdk:"query_params" json:"queryParams,omitempty"`
 							} `tfsdk:"token_source" json:"tokenSource,omitempty"`
 						} `tfsdk:"providers" json:"providers,omitempty"`
-						ValidationPolicy *string `tfsdk:"validation_policy" json:"validationPolicy,omitempty"`
 					} `tfsdk:"before_ext_auth" json:"beforeExtAuth,omitempty"`
 				} `tfsdk:"jwt_providers_staged" json:"jwtProvidersStaged,omitempty"`
 				JwtStaged *struct {
@@ -3288,81 +3262,6 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
-																"azure_openai": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"auth_token": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Attributes: map[string]schema.Attribute{
-																				"inline": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
-																					Computed:            false,
-																				},
-
-																				"secret_ref": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
-																					Attributes: map[string]schema.Attribute{
-																						"name": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-
-																						"namespace": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-																					},
-																					Required: false,
-																					Optional: true,
-																					Computed: false,
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
-																		"deployment_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"endpoint": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"openai": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -3474,81 +3373,6 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
-																"azure_openai": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"api_version": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"auth_token": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Attributes: map[string]schema.Attribute{
-																				"inline": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
-																					Computed:            false,
-																				},
-
-																				"secret_ref": schema.SingleNestedAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
-																					Attributes: map[string]schema.Attribute{
-																						"name": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-
-																						"namespace": schema.StringAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-																					},
-																					Required: false,
-																					Optional: true,
-																					Computed: false,
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
-																		"deployment_name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"endpoint": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"openai": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -5003,14 +4827,6 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Optional: true,
 															Computed: false,
 														},
-
-														"validation_policy": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
 													},
 													Required: false,
 													Optional: true,
@@ -5246,14 +5062,6 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Required: false,
 															Optional: true,
 															Computed: false,
-														},
-
-														"validation_policy": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
 														},
 													},
 													Required: false,

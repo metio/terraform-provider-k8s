@@ -98,8 +98,7 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 				Privileged *bool `tfsdk:"privileged" json:"privileged,omitempty"`
 				Resources  *struct {
 					Claims *[]struct {
-						Name    *string `tfsdk:"name" json:"name,omitempty"`
-						Request *string `tfsdk:"request" json:"request,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -229,8 +228,7 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 			Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name    *string `tfsdk:"name" json:"name,omitempty"`
-					Request *string `tfsdk:"request" json:"request,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -509,8 +507,7 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 			ProfilePort            *int64 `tfsdk:"profile_port" json:"profilePort,omitempty"`
 			Resources              *struct {
 				Claims *[]struct {
-					Name    *string `tfsdk:"name" json:"name,omitempty"`
-					Request *string `tfsdk:"request" json:"request,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -710,8 +707,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"dest_ports": schema.StringAttribute{
-												Description:         "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example, destPorts: 80.To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example, destPorts: 80.To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
+												MarkdownDescription: "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -761,8 +758,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"ports": schema.StringAttribute{
-												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example, ports: 80.To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example, ports: 80.To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
+												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -780,8 +777,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"source_ports": schema.StringAttribute{
-												Description:         "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example, sourcePorts: 80.To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example, sourcePorts: 80.To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
+												MarkdownDescription: "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -990,8 +987,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															"type": schema.StringAttribute{
 																Description:         "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
 																MarkdownDescription: "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
-																Required:            true,
-																Optional:            false,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
 																	stringvalidator.OneOf("DISABLED", "PROVIDED", "AUTO"),
@@ -1035,14 +1032,6 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 															Required:            true,
 															Optional:            false,
-															Computed:            false,
-														},
-
-														"request": schema.StringAttribute{
-															Description:         "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
-															MarkdownDescription: "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
-															Required:            false,
-															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -1923,14 +1912,6 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 													Required:            true,
 													Optional:            false,
-													Computed:            false,
-												},
-
-												"request": schema.StringAttribute{
-													Description:         "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
-													MarkdownDescription: "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
-													Required:            false,
-													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -3841,8 +3822,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 													"type": schema.StringAttribute{
 														Description:         "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
 														MarkdownDescription: "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
-														Required:            true,
-														Optional:            false,
+														Required:            false,
+														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.OneOf("DISABLED", "PROVIDED", "AUTO"),
@@ -3912,14 +3893,6 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 													Optional:            false,
 													Computed:            false,
 												},
-
-												"request": schema.StringAttribute{
-													Description:         "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
-													MarkdownDescription: "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
 											},
 										},
 										Required: false,
@@ -3963,16 +3936,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 													Description:         "List of CIDRs, such as '['1.2.3.4/32']'.",
 													MarkdownDescription: "List of CIDRs, such as '['1.2.3.4/32']'.",
 													ElementType:         types.StringType,
-													Required:            true,
-													Optional:            false,
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
 													Description:         "Label name, used to flag matching flows.",
 													MarkdownDescription: "Label name, used to flag matching flows.",
-													Required:            true,
-													Optional:            false,
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -4173,8 +4146,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									"mode": schema.StringAttribute{
 										Description:         "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
 										MarkdownDescription: "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
-										Required:            true,
-										Optional:            false,
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.OneOf("Manual", "Auto"),

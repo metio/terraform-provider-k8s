@@ -164,8 +164,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Manifest) Schema(_ context.Conte
 								"kind": schema.StringAttribute{
 									Description:         "Kind of the referent",
 									MarkdownDescription: "Kind of the referent",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.OneOf("Bucket", "GitRepository", "Kustomization", "HelmRelease", "HelmChart", "HelmRepository", "ImageRepository", "ImagePolicy", "ImageUpdateAutomation", "OCIRepository"),

@@ -953,7 +953,7 @@ type OperatorTigeraIoInstallationV1ManifestData struct {
 		} `tfsdk:"node_update_strategy" json:"nodeUpdateStrategy,omitempty"`
 		NonPrivileged *string   `tfsdk:"non_privileged" json:"nonPrivileged,omitempty"`
 		Registry      *string   `tfsdk:"registry" json:"registry,omitempty"`
-		ServiceCIDRs  *[]string `tfsdk:"service_cid_rs" json:"serviceCIDRs,omitempty"`
+		ServiceCIDRs  *[]string `tfsdk:"service_cidrs" json:"serviceCIDRs,omitempty"`
 		TyphaAffinity *struct {
 			NodeAffinity *struct {
 				PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
@@ -7323,7 +7323,7 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ dat
 						Computed:            false,
 					},
 
-					"service_cid_rs": schema.ListAttribute{
+					"service_cidrs": schema.ListAttribute{
 						Description:         "Kubernetes Service CIDRs. Specifying this is required when using Calico for Windows.",
 						MarkdownDescription: "Kubernetes Service CIDRs. Specifying this is required when using Calico for Windows.",
 						ElementType:         types.StringType,

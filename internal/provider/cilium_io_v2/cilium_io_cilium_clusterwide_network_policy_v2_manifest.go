@@ -855,8 +855,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Metadata(_ context.Co
 
 func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumClusterwideNetworkPolicy is a Kubernetes third-party resource with anmodified version of CiliumNetworkPolicy which is cluster scoped rather thannamespace scoped.",
-		MarkdownDescription: "CiliumClusterwideNetworkPolicy is a Kubernetes third-party resource with anmodified version of CiliumNetworkPolicy which is cluster scoped rather thannamespace scoped.",
+		Description:         "CiliumClusterwideNetworkPolicy is a Kubernetes third-party resource with an modified version of CiliumNetworkPolicy which is cluster scoped rather than namespace scoped.",
+		MarkdownDescription: "CiliumClusterwideNetworkPolicy is a Kubernetes third-party resource with an modified version of CiliumNetworkPolicy which is cluster scoped rather than namespace scoped.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -915,16 +915,16 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 				MarkdownDescription: "Spec is the desired Cilium specific rule specification.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
-						Description:         "Description is a free form string, it can be used by the creator ofthe rule to store human readable explanation of the purpose of thisrule. Rules cannot be identified by comment.",
-						MarkdownDescription: "Description is a free form string, it can be used by the creator ofthe rule to store human readable explanation of the purpose of thisrule. Rules cannot be identified by comment.",
+						Description:         "Description is a free form string, it can be used by the creator of the rule to store human readable explanation of the purpose of this rule. Rules cannot be identified by comment.",
+						MarkdownDescription: "Description is a free form string, it can be used by the creator of the rule to store human readable explanation of the purpose of this rule. Rules cannot be identified by comment.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"egress": schema.ListNestedAttribute{
-						Description:         "Egress is a list of EgressRule which are enforced at egress.If omitted or empty, this rule does not apply at egress.",
-						MarkdownDescription: "Egress is a list of EgressRule which are enforced at egress.If omitted or empty, this rule does not apply at egress.",
+						Description:         "Egress is a list of EgressRule which are enforced at egress. If omitted or empty, this rule does not apply at egress.",
+						MarkdownDescription: "Egress is a list of EgressRule which are enforced at egress. If omitted or empty, this rule does not apply at egress.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authentication": schema.SingleNestedAttribute{
@@ -948,8 +948,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"icmps": schema.ListNestedAttribute{
-									Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed to connect to.Example:Any endpoint with the label 'app=httpd' is allowed to initiatetype 8 ICMP connections.",
-									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed to connect to.Example:Any endpoint with the label 'app=httpd' is allowed to initiatetype 8 ICMP connections.",
+									Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is allowed to initiate type 8 ICMP connections.",
+									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is allowed to initiate type 8 ICMP connections.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"fields": schema.ListNestedAttribute{
@@ -958,8 +958,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"family": schema.StringAttribute{
-															Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-															MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+															Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+															MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -969,8 +969,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-															MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -989,8 +989,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_cidr": schema.ListAttribute{
-									Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
-									MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
+									Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
+									MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -998,8 +998,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_cidr_set": schema.ListNestedAttribute{
-									Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
-									MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+									Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+									MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
@@ -1011,8 +1011,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1023,8 +1023,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"except": schema.ListAttribute{
-												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1038,8 +1038,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_endpoints": schema.ListNestedAttribute{
-									Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
-									MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
+									Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
+									MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -1056,8 +1056,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1067,8 +1067,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1082,8 +1082,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1097,8 +1097,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_entities": schema.ListAttribute{
-									Description:         "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
-									MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
+									Description:         "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
+									MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1106,13 +1106,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_fqd_ns": schema.ListNestedAttribute{
-									Description:         "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that resultfrom DNS resolution of 'ToFQDN.MatchName's are added to the sameEgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 andL7 rules within this EgressRule will also apply to these IPs.The DNS -> IP mapping is re-resolved periodically from within thecilium-agent, and the IPs in the DNS response are effected in the policyfor selected pods as-is (i.e. the list of IPs is not modified in any way).Note: An explicit rule to allow for DNS traffic is needed for the pods, asToFQDN counts as an egress rule and will enforce egress policy whenPolicyEnforcment=default.Note: If the resolved IPs are IPs within the kubernetes cluster, theToFQDN rule will not apply to that IP.Note: ToFQDN cannot occur in the same policy as other To* rules.",
-									MarkdownDescription: "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that resultfrom DNS resolution of 'ToFQDN.MatchName's are added to the sameEgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 andL7 rules within this EgressRule will also apply to these IPs.The DNS -> IP mapping is re-resolved periodically from within thecilium-agent, and the IPs in the DNS response are effected in the policyfor selected pods as-is (i.e. the list of IPs is not modified in any way).Note: An explicit rule to allow for DNS traffic is needed for the pods, asToFQDN counts as an egress rule and will enforce egress policy whenPolicyEnforcment=default.Note: If the resolved IPs are IPs within the kubernetes cluster, theToFQDN rule will not apply to that IP.Note: ToFQDN cannot occur in the same policy as other To* rules.",
+									Description:         "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of 'ToFQDN.MatchName's are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules.",
+									MarkdownDescription: "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of 'ToFQDN.MatchName's are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_name": schema.StringAttribute{
-												Description:         "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
-												MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
+												Description:         "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
+												MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1122,8 +1122,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_pattern": schema.StringAttribute{
-												Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
-												MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
+												Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+												MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1139,8 +1139,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_groups": schema.ListNestedAttribute{
-									Description:         "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-									MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+									Description:         "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"aws": schema.SingleNestedAttribute{
@@ -1194,8 +1194,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_nodes": schema.ListNestedAttribute{
-									Description:         "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
-									MarkdownDescription: "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -1212,8 +1212,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1223,8 +1223,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1238,8 +1238,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1253,21 +1253,21 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_ports": schema.ListNestedAttribute{
-									Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toconnect to.Example:Any endpoint with the label 'role=frontend' is allowed to initiateconnections to destination port 8080/tcp",
-									MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toconnect to.Example:Any endpoint with the label 'role=frontend' is allowed to initiateconnections to destination port 8080/tcp",
+									Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
+									MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"listener": schema.SingleNestedAttribute{
-												Description:         "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
-												MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
+												Description:         "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
+												MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 												Attributes: map[string]schema.Attribute{
 													"envoy_config": schema.SingleNestedAttribute{
-														Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
-														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
+														Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 														Attributes: map[string]schema.Attribute{
 															"kind": schema.StringAttribute{
-																Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
-																MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
+																Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
+																MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1277,8 +1277,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
-																MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
+																Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
+																MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1304,8 +1304,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													},
 
 													"priority": schema.Int64Attribute{
-														Description:         "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
-														MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
+														Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+														MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1321,28 +1321,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"originating_tls": schema.SingleNestedAttribute{
-												Description:         "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
-												MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
+												Description:         "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
+												MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
 												Attributes: map[string]schema.Attribute{
 													"certificate": schema.StringAttribute{
-														Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+														Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"private_key": schema.StringAttribute{
-														Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+														Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-														MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+														Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+														MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "Name is the name of the secret.",
@@ -1353,8 +1353,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1366,8 +1366,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													},
 
 													"trusted_ca": schema.StringAttribute{
-														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1396,8 +1396,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1407,8 +1407,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"protocol": schema.StringAttribute{
-															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1424,8 +1424,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"rules": schema.SingleNestedAttribute{
-												Description:         "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
-												MarkdownDescription: "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
+												Description:         "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
+												MarkdownDescription: "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
 												Attributes: map[string]schema.Attribute{
 													"dns": schema.ListNestedAttribute{
 														Description:         "DNS-specific rules.",
@@ -1433,8 +1433,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"match_name": schema.StringAttribute{
-																	Description:         "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
-																	MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
+																	Description:         "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
+																	MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1444,8 +1444,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"match_pattern": schema.StringAttribute{
-																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
-																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
+																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1466,13 +1466,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"header_matches": schema.ListNestedAttribute{
-																	Description:         "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
-																	MarkdownDescription: "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
+																	Description:         "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
+																	MarkdownDescription: "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"mismatch": schema.StringAttribute{
-																				Description:         "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
-																				MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
+																				Description:         "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
+																				MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1493,8 +1493,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"secret": schema.SingleNestedAttribute{
-																				Description:         "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
-																				MarkdownDescription: "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
+																				Description:         "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
+																				MarkdownDescription: "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
 																						Description:         "Name is the name of the secret.",
@@ -1505,8 +1505,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																					},
 
 																					"namespace": schema.StringAttribute{
-																						Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																						MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																						Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																						MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1518,8 +1518,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"value": schema.StringAttribute{
-																				Description:         "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
-																				MarkdownDescription: "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
+																				Description:         "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
+																				MarkdownDescription: "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1532,8 +1532,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"headers": schema.ListAttribute{
-																	Description:         "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
-																	MarkdownDescription: "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
+																	Description:         "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
+																	MarkdownDescription: "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1541,24 +1541,24 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"host": schema.StringAttribute{
-																	Description:         "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
-																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
+																	Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"method": schema.StringAttribute{
-																	Description:         "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
-																	MarkdownDescription: "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
+																	Description:         "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
+																	MarkdownDescription: "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"path": schema.StringAttribute{
-																	Description:         "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
-																	MarkdownDescription: "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
+																	Description:         "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
+																	MarkdownDescription: "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1576,32 +1576,32 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_key": schema.StringAttribute{
-																	Description:         "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
-																	MarkdownDescription: "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
+																	Description:         "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
+																	MarkdownDescription: "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"api_version": schema.StringAttribute{
-																	Description:         "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
-																	MarkdownDescription: "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
+																	Description:         "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
+																	MarkdownDescription: "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"client_id": schema.StringAttribute{
-																	Description:         "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
-																	MarkdownDescription: "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
+																	Description:         "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
+																	MarkdownDescription: "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"role": schema.StringAttribute{
-																	Description:         "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
-																	MarkdownDescription: "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
+																	Description:         "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
+																	MarkdownDescription: "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1611,8 +1611,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"topic": schema.StringAttribute{
-																	Description:         "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
-																	MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
+																	Description:         "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
+																	MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1650,8 +1650,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"server_names": schema.ListAttribute{
-												Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
-												MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
+												Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
+												MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1659,28 +1659,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"terminating_tls": schema.SingleNestedAttribute{
-												Description:         "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
-												MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
+												Description:         "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
+												MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
 												Attributes: map[string]schema.Attribute{
 													"certificate": schema.StringAttribute{
-														Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+														Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"private_key": schema.StringAttribute{
-														Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+														Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-														MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+														Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+														MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "Name is the name of the secret.",
@@ -1691,8 +1691,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1704,8 +1704,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													},
 
 													"trusted_ca": schema.StringAttribute{
-														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1723,8 +1723,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_requires": schema.ListNestedAttribute{
-									Description:         "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
-									MarkdownDescription: "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
+									Description:         "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
+									MarkdownDescription: "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -1741,8 +1741,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1752,8 +1752,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1767,8 +1767,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1782,8 +1782,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_services": schema.ListNestedAttribute{
-									Description:         "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
-									MarkdownDescription: "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
+									Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+									MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"k8s_service": schema.SingleNestedAttribute{
@@ -1841,8 +1841,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1852,8 +1852,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1867,8 +1867,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1898,13 +1898,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"egress_deny": schema.ListNestedAttribute{
-						Description:         "EgressDeny is a list of EgressDenyRule which are enforced at egress.Any rule inserted here will be denied regardless of the allowed egressrules in the 'egress' field.If omitted or empty, this rule does not apply at egress.",
-						MarkdownDescription: "EgressDeny is a list of EgressDenyRule which are enforced at egress.Any rule inserted here will be denied regardless of the allowed egressrules in the 'egress' field.If omitted or empty, this rule does not apply at egress.",
+						Description:         "EgressDeny is a list of EgressDenyRule which are enforced at egress. Any rule inserted here will be denied regardless of the allowed egress rules in the 'egress' field. If omitted or empty, this rule does not apply at egress.",
+						MarkdownDescription: "EgressDeny is a list of EgressDenyRule which are enforced at egress. Any rule inserted here will be denied regardless of the allowed egress rules in the 'egress' field. If omitted or empty, this rule does not apply at egress.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"icmps": schema.ListNestedAttribute{
-									Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed to connect to.Example:Any endpoint with the label 'app=httpd' is not allowed to initiatetype 8 ICMP connections.",
-									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed to connect to.Example:Any endpoint with the label 'app=httpd' is not allowed to initiatetype 8 ICMP connections.",
+									Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is not allowed to initiate type 8 ICMP connections.",
+									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is not allowed to initiate type 8 ICMP connections.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"fields": schema.ListNestedAttribute{
@@ -1913,8 +1913,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"family": schema.StringAttribute{
-															Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-															MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+															Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+															MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1924,8 +1924,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-															MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1944,8 +1944,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_cidr": schema.ListAttribute{
-									Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
-									MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
+									Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
+									MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1953,8 +1953,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_cidr_set": schema.ListNestedAttribute{
-									Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
-									MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+									Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+									MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
@@ -1966,8 +1966,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1978,8 +1978,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"except": schema.ListAttribute{
-												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1993,8 +1993,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_endpoints": schema.ListNestedAttribute{
-									Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
-									MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
+									Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
+									MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -2011,8 +2011,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2022,8 +2022,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2037,8 +2037,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2052,8 +2052,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_entities": schema.ListAttribute{
-									Description:         "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
-									MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
+									Description:         "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
+									MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -2061,8 +2061,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_groups": schema.ListNestedAttribute{
-									Description:         "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-									MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+									Description:         "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"aws": schema.SingleNestedAttribute{
@@ -2116,8 +2116,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_nodes": schema.ListNestedAttribute{
-									Description:         "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
-									MarkdownDescription: "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -2134,8 +2134,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2145,8 +2145,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2160,8 +2160,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2175,8 +2175,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_ports": schema.ListNestedAttribute{
-									Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed to connectto.Example:Any endpoint with the label 'role=frontend' is not allowed to initiateconnections to destination port 8080/tcp",
-									MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed to connectto.Example:Any endpoint with the label 'role=frontend' is not allowed to initiateconnections to destination port 8080/tcp",
+									Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is not allowed to initiate connections to destination port 8080/tcp",
+									MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is not allowed to initiate connections to destination port 8080/tcp",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"ports": schema.ListNestedAttribute{
@@ -2197,8 +2197,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2208,8 +2208,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"protocol": schema.StringAttribute{
-															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2231,8 +2231,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_requires": schema.ListNestedAttribute{
-									Description:         "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
-									MarkdownDescription: "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
+									Description:         "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
+									MarkdownDescription: "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -2249,8 +2249,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2260,8 +2260,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2275,8 +2275,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2290,8 +2290,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_services": schema.ListNestedAttribute{
-									Description:         "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
-									MarkdownDescription: "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
+									Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+									MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"k8s_service": schema.SingleNestedAttribute{
@@ -2349,8 +2349,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -2360,8 +2360,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2375,8 +2375,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2406,20 +2406,20 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"enable_default_deny": schema.SingleNestedAttribute{
-						Description:         "EnableDefaultDeny determines whether this policy configures thesubject endpoint(s) to have a default deny mode. If enabled,this causes all traffic not explicitly allowed by a network policyto be dropped.If not specified, the default is true for each traffic directionthat has rules, and false otherwise. For example, if a policyonly has Ingress or IngressDeny rules, then the default foringress is true and egress is false.If multiple policies apply to an endpoint, that endpoint's default denywill be enabled if any policy requests it.This is useful for creating broad-based network policies that will notcause endpoints to enter default-deny mode.",
-						MarkdownDescription: "EnableDefaultDeny determines whether this policy configures thesubject endpoint(s) to have a default deny mode. If enabled,this causes all traffic not explicitly allowed by a network policyto be dropped.If not specified, the default is true for each traffic directionthat has rules, and false otherwise. For example, if a policyonly has Ingress or IngressDeny rules, then the default foringress is true and egress is false.If multiple policies apply to an endpoint, that endpoint's default denywill be enabled if any policy requests it.This is useful for creating broad-based network policies that will notcause endpoints to enter default-deny mode.",
+						Description:         "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
+						MarkdownDescription: "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
 						Attributes: map[string]schema.Attribute{
 							"egress": schema.BoolAttribute{
-								Description:         "Whether or not the endpoint should have a default-deny rule appliedto egress traffic.",
-								MarkdownDescription: "Whether or not the endpoint should have a default-deny rule appliedto egress traffic.",
+								Description:         "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
+								MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"ingress": schema.BoolAttribute{
-								Description:         "Whether or not the endpoint should have a default-deny rule appliedto ingress traffic.",
-								MarkdownDescription: "Whether or not the endpoint should have a default-deny rule appliedto ingress traffic.",
+								Description:         "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
+								MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2431,8 +2431,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"endpoint_selector": schema.SingleNestedAttribute{
-						Description:         "EndpointSelector selects all endpoints which should be subject tothis rule. EndpointSelector and NodeSelector cannot be both empty andare mutually exclusive.",
-						MarkdownDescription: "EndpointSelector selects all endpoints which should be subject tothis rule. EndpointSelector and NodeSelector cannot be both empty andare mutually exclusive.",
+						Description:         "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
+						MarkdownDescription: "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2448,8 +2448,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -2459,8 +2459,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2474,8 +2474,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2488,8 +2488,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"ingress": schema.ListNestedAttribute{
-						Description:         "Ingress is a list of IngressRule which are enforced at ingress.If omitted or empty, this rule does not apply at ingress.",
-						MarkdownDescription: "Ingress is a list of IngressRule which are enforced at ingress.If omitted or empty, this rule does not apply at ingress.",
+						Description:         "Ingress is a list of IngressRule which are enforced at ingress. If omitted or empty, this rule does not apply at ingress.",
+						MarkdownDescription: "Ingress is a list of IngressRule which are enforced at ingress. If omitted or empty, this rule does not apply at ingress.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authentication": schema.SingleNestedAttribute{
@@ -2513,8 +2513,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_cidr": schema.ListAttribute{
-									Description:         "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
-									MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
+									Description:         "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
+									MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -2522,8 +2522,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_cidr_set": schema.ListNestedAttribute{
-									Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
-									MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+									Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+									MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
@@ -2535,8 +2535,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2547,8 +2547,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"except": schema.ListAttribute{
-												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2562,8 +2562,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_endpoints": schema.ListNestedAttribute{
-									Description:         "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
-									MarkdownDescription: "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
+									Description:         "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
+									MarkdownDescription: "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -2580,8 +2580,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2591,8 +2591,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2606,8 +2606,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2621,8 +2621,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_entities": schema.ListAttribute{
-									Description:         "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
-									MarkdownDescription: "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
+									Description:         "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
+									MarkdownDescription: "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -2630,8 +2630,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_groups": schema.ListNestedAttribute{
-									Description:         "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-									MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+									Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"aws": schema.SingleNestedAttribute{
@@ -2685,8 +2685,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_nodes": schema.ListNestedAttribute{
-									Description:         "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
-									MarkdownDescription: "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
+									Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+									MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -2703,8 +2703,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2714,8 +2714,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2729,8 +2729,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2744,8 +2744,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_requires": schema.ListNestedAttribute{
-									Description:         "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
-									MarkdownDescription: "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
+									Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
+									MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -2762,8 +2762,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2773,8 +2773,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2788,8 +2788,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2803,8 +2803,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"icmps": schema.ListNestedAttribute{
-									Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingtype 8 ICMP connections.",
-									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingtype 8 ICMP connections.",
+									Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming type 8 ICMP connections.",
+									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming type 8 ICMP connections.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"fields": schema.ListNestedAttribute{
@@ -2813,8 +2813,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"family": schema.StringAttribute{
-															Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-															MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+															Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+															MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2824,8 +2824,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-															MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2844,21 +2844,21 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_ports": schema.ListNestedAttribute{
-									Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingconnections on port 80/tcp.",
-									MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingconnections on port 80/tcp.",
+									Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming connections on port 80/tcp.",
+									MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming connections on port 80/tcp.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"listener": schema.SingleNestedAttribute{
-												Description:         "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
-												MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
+												Description:         "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
+												MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 												Attributes: map[string]schema.Attribute{
 													"envoy_config": schema.SingleNestedAttribute{
-														Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
-														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
+														Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 														Attributes: map[string]schema.Attribute{
 															"kind": schema.StringAttribute{
-																Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
-																MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
+																Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
+																MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2868,8 +2868,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
-																MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
+																Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
+																MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2895,8 +2895,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													},
 
 													"priority": schema.Int64Attribute{
-														Description:         "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
-														MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
+														Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+														MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2912,28 +2912,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"originating_tls": schema.SingleNestedAttribute{
-												Description:         "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
-												MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
+												Description:         "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
+												MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
 												Attributes: map[string]schema.Attribute{
 													"certificate": schema.StringAttribute{
-														Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+														Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"private_key": schema.StringAttribute{
-														Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+														Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-														MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+														Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+														MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "Name is the name of the secret.",
@@ -2944,8 +2944,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2957,8 +2957,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													},
 
 													"trusted_ca": schema.StringAttribute{
-														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2987,8 +2987,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2998,8 +2998,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"protocol": schema.StringAttribute{
-															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3015,8 +3015,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"rules": schema.SingleNestedAttribute{
-												Description:         "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
-												MarkdownDescription: "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
+												Description:         "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
+												MarkdownDescription: "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
 												Attributes: map[string]schema.Attribute{
 													"dns": schema.ListNestedAttribute{
 														Description:         "DNS-specific rules.",
@@ -3024,8 +3024,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"match_name": schema.StringAttribute{
-																	Description:         "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
-																	MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
+																	Description:         "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
+																	MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3035,8 +3035,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"match_pattern": schema.StringAttribute{
-																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
-																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
+																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3057,13 +3057,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"header_matches": schema.ListNestedAttribute{
-																	Description:         "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
-																	MarkdownDescription: "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
+																	Description:         "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
+																	MarkdownDescription: "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"mismatch": schema.StringAttribute{
-																				Description:         "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
-																				MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
+																				Description:         "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
+																				MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3084,8 +3084,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"secret": schema.SingleNestedAttribute{
-																				Description:         "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
-																				MarkdownDescription: "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
+																				Description:         "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
+																				MarkdownDescription: "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
 																						Description:         "Name is the name of the secret.",
@@ -3096,8 +3096,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																					},
 
 																					"namespace": schema.StringAttribute{
-																						Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																						MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																						Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																						MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3109,8 +3109,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"value": schema.StringAttribute{
-																				Description:         "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
-																				MarkdownDescription: "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
+																				Description:         "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
+																				MarkdownDescription: "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3123,8 +3123,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"headers": schema.ListAttribute{
-																	Description:         "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
-																	MarkdownDescription: "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
+																	Description:         "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
+																	MarkdownDescription: "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3132,24 +3132,24 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"host": schema.StringAttribute{
-																	Description:         "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
-																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
+																	Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"method": schema.StringAttribute{
-																	Description:         "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
-																	MarkdownDescription: "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
+																	Description:         "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
+																	MarkdownDescription: "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"path": schema.StringAttribute{
-																	Description:         "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
-																	MarkdownDescription: "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
+																	Description:         "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
+																	MarkdownDescription: "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3167,32 +3167,32 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_key": schema.StringAttribute{
-																	Description:         "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
-																	MarkdownDescription: "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
+																	Description:         "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
+																	MarkdownDescription: "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"api_version": schema.StringAttribute{
-																	Description:         "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
-																	MarkdownDescription: "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
+																	Description:         "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
+																	MarkdownDescription: "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"client_id": schema.StringAttribute{
-																	Description:         "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
-																	MarkdownDescription: "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
+																	Description:         "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
+																	MarkdownDescription: "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"role": schema.StringAttribute{
-																	Description:         "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
-																	MarkdownDescription: "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
+																	Description:         "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
+																	MarkdownDescription: "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3202,8 +3202,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"topic": schema.StringAttribute{
-																	Description:         "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
-																	MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
+																	Description:         "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
+																	MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3241,8 +3241,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"server_names": schema.ListAttribute{
-												Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
-												MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
+												Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
+												MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3250,28 +3250,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"terminating_tls": schema.SingleNestedAttribute{
-												Description:         "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
-												MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
+												Description:         "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
+												MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
 												Attributes: map[string]schema.Attribute{
 													"certificate": schema.StringAttribute{
-														Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+														Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"private_key": schema.StringAttribute{
-														Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+														Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-														MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+														Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+														MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "Name is the name of the secret.",
@@ -3282,8 +3282,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3295,8 +3295,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													},
 
 													"trusted_ca": schema.StringAttribute{
-														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+														Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+														MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3320,13 +3320,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"ingress_deny": schema.ListNestedAttribute{
-						Description:         "IngressDeny is a list of IngressDenyRule which are enforced at ingress.Any rule inserted here will be denied regardless of the allowed ingressrules in the 'ingress' field.If omitted or empty, this rule does not apply at ingress.",
-						MarkdownDescription: "IngressDeny is a list of IngressDenyRule which are enforced at ingress.Any rule inserted here will be denied regardless of the allowed ingressrules in the 'ingress' field.If omitted or empty, this rule does not apply at ingress.",
+						Description:         "IngressDeny is a list of IngressDenyRule which are enforced at ingress. Any rule inserted here will be denied regardless of the allowed ingress rules in the 'ingress' field. If omitted or empty, this rule does not apply at ingress.",
+						MarkdownDescription: "IngressDeny is a list of IngressDenyRule which are enforced at ingress. Any rule inserted here will be denied regardless of the allowed ingress rules in the 'ingress' field. If omitted or empty, this rule does not apply at ingress.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from_cidr": schema.ListAttribute{
-									Description:         "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
-									MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
+									Description:         "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
+									MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -3334,8 +3334,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_cidr_set": schema.ListNestedAttribute{
-									Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
-									MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+									Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+									MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
@@ -3347,8 +3347,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3359,8 +3359,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"except": schema.ListAttribute{
-												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3374,8 +3374,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_endpoints": schema.ListNestedAttribute{
-									Description:         "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
-									MarkdownDescription: "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
+									Description:         "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
+									MarkdownDescription: "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -3392,8 +3392,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3403,8 +3403,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3418,8 +3418,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3433,8 +3433,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_entities": schema.ListAttribute{
-									Description:         "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
-									MarkdownDescription: "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
+									Description:         "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
+									MarkdownDescription: "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -3442,8 +3442,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_groups": schema.ListNestedAttribute{
-									Description:         "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-									MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+									Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"aws": schema.SingleNestedAttribute{
@@ -3497,8 +3497,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_nodes": schema.ListNestedAttribute{
-									Description:         "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
-									MarkdownDescription: "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
+									Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+									MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -3515,8 +3515,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3526,8 +3526,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3541,8 +3541,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3556,8 +3556,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"from_requires": schema.ListNestedAttribute{
-									Description:         "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
-									MarkdownDescription: "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
+									Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
+									MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
@@ -3574,8 +3574,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3585,8 +3585,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3600,8 +3600,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3615,8 +3615,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"icmps": schema.ListNestedAttribute{
-									Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingtype 8 ICMP connections.",
-									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingtype 8 ICMP connections.",
+									Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming type 8 ICMP connections.",
+									MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming type 8 ICMP connections.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"fields": schema.ListNestedAttribute{
@@ -3625,8 +3625,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"family": schema.StringAttribute{
-															Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-															MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+															Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+															MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3636,8 +3636,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-															MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3656,8 +3656,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"to_ports": schema.ListNestedAttribute{
-									Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingconnections on port 80/tcp.",
-									MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingconnections on port 80/tcp.",
+									Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming connections on port 80/tcp.",
+									MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming connections on port 80/tcp.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"ports": schema.ListNestedAttribute{
@@ -3678,8 +3678,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+															Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+															MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3689,8 +3689,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"protocol": schema.StringAttribute{
-															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+															Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+															MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3718,8 +3718,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"labels": schema.ListNestedAttribute{
-						Description:         "Labels is a list of optional strings which can be used tore-identify the rule or to store metadata. It is possible to lookupor delete strings based on labels. Labels are not required to beunique, multiple rules can have overlapping or identical labels.",
-						MarkdownDescription: "Labels is a list of optional strings which can be used tore-identify the rule or to store metadata. It is possible to lookupor delete strings based on labels. Labels are not required to beunique, multiple rules can have overlapping or identical labels.",
+						Description:         "Labels is a list of optional strings which can be used to re-identify the rule or to store metadata. It is possible to lookup or delete strings based on labels. Labels are not required to be unique, multiple rules can have overlapping or identical labels.",
+						MarkdownDescription: "Labels is a list of optional strings which can be used to re-identify the rule or to store metadata. It is possible to lookup or delete strings based on labels. Labels are not required to be unique, multiple rules can have overlapping or identical labels.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -3753,8 +3753,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 					},
 
 					"node_selector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector selects all nodes which should be subject to this rule.EndpointSelector and NodeSelector cannot be both empty and are mutuallyexclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
-						MarkdownDescription: "NodeSelector selects all nodes which should be subject to this rule.EndpointSelector and NodeSelector cannot be both empty and are mutuallyexclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
+						Description:         "NodeSelector selects all nodes which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
+						MarkdownDescription: "NodeSelector selects all nodes which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3770,8 +3770,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -3781,8 +3781,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3796,8 +3796,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3820,16 +3820,16 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"description": schema.StringAttribute{
-							Description:         "Description is a free form string, it can be used by the creator ofthe rule to store human readable explanation of the purpose of thisrule. Rules cannot be identified by comment.",
-							MarkdownDescription: "Description is a free form string, it can be used by the creator ofthe rule to store human readable explanation of the purpose of thisrule. Rules cannot be identified by comment.",
+							Description:         "Description is a free form string, it can be used by the creator of the rule to store human readable explanation of the purpose of this rule. Rules cannot be identified by comment.",
+							MarkdownDescription: "Description is a free form string, it can be used by the creator of the rule to store human readable explanation of the purpose of this rule. Rules cannot be identified by comment.",
 							Required:            false,
 							Optional:            true,
 							Computed:            false,
 						},
 
 						"egress": schema.ListNestedAttribute{
-							Description:         "Egress is a list of EgressRule which are enforced at egress.If omitted or empty, this rule does not apply at egress.",
-							MarkdownDescription: "Egress is a list of EgressRule which are enforced at egress.If omitted or empty, this rule does not apply at egress.",
+							Description:         "Egress is a list of EgressRule which are enforced at egress. If omitted or empty, this rule does not apply at egress.",
+							MarkdownDescription: "Egress is a list of EgressRule which are enforced at egress. If omitted or empty, this rule does not apply at egress.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"authentication": schema.SingleNestedAttribute{
@@ -3853,8 +3853,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"icmps": schema.ListNestedAttribute{
-										Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed to connect to.Example:Any endpoint with the label 'app=httpd' is allowed to initiatetype 8 ICMP connections.",
-										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed to connect to.Example:Any endpoint with the label 'app=httpd' is allowed to initiatetype 8 ICMP connections.",
+										Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is allowed to initiate type 8 ICMP connections.",
+										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is allowed to initiate type 8 ICMP connections.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"fields": schema.ListNestedAttribute{
@@ -3863,8 +3863,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"family": schema.StringAttribute{
-																Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-																MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+																Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+																MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3874,8 +3874,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-																MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3894,8 +3894,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_cidr": schema.ListAttribute{
-										Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
-										MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
+										Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
+										MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3903,8 +3903,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_cidr_set": schema.ListNestedAttribute{
-										Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
-										MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+										Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+										MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidr": schema.StringAttribute{
@@ -3916,8 +3916,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3928,8 +3928,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"except": schema.ListAttribute{
-													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -3943,8 +3943,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_endpoints": schema.ListNestedAttribute{
-										Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
-										MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
+										Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
+										MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -3961,8 +3961,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3972,8 +3972,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3987,8 +3987,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4002,8 +4002,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_entities": schema.ListAttribute{
-										Description:         "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
-										MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
+										Description:         "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
+										MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -4011,13 +4011,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_fqd_ns": schema.ListNestedAttribute{
-										Description:         "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that resultfrom DNS resolution of 'ToFQDN.MatchName's are added to the sameEgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 andL7 rules within this EgressRule will also apply to these IPs.The DNS -> IP mapping is re-resolved periodically from within thecilium-agent, and the IPs in the DNS response are effected in the policyfor selected pods as-is (i.e. the list of IPs is not modified in any way).Note: An explicit rule to allow for DNS traffic is needed for the pods, asToFQDN counts as an egress rule and will enforce egress policy whenPolicyEnforcment=default.Note: If the resolved IPs are IPs within the kubernetes cluster, theToFQDN rule will not apply to that IP.Note: ToFQDN cannot occur in the same policy as other To* rules.",
-										MarkdownDescription: "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that resultfrom DNS resolution of 'ToFQDN.MatchName's are added to the sameEgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 andL7 rules within this EgressRule will also apply to these IPs.The DNS -> IP mapping is re-resolved periodically from within thecilium-agent, and the IPs in the DNS response are effected in the policyfor selected pods as-is (i.e. the list of IPs is not modified in any way).Note: An explicit rule to allow for DNS traffic is needed for the pods, asToFQDN counts as an egress rule and will enforce egress policy whenPolicyEnforcment=default.Note: If the resolved IPs are IPs within the kubernetes cluster, theToFQDN rule will not apply to that IP.Note: ToFQDN cannot occur in the same policy as other To* rules.",
+										Description:         "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of 'ToFQDN.MatchName's are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules.",
+										MarkdownDescription: "ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of 'ToFQDN.MatchName's are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_name": schema.StringAttribute{
-													Description:         "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
-													MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
+													Description:         "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
+													MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4027,8 +4027,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_pattern": schema.StringAttribute{
-													Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
-													MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
+													Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+													MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4044,8 +4044,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_groups": schema.ListNestedAttribute{
-										Description:         "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-										MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+										Description:         "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws": schema.SingleNestedAttribute{
@@ -4099,8 +4099,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_nodes": schema.ListNestedAttribute{
-										Description:         "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
-										MarkdownDescription: "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -4117,8 +4117,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4128,8 +4128,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4143,8 +4143,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4158,21 +4158,21 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toconnect to.Example:Any endpoint with the label 'role=frontend' is allowed to initiateconnections to destination port 8080/tcp",
-										MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toconnect to.Example:Any endpoint with the label 'role=frontend' is allowed to initiateconnections to destination port 8080/tcp",
+										Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
+										MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"listener": schema.SingleNestedAttribute{
-													Description:         "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
-													MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
+													Description:         "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
+													MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 													Attributes: map[string]schema.Attribute{
 														"envoy_config": schema.SingleNestedAttribute{
-															Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
-															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
+															Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 															Attributes: map[string]schema.Attribute{
 																"kind": schema.StringAttribute{
-																	Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
-																	MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
+																	Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
+																	MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4182,8 +4182,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
-																	MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
+																	Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
+																	MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -4209,8 +4209,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"priority": schema.Int64Attribute{
-															Description:         "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
-															MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
+															Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+															MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4226,28 +4226,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"originating_tls": schema.SingleNestedAttribute{
-													Description:         "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
-													MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
+													Description:         "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
+													MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
 													Attributes: map[string]schema.Attribute{
 														"certificate": schema.StringAttribute{
-															Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+															Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"private_key": schema.StringAttribute{
-															Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+															Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"secret": schema.SingleNestedAttribute{
-															Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-															MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+															Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+															MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
 																	Description:         "Name is the name of the secret.",
@@ -4258,8 +4258,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																	Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4271,8 +4271,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"trusted_ca": schema.StringAttribute{
-															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4301,8 +4301,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"port": schema.StringAttribute{
-																Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4312,8 +4312,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4329,8 +4329,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"rules": schema.SingleNestedAttribute{
-													Description:         "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
-													MarkdownDescription: "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
+													Description:         "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
+													MarkdownDescription: "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
 													Attributes: map[string]schema.Attribute{
 														"dns": schema.ListNestedAttribute{
 															Description:         "DNS-specific rules.",
@@ -4338,8 +4338,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"match_name": schema.StringAttribute{
-																		Description:         "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
-																		MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
+																		Description:         "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
+																		MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4349,8 +4349,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"match_pattern": schema.StringAttribute{
-																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
-																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
+																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4371,13 +4371,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"header_matches": schema.ListNestedAttribute{
-																		Description:         "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
-																		MarkdownDescription: "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
+																		Description:         "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
+																		MarkdownDescription: "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"mismatch": schema.StringAttribute{
-																					Description:         "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
-																					MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
+																					Description:         "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
+																					MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4398,8 +4398,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																				},
 
 																				"secret": schema.SingleNestedAttribute{
-																					Description:         "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
-																					MarkdownDescription: "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
+																					Description:         "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
+																					MarkdownDescription: "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
 																					Attributes: map[string]schema.Attribute{
 																						"name": schema.StringAttribute{
 																							Description:         "Name is the name of the secret.",
@@ -4410,8 +4410,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																						},
 
 																						"namespace": schema.StringAttribute{
-																							Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																							MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																							Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																							MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4423,8 +4423,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																				},
 
 																				"value": schema.StringAttribute{
-																					Description:         "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
-																					MarkdownDescription: "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
+																					Description:         "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
+																					MarkdownDescription: "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4437,8 +4437,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"headers": schema.ListAttribute{
-																		Description:         "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
-																		MarkdownDescription: "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
+																		Description:         "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
+																		MarkdownDescription: "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -4446,24 +4446,24 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"host": schema.StringAttribute{
-																		Description:         "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
-																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
+																		Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"method": schema.StringAttribute{
-																		Description:         "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
-																		MarkdownDescription: "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
+																		Description:         "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
+																		MarkdownDescription: "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
-																		Description:         "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
-																		MarkdownDescription: "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
+																		Description:         "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
+																		MarkdownDescription: "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4481,32 +4481,32 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"api_key": schema.StringAttribute{
-																		Description:         "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
-																		MarkdownDescription: "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
+																		Description:         "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
+																		MarkdownDescription: "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"api_version": schema.StringAttribute{
-																		Description:         "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
-																		MarkdownDescription: "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
+																		Description:         "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
+																		MarkdownDescription: "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"client_id": schema.StringAttribute{
-																		Description:         "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
-																		MarkdownDescription: "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
+																		Description:         "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
+																		MarkdownDescription: "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"role": schema.StringAttribute{
-																		Description:         "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
-																		MarkdownDescription: "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
+																		Description:         "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
+																		MarkdownDescription: "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4516,8 +4516,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"topic": schema.StringAttribute{
-																		Description:         "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
-																		MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
+																		Description:         "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
+																		MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4555,8 +4555,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"server_names": schema.ListAttribute{
-													Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
-													MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
+													Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
+													MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4564,28 +4564,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"terminating_tls": schema.SingleNestedAttribute{
-													Description:         "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
-													MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
+													Description:         "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
+													MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
 													Attributes: map[string]schema.Attribute{
 														"certificate": schema.StringAttribute{
-															Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+															Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"private_key": schema.StringAttribute{
-															Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+															Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"secret": schema.SingleNestedAttribute{
-															Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-															MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+															Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+															MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
 																	Description:         "Name is the name of the secret.",
@@ -4596,8 +4596,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																	Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4609,8 +4609,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"trusted_ca": schema.StringAttribute{
-															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4628,8 +4628,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_requires": schema.ListNestedAttribute{
-										Description:         "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
-										MarkdownDescription: "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
+										Description:         "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
+										MarkdownDescription: "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -4646,8 +4646,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4657,8 +4657,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4672,8 +4672,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4687,8 +4687,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_services": schema.ListNestedAttribute{
-										Description:         "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
-										MarkdownDescription: "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
+										Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+										MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"k8s_service": schema.SingleNestedAttribute{
@@ -4746,8 +4746,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -4757,8 +4757,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4772,8 +4772,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4803,13 +4803,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"egress_deny": schema.ListNestedAttribute{
-							Description:         "EgressDeny is a list of EgressDenyRule which are enforced at egress.Any rule inserted here will be denied regardless of the allowed egressrules in the 'egress' field.If omitted or empty, this rule does not apply at egress.",
-							MarkdownDescription: "EgressDeny is a list of EgressDenyRule which are enforced at egress.Any rule inserted here will be denied regardless of the allowed egressrules in the 'egress' field.If omitted or empty, this rule does not apply at egress.",
+							Description:         "EgressDeny is a list of EgressDenyRule which are enforced at egress. Any rule inserted here will be denied regardless of the allowed egress rules in the 'egress' field. If omitted or empty, this rule does not apply at egress.",
+							MarkdownDescription: "EgressDeny is a list of EgressDenyRule which are enforced at egress. Any rule inserted here will be denied regardless of the allowed egress rules in the 'egress' field. If omitted or empty, this rule does not apply at egress.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"icmps": schema.ListNestedAttribute{
-										Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed to connect to.Example:Any endpoint with the label 'app=httpd' is not allowed to initiatetype 8 ICMP connections.",
-										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed to connect to.Example:Any endpoint with the label 'app=httpd' is not allowed to initiatetype 8 ICMP connections.",
+										Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is not allowed to initiate type 8 ICMP connections.",
+										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'app=httpd' is not allowed to initiate type 8 ICMP connections.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"fields": schema.ListNestedAttribute{
@@ -4818,8 +4818,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"family": schema.StringAttribute{
-																Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-																MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+																Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+																MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4829,8 +4829,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-																MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4849,8 +4849,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_cidr": schema.ListAttribute{
-										Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
-										MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections. Only connections destined foroutside of the cluster and not targeting the host will be subjectto CIDR rules.  This will match on the destination IP address ofoutgoing connections. Adding a prefix into ToCIDR or into ToCIDRSetwith no ExcludeCIDRs is equivalent. Overlaps are allowed betweenToCIDR and ToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24",
+										Description:         "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
+										MarkdownDescription: "ToCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections. Only connections destined for outside of the cluster and not targeting the host will be subject to CIDR rules.  This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -4858,8 +4858,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_cidr_set": schema.ListNestedAttribute{
-										Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
-										MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the ruleis allowed to initiate connections to in addition to connectionswhich are allowed via ToEndpoints, along with a list of subnets containedwithin their corresponding IP block to which traffic should not beallowed. This will match on the destination IP address of outgoingconnections. Adding a prefix into ToCIDR or into ToCIDRSet with noExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR andToCIDRSet.Example:Any endpoint with the label 'app=database-proxy' is allowed toinitiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+										Description:         "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
+										MarkdownDescription: "ToCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to initiate connections to in addition to connections which are allowed via ToEndpoints, along with a list of subnets contained within their corresponding IP block to which traffic should not be allowed. This will match on the destination IP address of outgoing connections. Adding a prefix into ToCIDR or into ToCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between ToCIDR and ToCIDRSet.  Example: Any endpoint with the label 'app=database-proxy' is allowed to initiate connections to 10.2.3.0/24 except from IPs in subnet 10.2.3.0/28.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidr": schema.StringAttribute{
@@ -4871,8 +4871,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4883,8 +4883,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"except": schema.ListAttribute{
-													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4898,8 +4898,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_endpoints": schema.ListNestedAttribute{
-										Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
-										MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector towhich the endpoints subject to the rule are allowed to communicate.Example:Any endpoint with the label 'role=frontend' can communicate with anyendpoint carrying the label 'role=backend'.",
+										Description:         "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
+										MarkdownDescription: "ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -4916,8 +4916,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4927,8 +4927,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4942,8 +4942,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4957,8 +4957,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_entities": schema.ListAttribute{
-										Description:         "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
-										MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subjectto the rule is allowed to initiate connections. Supported entities are'world', 'cluster','host','remote-node','kube-apiserver', 'init','health','unmanaged' and 'all'.",
+										Description:         "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
+										MarkdownDescription: "ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -4966,8 +4966,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_groups": schema.ListNestedAttribute{
-										Description:         "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-										MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:toGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+										Description:         "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										MarkdownDescription: "ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws": schema.SingleNestedAttribute{
@@ -5021,8 +5021,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_nodes": schema.ListNestedAttribute{
-										Description:         "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
-										MarkdownDescription: "ToNodes is a list of nodes identified by anEndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -5039,8 +5039,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5050,8 +5050,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5065,8 +5065,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5080,8 +5080,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed to connectto.Example:Any endpoint with the label 'role=frontend' is not allowed to initiateconnections to destination port 8080/tcp",
-										MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed to connectto.Example:Any endpoint with the label 'role=frontend' is not allowed to initiateconnections to destination port 8080/tcp",
+										Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is not allowed to initiate connections to destination port 8080/tcp",
+										MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is not allowed to initiate connections to destination port 8080/tcp",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"ports": schema.ListNestedAttribute{
@@ -5102,8 +5102,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"port": schema.StringAttribute{
-																Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5113,8 +5113,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5136,8 +5136,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_requires": schema.ListNestedAttribute{
-										Description:         "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
-										MarkdownDescription: "ToRequires is a list of additional constraints which must be metin order for the selected endpoints to be able to connect to otherendpoints. These additional constraints do no by itself grant accessprivileges and must always be accompanied with at least one matchingToEndpoints.Example:Any Endpoint with the label 'team=A' requires any endpoint to which itcommunicates to also carry the label 'team=A'.",
+										Description:         "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
+										MarkdownDescription: "ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -5154,8 +5154,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5165,8 +5165,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5180,8 +5180,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5195,8 +5195,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_services": schema.ListNestedAttribute{
-										Description:         "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
-										MarkdownDescription: "ToServices is a list of services to which the endpoint subjectto the rule is allowed to initiate connections.Currently Cilium only supports toServices for K8s services withoutselectors.Example:Any endpoint with the label 'app=backend-app' is allowed toinitiate connections to all cidrs backing the 'external-service' service",
+										Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+										MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"k8s_service": schema.SingleNestedAttribute{
@@ -5254,8 +5254,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -5265,8 +5265,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5280,8 +5280,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -5311,20 +5311,20 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"enable_default_deny": schema.SingleNestedAttribute{
-							Description:         "EnableDefaultDeny determines whether this policy configures thesubject endpoint(s) to have a default deny mode. If enabled,this causes all traffic not explicitly allowed by a network policyto be dropped.If not specified, the default is true for each traffic directionthat has rules, and false otherwise. For example, if a policyonly has Ingress or IngressDeny rules, then the default foringress is true and egress is false.If multiple policies apply to an endpoint, that endpoint's default denywill be enabled if any policy requests it.This is useful for creating broad-based network policies that will notcause endpoints to enter default-deny mode.",
-							MarkdownDescription: "EnableDefaultDeny determines whether this policy configures thesubject endpoint(s) to have a default deny mode. If enabled,this causes all traffic not explicitly allowed by a network policyto be dropped.If not specified, the default is true for each traffic directionthat has rules, and false otherwise. For example, if a policyonly has Ingress or IngressDeny rules, then the default foringress is true and egress is false.If multiple policies apply to an endpoint, that endpoint's default denywill be enabled if any policy requests it.This is useful for creating broad-based network policies that will notcause endpoints to enter default-deny mode.",
+							Description:         "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
+							MarkdownDescription: "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
 							Attributes: map[string]schema.Attribute{
 								"egress": schema.BoolAttribute{
-									Description:         "Whether or not the endpoint should have a default-deny rule appliedto egress traffic.",
-									MarkdownDescription: "Whether or not the endpoint should have a default-deny rule appliedto egress traffic.",
+									Description:         "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
+									MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"ingress": schema.BoolAttribute{
-									Description:         "Whether or not the endpoint should have a default-deny rule appliedto ingress traffic.",
-									MarkdownDescription: "Whether or not the endpoint should have a default-deny rule appliedto ingress traffic.",
+									Description:         "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
+									MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -5336,8 +5336,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"endpoint_selector": schema.SingleNestedAttribute{
-							Description:         "EndpointSelector selects all endpoints which should be subject tothis rule. EndpointSelector and NodeSelector cannot be both empty andare mutually exclusive.",
-							MarkdownDescription: "EndpointSelector selects all endpoints which should be subject tothis rule. EndpointSelector and NodeSelector cannot be both empty andare mutually exclusive.",
+							Description:         "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
+							MarkdownDescription: "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
 							Attributes: map[string]schema.Attribute{
 								"match_expressions": schema.ListNestedAttribute{
 									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -5353,8 +5353,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"operator": schema.StringAttribute{
-												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -5364,8 +5364,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5379,8 +5379,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -5393,8 +5393,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"ingress": schema.ListNestedAttribute{
-							Description:         "Ingress is a list of IngressRule which are enforced at ingress.If omitted or empty, this rule does not apply at ingress.",
-							MarkdownDescription: "Ingress is a list of IngressRule which are enforced at ingress.If omitted or empty, this rule does not apply at ingress.",
+							Description:         "Ingress is a list of IngressRule which are enforced at ingress. If omitted or empty, this rule does not apply at ingress.",
+							MarkdownDescription: "Ingress is a list of IngressRule which are enforced at ingress. If omitted or empty, this rule does not apply at ingress.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"authentication": schema.SingleNestedAttribute{
@@ -5418,8 +5418,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_cidr": schema.ListAttribute{
-										Description:         "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
-										MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
+										Description:         "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
+										MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -5427,8 +5427,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_cidr_set": schema.ListNestedAttribute{
-										Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
-										MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+										Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+										MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidr": schema.StringAttribute{
@@ -5440,8 +5440,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5452,8 +5452,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"except": schema.ListAttribute{
-													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5467,8 +5467,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_endpoints": schema.ListNestedAttribute{
-										Description:         "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
-										MarkdownDescription: "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
+										Description:         "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
+										MarkdownDescription: "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -5485,8 +5485,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5496,8 +5496,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5511,8 +5511,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5526,8 +5526,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_entities": schema.ListAttribute{
-										Description:         "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
-										MarkdownDescription: "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
+										Description:         "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
+										MarkdownDescription: "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -5535,8 +5535,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_groups": schema.ListNestedAttribute{
-										Description:         "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-										MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+										Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws": schema.SingleNestedAttribute{
@@ -5590,8 +5590,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_nodes": schema.ListNestedAttribute{
-										Description:         "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
-										MarkdownDescription: "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
+										Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+										MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -5608,8 +5608,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5619,8 +5619,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5634,8 +5634,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5649,8 +5649,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_requires": schema.ListNestedAttribute{
-										Description:         "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
-										MarkdownDescription: "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
+										Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
+										MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -5667,8 +5667,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5678,8 +5678,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5693,8 +5693,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5708,8 +5708,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"icmps": schema.ListNestedAttribute{
-										Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingtype 8 ICMP connections.",
-										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingtype 8 ICMP connections.",
+										Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming type 8 ICMP connections.",
+										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming type 8 ICMP connections.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"fields": schema.ListNestedAttribute{
@@ -5718,8 +5718,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"family": schema.StringAttribute{
-																Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-																MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+																Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+																MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5729,8 +5729,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-																MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5749,21 +5749,21 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingconnections on port 80/tcp.",
-										MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can only accept incomingconnections on port 80/tcp.",
+										Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming connections on port 80/tcp.",
+										MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming connections on port 80/tcp.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"listener": schema.SingleNestedAttribute{
-													Description:         "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
-													MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should beredirected to.",
+													Description:         "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
+													MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 													Attributes: map[string]schema.Attribute{
 														"envoy_config": schema.SingleNestedAttribute{
-															Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
-															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in whichthe listener is defined.",
+															Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 															Attributes: map[string]schema.Attribute{
 																"kind": schema.StringAttribute{
-																	Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
-																	MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig orCiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy,respectively. The only case this is currently explicitly needed is when referring to aCiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listenerfrom a cluster scoped policy is not allowed.",
+																	Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
+																	MarkdownDescription: "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5773,8 +5773,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
-																	MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig wherethe listener is defined in.",
+																	Description:         "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
+																	MarkdownDescription: "Name is the resource name of the CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig where the listener is defined in.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -5800,8 +5800,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"priority": schema.Int64Attribute{
-															Description:         "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
-															MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply differentlisteners to a policy map entry. Behavior of this is implementation dependent.",
+															Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+															MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -5817,28 +5817,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"originating_tls": schema.SingleNestedAttribute{
-													Description:         "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
-													MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated bythe L7 proxy.  For egress policy this specifies the client-side TLSparameters for the upstream connection originating from the L7 proxyto the remote destination. For ingress policy this specifies theclient-side TLS parameters for the connection from the L7 proxy tothe local endpoint.",
+													Description:         "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
+													MarkdownDescription: "OriginatingTLS is the TLS context for the connections originated by the L7 proxy.  For egress policy this specifies the client-side TLS parameters for the upstream connection originating from the L7 proxy to the remote destination. For ingress policy this specifies the client-side TLS parameters for the connection from the L7 proxy to the local endpoint.",
 													Attributes: map[string]schema.Attribute{
 														"certificate": schema.StringAttribute{
-															Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+															Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"private_key": schema.StringAttribute{
-															Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+															Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"secret": schema.SingleNestedAttribute{
-															Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-															MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+															Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+															MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
 																	Description:         "Name is the name of the secret.",
@@ -5849,8 +5849,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																	Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5862,8 +5862,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"trusted_ca": schema.StringAttribute{
-															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -5892,8 +5892,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"port": schema.StringAttribute{
-																Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5903,8 +5903,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5920,8 +5920,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"rules": schema.SingleNestedAttribute{
-													Description:         "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
-													MarkdownDescription: "Rules is a list of additional port level rules which must be met inorder for the PortRule to allow the traffic. If omitted or empty,no layer 7 rules are enforced.",
+													Description:         "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
+													MarkdownDescription: "Rules is a list of additional port level rules which must be met in order for the PortRule to allow the traffic. If omitted or empty, no layer 7 rules are enforced.",
 													Attributes: map[string]schema.Attribute{
 														"dns": schema.ListNestedAttribute{
 															Description:         "DNS-specific rules.",
@@ -5929,8 +5929,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"match_name": schema.StringAttribute{
-																		Description:         "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
-																		MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically addedwhen missing.",
+																		Description:         "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
+																		MarkdownDescription: "MatchName matches literal DNS names. A trailing '.' is automatically added when missing.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5940,8 +5940,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"match_pattern": schema.StringAttribute{
-																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
-																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards arecase insensitive. The wildcards are:- '*' matches 0 or more DNS valid characters, and may occur anywhere inthe pattern. As a special case a '*' as the leftmost character, without afollowing '.' matches all subdomains as well as the name to the right.A trailing '.' is automatically added when missing.Examples:'*.cilium.io' matches subomains of cilium at that level  www.cilium.io and blog.cilium.io match, cilium.io and google.com do not'*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io'  except those containing '.' separator, subcilium.io and sub-cilium.io match,  www.cilium.io and blog.cilium.io does notsub*.cilium.io matches subdomains of cilium where the subdomain componentbegins with 'sub'  sub.cilium.io and subdomain.cilium.io match, www.cilium.io,  blog.cilium.io, cilium.io and google.com do not",
+																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing.  Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5962,13 +5962,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"header_matches": schema.ListNestedAttribute{
-																		Description:         "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
-																		MarkdownDescription: "HeaderMatches is a list of HTTP headers which must bepresent and match against the given values. Mismatch field can be usedto specify what to do when there is no match.",
+																		Description:         "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
+																		MarkdownDescription: "HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"mismatch": schema.StringAttribute{
-																					Description:         "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
-																					MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default isto drop the request. Otherwise the overall rule is still considered asmatching, but the mismatches are logged in the access log.",
+																					Description:         "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
+																					MarkdownDescription: "Mismatch identifies what to do in case there is no match. The default is to drop the request. Otherwise the overall rule is still considered as matching, but the mismatches are logged in the access log.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5989,8 +5989,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																				},
 
 																				"secret": schema.SingleNestedAttribute{
-																					Description:         "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
-																					MarkdownDescription: "Secret refers to a secret that contains the value to be matched against.The secret must only contain one entry. If the referred secret does notexist, and there is no 'Value' specified, the match will fail.",
+																					Description:         "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
+																					MarkdownDescription: "Secret refers to a secret that contains the value to be matched against. The secret must only contain one entry. If the referred secret does not exist, and there is no 'Value' specified, the match will fail.",
 																					Attributes: map[string]schema.Attribute{
 																						"name": schema.StringAttribute{
 																							Description:         "Name is the name of the secret.",
@@ -6001,8 +6001,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																						},
 
 																						"namespace": schema.StringAttribute{
-																							Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																							MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																							Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																							MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6014,8 +6014,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																				},
 
 																				"value": schema.StringAttribute{
-																					Description:         "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
-																					MarkdownDescription: "Value matches the exact value of the header. Can be specified eitheralone or together with 'Secret'; will be used as the header value if thesecret can not be found in the latter case.",
+																					Description:         "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
+																					MarkdownDescription: "Value matches the exact value of the header. Can be specified either alone or together with 'Secret'; will be used as the header value if the secret can not be found in the latter case.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -6028,8 +6028,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"headers": schema.ListAttribute{
-																		Description:         "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
-																		MarkdownDescription: "Headers is a list of HTTP headers which must be present in therequest. If omitted or empty, requests are allowed regardless ofheaders present.",
+																		Description:         "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
+																		MarkdownDescription: "Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -6037,24 +6037,24 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"host": schema.StringAttribute{
-																		Description:         "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
-																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of arequest. Examples:- foo.bar.com will match the host fooXbar.com or foo-bar.com- foo.bar.com will only match the host foo.bar.comIf omitted or empty, the value of the host header is ignored.",
+																		Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"method": schema.StringAttribute{
-																		Description:         "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
-																		MarkdownDescription: "Method is an extended POSIX regex matched against the method of arequest, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...If omitted or empty, all methods are allowed.",
+																		Description:         "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
+																		MarkdownDescription: "Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
-																		Description:         "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
-																		MarkdownDescription: "Path is an extended POSIX regex matched against the path of arequest. Currently it can contain characters disallowed from theconventional 'path' part of a URL as defined by RFC 3986.If omitted or empty, all paths are all allowed.",
+																		Description:         "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
+																		MarkdownDescription: "Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6072,32 +6072,32 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"api_key": schema.StringAttribute{
-																		Description:         "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
-																		MarkdownDescription: "APIKey is a case-insensitive string matched against the key of arequest, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et alReference: https://kafka.apache.org/protocol#protocol_api_keysIf omitted or empty, and if Role is not specified, then all keys are allowed.",
+																		Description:         "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
+																		MarkdownDescription: "APIKey is a case-insensitive string matched against the key of a request, e.g. 'produce', 'fetch', 'createtopic', 'deletetopic', et al Reference: https://kafka.apache.org/protocol#protocol_api_keys  If omitted or empty, and if Role is not specified, then all keys are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"api_version": schema.StringAttribute{
-																		Description:         "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
-																		MarkdownDescription: "APIVersion is the version matched against the api version of theKafka message. If set, it has to be a string representing a positiveinteger.If omitted or empty, all versions are allowed.",
+																		Description:         "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
+																		MarkdownDescription: "APIVersion is the version matched against the api version of the Kafka message. If set, it has to be a string representing a positive integer.  If omitted or empty, all versions are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"client_id": schema.StringAttribute{
-																		Description:         "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
-																		MarkdownDescription: "ClientID is the client identifier as provided in the request.From Kafka protocol documentation:This is a user supplied identifier for the client application. Theuser can use any identifier they like and it will be used whenlogging errors, monitoring aggregates, etc. For example, one mightwant to monitor not just the requests per second overall, but thenumber coming from each client application (each of which couldreside on multiple servers). This id acts as a logical groupingacross all requests from a particular client.If omitted or empty, all client identifiers are allowed.",
+																		Description:         "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
+																		MarkdownDescription: "ClientID is the client identifier as provided in the request.  From Kafka protocol documentation: This is a user supplied identifier for the client application. The user can use any identifier they like and it will be used when logging errors, monitoring aggregates, etc. For example, one might want to monitor not just the requests per second overall, but the number coming from each client application (each of which could reside on multiple servers). This id acts as a logical grouping across all requests from a particular client.  If omitted or empty, all client identifiers are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"role": schema.StringAttribute{
-																		Description:         "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
-																		MarkdownDescription: "Role is a case-insensitive string and describes a group of API keysnecessary to perform certain higher-level Kafka operations such as 'produce'or 'consume'. A Role automatically expands into all APIKeys requiredto perform the specified higher-level operation.The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the ruleThis field is incompatible with the APIKey field, i.e APIKey and Rolecannot both be specified in the same rule.If omitted or empty, and if APIKey is not specified, then all keys areallowed.",
+																		Description:         "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
+																		MarkdownDescription: "Role is a case-insensitive string and describes a group of API keys necessary to perform certain higher-level Kafka operations such as 'produce' or 'consume'. A Role automatically expands into all APIKeys required to perform the specified higher-level operation.  The following values are supported: - 'produce': Allow producing to the topics specified in the rule - 'consume': Allow consuming from the topics specified in the rule  This field is incompatible with the APIKey field, i.e APIKey and Role cannot both be specified in the same rule.  If omitted or empty, and if APIKey is not specified, then all keys are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6107,8 +6107,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"topic": schema.StringAttribute{
-																		Description:         "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
-																		MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka requestcontains multiple topics, then all topics must be allowed or themessage will be rejected.This constraint is ignored if the matched request message typedoesn't contain any topic. Maximum size of Topic can be 249characters as per recent Kafka spec and allowed characters area-z, A-Z, 0-9, -, . and _.Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10version the length was changed from 255 to 249. For compatibilityreasons we are using 255.If omitted or empty, all topics are allowed.",
+																		Description:         "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
+																		MarkdownDescription: "Topic is the topic name contained in the message. If a Kafka request contains multiple topics, then all topics must be allowed or the message will be rejected.  This constraint is ignored if the matched request message type doesn't contain any topic. Maximum size of Topic can be 249 characters as per recent Kafka spec and allowed characters are a-z, A-Z, 0-9, -, . and _.  Older Kafka versions had longer topic lengths of 255, but in Kafka 0.10 version the length was changed from 255 to 249. For compatibility reasons we are using 255.  If omitted or empty, all topics are allowed.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6146,8 +6146,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"server_names": schema.ListAttribute{
-													Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
-													MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, thenTLS must be present and one of the provided SNIs must be indicated in theTLS handshake.",
+													Description:         "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
+													MarkdownDescription: "ServerNames is a list of allowed TLS SNI values. If not empty, then TLS must be present and one of the provided SNIs must be indicated in the TLS handshake.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6155,28 +6155,28 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"terminating_tls": schema.SingleNestedAttribute{
-													Description:         "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
-													MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated bythe L7 proxy.  For egress policy this specifies the server-side TLSparameters to be applied on the connections originated from the localendpoint and terminated by the L7 proxy. For ingress policy this specifiesthe server-side TLS parameters to be applied on the connectionsoriginated from a remote source and terminated by the L7 proxy.",
+													Description:         "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
+													MarkdownDescription: "TerminatingTLS is the TLS context for the connection terminated by the L7 proxy.  For egress policy this specifies the server-side TLS parameters to be applied on the connections originated from the local endpoint and terminated by the L7 proxy. For ingress policy this specifies the server-side TLS parameters to be applied on the connections originated from a remote source and terminated by the L7 proxy.",
 													Attributes: map[string]schema.Attribute{
 														"certificate": schema.StringAttribute{
-															Description:         "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
-															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificatechain. If omitted, 'tls.crt' is assumed, if it exists. If given, theitem must exist.",
+															Description:         "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "Certificate is the file name or k8s secret item name for the certificate chain. If omitted, 'tls.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"private_key": schema.StringAttribute{
-															Description:         "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
-															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private keymatching the certificate chain. If omitted, 'tls.key' is assumed, if itexists. If given, the item must exist.",
+															Description:         "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "PrivateKey is the file name or k8s secret item name for the private key matching the certificate chain. If omitted, 'tls.key' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"secret": schema.SingleNestedAttribute{
-															Description:         "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
-															MarkdownDescription: "Secret is the secret that contains the certificates and private key forthe TLS context.By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key               certificate.",
+															Description:         "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
+															MarkdownDescription: "Secret is the secret that contains the certificates and private key for the TLS context. By default, Cilium will search in this secret for the following items: - 'ca.crt'  - Which represents the trusted CA to verify remote source. - 'tls.crt' - Which represents the public key certificate. - 'tls.key' - Which represents the private key matching the public key certificate.",
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
 																	Description:         "Name is the name of the secret.",
@@ -6187,8 +6187,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
-																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of usedetermines the default value if left out (e.g., 'default').",
+																	Description:         "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
+																	MarkdownDescription: "Namespace is the namespace in which the secret exists. Context of use determines the default value if left out (e.g., 'default').",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -6200,8 +6200,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 														},
 
 														"trusted_ca": schema.StringAttribute{
-															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
-															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA.If omitted, 'ca.crt' is assumed, if it exists. If given, the item mustexist.",
+															Description:         "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
+															MarkdownDescription: "TrustedCA is the file name or k8s secret item name for the trusted CA. If omitted, 'ca.crt' is assumed, if it exists. If given, the item must exist.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -6225,13 +6225,13 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"ingress_deny": schema.ListNestedAttribute{
-							Description:         "IngressDeny is a list of IngressDenyRule which are enforced at ingress.Any rule inserted here will be denied regardless of the allowed ingressrules in the 'ingress' field.If omitted or empty, this rule does not apply at ingress.",
-							MarkdownDescription: "IngressDeny is a list of IngressDenyRule which are enforced at ingress.Any rule inserted here will be denied regardless of the allowed ingressrules in the 'ingress' field.If omitted or empty, this rule does not apply at ingress.",
+							Description:         "IngressDeny is a list of IngressDenyRule which are enforced at ingress. Any rule inserted here will be denied regardless of the allowed ingress rules in the 'ingress' field. If omitted or empty, this rule does not apply at ingress.",
+							MarkdownDescription: "IngressDeny is a list of IngressDenyRule which are enforced at ingress. Any rule inserted here will be denied regardless of the allowed ingress rules in the 'ingress' field. If omitted or empty, this rule does not apply at ingress.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"from_cidr": schema.ListAttribute{
-										Description:         "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
-										MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from. Only connections whichdo *not* originate from the cluster or from the local host are subjectto CIDR rules. In order to allow in-cluster connectivity, use theFromEndpoints field.  This will match on the source IP address ofincoming connections. Adding  a prefix into FromCIDR or intoFromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps areallowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.3.9.1",
+										Description:         "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
+										MarkdownDescription: "FromCIDR is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from. Only connections which do *not* originate from the cluster or from the local host are subject to CIDR rules. In order to allow in-cluster connectivity, use the FromEndpoints field.  This will match on the source IP address of incoming connections. Adding  a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is  equivalent.  Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.3.9.1",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6239,8 +6239,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_cidr_set": schema.ListNestedAttribute{
-										Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
-										MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to therule is allowed to receive connections from in addition to FromEndpoints,along with a list of subnets contained within their corresponding IP blockfrom which traffic should not be allowed.This will match on the source IP address of incoming connections. Addinga prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs isequivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.Example:Any endpoint with the label 'app=my-legacy-pet' is allowed to receiveconnections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+										Description:         "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
+										MarkdownDescription: "FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidr": schema.StringAttribute{
@@ -6252,8 +6252,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object.A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject tothe rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receiveconnections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny/EgressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6264,8 +6264,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"except": schema.ListAttribute{
-													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
-													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the ruleis not allowed to initiate connections to. These CIDR prefixes should becontained within Cidr, using ExceptCIDRs together with CIDRGroupRef is notsupported yet.These exceptions are only applied to the Cidr in this CIDRRule, and do notapply to any other CIDR prefixes in any other CIDRRules.",
+													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
+													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6279,8 +6279,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_endpoints": schema.ListNestedAttribute{
-										Description:         "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
-										MarkdownDescription: "FromEndpoints is a list of endpoints identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.Example:Any endpoint with the label 'role=backend' can be consumed by anyendpoint carrying the label 'role=frontend'.",
+										Description:         "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
+										MarkdownDescription: "FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -6297,8 +6297,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6308,8 +6308,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6323,8 +6323,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6338,8 +6338,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_entities": schema.ListAttribute{
-										Description:         "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
-										MarkdownDescription: "FromEntities is a list of special entities which the endpoint subjectto the rule is allowed to receive connections from. Supported entities are'world', 'cluster' and 'host'",
+										Description:         "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
+										MarkdownDescription: "FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6347,8 +6347,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_groups": schema.ListNestedAttribute{
-										Description:         "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
-										MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outsideproviders. Currently, only AWS is supported, and the rule can select bymultiple sub directives:Example:FromGroups:- aws:    securityGroupsIds:    - 'sg-XXXXXXXXXXXXX'",
+										Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws": schema.SingleNestedAttribute{
@@ -6402,8 +6402,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_nodes": schema.ListNestedAttribute{
-										Description:         "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
-										MarkdownDescription: "FromNodes is a list of nodes identified by anEndpointSelector which are allowed to communicate with the endpointsubject to the rule.",
+										Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+										MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -6420,8 +6420,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6431,8 +6431,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6446,8 +6446,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6461,8 +6461,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"from_requires": schema.ListNestedAttribute{
-										Description:         "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
-										MarkdownDescription: "FromRequires is a list of additional constraints which must be metin order for the selected endpoints to be reachable. Theseadditional constraints do no by itself grant access privileges andmust always be accompanied with at least one matching FromEndpoints.Example:Any Endpoint with the label 'team=A' requires consuming endpointto also carry the label 'team=A'.",
+										Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
+										MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
@@ -6479,8 +6479,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6490,8 +6490,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6505,8 +6505,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6520,8 +6520,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"icmps": schema.ListNestedAttribute{
-										Description:         "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingtype 8 ICMP connections.",
-										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type numberwhich the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingtype 8 ICMP connections.",
+										Description:         "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming type 8 ICMP connections.",
+										MarkdownDescription: "ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming type 8 ICMP connections.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"fields": schema.ListNestedAttribute{
@@ -6530,8 +6530,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"family": schema.StringAttribute{
-																Description:         "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
-																MarkdownDescription: "Family is a IP address version.Currently, we support 'IPv4' and 'IPv6'.'IPv4' is set as default.",
+																Description:         "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
+																MarkdownDescription: "Family is a IP address version. Currently, we support 'IPv4' and 'IPv6'. 'IPv4' is set as default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6541,8 +6541,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
-																MarkdownDescription: "Type is a ICMP-type.It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply').Allowed ICMP types are:    Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest |		     RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem |			 Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply    Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem |			 EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport |			 MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation |			 NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery |			 ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement |			 HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation |			 MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix |			 ExtendedEchoRequest | ExtendedEchoReply",
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6561,8 +6561,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingconnections on port 80/tcp.",
-										MarkdownDescription: "ToPorts is a list of destination ports identified by port number andprotocol which the endpoint subject to the rule is not allowed toreceive connections on.Example:Any endpoint with the label 'app=httpd' can not accept incomingconnections on port 80/tcp.",
+										Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming connections on port 80/tcp.",
+										MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming connections on port 80/tcp.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"ports": schema.ListNestedAttribute{
@@ -6583,8 +6583,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"port": schema.StringAttribute{
-																Description:         "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
-																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http'or 'http-8080'.",
+																Description:         "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
+																MarkdownDescription: "Port can be an L4 port number, or a name in the form of 'http' or 'http-8080'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6594,8 +6594,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 															},
 
 															"protocol": schema.StringAttribute{
-																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
-																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocolmatches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'Matching on ICMP is not supported.Named port specified for a container may narrow this down, but may notcontradict this.",
+																Description:         "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
+																MarkdownDescription: "Protocol is the L4 protocol. If omitted or empty, any protocol matches. Accepted values: 'TCP', 'UDP', 'SCTP', 'ANY'  Matching on ICMP is not supported.  Named port specified for a container may narrow this down, but may not contradict this.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6623,8 +6623,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"labels": schema.ListNestedAttribute{
-							Description:         "Labels is a list of optional strings which can be used tore-identify the rule or to store metadata. It is possible to lookupor delete strings based on labels. Labels are not required to beunique, multiple rules can have overlapping or identical labels.",
-							MarkdownDescription: "Labels is a list of optional strings which can be used tore-identify the rule or to store metadata. It is possible to lookupor delete strings based on labels. Labels are not required to beunique, multiple rules can have overlapping or identical labels.",
+							Description:         "Labels is a list of optional strings which can be used to re-identify the rule or to store metadata. It is possible to lookup or delete strings based on labels. Labels are not required to be unique, multiple rules can have overlapping or identical labels.",
+							MarkdownDescription: "Labels is a list of optional strings which can be used to re-identify the rule or to store metadata. It is possible to lookup or delete strings based on labels. Labels are not required to be unique, multiple rules can have overlapping or identical labels.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
@@ -6658,8 +6658,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 						},
 
 						"node_selector": schema.SingleNestedAttribute{
-							Description:         "NodeSelector selects all nodes which should be subject to this rule.EndpointSelector and NodeSelector cannot be both empty and are mutuallyexclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
-							MarkdownDescription: "NodeSelector selects all nodes which should be subject to this rule.EndpointSelector and NodeSelector cannot be both empty and are mutuallyexclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
+							Description:         "NodeSelector selects all nodes which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
+							MarkdownDescription: "NodeSelector selects all nodes which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. Can only be used in CiliumClusterwideNetworkPolicies.",
 							Attributes: map[string]schema.Attribute{
 								"match_expressions": schema.ListNestedAttribute{
 									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -6675,8 +6675,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"operator": schema.StringAttribute{
-												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -6686,8 +6686,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -6701,8 +6701,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

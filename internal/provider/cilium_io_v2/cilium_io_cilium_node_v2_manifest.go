@@ -100,7 +100,7 @@ type CiliumIoCiliumNodeV2ManifestData struct {
 			Max_above_watermark *int64    `tfsdk:"max_above_watermark" json:"max-above-watermark,omitempty"`
 			Max_allocate        *int64    `tfsdk:"max_allocate" json:"max-allocate,omitempty"`
 			Min_allocate        *int64    `tfsdk:"min_allocate" json:"min-allocate,omitempty"`
-			PodCIDRs            *[]string `tfsdk:"pod_cid_rs" json:"podCIDRs,omitempty"`
+			PodCIDRs            *[]string `tfsdk:"pod_cidrs" json:"podCIDRs,omitempty"`
 			Pool                *struct {
 				Owner    *string `tfsdk:"owner" json:"owner,omitempty"`
 				Resource *string `tfsdk:"resource" json:"resource,omitempty"`
@@ -130,8 +130,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Metadata(_ context.Context, request datas
 
 func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumNode represents a node managed by Cilium. It contains a specificationto control various node specific configuration aspects and a status sectionto represent the status of the node.",
-		MarkdownDescription: "CiliumNode represents a node managed by Cilium. It contains a specificationto control various node specific configuration aspects and a status sectionto represent the status of the node.",
+		Description:         "CiliumNode represents a node managed by Cilium. It contains a specification to control various node specific configuration aspects and a status section to represent the status of the node.",
+		MarkdownDescription: "CiliumNode represents a node managed by Cilium. It contains a specification to control various node specific configuration aspects and a status section to represent the status of the node.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -221,8 +221,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 						MarkdownDescription: "AlibabaCloud is the AlibabaCloud IPAM specific configuration.",
 						Attributes: map[string]schema.Attribute{
 							"availability_zone": schema.StringAttribute{
-								Description:         "AvailabilityZone is the availability zone to use when allocatingENIs.",
-								MarkdownDescription: "AvailabilityZone is the availability zone to use when allocatingENIs.",
+								Description:         "AvailabilityZone is the availability zone to use when allocating ENIs.",
+								MarkdownDescription: "AvailabilityZone is the availability zone to use when allocating ENIs.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -245,8 +245,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"security_group_tags": schema.MapAttribute{
-								Description:         "SecurityGroupTags is the list of tags to use when evaluating whichsecurity groups to use for the ENI.",
-								MarkdownDescription: "SecurityGroupTags is the list of tags to use when evaluating whichsecurity groups to use for the ENI.",
+								Description:         "SecurityGroupTags is the list of tags to use when evaluating which security groups to use for the ENI.",
+								MarkdownDescription: "SecurityGroupTags is the list of tags to use when evaluating which security groups to use for the ENI.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -254,8 +254,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"security_groups": schema.ListAttribute{
-								Description:         "SecurityGroups is the list of security groups to attach to any ENIthat is created and attached to the instance.",
-								MarkdownDescription: "SecurityGroups is the list of security groups to attach to any ENIthat is created and attached to the instance.",
+								Description:         "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
+								MarkdownDescription: "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -271,8 +271,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"vswitch_tags": schema.MapAttribute{
-								Description:         "VSwitchTags is the list of tags to use when evaluating whichvSwitch to use for the ENI.",
-								MarkdownDescription: "VSwitchTags is the list of tags to use when evaluating whichvSwitch to use for the ENI.",
+								Description:         "VSwitchTags is the list of tags to use when evaluating which vSwitch to use for the ENI.",
+								MarkdownDescription: "VSwitchTags is the list of tags to use when evaluating which vSwitch to use for the ENI.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -298,8 +298,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 						MarkdownDescription: "Azure is the Azure IPAM specific configuration.",
 						Attributes: map[string]schema.Attribute{
 							"interface_name": schema.StringAttribute{
-								Description:         "InterfaceName is the name of the interface the cilium-operatorwill use to allocate all the IPs on",
-								MarkdownDescription: "InterfaceName is the name of the interface the cilium-operatorwill use to allocate all the IPs on",
+								Description:         "InterfaceName is the name of the interface the cilium-operator will use to allocate all the IPs on",
+								MarkdownDescription: "InterfaceName is the name of the interface the cilium-operator will use to allocate all the IPs on",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -323,8 +323,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 						MarkdownDescription: "Encryption is the encryption configuration of the node.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.Int64Attribute{
-								Description:         "Key is the index to the key to use for encryption or 0 if encryption isdisabled.",
-								MarkdownDescription: "Key is the index to the key to use for encryption or 0 if encryption isdisabled.",
+								Description:         "Key is the index to the key to use for encryption or 0 if encryption is disabled.",
+								MarkdownDescription: "Key is the index to the key to use for encryption or 0 if encryption is disabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -340,32 +340,32 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 						MarkdownDescription: "ENI is the AWS ENI specific configuration.",
 						Attributes: map[string]schema.Attribute{
 							"availability_zone": schema.StringAttribute{
-								Description:         "AvailabilityZone is the availability zone to use when allocatingENIs.",
-								MarkdownDescription: "AvailabilityZone is the availability zone to use when allocatingENIs.",
+								Description:         "AvailabilityZone is the availability zone to use when allocating ENIs.",
+								MarkdownDescription: "AvailabilityZone is the availability zone to use when allocating ENIs.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"delete_on_termination": schema.BoolAttribute{
-								Description:         "DeleteOnTermination defines that the ENI should be deleted when theassociated instance is terminated. If the parameter is not set thedefault behavior is to delete the ENI on instance termination.",
-								MarkdownDescription: "DeleteOnTermination defines that the ENI should be deleted when theassociated instance is terminated. If the parameter is not set thedefault behavior is to delete the ENI on instance termination.",
+								Description:         "DeleteOnTermination defines that the ENI should be deleted when the associated instance is terminated. If the parameter is not set the default behavior is to delete the ENI on instance termination.",
+								MarkdownDescription: "DeleteOnTermination defines that the ENI should be deleted when the associated instance is terminated. If the parameter is not set the default behavior is to delete the ENI on instance termination.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_prefix_delegation": schema.BoolAttribute{
-								Description:         "DisablePrefixDelegation determines whether ENI prefix delegation should bedisabled on this node.",
-								MarkdownDescription: "DisablePrefixDelegation determines whether ENI prefix delegation should bedisabled on this node.",
+								Description:         "DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.",
+								MarkdownDescription: "DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"exclude_interface_tags": schema.MapAttribute{
-								Description:         "ExcludeInterfaceTags is the list of tags to use when excluding ENIs forCilium IP allocation. Any interface matching this set of tags will notbe managed by Cilium.",
-								MarkdownDescription: "ExcludeInterfaceTags is the list of tags to use when excluding ENIs forCilium IP allocation. Any interface matching this set of tags will notbe managed by Cilium.",
+								Description:         "ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.",
+								MarkdownDescription: "ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -373,8 +373,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"first_interface_index": schema.Int64Attribute{
-								Description:         "FirstInterfaceIndex is the index of the first ENI to use for IPallocation, e.g. if the node has eth0, eth1, eth2 andFirstInterfaceIndex is set to 1, then only eth1 and eth2 will beused for IP allocation, eth0 will be ignored for PodIP allocation.",
-								MarkdownDescription: "FirstInterfaceIndex is the index of the first ENI to use for IPallocation, e.g. if the node has eth0, eth1, eth2 andFirstInterfaceIndex is set to 1, then only eth1 and eth2 will beused for IP allocation, eth0 will be ignored for PodIP allocation.",
+								Description:         "FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.",
+								MarkdownDescription: "FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -384,8 +384,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"instance_id": schema.StringAttribute{
-								Description:         "InstanceID is the AWS InstanceId of the node. The InstanceID is usedto retrieve AWS metadata for the node.OBSOLETE: This field is obsolete, please use Spec.InstanceID",
-								MarkdownDescription: "InstanceID is the AWS InstanceId of the node. The InstanceID is usedto retrieve AWS metadata for the node.OBSOLETE: This field is obsolete, please use Spec.InstanceID",
+								Description:         "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID",
+								MarkdownDescription: "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -400,8 +400,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"max_above_watermark": schema.Int64Attribute{
-								Description:         "MaxAboveWatermark is the maximum number of addresses to allocatebeyond the addresses needed to reach the PreAllocate watermark.Going above the watermark can help reduce the number of API calls toallocate IPs, e.g. when a new ENI is allocated, as many secondaryIPs as possible are allocated. Limiting the amount can help reducewaste of IPs.OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
-								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocatebeyond the addresses needed to reach the PreAllocate watermark.Going above the watermark can help reduce the number of API calls toallocate IPs, e.g. when a new ENI is allocated, as many secondaryIPs as possible are allocated. Limiting the amount can help reducewaste of IPs.OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
+								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
+								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -411,8 +411,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"min_allocate": schema.Int64Attribute{
-								Description:         "MinAllocate is the minimum number of IPs that must be allocated whenthe node is first bootstrapped. It defines the minimum base socketof addresses that must be available. After reaching this watermark,the PreAllocate and MaxAboveWatermark logic takes over to continueallocating IPs.OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
-								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated whenthe node is first bootstrapped. It defines the minimum base socketof addresses that must be available. After reaching this watermark,the PreAllocate and MaxAboveWatermark logic takes over to continueallocating IPs.OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
+								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
+								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -422,16 +422,16 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"node_subnet_id": schema.StringAttribute{
-								Description:         "NodeSubnetID is the subnet of the primary ENI the instance was brought upwith. It is used as a sensible default subnet to create ENIs in.",
-								MarkdownDescription: "NodeSubnetID is the subnet of the primary ENI the instance was brought upwith. It is used as a sensible default subnet to create ENIs in.",
+								Description:         "NodeSubnetID is the subnet of the primary ENI the instance was brought up with. It is used as a sensible default subnet to create ENIs in.",
+								MarkdownDescription: "NodeSubnetID is the subnet of the primary ENI the instance was brought up with. It is used as a sensible default subnet to create ENIs in.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pre_allocate": schema.Int64Attribute{
-								Description:         "PreAllocate defines the number of IP addresses that must beavailable for allocation in the IPAMspec. It defines the buffer ofaddresses available immediately without requiring cilium-operator toget involved.OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
-								MarkdownDescription: "PreAllocate defines the number of IP addresses that must beavailable for allocation in the IPAMspec. It defines the buffer ofaddresses available immediately without requiring cilium-operator toget involved.OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
+								Description:         "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
+								MarkdownDescription: "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -441,8 +441,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"security_group_tags": schema.MapAttribute{
-								Description:         "SecurityGroupTags is the list of tags to use when evaliating whatAWS security groups to use for the ENI.",
-								MarkdownDescription: "SecurityGroupTags is the list of tags to use when evaliating whatAWS security groups to use for the ENI.",
+								Description:         "SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.",
+								MarkdownDescription: "SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -450,8 +450,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"security_groups": schema.ListAttribute{
-								Description:         "SecurityGroups is the list of security groups to attach to any ENIthat is created and attached to the instance.",
-								MarkdownDescription: "SecurityGroups is the list of security groups to attach to any ENIthat is created and attached to the instance.",
+								Description:         "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
+								MarkdownDescription: "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -459,8 +459,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"subnet_ids": schema.ListAttribute{
-								Description:         "SubnetIDs is the list of subnet ids to use when evaluating what AWSsubnets to use for ENI and IP allocation.",
-								MarkdownDescription: "SubnetIDs is the list of subnet ids to use when evaluating what AWSsubnets to use for ENI and IP allocation.",
+								Description:         "SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.",
+								MarkdownDescription: "SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -468,8 +468,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"subnet_tags": schema.MapAttribute{
-								Description:         "SubnetTags is the list of tags to use when evaluating what AWSsubnets to use for ENI and IP allocation.",
-								MarkdownDescription: "SubnetTags is the list of tags to use when evaluating what AWSsubnets to use for ENI and IP allocation.",
+								Description:         "SubnetTags is the list of tags to use when evaluating what AWS subnets to use for ENI and IP allocation.",
+								MarkdownDescription: "SubnetTags is the list of tags to use when evaluating what AWS subnets to use for ENI and IP allocation.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -477,8 +477,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"use_primary_address": schema.BoolAttribute{
-								Description:         "UsePrimaryAddress determines whether an ENI's primary addressshould be available for allocations on the node",
-								MarkdownDescription: "UsePrimaryAddress determines whether an ENI's primary addressshould be available for allocations on the node",
+								Description:         "UsePrimaryAddress determines whether an ENI's primary address should be available for allocations on the node",
+								MarkdownDescription: "UsePrimaryAddress determines whether an ENI's primary address should be available for allocations on the node",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -498,8 +498,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 					},
 
 					"health": schema.SingleNestedAttribute{
-						Description:         "HealthAddressing is the addressing information for health connectivitychecking.",
-						MarkdownDescription: "HealthAddressing is the addressing information for health connectivitychecking.",
+						Description:         "HealthAddressing is the addressing information for health connectivity checking.",
+						MarkdownDescription: "HealthAddressing is the addressing information for health connectivity checking.",
 						Attributes: map[string]schema.Attribute{
 							"ipv4": schema.StringAttribute{
 								Description:         "IPv4 is the IPv4 address of the IPv4 health endpoint.",
@@ -548,32 +548,32 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 					},
 
 					"instance_id": schema.StringAttribute{
-						Description:         "InstanceID is the identifier of the node. This is different from thenode name which is typically the FQDN of the node. The InstanceIDtypically refers to the identifier used by the cloud provider orsome other means of identification.",
-						MarkdownDescription: "InstanceID is the identifier of the node. This is different from thenode name which is typically the FQDN of the node. The InstanceIDtypically refers to the identifier used by the cloud provider orsome other means of identification.",
+						Description:         "InstanceID is the identifier of the node. This is different from the node name which is typically the FQDN of the node. The InstanceID typically refers to the identifier used by the cloud provider or some other means of identification.",
+						MarkdownDescription: "InstanceID is the identifier of the node. This is different from the node name which is typically the FQDN of the node. The InstanceID typically refers to the identifier used by the cloud provider or some other means of identification.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipam": schema.SingleNestedAttribute{
-						Description:         "IPAM is the address management specification. This section can bepopulated by a user or it can be automatically populated by an IPAMoperator.",
-						MarkdownDescription: "IPAM is the address management specification. This section can bepopulated by a user or it can be automatically populated by an IPAMoperator.",
+						Description:         "IPAM is the address management specification. This section can be populated by a user or it can be automatically populated by an IPAM operator.",
+						MarkdownDescription: "IPAM is the address management specification. This section can be populated by a user or it can be automatically populated by an IPAM operator.",
 						Attributes: map[string]schema.Attribute{
 							"ipv6_pool": schema.SingleNestedAttribute{
-								Description:         "IPv6Pool is the list of IPv6 addresses available to the node for allocation.When an IPv6 address is used, it will remain on this list but will be added toStatus.IPAM.IPv6Used",
-								MarkdownDescription: "IPv6Pool is the list of IPv6 addresses available to the node for allocation.When an IPv6 address is used, it will remain on this list but will be added toStatus.IPAM.IPv6Used",
+								Description:         "IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used",
+								MarkdownDescription: "IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used",
 								Attributes: map[string]schema.Attribute{
 									"owner": schema.StringAttribute{
-										Description:         "Owner is the owner of the IP. This field is set if the IP has beenallocated. It will be set to the pod name or another identifierrepresenting the usage of the IPThe owner field is left blank for an entry in Spec.IPAM.Pool andfilled out as the IP is used and also added to Status.IPAM.Used.",
-										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has beenallocated. It will be set to the pod name or another identifierrepresenting the usage of the IPThe owner field is left blank for an entry in Spec.IPAM.Pool andfilled out as the IP is used and also added to Status.IPAM.Used.",
+										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resource": schema.StringAttribute{
-										Description:         "Resource is set for both available and allocated IPs, it representswhat resource the IP is associated with, e.g. in combination withAWS ENI, this will refer to the ID of the ENI",
-										MarkdownDescription: "Resource is set for both available and allocated IPs, it representswhat resource the IP is associated with, e.g. in combination withAWS ENI, this will refer to the ID of the ENI",
+										Description:         "Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI",
+										MarkdownDescription: "Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -585,8 +585,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"max_above_watermark": schema.Int64Attribute{
-								Description:         "MaxAboveWatermark is the maximum number of addresses to allocatebeyond the addresses needed to reach the PreAllocate watermark.Going above the watermark can help reduce the number of API calls toallocate IPs, e.g. when a new ENI is allocated, as many secondaryIPs as possible are allocated. Limiting the amount can help reducewaste of IPs.",
-								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocatebeyond the addresses needed to reach the PreAllocate watermark.Going above the watermark can help reduce the number of API calls toallocate IPs, e.g. when a new ENI is allocated, as many secondaryIPs as possible are allocated. Limiting the amount can help reducewaste of IPs.",
+								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.",
+								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -596,8 +596,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"max_allocate": schema.Int64Attribute{
-								Description:         "MaxAllocate is the maximum number of IPs that can be allocated to thenode. When the current amount of allocated IPs will approach this value,the considered value for PreAllocate will decrease down to 0 in order tonot attempt to allocate more addresses than defined.",
-								MarkdownDescription: "MaxAllocate is the maximum number of IPs that can be allocated to thenode. When the current amount of allocated IPs will approach this value,the considered value for PreAllocate will decrease down to 0 in order tonot attempt to allocate more addresses than defined.",
+								Description:         "MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.",
+								MarkdownDescription: "MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -607,8 +607,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"min_allocate": schema.Int64Attribute{
-								Description:         "MinAllocate is the minimum number of IPs that must be allocated whenthe node is first bootstrapped. It defines the minimum base socketof addresses that must be available. After reaching this watermark,the PreAllocate and MaxAboveWatermark logic takes over to continueallocating IPs.",
-								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated whenthe node is first bootstrapped. It defines the minimum base socketof addresses that must be available. After reaching this watermark,the PreAllocate and MaxAboveWatermark logic takes over to continueallocating IPs.",
+								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.",
+								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -617,9 +617,9 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 								},
 							},
 
-							"pod_cid_rs": schema.ListAttribute{
-								Description:         "PodCIDRs is the list of CIDRs available to the node for allocation.When an IP is used, the IP will be added to Status.IPAM.Used",
-								MarkdownDescription: "PodCIDRs is the list of CIDRs available to the node for allocation.When an IP is used, the IP will be added to Status.IPAM.Used",
+							"pod_cidrs": schema.ListAttribute{
+								Description:         "PodCIDRs is the list of CIDRs available to the node for allocation. When an IP is used, the IP will be added to Status.IPAM.Used",
+								MarkdownDescription: "PodCIDRs is the list of CIDRs available to the node for allocation. When an IP is used, the IP will be added to Status.IPAM.Used",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -627,20 +627,20 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"pool": schema.SingleNestedAttribute{
-								Description:         "Pool is the list of IPv4 addresses available to the node for allocation.When an IPv4 address is used, it will remain on this list but will be added toStatus.IPAM.Used",
-								MarkdownDescription: "Pool is the list of IPv4 addresses available to the node for allocation.When an IPv4 address is used, it will remain on this list but will be added toStatus.IPAM.Used",
+								Description:         "Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used",
+								MarkdownDescription: "Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used",
 								Attributes: map[string]schema.Attribute{
 									"owner": schema.StringAttribute{
-										Description:         "Owner is the owner of the IP. This field is set if the IP has beenallocated. It will be set to the pod name or another identifierrepresenting the usage of the IPThe owner field is left blank for an entry in Spec.IPAM.Pool andfilled out as the IP is used and also added to Status.IPAM.Used.",
-										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has beenallocated. It will be set to the pod name or another identifierrepresenting the usage of the IPThe owner field is left blank for an entry in Spec.IPAM.Pool andfilled out as the IP is used and also added to Status.IPAM.Used.",
+										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resource": schema.StringAttribute{
-										Description:         "Resource is set for both available and allocated IPs, it representswhat resource the IP is associated with, e.g. in combination withAWS ENI, this will refer to the ID of the ENI",
-										MarkdownDescription: "Resource is set for both available and allocated IPs, it representswhat resource the IP is associated with, e.g. in combination withAWS ENI, this will refer to the ID of the ENI",
+										Description:         "Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI",
+										MarkdownDescription: "Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -656,8 +656,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 								MarkdownDescription: "Pools contains the list of assigned IPAM pools for this node.",
 								Attributes: map[string]schema.Attribute{
 									"allocated": schema.ListNestedAttribute{
-										Description:         "Allocated contains the list of pooled CIDR assigned to this node. Theoperator will add new pod CIDRs to this field, whereas the agent willremove CIDRs it has released.",
-										MarkdownDescription: "Allocated contains the list of pooled CIDR assigned to this node. Theoperator will add new pod CIDRs to this field, whereas the agent willremove CIDRs it has released.",
+										Description:         "Allocated contains the list of pooled CIDR assigned to this node. The operator will add new pod CIDRs to this field, whereas the agent will remove CIDRs it has released.",
+										MarkdownDescription: "Allocated contains the list of pooled CIDR assigned to this node. The operator will add new pod CIDRs to this field, whereas the agent will remove CIDRs it has released.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidrs": schema.ListAttribute{
@@ -687,25 +687,25 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"requested": schema.ListNestedAttribute{
-										Description:         "Requested contains a list of IPAM pool requests, i.e. indicates how manyaddresses this node requests out of each pool listed here. This fieldis owned and written to by cilium-agent and read by the operator.",
-										MarkdownDescription: "Requested contains a list of IPAM pool requests, i.e. indicates how manyaddresses this node requests out of each pool listed here. This fieldis owned and written to by cilium-agent and read by the operator.",
+										Description:         "Requested contains a list of IPAM pool requests, i.e. indicates how many addresses this node requests out of each pool listed here. This field is owned and written to by cilium-agent and read by the operator.",
+										MarkdownDescription: "Requested contains a list of IPAM pool requests, i.e. indicates how many addresses this node requests out of each pool listed here. This field is owned and written to by cilium-agent and read by the operator.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"needed": schema.SingleNestedAttribute{
-													Description:         "Needed indicates how many IPs out of the above Pool this node requestsfrom the operator. The operator runs a reconciliation loop to ensure eachnode always has enough PodCIDRs allocated in each pool to fulfill therequested number of IPs here.",
-													MarkdownDescription: "Needed indicates how many IPs out of the above Pool this node requestsfrom the operator. The operator runs a reconciliation loop to ensure eachnode always has enough PodCIDRs allocated in each pool to fulfill therequested number of IPs here.",
+													Description:         "Needed indicates how many IPs out of the above Pool this node requests from the operator. The operator runs a reconciliation loop to ensure each node always has enough PodCIDRs allocated in each pool to fulfill the requested number of IPs here.",
+													MarkdownDescription: "Needed indicates how many IPs out of the above Pool this node requests from the operator. The operator runs a reconciliation loop to ensure each node always has enough PodCIDRs allocated in each pool to fulfill the requested number of IPs here.",
 													Attributes: map[string]schema.Attribute{
 														"ipv4_addrs": schema.Int64Attribute{
-															Description:         "IPv4Addrs contains the number of requested IPv4 addresses out of a givenpool",
-															MarkdownDescription: "IPv4Addrs contains the number of requested IPv4 addresses out of a givenpool",
+															Description:         "IPv4Addrs contains the number of requested IPv4 addresses out of a given pool",
+															MarkdownDescription: "IPv4Addrs contains the number of requested IPv4 addresses out of a given pool",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"ipv6_addrs": schema.Int64Attribute{
-															Description:         "IPv6Addrs contains the number of requested IPv6 addresses out of a givenpool",
-															MarkdownDescription: "IPv6Addrs contains the number of requested IPv6 addresses out of a givenpool",
+															Description:         "IPv6Addrs contains the number of requested IPv6 addresses out of a given pool",
+															MarkdownDescription: "IPv6Addrs contains the number of requested IPv6 addresses out of a given pool",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -739,8 +739,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"pre_allocate": schema.Int64Attribute{
-								Description:         "PreAllocate defines the number of IP addresses that must beavailable for allocation in the IPAMspec. It defines the buffer ofaddresses available immediately without requiring cilium-operator toget involved.",
-								MarkdownDescription: "PreAllocate defines the number of IP addresses that must beavailable for allocation in the IPAMspec. It defines the buffer ofaddresses available immediately without requiring cilium-operator toget involved.",
+								Description:         "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.",
+								MarkdownDescription: "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
