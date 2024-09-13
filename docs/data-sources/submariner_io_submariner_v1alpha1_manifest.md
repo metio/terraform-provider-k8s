@@ -80,8 +80,6 @@ Optional:
 - `ce_ip_sec_preferred_server` (Boolean) Enable this cluster as a preferred server for data-plane connections.
 - `ce_ip_sec_psk` (String) The IPsec Pre-Shared Key which must be identical in all route agents across the cluster.
 - `ce_ip_sec_psk_secret` (String)
-- `clusterset_ip_enabled` (Boolean) Enable ClustersetIP default for services exported on this cluster.
-- `clusterset_ipcidr` (String) ClustersetIP CIDR for allocating ClustersetIPs to exported services.
 - `color_codes` (String)
 - `connection_health_check` (Attributes) The gateway connection health check. (see [below for nested schema](#nestedatt--spec--connection_health_check))
 - `core_dns_custom_config` (Attributes) Name of the custom CoreDNS configmap to configure forwarding to Lighthouse. It should be in <namespace>/<name> format where <namespace> is optional and defaults to kube-system. (see [below for nested schema](#nestedatt--spec--core_dns_custom_config))

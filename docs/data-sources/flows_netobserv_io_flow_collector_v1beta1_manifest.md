@@ -108,15 +108,15 @@ Optional:
 
 - `action` (String) Action defines the action to perform on the flows that match the filter.
 - `cidr` (String) CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64
-- `dest_ports` (String) DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example, destPorts: 80.To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.
+- `dest_ports` (String) DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.
 - `direction` (String) Direction defines the direction to filter flows by.
 - `enable` (Boolean) Set 'enable' to 'true' to enable eBPF flow filtering feature.
 - `icmp_code` (Number) ICMPCode defines the ICMP code to filter flows by.
 - `icmp_type` (Number) ICMPType defines the ICMP type to filter flows by.
 - `peer_ip` (String) PeerIP defines the IP address to filter flows by.Example: 10.10.10.10
-- `ports` (String) Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example, ports: 80.To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.
+- `ports` (String) Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10
 - `protocol` (String) Protocol defines the protocol to filter flows by.
-- `source_ports` (String) SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example, sourcePorts: 80.To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'.To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.
+- `source_ports` (String) SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.
 - `tcp_flags` (String) 'tcpFlags' defines the TCP flags to filter flows by.
 
 
@@ -140,15 +140,12 @@ Optional:
 <a id="nestedatt--spec--agent--ebpf--metrics--server--tls"></a>
 ### Nested Schema for `spec.agent.ebpf.metrics.server.tls`
 
-Required:
-
-- `type` (String) Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.
-
 Optional:
 
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.
 - `provided` (Attributes) TLS configuration when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls--provided))
 - `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--agent--ebpf--metrics--server--tls--provided_ca_file))
+- `type` (String) Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.
 
 <a id="nestedatt--spec--agent--ebpf--metrics--server--tls--provided"></a>
 ### Nested Schema for `spec.agent.ebpf.metrics.server.tls.provided`
@@ -191,10 +188,6 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
-
-Optional:
-
-- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
 
 
 
@@ -543,10 +536,6 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
-
-Optional:
-
-- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
 
 
 
@@ -1148,15 +1137,12 @@ Optional:
 <a id="nestedatt--spec--processor--metrics--server--tls"></a>
 ### Nested Schema for `spec.processor.metrics.server.tls`
 
-Required:
-
-- `type` (String) Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.
-
 Optional:
 
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.
 - `provided` (Attributes) TLS configuration when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--processor--metrics--server--tls--provided))
 - `provided_ca_file` (Attributes) Reference to the CA file when 'type' is set to 'PROVIDED'. (see [below for nested schema](#nestedatt--spec--processor--metrics--server--tls--provided_ca_file))
+- `type` (String) Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.
 
 <a id="nestedatt--spec--processor--metrics--server--tls--provided"></a>
 ### Nested Schema for `spec.processor.metrics.server.tls.provided`
@@ -1200,10 +1186,6 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
-Optional:
-
-- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
-
 
 
 <a id="nestedatt--spec--processor--subnet_labels"></a>
@@ -1217,7 +1199,7 @@ Optional:
 <a id="nestedatt--spec--processor--subnet_labels--custom_labels"></a>
 ### Nested Schema for `spec.processor.subnet_labels.custom_labels`
 
-Required:
+Optional:
 
 - `cidrs` (List of String) List of CIDRs, such as '['1.2.3.4/32']'.
 - `name` (String) Label name, used to flag matching flows.
@@ -1235,14 +1217,11 @@ Optional:
 <a id="nestedatt--spec--prometheus--querier"></a>
 ### Nested Schema for `spec.prometheus.querier`
 
-Required:
-
-- `mode` (String) 'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>
-
 Optional:
 
 - `enable` (Boolean) Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.
 - `manual` (Attributes) Prometheus configuration for 'Manual' mode. (see [below for nested schema](#nestedatt--spec--prometheus--querier--manual))
+- `mode` (String) 'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>
 - `timeout` (String) 'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.
 
 <a id="nestedatt--spec--prometheus--querier--manual"></a>

@@ -150,7 +150,6 @@ Optional:
 - `network_resource_group_name` (String) NetworkResourceGroupName specifies the network resource group that contains an existing VNet. Ignored unless VirtualNetwork is also specified.
 - `os_image` (Attributes) OSImage defines the image to use for the OS. (see [below for nested schema](#nestedatt--spec--platform--azure--os_image))
 - `virtual_network` (String) VirtualNetwork specifies the name of an existing VNet for the Machines to use If omitted, the default (${infraID}-vnet) will be used.
-- `vm_networking_type` (String) VMNetworkingType specifies whether to enable accelerated networking. Accelerated networking enables single root I/O virtualization (SR-IOV) to a VM, greatly improving its networking performance. eg. values: 'Accelerated', 'Basic'
 - `zones` (List of String) Zones is list of availability zones that can be used. eg. ['1', '2', '3']
 
 <a id="nestedatt--spec--platform--azure--os_disk"></a>

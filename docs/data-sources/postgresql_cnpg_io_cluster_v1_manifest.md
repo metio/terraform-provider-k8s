@@ -1702,7 +1702,6 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) Enabled is true if this plugin will be used
 - `parameters` (Map of String) Parameters is the configuration of the plugin
 
 

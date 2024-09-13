@@ -21,6 +21,9 @@ data "k8s_notification_toolkit_fluxcd_io_receiver_v1beta2_manifest" "example" {
   spec = {
     type      = "generic"
     resources = []
+    secret_ref = {
+      name = "some-secret"
+    }
   }
 }
 ```
@@ -60,13 +63,13 @@ Optional:
 Required:
 
 - `resources` (Attributes List) A list of resources to be notified about changes. (see [below for nested schema](#nestedatt--spec--resources))
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing the token usedto validate the payload authenticity. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `type` (String) Type of webhook sender, used to determinethe validation procedure and payload deserialization.
 
 Optional:
 
 - `events` (List of String) Events specifies the list of event types to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.
 - `interval` (String) Interval at which to reconcile the Receiver with its Secret references.
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing the token usedto validate the payload authenticity. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `suspend` (Boolean) Suspend tells the controller to suspend subsequentevents handling for this receiver.
 
 <a id="nestedatt--spec--resources"></a>

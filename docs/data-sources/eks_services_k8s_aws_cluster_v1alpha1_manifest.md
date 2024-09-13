@@ -78,7 +78,7 @@ Optional:
 
 - `endpoint_private_access` (Boolean)
 - `endpoint_public_access` (Boolean)
-- `public_access_cid_rs` (List of String)
+- `public_access_cidrs` (List of String)
 - `security_group_i_ds` (List of String)
 - `security_group_refs` (Attributes List) Reference field for SecurityGroupIDs (see [below for nested schema](#nestedatt--spec--resources_vpc_config--security_group_refs))
 - `subnet_i_ds` (List of String)

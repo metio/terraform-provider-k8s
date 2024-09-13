@@ -590,7 +590,6 @@ Optional:
 - `copy_method` (String) copyMethod describes how a point-in-time (PiT) image of the destinationvolume should be created.
 - `custom_ca` (Attributes) customCA is a custom CA that will be used to verify the remote (see [below for nested schema](#nestedatt--spec--restic--custom_ca))
 - `destination_pvc` (String) destinationPVC is a PVC to use as the transfer destination instead ofautomatically provisioning one. Either this field or both capacity andaccessModes must be specified.
-- `enable_file_deletion` (Boolean) enableFileDeletion will pass the --delete flag to the restic restore command.This will remove files and directories in the pvc that do not exist in the snapshot being restored.Defaults to false.
 - `mover_affinity` (Attributes) MoverAffinity allows specifying the PodAffinity that will be used by the data mover (see [below for nested schema](#nestedatt--spec--restic--mover_affinity))
 - `mover_pod_labels` (Map of String) Labels that should be added to data mover podsThese will be in addition to any labels that VolSync may add
 - `mover_resources` (Attributes) Resources represents compute resources required by the data mover container.Immutable.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/This should only be used by advanced users as this can result in a moverpod being unschedulable or crashing due to limited resources. (see [below for nested schema](#nestedatt--spec--restic--mover_resources))

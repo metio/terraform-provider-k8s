@@ -56,7 +56,6 @@ Optional:
 
 - `anomaly_detection` (Attributes) AnomalyDetection is now deprecated, and configuring it has no effect. (see [below for nested schema](#nestedatt--spec--anomaly_detection))
 - `component_resources` (Attributes List) ComponentResources can be used to customize the resource requirements for each component.Only DeepPacketInspection is supported for this spec. (see [below for nested schema](#nestedatt--spec--component_resources))
-- `deep_packet_inspection_daemonset` (Attributes) DeepPacketInspectionDaemonset configures the DPI Daemonset (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset))
 - `intrusion_detection_controller_deployment` (Attributes) IntrusionDetectionControllerDeployment configures the IntrusionDetection Controller Deployment. (see [below for nested schema](#nestedatt--spec--intrusion_detection_controller_deployment))
 
 <a id="nestedatt--spec--anomaly_detection"></a>
@@ -90,69 +89,6 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
-
-
-
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset`
-
-Optional:
-
-- `spec` (Attributes) DPIDaemonsetSpec configures the DPI Daemonset (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset--spec))
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset--spec"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset.spec`
-
-Optional:
-
-- `template` (Attributes) Template specifies DPI Daemonset Template (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset--spec--template))
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset--spec--template"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset.spec.template`
-
-Optional:
-
-- `spec` (Attributes) Spec specifies DPI Daemonset Template Spec (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec))
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset.spec.template.spec`
-
-Optional:
-
-- `init_containers` (Attributes List) List of DPI Daemonset Init containers definitions (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec--init_containers))
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec--init_containers"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset.spec.template.spec.init_containers`
-
-Required:
-
-- `image` (String) Image name for the init container
-- `name` (String) Name is an enum that identifies the init container by its name.
-
-Optional:
-
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the init container's resources.If omitted, the default values will be used for the init container's resources. (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec--init_containers--resources))
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec--init_containers--resources"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset.spec.template.spec.init_containers.resources`
-
-Optional:
-
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--deep_packet_inspection_daemonset--spec--template--spec--init_containers--resources--claims"></a>
-### Nested Schema for `spec.deep_packet_inspection_daemonset.spec.template.spec.init_containers.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
-
-
-
-
 
 
 

@@ -2167,10 +2167,10 @@ Optional:
 - `headers` (Map of String) Custom HTTP headers to be sent along with each remote write request.Be aware that headers that are set by Prometheus itself can't be overwritten.It requires Prometheus >= v2.25.0.
 - `metadata_config` (Attributes) MetadataConfig configures the sending of series metadata to the remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--metadata_config))
 - `name` (String) The name of the remote write queue, it must be unique if specified. Thename is used in metrics and logging in order to differentiate queues.It requires Prometheus >= v2.15.0.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) OAuth2 configuration for the URL.It requires Prometheus >= v2.27.0.Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `queue_config` (Attributes) QueueConfig allows tuning of the remote write queue parameters. (see [below for nested schema](#nestedatt--spec--remote_write--queue_config))
 - `remote_timeout` (String) Timeout for requests to the remote write endpoint.
@@ -2309,9 +2309,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config))

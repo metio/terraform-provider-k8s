@@ -3304,7 +3304,6 @@ Optional:
 Optional:
 
 - `metadata` (Attributes) Metadata defines additional metadata for the Galera recovery Jobs. (see [below for nested schema](#nestedatt--spec--galera--recovery--job--metadata))
-- `pod_affinity` (Boolean) PodAffinity indicates whether the recovery Jobs should run in the same Node as the MariaDB Pods. It defaults to true.
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--galera--recovery--job--resources))
 
 <a id="nestedatt--spec--galera--recovery--job--metadata"></a>

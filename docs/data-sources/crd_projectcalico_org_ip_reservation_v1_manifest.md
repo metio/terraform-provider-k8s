@@ -54,4 +54,4 @@ Optional:
 
 Optional:
 
-- `reserved_cid_rs` (List of String) ReservedCIDRs is a list of CIDRs and/or IP addresses that Calico IPAM will exclude from new allocations.
+- `reserved_cidrs` (List of String) ReservedCIDRs is a list of CIDRs and/or IP addresses that Calico IPAM will exclude from new allocations.

@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_l2_announcement_policy_v2alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumL2AnnouncementPolicy is a Kubernetes third-party resource whichis used to defined which nodes should announce what services on theL2 network.
+  CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to defined which nodes should announce what services on the L2 network.
 ---
 
 # k8s_cilium_io_cilium_l2_announcement_policy_v2alpha1_manifest (Data Source)
 
-CiliumL2AnnouncementPolicy is a Kubernetes third-party resource whichis used to defined which nodes should announce what services on theL2 network.
+CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to defined which nodes should announce what services on the L2 network.
 
 ## Example Usage
 
@@ -55,10 +55,10 @@ Optional:
 Optional:
 
 - `external_i_ps` (Boolean) If true, the external IPs of the services are announced
-- `interfaces` (List of String) A list of regular expressions that express which network interface(s) should be usedto announce the services over. If nil, all network interfaces are used.
-- `load_balancer_i_ps` (Boolean) If true, the loadbalancer IPs of the services are announcedIf nil this policy applies to all services.
-- `node_selector` (Attributes) NodeSelector selects a group of nodes which will announce the IPs forthe services selected by the service selector.If nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
-- `service_selector` (Attributes) ServiceSelector selects a set of services which will be announced over L2 networks.The loadBalancerClass for a service must be nil or specify a supported class, e.g.'io.cilium/l2-announcer'. Refer to the following document for additional detailsregarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-classIf nil this policy applies to all services. (see [below for nested schema](#nestedatt--spec--service_selector))
+- `interfaces` (List of String) A list of regular expressions that express which network interface(s) should be used to announce the services over. If nil, all network interfaces are used.
+- `load_balancer_i_ps` (Boolean) If true, the loadbalancer IPs of the services are announced  If nil this policy applies to all services.
+- `node_selector` (Attributes) NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector.  If nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
+- `service_selector` (Attributes) ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If nil this policy applies to all services. (see [below for nested schema](#nestedatt--spec--service_selector))
 
 <a id="nestedatt--spec--node_selector"></a>
 ### Nested Schema for `spec.node_selector`
@@ -66,7 +66,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.node_selector.match_expressions`
@@ -74,11 +74,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -88,7 +88,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--service_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--service_selector--match_expressions"></a>
 ### Nested Schema for `spec.service_selector.match_expressions`
@@ -96,8 +96,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

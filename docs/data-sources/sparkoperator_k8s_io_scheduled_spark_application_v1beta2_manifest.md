@@ -145,7 +145,6 @@ Optional:
 - `pod_name` (String) PodName is the name of the driver pod that the user creates. This is used for thein-cluster client mode in which the user creates a client pod where the driver ofthe user application runs. It's an error to set this field if Mode is notin-cluster-client.
 - `pod_security_context` (Attributes) PodSecurityContext specifies the PodSecurityContext to apply. (see [below for nested schema](#nestedatt--spec--template--driver--pod_security_context))
 - `ports` (Attributes List) Ports settings for the pods, following the Kubernetes specifications. (see [below for nested schema](#nestedatt--spec--template--driver--ports))
-- `priority_class_name` (String) PriorityClassName is the name of the PriorityClass for the driver pod.
 - `scheduler_name` (String) SchedulerName specifies the scheduler that will be used for scheduling
 - `secrets` (Attributes List) Secrets carries information of secrets to add to the pod. (see [below for nested schema](#nestedatt--spec--template--driver--secrets))
 - `security_context` (Attributes) SecurityContext specifies the container's SecurityContext to apply. (see [below for nested schema](#nestedatt--spec--template--driver--security_context))
@@ -2272,7 +2271,6 @@ Optional:
 - `node_selector` (Map of String) NodeSelector is the Kubernetes node selector to be added to the driver and executor pods.This field is mutually exclusive with nodeSelector at SparkApplication level (which will be deprecated).
 - `pod_security_context` (Attributes) PodSecurityContext specifies the PodSecurityContext to apply. (see [below for nested schema](#nestedatt--spec--template--executor--pod_security_context))
 - `ports` (Attributes List) Ports settings for the pods, following the Kubernetes specifications. (see [below for nested schema](#nestedatt--spec--template--executor--ports))
-- `priority_class_name` (String) PriorityClassName is the name of the PriorityClass for the executor pod.
 - `scheduler_name` (String) SchedulerName specifies the scheduler that will be used for scheduling
 - `secrets` (Attributes List) Secrets carries information of secrets to add to the pod. (see [below for nested schema](#nestedatt--spec--template--executor--secrets))
 - `security_context` (Attributes) SecurityContext specifies the container's SecurityContext to apply. (see [below for nested schema](#nestedatt--spec--template--executor--security_context))

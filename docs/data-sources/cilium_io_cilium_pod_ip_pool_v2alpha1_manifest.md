@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_pod_ip_pool_v2alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAMmode).
+  CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).
 ---
 
 # k8s_cilium_io_cilium_pod_ip_pool_v2alpha1_manifest (Data Source)
 
-CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAMmode).
+CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).
 
 ## Example Usage
 
@@ -16,8 +16,8 @@ CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the mu
 data "k8s_cilium_io_cilium_pod_ip_pool_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
-
   }
+  spec = {}
 }
 ```
 

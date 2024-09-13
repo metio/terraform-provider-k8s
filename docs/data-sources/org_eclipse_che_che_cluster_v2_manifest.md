@@ -760,7 +760,6 @@ Optional:
 
 Optional:
 
-- `allowed_source` (Attributes) AllowedSource defines the allowed sources on which workspaces can be started. (see [below for nested schema](#nestedatt--spec--dev_environments--allowed_source))
 - `container_build_configuration` (Attributes) Container build configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--container_build_configuration))
 - `default_components` (Attributes List) Default components applied to DevWorkspaces.These default components are meant to be used when a Devfile, that does not contain any components. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components))
 - `default_editor` (String) The default editor to workspace create with. It could be a plugin ID or a URI.The plugin ID must have 'publisher/name/version' format.The URI must start from 'http://' or 'https://'.
@@ -789,14 +788,6 @@ Optional:
 - `trusted_certs` (Attributes) Trusted certificate settings. (see [below for nested schema](#nestedatt--spec--dev_environments--trusted_certs))
 - `user` (Attributes) User configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--user))
 - `workspaces_pod_annotations` (Map of String) WorkspacesPodAnnotations defines additional annotations for workspace pods.
-
-<a id="nestedatt--spec--dev_environments--allowed_source"></a>
-### Nested Schema for `spec.dev_environments.allowed_source`
-
-Optional:
-
-- `urls` (List of String) The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only beinitiated from these URLs.
-
 
 <a id="nestedatt--spec--dev_environments--container_build_configuration"></a>
 ### Nested Schema for `spec.dev_environments.container_build_configuration`

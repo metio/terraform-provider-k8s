@@ -78,12 +78,12 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of the referent
 - `name` (String) Name of the referent
 
 Optional:
 
 - `api_version` (String) API version of the referent
+- `kind` (String) Kind of the referent
 - `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `namespace` (String) Namespace of the referent
 

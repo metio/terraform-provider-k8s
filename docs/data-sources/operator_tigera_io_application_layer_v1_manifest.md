@@ -58,7 +58,6 @@ Optional:
 - `envoy` (Attributes) User-configurable settings for the Envoy proxy. (see [below for nested schema](#nestedatt--spec--envoy))
 - `l7_log_collector_daemon_set` (Attributes) L7LogCollectorDaemonSet configures the L7LogCollector DaemonSet. (see [below for nested schema](#nestedatt--spec--l7_log_collector_daemon_set))
 - `log_collection` (Attributes) Specification for application layer (L7) log collection. (see [below for nested schema](#nestedatt--spec--log_collection))
-- `sidecar_injection` (String) SidecarInjection controls whether or not sidecar injection is enabled for the cluster.When enabled, pods with the label'applicationlayer.projectcalico.org/sidecar'='true' will have their L7 functionalitysuch as WAF and ALP implemented using an injected sidecar instead of a per-host proxy.The per-host proxy will continue to be used for pods without this label.
 - `web_application_firewall` (String) WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster.When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.
 
 <a id="nestedatt--spec--envoy"></a>
