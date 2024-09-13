@@ -134,8 +134,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 							MarkdownDescription: "EncryptionSpec defines the encryption relevant configuration of a node.",
 							Attributes: map[string]schema.Attribute{
 								"key": schema.Int64Attribute{
-									Description:         "Key is the index to the key to use for encryption or 0 if encryption is disabled.",
-									MarkdownDescription: "Key is the index to the key to use for encryption or 0 if encryption is disabled.",
+									Description:         "Key is the index to the key to use for encryption or 0 if encryption isdisabled.",
+									MarkdownDescription: "Key is the index to the key to use for encryption or 0 if encryption isdisabled.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -163,8 +163,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 						},
 
 						"named_ports": schema.ListNestedAttribute{
-							Description:         "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts",
-							MarkdownDescription: "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts",
+							Description:         "NamedPorts List of named Layer 4 port and protocol pairs which will be used in NetworkPolicy specs.swagger:model NamedPorts",
+							MarkdownDescription: "NamedPorts List of named Layer 4 port and protocol pairs which will be used in NetworkPolicy specs.swagger:model NamedPorts",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
@@ -184,8 +184,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"protocol": schema.StringAttribute{
-										Description:         "Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY]",
-										MarkdownDescription: "Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY]",
+										Description:         "Layer 4 protocolEnum: [TCP UDP SCTP ICMP ICMPV6 ANY]",
+										MarkdownDescription: "Layer 4 protocolEnum: [TCP UDP SCTP ICMP ICMPV6 ANY]",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -229,8 +229,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 								},
 
 								"node": schema.StringAttribute{
-									Description:         "NodeIP is the IP of the node the endpoint is running on. The IP must be reachable between nodes.",
-									MarkdownDescription: "NodeIP is the IP of the node the endpoint is running on. The IP must be reachable between nodes.",
+									Description:         "NodeIP is the IP of the node the endpoint is running on. The IP mustbe reachable between nodes.",
+									MarkdownDescription: "NodeIP is the IP of the node the endpoint is running on. The IP mustbe reachable between nodes.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -248,8 +248,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 			},
 
 			"namespace": schema.StringAttribute{
-				Description:         "Namespace indicate as CiliumEndpointSlice namespace. All the CiliumEndpoints within the same namespace are put together in CiliumEndpointSlice.",
-				MarkdownDescription: "Namespace indicate as CiliumEndpointSlice namespace. All the CiliumEndpoints within the same namespace are put together in CiliumEndpointSlice.",
+				Description:         "Namespace indicate as CiliumEndpointSlice namespace.All the CiliumEndpoints within the same namespace are put togetherin CiliumEndpointSlice.",
+				MarkdownDescription: "Namespace indicate as CiliumEndpointSlice namespace.All the CiliumEndpoints within the same namespace are put togetherin CiliumEndpointSlice.",
 				Required:            false,
 				Optional:            true,
 				Computed:            false,

@@ -126,8 +126,8 @@ func (r *AppsKubeblocksIoComponentVersionV1Alpha1Manifest) Schema(_ context.Cont
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"comp_defs": schema.ListAttribute{
-									Description:         "CompDefs specifies names for the component definitions associated with this ComponentVersion.Each name in the list can represent an exact name, or a name prefix.For example:- 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1'- 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'",
-									MarkdownDescription: "CompDefs specifies names for the component definitions associated with this ComponentVersion.Each name in the list can represent an exact name, or a name prefix.For example:- 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1'- 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'",
+									Description:         "CompDefs specifies names for the component definitions associated with this ComponentVersion.Each name in the list can represent an exact name, a name prefix, or a regular expression pattern.For example:- 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1'- 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'- '^mysql-8.0.d{1,2}$': Matches all names starting with 'mysql-8.0.' followed by one or two digits.",
+									MarkdownDescription: "CompDefs specifies names for the component definitions associated with this ComponentVersion.Each name in the list can represent an exact name, a name prefix, or a regular expression pattern.For example:- 'mysql-8.0.30-v1alpha1': Matches the exact name 'mysql-8.0.30-v1alpha1'- 'mysql-8.0.30': Matches all names starting with 'mysql-8.0.30'- '^mysql-8.0.d{1,2}$': Matches all names starting with 'mysql-8.0.' followed by one or two digits.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,

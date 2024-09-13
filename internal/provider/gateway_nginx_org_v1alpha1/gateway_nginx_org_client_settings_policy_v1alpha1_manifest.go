@@ -164,7 +164,7 @@ func (r *GatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest) Schema(_ context.C
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^\d{1,4}(ms|s)?$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]{1,4}(ms|s|m|h)?$`), ""),
 								},
 							},
 						},
@@ -195,7 +195,7 @@ func (r *GatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest) Schema(_ context.C
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^\d{1,4}(ms|s)?$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]{1,4}(ms|s|m|h)?$`), ""),
 								},
 							},
 
@@ -210,7 +210,7 @@ func (r *GatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest) Schema(_ context.C
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.RegexMatches(regexp.MustCompile(`^\d{1,4}(ms|s)?$`), ""),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]{1,4}(ms|s|m|h)?$`), ""),
 										},
 									},
 
@@ -221,7 +221,7 @@ func (r *GatewayNginxOrgClientSettingsPolicyV1Alpha1Manifest) Schema(_ context.C
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.RegexMatches(regexp.MustCompile(`^\d{1,4}(ms|s)?$`), ""),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]{1,4}(ms|s|m|h)?$`), ""),
 										},
 									},
 								},

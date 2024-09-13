@@ -139,6 +139,7 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 				Workspace_name    *string `tfsdk:"workspace_name" json:"workspace_name,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
 			Audience *string `tfsdk:"audience" json:"audience,omitempty"`
+			Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
 		} `tfsdk:"terraform_cloud" json:"terraform_cloud,omitempty"`
 		Tpm *struct {
 			Allow *[]struct {
@@ -894,6 +895,14 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 							"audience": schema.StringAttribute{
 								Description:         "Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.",
 								MarkdownDescription: "Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"hostname": schema.StringAttribute{
+								Description:         "Hostname is the hostname of the Terraform Enterprise instance expected to issue JWTs allowed by this token. This may be unset for regular Terraform Cloud use, in which case it will be assumed to be 'app.terraform.io'. Otherwise, it must both match the 'iss' (issuer) field included in JWTs, and provide standard JWKS endpoints.",
+								MarkdownDescription: "Hostname is the hostname of the Terraform Enterprise instance expected to issue JWTs allowed by this token. This may be unset for regular Terraform Cloud use, in which case it will be assumed to be 'app.terraform.io'. Otherwise, it must both match the 'iss' (issuer) field included in JWTs, and provide standard JWKS endpoints.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

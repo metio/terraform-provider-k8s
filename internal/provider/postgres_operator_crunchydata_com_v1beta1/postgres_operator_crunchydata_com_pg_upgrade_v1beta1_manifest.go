@@ -1169,7 +1169,7 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ contex
 						Computed:            false,
 						Validators: []validator.Int64{
 							int64validator.AtLeast(10),
-							int64validator.AtMost(16),
+							int64validator.AtMost(17),
 						},
 					},
 
@@ -1319,7 +1319,7 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ contex
 						Computed:            false,
 						Validators: []validator.Int64{
 							int64validator.AtLeast(10),
-							int64validator.AtMost(16),
+							int64validator.AtMost(17),
 						},
 					},
 

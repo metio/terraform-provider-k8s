@@ -31,7 +31,7 @@ data "k8s_cilium_io_cilium_endpoint_slice_v2alpha1_manifest" "example" {
 
 ### Optional
 
-- `namespace` (String) Namespace indicate as CiliumEndpointSlice namespace. All the CiliumEndpoints within the same namespace are put together in CiliumEndpointSlice.
+- `namespace` (String) Namespace indicate as CiliumEndpointSlice namespace.All the CiliumEndpoints within the same namespace are put togetherin CiliumEndpointSlice.
 
 ### Read-Only
 
@@ -45,7 +45,7 @@ Optional:
 - `encryption` (Attributes) EncryptionSpec defines the encryption relevant configuration of a node. (see [below for nested schema](#nestedatt--endpoints--encryption))
 - `id` (Number) IdentityID is the numeric identity of the endpoint
 - `name` (String) Name indicate as CiliumEndpoint name.
-- `named_ports` (Attributes List) NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts (see [below for nested schema](#nestedatt--endpoints--named_ports))
+- `named_ports` (Attributes List) NamedPorts List of named Layer 4 port and protocol pairs which will be used in NetworkPolicy specs.swagger:model NamedPorts (see [below for nested schema](#nestedatt--endpoints--named_ports))
 - `networking` (Attributes) EndpointNetworking is the addressing information of an endpoint. (see [below for nested schema](#nestedatt--endpoints--networking))
 
 <a id="nestedatt--endpoints--encryption"></a>
@@ -53,7 +53,7 @@ Optional:
 
 Optional:
 
-- `key` (Number) Key is the index to the key to use for encryption or 0 if encryption is disabled.
+- `key` (Number) Key is the index to the key to use for encryption or 0 if encryption isdisabled.
 
 
 <a id="nestedatt--endpoints--named_ports"></a>
@@ -63,7 +63,7 @@ Optional:
 
 - `name` (String) Optional layer 4 port name
 - `port` (Number) Layer 4 port number
-- `protocol` (String) Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY]
+- `protocol` (String) Layer 4 protocolEnum: [TCP UDP SCTP ICMP ICMPV6 ANY]
 
 
 <a id="nestedatt--endpoints--networking"></a>
@@ -75,7 +75,7 @@ Required:
 
 Optional:
 
-- `node` (String) NodeIP is the IP of the node the endpoint is running on. The IP must be reachable between nodes.
+- `node` (String) NodeIP is the IP of the node the endpoint is running on. The IP mustbe reachable between nodes.
 
 <a id="nestedatt--endpoints--networking--addressing"></a>
 ### Nested Schema for `endpoints.networking.addressing`

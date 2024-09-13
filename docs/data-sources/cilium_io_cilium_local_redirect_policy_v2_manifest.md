@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_local_redirect_policy_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains a specification to redirect traffic locally within a node.
+  CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains aspecification to redirect traffic locally within a node.
 ---
 
 # k8s_cilium_io_cilium_local_redirect_policy_v2_manifest (Data Source)
 
-CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains a specification to redirect traffic locally within a node.
+CiliumLocalRedirectPolicy is a Kubernetes Custom Resource that contains aspecification to redirect traffic locally within a node.
 
 ## Example Usage
 
@@ -55,13 +55,13 @@ Optional:
 
 Required:
 
-- `redirect_backend` (Attributes) RedirectBackend specifies backend configuration to redirect traffic to. It can not be empty. (see [below for nested schema](#nestedatt--spec--redirect_backend))
-- `redirect_frontend` (Attributes) RedirectFrontend specifies frontend configuration to redirect traffic from. It can not be empty. (see [below for nested schema](#nestedatt--spec--redirect_frontend))
+- `redirect_backend` (Attributes) RedirectBackend specifies backend configuration to redirect traffic to.It can not be empty. (see [below for nested schema](#nestedatt--spec--redirect_backend))
+- `redirect_frontend` (Attributes) RedirectFrontend specifies frontend configuration to redirect traffic from.It can not be empty. (see [below for nested schema](#nestedatt--spec--redirect_frontend))
 
 Optional:
 
-- `description` (String) Description can be used by the creator of the policy to describe the purpose of this policy.
-- `skip_redirect_from_backend` (Boolean) SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.
+- `description` (String) Description can be used by the creator of the policy to describe thepurpose of this policy.
+- `skip_redirect_from_backend` (Boolean) SkipRedirectFromBackend indicates whether traffic matching RedirectFrontendfrom RedirectBackend should skip redirection, and hence the traffic willbe forwarded as-is.The default is false which means traffic matching RedirectFrontend willget redirected from all pods, including the RedirectBackend(s).Example: If RedirectFrontend is configured to '169.254.169.254:80' as the trafficthat needs to be redirected to backends selected by RedirectBackend, ifSkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80'from such backends will not be redirected back to the backends. Instead,the matched traffic from the backends will be forwarded to the originaldestination '169.254.169.254:80'.
 
 <a id="nestedatt--spec--redirect_backend"></a>
 ### Nested Schema for `spec.redirect_backend`
@@ -69,7 +69,7 @@ Optional:
 Required:
 
 - `local_endpoint_selector` (Attributes) LocalEndpointSelector selects node local pod(s) where traffic is redirected to. (see [below for nested schema](#nestedatt--spec--redirect_backend--local_endpoint_selector))
-- `to_ports` (Attributes List) ToPorts is a list of L4 ports with protocol of node local pod(s) where traffic is redirected to. When multiple ports are specified, the ports must be named. (see [below for nested schema](#nestedatt--spec--redirect_backend--to_ports))
+- `to_ports` (Attributes List) ToPorts is a list of L4 ports with protocol of node local pod(s) where trafficis redirected to.When multiple ports are specified, the ports must be named. (see [below for nested schema](#nestedatt--spec--redirect_backend--to_ports))
 
 <a id="nestedatt--spec--redirect_backend--local_endpoint_selector"></a>
 ### Nested Schema for `spec.redirect_backend.local_endpoint_selector`
@@ -77,7 +77,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--redirect_backend--local_endpoint_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--redirect_backend--local_endpoint_selector--match_expressions"></a>
 ### Nested Schema for `spec.redirect_backend.local_endpoint_selector.match_expressions`
@@ -85,11 +85,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -99,11 +99,11 @@ Optional:
 Required:
 
 - `port` (String) Port is an L4 port number. The string will be strictly parsed as a single uint16.
-- `protocol` (String) Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'
+- `protocol` (String) Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'
 
 Optional:
 
-- `name` (String) Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `name` (String) Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.
 
 
 
@@ -112,16 +112,16 @@ Optional:
 
 Optional:
 
-- `address_matcher` (Attributes) AddressMatcher is a tuple {IP, port, protocol} that matches traffic to be redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--address_matcher))
-- `service_matcher` (Attributes) ServiceMatcher specifies Kubernetes service and port that matches traffic to be redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--service_matcher))
+- `address_matcher` (Attributes) AddressMatcher is a tuple {IP, port, protocol} that matches traffic to beredirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--address_matcher))
+- `service_matcher` (Attributes) ServiceMatcher specifies Kubernetes service and port that matchestraffic to be redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--service_matcher))
 
 <a id="nestedatt--spec--redirect_frontend--address_matcher"></a>
 ### Nested Schema for `spec.redirect_frontend.address_matcher`
 
 Required:
 
-- `ip` (String) IP is a destination ip address for traffic to be redirected.  Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.
-- `to_ports` (Attributes List) ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named.  Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--address_matcher--to_ports))
+- `ip` (String) IP is a destination ip address for traffic to be redirected.Example:When it is set to '169.254.169.254', traffic destined to'169.254.169.254' is redirected.
+- `to_ports` (Attributes List) ToPorts is a list of destination L4 ports with protocol for trafficto be redirected.When multiple ports are specified, the ports must be named.Example:When set to Port: '53' and Protocol: UDP, traffic destined to port '53'with UDP protocol is redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--address_matcher--to_ports))
 
 <a id="nestedatt--spec--redirect_frontend--address_matcher--to_ports"></a>
 ### Nested Schema for `spec.redirect_frontend.address_matcher.to_ports`
@@ -129,11 +129,11 @@ Required:
 Required:
 
 - `port` (String) Port is an L4 port number. The string will be strictly parsed as a single uint16.
-- `protocol` (String) Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'
+- `protocol` (String) Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'
 
 Optional:
 
-- `name` (String) Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `name` (String) Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.
 
 
 
@@ -142,12 +142,12 @@ Optional:
 
 Required:
 
-- `namespace` (String) Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy.  For Cluster-wide Local Redirect Policy, this can be any namespace.
-- `service_name` (String) Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP.  Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.
+- `namespace` (String) Namespace is the Kubernetes service namespace.The service namespace must match the namespace of the parent LocalRedirect Policy.  For Cluster-wide Local Redirect Policy, thiscan be any namespace.
+- `service_name` (String) Name is the name of a destination Kubernetes service that identifies trafficto be redirected.The service type needs to be ClusterIP.Example:When this field is populated with 'serviceName:myService', all the trafficdestined to the cluster IP of this service at the (specified)service port(s) will be redirected.
 
 Optional:
 
-- `to_ports` (Attributes List) ToPorts is a list of destination service L4 ports with protocol for traffic to be redirected. If not specified, traffic for all the service ports will be redirected. When multiple ports are specified, the ports must be named. (see [below for nested schema](#nestedatt--spec--redirect_frontend--service_matcher--to_ports))
+- `to_ports` (Attributes List) ToPorts is a list of destination service L4 ports with protocol fortraffic to be redirected. If not specified, traffic for all the serviceports will be redirected.When multiple ports are specified, the ports must be named. (see [below for nested schema](#nestedatt--spec--redirect_frontend--service_matcher--to_ports))
 
 <a id="nestedatt--spec--redirect_frontend--service_matcher--to_ports"></a>
 ### Nested Schema for `spec.redirect_frontend.service_matcher.to_ports`
@@ -155,8 +155,8 @@ Optional:
 Required:
 
 - `port` (String) Port is an L4 port number. The string will be strictly parsed as a single uint16.
-- `protocol` (String) Protocol is the L4 protocol. Accepted values: 'TCP', 'UDP'
+- `protocol` (String) Protocol is the L4 protocol.Accepted values: 'TCP', 'UDP'
 
 Optional:
 
-- `name` (String) Name is a port name, which must contain at least one [a-z], and may also contain [0-9] and '-' anywhere except adjacent to another '-' or in the beginning or the end.
+- `name` (String) Name is a port name, which must contain at least one [a-z],and may also contain [0-9] and '-' anywhere except adjacent to another'-' or in the beginning or the end.

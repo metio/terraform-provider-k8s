@@ -74,7 +74,7 @@ Optional:
 
 Required:
 
-- `comp_def` (String) Specifies the name or prefix of the ComponentDefinition custom resource(CR) thatdefines the Component's characteristics and behavior.When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix.This approach allows:1. Precise selection by providing the exact name of a ComponentDefinition CR.2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.Once set, this field cannot be updated.
+- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinitioncustom resource (CR) that defines the Component's characteristics and behavior.The system selects the ComponentDefinition CR with the latest version that matches the pattern.This approach allows:1. Precise selection by providing the exact name of a ComponentDefinition CR.2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR	  by specifying a name prefix or regular expression pattern.Once set, this field cannot be updated.
 - `name` (String) Defines the unique identifier of the component within the cluster topology.It follows IANA Service naming rules and is used as part of the Service's DNS name.The name must start with a lowercase letter, can contain lowercase letters, numbers,and hyphens, and must end with a lowercase letter or number.Cannot be updated once set.
 
 

@@ -2122,8 +2122,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"revision": schema.Int64Attribute{
-						Description:         "Revision number. Newer revisions have larger numbers.",
-						MarkdownDescription: "Revision number. Newer revisions have larger numbers.",
+						Description:         "Revision number. Newer revisions have larger numbers.This number can change. When a Composition transitions from state A-> B -> A there will be only two CompositionRevisions. Crossplane willedit the original CompositionRevision to change its revision number from0 to 2.",
+						MarkdownDescription: "Revision number. Newer revisions have larger numbers.This number can change. When a Composition transitions from state A-> B -> A there will be only two CompositionRevisions. Crossplane willedit the original CompositionRevision to change its revision number from0 to 2.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

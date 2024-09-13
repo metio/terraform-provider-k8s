@@ -5634,6 +5634,7 @@ Required:
 
 - `enabled` (Boolean)
 - `image` (String)
+- `query_source` (String)
 - `secret` (String)
 - `server_host` (String)
 
@@ -7194,6 +7195,7 @@ Optional:
 Optional:
 
 - `custom_replication_tls_secret` (Attributes) The secret containing the replication client certificates and keys forsecure connections to the PostgreSQL server. It will need to contain theclient TLS certificate, TLS key and the Certificate Authority certificatewith the data keys set to tls.crt, tls.key and ca.crt, respectively.NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecretMUST be provided and the ca.crt provided must be the same. (see [below for nested schema](#nestedatt--spec--secrets--custom_replication_tls_secret))
+- `custom_root_catls_secret` (Attributes) The secret containing the root CA certificate and key forsecure connections to the PostgreSQL server. It will need to contain theCA TLS certificate and CA TLS key with the data keys set toroot.crt and root.key, respectively. (see [below for nested schema](#nestedatt--spec--secrets--custom_root_catls_secret))
 - `custom_tls_secret` (Attributes) The secret containing the Certificates and Keys to encrypt PostgreSQLtraffic will need to contain the server TLS certificate, TLS key and theCertificate Authority certificate with the data keys set to tls.crt,tls.key and ca.crt, respectively. It will then be mounted as a volumeprojection to the '/pgconf/tls' directory. For more information onKubernetes secret projections, please seehttps://k8s.io/docs/concepts/configuration/secret/#projection-of-secret-keys-to-specific-pathsNOTE: If CustomTLSSecret is provided, CustomReplicationClientTLSSecretMUST be provided and the ca.crt provided must be the same. (see [below for nested schema](#nestedatt--spec--secrets--custom_tls_secret))
 
 <a id="nestedatt--spec--secrets--custom_replication_tls_secret"></a>
@@ -7207,6 +7209,29 @@ Optional:
 
 <a id="nestedatt--spec--secrets--custom_replication_tls_secret--items"></a>
 ### Nested Schema for `spec.secrets.custom_replication_tls_secret.items`
+
+Required:
+
+- `key` (String) key is the key to project.
+- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+
+Optional:
+
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+
+
+
+<a id="nestedatt--spec--secrets--custom_root_catls_secret"></a>
+### Nested Schema for `spec.secrets.custom_root_catls_secret`
+
+Optional:
+
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--secrets--custom_root_catls_secret--items))
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+
+<a id="nestedatt--spec--secrets--custom_root_catls_secret--items"></a>
+### Nested Schema for `spec.secrets.custom_root_catls_secret.items`
 
 Required:
 

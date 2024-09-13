@@ -82,14 +82,14 @@ Optional:
 - `linode_sd_configs` (Attributes List) LinodeSDConfigs defines a list of Linode service discovery configurations. (see [below for nested schema](#nestedatt--spec--linode_sd_configs))
 - `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--metric_relabelings))
 - `metrics_path` (String) MetricsPath HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. /metrics).
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `nomad_sd_configs` (Attributes List) NomadSDConfigs defines a list of Nomad service discovery configurations. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs))
 - `oauth2` (Attributes) OAuth2 configuration to use on every scrape request. (see [below for nested schema](#nestedatt--spec--oauth2))
 - `openstack_sd_configs` (Attributes List) OpenStackSDConfigs defines a list of OpenStack service discovery configurations. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs))
 - `ovhcloud_sd_configs` (Attributes List) OVHCloudSDConfigs defines a list of OVHcloud service discovery configurations. (see [below for nested schema](#nestedatt--spec--ovhcloud_sd_configs))
 - `params` (Map of List of String) Optional HTTP URL parameters
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `puppet_dbsd_configs` (Attributes List) PuppetDBSDConfigs defines a list of PuppetDB service discovery configurations. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs))
 - `relabelings` (Attributes List) RelabelConfigs defines how to rewrite the target's labels before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--relabelings))
@@ -210,12 +210,12 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.If unset, Prometheus uses its default value.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.If unset, Prometheus uses its default value.
 - `namespace` (String) Namespaces are only supported in Consul Enterprise.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `node_meta` (Map of String) Node metadata key/value pairs to filter nodes for a given service.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2))
 - `partition` (String) Admin Partitions are only supported in Consul Enterprise.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time after which the provided names are refreshed.On large setup it might be a good idea to increase this value because the catalog will change all the time.If unset, Prometheus uses its default value.
 - `scheme` (String) HTTP Scheme default 'http'
@@ -294,9 +294,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2--tls_config))
@@ -566,11 +566,11 @@ Optional:
 - `authorization` (Attributes) Authorization header configuration to authenticate against the DigitalOcean API.Cannot be set at the same time as 'oauth2'. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--authorization))
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the instance list.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config))
@@ -609,9 +609,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2--tls_config))
@@ -890,11 +890,11 @@ Optional:
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `host_networking_host` (String) The host to use if the container is in host networking mode.
 - `match_first_network` (Boolean) Configure whether to match the first network if the container has multiple networks defined.If unset, Prometheus uses true by default.It requires Prometheus >= v2.54.1.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Time after which the container is refreshed.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config))
@@ -977,9 +977,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2--tls_config))
@@ -1243,11 +1243,11 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `filters` (Attributes List) Optional filters to limit the discovery process to a subset of availableresources.The available filters are listed in the upstream documentation:Services: https://docs.docker.com/engine/api/v1.40/#operation/ServiceListTasks: https://docs.docker.com/engine/api/v1.40/#operation/TaskListNodes: https://docs.docker.com/engine/api/v1.40/#operation/NodeList (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--filters))
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from, when 'role' is nodes, and for discoveredtasks and services that don't have published ports.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time after which the service discovery data is refreshed.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--tls_config))
@@ -1330,9 +1330,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--oauth2--tls_config))
@@ -1590,10 +1590,10 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.It requires Prometheus >= v2.41.0
 - `filters` (Attributes List) Filters can be used optionally to filter the instance list by other criteria.Available filter criteria can be found here:https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.htmlFilter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.htmlIt requires Prometheus >= v2.3.0 (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--filters))
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.It requires Prometheus >= v2.41.0
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `port` (Number) The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) RefreshInterval configures the refresh interval at which Prometheus will re-read the instance list.
 - `region` (String) The AWS region.
@@ -1747,10 +1747,10 @@ Optional:
 - `basic_auth` (Attributes) BasicAuth information to use on every scrape request. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--basic_auth))
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2))
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the instance list.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config))
@@ -1824,9 +1824,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2--tls_config))
@@ -2116,11 +2116,11 @@ Optional:
 - `basic_auth` (Attributes) BasicAuth information to use on every scrape request, required when role is robot.Role hcloud does not support basic auth. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--basic_auth))
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be used at the same time as 'basic_auth' or 'authorization'. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time after which the servers are refreshed.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config))
@@ -2194,9 +2194,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2--tls_config))
@@ -2458,10 +2458,10 @@ Optional:
 - `basic_auth` (Attributes) BasicAuth information to authenticate against the target HTTP endpoint.More info: https://prometheus.io/docs/operating/configuration/#endpointsCannot be set at the same time as 'authorization', or 'oAuth2'. (see [below for nested schema](#nestedatt--spec--http_sd_configs--basic_auth))
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration to authenticate against the target HTTP endpoint.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2))
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) RefreshInterval configures the refresh interval at which Prometheus will re-query theendpoint to update the target list.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config))
@@ -2535,9 +2535,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config))
@@ -2798,10 +2798,10 @@ Optional:
 
 - `enable_http2` (Boolean) Configure whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether the HTTP requests should follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `port` (Number) Port to scrape the metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of resources.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the IONOS API. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config))
@@ -2942,10 +2942,10 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `namespaces` (Attributes) Optional namespace discovery. If omitted, Prometheus discovers targets across all namespaces. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--namespaces))
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2))
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `selectors` (Attributes List) Selector to select objects.It requires Prometheus >= v2.17.0 (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--selectors))
 - `tls_config` (Attributes) TLS configuration to connect to the Kubernetes API. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config))
@@ -3036,9 +3036,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2--tls_config))
@@ -3315,10 +3315,10 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `fetch_timeout` (String) The time after which the monitoring assignments are refreshed.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2))
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time to wait between polling update requests.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config))
@@ -3392,9 +3392,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2--tls_config))
@@ -3654,11 +3654,11 @@ Optional:
 - `enable_http2` (Boolean) Configure whether to enable HTTP2.
 - `endpoint` (String) Custom endpoint to be used.
 - `follow_redirects` (Boolean) Configure whether the HTTP requests should follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth2.0 configuration.Cannot be set at the same time as 'basicAuth', or 'authorization'. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2))
 - `port` (Number) Port to scrape the metrics from.If using the public IP address, this must instead be specified in the relabeling rule.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of instances.
 - `region` (String) The AWS region.
@@ -3748,9 +3748,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2--tls_config))
@@ -4020,11 +4020,11 @@ Optional:
 - `authorization` (Attributes) Authorization header configuration. (see [below for nested schema](#nestedatt--spec--linode_sd_configs--authorization))
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be used at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--linode_sd_configs--oauth2))
 - `port` (Number) Default port to scrape metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Time after which the linode instances are refreshed.
 - `region` (String) Optional region to filter on.
@@ -4065,9 +4065,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--linode_sd_configs--oauth2--tls_config))
@@ -4345,10 +4345,10 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `namespace` (String)
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2))
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Duration is a valid time duration that can be parsed by Prometheus model.ParseDuration() function.Supported units: y, w, d, h, m, s, msExamples: '30s', '1m', '1h20m15s', '15d'
 - `region` (String)
@@ -4424,9 +4424,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--tls_config))
@@ -4687,9 +4687,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--oauth2--tls_config))
@@ -5048,11 +5048,11 @@ Optional:
 - `enable_http2` (Boolean) Configure whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether the HTTP requests should follow HTTP 3xx redirects.
 - `include_parameters` (Boolean) Whether to include the parameters as meta labels.Note: Enabling this exposes parameters in the Prometheus UI and API. Make surethat you don't have secrets exposed as parameters if you enable this.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `oauth2` (Attributes) Optional OAuth2.0 configuration.Cannot be set at the same time as 'basicAuth', or 'authorization'. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--oauth2))
 - `port` (Number) Port to scrape the metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of resources.
 - `tls_config` (Attributes) TLS configuration to connect to the Puppet DB. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--tls_config))
@@ -5126,9 +5126,9 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--oauth2--tls_config))
@@ -5407,10 +5407,10 @@ Optional:
 - `enable_http2` (Boolean) Whether to enable HTTP2.
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `name_filter` (String) NameFilter specify a name filter (works as a LIKE) to apply on the server listing request.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `port` (Number) The port to scrape metrics from.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of instances.
 - `tags_filter` (List of String) TagsFilter specify a tag filter (a server needs to have all defined tags to be listed) to apply on the server listing request.

@@ -55,7 +55,7 @@ Optional:
 Required:
 
 - `composite_type_ref` (Attributes) CompositeTypeRef specifies the type of composite resource that thiscomposition is compatible with. (see [below for nested schema](#nestedatt--spec--composite_type_ref))
-- `revision` (Number) Revision number. Newer revisions have larger numbers.
+- `revision` (Number) Revision number. Newer revisions have larger numbers.This number can change. When a Composition transitions from state A-> B -> A there will be only two CompositionRevisions. Crossplane willedit the original CompositionRevision to change its revision number from0 to 2.
 
 Optional:
 

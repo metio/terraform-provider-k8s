@@ -95,6 +95,7 @@ Optional:
 Optional:
 
 - `anthropic` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic))
+- `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--azure_openai))
 - `mistral` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral))
 - `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai))
 
@@ -132,6 +133,33 @@ Optional:
 
 - `host` (String)
 - `port` (Number)
+
+
+
+<a id="nestedatt--spec--ai--azure_openai"></a>
+### Nested Schema for `spec.ai.azure_openai`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--azure_openai--auth_token))
+- `endpoint` (String)
+
+<a id="nestedatt--spec--ai--azure_openai--auth_token"></a>
+### Nested Schema for `spec.ai.azure_openai.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--azure_openai--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--azure_openai--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.azure_openai.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
 
 
 

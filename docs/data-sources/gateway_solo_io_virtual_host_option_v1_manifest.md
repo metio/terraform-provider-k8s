@@ -466,6 +466,7 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--jwt--providers))
+- `validation_policy` (String)
 
 <a id="nestedatt--spec--options--jwt--providers"></a>
 ### Nested Schema for `spec.options.jwt.providers`
@@ -570,6 +571,7 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--jwt_staged--after_ext_auth--providers))
+- `validation_policy` (String)
 
 <a id="nestedatt--spec--options--jwt_staged--after_ext_auth--providers"></a>
 ### Nested Schema for `spec.options.jwt_staged.after_ext_auth.providers`
@@ -666,6 +668,7 @@ Optional:
 
 - `allow_missing_or_failed_jwt` (Boolean)
 - `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--options--jwt_staged--before_ext_auth--providers))
+- `validation_policy` (String)
 
 <a id="nestedatt--spec--options--jwt_staged--before_ext_auth--providers"></a>
 ### Nested Schema for `spec.options.jwt_staged.before_ext_auth.providers`

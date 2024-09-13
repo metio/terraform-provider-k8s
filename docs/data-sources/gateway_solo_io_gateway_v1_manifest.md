@@ -1349,6 +1349,10 @@ Optional:
 
 Optional:
 
+- `max_buffered_rx_bytes` (Number)
+- `max_buffered_tx_bytes` (Number)
+- `record_downstream_connection` (Boolean)
+- `record_headers_received_time` (Boolean)
 - `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap--sinks))
 
 <a id="nestedatt--spec--http_gateway--options--tap--sinks"></a>
@@ -3261,6 +3265,10 @@ Optional:
 
 Optional:
 
+- `max_buffered_rx_bytes` (Number)
+- `max_buffered_tx_bytes` (Number)
+- `record_downstream_connection` (Boolean)
+- `record_headers_received_time` (Boolean)
 - `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks))
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--tap--sinks"></a>

@@ -52,8 +52,8 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Metadata(_ context.Context, re
 
 func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
-		MarkdownDescription: "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
+		Description:         "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peersoutside the clusters) that can be referenced as a single entity fromCiliumNetworkPolicies.",
+		MarkdownDescription: "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peersoutside the clusters) that can be referenced as a single entity fromCiliumNetworkPolicies.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

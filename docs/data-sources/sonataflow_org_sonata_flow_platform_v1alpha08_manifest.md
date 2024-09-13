@@ -406,12 +406,9 @@ Optional:
 <a id="nestedatt--spec--services--data_index--persistence"></a>
 ### Nested Schema for `spec.services.data_index.persistence`
 
-Required:
-
-- `migrate_db_on_start_up` (Boolean) Whether to migrate database on service startup?
-
 Optional:
 
+- `migrate_db_on_start_up` (Boolean) Whether to migrate database on service startup?
 - `postgresql` (Attributes) Connect configured services to a postgresql database. (see [below for nested schema](#nestedatt--spec--services--data_index--persistence--postgresql))
 
 <a id="nestedatt--spec--services--data_index--persistence--postgresql"></a>
@@ -3641,12 +3638,9 @@ Optional:
 <a id="nestedatt--spec--services--job_service--persistence"></a>
 ### Nested Schema for `spec.services.job_service.persistence`
 
-Required:
-
-- `migrate_db_on_start_up` (Boolean) Whether to migrate database on service startup?
-
 Optional:
 
+- `migrate_db_on_start_up` (Boolean) Whether to migrate database on service startup?
 - `postgresql` (Attributes) Connect configured services to a postgresql database. (see [below for nested schema](#nestedatt--spec--services--job_service--persistence--postgresql))
 
 <a id="nestedatt--spec--services--job_service--persistence--postgresql"></a>

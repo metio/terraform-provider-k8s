@@ -143,8 +143,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"destination_cid_rs": schema.ListAttribute{
-						Description:         "DestinationCIDRs is a list of destination CIDRs for destination IP addresses. If a destination IP matches any one CIDR, it will be selected.",
-						MarkdownDescription: "DestinationCIDRs is a list of destination CIDRs for destination IP addresses. If a destination IP matches any one CIDR, it will be selected.",
+						Description:         "DestinationCIDRs is a list of destination CIDRs for destination IP addresses.If a destination IP matches any one CIDR, it will be selected.",
+						MarkdownDescription: "DestinationCIDRs is a list of destination CIDRs for destination IP addresses.If a destination IP matches any one CIDR, it will be selected.",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
@@ -156,24 +156,24 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "EgressGateway is the gateway node responsible for SNATing traffic.",
 						Attributes: map[string]schema.Attribute{
 							"egress_ip": schema.StringAttribute{
-								Description:         "EgressIP is the source IP address that the egress traffic is SNATed with.  Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
-								MarkdownDescription: "EgressIP is the source IP address that the egress traffic is SNATed with.  Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
+								Description:         "EgressIP is the source IP address that the egress traffic is SNATedwith.Example:When set to '192.168.1.100', matching egress traffic will beredirected to the node matching the NodeSelector field and SNATedwith IP address 192.168.1.100.When none of the Interface or EgressIP fields is specified, thepolicy will use the first IPv4 assigned to the interface with thedefault route.",
+								MarkdownDescription: "EgressIP is the source IP address that the egress traffic is SNATedwith.Example:When set to '192.168.1.100', matching egress traffic will beredirected to the node matching the NodeSelector field and SNATedwith IP address 192.168.1.100.When none of the Interface or EgressIP fields is specified, thepolicy will use the first IPv4 assigned to the interface with thedefault route.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"interface": schema.StringAttribute{
-								Description:         "Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned.  Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
-								MarkdownDescription: "Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned.  Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
+								Description:         "Interface is the network interface to which the egress IP addressthat the traffic is SNATed with is assigned.Example:When set to 'eth1', matching egress traffic will be redirected to thenode matching the NodeSelector field and SNATed with the first IPv4address assigned to the eth1 interface.When none of the Interface or EgressIP fields is specified, thepolicy will use the first IPv4 assigned to the interface with thedefault route.",
+								MarkdownDescription: "Interface is the network interface to which the egress IP addressthat the traffic is SNATed with is assigned.Example:When set to 'eth1', matching egress traffic will be redirected to thenode matching the NodeSelector field and SNATed with the first IPv4address assigned to the eth1 interface.When none of the Interface or EgressIP fields is specified, thepolicy will use the first IPv4 assigned to the interface with thedefault route.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"node_selector": schema.SingleNestedAttribute{
-								Description:         "This is a label selector which selects the node that should act as egress gateway for the given policy. In case multiple nodes are selected, only the first one in the lexical ordering over the node names will be used. This field follows standard label selector semantics.",
-								MarkdownDescription: "This is a label selector which selects the node that should act as egress gateway for the given policy. In case multiple nodes are selected, only the first one in the lexical ordering over the node names will be used. This field follows standard label selector semantics.",
+								Description:         "This is a label selector which selects the node that should act asegress gateway for the given policy.In case multiple nodes are selected, only the first one in thelexical ordering over the node names will be used.This field follows standard label selector semantics.",
+								MarkdownDescription: "This is a label selector which selects the node that should act asegress gateway for the given policy.In case multiple nodes are selected, only the first one in thelexical ordering over the node names will be used.This field follows standard label selector semantics.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -189,8 +189,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -200,8 +200,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -215,8 +215,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -234,8 +234,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 					},
 
 					"excluded_cid_rs": schema.ListAttribute{
-						Description:         "ExcludedCIDRs is a list of destination CIDRs that will be excluded from the egress gateway redirection and SNAT logic. Should be a subset of destinationCIDRs otherwise it will not have any effect.",
-						MarkdownDescription: "ExcludedCIDRs is a list of destination CIDRs that will be excluded from the egress gateway redirection and SNAT logic. Should be a subset of destinationCIDRs otherwise it will not have any effect.",
+						Description:         "ExcludedCIDRs is a list of destination CIDRs that will be excludedfrom the egress gateway redirection and SNAT logic.Should be a subset of destinationCIDRs otherwise it will not have anyeffect.",
+						MarkdownDescription: "ExcludedCIDRs is a list of destination CIDRs that will be excludedfrom the egress gateway redirection and SNAT logic.Should be a subset of destinationCIDRs otherwise it will not have anyeffect.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -243,13 +243,13 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 					},
 
 					"selectors": schema.ListNestedAttribute{
-						Description:         "Egress represents a list of rules by which egress traffic is filtered from the source pods.",
-						MarkdownDescription: "Egress represents a list of rules by which egress traffic is filtered from the source pods.",
+						Description:         "Egress represents a list of rules by which egress traffic isfiltered from the source pods.",
+						MarkdownDescription: "Egress represents a list of rules by which egress traffic isfiltered from the source pods.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"namespace_selector": schema.SingleNestedAttribute{
-									Description:         "Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.",
-									MarkdownDescription: "Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.",
+									Description:         "Selects Namespaces using cluster-scoped labels. This field follows standard labelselector semantics; if present but empty, it selects all namespaces.",
+									MarkdownDescription: "Selects Namespaces using cluster-scoped labels. This field follows standard labelselector semantics; if present but empty, it selects all namespaces.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -265,8 +265,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -276,8 +276,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -291,8 +291,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -305,8 +305,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 								},
 
 								"pod_selector": schema.SingleNestedAttribute{
-									Description:         "This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.",
-									MarkdownDescription: "This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.",
+									Description:         "This is a label selector which selects Pods. This field follows standard labelselector semantics; if present but empty, it selects all pods.",
+									MarkdownDescription: "This is a label selector which selects Pods. This field follows standard labelselector semantics; if present but empty, it selects all pods.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -322,8 +322,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -333,8 +333,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -348,8 +348,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

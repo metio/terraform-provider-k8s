@@ -53,7 +53,27 @@ Optional:
 
 - `disable_http2` (Boolean) DisableHTTP2 defines if http2 should be disabled for all servers.Default is false, meaning http2 will be enabled for all servers.
 - `ip_family` (String) IPFamily specifies the IP family to be used by the NGINX.Default is 'dual', meaning the server will use both IPv4 and IPv6.
+- `rewrite_client_ip` (Attributes) RewriteClientIP defines configuration for rewriting the client IP to the original client's IP. (see [below for nested schema](#nestedatt--spec--rewrite_client_ip))
 - `telemetry` (Attributes) Telemetry specifies the OpenTelemetry configuration. (see [below for nested schema](#nestedatt--spec--telemetry))
+
+<a id="nestedatt--spec--rewrite_client_ip"></a>
+### Nested Schema for `spec.rewrite_client_ip`
+
+Optional:
+
+- `mode` (String) Mode defines how NGINX will rewrite the client's IP address.There are two possible modes:- ProxyProtocol: NGINX will rewrite the client's IP using the PROXY protocol header.- XForwardedFor: NGINX will rewrite the client's IP using the X-Forwarded-For header.Sets NGINX directive real_ip_header: https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
+- `set_ip_recursively` (Boolean) SetIPRecursively configures whether recursive search is used when selecting the client's address fromthe X-Forwarded-For header. It is used in conjunction with TrustedAddresses.If enabled, NGINX will recurse on the values in X-Forwarded-Header from the end of arrayto start of array and select the first untrusted IP.For example, if X-Forwarded-For is [11.11.11.11, 22.22.22.22, 55.55.55.1],and TrustedAddresses is set to 55.55.55.1/32, NGINX will rewrite the client IP to 22.22.22.22.If disabled, NGINX will select the IP at the end of the array.In the previous example, 55.55.55.1 would be selected.Sets NGINX directive real_ip_recursive: https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
+- `trusted_addresses` (Attributes List) TrustedAddresses specifies the addresses that are trusted to send correct client IP information.If a request comes from a trusted address, NGINX will rewrite the client IP information,and forward it to the backend in the X-Forwarded-For* and X-Real-IP headers.If the request does not come from a trusted address, NGINX will not rewrite the client IP information.TrustedAddresses only supports CIDR blocks: 192.33.21.1/24, fe80::1/64.To trust all addresses (not recommended for production), set to 0.0.0.0/0.If no addresses are provided, NGINX will not rewrite the client IP information.Sets NGINX directive set_real_ip_from: https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_fromThis field is required if mode is set. (see [below for nested schema](#nestedatt--spec--rewrite_client_ip--trusted_addresses))
+
+<a id="nestedatt--spec--rewrite_client_ip--trusted_addresses"></a>
+### Nested Schema for `spec.rewrite_client_ip.trusted_addresses`
+
+Optional:
+
+- `type` (String) Type specifies the type of address.Default is 'cidr' which specifies that the address is a CIDR block.
+- `value` (String) Value specifies the address value.
+
+
 
 <a id="nestedatt--spec--telemetry"></a>
 ### Nested Schema for `spec.telemetry`

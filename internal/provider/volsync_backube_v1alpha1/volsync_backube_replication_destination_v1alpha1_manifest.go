@@ -250,8 +250,9 @@ type VolsyncBackubeReplicationDestinationV1Alpha1ManifestData struct {
 				Key           *string `tfsdk:"key" json:"key,omitempty"`
 				SecretName    *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"custom_ca" json:"customCA,omitempty"`
-			DestinationPVC *string `tfsdk:"destination_pvc" json:"destinationPVC,omitempty"`
-			MoverAffinity  *struct {
+			DestinationPVC     *string `tfsdk:"destination_pvc" json:"destinationPVC,omitempty"`
+			EnableFileDeletion *bool   `tfsdk:"enable_file_deletion" json:"enableFileDeletion,omitempty"`
+			MoverAffinity      *struct {
 				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						Preference *struct {
@@ -2123,6 +2124,14 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.
 							"destination_pvc": schema.StringAttribute{
 								Description:         "destinationPVC is a PVC to use as the transfer destination instead ofautomatically provisioning one. Either this field or both capacity andaccessModes must be specified.",
 								MarkdownDescription: "destinationPVC is a PVC to use as the transfer destination instead ofautomatically provisioning one. Either this field or both capacity andaccessModes must be specified.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_file_deletion": schema.BoolAttribute{
+								Description:         "enableFileDeletion will pass the --delete flag to the restic restore command.This will remove files and directories in the pvc that do not exist in the snapshot being restored.Defaults to false.",
+								MarkdownDescription: "enableFileDeletion will pass the --delete flag to the restic restore command.This will remove files and directories in the pvc that do not exist in the snapshot being restored.Defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

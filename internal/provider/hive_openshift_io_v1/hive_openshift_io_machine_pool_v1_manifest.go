@@ -92,9 +92,10 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 					Sku       *string `tfsdk:"sku" json:"sku,omitempty"`
 					Version   *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"os_image" json:"osImage,omitempty"`
-				Type           *string   `tfsdk:"type" json:"type,omitempty"`
-				VirtualNetwork *string   `tfsdk:"virtual_network" json:"virtualNetwork,omitempty"`
-				Zones          *[]string `tfsdk:"zones" json:"zones,omitempty"`
+				Type             *string   `tfsdk:"type" json:"type,omitempty"`
+				VirtualNetwork   *string   `tfsdk:"virtual_network" json:"virtualNetwork,omitempty"`
+				VmNetworkingType *string   `tfsdk:"vm_networking_type" json:"vmNetworkingType,omitempty"`
+				Zones            *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
 			Gcp *struct {
 				NetworkProjectID  *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
@@ -581,6 +582,17 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"vm_networking_type": schema.StringAttribute{
+										Description:         "VMNetworkingType specifies whether to enable accelerated networking. Accelerated networking enables single root I/O virtualization (SR-IOV) to a VM, greatly improving its networking performance. eg. values: 'Accelerated', 'Basic'",
+										MarkdownDescription: "VMNetworkingType specifies whether to enable accelerated networking. Accelerated networking enables single root I/O virtualization (SR-IOV) to a VM, greatly improving its networking performance. eg. values: 'Accelerated', 'Basic'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Accelerated", "Basic"),
+										},
 									},
 
 									"zones": schema.ListAttribute{

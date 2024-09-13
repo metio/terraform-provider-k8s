@@ -55,7 +55,8 @@ type LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1ManifestData struct {
 		FunctionName *string `tfsdk:"function_name" json:"functionName,omitempty"`
 		FunctionRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"function_ref" json:"functionRef,omitempty"`
 		Qualifier *string `tfsdk:"qualifier" json:"qualifier,omitempty"`
@@ -225,6 +226,14 @@ func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest) Schema(_ context
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

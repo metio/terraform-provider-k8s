@@ -52,12 +52,15 @@ type ImageToolkitFluxcdIoImageRepositoryV1Beta2ManifestData struct {
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
-		ExclusionList *[]string `tfsdk:"exclusion_list" json:"exclusionList,omitempty"`
-		Image         *string   `tfsdk:"image" json:"image,omitempty"`
-		Insecure      *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
-		Interval      *string   `tfsdk:"interval" json:"interval,omitempty"`
-		Provider      *string   `tfsdk:"provider" json:"provider,omitempty"`
-		SecretRef     *struct {
+		ExclusionList  *[]string `tfsdk:"exclusion_list" json:"exclusionList,omitempty"`
+		Image          *string   `tfsdk:"image" json:"image,omitempty"`
+		Insecure       *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
+		Interval       *string   `tfsdk:"interval" json:"interval,omitempty"`
+		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
+		ProxySecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"proxy_secret_ref" json:"proxySecretRef,omitempty"`
+		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
@@ -201,8 +204,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					"image": schema.StringAttribute{
 						Description:         "Image is the name of the image repository",
 						MarkdownDescription: "Image is the name of the image repository",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
@@ -217,8 +220,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					"interval": schema.StringAttribute{
 						Description:         "Interval is the length of time to wait betweenscans of the image repository.",
 						MarkdownDescription: "Interval is the length of time to wait betweenscans of the image repository.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
@@ -234,6 +237,23 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 						Validators: []validator.String{
 							stringvalidator.OneOf("generic", "aws", "azure", "gcp"),
 						},
+					},
+
+					"proxy_secret_ref": schema.SingleNestedAttribute{
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{

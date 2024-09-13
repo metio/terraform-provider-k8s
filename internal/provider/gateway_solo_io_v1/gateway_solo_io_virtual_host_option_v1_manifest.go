@@ -233,6 +233,7 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 						QueryParams *[]string `tfsdk:"query_params" json:"queryParams,omitempty"`
 					} `tfsdk:"token_source" json:"tokenSource,omitempty"`
 				} `tfsdk:"providers" json:"providers,omitempty"`
+				ValidationPolicy *string `tfsdk:"validation_policy" json:"validationPolicy,omitempty"`
 			} `tfsdk:"jwt" json:"jwt,omitempty"`
 			JwtStaged *struct {
 				AfterExtAuth *struct {
@@ -271,6 +272,7 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 							QueryParams *[]string `tfsdk:"query_params" json:"queryParams,omitempty"`
 						} `tfsdk:"token_source" json:"tokenSource,omitempty"`
 					} `tfsdk:"providers" json:"providers,omitempty"`
+					ValidationPolicy *string `tfsdk:"validation_policy" json:"validationPolicy,omitempty"`
 				} `tfsdk:"after_ext_auth" json:"afterExtAuth,omitempty"`
 				BeforeExtAuth *struct {
 					AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
@@ -308,6 +310,7 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 							QueryParams *[]string `tfsdk:"query_params" json:"queryParams,omitempty"`
 						} `tfsdk:"token_source" json:"tokenSource,omitempty"`
 					} `tfsdk:"providers" json:"providers,omitempty"`
+					ValidationPolicy *string `tfsdk:"validation_policy" json:"validationPolicy,omitempty"`
 				} `tfsdk:"before_ext_auth" json:"beforeExtAuth,omitempty"`
 			} `tfsdk:"jwt_staged" json:"jwtStaged,omitempty"`
 			RateLimitConfigs *struct {
@@ -2743,6 +2746,14 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 										Optional: true,
 										Computed: false,
 									},
+
+									"validation_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -2983,6 +2994,14 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Optional: true,
 												Computed: false,
 											},
+
+											"validation_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -3218,6 +3237,14 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"validation_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,

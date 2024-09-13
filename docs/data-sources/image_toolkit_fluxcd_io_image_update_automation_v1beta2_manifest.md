@@ -118,7 +118,7 @@ Optional:
 <a id="nestedatt--spec--git--commit--signing_key"></a>
 ### Nested Schema for `spec.git.commit.signing_key`
 
-Optional:
+Required:
 
 - `secret_ref` (Attributes) SecretRef holds the name to a secret that contains a 'git.asc' keycorresponding to the ASCII Armored file containing the GPG signingkeypair as the value. It must be in the same namespace as theImageUpdateAutomation. (see [below for nested schema](#nestedatt--spec--git--commit--signing_key--secret_ref))
 
