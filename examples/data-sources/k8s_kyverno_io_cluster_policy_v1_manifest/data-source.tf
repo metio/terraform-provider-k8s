@@ -5,7 +5,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "example" {
   spec = {
     rules = [
       {
-        name = "some-rule"
+        name  = "some-rule"
         match = {}
         context = [
           {
@@ -33,7 +33,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "int_value" {
   spec = {
     rules = [
       {
-        name = "some-rule"
+        name  = "some-rule"
         match = {}
         context = [
           {
@@ -61,7 +61,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "bool_value" {
   spec = {
     rules = [
       {
-        name = "some-rule"
+        name  = "some-rule"
         match = {}
         context = [
           {
@@ -89,7 +89,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "array_value" {
   spec = {
     rules = [
       {
-        name = "some-rule"
+        name  = "some-rule"
         match = {}
         context = [
           {
@@ -117,7 +117,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "map_value" {
   spec = {
     rules = [
       {
-        name = "some-rule"
+        name  = "some-rule"
         match = {}
         context = [
           {
@@ -145,7 +145,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "mixed_value" {
   spec = {
     rules = [
       {
-        name = "some-rule"
+        name  = "some-rule"
         match = {}
         context = [
           {
