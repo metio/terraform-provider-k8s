@@ -6,7 +6,7 @@
 package generator
 
 import (
-	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/pb33f/libopenapi/datamodel/high/base"
 	"k8s.io/utils/strings/slices"
 	"strings"
 )
@@ -56,10 +56,10 @@ var supportedKubernetesApiObjects = []string{
 	"io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIService",
 }
 
-func supportedOpenAPIv3Object(name string, definition *openapi3.SchemaRef) bool {
+func supportedOpenAPIv2Object(name string, definition *base.SchemaProxy) bool {
 	if !strings.HasPrefix(name, "io.k8s") || slices.Contains(supportedKubernetesApiObjects, name) {
-		if _, ok := definition.Value.Extensions["x-kubernetes-group-version-kind"]; ok {
-			if len(definition.Value.Properties) > 0 {
+		if gvk := definition.Schema().Extensions.GetOrZero("x-kubernetes-group-version-kind"); gvk != nil {
+			if definition.Schema().Properties.Len() > 0 {
 				return true
 			}
 		}
