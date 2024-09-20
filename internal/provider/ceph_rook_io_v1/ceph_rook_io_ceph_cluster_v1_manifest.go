@@ -332,7 +332,11 @@ type CephRookIoCephClusterV1ManifestData struct {
 			} `tfsdk:"zones" json:"zones,omitempty"`
 		} `tfsdk:"mon" json:"mon,omitempty"`
 		Monitoring *struct {
-			Enabled              *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			Enabled  *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			Exporter *struct {
+				PerfCountersPrioLimit *int64 `tfsdk:"perf_counters_prio_limit" json:"perfCountersPrioLimit,omitempty"`
+				StatsPeriodSeconds    *int64 `tfsdk:"stats_period_seconds" json:"statsPeriodSeconds,omitempty"`
+			} `tfsdk:"exporter" json:"exporter,omitempty"`
 			ExternalMgrEndpoints *[]struct {
 				Hostname  *string `tfsdk:"hostname" json:"hostname,omitempty"`
 				Ip        *string `tfsdk:"ip" json:"ip,omitempty"`
@@ -2895,6 +2899,31 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"exporter": schema.SingleNestedAttribute{
+								Description:         "Ceph exporter configuration",
+								MarkdownDescription: "Ceph exporter configuration",
+								Attributes: map[string]schema.Attribute{
+									"perf_counters_prio_limit": schema.Int64Attribute{
+										Description:         "Only performance counters greater than or equal to this option are fetched",
+										MarkdownDescription: "Only performance counters greater than or equal to this option are fetched",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"stats_period_seconds": schema.Int64Attribute{
+										Description:         "Time to wait before sending requests again to exporter server (seconds)",
+										MarkdownDescription: "Time to wait before sending requests again to exporter server (seconds)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"external_mgr_endpoints": schema.ListNestedAttribute{

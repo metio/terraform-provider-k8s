@@ -4261,8 +4261,8 @@ func (r *RayIoRayJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaReq
 					"entrypoint": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

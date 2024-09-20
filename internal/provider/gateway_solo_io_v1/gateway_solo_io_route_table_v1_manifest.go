@@ -161,6 +161,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								ConnectionString *string  `tfsdk:"connection_string" json:"connectionString,omitempty"`
 								ScoreThreshold   *float64 `tfsdk:"score_threshold" json:"scoreThreshold,omitempty"`
 							} `tfsdk:"redis" json:"redis,omitempty"`
+							Weaviate *struct {
+								GrpcPort *int64  `tfsdk:"grpc_port" json:"grpcPort,omitempty"`
+								Host     *string `tfsdk:"host" json:"host,omitempty"`
+								HttpPort *int64  `tfsdk:"http_port" json:"httpPort,omitempty"`
+								Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+							} `tfsdk:"weaviate" json:"weaviate,omitempty"`
 						} `tfsdk:"datastore" json:"datastore,omitempty"`
 						Embedding *struct {
 							AzureOpenai *struct {
@@ -3453,6 +3459,55 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"score_threshold": schema.Float64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"weaviate": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"grpc_port": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
+																		},
+
+																		"host": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"http_port": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																				int64validator.AtMost(4.294967295e+09),
+																			},
+																		},
+
+																		"insecure": schema.BoolAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,

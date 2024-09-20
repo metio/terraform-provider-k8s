@@ -94,7 +94,11 @@ type PsmdbPerconaComPerconaServerMongoDbrestoreV1ManifestData struct {
 			Date *string `tfsdk:"date" json:"date,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"pitr" json:"pitr,omitempty"`
-		Replset     *string `tfsdk:"replset" json:"replset,omitempty"`
+		Replset   *string `tfsdk:"replset" json:"replset,omitempty"`
+		Selective *struct {
+			Namespaces        *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+			WithUsersAndRoles *bool     `tfsdk:"with_users_and_roles" json:"withUsersAndRoles,omitempty"`
+		} `tfsdk:"selective" json:"selective,omitempty"`
 		StorageName *string `tfsdk:"storage_name" json:"storageName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -562,6 +566,32 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"selective": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"namespaces": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"with_users_and_roles": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"storage_name": schema.StringAttribute{

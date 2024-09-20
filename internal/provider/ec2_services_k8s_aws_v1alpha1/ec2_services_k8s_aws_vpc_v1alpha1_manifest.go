@@ -43,19 +43,20 @@ type Ec2ServicesK8SAwsVpcV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AmazonProvidedIPv6CIDRBlock     *bool     `tfsdk:"amazon_provided_i_pv6_cidr_block" json:"amazonProvidedIPv6CIDRBlock,omitempty"`
-		CidrBlocks                      *[]string `tfsdk:"cidr_blocks" json:"cidrBlocks,omitempty"`
-		EnableDNSHostnames              *bool     `tfsdk:"enable_dns_hostnames" json:"enableDNSHostnames,omitempty"`
-		EnableDNSSupport                *bool     `tfsdk:"enable_dns_support" json:"enableDNSSupport,omitempty"`
-		InstanceTenancy                 *string   `tfsdk:"instance_tenancy" json:"instanceTenancy,omitempty"`
-		Ipv4IPAMPoolID                  *string   `tfsdk:"ipv4_ipam_pool_id" json:"ipv4IPAMPoolID,omitempty"`
-		Ipv4NetmaskLength               *int64    `tfsdk:"ipv4_netmask_length" json:"ipv4NetmaskLength,omitempty"`
-		Ipv6CIDRBlock                   *string   `tfsdk:"ipv6_cidr_block" json:"ipv6CIDRBlock,omitempty"`
-		Ipv6CIDRBlockNetworkBorderGroup *string   `tfsdk:"ipv6_cidr_block_network_border_group" json:"ipv6CIDRBlockNetworkBorderGroup,omitempty"`
-		Ipv6IPAMPoolID                  *string   `tfsdk:"ipv6_ipam_pool_id" json:"ipv6IPAMPoolID,omitempty"`
-		Ipv6NetmaskLength               *int64    `tfsdk:"ipv6_netmask_length" json:"ipv6NetmaskLength,omitempty"`
-		Ipv6Pool                        *string   `tfsdk:"ipv6_pool" json:"ipv6Pool,omitempty"`
-		Tags                            *[]struct {
+		AmazonProvidedIPv6CIDRBlock       *bool     `tfsdk:"amazon_provided_i_pv6_cidr_block" json:"amazonProvidedIPv6CIDRBlock,omitempty"`
+		CidrBlocks                        *[]string `tfsdk:"cidr_blocks" json:"cidrBlocks,omitempty"`
+		DisallowSecurityGroupDefaultRules *bool     `tfsdk:"disallow_security_group_default_rules" json:"disallowSecurityGroupDefaultRules,omitempty"`
+		EnableDNSHostnames                *bool     `tfsdk:"enable_dns_hostnames" json:"enableDNSHostnames,omitempty"`
+		EnableDNSSupport                  *bool     `tfsdk:"enable_dns_support" json:"enableDNSSupport,omitempty"`
+		InstanceTenancy                   *string   `tfsdk:"instance_tenancy" json:"instanceTenancy,omitempty"`
+		Ipv4IPAMPoolID                    *string   `tfsdk:"ipv4_ipam_pool_id" json:"ipv4IPAMPoolID,omitempty"`
+		Ipv4NetmaskLength                 *int64    `tfsdk:"ipv4_netmask_length" json:"ipv4NetmaskLength,omitempty"`
+		Ipv6CIDRBlock                     *string   `tfsdk:"ipv6_cidr_block" json:"ipv6CIDRBlock,omitempty"`
+		Ipv6CIDRBlockNetworkBorderGroup   *string   `tfsdk:"ipv6_cidr_block_network_border_group" json:"ipv6CIDRBlockNetworkBorderGroup,omitempty"`
+		Ipv6IPAMPoolID                    *string   `tfsdk:"ipv6_ipam_pool_id" json:"ipv6IPAMPoolID,omitempty"`
+		Ipv6NetmaskLength                 *int64    `tfsdk:"ipv6_netmask_length" json:"ipv6NetmaskLength,omitempty"`
+		Ipv6Pool                          *string   `tfsdk:"ipv6_pool" json:"ipv6Pool,omitempty"`
+		Tags                              *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -153,6 +154,14 @@ func (r *Ec2ServicesK8SAwsVpcV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"disallow_security_group_default_rules": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

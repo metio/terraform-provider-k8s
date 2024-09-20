@@ -248,20 +248,21 @@ type ResourcesTeleportDevTeleportRoleV6ManifestData struct {
 				Type  *string `tfsdk:"type" json:"type,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"cert_extensions" json:"cert_extensions,omitempty"`
-			Cert_format               *string   `tfsdk:"cert_format" json:"cert_format,omitempty"`
-			Client_idle_timeout       *string   `tfsdk:"client_idle_timeout" json:"client_idle_timeout,omitempty"`
-			Create_db_user            *bool     `tfsdk:"create_db_user" json:"create_db_user,omitempty"`
-			Create_db_user_mode       *string   `tfsdk:"create_db_user_mode" json:"create_db_user_mode,omitempty"`
-			Create_desktop_user       *bool     `tfsdk:"create_desktop_user" json:"create_desktop_user,omitempty"`
-			Create_host_user          *bool     `tfsdk:"create_host_user" json:"create_host_user,omitempty"`
-			Create_host_user_mode     *string   `tfsdk:"create_host_user_mode" json:"create_host_user_mode,omitempty"`
-			Desktop_clipboard         *bool     `tfsdk:"desktop_clipboard" json:"desktop_clipboard,omitempty"`
-			Desktop_directory_sharing *bool     `tfsdk:"desktop_directory_sharing" json:"desktop_directory_sharing,omitempty"`
-			Device_trust_mode         *string   `tfsdk:"device_trust_mode" json:"device_trust_mode,omitempty"`
-			Disconnect_expired_cert   *bool     `tfsdk:"disconnect_expired_cert" json:"disconnect_expired_cert,omitempty"`
-			Enhanced_recording        *[]string `tfsdk:"enhanced_recording" json:"enhanced_recording,omitempty"`
-			Forward_agent             *bool     `tfsdk:"forward_agent" json:"forward_agent,omitempty"`
-			Idp                       *struct {
+			Cert_format                    *string   `tfsdk:"cert_format" json:"cert_format,omitempty"`
+			Client_idle_timeout            *string   `tfsdk:"client_idle_timeout" json:"client_idle_timeout,omitempty"`
+			Create_db_user                 *bool     `tfsdk:"create_db_user" json:"create_db_user,omitempty"`
+			Create_db_user_mode            *string   `tfsdk:"create_db_user_mode" json:"create_db_user_mode,omitempty"`
+			Create_desktop_user            *bool     `tfsdk:"create_desktop_user" json:"create_desktop_user,omitempty"`
+			Create_host_user               *bool     `tfsdk:"create_host_user" json:"create_host_user,omitempty"`
+			Create_host_user_default_shell *string   `tfsdk:"create_host_user_default_shell" json:"create_host_user_default_shell,omitempty"`
+			Create_host_user_mode          *string   `tfsdk:"create_host_user_mode" json:"create_host_user_mode,omitempty"`
+			Desktop_clipboard              *bool     `tfsdk:"desktop_clipboard" json:"desktop_clipboard,omitempty"`
+			Desktop_directory_sharing      *bool     `tfsdk:"desktop_directory_sharing" json:"desktop_directory_sharing,omitempty"`
+			Device_trust_mode              *string   `tfsdk:"device_trust_mode" json:"device_trust_mode,omitempty"`
+			Disconnect_expired_cert        *bool     `tfsdk:"disconnect_expired_cert" json:"disconnect_expired_cert,omitempty"`
+			Enhanced_recording             *[]string `tfsdk:"enhanced_recording" json:"enhanced_recording,omitempty"`
+			Forward_agent                  *bool     `tfsdk:"forward_agent" json:"forward_agent,omitempty"`
+			Idp                            *struct {
 				Saml *struct {
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				} `tfsdk:"saml" json:"saml,omitempty"`
@@ -1981,6 +1982,14 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 							"create_host_user": schema.BoolAttribute{
 								Description:         "CreateHostUser allows users to be automatically created on a host",
 								MarkdownDescription: "CreateHostUser allows users to be automatically created on a host",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"create_host_user_default_shell": schema.StringAttribute{
+								Description:         "CreateHostUserDefaultShell is used to configure the default shell for newly provisioned host users.",
+								MarkdownDescription: "CreateHostUserDefaultShell is used to configure the default shell for newly provisioned host users.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

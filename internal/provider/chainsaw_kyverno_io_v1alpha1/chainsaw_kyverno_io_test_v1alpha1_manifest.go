@@ -1048,6 +1048,12 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			} `tfsdk:"try" json:"try,omitempty"`
 			Use *struct {
 				Template *string `tfsdk:"template" json:"template,omitempty"`
+				With     *struct {
+					Bindings *[]struct {
+						Name  *string            `tfsdk:"name" json:"name,omitempty"`
+						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"bindings" json:"bindings,omitempty"`
+				} `tfsdk:"with" json:"with,omitempty"`
 			} `tfsdk:"use" json:"use,omitempty"`
 		} `tfsdk:"steps" json:"steps,omitempty"`
 		Template *bool `tfsdk:"template" json:"template,omitempty"`
@@ -8308,9 +8314,49 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"template": schema.StringAttribute{
 											Description:         "Template references a step template.",
 											MarkdownDescription: "Template references a step template.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
+										},
+
+										"with": schema.SingleNestedAttribute{
+											Description:         "With defines arguments passed to the step template.",
+											MarkdownDescription: "With defines arguments passed to the step template.",
+											Attributes: map[string]schema.Attribute{
+												"bindings": schema.ListNestedAttribute{
+													Description:         "Bindings defines additional binding key/values.",
+													MarkdownDescription: "Bindings defines additional binding key/values.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name the name of the binding.",
+																MarkdownDescription: "Name the name of the binding.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\w+|\(.+\))$`), ""),
+																},
+															},
+
+															"value": schema.MapAttribute{
+																Description:         "Value value of the binding.",
+																MarkdownDescription: "Value value of the binding.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 									},
 									Required: false,

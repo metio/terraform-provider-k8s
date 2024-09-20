@@ -76,6 +76,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		BpfMapSizeRoute                    *int64             `tfsdk:"bpf_map_size_route" json:"bpfMapSizeRoute,omitempty"`
 		BpfPSNATPorts                      *string            `tfsdk:"bpf_psnat_ports" json:"bpfPSNATPorts,omitempty"`
 		BpfPolicyDebugEnabled              *bool              `tfsdk:"bpf_policy_debug_enabled" json:"bpfPolicyDebugEnabled,omitempty"`
+		BpfRedirectToPeer                  *string            `tfsdk:"bpf_redirect_to_peer" json:"bpfRedirectToPeer,omitempty"`
 		ChainInsertMode                    *string            `tfsdk:"chain_insert_mode" json:"chainInsertMode,omitempty"`
 		DataplaneDriver                    *string            `tfsdk:"dataplane_driver" json:"dataplaneDriver,omitempty"`
 		DataplaneWatchdogTimeout           *string            `tfsdk:"dataplane_watchdog_timeout" json:"dataplaneWatchdogTimeout,omitempty"`
@@ -151,7 +152,12 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		NatOutgoingAddress                 *string   `tfsdk:"nat_outgoing_address" json:"natOutgoingAddress,omitempty"`
 		NatPortRange                       *string   `tfsdk:"nat_port_range" json:"natPortRange,omitempty"`
 		NetlinkTimeout                     *string   `tfsdk:"netlink_timeout" json:"netlinkTimeout,omitempty"`
+		NftablesFilterAllowAction          *string   `tfsdk:"nftables_filter_allow_action" json:"nftablesFilterAllowAction,omitempty"`
+		NftablesFilterDenyAction           *string   `tfsdk:"nftables_filter_deny_action" json:"nftablesFilterDenyAction,omitempty"`
+		NftablesMangleAllowAction          *string   `tfsdk:"nftables_mangle_allow_action" json:"nftablesMangleAllowAction,omitempty"`
+		NftablesMarkMask                   *int64    `tfsdk:"nftables_mark_mask" json:"nftablesMarkMask,omitempty"`
 		NftablesMode                       *string   `tfsdk:"nftables_mode" json:"nftablesMode,omitempty"`
+		NftablesRefreshInterval            *string   `tfsdk:"nftables_refresh_interval" json:"nftablesRefreshInterval,omitempty"`
 		OpenstackRegion                    *string   `tfsdk:"openstack_region" json:"openstackRegion,omitempty"`
 		PolicySyncPathPrefix               *string   `tfsdk:"policy_sync_path_prefix" json:"policySyncPathPrefix,omitempty"`
 		PrometheusGoMetricsEnabled         *bool     `tfsdk:"prometheus_go_metrics_enabled" json:"prometheusGoMetricsEnabled,omitempty"`
@@ -552,6 +558,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					"bpf_policy_debug_enabled": schema.BoolAttribute{
 						Description:         "BPFPolicyDebugEnabled when true, Felix records detailed information about the BPF policy programs, which can be examined with the calico-bpf command-line tool.",
 						MarkdownDescription: "BPFPolicyDebugEnabled when true, Felix records detailed information about the BPF policy programs, which can be examined with the calico-bpf command-line tool.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"bpf_redirect_to_peer": schema.StringAttribute{
+						Description:         "BPFRedirectToPeer controls which whether it is allowed to forward straight to the peer side of the workload devices. It is allowed for any host L2 devices by default (L2Only), but it breaks TCP dump on the host side of workload device as it bypasses it on ingress. Value of Enabled also allows redirection from L3 host devices like IPIP tunnel or Wireguard directly to the peer side of the workload's device. This makes redirection faster, however, it breaks tools like tcpdump on the peer side. Use Enabled with caution. [Default: L2Only]",
+						MarkdownDescription: "BPFRedirectToPeer controls which whether it is allowed to forward straight to the peer side of the workload devices. It is allowed for any host L2 devices by default (L2Only), but it breaks TCP dump on the host side of workload device as it bypasses it on ingress. Value of Enabled also allows redirection from L3 host devices like IPIP tunnel or Wireguard directly to the peer side of the workload's device. This makes redirection faster, however, it breaks tools like tcpdump on the peer side. Use Enabled with caution. [Default: L2Only]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1155,8 +1169,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"max_ipset_size": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MaxIpsetSize is the maximum number of IP addresses that can be stored in an IP set. Not applicable if using the nftables backend.",
+						MarkdownDescription: "MaxIpsetSize is the maximum number of IP addresses that can be stored in an IP set. Not applicable if using the nftables backend.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1213,9 +1227,58 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						},
 					},
 
+					"nftables_filter_allow_action": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Accept|Return)?$`), ""),
+						},
+					},
+
+					"nftables_filter_deny_action": schema.StringAttribute{
+						Description:         "FilterDenyAction controls what happens to traffic that is denied by network policy. By default Calico blocks traffic with a 'drop' action. If you want to use a 'reject' action instead you can configure it here.",
+						MarkdownDescription: "FilterDenyAction controls what happens to traffic that is denied by network policy. By default Calico blocks traffic with a 'drop' action. If you want to use a 'reject' action instead you can configure it here.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Drop|Reject)?$`), ""),
+						},
+					},
+
+					"nftables_mangle_allow_action": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Accept|Return)?$`), ""),
+						},
+					},
+
+					"nftables_mark_mask": schema.Int64Attribute{
+						Description:         "MarkMask is the mask that Felix selects its nftables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
+						MarkdownDescription: "MarkMask is the mask that Felix selects its nftables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"nftables_mode": schema.StringAttribute{
 						Description:         "NFTablesMode configures nftables support in Felix. [Default: Disabled]",
 						MarkdownDescription: "NFTablesMode configures nftables support in Felix. [Default: Disabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"nftables_refresh_interval": schema.StringAttribute{
+						Description:         "NftablesRefreshInterval controls the interval at which Felix periodically refreshes the nftables rules. [Default: 90s]",
+						MarkdownDescription: "NftablesRefreshInterval controls the interval at which Felix periodically refreshes the nftables rules. [Default: 90s]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

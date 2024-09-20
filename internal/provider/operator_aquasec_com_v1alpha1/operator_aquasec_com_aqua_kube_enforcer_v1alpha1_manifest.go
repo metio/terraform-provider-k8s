@@ -586,8 +586,9 @@ type OperatorAquasecComAquaKubeEnforcerV1Alpha1ManifestData struct {
 			ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 			Version        *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"infra" json:"infra,omitempty"`
-		Mtls     *bool `tfsdk:"mtls" json:"mtls,omitempty"`
-		Registry *struct {
+		Mtls                   *bool  `tfsdk:"mtls" json:"mtls,omitempty"`
+		MutatingWebhookTimeout *int64 `tfsdk:"mutating_webhook_timeout" json:"mutatingWebhookTimeout,omitempty"`
+		Registry               *struct {
 			Email    *string `tfsdk:"email" json:"email,omitempty"`
 			Password *string `tfsdk:"password" json:"password,omitempty"`
 			Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -1151,8 +1152,9 @@ type OperatorAquasecComAquaKubeEnforcerV1Alpha1ManifestData struct {
 			Tag                         *string `tfsdk:"tag" json:"tag,omitempty"`
 			VulnerabilityScannerEnabled *string `tfsdk:"vulnerability_scanner_enabled" json:"vulnerabilityScannerEnabled,omitempty"`
 		} `tfsdk:"starboard" json:"starboard,omitempty"`
-		Token          *string `tfsdk:"token" json:"token,omitempty"`
-		UpdateEnforcer *bool   `tfsdk:"update_enforcer" json:"updateEnforcer,omitempty"`
+		Token                    *string `tfsdk:"token" json:"token,omitempty"`
+		UpdateEnforcer           *bool   `tfsdk:"update_enforcer" json:"updateEnforcer,omitempty"`
+		ValidatingWebhookTimeout *int64  `tfsdk:"validating_webhook_timeout" json:"validatingWebhookTimeout,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -4846,6 +4848,14 @@ func (r *OperatorAquasecComAquaKubeEnforcerV1Alpha1Manifest) Schema(_ context.Co
 					"mtls": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"mutating_webhook_timeout": schema.Int64Attribute{
+						Description:         "Timeout for the mutating webhook in seconds",
+						MarkdownDescription: "Timeout for the mutating webhook in seconds",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -8619,6 +8629,14 @@ func (r *OperatorAquasecComAquaKubeEnforcerV1Alpha1Manifest) Schema(_ context.Co
 					"update_enforcer": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"validating_webhook_timeout": schema.Int64Attribute{
+						Description:         "Timeout for the validating webhook in seconds",
+						MarkdownDescription: "Timeout for the validating webhook in seconds",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -298,9 +298,9 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			Organization *string `tfsdk:"organization" json:"organization,omitempty"`
 		} `tfsdk:"container_registry" json:"containerRegistry,omitempty"`
 		DevEnvironments *struct {
-			AllowedSource *struct {
+			AllowedSources *struct {
 				Urls *[]string `tfsdk:"urls" json:"urls,omitempty"`
-			} `tfsdk:"allowed_source" json:"allowedSource,omitempty"`
+			} `tfsdk:"allowed_sources" json:"allowedSources,omitempty"`
 			ContainerBuildConfiguration *struct {
 				OpenShiftSecurityContextConstraint *string `tfsdk:"open_shift_security_context_constraint" json:"openShiftSecurityContextConstraint,omitempty"`
 			} `tfsdk:"container_build_configuration" json:"containerBuildConfiguration,omitempty"`
@@ -656,8 +656,9 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 					} `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"project_clone_container" json:"projectCloneContainer,omitempty"`
-			SecondsOfInactivityBeforeIdling *int64 `tfsdk:"seconds_of_inactivity_before_idling" json:"secondsOfInactivityBeforeIdling,omitempty"`
-			SecondsOfRunBeforeIdling        *int64 `tfsdk:"seconds_of_run_before_idling" json:"secondsOfRunBeforeIdling,omitempty"`
+			RuntimeClassName                *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
+			SecondsOfInactivityBeforeIdling *int64  `tfsdk:"seconds_of_inactivity_before_idling" json:"secondsOfInactivityBeforeIdling,omitempty"`
+			SecondsOfRunBeforeIdling        *int64  `tfsdk:"seconds_of_run_before_idling" json:"secondsOfRunBeforeIdling,omitempty"`
 			Security                        *struct {
 				ContainerSecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -2541,13 +2542,13 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 						Description:         "Development environment default configuration options.",
 						MarkdownDescription: "Development environment default configuration options.",
 						Attributes: map[string]schema.Attribute{
-							"allowed_source": schema.SingleNestedAttribute{
-								Description:         "AllowedSource defines the allowed sources on which workspaces can be started.",
-								MarkdownDescription: "AllowedSource defines the allowed sources on which workspaces can be started.",
+							"allowed_sources": schema.SingleNestedAttribute{
+								Description:         "AllowedSources defines the allowed sources on which workspaces can be started.",
+								MarkdownDescription: "AllowedSources defines the allowed sources on which workspaces can be started.",
 								Attributes: map[string]schema.Attribute{
 									"urls": schema.ListAttribute{
-										Description:         "The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs.",
-										MarkdownDescription: "The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs.",
+										Description:         "The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs. Wildcards '*' are supported in URLs, allowing flexible matching for specific URL patterns. For instance, 'https://example.com/*' would allow CDEs to be initiated from any path within 'example.com'.",
+										MarkdownDescription: "The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs. Wildcards '*' are supported in URLs, allowing flexible matching for specific URL patterns. For instance, 'https://example.com/*' would allow CDEs to be initiated from any path within 'example.com'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -5146,6 +5147,14 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"runtime_class_name": schema.StringAttribute{
+								Description:         "RuntimeClassName specifies the spec.runtimeClassName for workspace pods.",
+								MarkdownDescription: "RuntimeClassName specifies the spec.runtimeClassName for workspace pods.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"seconds_of_inactivity_before_idling": schema.Int64Attribute{

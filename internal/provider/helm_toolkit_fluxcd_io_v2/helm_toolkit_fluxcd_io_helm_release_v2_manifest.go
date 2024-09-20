@@ -370,8 +370,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 											"kind": schema.StringAttribute{
 												Description:         "Kind of the referent.",
 												MarkdownDescription: "Kind of the referent.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.OneOf("HelmRepository", "GitRepository", "Bucket"),
