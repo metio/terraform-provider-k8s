@@ -114,12 +114,12 @@ Optional:
 
 Required:
 
+- `kind` (String) Kind of the referent.
 - `name` (String) Name of the referent.
 
 Optional:
 
 - `api_version` (String) APIVersion of the referent.
-- `kind` (String) Kind of the referent.
 - `namespace` (String) Namespace of the referent.
 
 

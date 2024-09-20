@@ -1683,7 +1683,7 @@ Required:
 
 Optional:
 
-- `target_node_name` (String) The instance will rebuild on the specified node when the instance uses local PersistentVolume as the storage disk. If not set, it will rebuild on a random node.
+- `target_node_name` (String) The instance will rebuild on the specified node. If not set, it will rebuild on a random node.
 
 
 
@@ -1799,6 +1799,7 @@ Required:
 Optional:
 
 - `defer_post_ready_until_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process. If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding. This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
+- `env` (Map of String) Specifies a list of environment variables to be set in the container.
 - `restore_point_in_time` (String) Specifies the point in time to which the restore should be performed. Supported time formats: - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
 - `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values: - 'Serial' - 'Parallel'
 
@@ -1813,6 +1814,7 @@ Required:
 Optional:
 
 - `defer_post_ready_until_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process. If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding. This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
+- `env` (Map of String) Specifies a list of environment variables to be set in the container.
 - `restore_point_in_time` (String) Specifies the point in time to which the restore should be performed. Supported time formats: - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
 - `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods. It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once). Support values: - 'Serial' - 'Parallel'
 

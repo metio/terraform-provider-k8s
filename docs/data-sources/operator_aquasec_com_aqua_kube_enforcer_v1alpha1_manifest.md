@@ -69,10 +69,12 @@ Optional:
 - `image` (Attributes) (see [below for nested schema](#nestedatt--spec--image))
 - `infra` (Attributes) (see [below for nested schema](#nestedatt--spec--infra))
 - `mtls` (Boolean)
+- `mutating_webhook_timeout` (Number) Timeout for the mutating webhook in seconds
 - `registry` (Attributes) (see [below for nested schema](#nestedatt--spec--registry))
 - `starboard` (Attributes) (see [below for nested schema](#nestedatt--spec--starboard))
 - `token` (String)
 - `update_enforcer` (Boolean)
+- `validating_webhook_timeout` (Number) Timeout for the validating webhook in seconds
 
 <a id="nestedatt--spec--config"></a>
 ### Nested Schema for `spec.config`

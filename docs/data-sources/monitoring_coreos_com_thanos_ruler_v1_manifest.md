@@ -3286,17 +3286,17 @@ Optional:
 <a id="nestedatt--spec--web--tls_config"></a>
 ### Nested Schema for `spec.web.tls_config`
 
-Required:
-
-- `cert` (Attributes) Contains the TLS certificate for the server. (see [below for nested schema](#nestedatt--spec--web--tls_config--cert))
-- `key_secret` (Attributes) Secret containing the TLS key for the server. (see [below for nested schema](#nestedatt--spec--web--tls_config--key_secret))
-
 Optional:
 
+- `cert` (Attributes) Contains the TLS certificate for the server. (see [below for nested schema](#nestedatt--spec--web--tls_config--cert))
+- `cert_file` (String) Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.
 - `cipher_suites` (List of String) List of supported cipher suites for TLS versions up to TLS 1.2. If empty, Go default cipher suites are used. Available cipher suites are documented in the go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants
 - `client_auth_type` (String) Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType
 - `client_ca` (Attributes) Contains the CA certificate for client certificate authentication to the server. (see [below for nested schema](#nestedatt--spec--web--tls_config--client_ca))
+- `client_ca_file` (String) Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.
 - `curve_preferences` (List of String) Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the go documentation: https://golang.org/pkg/crypto/tls/#CurveID
+- `key_file` (String) Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.
+- `key_secret` (Attributes) Secret containing the TLS key for the server. (see [below for nested schema](#nestedatt--spec--web--tls_config--key_secret))
 - `max_version` (String) Maximum TLS version that is acceptable. Defaults to TLS13.
 - `min_version` (String) Minimum TLS version that is acceptable. Defaults to TLS12.
 - `prefer_server_cipher_suites` (Boolean) Controls whether the server selects the client's most preferred cipher suite, or the server's most preferred cipher suite. If true then the server's preference, as expressed in the order of elements in cipherSuites, is used.
@@ -3336,19 +3336,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--web--tls_config--key_secret"></a>
-### Nested Schema for `spec.web.tls_config.key_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
 <a id="nestedatt--spec--web--tls_config--client_ca"></a>
 ### Nested Schema for `spec.web.tls_config.client_ca`
 
@@ -3372,6 +3359,20 @@ Optional:
 
 <a id="nestedatt--spec--web--tls_config--client_ca--secret"></a>
 ### Nested Schema for `spec.web.tls_config.client_ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--web--tls_config--key_secret"></a>
+### Nested Schema for `spec.web.tls_config.key_secret`
 
 Required:
 

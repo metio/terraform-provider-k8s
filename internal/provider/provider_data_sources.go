@@ -3300,8 +3300,6 @@ func allDataSources() []func() datasource.DataSource {
 		policy_kubeedge_io_v1alpha1.NewPolicyKubeedgeIoServiceAccountAccessV1Alpha1Manifest,
 		// policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1DataSource,
 		policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest,
-		// policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1DataSource,
-		policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest,
 		// policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1DataSource,
 		policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest,
 		// policy_v1.NewPolicyPodDisruptionBudgetV1DataSource,

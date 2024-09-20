@@ -423,6 +423,7 @@ Optional:
 - `create_db_user_mode` (String) CreateDatabaseUserMode allows users to be automatically created on a database when not set to off. 0 is 'unspecified', 1 is 'off', 2 is 'keep', 3 is 'best_effort_drop'.
 - `create_desktop_user` (Boolean) CreateDesktopUser allows users to be automatically created on a Windows desktop
 - `create_host_user` (Boolean) CreateHostUser allows users to be automatically created on a host
+- `create_host_user_default_shell` (String) CreateHostUserDefaultShell is used to configure the default shell for newly provisioned host users.
 - `create_host_user_mode` (String) CreateHostUserMode allows users to be automatically created on a host when not set to off. 0 is 'unspecified'; 1 is 'off'; 2 is 'drop' (removed for v15 and above), 3 is 'keep'; 4 is 'insecure-drop'.
 - `desktop_clipboard` (Boolean) DesktopClipboard indicates whether clipboard sharing is allowed between the user's workstation and the remote desktop. It defaults to true unless explicitly set to false.
 - `desktop_directory_sharing` (Boolean) DesktopDirectorySharing indicates whether directory sharing is allowed between the user's workstation and the remote desktop. It defaults to false unless explicitly set to true.

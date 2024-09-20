@@ -219,20 +219,18 @@ Optional:
 <a id="nestedatt--spec--resource_ref"></a>
 ### Nested Schema for `spec.resource_ref`
 
-Optional:
+Required:
 
-- `ingress` (Attributes) Ingress selects a kubernetes.networking.k8s.io/v1.Ingress resource (see [below for nested schema](#nestedatt--spec--resource_ref--ingress))
-
-<a id="nestedatt--spec--resource_ref--ingress"></a>
-### Nested Schema for `spec.resource_ref.ingress`
+- `api_version` (String) APIVersion of the referenced resource
+- `kind` (String) Kind of the referenced resource
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--resource_ref--ingress--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--resource_ref--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--resource_ref--ingress--match_expressions"></a>
-### Nested Schema for `spec.resource_ref.ingress.match_expressions`
+<a id="nestedatt--spec--resource_ref--match_expressions"></a>
+### Nested Schema for `spec.resource_ref.match_expressions`
 
 Required:
 

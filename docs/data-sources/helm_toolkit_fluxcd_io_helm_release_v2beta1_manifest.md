@@ -55,11 +55,11 @@ Optional:
 
 Required:
 
+- `chart` (Attributes) Chart defines the template of the v1beta2.HelmChart that should be created for this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
 - `interval` (String) Interval at which to reconcile the Helm release. This interval is approximate and may be subject to jitter to ensure efficient use of resources.
 
 Optional:
 
-- `chart` (Attributes) Chart defines the template of the v1beta2.HelmChart that should be created for this HelmRelease. (see [below for nested schema](#nestedatt--spec--chart))
 - `chart_ref` (Attributes) ChartRef holds a reference to a source controller resource containing the Helm chart artifact. Note: this field is provisional to the v2 API, and not actively used by v2beta1 HelmReleases. (see [below for nested schema](#nestedatt--spec--chart_ref))
 - `depends_on` (Attributes List) DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled. (see [below for nested schema](#nestedatt--spec--depends_on))
 - `drift_detection` (Attributes) DriftDetection holds the configuration for detecting and handling differences between the manifest in the Helm storage and the resources currently existing in the cluster. Note: this field is provisional to the v2beta2 API, and not actively used by v2beta1 HelmReleases. (see [below for nested schema](#nestedatt--spec--drift_detection))
@@ -114,12 +114,12 @@ Optional:
 
 Required:
 
+- `kind` (String) Kind of the referent.
 - `name` (String) Name of the referent.
 
 Optional:
 
 - `api_version` (String) APIVersion of the referent.
-- `kind` (String) Kind of the referent.
 - `namespace` (String) Namespace of the referent.
 
 

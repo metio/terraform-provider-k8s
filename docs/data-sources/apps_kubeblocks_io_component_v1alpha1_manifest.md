@@ -61,13 +61,14 @@ Required:
 Optional:
 
 - `affinity` (Attributes) Specifies a group of affinity scheduling rules for the Component. It allows users to control how the Component's Pods are scheduled onto nodes in the Cluster. Deprecated since v0.10, replaced by the 'schedulingPolicy' field. (see [below for nested schema](#nestedatt--spec--affinity))
-- `annotations` (Map of String) Specifies Annotations to override or add for underlying Pods.
+- `annotations` (Map of String) Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.
 - `configs` (Attributes List) Specifies the configuration content of a config template. (see [below for nested schema](#nestedatt--spec--configs))
 - `disable_exporter` (Boolean) Determines whether metrics exporter information is annotated on the Component's headless Service. If set to true, the following annotations will not be patched into the Service: - 'monitor.kubeblocks.io/path' - 'monitor.kubeblocks.io/port' - 'monitor.kubeblocks.io/scheme' These annotations allow the Prometheus installed by KubeBlocks to discover and scrape metrics from the exporter.
 - `enabled_logs` (List of String) Specifies which types of logs should be collected for the Cluster. The log types are defined in the 'componentDefinition.spec.logConfigs' field with the LogConfig entries. The elements in the 'enabledLogs' array correspond to the names of the LogConfig entries. For example, if the 'componentDefinition.spec.logConfigs' defines LogConfig entries with names 'slow_query_log' and 'error_log', you can enable the collection of these logs by including their names in the 'enabledLogs' array: '''yaml enabledLogs: - slow_query_log - error_log '''
 - `env` (Attributes List) List of environment variables to add. (see [below for nested schema](#nestedatt--spec--env))
+- `instance_update_strategy` (Attributes) Indicates the InstanceUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template. (see [below for nested schema](#nestedatt--spec--instance_update_strategy))
 - `instances` (Attributes List) Allows for the customization of configuration values for each instance within a Component. An Instance represent a single replica (Pod and associated K8s resources like PVCs, Services, and ConfigMaps). While instances typically share a common configuration as defined in the ClusterComponentSpec, they can require unique settings in various scenarios: For example: - A database Component might require different resource allocations for primary and secondary instances, with primaries needing more resources. - During a rolling upgrade, a Component may first update the image for one or a few instances, and then update the remaining instances after verifying that the updated instances are functioning correctly. InstanceTemplate allows for specifying these unique configurations per instance. Each instance's name is constructed using the pattern: $(component.name)-$(template.name)-$(ordinal), starting with an ordinal of 0. It is crucial to maintain unique names for each InstanceTemplate to avoid conflicts. The sum of replicas across all InstanceTemplates should not exceed the total number of Replicas specified for the Component. Any remaining replicas will be generated using the default template and will follow the default naming rules. (see [below for nested schema](#nestedatt--spec--instances))
-- `labels` (Map of String) Specifies Labels to override or add for underlying Pods.
+- `labels` (Map of String) Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.
 - `offline_instances` (List of String) Specifies the names of instances to be transitioned to offline status. Marking an instance as offline results in the following: 1. The associated Pod is stopped, and its PersistentVolumeClaim (PVC) is retained for potential future reuse or data recovery, but it is no longer actively used. 2. The ordinal number assigned to this instance is preserved, ensuring it remains unique and avoiding conflicts with new instances. Setting instances to offline allows for a controlled scale-in process, preserving their data and maintaining ordinal consistency within the Cluster. Note that offline instances and their associated resources, such as PVCs, are not automatically deleted. The administrator must manually manage the cleanup and removal of these resources when they are no longer needed.
 - `parallel_pod_management_concurrency` (String) Controls the concurrency of pods during initial scale up, when replacing pods on nodes, or when scaling down. It only used when 'PodManagementPolicy' is set to 'Parallel'. The default Concurrency is 100%.
 - `pod_update_policy` (String) PodUpdatePolicy indicates how pods should be updated - 'StrictInPlace' indicates that only allows in-place upgrades. Any attempt to modify other fields will be rejected. - 'PreferInPlace' indicates that we will first attempt an in-place upgrade of the Pod. If that fails, it will fall back to the ReCreate, where pod will be recreated. Default value is 'PreferInPlace'
@@ -202,6 +203,15 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+
+
+<a id="nestedatt--spec--instance_update_strategy"></a>
+### Nested Schema for `spec.instance_update_strategy`
+
+Optional:
+
+- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.
+- `partition` (Number) Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is ComponentSpec.Replicas (i.e., update all pods).
 
 
 <a id="nestedatt--spec--instances"></a>

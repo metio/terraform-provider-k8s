@@ -53,15 +53,12 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `entrypoint` (String)
-
 Optional:
 
 - `active_deadline_seconds` (Number)
 - `backoff_limit` (Number)
 - `cluster_selector` (Map of String)
+- `entrypoint` (String)
 - `entrypoint_num_cpus` (Number)
 - `entrypoint_num_gpus` (Number)
 - `entrypoint_resources` (String)

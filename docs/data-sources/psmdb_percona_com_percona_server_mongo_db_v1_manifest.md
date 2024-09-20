@@ -64,6 +64,7 @@ Optional:
 - `cluster_service_dns_mode` (String)
 - `cluster_service_dns_suffix` (String)
 - `cr_version` (String)
+- `enable_volume_expansion` (Boolean)
 - `ignore_annotations` (List of String)
 - `ignore_labels` (List of String)
 - `image_pull_policy` (String)
@@ -3188,11 +3189,17 @@ Required:
 
 Optional:
 
+- `annotations` (Map of String)
 - `expose_type` (String)
+- `external_traffic_policy` (String)
+- `internal_traffic_policy` (String)
+- `labels` (Map of String)
+- `load_balancer_ip` (String)
 - `load_balancer_source_ranges` (List of String)
 - `node_port` (Number)
 - `service_annotations` (Map of String)
 - `service_labels` (Map of String)
+- `type` (String)
 
 
 <a id="nestedatt--spec--replsets--external_nodes"></a>
@@ -10320,11 +10327,17 @@ Required:
 
 Optional:
 
+- `annotations` (Map of String)
 - `expose_type` (String)
+- `external_traffic_policy` (String)
+- `internal_traffic_policy` (String)
+- `labels` (Map of String)
+- `load_balancer_ip` (String)
 - `load_balancer_source_ranges` (List of String)
 - `node_port` (Number)
 - `service_annotations` (Map of String)
 - `service_labels` (Map of String)
+- `type` (String)
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--external_nodes"></a>
@@ -15352,12 +15365,18 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String)
 - `expose_type` (String)
+- `external_traffic_policy` (String)
+- `internal_traffic_policy` (String)
+- `labels` (Map of String)
+- `load_balancer_ip` (String)
 - `load_balancer_source_ranges` (List of String)
 - `node_port` (Number)
 - `service_annotations` (Map of String)
 - `service_labels` (Map of String)
 - `service_per_pod` (Boolean)
+- `type` (String)
 
 
 <a id="nestedatt--spec--sharding--mongos--host_aliases"></a>

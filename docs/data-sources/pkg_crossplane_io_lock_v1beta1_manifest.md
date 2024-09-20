@@ -65,6 +65,6 @@ Required:
 
 Required:
 
-- `constraints` (String) Constraints is a valid semver range, which will be used to select a valid dependency version.
+- `constraints` (String) Constraints is a valid semver range or a digest, which will be used to select a valid dependency version.
 - `package` (String) Package is the OCI image name without a tag or digest.
 - `type` (String) Type is the type of package. Can be either Configuration or Provider.

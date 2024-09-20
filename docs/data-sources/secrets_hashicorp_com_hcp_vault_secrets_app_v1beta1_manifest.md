@@ -63,6 +63,7 @@ Optional:
 - `hcp_auth_ref` (String) HCPAuthRef to the HCPAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to the namespace of the HCPAuth CR. If no value is specified for HCPAuthRef the Operator will default to the 'default' HCPAuth, configured in the operator's namespace.
 - `refresh_after` (String) RefreshAfter a period of time, in duration notation e.g. 30s, 1m, 24h
 - `rollout_restart_targets` (Attributes List) RolloutRestartTargets should be configured whenever the application(s) consuming the HCP Vault Secrets App does not support dynamically reloading a rotated secret. In that case one, or more RolloutRestartTarget(s) can be configured here. The Operator will trigger a 'rollout-restart' for each target whenever the Vault secret changes between reconciliation events. See RolloutRestartTarget for more details. (see [below for nested schema](#nestedatt--spec--rollout_restart_targets))
+- `sync_config` (Attributes) SyncConfig configures sync behavior from HVS to VSO (see [below for nested schema](#nestedatt--spec--sync_config))
 
 <a id="nestedatt--spec--destination"></a>
 ### Nested Schema for `spec.destination`
@@ -139,3 +140,18 @@ Required:
 
 - `kind` (String) Kind of the resource
 - `name` (String) Name of the resource
+
+
+<a id="nestedatt--spec--sync_config"></a>
+### Nested Schema for `spec.sync_config`
+
+Optional:
+
+- `dynamic` (Attributes) Dynamic configures sync behavior for dynamic secrets. (see [below for nested schema](#nestedatt--spec--sync_config--dynamic))
+
+<a id="nestedatt--spec--sync_config--dynamic"></a>
+### Nested Schema for `spec.sync_config.dynamic`
+
+Optional:
+
+- `renewal_percent` (Number) RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent minus jitter.

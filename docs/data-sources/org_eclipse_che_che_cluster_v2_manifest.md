@@ -760,7 +760,7 @@ Optional:
 
 Optional:
 
-- `allowed_source` (Attributes) AllowedSource defines the allowed sources on which workspaces can be started. (see [below for nested schema](#nestedatt--spec--dev_environments--allowed_source))
+- `allowed_sources` (Attributes) AllowedSources defines the allowed sources on which workspaces can be started. (see [below for nested schema](#nestedatt--spec--dev_environments--allowed_sources))
 - `container_build_configuration` (Attributes) Container build configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--container_build_configuration))
 - `default_components` (Attributes List) Default components applied to DevWorkspaces. These default components are meant to be used when a Devfile, that does not contain any components. (see [below for nested schema](#nestedatt--spec--dev_environments--default_components))
 - `default_editor` (String) The default editor to workspace create with. It could be a plugin ID or a URI. The plugin ID must have 'publisher/name/version' format. The URI must start from 'http://' or 'https://'.
@@ -778,6 +778,7 @@ Optional:
 - `persist_user_home` (Attributes) PersistUserHome defines configuration options for persisting the user home directory in workspaces. (see [below for nested schema](#nestedatt--spec--dev_environments--persist_user_home))
 - `pod_scheduler_name` (String) Pod scheduler for the workspace pods. If not specified, the pod scheduler is set to the default scheduler on the cluster.
 - `project_clone_container` (Attributes) Project clone container configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--project_clone_container))
+- `runtime_class_name` (String) RuntimeClassName specifies the spec.runtimeClassName for workspace pods.
 - `seconds_of_inactivity_before_idling` (Number) Idle timeout for workspaces in seconds. This timeout is the duration after which a workspace will be idled if there is no activity. To disable workspace idling due to inactivity, set this value to -1.
 - `seconds_of_run_before_idling` (Number) Run timeout for workspaces in seconds. This timeout is the maximum duration a workspace runs. To disable workspace run timeout, set this value to -1.
 - `security` (Attributes) Workspace security configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--security))
@@ -790,12 +791,12 @@ Optional:
 - `user` (Attributes) User configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--user))
 - `workspaces_pod_annotations` (Map of String) WorkspacesPodAnnotations defines additional annotations for workspace pods.
 
-<a id="nestedatt--spec--dev_environments--allowed_source"></a>
-### Nested Schema for `spec.dev_environments.allowed_source`
+<a id="nestedatt--spec--dev_environments--allowed_sources"></a>
+### Nested Schema for `spec.dev_environments.allowed_sources`
 
 Optional:
 
-- `urls` (List of String) The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs.
+- `urls` (List of String) The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs. Wildcards '*' are supported in URLs, allowing flexible matching for specific URL patterns. For instance, 'https://example.com/*' would allow CDEs to be initiated from any path within 'example.com'.
 
 
 <a id="nestedatt--spec--dev_environments--container_build_configuration"></a>

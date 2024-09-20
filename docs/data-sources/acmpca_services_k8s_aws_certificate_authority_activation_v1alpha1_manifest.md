@@ -62,6 +62,7 @@ Optional:
 - `certificate_authority_arn` (String) The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012
 - `certificate_authority_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--certificate_authority_ref))
 - `certificate_chain` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--certificate_chain))
+- `complete_certificate_chain_output` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--complete_certificate_chain_output))
 - `status` (String)
 
 <a id="nestedatt--spec--certificate"></a>
@@ -96,6 +97,19 @@ Optional:
 
 <a id="nestedatt--spec--certificate_chain"></a>
 ### Nested Schema for `spec.certificate_chain`
+
+Required:
+
+- `key` (String) Key is the key within the secret
+
+Optional:
+
+- `name` (String) name is unique within a namespace to reference a secret resource.
+- `namespace` (String) namespace defines the space within which the secret name must be unique.
+
+
+<a id="nestedatt--spec--complete_certificate_chain_output"></a>
+### Nested Schema for `spec.complete_certificate_chain_output`
 
 Required:
 

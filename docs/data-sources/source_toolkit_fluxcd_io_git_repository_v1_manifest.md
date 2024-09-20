@@ -62,6 +62,7 @@ Optional:
 
 - `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.
 - `include` (Attributes List) Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository. (see [below for nested schema](#nestedatt--spec--include))
+- `provider` (String) Provider used for authentication, can be 'azure', 'generic'. When not specified, defaults to 'generic'.
 - `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the Git server. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `recurse_submodules` (Boolean) RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings.
 - `ref` (Attributes) Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch. (see [below for nested schema](#nestedatt--spec--ref))
