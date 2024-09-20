@@ -51,10 +51,11 @@ type VolsyncBackubeReplicationDestinationV1Alpha1ManifestData struct {
 		} `tfsdk:"external" json:"external,omitempty"`
 		Paused *bool `tfsdk:"paused" json:"paused,omitempty"`
 		Rclone *struct {
-			AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
-			Capacity    *string   `tfsdk:"capacity" json:"capacity,omitempty"`
-			CopyMethod  *string   `tfsdk:"copy_method" json:"copyMethod,omitempty"`
-			CustomCA    *struct {
+			AccessModes    *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
+			Capacity       *string   `tfsdk:"capacity" json:"capacity,omitempty"`
+			CleanupTempPVC *bool     `tfsdk:"cleanup_temp_pvc" json:"cleanupTempPVC,omitempty"`
+			CopyMethod     *string   `tfsdk:"copy_method" json:"copyMethod,omitempty"`
+			CustomCA       *struct {
 				ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
 				Key           *string `tfsdk:"key" json:"key,omitempty"`
 				SecretName    *string `tfsdk:"secret_name" json:"secretName,omitempty"`
@@ -244,6 +245,8 @@ type VolsyncBackubeReplicationDestinationV1Alpha1ManifestData struct {
 			CacheCapacity         *string   `tfsdk:"cache_capacity" json:"cacheCapacity,omitempty"`
 			CacheStorageClassName *string   `tfsdk:"cache_storage_class_name" json:"cacheStorageClassName,omitempty"`
 			Capacity              *string   `tfsdk:"capacity" json:"capacity,omitempty"`
+			CleanupCachePVC       *bool     `tfsdk:"cleanup_cache_pvc" json:"cleanupCachePVC,omitempty"`
+			CleanupTempPVC        *bool     `tfsdk:"cleanup_temp_pvc" json:"cleanupTempPVC,omitempty"`
 			CopyMethod            *string   `tfsdk:"copy_method" json:"copyMethod,omitempty"`
 			CustomCA              *struct {
 				ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
@@ -434,6 +437,7 @@ type VolsyncBackubeReplicationDestinationV1Alpha1ManifestData struct {
 			AccessModes    *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
 			Address        *string            `tfsdk:"address" json:"address,omitempty"`
 			Capacity       *string            `tfsdk:"capacity" json:"capacity,omitempty"`
+			CleanupTempPVC *bool              `tfsdk:"cleanup_temp_pvc" json:"cleanupTempPVC,omitempty"`
 			CopyMethod     *string            `tfsdk:"copy_method" json:"copyMethod,omitempty"`
 			DestinationPVC *string            `tfsdk:"destination_pvc" json:"destinationPVC,omitempty"`
 			MoverPodLabels *map[string]string `tfsdk:"mover_pod_labels" json:"moverPodLabels,omitempty"`
@@ -457,6 +461,7 @@ type VolsyncBackubeReplicationDestinationV1Alpha1ManifestData struct {
 		RsyncTLS *struct {
 			AccessModes    *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 			Capacity       *string   `tfsdk:"capacity" json:"capacity,omitempty"`
+			CleanupTempPVC *bool     `tfsdk:"cleanup_temp_pvc" json:"cleanupTempPVC,omitempty"`
 			CopyMethod     *string   `tfsdk:"copy_method" json:"copyMethod,omitempty"`
 			DestinationPVC *string   `tfsdk:"destination_pvc" json:"destinationPVC,omitempty"`
 			KeySecret      *string   `tfsdk:"key_secret" json:"keySecret,omitempty"`
@@ -771,6 +776,14 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.
 							"capacity": schema.StringAttribute{
 								Description:         "capacity is the size of the destination volume to create.",
 								MarkdownDescription: "capacity is the size of the destination volume to create.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cleanup_temp_pvc": schema.BoolAttribute{
+								Description:         "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								MarkdownDescription: "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2077,6 +2090,22 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.
 								Computed:            false,
 							},
 
+							"cleanup_cache_pvc": schema.BoolAttribute{
+								Description:         "Set this to true to delete the restic cache PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. Cache PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								MarkdownDescription: "Set this to true to delete the restic cache PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. Cache PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cleanup_temp_pvc": schema.BoolAttribute{
+								Description:         "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								MarkdownDescription: "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"copy_method": schema.StringAttribute{
 								Description:         "copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.",
 								MarkdownDescription: "copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.",
@@ -3372,6 +3401,14 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.
 								Computed:            false,
 							},
 
+							"cleanup_temp_pvc": schema.BoolAttribute{
+								Description:         "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								MarkdownDescription: "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"copy_method": schema.StringAttribute{
 								Description:         "copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.",
 								MarkdownDescription: "copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.",
@@ -3544,6 +3581,14 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.
 							"capacity": schema.StringAttribute{
 								Description:         "capacity is the size of the destination volume to create.",
 								MarkdownDescription: "capacity is the size of the destination volume to create.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cleanup_temp_pvc": schema.BoolAttribute{
+								Description:         "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
+								MarkdownDescription: "Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -291,6 +291,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Node_selector                                 *string   `tfsdk:"node_selector" json:"node_selector,omitempty"`
 		Nodeport_port                                 *int64    `tfsdk:"nodeport_port" json:"nodeport_port,omitempty"`
 		Old_postgres_configuration_secret             *string   `tfsdk:"old_postgres_configuration_secret" json:"old_postgres_configuration_secret,omitempty"`
+		Pg_dump_suffix                                *string   `tfsdk:"pg_dump_suffix" json:"pg_dump_suffix,omitempty"`
 		Postgres_annotations                          *string   `tfsdk:"postgres_annotations" json:"postgres_annotations,omitempty"`
 		Postgres_configuration_secret                 *string   `tfsdk:"postgres_configuration_secret" json:"postgres_configuration_secret,omitempty"`
 		Postgres_data_volume_init                     *bool     `tfsdk:"postgres_data_volume_init" json:"postgres_data_volume_init,omitempty"`
@@ -2534,6 +2535,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 							stringvalidator.LengthAtMost(255),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9][-a-zA-Z0-9]{0,253}[a-zA-Z0-9]$`), ""),
 						},
+					},
+
+					"pg_dump_suffix": schema.StringAttribute{
+						Description:         "Additional parameters for the pg_dump command during a migration",
+						MarkdownDescription: "Additional parameters for the pg_dump command during a migration",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"postgres_annotations": schema.StringAttribute{

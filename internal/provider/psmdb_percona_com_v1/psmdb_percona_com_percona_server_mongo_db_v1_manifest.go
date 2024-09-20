@@ -195,6 +195,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 		ClusterServiceDNSMode   *string   `tfsdk:"cluster_service_dns_mode" json:"clusterServiceDNSMode,omitempty"`
 		ClusterServiceDNSSuffix *string   `tfsdk:"cluster_service_dns_suffix" json:"clusterServiceDNSSuffix,omitempty"`
 		CrVersion               *string   `tfsdk:"cr_version" json:"crVersion,omitempty"`
+		EnableVolumeExpansion   *bool     `tfsdk:"enable_volume_expansion" json:"enableVolumeExpansion,omitempty"`
 		IgnoreAnnotations       *[]string `tfsdk:"ignore_annotations" json:"ignoreAnnotations,omitempty"`
 		IgnoreLabels            *[]string `tfsdk:"ignore_labels" json:"ignoreLabels,omitempty"`
 		Image                   *string   `tfsdk:"image" json:"image,omitempty"`
@@ -1246,12 +1247,18 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
 			Expose *struct {
+				Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Enabled                  *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				ExposeType               *string            `tfsdk:"expose_type" json:"exposeType,omitempty"`
+				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 				ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 				ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
+				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
 			ExternalNodes *[]struct {
 				Host     *string `tfsdk:"host" json:"host,omitempty"`
@@ -3996,12 +4003,18 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
 				Expose *struct {
+					Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Enabled                  *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 					ExposeType               *string            `tfsdk:"expose_type" json:"exposeType,omitempty"`
+					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 					ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
+					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
 				ExternalNodes *[]struct {
 					Host     *string `tfsdk:"host" json:"host,omitempty"`
@@ -5947,12 +5960,18 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
 				Expose *struct {
+					Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					ExposeType               *string            `tfsdk:"expose_type" json:"exposeType,omitempty"`
+					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 					ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 					ServicePerPod            *bool              `tfsdk:"service_per_pod" json:"servicePerPod,omitempty"`
+					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
 				HostAliases *[]struct {
 					Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
@@ -7866,6 +7885,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 					},
 
 					"cr_version": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"enable_volume_expansion": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -14946,6 +14973,15 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 									Description:         "",
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
+										"annotations": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"enabled": schema.BoolAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -14955,6 +14991,39 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										},
 
 										"expose_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"external_traffic_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"internal_traffic_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"load_balancer_ip": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -14992,6 +15061,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -33424,6 +33501,15 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enabled": schema.BoolAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -33433,6 +33519,39 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											},
 
 											"expose_type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"external_traffic_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"internal_traffic_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"load_balancer_ip": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -33470,6 +33589,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -46532,7 +46659,49 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"expose_type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"external_traffic_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"internal_traffic_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"load_balancer_ip": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -46576,6 +46745,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											},
 
 											"service_per_pod": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,

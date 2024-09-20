@@ -4045,7 +4045,8 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 			WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 		} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		UpdateStrategy *struct {
-			RollingUpdate *struct {
+			AutoUpdateDataPlane *bool `tfsdk:"auto_update_data_plane" json:"autoUpdateDataPlane,omitempty"`
+			RollingUpdate       *struct {
 				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 				Partition      *int64  `tfsdk:"partition" json:"partition,omitempty"`
 			} `tfsdk:"rolling_update" json:"rollingUpdate,omitempty"`
@@ -31414,6 +31415,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Description:         "UpdateStrategy defines how a MariaDB resource is updated.",
 						MarkdownDescription: "UpdateStrategy defines how a MariaDB resource is updated.",
 						Attributes: map[string]schema.Attribute{
+							"auto_update_data_plane": schema.BoolAttribute{
+								Description:         "AutoUpdateDataPlane indicates whether the Galera data plane version (agent and init containers) should be automatically updated based on the operator version. It defaults to false. Updating the operator will trigger updates on all the MariaDB instances that have this flag set to true. Thus, it is recommended to progressively set this flag after having updated the operator.",
+								MarkdownDescription: "AutoUpdateDataPlane indicates whether the Galera data plane version (agent and init containers) should be automatically updated based on the operator version. It defaults to false. Updating the operator will trigger updates on all the MariaDB instances that have this flag set to true. Thus, it is recommended to progressively set this flag after having updated the operator.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"rolling_update": schema.SingleNestedAttribute{
 								Description:         "RollingUpdate defines parameters for the RollingUpdate type.",
 								MarkdownDescription: "RollingUpdate defines parameters for the RollingUpdate type.",
@@ -31446,7 +31455,7 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("ReplicasFirstPrimaryLast", "RollingUpdate", "OnDelete"),
+									stringvalidator.OneOf("ReplicasFirstPrimaryLast", "RollingUpdate", "OnDelete", "Never"),
 								},
 							},
 						},

@@ -60,6 +60,11 @@ type AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1ManifestData stru
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"certificate_chain" json:"certificateChain,omitempty"`
+		CompleteCertificateChainOutput *struct {
+			Key       *string `tfsdk:"key" json:"key,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"complete_certificate_chain_output" json:"completeCertificateChainOutput,omitempty"`
 		Status *string `tfsdk:"status" json:"status,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -217,6 +222,39 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1Manifest) Sch
 					},
 
 					"certificate_chain": schema.SingleNestedAttribute{
+						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+						Attributes: map[string]schema.Attribute{
+							"key": schema.StringAttribute{
+								Description:         "Key is the key within the secret",
+								MarkdownDescription: "Key is the key within the secret",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "name is unique within a namespace to reference a secret resource.",
+								MarkdownDescription: "name is unique within a namespace to reference a secret resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "namespace defines the space within which the secret name must be unique.",
+								MarkdownDescription: "namespace defines the space within which the secret name must be unique.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"complete_certificate_chain_output": schema.SingleNestedAttribute{
 						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
 						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
 						Attributes: map[string]schema.Attribute{

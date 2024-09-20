@@ -126,8 +126,8 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasou
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"constraints": schema.StringAttribute{
-										Description:         "Constraints is a valid semver range, which will be used to select a valid dependency version.",
-										MarkdownDescription: "Constraints is a valid semver range, which will be used to select a valid dependency version.",
+										Description:         "Constraints is a valid semver range or a digest, which will be used to select a valid dependency version.",
+										MarkdownDescription: "Constraints is a valid semver range or a digest, which will be used to select a valid dependency version.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,

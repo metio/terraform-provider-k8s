@@ -7,6 +7,7 @@ package secrets_hashicorp_com_v1beta1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -78,6 +79,11 @@ type SecretsHashicorpComHcpvaultSecretsAppV1Beta1ManifestData struct {
 			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"rollout_restart_targets" json:"rolloutRestartTargets,omitempty"`
+		SyncConfig *struct {
+			Dynamic *struct {
+				RenewalPercent *int64 `tfsdk:"renewal_percent" json:"renewalPercent,omitempty"`
+			} `tfsdk:"dynamic" json:"dynamic,omitempty"`
+		} `tfsdk:"sync_config" json:"syncConfig,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -397,6 +403,36 @@ func (r *SecretsHashicorpComHcpvaultSecretsAppV1Beta1Manifest) Schema(_ context.
 									Optional:            false,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sync_config": schema.SingleNestedAttribute{
+						Description:         "SyncConfig configures sync behavior from HVS to VSO",
+						MarkdownDescription: "SyncConfig configures sync behavior from HVS to VSO",
+						Attributes: map[string]schema.Attribute{
+							"dynamic": schema.SingleNestedAttribute{
+								Description:         "Dynamic configures sync behavior for dynamic secrets.",
+								MarkdownDescription: "Dynamic configures sync behavior for dynamic secrets.",
+								Attributes: map[string]schema.Attribute{
+									"renewal_percent": schema.Int64Attribute{
+										Description:         "RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent minus jitter.",
+										MarkdownDescription: "RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent minus jitter.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(100),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

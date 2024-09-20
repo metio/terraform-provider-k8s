@@ -70,9 +70,13 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 				Tenancy         *string            `tfsdk:"tenancy" json:"tenancy,omitempty"`
 				TopologyKeys    *[]string          `tfsdk:"topology_keys" json:"topologyKeys,omitempty"`
 			} `tfsdk:"affinity" json:"affinity,omitempty"`
-			Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			ComponentDef    *string            `tfsdk:"component_def" json:"componentDef,omitempty"`
-			ComponentDefRef *string            `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ClassDefRef *struct {
+				Class *string `tfsdk:"class" json:"class,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"class_def_ref" json:"classDefRef,omitempty"`
+			ComponentDef    *string `tfsdk:"component_def" json:"componentDef,omitempty"`
+			ComponentDefRef *string `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
 			Configs         *[]struct {
 				ConfigMap *struct {
 					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
@@ -113,6 +117,10 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
+			InstanceUpdateStrategy *struct {
+				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				Partition      *int64  `tfsdk:"partition" json:"partition,omitempty"`
+			} `tfsdk:"instance_update_strategy" json:"instanceUpdateStrategy,omitempty"`
 			Instances *[]struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Env         *[]struct {
@@ -1408,9 +1416,13 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					Tenancy         *string            `tfsdk:"tenancy" json:"tenancy,omitempty"`
 					TopologyKeys    *[]string          `tfsdk:"topology_keys" json:"topologyKeys,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-				ComponentDef    *string            `tfsdk:"component_def" json:"componentDef,omitempty"`
-				ComponentDefRef *string            `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				ClassDefRef *struct {
+					Class *string `tfsdk:"class" json:"class,omitempty"`
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"class_def_ref" json:"classDefRef,omitempty"`
+				ComponentDef    *string `tfsdk:"component_def" json:"componentDef,omitempty"`
+				ComponentDefRef *string `tfsdk:"component_def_ref" json:"componentDefRef,omitempty"`
 				Configs         *[]struct {
 					ConfigMap *struct {
 						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
@@ -1451,6 +1463,10 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
+				InstanceUpdateStrategy *struct {
+					MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+					Partition      *int64  `tfsdk:"partition" json:"partition,omitempty"`
+				} `tfsdk:"instance_update_strategy" json:"instanceUpdateStrategy,omitempty"`
 				Instances *[]struct {
 					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Env         *[]struct {
@@ -2861,12 +2877,41 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"annotations": schema.MapAttribute{
-									Description:         "Specifies Annotations to override or add for underlying Pods.",
-									MarkdownDescription: "Specifies Annotations to override or add for underlying Pods.",
+									Description:         "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+									MarkdownDescription: "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"class_def_ref": schema.SingleNestedAttribute{
+									Description:         "References the class defined in ComponentClassDefinition. Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+									MarkdownDescription: "References the class defined in ComponentClassDefinition. Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+									Attributes: map[string]schema.Attribute{
+										"class": schema.StringAttribute{
+											Description:         "Defines the name of the class that is defined in the ComponentClassDefinition.",
+											MarkdownDescription: "Defines the name of the class that is defined in the ComponentClassDefinition.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Specifies the name of the ComponentClassDefinition.",
+											MarkdownDescription: "Specifies the name of the ComponentClassDefinition.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"component_def": schema.StringAttribute{
@@ -3150,6 +3195,31 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												Optional: true,
 												Computed: false,
 											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"instance_update_strategy": schema.SingleNestedAttribute{
+									Description:         "Indicates the InstanceUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template.",
+									MarkdownDescription: "Indicates the InstanceUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template.",
+									Attributes: map[string]schema.Attribute{
+										"max_unavailable": schema.StringAttribute{
+											Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.",
+											MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"partition": schema.Int64Attribute{
+											Description:         "Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is ComponentSpec.Replicas (i.e., update all pods).",
+											MarkdownDescription: "Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is ComponentSpec.Replicas (i.e., update all pods).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 									},
 									Required: false,
@@ -6767,8 +6837,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"labels": schema.MapAttribute{
-									Description:         "Specifies Labels to override or add for underlying Pods.",
-									MarkdownDescription: "Specifies Labels to override or add for underlying Pods.",
+									Description:         "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+									MarkdownDescription: "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -11955,12 +12025,41 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"annotations": schema.MapAttribute{
-											Description:         "Specifies Annotations to override or add for underlying Pods.",
-											MarkdownDescription: "Specifies Annotations to override or add for underlying Pods.",
+											Description:         "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+											MarkdownDescription: "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"class_def_ref": schema.SingleNestedAttribute{
+											Description:         "References the class defined in ComponentClassDefinition. Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+											MarkdownDescription: "References the class defined in ComponentClassDefinition. Deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+											Attributes: map[string]schema.Attribute{
+												"class": schema.StringAttribute{
+													Description:         "Defines the name of the class that is defined in the ComponentClassDefinition.",
+													MarkdownDescription: "Defines the name of the class that is defined in the ComponentClassDefinition.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Specifies the name of the ComponentClassDefinition.",
+													MarkdownDescription: "Specifies the name of the ComponentClassDefinition.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtMost(63),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"component_def": schema.StringAttribute{
@@ -12244,6 +12343,31 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 														Optional: true,
 														Computed: false,
 													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"instance_update_strategy": schema.SingleNestedAttribute{
+											Description:         "Indicates the InstanceUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template.",
+											MarkdownDescription: "Indicates the InstanceUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template.",
+											Attributes: map[string]schema.Attribute{
+												"max_unavailable": schema.StringAttribute{
+													Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.",
+													MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"partition": schema.Int64Attribute{
+													Description:         "Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is ComponentSpec.Replicas (i.e., update all pods).",
+													MarkdownDescription: "Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is ComponentSpec.Replicas (i.e., update all pods).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 											Required: false,
@@ -15861,8 +15985,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Specifies Labels to override or add for underlying Pods.",
-											MarkdownDescription: "Specifies Labels to override or add for underlying Pods.",
+											Description:         "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+											MarkdownDescription: "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

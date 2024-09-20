@@ -692,16 +692,18 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 		} `tfsdk:"restart" json:"restart,omitempty"`
 		Restore *struct {
-			BackupName                        *string `tfsdk:"backup_name" json:"backupName,omitempty"`
-			DeferPostReadyUntilClusterRunning *bool   `tfsdk:"defer_post_ready_until_cluster_running" json:"deferPostReadyUntilClusterRunning,omitempty"`
-			RestorePointInTime                *string `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
-			VolumeRestorePolicy               *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
+			BackupName                        *string            `tfsdk:"backup_name" json:"backupName,omitempty"`
+			DeferPostReadyUntilClusterRunning *bool              `tfsdk:"defer_post_ready_until_cluster_running" json:"deferPostReadyUntilClusterRunning,omitempty"`
+			Env                               *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			RestorePointInTime                *string            `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
+			VolumeRestorePolicy               *string            `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
 		} `tfsdk:"restore" json:"restore,omitempty"`
 		RestoreSpec *struct {
-			BackupName                        *string `tfsdk:"backup_name" json:"backupName,omitempty"`
-			DeferPostReadyUntilClusterRunning *bool   `tfsdk:"defer_post_ready_until_cluster_running" json:"deferPostReadyUntilClusterRunning,omitempty"`
-			RestorePointInTime                *string `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
-			VolumeRestorePolicy               *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
+			BackupName                        *string            `tfsdk:"backup_name" json:"backupName,omitempty"`
+			DeferPostReadyUntilClusterRunning *bool              `tfsdk:"defer_post_ready_until_cluster_running" json:"deferPostReadyUntilClusterRunning,omitempty"`
+			Env                               *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			RestorePointInTime                *string            `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
+			VolumeRestorePolicy               *string            `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
 		} `tfsdk:"restore_spec" json:"restoreSpec,omitempty"`
 		Switchover *[]struct {
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
@@ -4962,8 +4964,8 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 											},
 
 											"target_node_name": schema.StringAttribute{
-												Description:         "The instance will rebuild on the specified node when the instance uses local PersistentVolume as the storage disk. If not set, it will rebuild on a random node.",
-												MarkdownDescription: "The instance will rebuild on the specified node when the instance uses local PersistentVolume as the storage disk. If not set, it will rebuild on a random node.",
+												Description:         "The instance will rebuild on the specified node. If not set, it will rebuild on a random node.",
+												MarkdownDescription: "The instance will rebuild on the specified node. If not set, it will rebuild on a random node.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5241,6 +5243,15 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"env": schema.MapAttribute{
+								Description:         "Specifies a list of environment variables to be set in the container.",
+								MarkdownDescription: "Specifies a list of environment variables to be set in the container.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"restore_point_in_time": schema.StringAttribute{
 								Description:         "Specifies the point in time to which the restore should be performed. Supported time formats: - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
 								MarkdownDescription: "Specifies the point in time to which the restore should be performed. Supported time formats: - RFC3339 format, e.g. '2023-11-25T18:52:53Z' - A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'",
@@ -5280,6 +5291,15 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 							"defer_post_ready_until_cluster_running": schema.BoolAttribute{
 								Description:         "Controls the timing of PostReady actions during the recovery process. If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding. This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
 								MarkdownDescription: "Controls the timing of PostReady actions during the recovery process. If false (default), PostReady actions execute when the Component reaches the 'Running' state. If true, PostReady actions are delayed until the entire Cluster is 'Running,' ensuring the cluster's overall stability before proceeding. This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"env": schema.MapAttribute{
+								Description:         "Specifies a list of environment variables to be set in the container.",
+								MarkdownDescription: "Specifies a list of environment variables to be set in the container.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

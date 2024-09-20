@@ -1308,8 +1308,10 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"secret" json:"secret,omitempty"`
 				} `tfsdk:"cert" json:"cert,omitempty"`
+				CertFile       *string   `tfsdk:"cert_file" json:"certFile,omitempty"`
 				CipherSuites   *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 				ClientAuthType *string   `tfsdk:"client_auth_type" json:"clientAuthType,omitempty"`
+				ClientCAFile   *string   `tfsdk:"client_ca_file" json:"clientCAFile,omitempty"`
 				Client_ca      *struct {
 					ConfigMap *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1323,6 +1325,7 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 					} `tfsdk:"secret" json:"secret,omitempty"`
 				} `tfsdk:"client_ca" json:"client_ca,omitempty"`
 				CurvePreferences *[]string `tfsdk:"curve_preferences" json:"curvePreferences,omitempty"`
+				KeyFile          *string   `tfsdk:"key_file" json:"keyFile,omitempty"`
 				KeySecret        *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -9939,9 +9942,17 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												Computed: false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
+									},
+
+									"cert_file": schema.StringAttribute{
+										Description:         "Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.",
+										MarkdownDescription: "Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"cipher_suites": schema.ListAttribute{
@@ -9956,6 +9967,14 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									"client_auth_type": schema.StringAttribute{
 										Description:         "Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
 										MarkdownDescription: "Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_ca_file": schema.StringAttribute{
+										Description:         "Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.",
+										MarkdownDescription: "Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10045,6 +10064,14 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"key_file": schema.StringAttribute{
+										Description:         "Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.",
+										MarkdownDescription: "Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"key_secret": schema.SingleNestedAttribute{
 										Description:         "Secret containing the TLS key for the server.",
 										MarkdownDescription: "Secret containing the TLS key for the server.",
@@ -10073,8 +10100,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 

@@ -113,9 +113,15 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 						KmsKeyServiceAccount *string `tfsdk:"kms_key_service_account" json:"kmsKeyServiceAccount,omitempty"`
 					} `tfsdk:"encryption_key" json:"encryptionKey,omitempty"`
 				} `tfsdk:"os_disk" json:"osDisk,omitempty"`
-				SecureBoot *string   `tfsdk:"secure_boot" json:"secureBoot,omitempty"`
-				Type       *string   `tfsdk:"type" json:"type,omitempty"`
-				Zones      *[]string `tfsdk:"zones" json:"zones,omitempty"`
+				SecureBoot     *string `tfsdk:"secure_boot" json:"secureBoot,omitempty"`
+				ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+				Type           *string `tfsdk:"type" json:"type,omitempty"`
+				UserTags       *[]struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					ParentID *string `tfsdk:"parent_id" json:"parentID,omitempty"`
+					Value    *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"user_tags" json:"userTags,omitempty"`
+				Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"gcp" json:"gcp,omitempty"`
 			Ibmcloud *struct {
 				BootVolume *struct {
@@ -733,12 +739,55 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										},
 									},
 
+									"service_account": schema.StringAttribute{
+										Description:         "ServiceAccount is the email of a gcp service account to be attached to worker nodes in order to provide the permissions required by the cloud provider. For the default worker MachinePool, it is the user's responsibility to match this to the value provided in the install-config.",
+										MarkdownDescription: "ServiceAccount is the email of a gcp service account to be attached to worker nodes in order to provide the permissions required by the cloud provider. For the default worker MachinePool, it is the user's responsibility to match this to the value provided in the install-config.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"type": schema.StringAttribute{
 										Description:         "InstanceType defines the GCP instance type. eg. n1-standard-4",
 										MarkdownDescription: "InstanceType defines the GCP instance type. eg. n1-standard-4",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+									},
+
+									"user_tags": schema.ListNestedAttribute{
+										Description:         "userTags has additional keys and values that we will add as tags to the providerSpec of MachineSets that we creates on GCP. Tag key and tag value should be the shortnames of the tag key and tag value resource. Consumer is responsible for using this only for spokes where custom tags are supported.",
+										MarkdownDescription: "userTags has additional keys and values that we will add as tags to the providerSpec of MachineSets that we creates on GCP. Tag key and tag value should be the shortnames of the tag key and tag value resource. Consumer is responsible for using this only for spokes where custom tags are supported.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "key is the key part of the tag. A tag key can have a maximum of 63 characters and cannot be empty. Tag key must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters '._-'.",
+													MarkdownDescription: "key is the key part of the tag. A tag key can have a maximum of 63 characters and cannot be empty. Tag key must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters '._-'.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"parent_id": schema.StringAttribute{
+													Description:         "parentID is the ID of the hierarchical resource where the tags are defined, e.g. at the Organization or the Project level. To find the Organization ID or Project ID refer to the following pages: https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id, https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects. An OrganizationID must consist of decimal numbers, and cannot have leading zeroes. A ProjectID must be 6 to 30 characters in length, can only contain lowercase letters, numbers, and hyphens, and must start with a letter, and cannot end with a hyphen.",
+													MarkdownDescription: "parentID is the ID of the hierarchical resource where the tags are defined, e.g. at the Organization or the Project level. To find the Organization ID or Project ID refer to the following pages: https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id, https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects. An OrganizationID must consist of decimal numbers, and cannot have leading zeroes. A ProjectID must be 6 to 30 characters in length, can only contain lowercase letters, numbers, and hyphens, and must start with a letter, and cannot end with a hyphen.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "value is the value part of the tag. A tag value can have a maximum of 63 characters and cannot be empty. Tag value must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters '_-.@%=+:,*#&(){}[]' and spaces.",
+													MarkdownDescription: "value is the value part of the tag. A tag value can have a maximum of 63 characters and cannot be empty. Tag value must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters '_-.@%=+:,*#&(){}[]' and spaces.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"zones": schema.ListAttribute{

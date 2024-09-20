@@ -272,6 +272,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				AllowWarnings                    *bool   `tfsdk:"allow_warnings" json:"allowWarnings,omitempty"`
 				AlwaysAccept                     *bool   `tfsdk:"always_accept" json:"alwaysAccept,omitempty"`
 				DisableTransformationValidation  *bool   `tfsdk:"disable_transformation_validation" json:"disableTransformationValidation,omitempty"`
+				FullEnvoyValidation              *bool   `tfsdk:"full_envoy_validation" json:"fullEnvoyValidation,omitempty"`
 				IgnoreGlooValidationFailure      *bool   `tfsdk:"ignore_gloo_validation_failure" json:"ignoreGlooValidationFailure,omitempty"`
 				ProxyValidationServerAddr        *string `tfsdk:"proxy_validation_server_addr" json:"proxyValidationServerAddr,omitempty"`
 				ServerEnabled                    *bool   `tfsdk:"server_enabled" json:"serverEnabled,omitempty"`
@@ -2114,6 +2115,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"disable_transformation_validation": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"full_envoy_validation": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

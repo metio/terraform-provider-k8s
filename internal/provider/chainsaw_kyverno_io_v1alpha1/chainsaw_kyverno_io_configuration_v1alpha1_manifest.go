@@ -1571,13 +1571,13 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"report_format": schema.StringAttribute{
-						Description:         "ReportFormat determines test report format (JSON|XML|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
-						MarkdownDescription: "ReportFormat determines test report format (JSON|XML|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
+						Description:         "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
+						MarkdownDescription: "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("JSON", "XML"),
+							stringvalidator.OneOf("JSON", "XML", "JUNIT-TEST", "JUNIT-STEP", "JUNIT-OPERATION"),
 						},
 					},
 

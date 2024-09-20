@@ -79,10 +79,9 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 		Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		LifecycleActions *struct {
 			AccountProvision *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -108,22 +107,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"account_provision" json:"accountProvision,omitempty"`
 			DataDump *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -149,22 +162,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"data_dump" json:"dataDump,omitempty"`
 			DataLoad *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -190,22 +217,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"data_load" json:"dataLoad,omitempty"`
 			MemberJoin *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -231,22 +272,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"member_join" json:"memberJoin,omitempty"`
 			MemberLeave *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -272,22 +327,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"member_leave" json:"memberLeave,omitempty"`
 			PostProvision *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -313,22 +382,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"post_provision" json:"postProvision,omitempty"`
 			PreTerminate *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -354,22 +437,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"pre_terminate" json:"preTerminate,omitempty"`
 			Readonly *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -395,22 +492,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"readonly" json:"readonly,omitempty"`
 			Readwrite *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -436,22 +547,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"readwrite" json:"readwrite,omitempty"`
 			Reconfigure *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -477,22 +602,36 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
 			} `tfsdk:"reconfigure" json:"reconfigure,omitempty"`
 			RoleProbe *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				BuiltinHandler *string `tfsdk:"builtin_handler" json:"builtinHandler,omitempty"`
+				CustomHandler  *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -518,26 +657,41 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				FailureThreshold    *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
-				InitialDelaySeconds *int64  `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
-				PeriodSeconds       *int64  `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
-				PreCondition        *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy         *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				SuccessThreshold *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-				TimeoutSeconds   *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"custom_handler" json:"customHandler,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"role_probe" json:"roleProbe,omitempty"`
 			Switchover *struct {
-				Exec *struct {
-					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
-					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
-					Container *string   `tfsdk:"container" json:"container,omitempty"`
+				ScriptSpecSelectors *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"script_spec_selectors" json:"scriptSpecSelectors,omitempty"`
+				WithCandidate *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
 					Env       *[]struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -563,23 +717,97 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
-					Image             *string `tfsdk:"image" json:"image,omitempty"`
-					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
-				} `tfsdk:"exec" json:"exec,omitempty"`
-				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
-				RetryPolicy  *struct {
-					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
-					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
-				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"with_candidate" json:"withCandidate,omitempty"`
+				WithoutCandidate *struct {
+					Container *string `tfsdk:"container" json:"container,omitempty"`
+					Env       *[]struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"env" json:"env,omitempty"`
+					Exec *struct {
+						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					Http *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Method *string `tfsdk:"method" json:"method,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Image        *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+					RetryPolicy  *struct {
+						MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
+					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+					TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"without_candidate" json:"withoutCandidate,omitempty"`
 			} `tfsdk:"switchover" json:"switchover,omitempty"`
 		} `tfsdk:"lifecycle_actions" json:"lifecycleActions,omitempty"`
 		LogConfigs *[]struct {
 			FilePathPattern *string `tfsdk:"file_path_pattern" json:"filePathPattern,omitempty"`
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
-		MinReadySeconds     *int64  `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		MinReadySeconds *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		Monitor         *struct {
+			BuiltIn        *bool `tfsdk:"built_in" json:"builtIn,omitempty"`
+			ExporterConfig *struct {
+				ScrapePath *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
+				ScrapePort *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
+			} `tfsdk:"exporter_config" json:"exporterConfig,omitempty"`
+		} `tfsdk:"monitor" json:"monitor,omitempty"`
 		PodManagementPolicy *string `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
 		PolicyRules         *[]struct {
 			ApiGroups       *[]string `tfsdk:"api_groups" json:"apiGroups,omitempty"`
@@ -593,7 +821,8 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			MaxReplicas *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
 			MinReplicas *int64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
 		} `tfsdk:"replicas_limit" json:"replicasLimit,omitempty"`
-		Roles *[]struct {
+		RoleArbitrator *string `tfsdk:"role_arbitrator" json:"roleArbitrator,omitempty"`
+		Roles          *[]struct {
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			Serviceable *bool   `tfsdk:"serviceable" json:"serviceable,omitempty"`
 			Votable     *bool   `tfsdk:"votable" json:"votable,omitempty"`
@@ -1954,14 +2183,10 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 			Value      *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom  *struct {
-				ClusterVarRef *struct {
-					ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
-					ClusterUID  *string `tfsdk:"cluster_uid" json:"clusterUID,omitempty"`
-					Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				} `tfsdk:"cluster_var_ref" json:"clusterVarRef,omitempty"`
 				ComponentVarRef *struct {
 					CompDef                     *string `tfsdk:"comp_def" json:"compDef,omitempty"`
 					ComponentName               *string `tfsdk:"component_name" json:"componentName,omitempty"`
+					InstanceNames               *string `tfsdk:"instance_names" json:"instanceNames,omitempty"`
 					MultipleClusterObjectOption *struct {
 						CombinedOption *struct {
 							FlattenFormat *struct {
@@ -1973,20 +2198,10 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
 						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
-					Name            *string `tfsdk:"name" json:"name,omitempty"`
-					Optional        *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					PodFQDNs        *string `tfsdk:"pod_fqd_ns" json:"podFQDNs,omitempty"`
-					PodFQDNsForRole *struct {
-						Option *string `tfsdk:"option" json:"option,omitempty"`
-						Role   *string `tfsdk:"role" json:"role,omitempty"`
-					} `tfsdk:"pod_fqd_ns_for_role" json:"podFQDNsForRole,omitempty"`
-					PodNames        *string `tfsdk:"pod_names" json:"podNames,omitempty"`
-					PodNamesForRole *struct {
-						Option *string `tfsdk:"option" json:"option,omitempty"`
-						Role   *string `tfsdk:"role" json:"role,omitempty"`
-					} `tfsdk:"pod_names_for_role" json:"podNamesForRole,omitempty"`
-					Replicas  *string `tfsdk:"replicas" json:"replicas,omitempty"`
-					ShortName *string `tfsdk:"short_name" json:"shortName,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					PodFQDNs *string `tfsdk:"pod_fqd_ns" json:"podFQDNs,omitempty"`
+					Replicas *string `tfsdk:"replicas" json:"replicas,omitempty"`
 				} `tfsdk:"component_var_ref" json:"componentVarRef,omitempty"`
 				ConfigMapKeyRef *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -2081,7 +2296,6 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 						Name   *string `tfsdk:"name" json:"name,omitempty"`
 						Option *string `tfsdk:"option" json:"option,omitempty"`
 					} `tfsdk:"port" json:"port,omitempty"`
-					ServiceType *string `tfsdk:"service_type" json:"serviceType,omitempty"`
 				} `tfsdk:"service_var_ref" json:"serviceVarRef,omitempty"`
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 		} `tfsdk:"vars" json:"vars,omitempty"`
@@ -2438,34 +2652,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						MarkdownDescription: "Defines a set of hooks and procedures that customize the behavior of a Component throughout its lifecycle. Actions are triggered at specific lifecycle stages: - 'postProvision': Defines the hook to be executed after the creation of a Component, with 'preCondition' specifying when the action should be fired relative to the Component's lifecycle stages: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. - 'preTerminate': Defines the hook to be executed before terminating a Component. - 'roleProbe': Defines the procedure which is invoked regularly to assess the role of replicas. - 'switchover': Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, such as before planned maintenance or upgrades on the current leader node. - 'memberJoin': Defines the procedure to add a new replica to the replication group. - 'memberLeave': Defines the method to remove a replica from the replication group. - 'readOnly': Defines the procedure to switch a replica into the read-only state. - 'readWrite': transition a replica from the read-only state back to the read-write state. - 'dataDump': Defines the procedure to export the data from a replica. - 'dataLoad': Defines the procedure to import data into a replica. - 'reconfigure': Defines the procedure that update a replica with new configuration file. - 'accountProvision': Defines the procedure to generate a new database account. This field is immutable.",
 						Attributes: map[string]schema.Attribute{
 							"account_provision": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. The container executing this action has access to following variables: - KB_ACCOUNT_NAME: The name of the system account to be created. - KB_ACCOUNT_PASSWORD: The password for the system account. // TODO: how to pass the password securely? - KB_ACCOUNT_STATEMENT: The statement used to create the system account. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. The container executing this action has access to following variables: - KB_ACCOUNT_NAME: The name of the system account to be created. - KB_ACCOUNT_PASSWORD: The password for the system account. // TODO: how to pass the password securely? - KB_ACCOUNT_STATEMENT: The statement used to create the system account. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2631,25 +2835,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2657,35 +2997,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2694,14 +3009,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -2713,31 +3020,21 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								Description:         "Defines the procedure for exporting the data from a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Applicability: Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. The output should be a valid data dump streamed to stdout. It must exclude any irrelevant information to ensure that only the necessary data is exported for import into the new replica. Note: This field is immutable once it has been set.",
 								MarkdownDescription: "Defines the procedure for exporting the data from a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Applicability: Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. The output should be a valid data dump streamed to stdout. It must exclude any irrelevant information to ensure that only the necessary data is exported for import into the new replica. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2903,25 +3200,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2929,35 +3362,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2966,14 +3374,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -2985,31 +3385,21 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								Description:         "Defines the procedure for importing data into a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. Data should be received through stdin. If any error occurs during the process, the action must be able to guarantee idempotence to allow for retries from the beginning. Note: This field is immutable once it has been set.",
 								MarkdownDescription: "Defines the procedure for importing data into a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. Data should be received through stdin. If any error occurs during the process, the action must be able to guarantee idempotence to allow for retries from the beginning. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3175,25 +3565,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3201,35 +3727,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3238,14 +3739,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -3254,34 +3747,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"member_join": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following variables: - KB_JOIN_MEMBER_POD_FQDN: The pod FQDN of the replica being added to the group. - KB_JOIN_MEMBER_POD_NAME: The pod name of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following variables: - KB_JOIN_MEMBER_POD_FQDN: The pod FQDN of the replica being added to the group. - KB_JOIN_MEMBER_POD_NAME: The pod name of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following environment variables: - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. - KB_PRIMARY_POD_FQDN: The FQDN of the primary Pod within the replication group. - KB_MEMBER_ADDRESSES: A comma-separated list of Pod addresses for all replicas in the group. - KB_NEW_MEMBER_POD_NAME: The pod name of the replica being added to the group. - KB_NEW_MEMBER_POD_IP: The IP address of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | ADDRESS=$(KB_MEMBER_ADDRESSES%%,*) HOST=$(echo $ADDRESS | cut -d ':' -f 1) PORT=$(echo $ADDRESS | cut -d ':' -f 2) CLIENT='mysql -u $KB_SERVICE_USER -p$KB_SERVICE_PASSWORD -P $PORT -h $HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$KB_NEW_MEMBER_POD_IP:$KB_SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following environment variables: - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. - KB_PRIMARY_POD_FQDN: The FQDN of the primary Pod within the replication group. - KB_MEMBER_ADDRESSES: A comma-separated list of Pod addresses for all replicas in the group. - KB_NEW_MEMBER_POD_NAME: The pod name of the replica being added to the group. - KB_NEW_MEMBER_POD_IP: The IP address of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | ADDRESS=$(KB_MEMBER_ADDRESSES%%,*) HOST=$(echo $ADDRESS | cut -d ':' -f 1) PORT=$(echo $ADDRESS | cut -d ':' -f 2) CLIENT='mysql -u $KB_SERVICE_USER -p$KB_SERVICE_PASSWORD -P $PORT -h $HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$KB_NEW_MEMBER_POD_IP:$KB_SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3447,25 +3930,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3473,35 +4092,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3510,14 +4104,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -3526,34 +4112,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"member_leave": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following variables: - KB_LEAVE_MEMBER_POD_FQDN: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following variables: - KB_LEAVE_MEMBER_POD_FQDN: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following environment variables: - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. - KB_PRIMARY_POD_FQDN: The FQDN of the primary Pod within the replication group. - KB_MEMBER_ADDRESSES: A comma-separated list of Pod addresses for all replicas in the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_IP: The IP address of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | ADDRESS=$(KB_MEMBER_ADDRESSES%%,*) HOST=$(echo $ADDRESS | cut -d ':' -f 1) PORT=$(echo $ADDRESS | cut -d ':' -f 2) CLIENT='mysql -u $KB_SERVICE_USER -p$KB_SERVICE_PASSWORD -P $PORT -h $HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$KB_LEAVE_MEMBER_POD_IP:$KB_SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following environment variables: - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. - KB_PRIMARY_POD_FQDN: The FQDN of the primary Pod within the replication group. - KB_MEMBER_ADDRESSES: A comma-separated list of Pod addresses for all replicas in the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_IP: The IP address of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | ADDRESS=$(KB_MEMBER_ADDRESSES%%,*) HOST=$(echo $ADDRESS | cut -d ':' -f 1) PORT=$(echo $ADDRESS | cut -d ':' -f 2) CLIENT='mysql -u $KB_SERVICE_USER -p$KB_SERVICE_PASSWORD -P $PORT -h $HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$KB_LEAVE_MEMBER_POD_IP:$KB_SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3719,25 +4295,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3745,35 +4457,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3782,14 +4469,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -3798,34 +4477,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"post_provision": schema.SingleNestedAttribute{
-								Description:         "Specifies the hook to be executed after a component's creation. By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stage at which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. with 'ComponentReady' being the default. The PostProvision Action is intended to run only once. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Specifies the hook to be executed after a component's creation. By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stage at which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. with 'ComponentReady' being the default. The PostProvision Action is intended to run only once. Note: This field is immutable once it has been set.",
+								Description:         "Specifies the hook to be executed after a component's creation. By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stage at which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. with 'ComponentReady' being the default. The PostProvision Action is intended to run only once. The container executing this action has access to following environment variables: - KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2'). - KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2'). - KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component (e.g., 'pod1,pod2'). - KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2'). - KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted (e.g., 'comp1,comp2'). Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Specifies the hook to be executed after a component's creation. By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stage at which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. with 'ComponentReady' being the default. The PostProvision Action is intended to run only once. The container executing this action has access to following environment variables: - KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2'). - KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2'). - KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component (e.g., 'pod1,pod2'). - KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2'). - KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted (e.g., 'comp1,comp2'). Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3991,25 +4660,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4017,35 +4822,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4054,14 +4834,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -4070,34 +4842,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"pre_terminate": schema.SingleNestedAttribute{
-								Description:         "Specifies the hook to be executed prior to terminating a component. The PreTerminate Action is intended to run only once. This action is executed immediately when a scale-down operation for the Component is initiated. The actual termination and cleanup of the Component and its associated resources will not proceed until the PreTerminate action has completed successfully. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Specifies the hook to be executed prior to terminating a component. The PreTerminate Action is intended to run only once. This action is executed immediately when a scale-down operation for the Component is initiated. The actual termination and cleanup of the Component and its associated resources will not proceed until the PreTerminate action has completed successfully. Note: This field is immutable once it has been set.",
+								Description:         "Specifies the hook to be executed prior to terminating a component. The PreTerminate Action is intended to run only once. This action is executed immediately when a scale-down operation for the Component is initiated. The actual termination and cleanup of the Component and its associated resources will not proceed until the PreTerminate action has completed successfully. The container executing this action has access to following environment variables: - KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2'). - KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2'). - KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component (e.g., 'pod1,pod2'). - KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2'). - KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_IS_SCALING_IN: Indicates whether the component is currently scaling in. If this variable is present and set to 'true', it denotes that the component is undergoing a scale-in operation. During scale-in, data rebalancing is necessary to maintain cluster integrity. Contrast this with a cluster deletion scenario where data rebalancing is not required as the entire cluster is being cleaned up. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Specifies the hook to be executed prior to terminating a component. The PreTerminate Action is intended to run only once. This action is executed immediately when a scale-down operation for the Component is initiated. The actual termination and cleanup of the Component and its associated resources will not proceed until the PreTerminate action has completed successfully. The container executing this action has access to following environment variables: - KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2'). - KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2'). - KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component (e.g., 'pod1,pod2'). - KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2'). - KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2'). - KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod, matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2'). - KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted (e.g., 'comp1,comp2'). - KB_CLUSTER_COMPONENT_IS_SCALING_IN: Indicates whether the component is currently scaling in. If this variable is present and set to 'true', it denotes that the component is undergoing a scale-in operation. During scale-in, data rebalancing is necessary to maintain cluster integrity. Contrast this with a cluster deletion scenario where data rebalancing is not required as the entire cluster is being cleaned up. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4263,25 +5025,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4289,35 +5187,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4326,14 +5199,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -4342,34 +5207,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"readonly": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4535,25 +5390,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4561,35 +5552,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4598,14 +5564,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -4614,34 +5572,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"readwrite": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4807,25 +5755,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4833,35 +5917,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4870,14 +5929,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -4889,31 +5940,21 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 								Description:         "Defines the procedure that update a replica with new configuration. Note: This field is immutable once it has been set. This Action is reserved for future versions.",
 								MarkdownDescription: "Defines the procedure that update a replica with new configuration. Note: This field is immutable once it has been set. This Action is reserved for future versions.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5079,25 +6120,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5105,35 +6282,10 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5142,14 +6294,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -5158,34 +6302,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"role_probe": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. The container executing this action has access to following variables: - KB_POD_FQDN: The FQDN of the Pod whose role is being assessed. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. The container executing this action has access to following variables: - KB_POD_FQDN: The FQDN of the Pod whose role is being assessed. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered by Lorry at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the Pod whose role is being assessed. - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered by Lorry at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the Pod whose role is being assessed. - KB_SERVICE_PORT: The port used by the database service. - KB_SERVICE_USER: The username with the necessary permissions to interact with the database service. - KB_SERVICE_PASSWORD: The corresponding password for KB_SERVICE_USER to authenticate with the database service. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"builtin_handler": schema.StringAttribute{
+										Description:         "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										MarkdownDescription: "Specifies the name of the predefined action handler to be invoked for lifecycle actions. Lorry, as a sidecar agent co-located with the database container in the same Pod, includes a suite of built-in action implementations that are tailored to different database engines. These are known as 'builtin' handlers, includes: 'mysql', 'redis', 'mongodb', 'etcd', 'postgresql', 'official-postgresql', 'apecloud-postgresql', 'wesql', 'oceanbase', 'polardbx'. If the 'builtinHandler' field is specified, it instructs Lorry to utilize its internal built-in action handler to execute the specified lifecycle actions. The 'builtinHandler' field is of type 'BuiltinActionHandlerType', which represents the name of the built-in handler. The 'builtinHandler' specified within the same 'ComponentLifecycleActions' should be consistent across all actions. This means that if you specify a built-in handler for one action, you should use the same handler for all other actions throughout the entire 'ComponentLifecycleActions' collection. If you need to define lifecycle actions for database engines not covered by the existing built-in support, or when the pre-existing built-in handlers do not meet your specific needs, you can use the 'customHandler' field to define your own action implementation. Deprecation Notice: - In the future, the 'builtinHandler' field will be deprecated in favor of using the 'customHandler' field for configuring all lifecycle actions. - Instead of using a name to indicate the built-in action implementations in Lorry, the recommended approach will be to explicitly invoke the desired action implementation through a gRPC interface exposed by the sidecar agent. - Developers will have the flexibility to either use the built-in action implementations provided by Lorry or develop their own sidecar agent to implement custom actions and expose them via gRPC interfaces. - This change will allow for greater customization and extensibility of lifecycle actions, as developers can create their own 'builtin' implementations tailored to their specific requirements.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"custom_handler": schema.SingleNestedAttribute{
+										Description:         "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
+										MarkdownDescription: "Specifies a user-defined hook or procedure that is called to perform the specific lifecycle action. It offers a flexible and expandable approach for customizing the behavior of a Component by leveraging tailored actions. An Action can be implemented as either an ExecAction or an HTTPAction, with future versions planning to support GRPCAction, thereby accommodating unique logic for different database systems within the Action's framework. In future iterations, all built-in handlers are expected to transition to GRPCAction. This change means that Lorry or other sidecar agents will expose the implementation of actions through a GRPC interface for external invocation. Then the controller will interact with these actions via GRPCAction calls.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5351,25 +6485,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5377,18 +6647,18 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"failure_threshold": schema.Int64Attribute{
-										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 
 									"initial_delay_seconds": schema.Int64Attribute{
@@ -5407,50 +6677,9 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Computed:            false,
 									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"success_threshold": schema.Int64Attribute{
-										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Minimum value is 1.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+										Description:         "Specifies the number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1.",
+										MarkdownDescription: "Specifies the number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5462,34 +6691,39 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"switchover": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations involving the current leader node. The container executing this action has access to following variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty). Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations involving the current leader node. The container executing this action has access to following variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty). Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations involving the current leader node. The container executing this action has access to following environment variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty). - KB_LEADER_POD_IP: The IP address of the current leader's pod prior to the switchover. - KB_LEADER_POD_NAME: The name of the current leader's pod prior to the switchover. - KB_LEADER_POD_FQDN: The FQDN of the current leader's pod prior to the switchover. The environment variables with the following prefixes are deprecated and will be removed in future releases: - KB_REPLICATION_PRIMARY_POD_ - KB_CONSENSUS_LEADER_POD_ Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations involving the current leader node. The container executing this action has access to following environment variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty). - KB_LEADER_POD_IP: The IP address of the current leader's pod prior to the switchover. - KB_LEADER_POD_NAME: The name of the current leader's pod prior to the switchover. - KB_LEADER_POD_FQDN: The FQDN of the current leader's pod prior to the switchover. The environment variables with the following prefixes are deprecated and will be removed in future releases: - KB_REPLICATION_PRIMARY_POD_ - KB_CONSENSUS_LEADER_POD_ Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
-									"exec": schema.SingleNestedAttribute{
-										Description:         "Defines the command to run. This field cannot be updated.",
-										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+									"script_spec_selectors": schema.ListNestedAttribute{
+										Description:         "Used to define the selectors for the scriptSpecs that need to be referenced. If this field is set, the scripts defined under the 'scripts' field can be invoked or referenced within an Action. This field is deprecated from v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+										MarkdownDescription: "Used to define the selectors for the scriptSpecs that need to be referenced. If this field is set, the scripts defined under the 'scripts' field can be invoked or referenced within an Action. This field is deprecated from v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Represents the name of the ScriptSpec referent.",
+													MarkdownDescription: "Represents the name of the ScriptSpec referent.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtMost(63),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+													},
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"with_candidate": schema.SingleNestedAttribute{
+										Description:         "Represents the switchover process for a specified candidate primary or leader instance. Note that only Action.Exec is currently supported, while Action.HTTP is not.",
+										MarkdownDescription: "Represents the switchover process for a specified candidate primary or leader instance. Note that only Action.Exec is currently supported, while Action.HTTP is not.",
 										Attributes: map[string]schema.Attribute{
-											"args": schema.ListAttribute{
-												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
-												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"command": schema.ListAttribute{
-												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"container": schema.StringAttribute{
-												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
-												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5655,25 +6889,161 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												Computed: false,
 											},
 
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5681,35 +7051,358 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
 												},
 											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"pre_condition": schema.StringAttribute{
-										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_policy": schema.SingleNestedAttribute{
-										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
-										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+									"without_candidate": schema.SingleNestedAttribute{
+										Description:         "Represents a switchover process that does not involve a specific candidate primary or leader instance. As with the previous field, only Action.Exec is currently supported, not Action.HTTP.",
+										MarkdownDescription: "Represents a switchover process that does not involve a specific candidate primary or leader instance. As with the previous field, only Action.Exec is currently supported, not Action.HTTP.",
 										Attributes: map[string]schema.Attribute{
-											"max_retries": schema.Int64Attribute{
-												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
-												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+											"container": schema.StringAttribute{
+												Description:         "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed. This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'. If this field is not specified, the default behavior is to use the first container listed in 'componentDefinition.spec.runtime'. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
-											"retry_interval": schema.Int64Attribute{
-												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
-												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+											"env": schema.ListNestedAttribute{
+												Description:         "Represents a list of environment variables that will be injected into the container. These variables enable the container to adapt its behavior based on the environment it's running in. This field cannot be updated.",
+												MarkdownDescription: "Represents a list of environment variables that will be injected into the container. These variables enable the container to adapt its behavior based on the environment it's running in. This field cannot be updated.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+															MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a key of a ConfigMap.",
+																	MarkdownDescription: "Selects a key of a ConfigMap.",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key to select.",
+																			MarkdownDescription: "The key to select.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the ConfigMap or its key must be defined",
+																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"field_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																	Attributes: map[string]schema.Attribute{
+																		"api_version": schema.StringAttribute{
+																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"field_path": schema.StringAttribute{
+																			Description:         "Path of the field to select in the specified API version.",
+																			MarkdownDescription: "Path of the field to select in the specified API version.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"resource_field_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																	Attributes: map[string]schema.Attribute{
+																		"container_name": schema.StringAttribute{
+																			Description:         "Container name: required for volumes, optional for env vars",
+																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"divisor": schema.StringAttribute{
+																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"resource": schema.StringAttribute{
+																			Description:         "Required: resource to select",
+																			MarkdownDescription: "Required: resource to select",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a key of a secret in the pod's namespace",
+																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the Secret or its key must be defined",
+																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Defines the command to run. This field cannot be updated.",
+												MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+														MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http": schema.SingleNestedAttribute{
+												Description:         "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												MarkdownDescription: "Specifies the HTTP request to perform. This field cannot be updated. Note: HTTPAction is to be implemented in future version.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														MarkdownDescription: "Indicates the server's domain name or IP address. Defaults to the Pod's IP. Prefer setting the 'Host' header in httpHeaders when needed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														MarkdownDescription: "Allows for the inclusion of custom headers in the request. HTTP permits the use of repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"method": schema.StringAttribute{
+														Description:         "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														MarkdownDescription: "Represents the type of HTTP request to be made, such as 'GET,' 'POST,' 'PUT,' etc. If not specified, 'GET' is the default method.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Specifies the endpoint to be requested on the HTTP server.",
+														MarkdownDescription: "Specifies the endpoint to be requested on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														MarkdownDescription: "Specifies the target port for the HTTP request. It can be specified either as a numeric value in the range of 1 to 65535, or as a named port that meets the IANA_SVC_NAME specification.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														MarkdownDescription: "Designates the protocol used to make the request, such as HTTP or HTTPS. If not specified, HTTP is used by default.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"image": schema.StringAttribute{
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. This field is mutually exclusive with the 'container' field; only one of them should be provided. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"matching_key": schema.StringAttribute{
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"pre_condition": schema.StringAttribute{
+												Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_policy": schema.SingleNestedAttribute{
+												Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+												Attributes: map[string]schema.Attribute{
+													"max_retries": schema.Int64Attribute{
+														Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"retry_interval": schema.Int64Attribute{
+														Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"target_pod_selector": schema.StringAttribute{
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. This field cannot be updated. Note: This field is reserved for future use and is not currently active.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+												},
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+												MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5718,14 +7411,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"timeout_seconds": schema.Int64Attribute{
-										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,
@@ -5780,6 +7465,51 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Validators: []validator.Int64{
 							int64validator.AtLeast(0),
 						},
+					},
+
+					"monitor": schema.SingleNestedAttribute{
+						Description:         "Deprecated since v0.9 monitor is monitoring config which provided by provider.",
+						MarkdownDescription: "Deprecated since v0.9 monitor is monitoring config which provided by provider.",
+						Attributes: map[string]schema.Attribute{
+							"built_in": schema.BoolAttribute{
+								Description:         "builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
+								MarkdownDescription: "builtIn is a switch to enable KubeBlocks builtIn monitoring. If BuiltIn is set to true, monitor metrics will be scraped automatically. If BuiltIn is set to false, the provider should set ExporterConfig and Sidecar container own.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"exporter_config": schema.SingleNestedAttribute{
+								Description:         "exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false.",
+								MarkdownDescription: "exporterConfig provided by provider, which specify necessary information to Time Series Database. exporterConfig is valid when builtIn is false.",
+								Attributes: map[string]schema.Attribute{
+									"scrape_path": schema.StringAttribute{
+										Description:         "scrapePath is exporter url path for Time Series Database to scrape metrics.",
+										MarkdownDescription: "scrapePath is exporter url path for Time Series Database to scrape metrics.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtMost(128),
+										},
+									},
+
+									"scrape_port": schema.StringAttribute{
+										Description:         "scrapePort is exporter port for Time Series Database to scrape metrics.",
+										MarkdownDescription: "scrapePort is exporter port for Time Series Database to scrape metrics.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"pod_management_policy": schema.StringAttribute{
@@ -5880,6 +7610,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"role_arbitrator": schema.StringAttribute{
+						Description:         "This field has been deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. This field is immutable.",
+						MarkdownDescription: "This field has been deprecated since v0.9. This field is maintained for backward compatibility and its use is discouraged. Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases. This field is immutable.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("External", "Lorry"),
+						},
 					},
 
 					"roles": schema.ListNestedAttribute{
@@ -15084,48 +16825,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 									Description:         "Source for the variable's value. Cannot be used if value is not empty.",
 									MarkdownDescription: "Source for the variable's value. Cannot be used if value is not empty.",
 									Attributes: map[string]schema.Attribute{
-										"cluster_var_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a defined var of a Cluster.",
-											MarkdownDescription: "Selects a defined var of a Cluster.",
-											Attributes: map[string]schema.Attribute{
-												"cluster_name": schema.StringAttribute{
-													Description:         "Reference to the name of the Cluster object.",
-													MarkdownDescription: "Reference to the name of the Cluster object.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
-												},
-
-												"cluster_uid": schema.StringAttribute{
-													Description:         "Reference to the UID of the Cluster object.",
-													MarkdownDescription: "Reference to the UID of the Cluster object.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
-												},
-
-												"namespace": schema.StringAttribute{
-													Description:         "Reference to the namespace of the Cluster object.",
-													MarkdownDescription: "Reference to the namespace of the Cluster object.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"component_var_ref": schema.SingleNestedAttribute{
 											Description:         "Selects a defined var of a Component.",
 											MarkdownDescription: "Selects a defined var of a Component.",
@@ -15141,6 +16840,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												"component_name": schema.StringAttribute{
 													Description:         "Reference to the name of the Component object.",
 													MarkdownDescription: "Reference to the name of the Component object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"instance_names": schema.StringAttribute{
+													Description:         "Reference to the pod name list of the component. and the value will be presented in the following format: name1,name2,...",
+													MarkdownDescription: "Reference to the pod name list of the component. and the value will be presented in the following format: name1,name2,...",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15246,87 +16956,9 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													},
 												},
 
-												"pod_fqd_ns_for_role": schema.SingleNestedAttribute{
-													Description:         "Reference to the pod FQDN list of the component that have a specific role. The value will be presented in the following format: FQDN1,FQDN2,...",
-													MarkdownDescription: "Reference to the pod FQDN list of the component that have a specific role. The value will be presented in the following format: FQDN1,FQDN2,...",
-													Attributes: map[string]schema.Attribute{
-														"option": schema.StringAttribute{
-															Description:         "VarOption defines whether a variable is required or optional.",
-															MarkdownDescription: "VarOption defines whether a variable is required or optional.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-															Validators: []validator.String{
-																stringvalidator.OneOf("Required", "Optional"),
-															},
-														},
-
-														"role": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"pod_names": schema.StringAttribute{
-													Description:         "Reference to the pod name list of the component. and the value will be presented in the following format: name1,name2,...",
-													MarkdownDescription: "Reference to the pod name list of the component. and the value will be presented in the following format: name1,name2,...",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
-												},
-
-												"pod_names_for_role": schema.SingleNestedAttribute{
-													Description:         "Reference to the pod name list of the component that have a specific role. The value will be presented in the following format: name1,name2,...",
-													MarkdownDescription: "Reference to the pod name list of the component that have a specific role. The value will be presented in the following format: name1,name2,...",
-													Attributes: map[string]schema.Attribute{
-														"option": schema.StringAttribute{
-															Description:         "VarOption defines whether a variable is required or optional.",
-															MarkdownDescription: "VarOption defines whether a variable is required or optional.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-															Validators: []validator.String{
-																stringvalidator.OneOf("Required", "Optional"),
-															},
-														},
-
-														"role": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
 												"replicas": schema.StringAttribute{
 													Description:         "Reference to the replicas of the component.",
 													MarkdownDescription: "Reference to the replicas of the component.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
-												},
-
-												"short_name": schema.StringAttribute{
-													Description:         "Reference to the short name of the Component object.",
-													MarkdownDescription: "Reference to the short name of the Component object.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15983,17 +17615,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													Required: false,
 													Optional: true,
 													Computed: false,
-												},
-
-												"service_type": schema.StringAttribute{
-													Description:         "ServiceType references the type of the service.",
-													MarkdownDescription: "ServiceType references the type of the service.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
 												},
 											},
 											Required: false,

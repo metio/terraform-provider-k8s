@@ -908,6 +908,10 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 						Value             *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				} `tfsdk:"scheduling" json:"scheduling,omitempty"`
+				SecondaryNetworks *[]struct {
+					Index *[]string `tfsdk:"index" json:"index,omitempty"`
+					Name  *string   `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"secondary_networks" json:"secondaryNetworks,omitempty"`
 			} `tfsdk:"advanced" json:"advanced,omitempty"`
 			ClusterName             *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
 			ImagePullPolicy         *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -7120,6 +7124,34 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										Optional: true,
 										Computed: false,
 									},
+
+									"secondary_networks": schema.ListNestedAttribute{
+										Description:         "Define secondary networks to be checked for resources identification. In order to guarantee a correct identification, it is important that the indexed values form an unique identifier across the cluster. If there are collisions in the indexes (same index used by several resources), those resources might be wrongly labelled.",
+										MarkdownDescription: "Define secondary networks to be checked for resources identification. In order to guarantee a correct identification, it is important that the indexed values form an unique identifier across the cluster. If there are collisions in the indexes (same index used by several resources), those resources might be wrongly labelled.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"index": schema.ListAttribute{
+													Description:         "'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: MAC, IP, Interface",
+													MarkdownDescription: "'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: MAC, IP, Interface",
+													ElementType:         types.StringType,
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "'name' should match the network name as visible in the pods annotation 'k8s.v1.cni.cncf.io/network-status'.",
+													MarkdownDescription: "'name' should match the network name as visible in the pods annotation 'k8s.v1.cni.cncf.io/network-status'.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -7783,8 +7815,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"include_list": schema.ListAttribute{
-										Description:         "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
-										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										Description:         "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

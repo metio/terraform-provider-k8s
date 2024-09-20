@@ -1661,13 +1661,13 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Report contains properties for the report.",
 						Attributes: map[string]schema.Attribute{
 							"format": schema.StringAttribute{
-								Description:         "ReportFormat determines test report format (JSON|XML).",
-								MarkdownDescription: "ReportFormat determines test report format (JSON|XML).",
+								Description:         "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION).",
+								MarkdownDescription: "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("JSON", "XML"),
+									stringvalidator.OneOf("JSON", "XML", "JUNIT-TEST", "JUNIT-STEP", "JUNIT-OPERATION"),
 								},
 							},
 

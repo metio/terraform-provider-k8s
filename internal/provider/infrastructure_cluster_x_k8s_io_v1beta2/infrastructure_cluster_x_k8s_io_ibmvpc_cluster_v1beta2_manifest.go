@@ -629,7 +629,7 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Validators: []validator.String{
 									stringvalidator.LengthAtLeast(1),
 									stringvalidator.LengthAtMost(63),
-									stringvalidator.RegexMatches(regexp.MustCompile(`'/^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$/'`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
 								},
 							},
 

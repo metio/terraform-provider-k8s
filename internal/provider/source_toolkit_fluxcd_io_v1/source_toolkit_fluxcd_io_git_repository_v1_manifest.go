@@ -53,6 +53,7 @@ type SourceToolkitFluxcdIoGitRepositoryV1ManifestData struct {
 			ToPath *string `tfsdk:"to_path" json:"toPath,omitempty"`
 		} `tfsdk:"include" json:"include,omitempty"`
 		Interval       *string `tfsdk:"interval" json:"interval,omitempty"`
+		Provider       *string `tfsdk:"provider" json:"provider,omitempty"`
 		ProxySecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"proxy_secret_ref" json:"proxySecretRef,omitempty"`
@@ -216,6 +217,17 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
+						},
+					},
+
+					"provider": schema.StringAttribute{
+						Description:         "Provider used for authentication, can be 'azure', 'generic'. When not specified, defaults to 'generic'.",
+						MarkdownDescription: "Provider used for authentication, can be 'azure', 'generic'. When not specified, defaults to 'generic'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("generic", "azure"),
 						},
 					},
 

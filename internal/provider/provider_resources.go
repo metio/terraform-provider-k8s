@@ -18,6 +18,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/addons_cluster_x_k8s_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/admissionregistration_k8s_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/agent_k8s_elastic_co_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/airflow_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/anywhere_eks_amazonaws_com_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apacheweb_arsenal_dev_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/api_clever_cloud_com_v1"
@@ -49,6 +50,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_emqx_io_v2beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_gitlab_com_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_gitlab_com_v1beta2"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeblocks_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeblocks_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeblocks_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubedl_io_v1alpha1"
@@ -63,6 +65,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/asdb_aerospike_com_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/atlasmap_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/auth_ops42_org_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/authentication_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/authzed_com_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/automation_kubensync_com_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_k8s_elastic_co_v1alpha1"
@@ -101,6 +104,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/ceph_rook_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/cert_manager_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/certificates_k8s_io_v1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/certman_managed_openshift_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/chainsaw_kyverno_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/chainsaw_kyverno_io_v1alpha2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/chaos_mesh_org_v1alpha1"
@@ -162,10 +166,13 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/discovery_k8s_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/documentdb_services_k8s_aws_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/druid_apache_org_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/druid_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/dynamodb_services_k8s_aws_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/ec2_services_k8s_aws_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/ecr_services_k8s_aws_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/edc_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/efs_services_k8s_aws_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/egressgateway_spidernet_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/eks_services_k8s_aws_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/elasticache_services_k8s_aws_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/elasticsearch_k8s_elastic_co_v1"
@@ -219,11 +226,14 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/graphql_gloo_solo_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/groupsnapshot_storage_k8s_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hazelcast_com_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/hbase_stackable_tech_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/hdfs_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_sigstore_dev_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/helm_toolkit_fluxcd_io_v2beta2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hive_openshift_io_v1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/hive_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hiveinternal_openshift_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hnc_x_k8s_io_v1alpha2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/hyperfoil_io_v1alpha1"
@@ -267,6 +277,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_banzaicloud_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_banzaicloud_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_services_k8s_aws_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1beta2"
@@ -312,6 +323,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta6"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta7"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/limitador_kuadrant_io_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/listeners_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/litmuschaos_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/logging_banzaicloud_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/logging_banzaicloud_io_v1beta1"
@@ -357,6 +369,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/nfd_k8s_sigs_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/nfd_kubernetes_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/nfd_kubernetes_io_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/nifi_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/nodeinfo_volcano_sh_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/notebook_kubedl_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/notification_toolkit_fluxcd_io_v1"
@@ -364,7 +377,9 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/notification_toolkit_fluxcd_io_v1beta2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/notification_toolkit_fluxcd_io_v1beta3"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/objectbucket_io_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/ocmagent_managed_openshift_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/onepassword_com_v1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/opa_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/opensearchservice_services_k8s_aws_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/opentelemetry_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/opentelemetry_io_v1beta1"
@@ -447,6 +462,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/secrets_crossplane_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/secrets_doppler_com_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/secrets_hashicorp_com_v1beta1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/secrets_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/secrets_store_csi_x_k8s_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/secrets_store_csi_x_k8s_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/secretsmanager_services_k8s_aws_v1alpha1"
@@ -475,12 +491,14 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/source_toolkit_fluxcd_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/source_toolkit_fluxcd_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/source_toolkit_fluxcd_io_v1beta2"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/spark_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/sparkoperator_k8s_io_v1beta2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/spv_no_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/spv_no_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/spv_no_v2alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/spv_no_v2beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/sqs_services_k8s_aws_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/sriovnetwork_openshift_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/storage_k8s_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/storage_kubeblocks_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/storageos_com_v1"
@@ -489,6 +507,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/submariner_io_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/superset_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/telemetry_istio_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/telemetry_istio_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/templates_gatekeeper_sh_v1"
@@ -508,6 +527,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/topolvm_cybozu_com_v2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/traefik_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/training_kubedl_io_v1alpha1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/trino_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/trust_cert_manager_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/upgrade_cattle_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/upgrade_managed_openshift_io_v1alpha1"
@@ -525,9 +545,11 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/work_karmada_io_v1alpha2"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta2"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/workloads_kubeblocks_io_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/workloads_kubeblocks_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/zonecontrol_k8s_aws_v1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/zookeeper_pravega_io_v1beta1"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/zookeeper_stackable_tech_v1alpha1"
 )
 
 func allResources() []func() resource.Resource {
@@ -559,6 +581,7 @@ func allResources() []func() resource.Resource {
 		//admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Resource,
 		//admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource,
 		//agent_k8s_elastic_co_v1alpha1.NewAgentK8SElasticCoAgentV1Alpha1Resource,
+		//airflow_stackable_tech_v1alpha1.NewAirflowStackableTechAirflowClusterV1Alpha1Resource,
 		//anywhere_eks_amazonaws_com_v1alpha1.NewAnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Resource,
 		//anywhere_eks_amazonaws_com_v1alpha1.NewAnywhereEksAmazonawsComAwsiamConfigV1Alpha1Resource,
 		//anywhere_eks_amazonaws_com_v1alpha1.NewAnywhereEksAmazonawsComBundlesV1Alpha1Resource,
@@ -672,6 +695,12 @@ func allResources() []func() resource.Resource {
 		//apps_emqx_io_v2beta1.NewAppsEmqxIoRebalanceV2Beta1Resource,
 		//apps_gitlab_com_v1beta1.NewAppsGitlabComGitLabV1Beta1Resource,
 		//apps_gitlab_com_v1beta2.NewAppsGitlabComRunnerV1Beta2Resource,
+		//apps_kubeblocks_io_v1.NewAppsKubeblocksIoClusterDefinitionV1Resource,
+		//apps_kubeblocks_io_v1.NewAppsKubeblocksIoClusterV1Resource,
+		//apps_kubeblocks_io_v1.NewAppsKubeblocksIoComponentDefinitionV1Resource,
+		//apps_kubeblocks_io_v1.NewAppsKubeblocksIoComponentV1Resource,
+		//apps_kubeblocks_io_v1.NewAppsKubeblocksIoComponentVersionV1Resource,
+		//apps_kubeblocks_io_v1.NewAppsKubeblocksIoServiceDescriptorV1Resource,
 		//apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoBackupPolicyTemplateV1Alpha1Resource,
 		//apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoClusterDefinitionV1Alpha1Resource,
 		//apps_kubeblocks_io_v1alpha1.NewAppsKubeblocksIoClusterV1Alpha1Resource,
@@ -707,6 +736,7 @@ func allResources() []func() resource.Resource {
 		//asdb_aerospike_com_v1beta1.NewAsdbAerospikeComAerospikeClusterV1Beta1Resource,
 		//atlasmap_io_v1alpha1.NewAtlasmapIoAtlasMapV1Alpha1Resource,
 		//auth_ops42_org_v1alpha1.NewAuthOps42OrgAwsAuthSyncConfigV1Alpha1Resource,
+		//authentication_stackable_tech_v1alpha1.NewAuthenticationStackableTechAuthenticationClassV1Alpha1Resource,
 		//authzed_com_v1alpha1.NewAuthzedComSpiceDbclusterV1Alpha1Resource,
 		//automation_kubensync_com_v1alpha1.NewAutomationKubensyncComManagedResourceV1Alpha1Resource,
 		//autoscaling_k8s_elastic_co_v1alpha1.NewAutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource,
@@ -848,6 +878,7 @@ func allResources() []func() resource.Resource {
 		//cert_manager_io_v1.NewCertManagerIoClusterIssuerV1Resource,
 		//cert_manager_io_v1.NewCertManagerIoIssuerV1Resource,
 		//certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1Resource,
+		//certman_managed_openshift_io_v1alpha1.NewCertmanManagedOpenshiftIoCertificateRequestV1Alpha1Resource,
 		//chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoConfigurationV1Alpha1Resource,
 		//chainsaw_kyverno_io_v1alpha1.NewChainsawKyvernoIoTestV1Alpha1Resource,
 		//chainsaw_kyverno_io_v1alpha2.NewChainsawKyvernoIoConfigurationV1Alpha2Resource,
@@ -1056,6 +1087,7 @@ func allResources() []func() resource.Resource {
 		//documentdb_services_k8s_aws_v1alpha1.NewDocumentdbServicesK8SAwsDbinstanceV1Alpha1Resource,
 		//documentdb_services_k8s_aws_v1alpha1.NewDocumentdbServicesK8SAwsDbsubnetGroupV1Alpha1Resource,
 		//druid_apache_org_v1alpha1.NewDruidApacheOrgDruidV1Alpha1Resource,
+		//druid_stackable_tech_v1alpha1.NewDruidStackableTechDruidClusterV1Alpha1Resource,
 		//dynamodb_services_k8s_aws_v1alpha1.NewDynamodbServicesK8SAwsBackupV1Alpha1Resource,
 		//dynamodb_services_k8s_aws_v1alpha1.NewDynamodbServicesK8SAwsGlobalTableV1Alpha1Resource,
 		//dynamodb_services_k8s_aws_v1alpha1.NewDynamodbServicesK8SAwsTableV1Alpha1Resource,
@@ -1072,9 +1104,17 @@ func allResources() []func() resource.Resource {
 		//ec2_services_k8s_aws_v1alpha1.NewEc2ServicesK8SAwsVpcendpointV1Alpha1Resource,
 		//ecr_services_k8s_aws_v1alpha1.NewEcrServicesK8SAwsPullThroughCacheRuleV1Alpha1Resource,
 		//ecr_services_k8s_aws_v1alpha1.NewEcrServicesK8SAwsRepositoryV1Alpha1Resource,
+		//edc_stackable_tech_v1alpha1.NewEdcStackableTechEdcclusterV1Alpha1Resource,
 		//efs_services_k8s_aws_v1alpha1.NewEfsServicesK8SAwsAccessPointV1Alpha1Resource,
 		//efs_services_k8s_aws_v1alpha1.NewEfsServicesK8SAwsFileSystemV1Alpha1Resource,
 		//efs_services_k8s_aws_v1alpha1.NewEfsServicesK8SAwsMountTargetV1Alpha1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressClusterEndpointSliceV1Beta1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressClusterInfoV1Beta1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressClusterPolicyV1Beta1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressEndpointSliceV1Beta1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressGatewayV1Beta1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressPolicyV1Beta1Resource,
+		//egressgateway_spidernet_io_v1beta1.NewEgressgatewaySpidernetIoEgressTunnelV1Beta1Resource,
 		//eks_services_k8s_aws_v1alpha1.NewEksServicesK8SAwsAddonV1Alpha1Resource,
 		//eks_services_k8s_aws_v1alpha1.NewEksServicesK8SAwsClusterV1Alpha1Resource,
 		//eks_services_k8s_aws_v1alpha1.NewEksServicesK8SAwsFargateProfileV1Alpha1Resource,
@@ -1255,6 +1295,8 @@ func allResources() []func() resource.Resource {
 		//hazelcast_com_v1alpha1.NewHazelcastComManagementCenterV1Alpha1Resource,
 		//hazelcast_com_v1alpha1.NewHazelcastComMapV1Alpha1Resource,
 		//hazelcast_com_v1alpha1.NewHazelcastComWanReplicationV1Alpha1Resource,
+		//hbase_stackable_tech_v1alpha1.NewHbaseStackableTechHbaseClusterV1Alpha1Resource,
+		//hdfs_stackable_tech_v1alpha1.NewHdfsStackableTechHdfsClusterV1Alpha1Resource,
 		//helm_sigstore_dev_v1alpha1.NewHelmSigstoreDevRekorV1Alpha1Resource,
 		//helm_toolkit_fluxcd_io_v2.NewHelmToolkitFluxcdIoHelmReleaseV2Resource,
 		//helm_toolkit_fluxcd_io_v2beta1.NewHelmToolkitFluxcdIoHelmReleaseV2Beta1Resource,
@@ -1277,6 +1319,7 @@ func allResources() []func() resource.Resource {
 		//hive_openshift_io_v1.NewHiveOpenshiftIoSelectorSyncSetV1Resource,
 		//hive_openshift_io_v1.NewHiveOpenshiftIoSyncIdentityProviderV1Resource,
 		//hive_openshift_io_v1.NewHiveOpenshiftIoSyncSetV1Resource,
+		//hive_stackable_tech_v1alpha1.NewHiveStackableTechHiveClusterV1Alpha1Resource,
 		//hiveinternal_openshift_io_v1alpha1.NewHiveinternalOpenshiftIoClusterSyncLeaseV1Alpha1Resource,
 		//hiveinternal_openshift_io_v1alpha1.NewHiveinternalOpenshiftIoClusterSyncV1Alpha1Resource,
 		//hiveinternal_openshift_io_v1alpha1.NewHiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Resource,
@@ -1419,6 +1462,7 @@ func allResources() []func() resource.Resource {
 		//kafka_banzaicloud_io_v1alpha1.NewKafkaBanzaicloudIoKafkaUserV1Alpha1Resource,
 		//kafka_banzaicloud_io_v1beta1.NewKafkaBanzaicloudIoKafkaClusterV1Beta1Resource,
 		//kafka_services_k8s_aws_v1alpha1.NewKafkaServicesK8SAwsClusterV1Alpha1Resource,
+		//kafka_stackable_tech_v1alpha1.NewKafkaStackableTechKafkaClusterV1Alpha1Resource,
 		//kafka_strimzi_io_v1alpha1.NewKafkaStrimziIoKafkaTopicV1Alpha1Resource,
 		//kafka_strimzi_io_v1alpha1.NewKafkaStrimziIoKafkaUserV1Alpha1Resource,
 		//kafka_strimzi_io_v1beta1.NewKafkaStrimziIoKafkaTopicV1Beta1Resource,
@@ -1574,6 +1618,9 @@ func allResources() []func() resource.Resource {
 		//lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta7Resource,
 		//lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuRegistryCredentialV1Beta7Resource,
 		//limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1Resource,
+		//listeners_stackable_tech_v1alpha1.NewListenersStackableTechListenerClassV1Alpha1Resource,
+		//listeners_stackable_tech_v1alpha1.NewListenersStackableTechListenerV1Alpha1Resource,
+		//listeners_stackable_tech_v1alpha1.NewListenersStackableTechPodListenersV1Alpha1Resource,
 		//litmuschaos_io_v1alpha1.NewLitmuschaosIoChaosEngineV1Alpha1Resource,
 		//litmuschaos_io_v1alpha1.NewLitmuschaosIoChaosExperimentV1Alpha1Resource,
 		//litmuschaos_io_v1alpha1.NewLitmuschaosIoChaosResultV1Alpha1Resource,
@@ -1759,6 +1806,7 @@ func allResources() []func() resource.Resource {
 		//nfd_k8s_sigs_io_v1alpha1.NewNfdK8SSigsIoNodeFeatureRuleV1Alpha1Resource,
 		//nfd_kubernetes_io_v1.NewNfdKubernetesIoNodeFeatureDiscoveryV1Resource,
 		//nfd_kubernetes_io_v1alpha1.NewNfdKubernetesIoNodeFeatureRuleV1Alpha1Resource,
+		//nifi_stackable_tech_v1alpha1.NewNifiStackableTechNifiClusterV1Alpha1Resource,
 		//nodeinfo_volcano_sh_v1alpha1.NewNodeinfoVolcanoShNumatopologyV1Alpha1Resource,
 		//notebook_kubedl_io_v1alpha1.NewNotebookKubedlIoNotebookV1Alpha1Resource,
 		//notification_toolkit_fluxcd_io_v1.NewNotificationToolkitFluxcdIoReceiverV1Resource,
@@ -1772,7 +1820,11 @@ func allResources() []func() resource.Resource {
 		//notification_toolkit_fluxcd_io_v1beta3.NewNotificationToolkitFluxcdIoProviderV1Beta3Resource,
 		//objectbucket_io_v1alpha1.NewObjectbucketIoObjectBucketClaimV1Alpha1Resource,
 		//objectbucket_io_v1alpha1.NewObjectbucketIoObjectBucketV1Alpha1Resource,
+		//ocmagent_managed_openshift_io_v1alpha1.NewOcmagentManagedOpenshiftIoManagedFleetNotificationV1Alpha1Resource,
+		//ocmagent_managed_openshift_io_v1alpha1.NewOcmagentManagedOpenshiftIoManagedNotificationV1Alpha1Resource,
+		//ocmagent_managed_openshift_io_v1alpha1.NewOcmagentManagedOpenshiftIoOcmAgentV1Alpha1Resource,
 		//onepassword_com_v1.NewOnepasswordComOnePasswordItemV1Resource,
+		//opa_stackable_tech_v1alpha1.NewOpaStackableTechOpaClusterV1Alpha1Resource,
 		//opensearchservice_services_k8s_aws_v1alpha1.NewOpensearchserviceServicesK8SAwsDomainV1Alpha1Resource,
 		//opentelemetry_io_v1alpha1.NewOpentelemetryIoInstrumentationV1Alpha1Resource,
 		//opentelemetry_io_v1alpha1.NewOpentelemetryIoOpAmpbridgeV1Alpha1Resource,
@@ -1874,6 +1926,7 @@ func allResources() []func() resource.Resource {
 		//policy_karmada_io_v1alpha1.NewPolicyKarmadaIoOverridePolicyV1Alpha1Resource,
 		//policy_karmada_io_v1alpha1.NewPolicyKarmadaIoPropagationPolicyV1Alpha1Resource,
 		//policy_kubeedge_io_v1alpha1.NewPolicyKubeedgeIoServiceAccountAccessV1Alpha1Resource,
+		//policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Resource,
 		//policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Resource,
 		//policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Resource,
 		//policy_v1.NewPolicyPodDisruptionBudgetV1Resource,
@@ -2018,6 +2071,7 @@ func allResources() []func() resource.Resource {
 		//secrets_hashicorp_com_v1beta1.NewSecretsHashicorpComVaultDynamicSecretV1Beta1Resource,
 		//secrets_hashicorp_com_v1beta1.NewSecretsHashicorpComVaultPkisecretV1Beta1Resource,
 		//secrets_hashicorp_com_v1beta1.NewSecretsHashicorpComVaultStaticSecretV1Beta1Resource,
+		//secrets_stackable_tech_v1alpha1.NewSecretsStackableTechSecretClassV1Alpha1Resource,
 		//secrets_store_csi_x_k8s_io_v1.NewSecretsStoreCsiXK8SIoSecretProviderClassV1Resource,
 		//secrets_store_csi_x_k8s_io_v1alpha1.NewSecretsStoreCsiXK8SIoSecretProviderClassV1Alpha1Resource,
 		//secretsmanager_services_k8s_aws_v1alpha1.NewSecretsmanagerServicesK8SAwsSecretV1Alpha1Resource,
@@ -2085,6 +2139,8 @@ func allResources() []func() resource.Resource {
 		//source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoHelmChartV1Beta2Resource,
 		//source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource,
 		//source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoOcirepositoryV1Beta2Resource,
+		//spark_stackable_tech_v1alpha1.NewSparkStackableTechSparkApplicationV1Alpha1Resource,
+		//spark_stackable_tech_v1alpha1.NewSparkStackableTechSparkHistoryServerV1Alpha1Resource,
 		//sparkoperator_k8s_io_v1beta2.NewSparkoperatorK8SIoScheduledSparkApplicationV1Beta2Resource,
 		//sparkoperator_k8s_io_v1beta2.NewSparkoperatorK8SIoSparkApplicationV1Beta2Resource,
 		//spv_no_v1.NewSpvNoAzureKeyVaultSecretV1Resource,
@@ -2094,6 +2150,13 @@ func allResources() []func() resource.Resource {
 		//spv_no_v2alpha1.NewSpvNoAzureKeyVaultSecretV2Alpha1Resource,
 		//spv_no_v2beta1.NewSpvNoAzureKeyVaultSecretV2Beta1Resource,
 		//sqs_services_k8s_aws_v1alpha1.NewSqsServicesK8SAwsQueueV1Alpha1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoOvsnetworkV1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoSriovIbnetworkV1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoSriovNetworkNodePolicyV1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoSriovNetworkNodeStateV1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoSriovNetworkPoolConfigV1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoSriovNetworkV1Resource,
+		//sriovnetwork_openshift_io_v1.NewSriovnetworkOpenshiftIoSriovOperatorConfigV1Resource,
 		//storage_k8s_io_v1.NewStorageK8SIoCsidriverV1Resource,
 		//storage_k8s_io_v1.NewStorageK8SIoCsinodeV1Resource,
 		//storage_k8s_io_v1.NewStorageK8SIoStorageClassV1Resource,
@@ -2112,6 +2175,8 @@ func allResources() []func() resource.Resource {
 		//submariner_io_v1alpha1.NewSubmarinerIoBrokerV1Alpha1Resource,
 		//submariner_io_v1alpha1.NewSubmarinerIoServiceDiscoveryV1Alpha1Resource,
 		//submariner_io_v1alpha1.NewSubmarinerIoSubmarinerV1Alpha1Resource,
+		//superset_stackable_tech_v1alpha1.NewSupersetStackableTechDruidConnectionV1Alpha1Resource,
+		//superset_stackable_tech_v1alpha1.NewSupersetStackableTechSupersetClusterV1Alpha1Resource,
 		//telemetry_istio_io_v1.NewTelemetryIstioIoTelemetryV1Resource,
 		//telemetry_istio_io_v1alpha1.NewTelemetryIstioIoTelemetryV1Alpha1Resource,
 		//templates_gatekeeper_sh_v1.NewTemplatesGatekeeperShConstraintTemplateV1Resource,
@@ -2180,6 +2245,8 @@ func allResources() []func() resource.Resource {
 		//training_kubedl_io_v1alpha1.NewTrainingKubedlIoTfjobV1Alpha1Resource,
 		//training_kubedl_io_v1alpha1.NewTrainingKubedlIoXdljobV1Alpha1Resource,
 		//training_kubedl_io_v1alpha1.NewTrainingKubedlIoXgboostJobV1Alpha1Resource,
+		//trino_stackable_tech_v1alpha1.NewTrinoStackableTechTrinoCatalogV1Alpha1Resource,
+		//trino_stackable_tech_v1alpha1.NewTrinoStackableTechTrinoClusterV1Alpha1Resource,
 		//trust_cert_manager_io_v1alpha1.NewTrustCertManagerIoBundleV1Alpha1Resource,
 		//upgrade_cattle_io_v1.NewUpgradeCattleIoPlanV1Resource,
 		//upgrade_managed_openshift_io_v1alpha1.NewUpgradeManagedOpenshiftIoUpgradeConfigV1Alpha1Resource,
@@ -2217,11 +2284,14 @@ func allResources() []func() resource.Resource {
 		//workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevAppWrapperV1Beta1Resource,
 		//workload_codeflare_dev_v1beta1.NewWorkloadCodeflareDevSchedulingSpecV1Beta1Resource,
 		//workload_codeflare_dev_v1beta2.NewWorkloadCodeflareDevAppWrapperV1Beta2Resource,
+		//workloads_kubeblocks_io_v1.NewWorkloadsKubeblocksIoInstanceSetV1Resource,
 		//workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoInstanceSetV1Alpha1Resource,
 		//workloads_kubeblocks_io_v1alpha1.NewWorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Resource,
 		//zonecontrol_k8s_aws_v1.NewZonecontrolK8SAwsZoneAwareUpdateV1Resource,
 		//zonecontrol_k8s_aws_v1.NewZonecontrolK8SAwsZoneDisruptionBudgetV1Resource,
 		//zookeeper_pravega_io_v1beta1.NewZookeeperPravegaIoZookeeperClusterV1Beta1Resource,
+		//zookeeper_stackable_tech_v1alpha1.NewZookeeperStackableTechZookeeperClusterV1Alpha1Resource,
+		//zookeeper_stackable_tech_v1alpha1.NewZookeeperStackableTechZookeeperZnodeV1Alpha1Resource,
 
 	}
 }

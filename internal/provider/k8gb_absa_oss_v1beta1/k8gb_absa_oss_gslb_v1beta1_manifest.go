@@ -88,14 +88,14 @@ type K8GbAbsaOssGslbV1Beta1ManifestData struct {
 			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		ResourceRef *struct {
-			Ingress *struct {
-				MatchExpressions *[]struct {
-					Key      *string   `tfsdk:"key" json:"key,omitempty"`
-					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-			} `tfsdk:"ingress" json:"ingress,omitempty"`
+			ApiVersion       *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Kind             *string `tfsdk:"kind" json:"kind,omitempty"`
+			MatchExpressions *[]struct {
+				Key      *string   `tfsdk:"key" json:"key,omitempty"`
+				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"resource_ref" json:"resourceRef,omitempty"`
 		Strategy *struct {
 			DnsTtlSeconds              *int64             `tfsdk:"dns_ttl_seconds" json:"dnsTtlSeconds,omitempty"`
@@ -456,58 +456,65 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 						Description:         "ResourceRef spec",
 						MarkdownDescription: "ResourceRef spec",
 						Attributes: map[string]schema.Attribute{
-							"ingress": schema.SingleNestedAttribute{
-								Description:         "Ingress selects a kubernetes.networking.k8s.io/v1.Ingress resource",
-								MarkdownDescription: "Ingress selects a kubernetes.networking.k8s.io/v1.Ingress resource",
-								Attributes: map[string]schema.Attribute{
-									"match_expressions": schema.ListNestedAttribute{
-										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "key is the label key that the selector applies to.",
-													MarkdownDescription: "key is the label key that the selector applies to.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
+							"api_version": schema.StringAttribute{
+								Description:         "APIVersion of the referenced resource",
+								MarkdownDescription: "APIVersion of the referenced resource",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
 
-												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
+							"kind": schema.StringAttribute{
+								Description:         "Kind of the referenced resource",
+								MarkdownDescription: "Kind of the referenced resource",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
 
-												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
+							"match_expressions": schema.ListNestedAttribute{
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "key is the label key that the selector applies to.",
+											MarkdownDescription: "key is the label key that the selector applies to.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
 										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
-									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
+										"operator": schema.StringAttribute{
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"values": schema.ListAttribute{
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"match_labels": schema.MapAttribute{
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
