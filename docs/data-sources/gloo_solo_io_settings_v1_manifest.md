@@ -610,6 +610,7 @@ Optional:
 - `allow_warnings` (Boolean)
 - `always_accept` (Boolean)
 - `disable_transformation_validation` (Boolean)
+- `full_envoy_validation` (Boolean)
 - `ignore_gloo_validation_failure` (Boolean)
 - `proxy_validation_server_addr` (String)
 - `server_enabled` (Boolean)

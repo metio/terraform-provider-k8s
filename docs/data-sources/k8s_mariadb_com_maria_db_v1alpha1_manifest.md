@@ -10367,6 +10367,7 @@ Optional:
 
 Optional:
 
+- `auto_update_data_plane` (Boolean) AutoUpdateDataPlane indicates whether the Galera data plane version (agent and init containers) should be automatically updated based on the operator version. It defaults to false. Updating the operator will trigger updates on all the MariaDB instances that have this flag set to true. Thus, it is recommended to progressively set this flag after having updated the operator.
 - `rolling_update` (Attributes) RollingUpdate defines parameters for the RollingUpdate type. (see [below for nested schema](#nestedatt--spec--update_strategy--rolling_update))
 - `type` (String) Type defines the type of updates. One of 'ReplicasFirstPrimaryLast', 'RollingUpdate' or 'OnDelete'. If not defined, it defaults to 'ReplicasFirstPrimaryLast'.
 

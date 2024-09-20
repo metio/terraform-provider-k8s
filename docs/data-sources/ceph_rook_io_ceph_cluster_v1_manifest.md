@@ -767,11 +767,21 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Enabled determines whether to create the prometheus rules for the ceph cluster. If true, the prometheus types must exist or the creation will fail. Default is false.
+- `exporter` (Attributes) Ceph exporter configuration (see [below for nested schema](#nestedatt--spec--monitoring--exporter))
 - `external_mgr_endpoints` (Attributes List) ExternalMgrEndpoints points to an existing Ceph prometheus exporter endpoint (see [below for nested schema](#nestedatt--spec--monitoring--external_mgr_endpoints))
 - `external_mgr_prometheus_port` (Number) ExternalMgrPrometheusPort Prometheus exporter port
 - `interval` (String) Interval determines prometheus scrape interval
 - `metrics_disabled` (Boolean) Whether to disable the metrics reported by Ceph. If false, the prometheus mgr module and Ceph exporter are enabled. If true, the prometheus mgr module and Ceph exporter are both disabled. Default is false.
 - `port` (Number) Port is the prometheus server port
+
+<a id="nestedatt--spec--monitoring--exporter"></a>
+### Nested Schema for `spec.monitoring.exporter`
+
+Optional:
+
+- `perf_counters_prio_limit` (Number) Only performance counters greater than or equal to this option are fetched
+- `stats_period_seconds` (Number) Time to wait before sending requests again to exporter server (seconds)
+
 
 <a id="nestedatt--spec--monitoring--external_mgr_endpoints"></a>
 ### Nested Schema for `spec.monitoring.external_mgr_endpoints`

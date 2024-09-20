@@ -79,6 +79,7 @@ Optional:
 
 - `access_modes` (List of String) accessModes specifies the access modes for the destination volume.
 - `capacity` (String) capacity is the size of the destination volume to create.
+- `cleanup_temp_pvc` (Boolean) Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.
 - `copy_method` (String) copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.
 - `custom_ca` (Attributes) customCA is a custom CA that will be used to verify the remote (see [below for nested schema](#nestedatt--spec--rclone--custom_ca))
 - `destination_pvc` (String) destinationPVC is a PVC to use as the transfer destination instead of automatically provisioning one. Either this field or both capacity and accessModes must be specified.
@@ -587,6 +588,8 @@ Optional:
 - `cache_capacity` (String) cacheCapacity can be used to set the size of the restic metadata cache volume
 - `cache_storage_class_name` (String) cacheStorageClassName can be used to set the StorageClass of the restic metadata cache volume
 - `capacity` (String) capacity is the size of the destination volume to create.
+- `cleanup_cache_pvc` (Boolean) Set this to true to delete the restic cache PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. Cache PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.
+- `cleanup_temp_pvc` (Boolean) Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.
 - `copy_method` (String) copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.
 - `custom_ca` (Attributes) customCA is a custom CA that will be used to verify the remote (see [below for nested schema](#nestedatt--spec--restic--custom_ca))
 - `destination_pvc` (String) destinationPVC is a PVC to use as the transfer destination instead of automatically provisioning one. Either this field or both capacity and accessModes must be specified.
@@ -1094,6 +1097,7 @@ Optional:
 - `access_modes` (List of String) accessModes specifies the access modes for the destination volume.
 - `address` (String) address is the remote address to connect to for replication.
 - `capacity` (String) capacity is the size of the destination volume to create.
+- `cleanup_temp_pvc` (Boolean) Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.
 - `copy_method` (String) copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.
 - `destination_pvc` (String) destinationPVC is a PVC to use as the transfer destination instead of automatically provisioning one. Either this field or both capacity and accessModes must be specified.
 - `mover_pod_labels` (Map of String) Labels that should be added to data mover pods These will be in addition to any labels that VolSync may add
@@ -1134,6 +1138,7 @@ Optional:
 
 - `access_modes` (List of String) accessModes specifies the access modes for the destination volume.
 - `capacity` (String) capacity is the size of the destination volume to create.
+- `cleanup_temp_pvc` (Boolean) Set this to true to delete the temp destination PVC (dynamically provisioned by VolSync) at the end of each successful ReplicationDestination sync iteration. If destinationPVC is set, this will have no effect, VolSync will only cleanup temp PVCs that it deployed. Note that if this is set to true, every sync this ReplicationDestination makes will re-provision a new temp destination PVC and all data will need to be sent again during the sync. Dynamically provisioned destination PVCs will always be deleted if the owning ReplicationDestination is removed, even if this setting is false. The default is false.
 - `copy_method` (String) copyMethod describes how a point-in-time (PiT) image of the destination volume should be created.
 - `destination_pvc` (String) destinationPVC is a PVC to use as the transfer destination instead of automatically provisioning one. Either this field or both capacity and accessModes must be specified.
 - `key_secret` (String) keySecret is the name of a Secret that contains the TLS pre-shared key to be used for authentication. If not provided, the key will be generated.

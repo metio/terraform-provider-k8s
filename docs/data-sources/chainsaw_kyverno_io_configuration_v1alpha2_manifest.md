@@ -529,7 +529,7 @@ Optional:
 
 Optional:
 
-- `format` (String) ReportFormat determines test report format (JSON|XML).
+- `format` (String) ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION).
 - `name` (String) ReportName defines the name of report to create. It defaults to 'chainsaw-report'.
 - `path` (String) ReportPath defines the path.
 

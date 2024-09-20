@@ -407,6 +407,7 @@ Optional:
 Optional:
 
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--ai--semantic_cache--datastore--redis))
+- `weaviate` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--ai--semantic_cache--datastore--weaviate))
 
 <a id="nestedatt--spec--routes--options--ai--semantic_cache--datastore--redis"></a>
 ### Nested Schema for `spec.routes.options.ai.semantic_cache.datastore.redis`
@@ -415,6 +416,17 @@ Optional:
 
 - `connection_string` (String)
 - `score_threshold` (Number)
+
+
+<a id="nestedatt--spec--routes--options--ai--semantic_cache--datastore--weaviate"></a>
+### Nested Schema for `spec.routes.options.ai.semantic_cache.datastore.weaviate`
+
+Optional:
+
+- `grpc_port` (Number)
+- `host` (String)
+- `http_port` (Number)
+- `insecure` (Boolean)
 
 
 

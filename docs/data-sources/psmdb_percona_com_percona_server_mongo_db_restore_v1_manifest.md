@@ -60,6 +60,7 @@ Optional:
 - `cluster_name` (String)
 - `pitr` (Attributes) (see [below for nested schema](#nestedatt--spec--pitr))
 - `replset` (String)
+- `selective` (Attributes) (see [below for nested schema](#nestedatt--spec--selective))
 - `storage_name` (String)
 
 <a id="nestedatt--spec--backup_source"></a>
@@ -149,3 +150,12 @@ Optional:
 
 - `date` (String)
 - `type` (String)
+
+
+<a id="nestedatt--spec--selective"></a>
+### Nested Schema for `spec.selective`
+
+Optional:
+
+- `namespaces` (List of String)
+- `with_users_and_roles` (Boolean)

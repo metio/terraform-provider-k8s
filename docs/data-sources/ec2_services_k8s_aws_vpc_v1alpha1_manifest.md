@@ -60,6 +60,7 @@ Required:
 Optional:
 
 - `amazon_provided_i_pv6_cidr_block` (Boolean) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or the size of the CIDR block.
+- `disallow_security_group_default_rules` (Boolean)
 - `enable_dns_hostnames` (Boolean) The attribute value. The valid values are true or false.
 - `enable_dns_support` (Boolean) The attribute value. The valid values are true or false.
 - `instance_tenancy` (String) The tenancy options for instances launched into the VPC. For default, instances are launched with shared tenancy by default. You can launch instances with any tenancy into a shared tenancy VPC. For dedicated, instances are launched as dedicated tenancy instances by default. You can only launch instances with a tenancy of dedicated or host into a dedicated tenancy VPC. Important: The host value cannot be used with this parameter. Use the default or dedicated values only. Default: default

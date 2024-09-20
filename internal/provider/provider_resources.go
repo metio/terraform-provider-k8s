@@ -1927,7 +1927,6 @@ func allResources() []func() resource.Resource {
 		//policy_karmada_io_v1alpha1.NewPolicyKarmadaIoPropagationPolicyV1Alpha1Resource,
 		//policy_kubeedge_io_v1alpha1.NewPolicyKubeedgeIoServiceAccountAccessV1Alpha1Resource,
 		//policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Resource,
-		//policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Resource,
 		//policy_networking_k8s_io_v1alpha1.NewPolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Resource,
 		//policy_v1.NewPolicyPodDisruptionBudgetV1Resource,
 		//postgres_operator_crunchydata_com_v1beta1.NewPostgresOperatorCrunchydataComPgadminV1Beta1Resource,

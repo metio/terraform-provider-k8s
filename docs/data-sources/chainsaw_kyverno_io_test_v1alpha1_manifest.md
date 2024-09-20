@@ -2083,9 +2083,30 @@ Optional:
 <a id="nestedatt--spec--steps--use"></a>
 ### Nested Schema for `spec.steps.use`
 
-Optional:
+Required:
 
 - `template` (String) Template references a step template.
+
+Optional:
+
+- `with` (Attributes) With defines arguments passed to the step template. (see [below for nested schema](#nestedatt--spec--steps--use--with))
+
+<a id="nestedatt--spec--steps--use--with"></a>
+### Nested Schema for `spec.steps.use.with`
+
+Optional:
+
+- `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--use--with--bindings))
+
+<a id="nestedatt--spec--steps--use--with--bindings"></a>
+### Nested Schema for `spec.steps.use.with.bindings`
+
+Required:
+
+- `name` (String) Name the name of the binding.
+- `value` (Map of String) Value value of the binding.
+
+
 
 
 

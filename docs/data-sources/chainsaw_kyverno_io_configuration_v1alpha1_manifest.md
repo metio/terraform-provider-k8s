@@ -64,7 +64,7 @@ Optional:
 - `namespace_template` (Map of String) NamespaceTemplate defines a template to create the test namespace.
 - `parallel` (Number) The maximum number of tests to run at once.
 - `repeat_count` (Number) RepeatCount indicates how many times the tests should be executed.
-- `report_format` (String) ReportFormat determines test report format (JSON|XML|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.
+- `report_format` (String) ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.
 - `report_name` (String) ReportName defines the name of report to create. It defaults to 'chainsaw-report'.
 - `report_path` (String) ReportPath defines the path.
 - `skip_delete` (Boolean) If set, do not delete the resources after running the tests (implies SkipClusterDelete).

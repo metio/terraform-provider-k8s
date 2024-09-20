@@ -1906,6 +1906,7 @@ Optional:
 - `port` (Number) Port of the flow collector (host port). By convention, some values are forbidden. It must be greater than 1024 and different from 4500, 4789 and 6081.
 - `profile_port` (Number) 'profilePort' allows setting up a Go pprof profiler listening to this port
 - `scheduling` (Attributes) scheduling controls how the pods are scheduled on nodes. (see [below for nested schema](#nestedatt--spec--processor--advanced--scheduling))
+- `secondary_networks` (Attributes List) Define secondary networks to be checked for resources identification. In order to guarantee a correct identification, it is important that the indexed values form an unique identifier across the cluster. If there are collisions in the indexes (same index used by several resources), those resources might be wrongly labelled. (see [below for nested schema](#nestedatt--spec--processor--advanced--secondary_networks))
 
 <a id="nestedatt--spec--processor--advanced--scheduling"></a>
 ### Nested Schema for `spec.processor.advanced.scheduling`
@@ -2312,6 +2313,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--processor--advanced--secondary_networks"></a>
+### Nested Schema for `spec.processor.advanced.secondary_networks`
+
+Required:
+
+- `index` (List of String) 'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: MAC, IP, Interface
+- `name` (String) 'name' should match the network name as visible in the pods annotation 'k8s.v1.cni.cncf.io/network-status'.
+
+
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler"></a>
 ### Nested Schema for `spec.processor.kafka_consumer_autoscaler`
@@ -2578,7 +2588,7 @@ Optional:
 Optional:
 
 - `disable_alerts` (List of String) 'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br> 'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>
-- `include_list` (List of String) 'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md
+- `include_list` (List of String) 'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md
 - `server` (Attributes) Metrics server endpoint configuration for Prometheus scraper (see [below for nested schema](#nestedatt--spec--processor--metrics--server))
 
 <a id="nestedatt--spec--processor--metrics--server"></a>

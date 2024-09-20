@@ -204,6 +204,8 @@ Optional:
 - `on_host_maintenance` (String) OnHostMaintenance determines the behavior when a maintenance event occurs that might cause the instance to reboot. This is required to be set to 'Terminate' if you want to provision machine with attached GPUs. Otherwise, allowed values are 'Migrate' and 'Terminate'. If omitted, the platform chooses a default, which is subject to change over time, currently that default is 'Migrate'.
 - `os_disk` (Attributes) OSDisk defines the storage for instances. (see [below for nested schema](#nestedatt--spec--platform--gcp--os_disk))
 - `secure_boot` (String) SecureBoot Defines whether the instance should have secure boot enabled. Verifies the digital signature of all boot components, and halts the boot process if signature verification fails. If omitted, the platform chooses a default, which is subject to change over time. Currently that default is 'Disabled'.
+- `service_account` (String) ServiceAccount is the email of a gcp service account to be attached to worker nodes in order to provide the permissions required by the cloud provider. For the default worker MachinePool, it is the user's responsibility to match this to the value provided in the install-config.
+- `user_tags` (Attributes List) userTags has additional keys and values that we will add as tags to the providerSpec of MachineSets that we creates on GCP. Tag key and tag value should be the shortnames of the tag key and tag value resource. Consumer is responsible for using this only for spokes where custom tags are supported. (see [below for nested schema](#nestedatt--spec--platform--gcp--user_tags))
 - `zones` (List of String) Zones is list of availability zones that can be used.
 
 <a id="nestedatt--spec--platform--gcp--os_disk"></a>
@@ -237,6 +239,16 @@ Optional:
 - `project_id` (String) ProjectID is the ID of the Project in which the KMS Key Ring exists. Defaults to the VM ProjectID if not set.
 
 
+
+
+<a id="nestedatt--spec--platform--gcp--user_tags"></a>
+### Nested Schema for `spec.platform.gcp.user_tags`
+
+Required:
+
+- `key` (String) key is the key part of the tag. A tag key can have a maximum of 63 characters and cannot be empty. Tag key must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters '._-'.
+- `parent_id` (String) parentID is the ID of the hierarchical resource where the tags are defined, e.g. at the Organization or the Project level. To find the Organization ID or Project ID refer to the following pages: https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id, https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects. An OrganizationID must consist of decimal numbers, and cannot have leading zeroes. A ProjectID must be 6 to 30 characters in length, can only contain lowercase letters, numbers, and hyphens, and must start with a letter, and cannot end with a hyphen.
+- `value` (String) value is the value part of the tag. A tag value can have a maximum of 63 characters and cannot be empty. Tag value must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters '_-.@%=+:,*#&(){}[]' and spaces.
 
 
 
