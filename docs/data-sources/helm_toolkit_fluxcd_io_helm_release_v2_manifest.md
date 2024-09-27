@@ -224,6 +224,7 @@ Optional:
 - `create_namespace` (Boolean) CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.
 - `disable_hooks` (Boolean) DisableHooks prevents hooks from running during the Helm install action.
 - `disable_open_api_validation` (Boolean) DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.
+- `disable_schema_validation` (Boolean) DisableSchemaValidation prevents the Helm install action from validating the values against the JSON Schema.
 - `disable_wait` (Boolean) DisableWait disables the waiting for resources to be ready after a Helm install has been performed.
 - `disable_wait_for_jobs` (Boolean) DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.
 - `remediation` (Attributes) Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action. (see [below for nested schema](#nestedatt--spec--install--remediation))
@@ -377,6 +378,7 @@ Optional:
 - `crds` (String) CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Skip' and if omitted CRDs are neither installed nor upgraded. Skip: do neither install nor replace (update) any CRDs. Create: new CRDs are created, existing CRDs are neither updated nor deleted. CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. By default, CRDs are not applied during Helm upgrade action. With this option users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.
 - `disable_hooks` (Boolean) DisableHooks prevents hooks from running during the Helm upgrade action.
 - `disable_open_api_validation` (Boolean) DisableOpenAPIValidation prevents the Helm upgrade action from validating rendered templates against the Kubernetes OpenAPI Schema.
+- `disable_schema_validation` (Boolean) DisableSchemaValidation prevents the Helm upgrade action from validating the values against the JSON Schema.
 - `disable_wait` (Boolean) DisableWait disables the waiting for resources to be ready after a Helm upgrade has been performed.
 - `disable_wait_for_jobs` (Boolean) DisableWaitForJobs disables waiting for jobs to complete after a Helm upgrade has been performed.
 - `force` (Boolean) Force forces resource updates through a replacement strategy.

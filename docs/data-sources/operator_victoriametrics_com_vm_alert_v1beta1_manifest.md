@@ -60,25 +60,29 @@ Required:
 Optional:
 
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlert object, which shall be mounted into the VMAlert Pods. The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder
 - `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'
+- `config_reloader_image_tag` (String) ConfigReloaderImageTag defines image:tag for config-reloader container
+- `config_reloader_resources` (Attributes) ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--config_reloader_resources))
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.
+- `disable_self_service_scrape` (Boolean) DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
 - `enforced_namespace_label` (String) EnforcedNamespaceLabel enforces adding a namespace label of origin for each alert and metric that is user created. The label value will always be the namespace of the object that is being created.
 - `evaluation_interval` (String) EvaluationInterval defines how often to evaluate rules by default
 - `external_labels` (Map of String) ExternalLabels in the form 'name: value' to add to all generated recording rules and alerts.
-- `extra_args` (Map of String) ExtraArgs that will be passed to VMAlert pod for example -remoteWrite.tmpDataPath=/tmp
-- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMAlert pod
+- `extra_args` (Map of String) ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp
+- `extra_envs` (List of Map of String) ExtraEnvs that will be passed to the application container
+- `host_aliases` (Attributes List) HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
-- `image` (Attributes) Image - docker image settings for VMAlert if no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
+- `image` (Attributes) Image - docker image settings if no specified operator uses default version from operator config (see [below for nested schema](#nestedatt--spec--image))
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespace to use for pulling images from registries see https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the VMAlert configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.
-- `license` (Attributes) License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+- `license` (Attributes) License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise) (see [below for nested schema](#nestedatt--spec--license))
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
 - `log_format` (String) LogFormat for VMAlert to be configured with. default or json
 - `log_level` (String) LogLevel for VMAlert to be configured with.
-- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state
+- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `notifier` (Attributes) Notifier prometheus alertmanager endpoint spec. Required at least one of notifier or notifiers when there are alerting rules. e.g. http://127.0.0.1:9093 If specified both notifier and notifiers, notifier will be added as last element to notifiers. only one of notifier options could be chosen: notifierConfigRef or notifiers + notifier (see [below for nested schema](#nestedatt--spec--notifier))
 - `notifier_config_ref` (Attributes) NotifierConfigRef reference for secret with notifier configuration for vmalert only one of notifier options could be chosen: notifierConfigRef or notifiers + notifier (see [below for nested schema](#nestedatt--spec--notifier_config_ref))
@@ -86,25 +90,25 @@ Optional:
 - `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMAlert pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
-- `port` (String) Port for listen
-- `priority_class_name` (String) Priority class assigned to the Pods
+- `port` (String) Port listen address
+- `priority_class_name` (String) PriorityClassName class assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
 - `readiness_probe` (Map of String) ReadinessProbe that will be added CRD pod
 - `remote_read` (Attributes) RemoteRead Optional URL to read vmalert state (persisted via RemoteWrite) This configuration only makes sense if alerts state has been successfully persisted (via RemoteWrite) before. see -remoteRead.url docs in vmalerts for details. E.g. http://127.0.0.1:8428 (see [below for nested schema](#nestedatt--spec--remote_read))
 - `remote_write` (Attributes) RemoteWrite Optional URL to remote-write compatible storage to persist vmalert state and rule results to. Rule results will be persisted according to each rule. Alerts state will be persisted in the form of time series named ALERTS and ALERTS_FOR_STATE see -remoteWrite.url docs in vmalerts for details. E.g. http://127.0.0.1:8428 (see [below for nested schema](#nestedatt--spec--remote_write))
-- `replica_count` (Number) ReplicaCount is the expected size of the VMAlert cluster. The controller will eventually make the size of the running cluster equal to the expected size.
-- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--resources))
-- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.
+- `replica_count` (Number) ReplicaCount is the expected size of the Application.
+- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--resources))
+- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.
 - `rolling_update` (Attributes) RollingUpdate - overrides deployment update params. (see [below for nested schema](#nestedatt--spec--rolling_update))
 - `rule_namespace_selector` (Attributes) RuleNamespaceSelector to be selected for VMRules discovery. Works in combination with Selector. If both nil - behaviour controlled by selectAllByDefault NamespaceSelector nil - only objects at VMAlert namespace. (see [below for nested schema](#nestedatt--spec--rule_namespace_selector))
 - `rule_path` (List of String) RulePath to the file with alert rules. Supports patterns. Flag can be specified multiple times. Examples: -rule /path/to/file. Path to a single file with alerting rules -rule dir/*.yaml -rule /*.yaml. Relative path to all .yaml files in folder, absolute path to all .yaml files in root. by default operator adds /etc/vmalert/configs/base/vmalert.yaml
 - `rule_selector` (Attributes) RuleSelector selector to select which VMRules to mount for loading alerting rules from. Works in combination with NamespaceSelector. If both nil - behaviour controlled by selectAllByDefault NamespaceSelector nil - only objects at VMAlert namespace. (see [below for nested schema](#nestedatt--spec--rule_selector))
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod. https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMAlert object, which shall be mounted into the VMAlert Pods. The Secrets are mounted into /etc/vm/secrets/<secret-name>.
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder
 - `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext.
 - `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such RuleSelector. with selectAllByDefault: true and empty serviceScrapeSelector and RuleNamespaceSelector Operator selects all exist serviceScrapes with selectAllByDefault: false - selects nothing
-- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the VMAlert Pods.
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the pods
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vmalert VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be added to vmalert service spec (see [below for nested schema](#nestedatt--spec--service_spec))
 - `startup_probe` (Map of String) StartupProbe that will be added to CRD pod
@@ -112,9 +116,11 @@ Optional:
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 - `update_strategy` (String) UpdateStrategy - overrides default update strategy.
+- `use_default_resources` (Boolean) UseDefaultResources controls resource settings By default, operator sets built-in resource requirements
 - `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition. VolumeMounts specified will be appended to other VolumeMounts in the VMAlert container, that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
-- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output Deployment definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.
+- `use_vm_config_reloader` (Boolean) UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container (see [below for nested schema](#nestedatt--spec--volume_mounts))
+- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional
 
 <a id="nestedatt--spec--datasource"></a>
 ### Nested Schema for `spec.datasource`
@@ -129,8 +135,7 @@ Optional:
 - `bearer_token_file` (String) Path to bearer token file
 - `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--datasource--bearer_token_secret))
 - `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName:headerValue vmalert supports it since 1.79.0 version
-- `o_auth2` (Map of String)
-- `oauth2` (Attributes) OAuth2 defines OAuth2 configuration (see [below for nested schema](#nestedatt--spec--datasource--oauth2))
+- `oauth2` (Map of String) OAuth2 defines OAuth2 configuration
 - `tls_config` (Map of String) TLSConfig specifies TLSConfig configuration parameters.
 
 <a id="nestedatt--spec--datasource--basic_auth"></a>
@@ -138,9 +143,9 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--datasource--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--datasource--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--datasource--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--datasource--basic_auth--username))
 
 <a id="nestedatt--spec--datasource--basic_auth--password"></a>
 ### Nested Schema for `spec.datasource.basic_auth.password`
@@ -151,7 +156,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -164,7 +169,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -178,72 +183,26 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--datasource--oauth2"></a>
-### Nested Schema for `spec.datasource.oauth2`
-
-Required:
-
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--datasource--oauth2--client_id))
-- `token_url` (String) The URL to fetch the token from
-
-Optional:
-
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--datasource--oauth2--client_secret))
-- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
-
-<a id="nestedatt--spec--datasource--oauth2--client_id"></a>
-### Nested Schema for `spec.datasource.oauth2.client_id`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--datasource--oauth2--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--datasource--oauth2--client_id--secret))
-
-<a id="nestedatt--spec--datasource--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.datasource.oauth2.client_id.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--datasource--oauth2--client_id--secret"></a>
-### Nested Schema for `spec.datasource.oauth2.client_id.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 
-<a id="nestedatt--spec--datasource--oauth2--client_secret"></a>
-### Nested Schema for `spec.datasource.oauth2.client_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
+<a id="nestedatt--spec--config_reloader_resources"></a>
+### Nested Schema for `spec.config_reloader_resources`
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--config_reloader_resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
+<a id="nestedatt--spec--config_reloader_resources--claims"></a>
+### Nested Schema for `spec.config_reloader_resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -266,6 +225,18 @@ Optional:
 
 
 
+<a id="nestedatt--spec--host_aliases"></a>
+### Nested Schema for `spec.host_aliases`
+
+Required:
+
+- `ip` (String) IP address of the host file entry.
+
+Optional:
+
+- `hostnames` (List of String) Hostnames for the above IP address.
+
+
 <a id="nestedatt--spec--image"></a>
 ### Nested Schema for `spec.image`
 
@@ -281,7 +252,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--license"></a>
@@ -289,7 +260,7 @@ Optional:
 
 Optional:
 
-- `key` (String) Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/
+- `key` (String) Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)
 - `key_ref` (Attributes) KeyRef is reference to secret with license key for enterprise features. (see [below for nested schema](#nestedatt--spec--license--key_ref))
 
 <a id="nestedatt--spec--license--key_ref"></a>
@@ -301,7 +272,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -315,8 +286,7 @@ Optional:
 - `bearer_token_file` (String) Path to bearer token file
 - `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--notifier--bearer_token_secret))
 - `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName:headerValue vmalert supports it since 1.79.0 version
-- `o_auth2` (Map of String)
-- `oauth2` (Attributes) OAuth2 defines OAuth2 configuration (see [below for nested schema](#nestedatt--spec--notifier--oauth2))
+- `oauth2` (Map of String) OAuth2 defines OAuth2 configuration
 - `selector` (Attributes) Selector allows service discovery for alertmanager in this case all matched vmalertmanager replicas will be added into vmalert notifier.url as statefulset pod.fqdn (see [below for nested schema](#nestedatt--spec--notifier--selector))
 - `tls_config` (Map of String) TLSConfig specifies TLSConfig configuration parameters.
 - `url` (String) AlertManager url. E.g. http://127.0.0.1:9093
@@ -326,9 +296,9 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--notifier--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--notifier--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--notifier--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--notifier--basic_auth--username))
 
 <a id="nestedatt--spec--notifier--basic_auth--password"></a>
 ### Nested Schema for `spec.notifier.basic_auth.password`
@@ -339,7 +309,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -352,7 +322,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -366,72 +336,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--notifier--oauth2"></a>
-### Nested Schema for `spec.notifier.oauth2`
-
-Required:
-
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--notifier--oauth2--client_id))
-- `token_url` (String) The URL to fetch the token from
-
-Optional:
-
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--notifier--oauth2--client_secret))
-- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
-
-<a id="nestedatt--spec--notifier--oauth2--client_id"></a>
-### Nested Schema for `spec.notifier.oauth2.client_id`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifier--oauth2--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifier--oauth2--client_id--secret))
-
-<a id="nestedatt--spec--notifier--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.notifier.oauth2.client_id.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--notifier--oauth2--client_id--secret"></a>
-### Nested Schema for `spec.notifier.oauth2.client_id.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--notifier--oauth2--client_secret"></a>
-### Nested Schema for `spec.notifier.oauth2.client_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
 
 
 <a id="nestedatt--spec--notifier--selector"></a>
@@ -484,7 +390,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -497,8 +403,7 @@ Optional:
 - `bearer_token_file` (String) Path to bearer token file
 - `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--notifiers--bearer_token_secret))
 - `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName:headerValue vmalert supports it since 1.79.0 version
-- `o_auth2` (Map of String)
-- `oauth2` (Attributes) OAuth2 defines OAuth2 configuration (see [below for nested schema](#nestedatt--spec--notifiers--oauth2))
+- `oauth2` (Map of String) OAuth2 defines OAuth2 configuration
 - `selector` (Attributes) Selector allows service discovery for alertmanager in this case all matched vmalertmanager replicas will be added into vmalert notifier.url as statefulset pod.fqdn (see [below for nested schema](#nestedatt--spec--notifiers--selector))
 - `tls_config` (Map of String) TLSConfig specifies TLSConfig configuration parameters.
 - `url` (String) AlertManager url. E.g. http://127.0.0.1:9093
@@ -508,9 +413,9 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--notifiers--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--notifiers--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--notifiers--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--notifiers--basic_auth--username))
 
 <a id="nestedatt--spec--notifiers--basic_auth--password"></a>
 ### Nested Schema for `spec.notifiers.basic_auth.password`
@@ -521,7 +426,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -534,7 +439,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -548,72 +453,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--notifiers--oauth2"></a>
-### Nested Schema for `spec.notifiers.oauth2`
-
-Required:
-
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--client_id))
-- `token_url` (String) The URL to fetch the token from
-
-Optional:
-
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--client_secret))
-- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
-
-<a id="nestedatt--spec--notifiers--oauth2--client_id"></a>
-### Nested Schema for `spec.notifiers.oauth2.client_id`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--notifiers--oauth2--client_id--secret))
-
-<a id="nestedatt--spec--notifiers--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.notifiers.oauth2.client_id.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--notifiers--oauth2--client_id--secret"></a>
-### Nested Schema for `spec.notifiers.oauth2.client_id.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--notifiers--oauth2--client_secret"></a>
-### Nested Schema for `spec.notifiers.oauth2.client_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
 
 
 <a id="nestedatt--spec--notifiers--selector"></a>
@@ -699,8 +540,7 @@ Optional:
 - `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_read--bearer_token_secret))
 - `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName:headerValue vmalert supports it since 1.79.0 version
 - `lookback` (String) Lookback defines how far to look into past for alerts timeseries. For example, if lookback=1h then range from now() to now()-1h will be scanned. (default 1h0m0s) Applied only to RemoteReadSpec
-- `o_auth2` (Map of String)
-- `oauth2` (Attributes) OAuth2 defines OAuth2 configuration (see [below for nested schema](#nestedatt--spec--remote_read--oauth2))
+- `oauth2` (Map of String) OAuth2 defines OAuth2 configuration
 - `tls_config` (Map of String) TLSConfig specifies TLSConfig configuration parameters.
 
 <a id="nestedatt--spec--remote_read--basic_auth"></a>
@@ -708,9 +548,9 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_read--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_read--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--remote_read--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--remote_read--basic_auth--username))
 
 <a id="nestedatt--spec--remote_read--basic_auth--password"></a>
 ### Nested Schema for `spec.remote_read.basic_auth.password`
@@ -721,7 +561,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -734,7 +574,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -748,72 +588,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--remote_read--oauth2"></a>
-### Nested Schema for `spec.remote_read.oauth2`
-
-Required:
-
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--client_id))
-- `token_url` (String) The URL to fetch the token from
-
-Optional:
-
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--client_secret))
-- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
-
-<a id="nestedatt--spec--remote_read--oauth2--client_id"></a>
-### Nested Schema for `spec.remote_read.oauth2.client_id`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--client_id--secret))
-
-<a id="nestedatt--spec--remote_read--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.remote_read.oauth2.client_id.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--remote_read--oauth2--client_id--secret"></a>
-### Nested Schema for `spec.remote_read.oauth2.client_id.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_read--oauth2--client_secret"></a>
-### Nested Schema for `spec.remote_read.oauth2.client_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
 
 
 
@@ -834,8 +610,7 @@ Optional:
 - `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName:headerValue vmalert supports it since 1.79.0 version
 - `max_batch_size` (Number) Defines defines max number of timeseries to be flushed at once (default 1000)
 - `max_queue_size` (Number) Defines the max number of pending datapoints to remote write endpoint (default 100000)
-- `o_auth2` (Map of String)
-- `oauth2` (Attributes) OAuth2 defines OAuth2 configuration (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
+- `oauth2` (Map of String) OAuth2 defines OAuth2 configuration
 - `tls_config` (Map of String) TLSConfig specifies TLSConfig configuration parameters.
 
 <a id="nestedatt--spec--remote_write--basic_auth"></a>
@@ -843,9 +618,9 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
 
 <a id="nestedatt--spec--remote_write--basic_auth--password"></a>
 ### Nested Schema for `spec.remote_write.basic_auth.password`
@@ -856,7 +631,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -869,7 +644,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -883,72 +658,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--oauth2"></a>
-### Nested Schema for `spec.remote_write.oauth2`
-
-Required:
-
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id))
-- `token_url` (String) The URL to fetch the token from
-
-Optional:
-
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_secret))
-- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
-
-<a id="nestedatt--spec--remote_write--oauth2--client_id"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_id`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--secret))
-
-<a id="nestedatt--spec--remote_write--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_id.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--oauth2--client_id--secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_id.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--oauth2--client_secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
 
 
 
@@ -1068,7 +779,8 @@ Required:
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.

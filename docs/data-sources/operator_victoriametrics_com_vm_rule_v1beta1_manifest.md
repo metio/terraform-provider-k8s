@@ -65,14 +65,17 @@ Required:
 Optional:
 
 - `concurrency` (Number) Concurrency defines how many rules execute at once.
-- `extra_filter_labels` (Map of String) ExtraFilterLabels optional list of label filters applied to every rule's request withing a group. Is compatible only with VM datasource. See more details at https://docs.victoriametrics.com#prometheus-querying-api-enhancements Deprecated, use params instead
+- `eval_alignment` (Boolean) Optional The evaluation timestamp will be aligned with group's interval, instead of using the actual timestamp that evaluation happens at. It is enabled by default to get more predictable results and to visually align with graphs plotted via Grafana or vmui.
+- `eval_delay` (String) Optional Adjust the 'time' parameter of group evaluation requests to compensate intentional query delay from the datasource.
+- `eval_offset` (String) Optional Group will be evaluated at the exact offset in the range of [0...interval].
+- `extra_filter_labels` (Map of String) ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead
 - `headers` (List of String) Headers contains optional HTTP headers added to each rule request Must be in form 'header-name: value' For example: headers: - 'CustomHeader: foo' - 'CustomHeader2: bar'
 - `interval` (String) evaluation interval for group
 - `labels` (Map of String) Labels optional list of labels added to every rule within a group. It has priority over the external labels. Labels are commonly used for adding environment or tenant-specific tag.
 - `limit` (Number) Limit the number of alerts an alerting rule and series a recording rule can produce
 - `notifier_headers` (List of String) NotifierHeaders contains optional HTTP headers added to each alert request which will send to notifier Must be in form 'header-name: value' For example: headers: - 'CustomHeader: foo' - 'CustomHeader2: bar'
 - `params` (Map of List of String) Params optional HTTP URL parameters added to each rule request
-- `tenant` (String) Tenant id for group, can be used only with enterprise version of vmalert See more details at https://docs.victoriametrics.com/vmalert.html#multitenancy
+- `tenant` (String) Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/vmalert#multitenancy).
 - `type` (String) Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite
 
 <a id="nestedatt--spec--groups--rules"></a>

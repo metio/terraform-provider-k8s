@@ -372,6 +372,7 @@ Optional:
 - `read_from_head` (Boolean) For new discovered files on start (without a database offset/position), read the content from the head of the file, not tail.
 - `refresh_interval_seconds` (Number) The interval of refreshing the list of watched files in seconds.
 - `rotate_wait_seconds` (Number) Specify the number of extra time in seconds to monitor a file once is rotated in case some pending data is flushed.
+- `skip_empty_lines` (Boolean) Skips empty lines in the log file from any further processing or output.
 - `skip_long_lines` (Boolean) When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size), the default behavior is to stop monitoring that file. Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long lines and continue processing other lines that fits into the buffer size.
 - `storage_type` (String) Specify the buffering mechanism to use. It can be memory or filesystem
 - `tag` (String) Set a tag (with regex-extract fields) that will be placed on lines read. E.g. kube.<namespace_name>.<pod_name>.<container_name>

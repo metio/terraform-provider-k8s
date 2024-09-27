@@ -200,11 +200,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
-		HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-		Host_aliases *[]struct {
-			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
-			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
-		} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
+		HostNetwork              *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
 		IgnoreNamespaceSelectors *bool `tfsdk:"ignore_namespace_selectors" json:"ignoreNamespaceSelectors,omitempty"`
 		Image                    *struct {
 			PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
@@ -724,36 +720,32 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				Ignore_first_intervals *int64    `tfsdk:"ignore_first_intervals" json:"ignore_first_intervals,omitempty"`
 				Ignore_old_samples     *bool     `tfsdk:"ignore_old_samples" json:"ignore_old_samples,omitempty"`
 				Input_relabel_configs  *[]struct {
-					Action        *string            `tfsdk:"action" json:"action,omitempty"`
-					If            *map[string]string `tfsdk:"if" json:"if,omitempty"`
-					Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					Match         *string            `tfsdk:"match" json:"match,omitempty"`
-					Modulus       *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-					Regex         *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
-					Replacement   *string            `tfsdk:"replacement" json:"replacement,omitempty"`
-					Separator     *string            `tfsdk:"separator" json:"separator,omitempty"`
-					SourceLabels  *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
-					Source_labels *[]string          `tfsdk:"source_labels" json:"source_labels,omitempty"`
-					TargetLabel   *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
-					Target_label  *string            `tfsdk:"target_label" json:"target_label,omitempty"`
+					Action       *string            `tfsdk:"action" json:"action,omitempty"`
+					If           *map[string]string `tfsdk:"if" json:"if,omitempty"`
+					Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Match        *string            `tfsdk:"match" json:"match,omitempty"`
+					Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
+					Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
+					Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
+					Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
+					SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+					TargetLabel  *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
 				} `tfsdk:"input_relabel_configs" json:"input_relabel_configs,omitempty"`
 				Interval                   *string            `tfsdk:"interval" json:"interval,omitempty"`
 				Keep_metric_names          *bool              `tfsdk:"keep_metric_names" json:"keep_metric_names,omitempty"`
 				Match                      *map[string]string `tfsdk:"match" json:"match,omitempty"`
 				No_align_flush_to_interval *bool              `tfsdk:"no_align_flush_to_interval" json:"no_align_flush_to_interval,omitempty"`
 				Output_relabel_configs     *[]struct {
-					Action        *string            `tfsdk:"action" json:"action,omitempty"`
-					If            *map[string]string `tfsdk:"if" json:"if,omitempty"`
-					Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					Match         *string            `tfsdk:"match" json:"match,omitempty"`
-					Modulus       *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-					Regex         *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
-					Replacement   *string            `tfsdk:"replacement" json:"replacement,omitempty"`
-					Separator     *string            `tfsdk:"separator" json:"separator,omitempty"`
-					SourceLabels  *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
-					Source_labels *[]string          `tfsdk:"source_labels" json:"source_labels,omitempty"`
-					TargetLabel   *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
-					Target_label  *string            `tfsdk:"target_label" json:"target_label,omitempty"`
+					Action       *string            `tfsdk:"action" json:"action,omitempty"`
+					If           *map[string]string `tfsdk:"if" json:"if,omitempty"`
+					Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Match        *string            `tfsdk:"match" json:"match,omitempty"`
+					Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
+					Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
+					Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
+					Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
+					SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+					TargetLabel  *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
 				} `tfsdk:"output_relabel_configs" json:"output_relabel_configs,omitempty"`
 				Outputs            *[]string `tfsdk:"outputs" json:"outputs,omitempty"`
 				Staleness_interval *string   `tfsdk:"staleness_interval" json:"staleness_interval,omitempty"`
@@ -1941,34 +1933,6 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-					},
-
-					"host_aliases": schema.ListNestedAttribute{
-						Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-						MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"hostnames": schema.ListAttribute{
-									Description:         "Hostnames for the above IP address.",
-									MarkdownDescription: "Hostnames for the above IP address.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"ip": schema.StringAttribute{
-									Description:         "IP address of the host file entry.",
-									MarkdownDescription: "IP address of the host file entry.",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
 					},
 
 					"ignore_namespace_selectors": schema.BoolAttribute{
@@ -5783,26 +5747,9 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 														Computed:            false,
 													},
 
-													"source_labels": schema.ListAttribute{
-														Description:         "UnderScoreSourceLabels - additional form of source labels source_labels for compatibility with original relabel config. if set both sourceLabels and source_labels, sourceLabels has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-														MarkdownDescription: "UnderScoreSourceLabels - additional form of source labels source_labels for compatibility with original relabel config. if set both sourceLabels and source_labels, sourceLabels has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"target_label": schema.StringAttribute{
 														Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 														MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"target_label": schema.StringAttribute{
-														Description:         "UnderScoreTargetLabel - additional form of target label - target_label for compatibility with original relabel config. if set both targetLabel and target_label, targetLabel has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-														MarkdownDescription: "UnderScoreTargetLabel - additional form of target label - target_label for compatibility with original relabel config. if set both targetLabel and target_label, targetLabel has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5928,26 +5875,9 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 														Computed:            false,
 													},
 
-													"source_labels": schema.ListAttribute{
-														Description:         "UnderScoreSourceLabels - additional form of source labels source_labels for compatibility with original relabel config. if set both sourceLabels and source_labels, sourceLabels has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-														MarkdownDescription: "UnderScoreSourceLabels - additional form of source labels source_labels for compatibility with original relabel config. if set both sourceLabels and source_labels, sourceLabels has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
 													"target_label": schema.StringAttribute{
 														Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 														MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"target_label": schema.StringAttribute{
-														Description:         "UnderScoreTargetLabel - additional form of target label - target_label for compatibility with original relabel config. if set both targetLabel and target_label, targetLabel has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-														MarkdownDescription: "UnderScoreTargetLabel - additional form of target label - target_label for compatibility with original relabel config. if set both targetLabel and target_label, targetLabel has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

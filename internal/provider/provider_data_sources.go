@@ -1890,8 +1890,6 @@ func allDataSources() []func() datasource.DataSource {
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2DataSource,
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest,
-		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2DataSource,
-		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource,
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTcprouteV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTlsrouteV1Alpha2DataSource,

@@ -82,13 +82,9 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 			} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
-			HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-			Host_aliases *[]struct {
-				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
-				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
-			} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
-			Hpa   *map[string]string `tfsdk:"hpa" json:"hpa,omitempty"`
-			Image *struct {
+			HostNetwork *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+			Hpa         *map[string]string `tfsdk:"hpa" json:"hpa,omitempty"`
+			Image       *struct {
 				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -253,13 +249,9 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 			} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
-			HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-			Host_aliases *[]struct {
-				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
-				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
-			} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
-			Hpa   *map[string]string `tfsdk:"hpa" json:"hpa,omitempty"`
-			Image *struct {
+			HostNetwork *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+			Hpa         *map[string]string `tfsdk:"hpa" json:"hpa,omitempty"`
+			Image       *struct {
 				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -486,12 +478,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 			} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
-			HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-			Host_aliases *[]struct {
-				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
-				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
-			} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
-			Image *struct {
+			HostNetwork *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+			Image       *struct {
 				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -1021,34 +1009,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-
-							"host_aliases": schema.ListNestedAttribute{
-								Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-								MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"hostnames": schema.ListAttribute{
-											Description:         "Hostnames for the above IP address.",
-											MarkdownDescription: "Hostnames for the above IP address.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"ip": schema.StringAttribute{
-											Description:         "IP address of the host file entry.",
-											MarkdownDescription: "IP address of the host file entry.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 
 							"hpa": schema.MapAttribute{
@@ -2268,34 +2228,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-
-							"host_aliases": schema.ListNestedAttribute{
-								Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-								MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"hostnames": schema.ListAttribute{
-											Description:         "Hostnames for the above IP address.",
-											MarkdownDescription: "Hostnames for the above IP address.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"ip": schema.StringAttribute{
-											Description:         "IP address of the host file entry.",
-											MarkdownDescription: "IP address of the host file entry.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 
 							"hpa": schema.MapAttribute{
@@ -3939,34 +3871,6 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-
-							"host_aliases": schema.ListNestedAttribute{
-								Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-								MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"hostnames": schema.ListAttribute{
-											Description:         "Hostnames for the above IP address.",
-											MarkdownDescription: "Hostnames for the above IP address.",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"ip": schema.StringAttribute{
-											Description:         "IP address of the host file entry.",
-											MarkdownDescription: "IP address of the host file entry.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 
 							"image": schema.SingleNestedAttribute{

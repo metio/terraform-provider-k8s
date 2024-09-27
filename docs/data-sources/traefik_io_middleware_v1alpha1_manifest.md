@@ -352,6 +352,7 @@ Optional:
 
 - `depth` (Number) Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).
 - `excluded_i_ps` (List of String) ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.
+- `ipv6_subnet` (Number) IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.
 
 
 
@@ -372,6 +373,7 @@ Optional:
 
 - `depth` (Number) Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).
 - `excluded_i_ps` (List of String) ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.
+- `ipv6_subnet` (Number) IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.
 
 
 
@@ -390,6 +392,7 @@ Optional:
 
 - `depth` (Number) Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).
 - `excluded_i_ps` (List of String) ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.
+- `ipv6_subnet` (Number) IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.
 
 
 
@@ -470,6 +473,7 @@ Optional:
 
 - `depth` (Number) Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).
 - `excluded_i_ps` (List of String) ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.
+- `ipv6_subnet` (Number) IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.
 
 
 

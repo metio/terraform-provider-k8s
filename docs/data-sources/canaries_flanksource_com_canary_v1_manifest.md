@@ -1633,13 +1633,14 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 <a id="nestedatt--spec--catalog--display"></a>
@@ -2864,6 +2865,7 @@ Optional:
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint and credentials.
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--gcp--gcp_connection--credentials))
 - `endpoint` (String)
+- `skip_tls_verify` (Boolean) Skip TLS verify
 
 <a id="nestedatt--spec--database_backup--gcp--gcp_connection--credentials"></a>
 ### Nested Schema for `spec.database_backup.gcp.gcp_connection.credentials`
@@ -5243,6 +5245,7 @@ Optional:
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint and credentials.
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--connections--gcp--credentials))
 - `endpoint` (String)
+- `skip_tls_verify` (Boolean) Skip TLS verify
 
 <a id="nestedatt--spec--exec--connections--gcp--credentials"></a>
 ### Nested Schema for `spec.exec.connections.gcp.credentials`
@@ -5834,6 +5837,7 @@ Optional:
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint and credentials.
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--gcp_connection--credentials))
 - `endpoint` (String)
+- `skip_tls_verify` (Boolean) Skip TLS verify
 
 <a id="nestedatt--spec--folder--gcp_connection--credentials"></a>
 ### Nested Schema for `spec.folder.gcp_connection.credentials`

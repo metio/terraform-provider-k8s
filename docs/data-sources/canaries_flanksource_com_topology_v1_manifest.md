@@ -78,6 +78,7 @@ Optional:
 
 - `checks` (Attributes List) (see [below for nested schema](#nestedatt--spec--components--checks))
 - `components` (Map of String) Create new child components
+- `config_id` (String)
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--components--configs))
 - `external_id` (String)
 - `for_each` (Map of String) Only applies when using lookup, when specified the components and properties specified under ForEach will be templated using the components returned by the lookup ${.properties} can be used to reference the properties of the component ${.component} can be used to reference the component itself
@@ -122,13 +123,14 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 
@@ -145,15 +147,16 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
 - `type` (String) Deprecated. Use 'types'
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 <a id="nestedatt--spec--components--id"></a>
@@ -208,13 +211,14 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 <a id="nestedatt--spec--components--summary"></a>
@@ -253,15 +257,16 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
 - `type` (String) Deprecated. Use 'types'
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 <a id="nestedatt--spec--group_by"></a>
@@ -286,13 +291,14 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 
@@ -355,15 +361,16 @@ Optional:
 - `id` (String)
 - `include_deleted` (Boolean)
 - `label_selector` (String)
+- `limit` (Number)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
 - `search` (String) Search query that applies to the resource name, tag & labels.
-- `statuses` (List of String)
+- `statuses` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
 - `type` (String) Deprecated. Use 'types'
-- `types` (List of String)
+- `types` (List of String) StringArray represents a one-dimensional array of the PostgreSQL character types.
 
 
 <a id="nestedatt--spec--properties--config_lookup--display"></a>

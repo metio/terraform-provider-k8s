@@ -180,6 +180,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -190,6 +191,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upgrade--security_context--windows_options))
+
+<a id="nestedatt--spec--upgrade--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.upgrade.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--upgrade--security_context--capabilities"></a>
 ### Nested Schema for `spec.upgrade.security_context.capabilities`
@@ -412,6 +422,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -422,6 +433,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--prepare--security_context--windows_options))
+
+<a id="nestedatt--spec--prepare--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.prepare.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--prepare--security_context--capabilities"></a>
 ### Nested Schema for `spec.prepare.security_context.capabilities`

@@ -58,6 +58,7 @@ Optional:
 - `group` (Attributes) Group defines the IngressGroup for all Ingresses that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--group))
 - `inbound_cidrs` (List of String) InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.
 - `ip_address_type` (String) IPAddressType defines the ip address type for all Ingresses that belong to IngressClass with this IngressClassParams.
+- `listeners` (Attributes List) Listeners define a list of listeners with their protocol, port and attributes. (see [below for nested schema](#nestedatt--spec--listeners))
 - `load_balancer_attributes` (Attributes List) LoadBalancerAttributes define the custom attributes to LoadBalancers for all Ingress that that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--load_balancer_attributes))
 - `namespace_selector` (Attributes) NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams. * if absent or present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `scheme` (String) Scheme defines the scheme for all Ingresses that belong to IngressClass with this IngressClassParams.
@@ -71,6 +72,25 @@ Optional:
 Required:
 
 - `name` (String) Name is the name of IngressGroup.
+
+
+<a id="nestedatt--spec--listeners"></a>
+### Nested Schema for `spec.listeners`
+
+Optional:
+
+- `listener_attributes` (Attributes List) The attributes of the listener (see [below for nested schema](#nestedatt--spec--listeners--listener_attributes))
+- `port` (Number) The port of the listener
+- `protocol` (String) The protocol of the listener
+
+<a id="nestedatt--spec--listeners--listener_attributes"></a>
+### Nested Schema for `spec.listeners.listener_attributes`
+
+Required:
+
+- `key` (String) The key of the attribute.
+- `value` (String) The value of the attribute.
+
 
 
 <a id="nestedatt--spec--load_balancer_attributes"></a>

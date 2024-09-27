@@ -78,18 +78,16 @@ type OperatorVictoriametricsComVmprobeV1Beta1ManifestData struct {
 		JobName              *string `tfsdk:"job_name" json:"jobName,omitempty"`
 		Max_scrape_size      *string `tfsdk:"max_scrape_size" json:"max_scrape_size,omitempty"`
 		MetricRelabelConfigs *[]struct {
-			Action        *string            `tfsdk:"action" json:"action,omitempty"`
-			If            *map[string]string `tfsdk:"if" json:"if,omitempty"`
-			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Match         *string            `tfsdk:"match" json:"match,omitempty"`
-			Modulus       *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
-			Regex         *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
-			Replacement   *string            `tfsdk:"replacement" json:"replacement,omitempty"`
-			Separator     *string            `tfsdk:"separator" json:"separator,omitempty"`
-			SourceLabels  *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
-			Source_labels *[]string          `tfsdk:"source_labels" json:"source_labels,omitempty"`
-			TargetLabel   *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
-			Target_label  *string            `tfsdk:"target_label" json:"target_label,omitempty"`
+			Action       *string            `tfsdk:"action" json:"action,omitempty"`
+			If           *map[string]string `tfsdk:"if" json:"if,omitempty"`
+			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Match        *string            `tfsdk:"match" json:"match,omitempty"`
+			Modulus      *int64             `tfsdk:"modulus" json:"modulus,omitempty"`
+			Regex        *map[string]string `tfsdk:"regex" json:"regex,omitempty"`
+			Replacement  *string            `tfsdk:"replacement" json:"replacement,omitempty"`
+			Separator    *string            `tfsdk:"separator" json:"separator,omitempty"`
+			SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+			TargetLabel  *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
 		} `tfsdk:"metric_relabel_configs" json:"metricRelabelConfigs,omitempty"`
 		Module *string `tfsdk:"module" json:"module,omitempty"`
 		Oauth2 *struct {
@@ -665,26 +663,9 @@ func (r *OperatorVictoriametricsComVmprobeV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"source_labels": schema.ListAttribute{
-									Description:         "UnderScoreSourceLabels - additional form of source labels source_labels for compatibility with original relabel config. if set both sourceLabels and source_labels, sourceLabels has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-									MarkdownDescription: "UnderScoreSourceLabels - additional form of source labels source_labels for compatibility with original relabel config. if set both sourceLabels and source_labels, sourceLabels has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
 								"target_label": schema.StringAttribute{
 									Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 									MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"target_label": schema.StringAttribute{
-									Description:         "UnderScoreTargetLabel - additional form of target label - target_label for compatibility with original relabel config. if set both targetLabel and target_label, targetLabel has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
-									MarkdownDescription: "UnderScoreTargetLabel - additional form of target label - target_label for compatibility with original relabel config. if set both targetLabel and target_label, targetLabel has priority. for details https://github.com/VictoriaMetrics/operator/issues/131",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

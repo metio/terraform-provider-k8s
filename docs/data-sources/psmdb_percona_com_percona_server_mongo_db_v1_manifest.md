@@ -76,6 +76,7 @@ Optional:
 - `platform` (String)
 - `pmm` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm))
 - `replsets` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets))
+- `roles` (Attributes List) (see [below for nested schema](#nestedatt--spec--roles))
 - `scheduler_name` (String)
 - `secrets` (Attributes) (see [below for nested schema](#nestedatt--spec--secrets))
 - `sharding` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding))
@@ -252,6 +253,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pod_security_context--windows_options))
 
@@ -326,6 +328,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -619,6 +625,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 
@@ -647,8 +657,10 @@ Optional:
 - `nonvoting` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting))
 - `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--pod_disruption_budget))
 - `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--pod_security_context))
+- `primary_prefer_tag_selector` (Map of String)
 - `priority_class_name` (String)
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--readiness_probe))
+- `replset_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--replset_overrides))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--resources))
 - `runtime_class_name` (String)
 - `service_account_name` (String)
@@ -1495,6 +1507,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--replsets--arbiter--sidecar_pv_cs"></a>
@@ -1652,6 +1668,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--arbiter--sidecar_volumes--persistent_volume_claim))
@@ -2046,6 +2063,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--replsets--arbiter--sidecar_volumes--image"></a>
+### Nested Schema for `spec.replsets.arbiter.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--replsets--arbiter--sidecar_volumes--iscsi"></a>
@@ -2877,6 +2903,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--replsets--arbiter--sidecars--security_context"></a>
@@ -3213,7 +3243,9 @@ Required:
 
 Optional:
 
+- `horizons` (Map of String)
 - `port` (Number)
+- `tags` (Map of String)
 
 
 <a id="nestedatt--spec--replsets--host_aliases"></a>
@@ -3896,6 +3928,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--pod_security_context--windows_options))
 
@@ -4043,6 +4076,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -4201,6 +4238,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--nonvoting--sidecar_volumes--persistent_volume_claim))
@@ -4595,6 +4633,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--replsets--nonvoting--sidecar_volumes--image"></a>
+### Nested Schema for `spec.replsets.nonvoting.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--replsets--nonvoting--sidecar_volumes--iscsi"></a>
@@ -5426,6 +5473,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--replsets--nonvoting--sidecars--security_context"></a>
@@ -5785,6 +5836,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--replsets--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--pod_security_context--windows_options))
 
@@ -5917,6 +5969,16 @@ Optional:
 
 
 
+<a id="nestedatt--spec--replsets--replset_overrides"></a>
+### Nested Schema for `spec.replsets.replset_overrides`
+
+Optional:
+
+- `horizons` (Map of String)
+- `host` (String)
+- `tags` (Map of String)
+
+
 <a id="nestedatt--spec--replsets--resources"></a>
 ### Nested Schema for `spec.replsets.resources`
 
@@ -5932,6 +5994,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -6090,6 +6156,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--replsets--sidecar_volumes--persistent_volume_claim))
@@ -6484,6 +6551,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--replsets--sidecar_volumes--image"></a>
+### Nested Schema for `spec.replsets.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--replsets--sidecar_volumes--iscsi"></a>
@@ -7315,6 +7391,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--replsets--sidecars--security_context"></a>
@@ -7725,6 +7805,61 @@ Optional:
 
 
 
+<a id="nestedatt--spec--roles"></a>
+### Nested Schema for `spec.roles`
+
+Required:
+
+- `db` (String)
+- `privileges` (Attributes List) (see [below for nested schema](#nestedatt--spec--roles--privileges))
+- `role` (String)
+
+Optional:
+
+- `authentication_restrictions` (Attributes List) (see [below for nested schema](#nestedatt--spec--roles--authentication_restrictions))
+- `roles` (Attributes List) (see [below for nested schema](#nestedatt--spec--roles--roles))
+
+<a id="nestedatt--spec--roles--privileges"></a>
+### Nested Schema for `spec.roles.privileges`
+
+Required:
+
+- `actions` (List of String)
+
+Optional:
+
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--roles--privileges--resource))
+
+<a id="nestedatt--spec--roles--privileges--resource"></a>
+### Nested Schema for `spec.roles.privileges.resource`
+
+Optional:
+
+- `cluster` (Boolean)
+- `collection` (String)
+- `db` (String)
+
+
+
+<a id="nestedatt--spec--roles--authentication_restrictions"></a>
+### Nested Schema for `spec.roles.authentication_restrictions`
+
+Optional:
+
+- `client_source` (List of String)
+- `server_address` (List of String)
+
+
+<a id="nestedatt--spec--roles--roles"></a>
+### Nested Schema for `spec.roles.roles`
+
+Required:
+
+- `db` (String)
+- `role` (String)
+
+
+
 <a id="nestedatt--spec--secrets"></a>
 ### Nested Schema for `spec.secrets`
 
@@ -7785,8 +7920,10 @@ Optional:
 - `nonvoting` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting))
 - `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--pod_disruption_budget))
 - `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--pod_security_context))
+- `primary_prefer_tag_selector` (Map of String)
 - `priority_class_name` (String)
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--readiness_probe))
+- `replset_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--replset_overrides))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--resources))
 - `runtime_class_name` (String)
 - `service_account_name` (String)
@@ -8633,6 +8770,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_pv_cs"></a>
@@ -8790,6 +8931,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--persistent_volume_claim))
@@ -9184,6 +9326,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--image"></a>
+### Nested Schema for `spec.sharding.configsvr_repl_set.arbiter.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecar_volumes--iscsi"></a>
@@ -10015,6 +10166,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--arbiter--sidecars--security_context"></a>
@@ -10351,7 +10506,9 @@ Required:
 
 Optional:
 
+- `horizons` (Map of String)
 - `port` (Number)
+- `tags` (Map of String)
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--host_aliases"></a>
@@ -11034,6 +11191,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--pod_security_context--windows_options))
 
@@ -11181,6 +11339,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -11339,6 +11501,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--persistent_volume_claim))
@@ -11733,6 +11896,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--image"></a>
+### Nested Schema for `spec.sharding.configsvr_repl_set.nonvoting.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecar_volumes--iscsi"></a>
@@ -12564,6 +12736,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--nonvoting--sidecars--security_context"></a>
@@ -12923,6 +13099,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--pod_security_context--windows_options))
 
@@ -13055,6 +13232,16 @@ Optional:
 
 
 
+<a id="nestedatt--spec--sharding--configsvr_repl_set--replset_overrides"></a>
+### Nested Schema for `spec.sharding.configsvr_repl_set.replset_overrides`
+
+Optional:
+
+- `horizons` (Map of String)
+- `host` (String)
+- `tags` (Map of String)
+
+
 <a id="nestedatt--spec--sharding--configsvr_repl_set--resources"></a>
 ### Nested Schema for `spec.sharding.configsvr_repl_set.resources`
 
@@ -13070,6 +13257,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -13228,6 +13419,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--persistent_volume_claim))
@@ -13622,6 +13814,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--image"></a>
+### Nested Schema for `spec.sharding.configsvr_repl_set.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--sharding--configsvr_repl_set--sidecar_volumes--iscsi"></a>
@@ -14452,6 +14653,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -15488,6 +15693,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--sharding--mongos--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--pod_security_context--windows_options))
 
@@ -15635,6 +15841,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -15801,6 +16011,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--sharding--mongos--sidecar_volumes--persistent_volume_claim))
@@ -16195,6 +16406,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--sharding--mongos--sidecar_volumes--image"></a>
+### Nested Schema for `spec.sharding.mongos.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--sharding--mongos--sidecar_volumes--iscsi"></a>
@@ -17026,6 +17246,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--sharding--mongos--sidecars--security_context"></a>
@@ -17308,22 +17532,24 @@ Optional:
 
 Required:
 
-- `db` (String)
 - `name` (String)
 - `password_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--users--password_secret_ref))
 - `roles` (Attributes List) (see [below for nested schema](#nestedatt--spec--users--roles))
+
+Optional:
+
+- `db` (String)
 
 <a id="nestedatt--spec--users--password_secret_ref"></a>
 ### Nested Schema for `spec.users.password_secret_ref`
 
 Required:
 
-- `key` (String)
+- `name` (String)
 
 Optional:
 
-- `name` (String)
-- `optional` (Boolean)
+- `key` (String)
 
 
 <a id="nestedatt--spec--users--roles"></a>
