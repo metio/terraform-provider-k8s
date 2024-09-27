@@ -43,8 +43,9 @@ type WorkKarmadaIoWorkV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		SuspendDispatching *bool `tfsdk:"suspend_dispatching" json:"suspendDispatching,omitempty"`
-		Workload           *struct {
+		PreserveResourcesOnDeletion *bool `tfsdk:"preserve_resources_on_deletion" json:"preserveResourcesOnDeletion,omitempty"`
+		SuspendDispatching          *bool `tfsdk:"suspend_dispatching" json:"suspendDispatching,omitempty"`
+		Workload                    *struct {
 			Manifests *[]map[string]string `tfsdk:"manifests" json:"manifests,omitempty"`
 		} `tfsdk:"workload" json:"workload,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -127,9 +128,17 @@ func (r *WorkKarmadaIoWorkV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 				Description:         "Spec represents the desired behavior of Work.",
 				MarkdownDescription: "Spec represents the desired behavior of Work.",
 				Attributes: map[string]schema.Attribute{
+					"preserve_resources_on_deletion": schema.BoolAttribute{
+						Description:         "PreserveResourcesOnDeletion controls whether resources should be preserved on the member cluster when the Work object is deleted. If set to true, resources will be preserved on the member cluster. Default is false, which means resources will be deleted along with the Work object.",
+						MarkdownDescription: "PreserveResourcesOnDeletion controls whether resources should be preserved on the member cluster when the Work object is deleted. If set to true, resources will be preserved on the member cluster. Default is false, which means resources will be deleted along with the Work object.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"suspend_dispatching": schema.BoolAttribute{
-						Description:         "SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to all clusters.",
-						MarkdownDescription: "SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to all clusters.",
+						Description:         "SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to the corresponding member cluster, and does not prevent status collection.",
+						MarkdownDescription: "SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to the corresponding member cluster, and does not prevent status collection.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

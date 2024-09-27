@@ -53,6 +53,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 					Id             *string   `tfsdk:"id" json:"id,omitempty"`
 					IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 					LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					Limit          *int64    `tfsdk:"limit" json:"limit,omitempty"`
 					Name           *string   `tfsdk:"name" json:"name,omitempty"`
 					Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 					Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
@@ -63,6 +64,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 				} `tfsdk:"selector" json:"selector,omitempty"`
 			} `tfsdk:"checks" json:"checks,omitempty"`
 			Components *map[string]string `tfsdk:"components" json:"components,omitempty"`
+			ConfigID   *string            `tfsdk:"config_id" json:"configID,omitempty"`
 			Configs    *[]struct {
 				Agent          *string            `tfsdk:"agent" json:"agent,omitempty"`
 				Cache          *string            `tfsdk:"cache" json:"cache,omitempty"`
@@ -72,6 +74,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 				Id             *string            `tfsdk:"id" json:"id,omitempty"`
 				IncludeDeleted *bool              `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 				LabelSelector  *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				Limit          *int64             `tfsdk:"limit" json:"limit,omitempty"`
 				Name           *string            `tfsdk:"name" json:"name,omitempty"`
 				Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 				Scope          *string            `tfsdk:"scope" json:"scope,omitempty"`
@@ -124,6 +127,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 				Id             *string   `tfsdk:"id" json:"id,omitempty"`
 				IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 				LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				Limit          *int64    `tfsdk:"limit" json:"limit,omitempty"`
 				Name           *string   `tfsdk:"name" json:"name,omitempty"`
 				Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 				Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
@@ -156,6 +160,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 			Id             *string            `tfsdk:"id" json:"id,omitempty"`
 			IncludeDeleted *bool              `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 			LabelSelector  *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+			Limit          *int64             `tfsdk:"limit" json:"limit,omitempty"`
 			Name           *string            `tfsdk:"name" json:"name,omitempty"`
 			Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Scope          *string            `tfsdk:"scope" json:"scope,omitempty"`
@@ -174,6 +179,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 				Id             *string   `tfsdk:"id" json:"id,omitempty"`
 				IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 				LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				Limit          *int64    `tfsdk:"limit" json:"limit,omitempty"`
 				Name           *string   `tfsdk:"name" json:"name,omitempty"`
 				Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 				Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
@@ -206,6 +212,7 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 					Id             *string            `tfsdk:"id" json:"id,omitempty"`
 					IncludeDeleted *bool              `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 					LabelSelector  *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					Limit          *int64             `tfsdk:"limit" json:"limit,omitempty"`
 					Name           *string            `tfsdk:"name" json:"name,omitempty"`
 					Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 					Scope          *string            `tfsdk:"scope" json:"scope,omitempty"`
@@ -579,6 +586,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 														Computed:            false,
 													},
 
+													"limit": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -612,8 +627,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"statuses": schema.ListAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+														MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -629,8 +644,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"types": schema.ListAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+														MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -652,6 +667,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 									Description:         "Create new child components",
 									MarkdownDescription: "Create new child components",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"config_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -726,6 +749,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 
+											"limit": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -759,8 +790,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"statuses": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+												MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -793,8 +824,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"types": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+												MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1121,6 +1152,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 
+											"limit": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -1154,8 +1193,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"statuses": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+												MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1171,8 +1210,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"types": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+												MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1352,6 +1391,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 									Computed:            false,
 								},
 
+								"limit": schema.Int64Attribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -1385,8 +1432,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"statuses": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1419,8 +1466,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"types": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1489,6 +1536,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"limit": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"name": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -1522,8 +1577,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"statuses": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+										MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1539,8 +1594,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"types": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+										MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1723,6 +1778,14 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
+												"limit": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"name": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -1756,8 +1819,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"statuses": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+													MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1790,8 +1853,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"types": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+													MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,

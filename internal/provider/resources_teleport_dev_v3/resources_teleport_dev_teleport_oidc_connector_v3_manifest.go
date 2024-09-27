@@ -235,8 +235,8 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 					},
 
 					"client_secret": schema.StringAttribute{
-						Description:         "ClientSecret is used to authenticate the client.",
-						MarkdownDescription: "ClientSecret is used to authenticate the client.",
+						Description:         "ClientSecret is used to authenticate the client. This field supports secret lookup. See the operator documentation for more details.",
+						MarkdownDescription: "ClientSecret is used to authenticate the client. This field supports secret lookup. See the operator documentation for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

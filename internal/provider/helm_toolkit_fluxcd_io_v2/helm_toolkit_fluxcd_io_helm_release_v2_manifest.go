@@ -100,6 +100,7 @@ type HelmToolkitFluxcdIoHelmReleaseV2ManifestData struct {
 			CreateNamespace          *bool   `tfsdk:"create_namespace" json:"createNamespace,omitempty"`
 			DisableHooks             *bool   `tfsdk:"disable_hooks" json:"disableHooks,omitempty"`
 			DisableOpenAPIValidation *bool   `tfsdk:"disable_open_api_validation" json:"disableOpenAPIValidation,omitempty"`
+			DisableSchemaValidation  *bool   `tfsdk:"disable_schema_validation" json:"disableSchemaValidation,omitempty"`
 			DisableWait              *bool   `tfsdk:"disable_wait" json:"disableWait,omitempty"`
 			DisableWaitForJobs       *bool   `tfsdk:"disable_wait_for_jobs" json:"disableWaitForJobs,omitempty"`
 			Remediation              *struct {
@@ -178,6 +179,7 @@ type HelmToolkitFluxcdIoHelmReleaseV2ManifestData struct {
 			Crds                     *string `tfsdk:"crds" json:"crds,omitempty"`
 			DisableHooks             *bool   `tfsdk:"disable_hooks" json:"disableHooks,omitempty"`
 			DisableOpenAPIValidation *bool   `tfsdk:"disable_open_api_validation" json:"disableOpenAPIValidation,omitempty"`
+			DisableSchemaValidation  *bool   `tfsdk:"disable_schema_validation" json:"disableSchemaValidation,omitempty"`
 			DisableWait              *bool   `tfsdk:"disable_wait" json:"disableWait,omitempty"`
 			DisableWaitForJobs       *bool   `tfsdk:"disable_wait_for_jobs" json:"disableWaitForJobs,omitempty"`
 			Force                    *bool   `tfsdk:"force" json:"force,omitempty"`
@@ -689,6 +691,14 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							"disable_open_api_validation": schema.BoolAttribute{
 								Description:         "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
 								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_schema_validation": schema.BoolAttribute{
+								Description:         "DisableSchemaValidation prevents the Helm install action from validating the values against the JSON Schema.",
+								MarkdownDescription: "DisableSchemaValidation prevents the Helm install action from validating the values against the JSON Schema.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1274,6 +1284,14 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							"disable_open_api_validation": schema.BoolAttribute{
 								Description:         "DisableOpenAPIValidation prevents the Helm upgrade action from validating rendered templates against the Kubernetes OpenAPI Schema.",
 								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm upgrade action from validating rendered templates against the Kubernetes OpenAPI Schema.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_schema_validation": schema.BoolAttribute{
+								Description:         "DisableSchemaValidation prevents the Helm upgrade action from validating the values against the JSON Schema.",
+								MarkdownDescription: "DisableSchemaValidation prevents the Helm upgrade action from validating the values against the JSON Schema.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

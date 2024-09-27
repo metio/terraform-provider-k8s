@@ -180,6 +180,7 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			Storage_backlog_mem_limit           *string `tfsdk:"storage_backlog_mem_limit" json:"storage.backlog.mem_limit,omitempty"`
 			Storage_checksum                    *string `tfsdk:"storage_checksum" json:"storage.checksum,omitempty"`
 			Storage_delete_irrecoverable_chunks *string `tfsdk:"storage_delete_irrecoverable_chunks" json:"storage.delete_irrecoverable_chunks,omitempty"`
+			Storage_max_chunks_up               *int64  `tfsdk:"storage_max_chunks_up" json:"storage.max_chunks_up,omitempty"`
 			Storage_metrics                     *string `tfsdk:"storage_metrics" json:"storage.metrics,omitempty"`
 			Storage_path                        *string `tfsdk:"storage_path" json:"storage.path,omitempty"`
 			Storage_sync                        *string `tfsdk:"storage_sync" json:"storage.sync,omitempty"`
@@ -331,6 +332,8 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			} `tfsdk:"service_monitor_config" json:"serviceMonitorConfig,omitempty"`
@@ -338,7 +341,8 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 		} `tfsdk:"buffer_volume_metrics" json:"bufferVolumeMetrics,omitempty"`
 		BufferVolumeResources *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -354,7 +358,8 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			} `tfsdk:"image" json:"image,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -686,6 +691,8 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			} `tfsdk:"service_monitor_config" json:"serviceMonitorConfig,omitempty"`
@@ -804,7 +811,8 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 		Resources *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -830,8 +838,9 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1916,6 +1925,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"storage_max_chunks_up": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"storage_metrics": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -2958,6 +2975,28 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 												Computed: false,
 											},
 
+											"max_version": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+												},
+											},
+
+											"min_version": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+												},
+											},
+
 											"server_name": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -3003,6 +3042,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"request": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},
@@ -3105,6 +3152,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -5413,6 +5468,28 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 												Computed: false,
 											},
 
+											"max_version": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+												},
+											},
+
+											"min_version": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+												},
+											},
+
 											"server_name": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -6209,6 +6286,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 											Optional:            false,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -6382,6 +6467,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 										Description:         "",
 										MarkdownDescription: "",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

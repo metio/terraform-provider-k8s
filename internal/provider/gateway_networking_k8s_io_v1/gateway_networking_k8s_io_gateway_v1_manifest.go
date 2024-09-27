@@ -49,14 +49,6 @@ type GatewayNetworkingK8SIoGatewayV1ManifestData struct {
 			Type  *string `tfsdk:"type" json:"type,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"addresses" json:"addresses,omitempty"`
-		BackendTLS *struct {
-			ClientCertificateRef *struct {
-				Group     *string `tfsdk:"group" json:"group,omitempty"`
-				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			} `tfsdk:"client_certificate_ref" json:"clientCertificateRef,omitempty"`
-		} `tfsdk:"backend_tls" json:"backendTLS,omitempty"`
 		GatewayClassName *string `tfsdk:"gateway_class_name" json:"gatewayClassName,omitempty"`
 		Infrastructure   *struct {
 			Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -96,14 +88,6 @@ type GatewayNetworkingK8SIoGatewayV1ManifestData struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"certificate_refs" json:"certificateRefs,omitempty"`
-				FrontendValidation *struct {
-					CaCertificateRefs *[]struct {
-						Group     *string `tfsdk:"group" json:"group,omitempty"`
-						Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					} `tfsdk:"ca_certificate_refs" json:"caCertificateRefs,omitempty"`
-				} `tfsdk:"frontend_validation" json:"frontendValidation,omitempty"`
 				Mode    *string            `tfsdk:"mode" json:"mode,omitempty"`
 				Options *map[string]string `tfsdk:"options" json:"options,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -217,74 +201,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Schema(_ context.Context, _ da
 										stringvalidator.LengthAtMost(253),
 									},
 								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"backend_tls": schema.SingleNestedAttribute{
-						Description:         "BackendTLS configures TLS settings for when this Gateway is connecting to backends with TLS. Support: Core ",
-						MarkdownDescription: "BackendTLS configures TLS settings for when this Gateway is connecting to backends with TLS. Support: Core ",
-						Attributes: map[string]schema.Attribute{
-							"client_certificate_ref": schema.SingleNestedAttribute{
-								Description:         "ClientCertificateRef is a reference to an object that contains a Client Certificate and the associated private key. References to a resource in different namespace are invalid UNLESS there is a ReferenceGrant in the target namespace that allows the certificate to be attached. If a ReferenceGrant does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'RefNotPermitted' reason. ClientCertificateRef can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources. This setting can be overridden on the service level by use of BackendTLSPolicy. Support: Core ",
-								MarkdownDescription: "ClientCertificateRef is a reference to an object that contains a Client Certificate and the associated private key. References to a resource in different namespace are invalid UNLESS there is a ReferenceGrant in the target namespace that allows the certificate to be attached. If a ReferenceGrant does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'RefNotPermitted' reason. ClientCertificateRef can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources. This setting can be overridden on the service level by use of BackendTLSPolicy. Support: Core ",
-								Attributes: map[string]schema.Attribute{
-									"group": schema.StringAttribute{
-										Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
-										MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtMost(253),
-											stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
-										},
-									},
-
-									"kind": schema.StringAttribute{
-										Description:         "Kind is kind of the referent. For example 'Secret'.",
-										MarkdownDescription: "Kind is kind of the referent. For example 'Secret'.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-											stringvalidator.LengthAtMost(63),
-											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
-										},
-									},
-
-									"name": schema.StringAttribute{
-										Description:         "Name is the name of the referent.",
-										MarkdownDescription: "Name is the name of the referent.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-											stringvalidator.LengthAtMost(253),
-										},
-									},
-
-									"namespace": schema.StringAttribute{
-										Description:         "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred. Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. Support: Core",
-										MarkdownDescription: "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred. Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. Support: Core",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-											stringvalidator.LengthAtMost(63),
-											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 						},
 						Required: false,
@@ -610,76 +526,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Schema(_ context.Context, _ da
 															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
 														},
 													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"frontend_validation": schema.SingleNestedAttribute{
-											Description:         "FrontendValidation holds configuration information for validating the frontend (client). Setting this field will require clients to send a client certificate required for validation during the TLS handshake. In browsers this may result in a dialog appearing that requests a user to specify the client certificate. The maximum depth of a certificate chain accepted in verification is Implementation specific. Support: Extended ",
-											MarkdownDescription: "FrontendValidation holds configuration information for validating the frontend (client). Setting this field will require clients to send a client certificate required for validation during the TLS handshake. In browsers this may result in a dialog appearing that requests a user to specify the client certificate. The maximum depth of a certificate chain accepted in verification is Implementation specific. Support: Extended ",
-											Attributes: map[string]schema.Attribute{
-												"ca_certificate_refs": schema.ListNestedAttribute{
-													Description:         "CACertificateRefs contains one or more references to Kubernetes objects that contain TLS certificates of the Certificate Authorities that can be used as a trust anchor to validate the certificates presented by the client. A single CA certificate reference to a Kubernetes ConfigMap has 'Core' support. Implementations MAY choose to support attaching multiple CA certificates to a Listener, but this behavior is implementation-specific. Support: Core - A single reference to a Kubernetes ConfigMap with the CA certificate in a key named 'ca.crt'. Support: Implementation-specific (More than one reference, or other kinds of resources). References to a resource in a different namespace are invalid UNLESS there is a ReferenceGrant in the target namespace that allows the certificate to be attached. If a ReferenceGrant does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'RefNotPermitted' reason.",
-													MarkdownDescription: "CACertificateRefs contains one or more references to Kubernetes objects that contain TLS certificates of the Certificate Authorities that can be used as a trust anchor to validate the certificates presented by the client. A single CA certificate reference to a Kubernetes ConfigMap has 'Core' support. Implementations MAY choose to support attaching multiple CA certificates to a Listener, but this behavior is implementation-specific. Support: Core - A single reference to a Kubernetes ConfigMap with the CA certificate in a key named 'ca.crt'. Support: Implementation-specific (More than one reference, or other kinds of resources). References to a resource in a different namespace are invalid UNLESS there is a ReferenceGrant in the target namespace that allows the certificate to be attached. If a ReferenceGrant does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'RefNotPermitted' reason.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"group": schema.StringAttribute{
-																Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
-																MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-																Validators: []validator.String{
-																	stringvalidator.LengthAtMost(253),
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
-																},
-															},
-
-															"kind": schema.StringAttribute{
-																Description:         "Kind is kind of the referent. For example 'ConfigMap' or 'Service'.",
-																MarkdownDescription: "Kind is kind of the referent. For example 'ConfigMap' or 'Service'.",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-																Validators: []validator.String{
-																	stringvalidator.LengthAtLeast(1),
-																	stringvalidator.LengthAtMost(63),
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
-																},
-															},
-
-															"name": schema.StringAttribute{
-																Description:         "Name is the name of the referent.",
-																MarkdownDescription: "Name is the name of the referent.",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-																Validators: []validator.String{
-																	stringvalidator.LengthAtLeast(1),
-																	stringvalidator.LengthAtMost(253),
-																},
-															},
-
-															"namespace": schema.StringAttribute{
-																Description:         "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred. Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. Support: Core",
-																MarkdownDescription: "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred. Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. Support: Core",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-																Validators: []validator.String{
-																	stringvalidator.LengthAtLeast(1),
-																	stringvalidator.LengthAtMost(63),
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
-																},
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
 												},
 											},
 											Required: false,

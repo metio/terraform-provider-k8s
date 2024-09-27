@@ -81,11 +81,6 @@ type GatewayNetworkingK8SIoGrpcrouteV1ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
-						Fraction *struct {
-							Denominator *int64 `tfsdk:"denominator" json:"denominator,omitempty"`
-							Numerator   *int64 `tfsdk:"numerator" json:"numerator,omitempty"`
-						} `tfsdk:"fraction" json:"fraction,omitempty"`
-						Percent *int64 `tfsdk:"percent" json:"percent,omitempty"`
 					} `tfsdk:"request_mirror" json:"requestMirror,omitempty"`
 					ResponseHeaderModifier *struct {
 						Add *[]struct {
@@ -132,11 +127,6 @@ type GatewayNetworkingK8SIoGrpcrouteV1ManifestData struct {
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
-					Fraction *struct {
-						Denominator *int64 `tfsdk:"denominator" json:"denominator,omitempty"`
-						Numerator   *int64 `tfsdk:"numerator" json:"numerator,omitempty"`
-					} `tfsdk:"fraction" json:"fraction,omitempty"`
-					Percent *int64 `tfsdk:"percent" json:"percent,omitempty"`
 				} `tfsdk:"request_mirror" json:"requestMirror,omitempty"`
 				ResponseHeaderModifier *struct {
 					Add *[]struct {
@@ -163,16 +153,6 @@ type GatewayNetworkingK8SIoGrpcrouteV1ManifestData struct {
 					Type    *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"method" json:"method,omitempty"`
 			} `tfsdk:"matches" json:"matches,omitempty"`
-			Name               *string `tfsdk:"name" json:"name,omitempty"`
-			SessionPersistence *struct {
-				AbsoluteTimeout *string `tfsdk:"absolute_timeout" json:"absoluteTimeout,omitempty"`
-				CookieConfig    *struct {
-					LifetimeType *string `tfsdk:"lifetime_type" json:"lifetimeType,omitempty"`
-				} `tfsdk:"cookie_config" json:"cookieConfig,omitempty"`
-				IdleTimeout *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
-				SessionName *string `tfsdk:"session_name" json:"sessionName,omitempty"`
-				Type        *string `tfsdk:"type" json:"type,omitempty"`
-			} `tfsdk:"session_persistence" json:"sessionPersistence,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -264,8 +244,8 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"parent_refs": schema.ListNestedAttribute{
-						Description:         "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace. For Services, that means the Service must either be in the same namespace for a 'producer' route, or the mesh implementation must support and allow 'consumer' routes for the referenced Service. ReferenceGrant is not applicable for governing ParentRefs to Services - it is not possible to create a 'producer' route for a Service in a different namespace from the Route. There are two kinds of parent resources with 'Core' support: * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only) This API may be extended in the future to support additional kinds of parent resources. ParentRefs must be _distinct_. This means either that: * They select different objects. If this is the case, then parentRef entries are distinct. In terms of fields, this means that the multi-part key defined by 'group', 'kind', 'namespace', and 'name' must be unique across all parentRef entries in the Route. * They do not select different objects, but for each optional field used, each ParentRef that selects the same object must set the same set of optional fields to different values. If one ParentRef sets a combination of optional fields, all must set the same combination. Some examples: * If one ParentRef sets 'sectionName', all ParentRefs referencing the same object must also set 'sectionName'. * If one ParentRef sets 'port', all ParentRefs referencing the same object must also set 'port'. * If one ParentRef sets 'sectionName' and 'port', all ParentRefs referencing the same object must also set 'sectionName' and 'port'. It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged. Note that for ParentRefs that cross namespace boundaries, there are specific rules. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example, Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable other kinds of cross-namespace reference. ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service. ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route. ",
-						MarkdownDescription: "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace. For Services, that means the Service must either be in the same namespace for a 'producer' route, or the mesh implementation must support and allow 'consumer' routes for the referenced Service. ReferenceGrant is not applicable for governing ParentRefs to Services - it is not possible to create a 'producer' route for a Service in a different namespace from the Route. There are two kinds of parent resources with 'Core' support: * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only) This API may be extended in the future to support additional kinds of parent resources. ParentRefs must be _distinct_. This means either that: * They select different objects. If this is the case, then parentRef entries are distinct. In terms of fields, this means that the multi-part key defined by 'group', 'kind', 'namespace', and 'name' must be unique across all parentRef entries in the Route. * They do not select different objects, but for each optional field used, each ParentRef that selects the same object must set the same set of optional fields to different values. If one ParentRef sets a combination of optional fields, all must set the same combination. Some examples: * If one ParentRef sets 'sectionName', all ParentRefs referencing the same object must also set 'sectionName'. * If one ParentRef sets 'port', all ParentRefs referencing the same object must also set 'port'. * If one ParentRef sets 'sectionName' and 'port', all ParentRefs referencing the same object must also set 'sectionName' and 'port'. It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged. Note that for ParentRefs that cross namespace boundaries, there are specific rules. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example, Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable other kinds of cross-namespace reference. ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service. ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route. ",
+						Description:         "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace. For Services, that means the Service must either be in the same namespace for a 'producer' route, or the mesh implementation must support and allow 'consumer' routes for the referenced Service. ReferenceGrant is not applicable for governing ParentRefs to Services - it is not possible to create a 'producer' route for a Service in a different namespace from the Route. There are two kinds of parent resources with 'Core' support: * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only) This API may be extended in the future to support additional kinds of parent resources. ParentRefs must be _distinct_. This means either that: * They select different objects. If this is the case, then parentRef entries are distinct. In terms of fields, this means that the multi-part key defined by 'group', 'kind', 'namespace', and 'name' must be unique across all parentRef entries in the Route. * They do not select different objects, but for each optional field used, each ParentRef that selects the same object must set the same set of optional fields to different values. If one ParentRef sets a combination of optional fields, all must set the same combination. Some examples: * If one ParentRef sets 'sectionName', all ParentRefs referencing the same object must also set 'sectionName'. * If one ParentRef sets 'port', all ParentRefs referencing the same object must also set 'port'. * If one ParentRef sets 'sectionName' and 'port', all ParentRefs referencing the same object must also set 'sectionName' and 'port'. It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged. Note that for ParentRefs that cross namespace boundaries, there are specific rules. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example, Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable other kinds of cross-namespace reference. ",
+						MarkdownDescription: "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace. For Services, that means the Service must either be in the same namespace for a 'producer' route, or the mesh implementation must support and allow 'consumer' routes for the referenced Service. ReferenceGrant is not applicable for governing ParentRefs to Services - it is not possible to create a 'producer' route for a Service in a different namespace from the Route. There are two kinds of parent resources with 'Core' support: * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only) This API may be extended in the future to support additional kinds of parent resources. ParentRefs must be _distinct_. This means either that: * They select different objects. If this is the case, then parentRef entries are distinct. In terms of fields, this means that the multi-part key defined by 'group', 'kind', 'namespace', and 'name' must be unique across all parentRef entries in the Route. * They do not select different objects, but for each optional field used, each ParentRef that selects the same object must set the same set of optional fields to different values. If one ParentRef sets a combination of optional fields, all must set the same combination. Some examples: * If one ParentRef sets 'sectionName', all ParentRefs referencing the same object must also set 'sectionName'. * If one ParentRef sets 'port', all ParentRefs referencing the same object must also set 'port'. * If one ParentRef sets 'sectionName' and 'port', all ParentRefs referencing the same object must also set 'sectionName' and 'port'. It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged. Note that for ParentRefs that cross namespace boundaries, there are specific rules. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example, Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable other kinds of cross-namespace reference. ",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{
@@ -306,8 +286,8 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route. Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference. ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service. ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route. Support: Core",
-									MarkdownDescription: "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route. Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference. ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service. ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route. Support: Core",
+									Description:         "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route. Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference. Support: Core",
+									MarkdownDescription: "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route. Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference. Support: Core",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -319,8 +299,8 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource. When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values. When the parent resource is a Service, this targets a specific port in the Service spec. When both Port (experimental) and SectionName are specified, the name and port of the selected port must match both specified values. Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted. For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Extended",
-									MarkdownDescription: "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource. When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values. When the parent resource is a Service, this targets a specific port in the Service spec. When both Port (experimental) and SectionName are specified, the name and port of the selected port must match both specified values. Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted. For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Extended",
+									Description:         "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource. When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values. Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted. For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Extended",
+									MarkdownDescription: "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource. When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values. Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted. For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Extended",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -573,49 +553,6 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Manifest) Schema(_ context.Context, _ 
 																	Required: true,
 																	Optional: false,
 																	Computed: false,
-																},
-
-																"fraction": schema.SingleNestedAttribute{
-																	Description:         "Fraction represents the fraction of requests that should be mirrored to BackendRef. Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-																	MarkdownDescription: "Fraction represents the fraction of requests that should be mirrored to BackendRef. Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-																	Attributes: map[string]schema.Attribute{
-																		"denominator": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																			Validators: []validator.Int64{
-																				int64validator.AtLeast(1),
-																			},
-																		},
-
-																		"numerator": schema.Int64Attribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																			Validators: []validator.Int64{
-																				int64validator.AtLeast(0),
-																			},
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
-																"percent": schema.Int64Attribute{
-																	Description:         "Percent represents the percentage of requests that should be mirrored to BackendRef. Its minimum value is 0 (indicating 0% of requests) and its maximum value is 100 (indicating 100% of requests). Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-																	MarkdownDescription: "Percent represents the percentage of requests that should be mirrored to BackendRef. Its minimum value is 0 (indicating 0% of requests) and its maximum value is 100 (indicating 100% of requests). Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																	Validators: []validator.Int64{
-																		int64validator.AtLeast(0),
-																		int64validator.AtMost(100),
-																	},
 																},
 															},
 															Required: false,
@@ -1025,49 +962,6 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Manifest) Schema(_ context.Context, _ 
 														Optional: false,
 														Computed: false,
 													},
-
-													"fraction": schema.SingleNestedAttribute{
-														Description:         "Fraction represents the fraction of requests that should be mirrored to BackendRef. Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-														MarkdownDescription: "Fraction represents the fraction of requests that should be mirrored to BackendRef. Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-														Attributes: map[string]schema.Attribute{
-															"denominator": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-																Validators: []validator.Int64{
-																	int64validator.AtLeast(1),
-																},
-															},
-
-															"numerator": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-																Validators: []validator.Int64{
-																	int64validator.AtLeast(0),
-																},
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"percent": schema.Int64Attribute{
-														Description:         "Percent represents the percentage of requests that should be mirrored to BackendRef. Its minimum value is 0 (indicating 0% of requests) and its maximum value is 100 (indicating 100% of requests). Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-														MarkdownDescription: "Percent represents the percentage of requests that should be mirrored to BackendRef. Its minimum value is 0 (indicating 0% of requests) and its maximum value is 100 (indicating 100% of requests). Only one of Fraction or Percent may be specified. If neither field is specified, 100% of requests will be mirrored. ",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-														Validators: []validator.Int64{
-															int64validator.AtLeast(0),
-															int64validator.AtMost(100),
-														},
-													},
 												},
 												Required: false,
 												Optional: true,
@@ -1273,92 +1167,6 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Manifest) Schema(_ context.Context, _ 
 												Required: false,
 												Optional: true,
 												Computed: false,
-											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"name": schema.StringAttribute{
-									Description:         "Name is the name of the route rule. This name MUST be unique within a Route if it is set. Support: Extended ",
-									MarkdownDescription: "Name is the name of the route rule. This name MUST be unique within a Route if it is set. Support: Extended ",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(253),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
-									},
-								},
-
-								"session_persistence": schema.SingleNestedAttribute{
-									Description:         "SessionPersistence defines and configures session persistence for the route rule. Support: Extended ",
-									MarkdownDescription: "SessionPersistence defines and configures session persistence for the route rule. Support: Extended ",
-									Attributes: map[string]schema.Attribute{
-										"absolute_timeout": schema.StringAttribute{
-											Description:         "AbsoluteTimeout defines the absolute timeout of the persistent session. Once the AbsoluteTimeout duration has elapsed, the session becomes invalid. Support: Extended",
-											MarkdownDescription: "AbsoluteTimeout defines the absolute timeout of the persistent session. Once the AbsoluteTimeout duration has elapsed, the session becomes invalid. Support: Extended",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]{1,5}(h|m|s|ms)){1,4}$`), ""),
-											},
-										},
-
-										"cookie_config": schema.SingleNestedAttribute{
-											Description:         "CookieConfig provides configuration settings that are specific to cookie-based session persistence. Support: Core",
-											MarkdownDescription: "CookieConfig provides configuration settings that are specific to cookie-based session persistence. Support: Core",
-											Attributes: map[string]schema.Attribute{
-												"lifetime_type": schema.StringAttribute{
-													Description:         "LifetimeType specifies whether the cookie has a permanent or session-based lifetime. A permanent cookie persists until its specified expiry time, defined by the Expires or Max-Age cookie attributes, while a session cookie is deleted when the current session ends. When set to 'Permanent', AbsoluteTimeout indicates the cookie's lifetime via the Expires or Max-Age cookie attributes and is required. When set to 'Session', AbsoluteTimeout indicates the absolute lifetime of the cookie tracked by the gateway and is optional. Support: Core for 'Session' type Support: Extended for 'Permanent' type",
-													MarkdownDescription: "LifetimeType specifies whether the cookie has a permanent or session-based lifetime. A permanent cookie persists until its specified expiry time, defined by the Expires or Max-Age cookie attributes, while a session cookie is deleted when the current session ends. When set to 'Permanent', AbsoluteTimeout indicates the cookie's lifetime via the Expires or Max-Age cookie attributes and is required. When set to 'Session', AbsoluteTimeout indicates the absolute lifetime of the cookie tracked by the gateway and is optional. Support: Core for 'Session' type Support: Extended for 'Permanent' type",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Permanent", "Session"),
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"idle_timeout": schema.StringAttribute{
-											Description:         "IdleTimeout defines the idle timeout of the persistent session. Once the session has been idle for more than the specified IdleTimeout duration, the session becomes invalid. Support: Extended",
-											MarkdownDescription: "IdleTimeout defines the idle timeout of the persistent session. Once the session has been idle for more than the specified IdleTimeout duration, the session becomes invalid. Support: Extended",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]{1,5}(h|m|s|ms)){1,4}$`), ""),
-											},
-										},
-
-										"session_name": schema.StringAttribute{
-											Description:         "SessionName defines the name of the persistent session token which may be reflected in the cookie or the header. Users should avoid reusing session names to prevent unintended consequences, such as rejection or unpredictable behavior. Support: Implementation-specific",
-											MarkdownDescription: "SessionName defines the name of the persistent session token which may be reflected in the cookie or the header. Users should avoid reusing session names to prevent unintended consequences, such as rejection or unpredictable behavior. Support: Implementation-specific",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.LengthAtMost(128),
-											},
-										},
-
-										"type": schema.StringAttribute{
-											Description:         "Type defines the type of session persistence such as through the use a header or cookie. Defaults to cookie based session persistence. Support: Core for 'Cookie' type Support: Extended for 'Header' type",
-											MarkdownDescription: "Type defines the type of session persistence such as through the use a header or cookie. Defaults to cookie based session persistence. Support: Core for 'Cookie' type Support: Extended for 'Header' type",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("Cookie", "Header"),
 											},
 										},
 									},

@@ -152,8 +152,9 @@ type WorkKarmadaIoResourceBindingV1Alpha2ManifestData struct {
 				SpreadByLabel *string `tfsdk:"spread_by_label" json:"spreadByLabel,omitempty"`
 			} `tfsdk:"spread_constraints" json:"spreadConstraints,omitempty"`
 		} `tfsdk:"placement" json:"placement,omitempty"`
-		PropagateDeps       *bool `tfsdk:"propagate_deps" json:"propagateDeps,omitempty"`
-		ReplicaRequirements *struct {
+		PreserveResourcesOnDeletion *bool `tfsdk:"preserve_resources_on_deletion" json:"preserveResourcesOnDeletion,omitempty"`
+		PropagateDeps               *bool `tfsdk:"propagate_deps" json:"propagateDeps,omitempty"`
+		ReplicaRequirements         *struct {
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			NodeClaim *struct {
 				HardNodeAffinity *struct {
@@ -1034,6 +1035,14 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"preserve_resources_on_deletion": schema.BoolAttribute{
+						Description:         "PreserveResourcesOnDeletion controls whether resources should be preserved on the member clusters when the binding object is deleted. If set to true, resources will be preserved on the member clusters. Default is false, which means resources will be deleted along with the binding object. This setting applies to all Work objects created under this binding object.",
+						MarkdownDescription: "PreserveResourcesOnDeletion controls whether resources should be preserved on the member clusters when the binding object is deleted. If set to true, resources will be preserved on the member clusters. Default is false, which means resources will be deleted along with the binding object. This setting applies to all Work objects created under this binding object.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"propagate_deps": schema.BoolAttribute{

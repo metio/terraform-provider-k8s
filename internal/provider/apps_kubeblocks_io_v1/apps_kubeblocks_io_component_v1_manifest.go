@@ -1280,8 +1280,8 @@ func (r *AppsKubeblocksIoComponentV1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "ComponentSpec defines the desired state of Component",
 				Attributes: map[string]schema.Attribute{
 					"annotations": schema.MapAttribute{
-						Description:         "Specifies Annotations to override or add for underlying Pods.",
-						MarkdownDescription: "Specifies Annotations to override or add for underlying Pods.",
+						Description:         "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+						MarkdownDescription: "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -5106,8 +5106,8 @@ func (r *AppsKubeblocksIoComponentV1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"labels": schema.MapAttribute{
-						Description:         "Specifies Labels to override or add for underlying Pods.",
-						MarkdownDescription: "Specifies Labels to override or add for underlying Pods.",
+						Description:         "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+						MarkdownDescription: "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

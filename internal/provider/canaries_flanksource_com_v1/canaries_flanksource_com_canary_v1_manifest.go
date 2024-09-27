@@ -765,6 +765,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				Id             *string   `tfsdk:"id" json:"id,omitempty"`
 				IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 				LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				Limit          *int64    `tfsdk:"limit" json:"limit,omitempty"`
 				Name           *string   `tfsdk:"name" json:"name,omitempty"`
 				Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 				Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
@@ -1211,7 +1212,8 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"credentials" json:"credentials,omitempty"`
-					Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+					Endpoint      *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+					SkipTLSVerify *bool   `tfsdk:"skip_tls_verify" json:"skipTLSVerify,omitempty"`
 				} `tfsdk:"gcp_connection" json:"gcpConnection,omitempty"`
 				Instance *string `tfsdk:"instance" json:"instance,omitempty"`
 				Project  *string `tfsdk:"project" json:"project,omitempty"`
@@ -2159,7 +2161,8 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"credentials" json:"credentials,omitempty"`
-					Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+					Endpoint      *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+					SkipTLSVerify *bool   `tfsdk:"skip_tls_verify" json:"skipTLSVerify,omitempty"`
 				} `tfsdk:"gcp" json:"gcp,omitempty"`
 			} `tfsdk:"connections" json:"connections,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
@@ -2393,7 +2396,8 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"credentials" json:"credentials,omitempty"`
-				Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				Endpoint      *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				SkipTLSVerify *bool   `tfsdk:"skip_tls_verify" json:"skipTLSVerify,omitempty"`
 			} `tfsdk:"gcp_connection" json:"gcpConnection,omitempty"`
 			Icon     *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -10625,6 +10629,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 												Computed:            false,
 											},
 
+											"limit": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -10658,8 +10670,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"statuses": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+												MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -10675,8 +10687,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"types": schema.ListAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+												MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -13559,6 +13571,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 												"endpoint": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"skip_tls_verify": schema.BoolAttribute{
+													Description:         "Skip TLS verify",
+													MarkdownDescription: "Skip TLS verify",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -19718,6 +19738,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"skip_tls_verify": schema.BoolAttribute{
+													Description:         "Skip TLS verify",
+													MarkdownDescription: "Skip TLS verify",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -21239,6 +21267,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										"endpoint": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"skip_tls_verify": schema.BoolAttribute{
+											Description:         "Skip TLS verify",
+											MarkdownDescription: "Skip TLS verify",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

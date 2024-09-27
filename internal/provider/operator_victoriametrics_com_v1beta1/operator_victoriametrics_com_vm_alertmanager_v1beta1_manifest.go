@@ -7,7 +7,6 @@ package operator_victoriametrics_com_v1beta1
 
 import (
 	"context"
-	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -65,9 +64,6 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 				Resources *struct {
-					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
-					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
@@ -79,15 +75,17 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"selector" json:"selector,omitempty"`
-				StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-				VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-				VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+				StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+				VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+				VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 			Status *struct {
-				AccessModes        *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-				AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-				Capacity           *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-				Conditions         *[]struct {
+				AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+				AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
+				AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+				Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+				Conditions                *[]struct {
 					LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
 					LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
 					Message            *string `tfsdk:"message" json:"message,omitempty"`
@@ -95,11 +93,16 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 					Status             *string `tfsdk:"status" json:"status,omitempty"`
 					Type               *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"conditions" json:"conditions,omitempty"`
-				Phase        *string `tfsdk:"phase" json:"phase,omitempty"`
-				ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
+				CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
+				ModifyVolumeStatus               *struct {
+					Status                          *string `tfsdk:"status" json:"status,omitempty"`
+					TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
+				} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
+				Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"claim_templates" json:"claimTemplates,omitempty"`
 		ClusterAdvertiseAddress *string   `tfsdk:"cluster_advertise_address" json:"clusterAdvertiseAddress,omitempty"`
+		ClusterDomainName       *string   `tfsdk:"cluster_domain_name" json:"clusterDomainName,omitempty"`
 		ConfigMaps              *[]string `tfsdk:"config_maps" json:"configMaps,omitempty"`
 		ConfigNamespaceSelector *struct {
 			MatchExpressions *[]struct {
@@ -111,8 +114,16 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 		} `tfsdk:"config_namespace_selector" json:"configNamespaceSelector,omitempty"`
 		ConfigRawYaml           *string            `tfsdk:"config_raw_yaml" json:"configRawYaml,omitempty"`
 		ConfigReloaderExtraArgs *map[string]string `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
-		ConfigSecret            *string            `tfsdk:"config_secret" json:"configSecret,omitempty"`
-		ConfigSelector          *struct {
+		ConfigReloaderImageTag  *string            `tfsdk:"config_reloader_image_tag" json:"configReloaderImageTag,omitempty"`
+		ConfigReloaderResources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
+			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+		} `tfsdk:"config_reloader_resources" json:"configReloaderResources,omitempty"`
+		ConfigSecret   *string `tfsdk:"config_secret" json:"configSecret,omitempty"`
+		ConfigSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -123,6 +134,7 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 		Containers                  *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
 		DisableNamespaceMatcher     *bool                `tfsdk:"disable_namespace_matcher" json:"disableNamespaceMatcher,omitempty"`
 		DisableRouteContinueEnforce *bool                `tfsdk:"disable_route_continue_enforce" json:"disableRouteContinueEnforce,omitempty"`
+		DisableSelfServiceScrape    *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
 		DnsConfig                   *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
@@ -131,12 +143,71 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 			} `tfsdk:"options" json:"options,omitempty"`
 			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-		DnsPolicy   *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-		ExternalURL *string              `tfsdk:"external_url" json:"externalURL,omitempty"`
-		ExtraArgs   *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-		ExtraEnvs   *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
-		HostNetwork *bool                `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-		Image       *struct {
+		DnsPolicy                *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+		EnforcedTopRouteMatchers *[]string            `tfsdk:"enforced_top_route_matchers" json:"enforcedTopRouteMatchers,omitempty"`
+		ExternalURL              *string              `tfsdk:"external_url" json:"externalURL,omitempty"`
+		ExtraArgs                *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+		ExtraEnvs                *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+		GossipConfig             *struct {
+			Tls_client_config *struct {
+				Ca_file       *string `tfsdk:"ca_file" json:"ca_file,omitempty"`
+				Ca_secret_ref *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"ca_secret_ref" json:"ca_secret_ref,omitempty"`
+				Cert_file       *string `tfsdk:"cert_file" json:"cert_file,omitempty"`
+				Cert_secret_ref *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"cert_secret_ref" json:"cert_secret_ref,omitempty"`
+				Insecure_skip_verify *bool   `tfsdk:"insecure_skip_verify" json:"insecure_skip_verify,omitempty"`
+				Key_file             *string `tfsdk:"key_file" json:"key_file,omitempty"`
+				Key_secret_ref       *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret_ref" json:"key_secret_ref,omitempty"`
+				Server_name *string `tfsdk:"server_name" json:"server_name,omitempty"`
+			} `tfsdk:"tls_client_config" json:"tls_client_config,omitempty"`
+			Tls_server_config *struct {
+				Cert_file       *string `tfsdk:"cert_file" json:"cert_file,omitempty"`
+				Cert_secret_ref *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"cert_secret_ref" json:"cert_secret_ref,omitempty"`
+				Cipher_suites        *[]string `tfsdk:"cipher_suites" json:"cipher_suites,omitempty"`
+				Client_auth_type     *string   `tfsdk:"client_auth_type" json:"client_auth_type,omitempty"`
+				Client_ca_file       *string   `tfsdk:"client_ca_file" json:"client_ca_file,omitempty"`
+				Client_ca_secret_ref *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_ca_secret_ref" json:"client_ca_secret_ref,omitempty"`
+				Curve_preferences *[]string `tfsdk:"curve_preferences" json:"curve_preferences,omitempty"`
+				Key_file          *string   `tfsdk:"key_file" json:"key_file,omitempty"`
+				Key_secret_ref    *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret_ref" json:"key_secret_ref,omitempty"`
+				Max_version                 *string `tfsdk:"max_version" json:"max_version,omitempty"`
+				Min_version                 *string `tfsdk:"min_version" json:"min_version,omitempty"`
+				Prefer_server_cipher_suites *bool   `tfsdk:"prefer_server_cipher_suites" json:"prefer_server_cipher_suites,omitempty"`
+			} `tfsdk:"tls_server_config" json:"tls_server_config,omitempty"`
+		} `tfsdk:"gossip_config" json:"gossipConfig,omitempty"`
+		HostAliases *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
+		HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+		Host_aliases *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
+		Image *struct {
 			PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 			Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 			Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -162,6 +233,7 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
+		Port              *string `tfsdk:"port" json:"port,omitempty"`
 		PortName          *string `tfsdk:"port_name" json:"portName,omitempty"`
 		PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 		ReadinessGates    *[]struct {
@@ -225,9 +297,6 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 					Resources *struct {
-						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
-						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
@@ -239,15 +308,17 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"selector" json:"selector,omitempty"`
-					StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-					VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-					VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+					StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+					VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+					VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+					VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 				} `tfsdk:"spec" json:"spec,omitempty"`
 				Status *struct {
-					AccessModes        *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-					Capacity           *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-					Conditions         *[]struct {
+					AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+					AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
+					AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+					Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+					Conditions                *[]struct {
 						LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
 						LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
 						Message            *string `tfsdk:"message" json:"message,omitempty"`
@@ -255,8 +326,12 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 						Status             *string `tfsdk:"status" json:"status,omitempty"`
 						Type               *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"conditions" json:"conditions,omitempty"`
-					Phase        *string `tfsdk:"phase" json:"phase,omitempty"`
-					ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
+					CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
+					ModifyVolumeStatus               *struct {
+						Status                          *string `tfsdk:"status" json:"status,omitempty"`
+						TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
+					} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
+					Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
@@ -273,16 +348,52 @@ type OperatorVictoriametricsComVmalertmanagerV1Beta1ManifestData struct {
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		TopologySpreadConstraints *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+		UseDefaultResources       *bool                `tfsdk:"use_default_resources" json:"useDefaultResources,omitempty"`
 		UseStrictSecurity         *bool                `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
+		UseVMConfigReloader       *bool                `tfsdk:"use_vm_config_reloader" json:"useVMConfigReloader,omitempty"`
 		VolumeMounts              *[]struct {
-			MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-			MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-			Name             *string `tfsdk:"name" json:"name,omitempty"`
-			ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-			SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-			SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+			SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+			SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 		} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
-		Volumes *[]map[string]string `tfsdk:"volumes" json:"volumes,omitempty"`
+		Volumes   *[]map[string]string `tfsdk:"volumes" json:"volumes,omitempty"`
+		WebConfig *struct {
+			Basic_auth_users   *map[string]string `tfsdk:"basic_auth_users" json:"basic_auth_users,omitempty"`
+			Http_server_config *struct {
+				Headers *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+				Http2   *bool              `tfsdk:"http2" json:"http2,omitempty"`
+			} `tfsdk:"http_server_config" json:"http_server_config,omitempty"`
+			Tls_server_config *struct {
+				Cert_file       *string `tfsdk:"cert_file" json:"cert_file,omitempty"`
+				Cert_secret_ref *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"cert_secret_ref" json:"cert_secret_ref,omitempty"`
+				Cipher_suites        *[]string `tfsdk:"cipher_suites" json:"cipher_suites,omitempty"`
+				Client_auth_type     *string   `tfsdk:"client_auth_type" json:"client_auth_type,omitempty"`
+				Client_ca_file       *string   `tfsdk:"client_ca_file" json:"client_ca_file,omitempty"`
+				Client_ca_secret_ref *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_ca_secret_ref" json:"client_ca_secret_ref,omitempty"`
+				Curve_preferences *[]string `tfsdk:"curve_preferences" json:"curve_preferences,omitempty"`
+				Key_file          *string   `tfsdk:"key_file" json:"key_file,omitempty"`
+				Key_secret_ref    *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret_ref" json:"key_secret_ref,omitempty"`
+				Max_version                 *string `tfsdk:"max_version" json:"max_version,omitempty"`
+				Min_version                 *string `tfsdk:"min_version" json:"min_version,omitempty"`
+				Prefer_server_cipher_suites *bool   `tfsdk:"prefer_server_cipher_suites" json:"prefer_server_cipher_suites,omitempty"`
+			} `tfsdk:"tls_server_config" json:"tls_server_config,omitempty"`
+		} `tfsdk:"web_config" json:"webConfig,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -502,25 +613,6 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 											Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 											MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 											Attributes: map[string]schema.Attribute{
-												"claims": schema.ListNestedAttribute{
-													Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"name": schema.StringAttribute{
-																Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
 												"limits": schema.MapAttribute{
 													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -606,6 +698,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 											Computed:            false,
 										},
 
+										"volume_attributes_class_name": schema.StringAttribute{
+											Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+											MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"volume_mode": schema.StringAttribute{
 											Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 											MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -640,9 +740,18 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 											Computed:            false,
 										},
 
+										"allocated_resource_statuses": schema.MapAttribute{
+											Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"allocated_resources": schema.MapAttribute{
-											Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-											MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -659,8 +768,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 										},
 
 										"conditions": schema.ListNestedAttribute{
-											Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-											MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+											Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
+											MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"last_probe_time": schema.StringAttribute{
@@ -694,8 +803,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 													},
 
 													"reason": schema.StringAttribute{
-														Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-														MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+														Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
+														MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -723,17 +832,42 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 											Computed: false,
 										},
 
-										"phase": schema.StringAttribute{
-											Description:         "phase represents the current phase of PersistentVolumeClaim.",
-											MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
+										"current_volume_attributes_class_name": schema.StringAttribute{
+											Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+											MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
-										"resize_status": schema.StringAttribute{
-											Description:         "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-											MarkdownDescription: "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+										"modify_volume_status": schema.SingleNestedAttribute{
+											Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+											MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+											Attributes: map[string]schema.Attribute{
+												"status": schema.StringAttribute{
+													Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+													MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"target_volume_attributes_class_name": schema.StringAttribute{
+													Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+													MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"phase": schema.StringAttribute{
+											Description:         "phase represents the current phase of PersistentVolumeClaim.",
+											MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -758,9 +892,17 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"cluster_domain_name": schema.StringAttribute{
+						Description:         "ClusterDomainName defines domain name suffix for in-cluster dns addresses aka .cluster.local used to build pod peer addresses for in-cluster communication",
+						MarkdownDescription: "ClusterDomainName defines domain name suffix for in-cluster dns addresses aka .cluster.local used to build pod peer addresses for in-cluster communication",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"config_maps": schema.ListAttribute{
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlertmanager object, which shall be mounted into the VMAlertmanager Pods. The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlertmanager object, which shall be mounted into the VMAlertmanager Pods. The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -838,6 +980,60 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"config_reloader_image_tag": schema.StringAttribute{
+						Description:         "ConfigReloaderImageTag defines image:tag for config-reloader container",
+						MarkdownDescription: "ConfigReloaderImageTag defines image:tag for config-reloader container",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"config_reloader_resources": schema.SingleNestedAttribute{
+						Description:         "ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
+						MarkdownDescription: "ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
+						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"limits": schema.MapAttribute{
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"requests": schema.MapAttribute{
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"config_secret": schema.StringAttribute{
 						Description:         "ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAlertmanager object, which contains configuration for this VMAlertmanager, configuration must be inside secret key: alertmanager.yaml. It must be created by user. instance. Defaults to 'vmalertmanager-<alertmanager-name>' The secret is mounted into /etc/alertmanager/config.",
 						MarkdownDescription: "ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAlertmanager object, which contains configuration for this VMAlertmanager, configuration must be inside secret key: alertmanager.yaml. It must be created by user. instance. Defaults to 'vmalertmanager-<alertmanager-name>' The secret is mounted into /etc/alertmanager/config.",
@@ -901,8 +1097,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"containers": schema.ListAttribute{
-						Description:         "Containers allows injecting additional containers or patching existing containers. This is meant to allow adding an authentication proxy to an VMAlertmanager pod.",
-						MarkdownDescription: "Containers allows injecting additional containers or patching existing containers. This is meant to allow adding an authentication proxy to an VMAlertmanager pod.",
+						Description:         "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
+						MarkdownDescription: "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -910,8 +1106,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"disable_namespace_matcher": schema.BoolAttribute{
-						Description:         "DisableNamespaceMatcher disables namespace label matcher for VMAlertmanagerConfig It may be useful if alert doesn't have namespace label for some reason",
-						MarkdownDescription: "DisableNamespaceMatcher disables namespace label matcher for VMAlertmanagerConfig It may be useful if alert doesn't have namespace label for some reason",
+						Description:         "DisableNamespaceMatcher disables top route namespace label matcher for VMAlertmanagerConfig It may be useful if alert doesn't have namespace label for some reason",
+						MarkdownDescription: "DisableNamespaceMatcher disables top route namespace label matcher for VMAlertmanagerConfig It may be useful if alert doesn't have namespace label for some reason",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -920,6 +1116,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					"disable_route_continue_enforce": schema.BoolAttribute{
 						Description:         "DisableRouteContinueEnforce cancel the behavior for VMAlertmanagerConfig that always enforce first-level route continue to true",
 						MarkdownDescription: "DisableRouteContinueEnforce cancel the behavior for VMAlertmanagerConfig that always enforce first-level route continue to true",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disable_self_service_scrape": schema.BoolAttribute{
+						Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
+						MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -987,6 +1191,15 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"enforced_top_route_matchers": schema.ListAttribute{
+						Description:         "EnforcedTopRouteMatchers defines label matchers to be added for the top route of VMAlertmanagerConfig It allows to make some set of labels required for alerts. https://prometheus.io/docs/alerting/latest/configuration/#matcher",
+						MarkdownDescription: "EnforcedTopRouteMatchers defines label matchers to be added for the top route of VMAlertmanagerConfig It allows to make some set of labels required for alerts. https://prometheus.io/docs/alerting/latest/configuration/#matcher",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"external_url": schema.StringAttribute{
 						Description:         "ExternalURL the VMAlertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if VMAlertmanager is not served from root of a DNS name.",
 						MarkdownDescription: "ExternalURL the VMAlertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if VMAlertmanager is not served from root of a DNS name.",
@@ -996,8 +1209,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"extra_args": schema.MapAttribute{
-						Description:         "ExtraArgs that will be passed to VMAlertmanager pod for example log.level: debug",
-						MarkdownDescription: "ExtraArgs that will be passed to VMAlertmanager pod for example log.level: debug",
+						Description:         "ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp",
+						MarkdownDescription: "ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1005,12 +1218,388 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"extra_envs": schema.ListAttribute{
-						Description:         "ExtraEnvs that will be added to VMAlertmanager pod",
-						MarkdownDescription: "ExtraEnvs that will be added to VMAlertmanager pod",
+						Description:         "ExtraEnvs that will be passed to the application container",
+						MarkdownDescription: "ExtraEnvs that will be passed to the application container",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"gossip_config": schema.SingleNestedAttribute{
+						Description:         "GossipConfig defines gossip TLS configuration for Alertmanager cluster",
+						MarkdownDescription: "GossipConfig defines gossip TLS configuration for Alertmanager cluster",
+						Attributes: map[string]schema.Attribute{
+							"tls_client_config": schema.SingleNestedAttribute{
+								Description:         "TLSClientConfig defines client TLS configuration for alertmanager",
+								MarkdownDescription: "TLSClientConfig defines client TLS configuration for alertmanager",
+								Attributes: map[string]schema.Attribute{
+									"ca_file": schema.StringAttribute{
+										Description:         "CAFile defines path to the pre-mounted file with CA mutually exclusive with CASecretRef",
+										MarkdownDescription: "CAFile defines path to the pre-mounted file with CA mutually exclusive with CASecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ca_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CA defines reference for secret with CA content under given key mutually exclusive with CAFile",
+										MarkdownDescription: "CA defines reference for secret with CA content under given key mutually exclusive with CAFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cert_file": schema.StringAttribute{
+										Description:         "CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef",
+										MarkdownDescription: "CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile",
+										MarkdownDescription: "CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"insecure_skip_verify": schema.BoolAttribute{
+										Description:         "Cert defines reference for secret with CA content under given key mutually exclusive with CertFile",
+										MarkdownDescription: "Cert defines reference for secret with CA content under given key mutually exclusive with CertFile",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_file": schema.StringAttribute{
+										Description:         "KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef",
+										MarkdownDescription: "KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_secret_ref": schema.SingleNestedAttribute{
+										Description:         "Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile",
+										MarkdownDescription: "Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"server_name": schema.StringAttribute{
+										Description:         "ServerName indicates a name of a server",
+										MarkdownDescription: "ServerName indicates a name of a server",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls_server_config": schema.SingleNestedAttribute{
+								Description:         "TLSServerConfig defines server TLS configuration for alertmanager",
+								MarkdownDescription: "TLSServerConfig defines server TLS configuration for alertmanager",
+								Attributes: map[string]schema.Attribute{
+									"cert_file": schema.StringAttribute{
+										Description:         "CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef",
+										MarkdownDescription: "CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile",
+										MarkdownDescription: "CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suites": schema.ListAttribute{
+										Description:         "CipherSuites defines list of supported cipher suites for TLS versions up to TLS 1.2 https://golang.org/pkg/crypto/tls/#pkg-constants",
+										MarkdownDescription: "CipherSuites defines list of supported cipher suites for TLS versions up to TLS 1.2 https://golang.org/pkg/crypto/tls/#pkg-constants",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_auth_type": schema.StringAttribute{
+										Description:         "Cert defines reference for secret with CA content under given key mutually exclusive with CertFile ClientAuthType defines server policy for client authentication If you want to enable client authentication (aka mTLS), you need to use RequireAndVerifyClientCert Note, mTLS is supported only at enterprise version of VictoriaMetrics components",
+										MarkdownDescription: "Cert defines reference for secret with CA content under given key mutually exclusive with CertFile ClientAuthType defines server policy for client authentication If you want to enable client authentication (aka mTLS), you need to use RequireAndVerifyClientCert Note, mTLS is supported only at enterprise version of VictoriaMetrics components",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("NoClientCert", "RequireAndVerifyClientCert"),
+										},
+									},
+
+									"client_ca_file": schema.StringAttribute{
+										Description:         "ClientCAFile defines path to the pre-mounted file with CA mutually exclusive with ClientCASecretRef",
+										MarkdownDescription: "ClientCAFile defines path to the pre-mounted file with CA mutually exclusive with ClientCASecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_ca_secret_ref": schema.SingleNestedAttribute{
+										Description:         "ClientCASecretRef defines reference for secret with CA content under given key mutually exclusive with ClientCAFile",
+										MarkdownDescription: "ClientCASecretRef defines reference for secret with CA content under given key mutually exclusive with ClientCAFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"curve_preferences": schema.ListAttribute{
+										Description:         "CurvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. https://golang.org/pkg/crypto/tls/#CurveID",
+										MarkdownDescription: "CurvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. https://golang.org/pkg/crypto/tls/#CurveID",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_file": schema.StringAttribute{
+										Description:         "KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef",
+										MarkdownDescription: "KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_secret_ref": schema.SingleNestedAttribute{
+										Description:         "Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile",
+										MarkdownDescription: "Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"max_version": schema.StringAttribute{
+										Description:         "MaxVersion maximum TLS version that is acceptable.",
+										MarkdownDescription: "MaxVersion maximum TLS version that is acceptable.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"min_version": schema.StringAttribute{
+										Description:         "MinVersion minimum TLS version that is acceptable.",
+										MarkdownDescription: "MinVersion minimum TLS version that is acceptable.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"prefer_server_cipher_suites": schema.BoolAttribute{
+										Description:         "PreferServerCipherSuites controls whether the server selects the client's most preferred ciphersuite",
+										MarkdownDescription: "PreferServerCipherSuites controls whether the server selects the client's most preferred ciphersuite",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork.",
+						MarkdownDescription: "HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"host_network": schema.BoolAttribute{
@@ -1021,9 +1610,37 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
+						MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.SingleNestedAttribute{
-						Description:         "Image - docker image settings for VMAlertmanager if no specified operator uses default config version",
-						MarkdownDescription: "Image - docker image settings for VMAlertmanager if no specified operator uses default config version",
+						Description:         "Image - docker image settings if no specified operator uses default version from operator config",
+						MarkdownDescription: "Image - docker image settings if no specified operator uses default version from operator config",
 						Attributes: map[string]schema.Attribute{
 							"pull_policy": schema.StringAttribute{
 								Description:         "PullPolicy describes how to pull docker image",
@@ -1060,8 +1677,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1074,8 +1691,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"init_containers": schema.ListAttribute{
-						Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the VMAlertmanager configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.",
-						MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the VMAlertmanager configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.",
+						Description:         "InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+						MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -1105,6 +1722,9 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("logfmt", "json"),
+						},
 					},
 
 					"log_level": schema.StringAttribute{
@@ -1113,11 +1733,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("debug", "info", "warn", "error", "DEBUG", "INFO", "WARN", "ERROR"),
+						},
 					},
 
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state",
-						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state",
+						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1209,6 +1832,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed: false,
 					},
 
+					"port": schema.StringAttribute{
+						Description:         "Port listen address",
+						MarkdownDescription: "Port listen address",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"port_name": schema.StringAttribute{
 						Description:         "PortName used for the pods and governing service. This defaults to web",
 						MarkdownDescription: "PortName used for the pods and governing service. This defaults to web",
@@ -1254,19 +1885,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"replica_count": schema.Int64Attribute{
-						Description:         "ReplicaCount Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the running cluster equal to the expected",
-						MarkdownDescription: "ReplicaCount Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the running cluster equal to the expected",
+						Description:         "ReplicaCount is the expected size of the Application.",
+						MarkdownDescription: "ReplicaCount is the expected size of the Application.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.Int64{
-							int64validator.AtLeast(0),
-						},
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-						MarkdownDescription: "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+						Description:         "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
+						MarkdownDescription: "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
 								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
@@ -1322,8 +1950,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"revision_history_limit_count": schema.Int64Attribute{
-						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.",
-						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.",
+						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.",
+						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1362,8 +1990,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"secrets": schema.ListAttribute{
-						Description:         "Secrets is a list of Secrets in the same namespace as the VMAlertmanager object, which shall be mounted into the VMAlertmanager Pods. The Secrets are mounted into /etc/vm/secrets/<secret-name>",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMAlertmanager object, which shall be mounted into the VMAlertmanager Pods. The Secrets are mounted into /etc/vm/secrets/<secret-name>",
+						Description:         "Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1388,8 +2016,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"service_account_name": schema.StringAttribute{
-						Description:         "ServiceAccountName is the name of the ServiceAccount to use",
-						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use",
+						Description:         "ServiceAccountName is the name of the ServiceAccount to use to run the pods",
+						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run the pods",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1657,25 +2285,6 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 												Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												Attributes: map[string]schema.Attribute{
-													"claims": schema.ListNestedAttribute{
-														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-														NestedObject: schema.NestedAttributeObject{
-															Attributes: map[string]schema.Attribute{
-																"name": schema.StringAttribute{
-																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"limits": schema.MapAttribute{
 														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1761,6 +2370,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 												Computed:            false,
 											},
 
+											"volume_attributes_class_name": schema.StringAttribute{
+												Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+												MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"volume_mode": schema.StringAttribute{
 												Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 												MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -1795,9 +2412,18 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 												Computed:            false,
 											},
 
+											"allocated_resource_statuses": schema.MapAttribute{
+												Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"allocated_resources": schema.MapAttribute{
-												Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-												MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1814,8 +2440,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 											},
 
 											"conditions": schema.ListNestedAttribute{
-												Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-												MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+												Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
+												MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"last_probe_time": schema.StringAttribute{
@@ -1849,8 +2475,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 														},
 
 														"reason": schema.StringAttribute{
-															Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-															MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+															Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
+															MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1878,17 +2504,42 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 												Computed: false,
 											},
 
-											"phase": schema.StringAttribute{
-												Description:         "phase represents the current phase of PersistentVolumeClaim.",
-												MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
+											"current_volume_attributes_class_name": schema.StringAttribute{
+												Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
-											"resize_status": schema.StringAttribute{
-												Description:         "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-												MarkdownDescription: "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											"modify_volume_status": schema.SingleNestedAttribute{
+												Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												Attributes: map[string]schema.Attribute{
+													"status": schema.StringAttribute{
+														Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+														MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"target_volume_attributes_class_name": schema.StringAttribute{
+														Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+														MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"phase": schema.StringAttribute{
+												Description:         "phase represents the current phase of PersistentVolumeClaim.",
+												MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1923,8 +2574,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2004,6 +2655,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"use_default_resources": schema.BoolAttribute{
+						Description:         "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						MarkdownDescription: "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"use_strict_security": schema.BoolAttribute{
 						Description:         "UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions",
 						MarkdownDescription: "UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions",
@@ -2012,9 +2671,17 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"use_vm_config_reloader": schema.BoolAttribute{
+						Description:         "UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates",
+						MarkdownDescription: "UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"volume_mounts": schema.ListNestedAttribute{
-						Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the alertmanager container, that are generated as a result of StorageSpec objects.",
-						MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the alertmanager container, that are generated as a result of StorageSpec objects.",
+						Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container",
+						MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"mount_path": schema.StringAttribute{
@@ -2026,8 +2693,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 								},
 
 								"mount_propagation": schema.StringAttribute{
-									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2044,6 +2711,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 								"read_only": schema.BoolAttribute{
 									Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 									MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"recursive_read_only": schema.StringAttribute{
+									Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+									MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2072,12 +2747,247 @@ func (r *OperatorVictoriametricsComVmalertmanagerV1Beta1Manifest) Schema(_ conte
 					},
 
 					"volumes": schema.ListAttribute{
-						Description:         "Volumes allows configuration of additional volumes on the output StatefulSet definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.",
-						MarkdownDescription: "Volumes allows configuration of additional volumes on the output StatefulSet definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.",
+						Description:         "Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional",
+						MarkdownDescription: "Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"web_config": schema.SingleNestedAttribute{
+						Description:         "WebConfig defines configuration for webserver https://github.com/prometheus/alertmanager/blob/main/docs/https.md",
+						MarkdownDescription: "WebConfig defines configuration for webserver https://github.com/prometheus/alertmanager/blob/main/docs/https.md",
+						Attributes: map[string]schema.Attribute{
+							"basic_auth_users": schema.MapAttribute{
+								Description:         "BasicAuthUsers Usernames and hashed passwords that have full access to the web server Passwords must be hashed with bcrypt",
+								MarkdownDescription: "BasicAuthUsers Usernames and hashed passwords that have full access to the web server Passwords must be hashed with bcrypt",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"http_server_config": schema.SingleNestedAttribute{
+								Description:         "HTTPServerConfig defines http server configuration for alertmanager web server",
+								MarkdownDescription: "HTTPServerConfig defines http server configuration for alertmanager web server",
+								Attributes: map[string]schema.Attribute{
+									"headers": schema.MapAttribute{
+										Description:         "Headers defines list of headers that can be added to HTTP responses.",
+										MarkdownDescription: "Headers defines list of headers that can be added to HTTP responses.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"http2": schema.BoolAttribute{
+										Description:         "HTTP2 enables HTTP/2 support. Note that HTTP/2 is only supported with TLS. This can not be changed on the fly.",
+										MarkdownDescription: "HTTP2 enables HTTP/2 support. Note that HTTP/2 is only supported with TLS. This can not be changed on the fly.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls_server_config": schema.SingleNestedAttribute{
+								Description:         "TLSServerConfig defines server TLS configuration for alertmanager",
+								MarkdownDescription: "TLSServerConfig defines server TLS configuration for alertmanager",
+								Attributes: map[string]schema.Attribute{
+									"cert_file": schema.StringAttribute{
+										Description:         "CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef",
+										MarkdownDescription: "CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile",
+										MarkdownDescription: "CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suites": schema.ListAttribute{
+										Description:         "CipherSuites defines list of supported cipher suites for TLS versions up to TLS 1.2 https://golang.org/pkg/crypto/tls/#pkg-constants",
+										MarkdownDescription: "CipherSuites defines list of supported cipher suites for TLS versions up to TLS 1.2 https://golang.org/pkg/crypto/tls/#pkg-constants",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_auth_type": schema.StringAttribute{
+										Description:         "Cert defines reference for secret with CA content under given key mutually exclusive with CertFile ClientAuthType defines server policy for client authentication If you want to enable client authentication (aka mTLS), you need to use RequireAndVerifyClientCert Note, mTLS is supported only at enterprise version of VictoriaMetrics components",
+										MarkdownDescription: "Cert defines reference for secret with CA content under given key mutually exclusive with CertFile ClientAuthType defines server policy for client authentication If you want to enable client authentication (aka mTLS), you need to use RequireAndVerifyClientCert Note, mTLS is supported only at enterprise version of VictoriaMetrics components",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("NoClientCert", "RequireAndVerifyClientCert"),
+										},
+									},
+
+									"client_ca_file": schema.StringAttribute{
+										Description:         "ClientCAFile defines path to the pre-mounted file with CA mutually exclusive with ClientCASecretRef",
+										MarkdownDescription: "ClientCAFile defines path to the pre-mounted file with CA mutually exclusive with ClientCASecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_ca_secret_ref": schema.SingleNestedAttribute{
+										Description:         "ClientCASecretRef defines reference for secret with CA content under given key mutually exclusive with ClientCAFile",
+										MarkdownDescription: "ClientCASecretRef defines reference for secret with CA content under given key mutually exclusive with ClientCAFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"curve_preferences": schema.ListAttribute{
+										Description:         "CurvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. https://golang.org/pkg/crypto/tls/#CurveID",
+										MarkdownDescription: "CurvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. https://golang.org/pkg/crypto/tls/#CurveID",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_file": schema.StringAttribute{
+										Description:         "KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef",
+										MarkdownDescription: "KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_secret_ref": schema.SingleNestedAttribute{
+										Description:         "Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile",
+										MarkdownDescription: "Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"max_version": schema.StringAttribute{
+										Description:         "MaxVersion maximum TLS version that is acceptable.",
+										MarkdownDescription: "MaxVersion maximum TLS version that is acceptable.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"min_version": schema.StringAttribute{
+										Description:         "MinVersion minimum TLS version that is acceptable.",
+										MarkdownDescription: "MinVersion minimum TLS version that is acceptable.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"prefer_server_cipher_suites": schema.BoolAttribute{
+										Description:         "PreferServerCipherSuites controls whether the server selects the client's most preferred ciphersuite",
+										MarkdownDescription: "PreferServerCipherSuites controls whether the server selects the client's most preferred ciphersuite",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: true,

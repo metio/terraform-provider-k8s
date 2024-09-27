@@ -50,23 +50,18 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 			Source_matchers *[]string `tfsdk:"source_matchers" json:"source_matchers,omitempty"`
 			Target_matchers *[]string `tfsdk:"target_matchers" json:"target_matchers,omitempty"`
 		} `tfsdk:"inhibit_rules" json:"inhibit_rules,omitempty"`
-		Mute_time_intervals *[]struct {
-			Name           *string `tfsdk:"name" json:"name,omitempty"`
-			Time_intervals *[]struct {
-				Days_of_month *[]string `tfsdk:"days_of_month" json:"days_of_month,omitempty"`
-				Location      *string   `tfsdk:"location" json:"location,omitempty"`
-				Months        *[]string `tfsdk:"months" json:"months,omitempty"`
-				Times         *[]struct {
-					End_time   *string `tfsdk:"end_time" json:"end_time,omitempty"`
-					Start_time *string `tfsdk:"start_time" json:"start_time,omitempty"`
-				} `tfsdk:"times" json:"times,omitempty"`
-				Weekdays *[]string `tfsdk:"weekdays" json:"weekdays,omitempty"`
-				Years    *[]string `tfsdk:"years" json:"years,omitempty"`
-			} `tfsdk:"time_intervals" json:"time_intervals,omitempty"`
-		} `tfsdk:"mute_time_intervals" json:"mute_time_intervals,omitempty"`
 		Receivers *[]struct {
 			Discord_configs *[]struct {
 				Http_config *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+						Type            *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
 					Basic_auth *struct {
 						Password *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -86,6 +81,29 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearer_token_secret,omitempty"`
+					Oauth2 *struct {
+						Client_id *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"client_id,omitempty"`
+						Client_secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"client_secret,omitempty"`
+						Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
+						Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
+						Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyURL   *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					Tls_config *struct {
 						Ca *struct {
@@ -195,6 +213,15 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 			} `tfsdk:"email_configs" json:"email_configs,omitempty"`
 			Msteams_configs *[]struct {
 				Http_config *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+						Type            *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
 					Basic_auth *struct {
 						Password *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -214,6 +241,29 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearer_token_secret,omitempty"`
+					Oauth2 *struct {
+						Client_id *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"client_id,omitempty"`
+						Client_secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"client_secret,omitempty"`
+						Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
+						Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
+						Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyURL   *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					Tls_config *struct {
 						Ca *struct {
@@ -393,6 +443,15 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 				Api_url     *string            `tfsdk:"api_url" json:"api_url,omitempty"`
 				Attributes  *map[string]string `tfsdk:"attributes" json:"attributes,omitempty"`
 				Http_config *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+						Type            *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
 					Basic_auth *struct {
 						Password *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -412,6 +471,29 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearer_token_secret,omitempty"`
+					Oauth2 *struct {
+						Client_id *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"client_id,omitempty"`
+						Client_secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"client_secret,omitempty"`
+						Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
+						Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
+						Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyURL   *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					Tls_config *struct {
 						Ca *struct {
@@ -497,6 +579,15 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 				Custom_fields       *map[string]string `tfsdk:"custom_fields" json:"custom_fields,omitempty"`
 				Entity_display_name *string            `tfsdk:"entity_display_name" json:"entity_display_name,omitempty"`
 				Http_config         *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+						Type            *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
 					Basic_auth *struct {
 						Password *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -516,6 +607,29 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearer_token_secret,omitempty"`
+					Oauth2 *struct {
+						Client_id *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"client_id,omitempty"`
+						Client_secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"client_secret,omitempty"`
+						Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
+						Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
+						Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyURL   *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					Tls_config *struct {
 						Ca *struct {
@@ -563,6 +677,15 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 			Webex_configs *[]struct {
 				Api_url     *string `tfsdk:"api_url" json:"api_url,omitempty"`
 				Http_config *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+						Type            *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
 					Basic_auth *struct {
 						Password *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -582,6 +705,29 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearer_token_secret,omitempty"`
+					Oauth2 *struct {
+						Client_id *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"client_id,omitempty"`
+						Client_secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"client_secret,omitempty"`
+						Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
+						Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
+						Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyURL   *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					Tls_config *struct {
 						Ca *struct {
@@ -645,6 +791,15 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 				Api_url     *string `tfsdk:"api_url" json:"api_url,omitempty"`
 				Corp_id     *string `tfsdk:"corp_id" json:"corp_id,omitempty"`
 				Http_config *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+						Type            *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
 					Basic_auth *struct {
 						Password *struct {
 							Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -664,6 +819,29 @@ type OperatorVictoriametricsComVmalertmanagerConfigV1Beta1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"bearer_token_secret" json:"bearer_token_secret,omitempty"`
+					Oauth2 *struct {
+						Client_id *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"client_id,omitempty"`
+						Client_secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"client_secret,omitempty"`
+						Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
+						Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
+						Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyURL   *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					Tls_config *struct {
 						Ca *struct {
@@ -813,8 +991,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig",
-				MarkdownDescription: "VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig",
+				Description:         "VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig it must reference only locally defined objects",
+				MarkdownDescription: "VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig it must reference only locally defined objects",
 				Attributes: map[string]schema.Attribute{
 					"inhibit_rules": schema.ListNestedAttribute{
 						Description:         "InhibitRules will only apply for alerts matching the resource's namespace.",
@@ -854,110 +1032,9 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 						Computed: false,
 					},
 
-					"mute_time_intervals": schema.ListNestedAttribute{
-						Description:         "MuteTimeInterval - global mute time See https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval",
-						MarkdownDescription: "MuteTimeInterval - global mute time See https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"name": schema.StringAttribute{
-									Description:         "Name of interval",
-									MarkdownDescription: "Name of interval",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"time_intervals": schema.ListNestedAttribute{
-									Description:         "TimeIntervals interval configuration",
-									MarkdownDescription: "TimeIntervals interval configuration",
-									NestedObject: schema.NestedAttributeObject{
-										Attributes: map[string]schema.Attribute{
-											"days_of_month": schema.ListAttribute{
-												Description:         "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']",
-												MarkdownDescription: "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"location": schema.StringAttribute{
-												Description:         "Location in golang time location form, e.g. UTC",
-												MarkdownDescription: "Location in golang time location form, e.g. UTC",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"months": schema.ListAttribute{
-												Description:         "Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']",
-												MarkdownDescription: "Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"times": schema.ListNestedAttribute{
-												Description:         "Times defines time range for mute",
-												MarkdownDescription: "Times defines time range for mute",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"end_time": schema.StringAttribute{
-															Description:         "EndTime for example HH:MM",
-															MarkdownDescription: "EndTime for example HH:MM",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"start_time": schema.StringAttribute{
-															Description:         "StartTime for example HH:MM",
-															MarkdownDescription: "StartTime for example HH:MM",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"weekdays": schema.ListAttribute{
-												Description:         "Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.",
-												MarkdownDescription: "Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"years": schema.ListAttribute{
-												Description:         "Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']",
-												MarkdownDescription: "Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-									},
-									Required: true,
-									Optional: false,
-									Computed: false,
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"receivers": schema.ListNestedAttribute{
-						Description:         "Receivers defines alert receivers. without defined Route, receivers will be skipped.",
-						MarkdownDescription: "Receivers defines alert receivers. without defined Route, receivers will be skipped.",
+						Description:         "Receivers defines alert receivers",
+						MarkdownDescription: "Receivers defines alert receivers",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"discord_configs": schema.ListNestedAttribute{
@@ -969,13 +1046,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												Description:         "HTTP client configuration.",
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
-													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 support BasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
-															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Reference to the secret with value for authorization",
+																MarkdownDescription: "Reference to the secret with value for authorization",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -986,8 +1063,66 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"credentials_file": schema.StringAttribute{
+																Description:         "File with value for authorization",
+																MarkdownDescription: "File with value for authorization",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type of authorization, default to bearer",
+																MarkdownDescription: "Type of authorization, default to bearer",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client.",
+														MarkdownDescription: "BasicAuth for the client.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1007,16 +1142,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"password_file": schema.StringAttribute{
-																Description:         "PasswordFile defines path to password file at disk",
-																MarkdownDescription: "PasswordFile defines path to password file at disk",
+																Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+																MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1027,8 +1162,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1073,8 +1208,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1086,6 +1221,160 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "The secret or configmap containing the OAuth2 client id",
+																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "The secret containing the OAuth2 client secret",
+																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"client_secret_file": schema.StringAttribute{
+																Description:         "ClientSecretFile defines path for client secret file.",
+																MarkdownDescription: "ClientSecretFile defines path for client secret file.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "Parameters to append to the token URL",
+																MarkdownDescription: "Parameters to append to the token URL",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "OAuth2 scopes used for the token request",
+																MarkdownDescription: "OAuth2 scopes used for the token request",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "The URL to fetch the token from",
+																MarkdownDescription: "The URL to fetch the token from",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -1122,8 +1411,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1155,8 +1444,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1205,8 +1494,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1238,8 +1527,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1300,8 +1589,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1383,8 +1672,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1435,8 +1724,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1468,8 +1757,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1497,8 +1786,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"from": schema.StringAttribute{
-												Description:         "The sender address.",
-												MarkdownDescription: "The sender address.",
+												Description:         "The sender address. fallback to global setting if empty",
+												MarkdownDescription: "The sender address. fallback to global setting if empty",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1546,8 +1835,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"smarthost": schema.StringAttribute{
-												Description:         "The SMTP host through which emails are sent.",
-												MarkdownDescription: "The SMTP host through which emails are sent.",
+												Description:         "The SMTP host through which emails are sent. fallback to global setting if empty",
+												MarkdownDescription: "The SMTP host through which emails are sent. fallback to global setting if empty",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1582,8 +1871,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1615,8 +1904,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1665,8 +1954,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1698,8 +1987,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1760,8 +2049,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1816,13 +2105,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												Description:         "HTTP client configuration.",
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
-													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 support BasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
-															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Reference to the secret with value for authorization",
+																MarkdownDescription: "Reference to the secret with value for authorization",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1833,8 +2122,66 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"credentials_file": schema.StringAttribute{
+																Description:         "File with value for authorization",
+																MarkdownDescription: "File with value for authorization",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type of authorization, default to bearer",
+																MarkdownDescription: "Type of authorization, default to bearer",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client.",
+														MarkdownDescription: "BasicAuth for the client.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1854,16 +2201,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"password_file": schema.StringAttribute{
-																Description:         "PasswordFile defines path to password file at disk",
-																MarkdownDescription: "PasswordFile defines path to password file at disk",
+																Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+																MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1874,8 +2221,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1920,8 +2267,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1933,6 +2280,160 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "The secret or configmap containing the OAuth2 client id",
+																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "The secret containing the OAuth2 client secret",
+																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"client_secret_file": schema.StringAttribute{
+																Description:         "ClientSecretFile defines path for client secret file.",
+																MarkdownDescription: "ClientSecretFile defines path for client secret file.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "Parameters to append to the token URL",
+																MarkdownDescription: "Parameters to append to the token URL",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "OAuth2 scopes used for the token request",
+																MarkdownDescription: "OAuth2 scopes used for the token request",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "The URL to fetch the token from",
+																MarkdownDescription: "The URL to fetch the token from",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -1969,8 +2470,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2002,8 +2503,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2052,8 +2553,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2085,8 +2586,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2147,8 +2648,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2230,8 +2731,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2289,8 +2790,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD fallback to global setting if empty",
+												MarkdownDescription: "The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD fallback to global setting if empty",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2301,8 +2802,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2609,8 +3110,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2650,8 +3151,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2783,8 +3284,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2832,8 +3333,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2973,8 +3474,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_url": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD fallback to global setting if empty",
+												MarkdownDescription: "The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD fallback to global setting if empty",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2985,8 +3486,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3232,13 +3733,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												Description:         "HTTP client configuration.",
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
-													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 support BasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
-															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Reference to the secret with value for authorization",
+																MarkdownDescription: "Reference to the secret with value for authorization",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -3249,8 +3750,66 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"credentials_file": schema.StringAttribute{
+																Description:         "File with value for authorization",
+																MarkdownDescription: "File with value for authorization",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type of authorization, default to bearer",
+																MarkdownDescription: "Type of authorization, default to bearer",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client.",
+														MarkdownDescription: "BasicAuth for the client.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3270,16 +3829,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"password_file": schema.StringAttribute{
-																Description:         "PasswordFile defines path to password file at disk",
-																MarkdownDescription: "PasswordFile defines path to password file at disk",
+																Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+																MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -3290,8 +3849,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3336,8 +3895,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3349,6 +3908,160 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "The secret or configmap containing the OAuth2 client id",
+																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "The secret containing the OAuth2 client secret",
+																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"client_secret_file": schema.StringAttribute{
+																Description:         "ClientSecretFile defines path for client secret file.",
+																MarkdownDescription: "ClientSecretFile defines path for client secret file.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "Parameters to append to the token URL",
+																MarkdownDescription: "Parameters to append to the token URL",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "OAuth2 scopes used for the token request",
+																MarkdownDescription: "OAuth2 scopes used for the token request",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "The URL to fetch the token from",
+																MarkdownDescription: "The URL to fetch the token from",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -3385,8 +4098,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3418,8 +4131,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3468,8 +4181,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3501,8 +4214,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3563,8 +4276,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3650,8 +4363,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3707,8 +4420,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3788,8 +4501,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3869,8 +4582,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD fallback to global setting if empty",
+												MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD fallback to global setting if empty",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -3881,8 +4594,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3930,13 +4643,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												Description:         "The HTTP client's configuration.",
 												MarkdownDescription: "The HTTP client's configuration.",
 												Attributes: map[string]schema.Attribute{
-													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 support BasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
-															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Reference to the secret with value for authorization",
+																MarkdownDescription: "Reference to the secret with value for authorization",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -3947,8 +4660,66 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"credentials_file": schema.StringAttribute{
+																Description:         "File with value for authorization",
+																MarkdownDescription: "File with value for authorization",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type of authorization, default to bearer",
+																MarkdownDescription: "Type of authorization, default to bearer",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client.",
+														MarkdownDescription: "BasicAuth for the client.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3968,16 +4739,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"password_file": schema.StringAttribute{
-																Description:         "PasswordFile defines path to password file at disk",
-																MarkdownDescription: "PasswordFile defines path to password file at disk",
+																Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+																MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -3988,8 +4759,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4034,8 +4805,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4047,6 +4818,160 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "The secret or configmap containing the OAuth2 client id",
+																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "The secret containing the OAuth2 client secret",
+																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"client_secret_file": schema.StringAttribute{
+																Description:         "ClientSecretFile defines path for client secret file.",
+																MarkdownDescription: "ClientSecretFile defines path for client secret file.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "Parameters to append to the token URL",
+																MarkdownDescription: "Parameters to append to the token URL",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "OAuth2 scopes used for the token request",
+																MarkdownDescription: "OAuth2 scopes used for the token request",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "The URL to fetch the token from",
+																MarkdownDescription: "The URL to fetch the token from",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -4083,8 +5008,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4116,8 +5041,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4166,8 +5091,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4199,8 +5124,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4261,8 +5186,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4318,8 +5243,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											"routing_key": schema.StringAttribute{
 												Description:         "A key used to map the alert to a team.",
 												MarkdownDescription: "A key used to map the alert to a team.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -4362,13 +5287,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												Description:         "HTTP client configuration. You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
 												MarkdownDescription: "HTTP client configuration. You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
 												Attributes: map[string]schema.Attribute{
-													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 support BasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
-															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Reference to the secret with value for authorization",
+																MarkdownDescription: "Reference to the secret with value for authorization",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -4379,8 +5304,66 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"credentials_file": schema.StringAttribute{
+																Description:         "File with value for authorization",
+																MarkdownDescription: "File with value for authorization",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type of authorization, default to bearer",
+																MarkdownDescription: "Type of authorization, default to bearer",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client.",
+														MarkdownDescription: "BasicAuth for the client.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4400,16 +5383,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"password_file": schema.StringAttribute{
-																Description:         "PasswordFile defines path to password file at disk",
-																MarkdownDescription: "PasswordFile defines path to password file at disk",
+																Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+																MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -4420,8 +5403,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4466,8 +5449,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4479,6 +5462,160 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "The secret or configmap containing the OAuth2 client id",
+																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "The secret containing the OAuth2 client secret",
+																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"client_secret_file": schema.StringAttribute{
+																Description:         "ClientSecretFile defines path for client secret file.",
+																MarkdownDescription: "ClientSecretFile defines path for client secret file.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "Parameters to append to the token URL",
+																MarkdownDescription: "Parameters to append to the token URL",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "OAuth2 scopes used for the token request",
+																MarkdownDescription: "OAuth2 scopes used for the token request",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "The URL to fetch the token from",
+																MarkdownDescription: "The URL to fetch the token from",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -4515,8 +5652,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4548,8 +5685,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4598,8 +5735,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4631,8 +5768,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4693,8 +5830,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4815,8 +5952,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4855,8 +5992,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_secret": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig fallback to global alertmanager setting if empty",
+												MarkdownDescription: "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig fallback to global alertmanager setting if empty",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -4867,8 +6004,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4888,16 +6025,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_url": schema.StringAttribute{
-												Description:         "The WeChat API URL.",
-												MarkdownDescription: "The WeChat API URL.",
+												Description:         "The WeChat API URL. fallback to global alertmanager setting if empty",
+												MarkdownDescription: "The WeChat API URL. fallback to global alertmanager setting if empty",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"corp_id": schema.StringAttribute{
-												Description:         "The corp id for authentication.",
-												MarkdownDescription: "The corp id for authentication.",
+												Description:         "The corp id for authentication. fallback to global alertmanager setting if empty",
+												MarkdownDescription: "The corp id for authentication. fallback to global alertmanager setting if empty",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4907,13 +6044,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												Description:         "HTTP client configuration.",
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
-													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 support BasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 														Attributes: map[string]schema.Attribute{
-															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Reference to the secret with value for authorization",
+																MarkdownDescription: "Reference to the secret with value for authorization",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -4924,8 +6061,66 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"credentials_file": schema.StringAttribute{
+																Description:         "File with value for authorization",
+																MarkdownDescription: "File with value for authorization",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type of authorization, default to bearer",
+																MarkdownDescription: "Type of authorization, default to bearer",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client.",
+														MarkdownDescription: "BasicAuth for the client.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4945,16 +6140,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"password_file": schema.StringAttribute{
-																Description:         "PasswordFile defines path to password file at disk",
-																MarkdownDescription: "PasswordFile defines path to password file at disk",
+																Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+																MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+																MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -4965,8 +6160,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5011,8 +6206,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5024,6 +6219,160 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "The secret or configmap containing the OAuth2 client id",
+																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "The secret containing the OAuth2 client secret",
+																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"client_secret_file": schema.StringAttribute{
+																Description:         "ClientSecretFile defines path for client secret file.",
+																MarkdownDescription: "ClientSecretFile defines path for client secret file.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "Parameters to append to the token URL",
+																MarkdownDescription: "Parameters to append to the token URL",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "OAuth2 scopes used for the token request",
+																MarkdownDescription: "OAuth2 scopes used for the token request",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "The URL to fetch the token from",
+																MarkdownDescription: "The URL to fetch the token from",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -5060,8 +6409,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5093,8 +6442,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5143,8 +6492,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5176,8 +6525,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5238,8 +6587,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5331,8 +6680,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 								},
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -5398,8 +6747,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 							},
 
 							"mute_time_intervals": schema.ListAttribute{
-								Description:         "MuteTimeIntervals for alerts",
-								MarkdownDescription: "MuteTimeIntervals for alerts",
+								Description:         "MuteTimeIntervals is a list of interval names that will mute matched alert",
+								MarkdownDescription: "MuteTimeIntervals is a list of interval names that will mute matched alert",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -5434,14 +6783,14 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 								Computed:            false,
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
 					"time_intervals": schema.ListNestedAttribute{
-						Description:         "ParsingError contents error with context if operator was failed to parse json object from kubernetes api server TimeIntervals modern config option, use it instead of mute_time_intervals",
-						MarkdownDescription: "ParsingError contents error with context if operator was failed to parse json object from kubernetes api server TimeIntervals modern config option, use it instead of mute_time_intervals",
+						Description:         "TimeIntervals defines named interval for active/mute notifications interval See https://prometheus.io/docs/alerting/latest/configuration/#time_interval",
+						MarkdownDescription: "TimeIntervals defines named interval for active/mute notifications interval See https://prometheus.io/docs/alerting/latest/configuration/#time_interval",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{

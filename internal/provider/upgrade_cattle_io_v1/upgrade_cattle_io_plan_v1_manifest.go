@@ -119,7 +119,11 @@ type UpgradeCattleIoPlanV1ManifestData struct {
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -207,7 +211,11 @@ type UpgradeCattleIoPlanV1ManifestData struct {
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -832,6 +840,31 @@ func (r *UpgradeCattleIoPlanV1Manifest) Schema(_ context.Context, _ datasource.S
 										Computed:            false,
 									},
 
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"capabilities": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -1422,6 +1455,31 @@ func (r *UpgradeCattleIoPlanV1Manifest) Schema(_ context.Context, _ datasource.S
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"capabilities": schema.SingleNestedAttribute{

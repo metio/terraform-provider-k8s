@@ -46,6 +46,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 		Checks *[]struct {
 		} `tfsdk:"checks" json:"checks,omitempty"`
 		Components *map[string]string `tfsdk:"components" json:"components,omitempty"`
+		ConfigID   *string            `tfsdk:"config_id" json:"configID,omitempty"`
 		Configs    *[]struct {
 			Agent          *string            `tfsdk:"agent" json:"agent,omitempty"`
 			Cache          *string            `tfsdk:"cache" json:"cache,omitempty"`
@@ -55,6 +56,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Id             *string            `tfsdk:"id" json:"id,omitempty"`
 			IncludeDeleted *bool              `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 			LabelSelector  *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+			Limit          *int64             `tfsdk:"limit" json:"limit,omitempty"`
 			Name           *string            `tfsdk:"name" json:"name,omitempty"`
 			Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Scope          *string            `tfsdk:"scope" json:"scope,omitempty"`
@@ -107,6 +109,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Id             *string   `tfsdk:"id" json:"id,omitempty"`
 			IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 			LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+			Limit          *int64    `tfsdk:"limit" json:"limit,omitempty"`
 			Name           *string   `tfsdk:"name" json:"name,omitempty"`
 			Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 			Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
@@ -229,6 +232,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 						Computed:            false,
 					},
 
+					"config_id": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"configs": schema.ListNestedAttribute{
 						Description:         "Lookup and associate config items with this component",
 						MarkdownDescription: "Lookup and associate config items with this component",
@@ -298,6 +309,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"limit": schema.Int64Attribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -331,8 +350,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"statuses": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -365,8 +384,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"types": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -693,6 +712,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"limit": schema.Int64Attribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -726,8 +753,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"statuses": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -743,8 +770,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"types": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

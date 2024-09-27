@@ -107,6 +107,9 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 			Version         *string `tfsdk:"version" json:"version,omitempty"`
 			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"apache_httpd" json:"apacheHttpd,omitempty"`
+		Defaults *struct {
+			UseLabelsForResourceAttributes *bool `tfsdk:"use_labels_for_resource_attributes" json:"useLabelsForResourceAttributes,omitempty"`
+		} `tfsdk:"defaults" json:"defaults,omitempty"`
 		Dotnet *struct {
 			Env *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -879,6 +882,23 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"defaults": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"use_labels_for_resource_attributes": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

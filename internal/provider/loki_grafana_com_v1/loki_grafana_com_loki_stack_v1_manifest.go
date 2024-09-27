@@ -942,8 +942,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 										MarkdownDescription: "OTLP to configure which resource, scope and log attributes to store as labels or structured metadata or drop them altogether for all tenants.",
 										Attributes: map[string]schema.Attribute{
 											"indexed_resource_attributes": schema.ListAttribute{
-												Description:         "IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
+												Description:         "IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels.",
+												MarkdownDescription: "IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -951,8 +951,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"log_attributes": schema.ListNestedAttribute{
-												Description:         "LogAttributes contains the configuration for log attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "LogAttributes contains the configuration for log attributes to store them as index labels or structured metadata or drop them altogether.",
+												Description:         "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
+												MarkdownDescription: "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{
@@ -1046,8 +1046,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"scope_attributes": schema.ListNestedAttribute{
-												Description:         "ScopeAttributes contains the configuration for scope attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "ScopeAttributes contains the configuration for scope attributes to store them as index labels or structured metadata or drop them altogether.",
+												Description:         "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
+												MarkdownDescription: "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{
@@ -1307,8 +1307,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 										MarkdownDescription: "OTLP to configure which resource, scope and log attributes to store as labels or structured metadata or drop them altogether for a single tenants.",
 										Attributes: map[string]schema.Attribute{
 											"log_attributes": schema.ListNestedAttribute{
-												Description:         "LogAttributes contains the configuration for log attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "LogAttributes contains the configuration for log attributes to store them as index labels or structured metadata or drop them altogether.",
+												Description:         "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
+												MarkdownDescription: "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{
@@ -1402,8 +1402,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"scope_attributes": schema.ListNestedAttribute{
-												Description:         "ScopeAttributes contains the configuration for scope attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "ScopeAttributes contains the configuration for scope attributes to store them as index labels or structured metadata or drop them altogether.",
+												Description:         "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
+												MarkdownDescription: "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{

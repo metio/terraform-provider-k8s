@@ -59,6 +59,19 @@ type PolicyKarmadaIoOverridePolicyV1Alpha1ManifestData struct {
 					Operator      *string   `tfsdk:"operator" json:"operator,omitempty"`
 					Value         *[]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"command_overrider" json:"commandOverrider,omitempty"`
+				FieldOverrider *[]struct {
+					FieldPath *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+					Json      *[]struct {
+						Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+						SubPath  *string            `tfsdk:"sub_path" json:"subPath,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"json" json:"json,omitempty"`
+					Yaml *[]struct {
+						Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+						SubPath  *string            `tfsdk:"sub_path" json:"subPath,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"yaml" json:"yaml,omitempty"`
+				} `tfsdk:"field_overrider" json:"fieldOverrider,omitempty"`
 				ImageOverrider *[]struct {
 					Component *string `tfsdk:"component" json:"component,omitempty"`
 					Operator  *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -112,6 +125,19 @@ type PolicyKarmadaIoOverridePolicyV1Alpha1ManifestData struct {
 				Operator      *string   `tfsdk:"operator" json:"operator,omitempty"`
 				Value         *[]string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"command_overrider" json:"commandOverrider,omitempty"`
+			FieldOverrider *[]struct {
+				FieldPath *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+				Json      *[]struct {
+					Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+					SubPath  *string            `tfsdk:"sub_path" json:"subPath,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"json" json:"json,omitempty"`
+				Yaml *[]struct {
+					Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+					SubPath  *string            `tfsdk:"sub_path" json:"subPath,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"yaml" json:"yaml,omitempty"`
+			} `tfsdk:"field_overrider" json:"fieldOverrider,omitempty"`
 			ImageOverrider *[]struct {
 				Component *string `tfsdk:"component" json:"component,omitempty"`
 				Operator  *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -353,6 +379,103 @@ func (r *PolicyKarmadaIoOverridePolicyV1Alpha1Manifest) Schema(_ context.Context
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"field_overrider": schema.ListNestedAttribute{
+											Description:         "FieldOverrider represents the rules dedicated to modifying a specific field in any Kubernetes resource. This allows changing a single field within the resource with multiple operations. It is designed to handle structured field values such as those found in ConfigMaps or Secrets. The current implementation supports JSON and YAML formats, but can easily be extended to support XML in the future.",
+											MarkdownDescription: "FieldOverrider represents the rules dedicated to modifying a specific field in any Kubernetes resource. This allows changing a single field within the resource with multiple operations. It is designed to handle structured field values such as those found in ConfigMaps or Secrets. The current implementation supports JSON and YAML formats, but can easily be extended to support XML in the future.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"field_path": schema.StringAttribute{
+														Description:         "FieldPath specifies the initial location in the instance document where the operation should take place. The path uses RFC 6901 for navigating into nested structures. For example, the path '/data/db-config.yaml' specifies the configuration data key named 'db-config.yaml' in a ConfigMap: '/data/db-config.yaml'.",
+														MarkdownDescription: "FieldPath specifies the initial location in the instance document where the operation should take place. The path uses RFC 6901 for navigating into nested structures. For example, the path '/data/db-config.yaml' specifies the configuration data key named 'db-config.yaml' in a ConfigMap: '/data/db-config.yaml'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"json": schema.ListNestedAttribute{
+														Description:         "JSON represents the operations performed on the JSON document specified by the FieldPath.",
+														MarkdownDescription: "JSON represents the operations performed on the JSON document specified by the FieldPath.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"operator": schema.StringAttribute{
+																	Description:         "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+																	MarkdownDescription: "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("add", "remove", "replace"),
+																	},
+																},
+
+																"sub_path": schema.StringAttribute{
+																	Description:         "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+																	MarkdownDescription: "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.MapAttribute{
+																	Description:         "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+																	MarkdownDescription: "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"yaml": schema.ListNestedAttribute{
+														Description:         "YAML represents the operations performed on the YAML document specified by the FieldPath.",
+														MarkdownDescription: "YAML represents the operations performed on the YAML document specified by the FieldPath.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"operator": schema.StringAttribute{
+																	Description:         "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+																	MarkdownDescription: "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("add", "remove", "replace"),
+																	},
+																},
+
+																"sub_path": schema.StringAttribute{
+																	Description:         "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+																	MarkdownDescription: "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.MapAttribute{
+																	Description:         "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+																	MarkdownDescription: "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 											},
@@ -731,6 +854,103 @@ func (r *PolicyKarmadaIoOverridePolicyV1Alpha1Manifest) Schema(_ context.Context
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"field_overrider": schema.ListNestedAttribute{
+								Description:         "FieldOverrider represents the rules dedicated to modifying a specific field in any Kubernetes resource. This allows changing a single field within the resource with multiple operations. It is designed to handle structured field values such as those found in ConfigMaps or Secrets. The current implementation supports JSON and YAML formats, but can easily be extended to support XML in the future.",
+								MarkdownDescription: "FieldOverrider represents the rules dedicated to modifying a specific field in any Kubernetes resource. This allows changing a single field within the resource with multiple operations. It is designed to handle structured field values such as those found in ConfigMaps or Secrets. The current implementation supports JSON and YAML formats, but can easily be extended to support XML in the future.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"field_path": schema.StringAttribute{
+											Description:         "FieldPath specifies the initial location in the instance document where the operation should take place. The path uses RFC 6901 for navigating into nested structures. For example, the path '/data/db-config.yaml' specifies the configuration data key named 'db-config.yaml' in a ConfigMap: '/data/db-config.yaml'.",
+											MarkdownDescription: "FieldPath specifies the initial location in the instance document where the operation should take place. The path uses RFC 6901 for navigating into nested structures. For example, the path '/data/db-config.yaml' specifies the configuration data key named 'db-config.yaml' in a ConfigMap: '/data/db-config.yaml'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"json": schema.ListNestedAttribute{
+											Description:         "JSON represents the operations performed on the JSON document specified by the FieldPath.",
+											MarkdownDescription: "JSON represents the operations performed on the JSON document specified by the FieldPath.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"operator": schema.StringAttribute{
+														Description:         "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+														MarkdownDescription: "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("add", "remove", "replace"),
+														},
+													},
+
+													"sub_path": schema.StringAttribute{
+														Description:         "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+														MarkdownDescription: "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"value": schema.MapAttribute{
+														Description:         "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+														MarkdownDescription: "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"yaml": schema.ListNestedAttribute{
+											Description:         "YAML represents the operations performed on the YAML document specified by the FieldPath.",
+											MarkdownDescription: "YAML represents the operations performed on the YAML document specified by the FieldPath.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"operator": schema.StringAttribute{
+														Description:         "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+														MarkdownDescription: "Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("add", "remove", "replace"),
+														},
+													},
+
+													"sub_path": schema.StringAttribute{
+														Description:         "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+														MarkdownDescription: "SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"value": schema.MapAttribute{
+														Description:         "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+														MarkdownDescription: "Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 									},
 								},

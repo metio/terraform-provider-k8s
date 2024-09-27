@@ -214,6 +214,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/fossul_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_networking_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_networking_k8s_io_v1alpha2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_networking_k8s_io_v1alpha3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_networking_k8s_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_nginx_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_solo_io_v1"
@@ -304,6 +305,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/kubean_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kubecost_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kubevious_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kueue_x_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kueue_x_k8s_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuma_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kustomize_toolkit_fluxcd_io_v1"
@@ -1882,8 +1884,12 @@ func allDataSources() []func() datasource.DataSource {
 		gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoGrpcrouteV1Manifest,
 		// gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoHttprouteV1DataSource,
 		gateway_networking_k8s_io_v1.NewGatewayNetworkingK8SIoHttprouteV1Manifest,
+		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoBackendLbpolicyV1Alpha2DataSource,
+		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2DataSource,
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest,
+		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2DataSource,
+		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2DataSource,
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource,
@@ -1892,6 +1898,8 @@ func allDataSources() []func() datasource.DataSource {
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTlsrouteV1Alpha2Manifest,
 		// gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoUdprouteV1Alpha2DataSource,
 		gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoUdprouteV1Alpha2Manifest,
+		// gateway_networking_k8s_io_v1alpha3.NewGatewayNetworkingK8SIoBackendTlspolicyV1Alpha3DataSource,
+		gateway_networking_k8s_io_v1alpha3.NewGatewayNetworkingK8SIoBackendTlspolicyV1Alpha3Manifest,
 		// gateway_networking_k8s_io_v1beta1.NewGatewayNetworkingK8SIoGatewayClassV1Beta1DataSource,
 		gateway_networking_k8s_io_v1beta1.NewGatewayNetworkingK8SIoGatewayClassV1Beta1Manifest,
 		// gateway_networking_k8s_io_v1beta1.NewGatewayNetworkingK8SIoGatewayV1Beta1DataSource,
@@ -2488,14 +2496,24 @@ func allDataSources() []func() datasource.DataSource {
 		kubevious_io_v1alpha1.NewKubeviousIoWorkloadProfileV1Alpha1Manifest,
 		// kubevious_io_v1alpha1.NewKubeviousIoWorkloadV1Alpha1DataSource,
 		kubevious_io_v1alpha1.NewKubeviousIoWorkloadV1Alpha1Manifest,
+		// kueue_x_k8s_io_v1alpha1.NewKueueXK8SIoCohortV1Alpha1DataSource,
+		kueue_x_k8s_io_v1alpha1.NewKueueXK8SIoCohortV1Alpha1Manifest,
+		// kueue_x_k8s_io_v1alpha1.NewKueueXK8SIoMultiKueueClusterV1Alpha1DataSource,
+		kueue_x_k8s_io_v1alpha1.NewKueueXK8SIoMultiKueueClusterV1Alpha1Manifest,
+		// kueue_x_k8s_io_v1alpha1.NewKueueXK8SIoMultiKueueConfigV1Alpha1DataSource,
+		kueue_x_k8s_io_v1alpha1.NewKueueXK8SIoMultiKueueConfigV1Alpha1Manifest,
 		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoAdmissionCheckV1Beta1DataSource,
 		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoAdmissionCheckV1Beta1Manifest,
 		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoClusterQueueV1Beta1DataSource,
 		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoClusterQueueV1Beta1Manifest,
 		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoLocalQueueV1Beta1DataSource,
 		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoLocalQueueV1Beta1Manifest,
+		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoProvisioningRequestConfigV1Beta1DataSource,
+		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoProvisioningRequestConfigV1Beta1Manifest,
 		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoResourceFlavorV1Beta1DataSource,
 		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoResourceFlavorV1Beta1Manifest,
+		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoWorkloadPriorityClassV1Beta1DataSource,
+		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoWorkloadPriorityClassV1Beta1Manifest,
 		// kueue_x_k8s_io_v1beta1.NewKueueXK8SIoWorkloadV1Beta1DataSource,
 		kueue_x_k8s_io_v1beta1.NewKueueXK8SIoWorkloadV1Beta1Manifest,
 		// kuma_io_v1alpha1.NewKumaIoCircuitBreakerV1Alpha1DataSource,
@@ -3206,6 +3224,8 @@ func allDataSources() []func() datasource.DataSource {
 		operator_tigera_io_v1.NewOperatorTigeraIoTlsterminatedRouteV1Manifest,
 		// operator_tigera_io_v1beta1.NewOperatorTigeraIoAmazonCloudIntegrationV1Beta1DataSource,
 		operator_tigera_io_v1beta1.NewOperatorTigeraIoAmazonCloudIntegrationV1Beta1Manifest,
+		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVlogsV1Beta1DataSource,
+		operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVlogsV1Beta1Manifest,
 		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmagentV1Beta1DataSource,
 		operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmagentV1Beta1Manifest,
 		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmalertV1Beta1DataSource,
@@ -3226,6 +3246,8 @@ func allDataSources() []func() datasource.DataSource {
 		operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmprobeV1Beta1Manifest,
 		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmruleV1Beta1DataSource,
 		operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmruleV1Beta1Manifest,
+		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmscrapeConfigV1Beta1DataSource,
+		operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmscrapeConfigV1Beta1Manifest,
 		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmserviceScrapeV1Beta1DataSource,
 		operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest,
 		// operator_victoriametrics_com_v1beta1.NewOperatorVictoriametricsComVmsingleV1Beta1DataSource,
