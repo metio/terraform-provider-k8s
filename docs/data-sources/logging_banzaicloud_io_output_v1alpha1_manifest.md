@@ -2730,6 +2730,7 @@ Required:
 Optional:
 
 - `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--gelf--buffer))
+- `max_bytes` (Number)
 - `protocol` (String)
 - `tls` (Boolean)
 - `tls_options` (Map of String)

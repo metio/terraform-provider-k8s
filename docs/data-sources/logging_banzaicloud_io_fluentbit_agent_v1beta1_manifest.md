@@ -496,6 +496,7 @@ Optional:
 - `storage_backlog_mem_limit` (String)
 - `storage_checksum` (String)
 - `storage_delete_irrecoverable_chunks` (String)
+- `storage_max_chunks_up` (Number)
 - `storage_metrics` (String)
 - `storage_path` (String)
 - `storage_sync` (String)
@@ -777,6 +778,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--buffer_volume_metrics--service_monitor_config--tls_config--ca"></a>
@@ -881,6 +884,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--config_hot_reload"></a>
@@ -925,6 +932,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -1531,6 +1542,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--metrics--service_monitor_config--tls_config--ca"></a>
@@ -1901,6 +1914,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--security"></a>
@@ -1928,6 +1945,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--security--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--security--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--security--pod_security_context--windows_options))
 

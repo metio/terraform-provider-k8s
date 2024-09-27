@@ -53,44 +53,51 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `remote_write` (Attributes List) RemoteWrite list of victoria metrics /some other remote write system for vm it must looks like: http://victoria-metrics-single:8429/api/v1/write or for cluster different url https://github.com/VictoriaMetrics/VictoriaMetrics/tree/master/app/vmagent#splitting-data-streams-among-multiple-systems (see [below for nested schema](#nestedatt--spec--remote_write))
+
 Optional:
 
 - `a_pi_server_config` (Attributes) APIServerConfig allows specifying a host and auth methods to access apiserver. If left empty, VMAgent is assumed to run inside of the cluster and will discover API servers automatically and use the pod's CA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/. (see [below for nested schema](#nestedatt--spec--a_pi_server_config))
 - `additional_scrape_configs` (Attributes) AdditionalScrapeConfigs As scrape configs are appended, the user is responsible to make sure it is valid. Note that using this feature may expose the possibility to break upgrades of VMAgent. It is advised to review VMAgent release notes to ensure that no incompatible scrape configs are going to break VMAgent after the upgrade. (see [below for nested schema](#nestedatt--spec--additional_scrape_configs))
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
-- `arbitrary_fs_access_through_s_ms` (Attributes) ArbitraryFSAccessThroughSMs configures whether configuration based on a service scrape can access arbitrary files on the file system of the VMAgent container e.g. bearer token files. (see [below for nested schema](#nestedatt--spec--arbitrary_fs_access_through_s_ms))
+- `arbitrary_fs_access_through_s_ms` (Attributes) ArbitraryFSAccessThroughSMs configures whether configuration based on EndpointAuth can access arbitrary files on the file system of the VMAgent container e.g. bearer token files, basic auth, tls certs (see [below for nested schema](#nestedatt--spec--arbitrary_fs_access_through_s_ms))
 - `claim_templates` (Attributes List) ClaimTemplates allows adding additional VolumeClaimTemplates for VMAgent in StatefulMode (see [below for nested schema](#nestedatt--spec--claim_templates))
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the vmagent object, which shall be mounted into the vmagent Pods. will be mounted at path /etc/vm/configs
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder
 - `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'
+- `config_reloader_image_tag` (String) ConfigReloaderImageTag defines image:tag for config-reloader container
+- `config_reloader_resources` (Attributes) ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--config_reloader_resources))
 - `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.
+- `disable_self_service_scrape` (Boolean) DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
-- `dns_policy` (String) DNSPolicy set DNS policy for the pod
+- `dns_policy` (String) DNSPolicy sets DNS policy for the pod
 - `enforced_namespace_label` (String) EnforcedNamespaceLabel enforces adding a namespace label of origin for each alert and metric that is user created. The label value will always be the namespace of the object that is being created.
 - `external_labels` (Map of String) ExternalLabels The labels to add to any time series scraped by vmagent. it doesn't affect metrics ingested directly by push API's
-- `extra_args` (Map of String) ExtraArgs that will be passed to VMAgent pod for example remoteWrite.tmpDataPath: /tmp it would be converted to flag --remoteWrite.tmpDataPath=/tmp
-- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMAgent pod
-- `host_aliases` (Attributes List) HostAliases provides mapping between ip and hostnames, that would be propagated to pod, cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
+- `extra_args` (Map of String) ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp
+- `extra_envs` (List of Map of String) ExtraEnvs that will be passed to the application container
+- `host_aliases` (Attributes List) HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
-- `ignore_namespace_selectors` (Boolean) IgnoreNamespaceSelectors if set to true will ignore NamespaceSelector settings from the podscrape and vmservicescrape configs, and they will only discover endpoints within their current namespace. Defaults to false.
-- `image` (Attributes) Image - docker image settings for VMAgent if no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
+- `ignore_namespace_selectors` (Boolean) IgnoreNamespaceSelectors if set to true will ignore NamespaceSelector settings from scrape objects, and they will only discover endpoints within their current namespace. Defaults to false.
+- `image` (Attributes) Image - docker image settings if no specified operator uses default version from operator config (see [below for nested schema](#nestedatt--spec--image))
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespace to use for pulling images from registries see https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `ingest_only_mode` (Boolean) IngestOnlyMode switches vmagent into unmanaged mode it disables any config generation for scraping Currently it prevents vmagent from managing tls and auth options for remote write
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the vmagent configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 - `inline_relabel_config` (Attributes List) InlineRelabelConfig - defines GlobalRelabelConfig for vmagent, can be defined directly at CRD. (see [below for nested schema](#nestedatt--spec--inline_relabel_config))
 - `inline_scrape_config` (String) InlineScrapeConfig As scrape configs are appended, the user is responsible to make sure it is valid. Note that using this feature may expose the possibility to break upgrades of VMAgent. It is advised to review VMAgent release notes to ensure that no incompatible scrape configs are going to break VMAgent after the upgrade. it should be defined as single yaml file. inlineScrapeConfig: | - job_name: 'prometheus' static_configs: - targets: ['localhost:9090']
 - `insert_ports` (Attributes) InsertPorts - additional listen ports for data ingestion. (see [below for nested schema](#nestedatt--spec--insert_ports))
-- `license` (Attributes) License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
+- `license` (Attributes) License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise) (see [below for nested schema](#nestedatt--spec--license))
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
 - `log_format` (String) LogFormat for VMAgent to be configured with.
 - `log_level` (String) LogLevel for VMAgent to be configured with. INFO, WARN, ERROR, FATAL, PANIC
 - `max_scrape_interval` (String) MaxScrapeInterval allows limiting maximum scrape interval for VMServiceScrape, VMPodScrape and other scrapes If interval is higher than defined limit, 'maxScrapeInterval' will be used.
-- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state
+- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle
 - `min_scrape_interval` (String) MinScrapeInterval allows limiting minimal scrape interval for VMServiceScrape, VMPodScrape and other scrapes If interval is lower than defined limit, 'minScrapeInterval' will be used.
 - `node_scrape_namespace_selector` (Attributes) NodeScrapeNamespaceSelector defines Namespaces to be selected for VMNodeScrape discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--node_scrape_namespace_selector))
 - `node_scrape_relabel_template` (Attributes List) NodeScrapeRelabelTemplate defines relabel config, that will be added to each VMNodeScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--node_scrape_relabel_template))
 - `node_scrape_selector` (Attributes) NodeScrapeSelector defines VMNodeScrape to be selected for scraping. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--node_scrape_selector))
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
-- `override_honor_labels` (Boolean) OverrideHonorLabels if set to true overrides all user configured honor_labels. If HonorLabels is set in ServiceScrape or PodScrape to true, this overrides honor_labels to false.
+- `override_honor_labels` (Boolean) OverrideHonorLabels if set to true overrides all user configured honor_labels. If HonorLabels is set in scrape objects to true, this overrides honor_labels to false.
 - `override_honor_timestamps` (Boolean) OverrideHonorTimestamps allows to globally enforce honoring timestamps in all scrape configs.
 - `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
@@ -99,18 +106,17 @@ Optional:
 - `pod_scrape_relabel_template` (Attributes List) PodScrapeRelabelTemplate defines relabel config, that will be added to each VMPodScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--pod_scrape_relabel_template))
 - `pod_scrape_selector` (Attributes) PodScrapeSelector defines PodScrapes to be selected for target discovery. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_selector))
 - `port` (String) Port listen address
-- `priority_class_name` (String) PriorityClassName assigned to the Pods
+- `priority_class_name` (String) PriorityClassName class assigned to the Pods
 - `probe_namespace_selector` (Attributes) ProbeNamespaceSelector defines Namespaces to be selected for VMProbe discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_namespace_selector))
 - `probe_scrape_relabel_template` (Attributes List) ProbeScrapeRelabelTemplate defines relabel config, that will be added to each VMProbeScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--probe_scrape_relabel_template))
 - `probe_selector` (Attributes) ProbeSelector defines VMProbe to be selected for target probing. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_selector))
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
 - `readiness_probe` (Map of String) ReadinessProbe that will be added CRD pod
 - `relabel_config` (Attributes) RelabelConfig ConfigMap with global relabel config -remoteWrite.relabelConfig This relabeling is applied to all the collected metrics before sending them to remote storage. (see [below for nested schema](#nestedatt--spec--relabel_config))
-- `remote_write` (Attributes List) RemoteWrite list of victoria metrics /some other remote write system for vm it must looks like: http://victoria-metrics-single:8429/api/v1/write or for cluster different url https://github.com/VictoriaMetrics/VictoriaMetrics/tree/master/app/vmagent#splitting-data-streams-among-multiple-systems (see [below for nested schema](#nestedatt--spec--remote_write))
 - `remote_write_settings` (Attributes) RemoteWriteSettings defines global settings for all remoteWrite urls. (see [below for nested schema](#nestedatt--spec--remote_write_settings))
-- `replica_count` (Number) ReplicaCount is the expected size of the VMAgent cluster. The controller will eventually make the size of the running cluster equal to the expected size. NOTE enable VMSingle deduplication for replica usage
-- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not specified - default setting will be used (see [below for nested schema](#nestedatt--spec--resources))
-- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.
+- `replica_count` (Number) ReplicaCount is the expected size of the Application.
+- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--resources))
+- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.
 - `rolling_update` (Attributes) RollingUpdate - overrides deployment update params. (see [below for nested schema](#nestedatt--spec--rolling_update))
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod. https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
@@ -119,16 +125,16 @@ Optional:
 - `scrape_config_selector` (Attributes) ScrapeConfigSelector defines VMScrapeConfig to be selected for target discovery. Works in combination with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--scrape_config_selector))
 - `scrape_interval` (String) ScrapeInterval defines how often scrape targets by default
 - `scrape_timeout` (String) ScrapeTimeout defines global timeout for targets scrape
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the vmagent object, which shall be mounted into the vmagent Pods. will be mounted at path /etc/vm/secrets
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder
 - `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext.
 - `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such ServiceScrapeSelector. with selectAllByDefault: true and empty serviceScrapeSelector and ServiceScrapeNamespaceSelector Operator selects all exist serviceScrapes with selectAllByDefault: false - selects nothing
-- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the VMAgent Pods.
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the pods
 - `service_scrape_namespace_selector` (Attributes) ServiceScrapeNamespaceSelector Namespaces to be selected for VMServiceScrape discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--service_scrape_namespace_selector))
 - `service_scrape_relabel_template` (Attributes List) ServiceScrapeRelabelTemplate defines relabel config, that will be added to each VMServiceScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--service_scrape_relabel_template))
 - `service_scrape_selector` (Attributes) ServiceScrapeSelector defines ServiceScrapes to be selected for target discovery. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--service_scrape_selector))
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vmagent VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be added to vmagent service spec (see [below for nested schema](#nestedatt--spec--service_spec))
-- `shard_count` (Number) ShardCount - numbers of shards of VMAgent in this case operator will use 1 deployment/sts per shard with replicas count according to spec.replicas, see https://docs.victoriametrics.com/vmagent.html#scraping-big-number-of-targets
+- `shard_count` (Number) ShardCount - numbers of shards of VMAgent in this case operator will use 1 deployment/sts per shard with replicas count according to spec.replicas, see [here](https://docs.victoriametrics.com/vmagent/#scraping-big-number-of-targets)
 - `startup_probe` (Map of String) StartupProbe that will be added to CRD pod
 - `stateful_mode` (Boolean) StatefulMode enables StatefulSet for 'VMAgent' instead of Deployment it allows using persistent storage for vmagent's persistentQueue
 - `stateful_rolling_update_strategy` (String) StatefulRollingUpdateStrategy allows configuration for strategyType set it to RollingUpdate for disabling operator statefulSet rollingUpdate
@@ -136,14 +142,365 @@ Optional:
 - `static_scrape_namespace_selector` (Attributes) StaticScrapeNamespaceSelector defines Namespaces to be selected for VMStaticScrape discovery. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--static_scrape_namespace_selector))
 - `static_scrape_relabel_template` (Attributes List) StaticScrapeRelabelTemplate defines relabel config, that will be added to each VMStaticScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--static_scrape_relabel_template))
 - `static_scrape_selector` (Attributes) StaticScrapeSelector defines PodScrapes to be selected for target discovery. Works in combination with NamespaceSelector. If both nil - match everything. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. (see [below for nested schema](#nestedatt--spec--static_scrape_selector))
+- `stream_aggr_config` (Attributes) StreamAggrConfig defines global stream aggregation configuration for VMAgent (see [below for nested schema](#nestedatt--spec--stream_aggr_config))
 - `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds period for container graceful termination
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 - `update_strategy` (String) UpdateStrategy - overrides default update strategy. works only for deployments, statefulset always use OnDelete.
+- `use_default_resources` (Boolean) UseDefaultResources controls resource settings By default, operator sets built-in resource requirements
 - `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions
+- `use_vm_config_reloader` (Boolean) UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates
 - `vm_agent_external_label_name` (String) VMAgentExternalLabelName Name of vmAgent external label used to denote vmAgent instance name. Defaults to the value of 'prometheus'. External label will _not_ be added when value is set to empty string ('''').
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output deploy definition. VolumeMounts specified will be appended to other VolumeMounts in the vmagent container, that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
-- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output deploy definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container (see [below for nested schema](#nestedatt--spec--volume_mounts))
+- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional
+
+<a id="nestedatt--spec--remote_write"></a>
+### Nested Schema for `spec.remote_write`
+
+Required:
+
+- `url` (String) URL of the endpoint to send samples to.
+
+Optional:
+
+- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth))
+- `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--bearer_token_secret))
+- `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName: headerValue vmagent supports since 1.79.0 version
+- `inline_url_relabel_config` (Attributes List) InlineUrlRelabelConfig defines relabeling config for remoteWriteURL, it can be defined at crd spec. (see [below for nested schema](#nestedatt--spec--remote_write--inline_url_relabel_config))
+- `oauth2` (Attributes) OAuth2 defines auth configuration (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
+- `send_timeout` (String) Timeout for sending a single block of data to -remoteWrite.url (default 1m0s)
+- `stream_aggr_config` (Attributes) StreamAggrConfig defines stream aggregation configuration for VMAgent for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config))
+- `tls_config` (Attributes) TLSConfig describes tls configuration for remote write target (see [below for nested schema](#nestedatt--spec--remote_write--tls_config))
+- `url_relabel_config` (Attributes) ConfigMap with relabeling config which is applied to metrics before sending them to the corresponding -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--url_relabel_config))
+
+<a id="nestedatt--spec--remote_write--basic_auth"></a>
+### Nested Schema for `spec.remote_write.basic_auth`
+
+Optional:
+
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
+
+<a id="nestedatt--spec--remote_write--basic_auth--password"></a>
+### Nested Schema for `spec.remote_write.basic_auth.password`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--basic_auth--username"></a>
+### Nested Schema for `spec.remote_write.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--bearer_token_secret"></a>
+### Nested Schema for `spec.remote_write.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--inline_url_relabel_config"></a>
+### Nested Schema for `spec.remote_write.inline_url_relabel_config`
+
+Optional:
+
+- `action` (String) Action to perform based on regex matching. Default is 'replace'
+- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
+- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
+- `match` (String) Match is used together with Labels for 'action: graphite'
+- `modulus` (Number) Modulus to take of the hash of the source label values.
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
+- `separator` (String) Separator placed between concatenated source label values. default is ';'.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
+
+
+<a id="nestedatt--spec--remote_write--oauth2"></a>
+### Nested Schema for `spec.remote_write.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--remote_write--oauth2--client_id"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--remote_write--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--oauth2--client_secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--stream_aggr_config"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config`
+
+Optional:
+
+- `configmap` (Attributes) ConfigMap with stream aggregation rules (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--configmap))
+- `dedup_interval` (String) Allows setting different de-duplication intervals per each configured remote storage
+- `drop_input` (Boolean) Allow drop all the input samples after the aggregation
+- `drop_input_labels` (List of String) labels to drop from samples for aggregator before stream de-duplication and aggregation
+- `ignore_first_intervals` (Number) IgnoreFirstIntervals instructs to ignore first interval
+- `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
+- `keep_input` (Boolean) Allows writing both raw and aggregate data
+- `rules` (Attributes List) Stream aggregation rules (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules))
+
+<a id="nestedatt--spec--remote_write--stream_aggr_config--configmap"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config.configmap`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--stream_aggr_config--rules"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config.rules`
+
+Required:
+
+- `interval` (String) Interval is the interval between aggregations.
+- `outputs` (List of String) Outputs is a list of output aggregate functions to produce. The following names are allowed: - total - aggregates input counters - increase - counts the increase over input counters - count_series - counts the input series - count_samples - counts the input samples - sum_samples - sums the input samples - last - the last biggest sample value - min - the minimum sample value - max - the maximum sample value - avg - the average value across all the samples - stddev - standard deviation across all the samples - stdvar - standard variance across all the samples - histogram_bucket - creates VictoriaMetrics histogram for input samples - quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1] The output time series will have the following names: input_name:aggr_<interval>_<output>
+
+Optional:
+
+- `by` (List of String) By is an optional list of labels for grouping input series. See also Without. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
+- `dedup_interval` (String) DedupInterval is an optional interval for deduplication.
+- `drop_input_labels` (List of String) DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples. Labels are dropped before de-duplication and aggregation.
+- `flush_on_shutdown` (Boolean) FlushOnShutdown defines whether to flush the aggregation state on process termination or config reload. Is 'false' by default. It is not recommended changing this setting, unless unfinished aggregations states are preferred to missing data points.
+- `ignore_first_intervals` (Number)
+- `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
+- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the input before aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs))
+- `keep_metric_names` (Boolean) KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.
+- `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector. If the match isn't set, then all the input time series are processed.
+- `no_align_flush_to_interval` (Boolean) NoAlignFlushToInterval disables aligning of flushes to multiples of Interval. By default flushes are aligned to Interval.
+- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are applied on the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs))
+- `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it. The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
+- `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series. See also By. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
+
+<a id="nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config.rules.input_relabel_configs`
+
+Optional:
+
+- `action` (String) Action to perform based on regex matching. Default is 'replace'
+- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
+- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
+- `match` (String) Match is used together with Labels for 'action: graphite'
+- `modulus` (Number) Modulus to take of the hash of the source label values.
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
+- `separator` (String) Separator placed between concatenated source label values. default is ';'.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
+
+
+<a id="nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs"></a>
+### Nested Schema for `spec.remote_write.stream_aggr_config.rules.output_relabel_configs`
+
+Optional:
+
+- `action` (String) Action to perform based on regex matching. Default is 'replace'
+- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
+- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
+- `match` (String) Match is used together with Labels for 'action: graphite'
+- `modulus` (Number) Modulus to take of the hash of the source label values.
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
+- `separator` (String) Separator placed between concatenated source label values. default is ';'.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
+
+
+
+
+<a id="nestedatt--spec--remote_write--tls_config"></a>
+### Nested Schema for `spec.remote_write.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca))
+- `ca_file` (String) Path to the CA cert in the container to use for the targets.
+- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert))
+- `cert_file` (String) Path to the client cert file in the container for the targets.
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_file` (String) Path to the client key file in the container for the targets.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--remote_write--tls_config--ca"></a>
+### Nested Schema for `spec.remote_write.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca--secret))
+
+<a id="nestedatt--spec--remote_write--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.remote_write.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--tls_config--ca--secret"></a>
+### Nested Schema for `spec.remote_write.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--tls_config--cert"></a>
+### Nested Schema for `spec.remote_write.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert--secret))
+
+<a id="nestedatt--spec--remote_write--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.remote_write.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--tls_config--cert--secret"></a>
+### Nested Schema for `spec.remote_write.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--tls_config--key_secret"></a>
+### Nested Schema for `spec.remote_write.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--url_relabel_config"></a>
+### Nested Schema for `spec.remote_write.url_relabel_config`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
 
 <a id="nestedatt--spec--a_pi_server_config"></a>
 ### Nested Schema for `spec.a_pi_server_config`
@@ -178,7 +535,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -188,9 +545,9 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--username))
 
 <a id="nestedatt--spec--a_pi_server_config--basic_auth--password"></a>
 ### Nested Schema for `spec.a_pi_server_config.basic_auth.password`
@@ -201,7 +558,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -214,7 +571,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -250,7 +607,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -263,7 +620,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -285,7 +642,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -298,7 +655,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -312,7 +669,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -327,7 +684,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -361,6 +718,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -396,17 +754,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--claim_templates--spec--resources--claims"></a>
-### Nested Schema for `spec.claim_templates.spec.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--claim_templates--spec--selector"></a>
@@ -438,11 +787,13 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--claim_templates--status--conditions))
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. (see [below for nested schema](#nestedatt--spec--claim_templates--status--conditions))
+- `current_volume_attributes_class_name` (String) currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.
+- `modify_volume_status` (Attributes) ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature. (see [below for nested schema](#nestedatt--spec--claim_templates--status--modify_volume_status))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--claim_templates--status--conditions"></a>
 ### Nested Schema for `spec.claim_templates.status.conditions`
@@ -457,8 +808,38 @@ Optional:
 - `last_probe_time` (String) lastProbeTime is the time we probed the condition.
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.
 
+
+<a id="nestedatt--spec--claim_templates--status--modify_volume_status"></a>
+### Nested Schema for `spec.claim_templates.status.modify_volume_status`
+
+Required:
+
+- `status` (String) status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.
+
+Optional:
+
+- `target_volume_attributes_class_name` (String) targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled
+
+
+
+
+<a id="nestedatt--spec--config_reloader_resources"></a>
+### Nested Schema for `spec.config_reloader_resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--config_reloader_resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--config_reloader_resources--claims"></a>
+### Nested Schema for `spec.config_reloader_resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -484,10 +865,13 @@ Optional:
 <a id="nestedatt--spec--host_aliases"></a>
 ### Nested Schema for `spec.host_aliases`
 
+Required:
+
+- `ip` (String) IP address of the host file entry.
+
 Optional:
 
 - `hostnames` (List of String) Hostnames for the above IP address.
-- `ip` (String) IP address of the host file entry.
 
 
 <a id="nestedatt--spec--image"></a>
@@ -505,7 +889,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--inline_relabel_config"></a>
@@ -541,7 +925,7 @@ Optional:
 
 Optional:
 
-- `key` (String) Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/
+- `key` (String) Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)
 - `key_ref` (Attributes) KeyRef is reference to secret with license key for enterprise features. (see [below for nested schema](#nestedatt--spec--license--key_ref))
 
 <a id="nestedatt--spec--license--key_ref"></a>
@@ -553,7 +937,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -778,341 +1162,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write"></a>
-### Nested Schema for `spec.remote_write`
-
-Required:
-
-- `url` (String) URL of the endpoint to send samples to.
-
-Optional:
-
-- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth))
-- `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--bearer_token_secret))
-- `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName: headerValue vmagent supports since 1.79.0 version
-- `inline_url_relabel_config` (Attributes List) InlineUrlRelabelConfig defines relabeling config for remoteWriteURL, it can be defined at crd spec. (see [below for nested schema](#nestedatt--spec--remote_write--inline_url_relabel_config))
-- `oauth2` (Attributes) OAuth2 defines auth configuration (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
-- `send_timeout` (String) Timeout for sending a single block of data to -remoteWrite.url (default 1m0s)
-- `stream_aggr_config` (Attributes) StreamAggrConfig defines stream aggregation configuration for VMAgent for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config))
-- `tls_config` (Attributes) TLSConfig describes tls configuration for remote write target (see [below for nested schema](#nestedatt--spec--remote_write--tls_config))
-- `url_relabel_config` (Attributes) ConfigMap with relabeling config which is applied to metrics before sending them to the corresponding -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--url_relabel_config))
-
-<a id="nestedatt--spec--remote_write--basic_auth"></a>
-### Nested Schema for `spec.remote_write.basic_auth`
-
-Optional:
-
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
-
-<a id="nestedatt--spec--remote_write--basic_auth--password"></a>
-### Nested Schema for `spec.remote_write.basic_auth.password`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--basic_auth--username"></a>
-### Nested Schema for `spec.remote_write.basic_auth.username`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--bearer_token_secret"></a>
-### Nested Schema for `spec.remote_write.bearer_token_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--inline_url_relabel_config"></a>
-### Nested Schema for `spec.remote_write.inline_url_relabel_config`
-
-Optional:
-
-- `action` (String) Action to perform based on regex matching. Default is 'replace'
-- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
-- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
-- `match` (String) Match is used together with Labels for 'action: graphite'
-- `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
-- `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
-
-
-<a id="nestedatt--spec--remote_write--oauth2"></a>
-### Nested Schema for `spec.remote_write.oauth2`
-
-Required:
-
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id))
-- `token_url` (String) The URL to fetch the token from
-
-Optional:
-
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_secret))
-- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
-
-<a id="nestedatt--spec--remote_write--oauth2--client_id"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_id`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--client_id--secret))
-
-<a id="nestedatt--spec--remote_write--oauth2--client_id--config_map"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_id.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--oauth2--client_id--secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_id.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--oauth2--client_secret"></a>
-### Nested Schema for `spec.remote_write.oauth2.client_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--stream_aggr_config"></a>
-### Nested Schema for `spec.remote_write.stream_aggr_config`
-
-Required:
-
-- `rules` (Attributes List) Stream aggregation rules (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules))
-
-Optional:
-
-- `dedup_interval` (String) Allows setting different de-duplication intervals per each configured remote storage
-- `drop_input` (Boolean) Allow drop all the input samples after the aggregation
-- `keep_input` (Boolean) Allows writing both raw and aggregate data
-
-<a id="nestedatt--spec--remote_write--stream_aggr_config--rules"></a>
-### Nested Schema for `spec.remote_write.stream_aggr_config.rules`
-
-Required:
-
-- `interval` (String) Interval is the interval between aggregations.
-- `outputs` (List of String) Outputs is a list of output aggregate functions to produce. The following names are allowed: - total - aggregates input counters - increase - counts the increase over input counters - count_series - counts the input series - count_samples - counts the input samples - sum_samples - sums the input samples - last - the last biggest sample value - min - the minimum sample value - max - the maximum sample value - avg - the average value across all the samples - stddev - standard deviation across all the samples - stdvar - standard variance across all the samples - histogram_bucket - creates VictoriaMetrics histogram for input samples - quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1] The output time series will have the following names: input_name:aggr_<interval>_<output>
-
-Optional:
-
-- `by` (List of String) By is an optional list of labels for grouping input series. See also Without. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
-- `dedup_interval` (String) DedupInterval is an optional interval for deduplication.
-- `drop_input_labels` (List of String) DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples. Labels are dropped before de-duplication and aggregation.
-- `flush_on_shutdown` (Boolean) FlushOnShutdown defines whether to flush the aggregation state on process termination or config reload. Is 'false' by default. It is not recommended changing this setting, unless unfinished aggregations states are preferred to missing data points.
-- `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
-- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the input before aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs))
-- `keep_metric_names` (Boolean) KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.
-- `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector. If the match isn't set, then all the input time series are processed.
-- `no_align_flush_to_interval` (Boolean) NoAlignFlushToInterval disables aligning of flushes to multiples of Interval. By default flushes are aligned to Interval.
-- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are applied on the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs))
-- `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it. The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
-- `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series. See also By. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
-
-<a id="nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs"></a>
-### Nested Schema for `spec.remote_write.stream_aggr_config.rules.input_relabel_configs`
-
-Optional:
-
-- `action` (String) Action to perform based on regex matching. Default is 'replace'
-- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
-- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
-- `match` (String) Match is used together with Labels for 'action: graphite'
-- `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
-- `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
-
-
-<a id="nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs"></a>
-### Nested Schema for `spec.remote_write.stream_aggr_config.rules.output_relabel_configs`
-
-Optional:
-
-- `action` (String) Action to perform based on regex matching. Default is 'replace'
-- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
-- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
-- `match` (String) Match is used together with Labels for 'action: graphite'
-- `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
-- `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
-
-
-
-
-<a id="nestedatt--spec--remote_write--tls_config"></a>
-### Nested Schema for `spec.remote_write.tls_config`
-
-Optional:
-
-- `ca` (Attributes) Stuct containing the CA cert to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca))
-- `ca_file` (String) Path to the CA cert in the container to use for the targets.
-- `cert` (Attributes) Struct containing the client cert file for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert))
-- `cert_file` (String) Path to the client cert file in the container for the targets.
-- `insecure_skip_verify` (Boolean) Disable target certificate validation.
-- `key_file` (String) Path to the client key file in the container for the targets.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--key_secret))
-- `server_name` (String) Used to verify the hostname for the targets.
-
-<a id="nestedatt--spec--remote_write--tls_config--ca"></a>
-### Nested Schema for `spec.remote_write.tls_config.ca`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--ca--secret))
-
-<a id="nestedatt--spec--remote_write--tls_config--ca--config_map"></a>
-### Nested Schema for `spec.remote_write.tls_config.ca.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--tls_config--ca--secret"></a>
-### Nested Schema for `spec.remote_write.tls_config.ca.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--tls_config--cert"></a>
-### Nested Schema for `spec.remote_write.tls_config.cert`
-
-Optional:
-
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--tls_config--cert--secret))
-
-<a id="nestedatt--spec--remote_write--tls_config--cert--config_map"></a>
-### Nested Schema for `spec.remote_write.tls_config.cert.config_map`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--remote_write--tls_config--cert--secret"></a>
-### Nested Schema for `spec.remote_write.tls_config.cert.secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--tls_config--key_secret"></a>
-### Nested Schema for `spec.remote_write.tls_config.key_secret`
-
-Required:
-
-- `key` (String) The key of the secret to select from. Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--remote_write--url_relabel_config"></a>
-### Nested Schema for `spec.remote_write.url_relabel_config`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
 
 
 <a id="nestedatt--spec--remote_write_settings"></a>
@@ -1127,7 +1178,7 @@ Optional:
 - `queues` (Number) The number of concurrent queues
 - `show_url` (Boolean) Whether to show -remoteWrite.url in the exported metrics. It is hidden by default, since it can contain sensitive auth info
 - `tmp_data_path` (String) Path to directory where temporary data for remote write component is stored (default vmagent-remotewrite-data)
-- `use_multi_tenant_mode` (Boolean) Configures vmagent in multi-tenant mode with direct cluster support docs https://docs.victoriametrics.com/vmagent.html#multitenancy it's global setting and affects all remote storage configurations
+- `use_multi_tenant_mode` (Boolean) Configures vmagent accepting data via the same multitenant endpoints as vminsert at VictoriaMetrics cluster does, see [here](https://docs.victoriametrics.com/vmagent/#multitenancy). it's global setting and affects all remote storage configurations
 
 
 <a id="nestedatt--spec--resources"></a>
@@ -1352,6 +1403,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -1387,17 +1439,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--selector"></a>
@@ -1429,11 +1472,13 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--conditions))
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--conditions))
+- `current_volume_attributes_class_name` (String) currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.
+- `modify_volume_status` (Attributes) ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--modify_volume_status))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--status--conditions"></a>
 ### Nested Schema for `spec.stateful_storage.volume_claim_template.status.conditions`
@@ -1448,7 +1493,19 @@ Optional:
 - `last_probe_time` (String) lastProbeTime is the time we probed the condition.
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.
+
+
+<a id="nestedatt--spec--stateful_storage--volume_claim_template--status--modify_volume_status"></a>
+### Nested Schema for `spec.stateful_storage.volume_claim_template.status.modify_volume_status`
+
+Required:
+
+- `status` (String) status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.
+
+Optional:
+
+- `target_volume_attributes_class_name` (String) targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled
 
 
 
@@ -1515,6 +1572,93 @@ Optional:
 
 
 
+<a id="nestedatt--spec--stream_aggr_config"></a>
+### Nested Schema for `spec.stream_aggr_config`
+
+Optional:
+
+- `configmap` (Attributes) ConfigMap with stream aggregation rules (see [below for nested schema](#nestedatt--spec--stream_aggr_config--configmap))
+- `dedup_interval` (String) Allows setting different de-duplication intervals per each configured remote storage
+- `drop_input` (Boolean) Allow drop all the input samples after the aggregation
+- `drop_input_labels` (List of String) labels to drop from samples for aggregator before stream de-duplication and aggregation
+- `ignore_first_intervals` (Number) IgnoreFirstIntervals instructs to ignore first interval
+- `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
+- `keep_input` (Boolean) Allows writing both raw and aggregate data
+- `rules` (Attributes List) Stream aggregation rules (see [below for nested schema](#nestedatt--spec--stream_aggr_config--rules))
+
+<a id="nestedatt--spec--stream_aggr_config--configmap"></a>
+### Nested Schema for `spec.stream_aggr_config.configmap`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--stream_aggr_config--rules"></a>
+### Nested Schema for `spec.stream_aggr_config.rules`
+
+Required:
+
+- `interval` (String) Interval is the interval between aggregations.
+- `outputs` (List of String) Outputs is a list of output aggregate functions to produce. The following names are allowed: - total - aggregates input counters - increase - counts the increase over input counters - count_series - counts the input series - count_samples - counts the input samples - sum_samples - sums the input samples - last - the last biggest sample value - min - the minimum sample value - max - the maximum sample value - avg - the average value across all the samples - stddev - standard deviation across all the samples - stdvar - standard variance across all the samples - histogram_bucket - creates VictoriaMetrics histogram for input samples - quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1] The output time series will have the following names: input_name:aggr_<interval>_<output>
+
+Optional:
+
+- `by` (List of String) By is an optional list of labels for grouping input series. See also Without. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
+- `dedup_interval` (String) DedupInterval is an optional interval for deduplication.
+- `drop_input_labels` (List of String) DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples. Labels are dropped before de-duplication and aggregation.
+- `flush_on_shutdown` (Boolean) FlushOnShutdown defines whether to flush the aggregation state on process termination or config reload. Is 'false' by default. It is not recommended changing this setting, unless unfinished aggregations states are preferred to missing data points.
+- `ignore_first_intervals` (Number)
+- `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
+- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the input before aggregation. (see [below for nested schema](#nestedatt--spec--stream_aggr_config--rules--input_relabel_configs))
+- `keep_metric_names` (Boolean) KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.
+- `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector. If the match isn't set, then all the input time series are processed.
+- `no_align_flush_to_interval` (Boolean) NoAlignFlushToInterval disables aligning of flushes to multiples of Interval. By default flushes are aligned to Interval.
+- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are applied on the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--stream_aggr_config--rules--output_relabel_configs))
+- `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it. The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
+- `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series. See also By. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
+
+<a id="nestedatt--spec--stream_aggr_config--rules--input_relabel_configs"></a>
+### Nested Schema for `spec.stream_aggr_config.rules.input_relabel_configs`
+
+Optional:
+
+- `action` (String) Action to perform based on regex matching. Default is 'replace'
+- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
+- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
+- `match` (String) Match is used together with Labels for 'action: graphite'
+- `modulus` (Number) Modulus to take of the hash of the source label values.
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
+- `separator` (String) Separator placed between concatenated source label values. default is ';'.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
+
+
+<a id="nestedatt--spec--stream_aggr_config--rules--output_relabel_configs"></a>
+### Nested Schema for `spec.stream_aggr_config.rules.output_relabel_configs`
+
+Optional:
+
+- `action` (String) Action to perform based on regex matching. Default is 'replace'
+- `if` (Map of String) If represents metricsQL match expression (or list of expressions): '{__name__=~'foo_.*'}'
+- `labels` (Map of String) Labels is used together with Match for 'action: graphite'
+- `match` (String) Match is used together with Labels for 'action: graphite'
+- `modulus` (Number) Modulus to take of the hash of the source label values.
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
+- `separator` (String) Separator placed between concatenated source label values. default is ';'.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
+
+
+
+
 <a id="nestedatt--spec--tolerations"></a>
 ### Nested Schema for `spec.tolerations`
 
@@ -1537,7 +1681,8 @@ Required:
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.

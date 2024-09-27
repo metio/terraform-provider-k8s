@@ -353,16 +353,13 @@ Optional:
 <a id="nestedatt--spec--acme--solvers--dns01--route53"></a>
 ### Nested Schema for `spec.acme.solvers.dns01.route53`
 
-Required:
-
-- `region` (String) Always set the region when using AccessKeyID and SecretAccessKey
-
 Optional:
 
 - `access_key_id` (String) The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials
 - `access_key_id_secret_ref` (Attributes) The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--acme--solvers--dns01--route53--access_key_id_secret_ref))
 - `auth` (Attributes) Auth configures how cert-manager authenticates. (see [below for nested schema](#nestedatt--spec--acme--solvers--dns01--route53--auth))
-- `hosted_zone_id` (String) If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.
+- `hosted_zone_id` (String) If set, the provider will manage only this zone in Route53 and will not do a lookup using the route53:ListHostedZonesByName api call.
+- `region` (String) Override the AWS region. Route53 is a global service and does not have regional endpoints but the region specified here (or via environment variables) is used as a hint to help compute the correct AWS credential scope and partition when it connects to Route53. See: - [Amazon Route 53 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/r53.html) - [Global services](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/global-services.html) If you omit this region field, cert-manager will use the region from AWS_REGION and AWS_DEFAULT_REGION environment variables, if they are set in the cert-manager controller Pod. The 'region' field is not needed if you use [IAM Roles for Service Accounts (IRSA)](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html). Instead an AWS_REGION environment variable is added to the cert-manager controller Pod by: [Amazon EKS Pod Identity Webhook](https://github.com/aws/amazon-eks-pod-identity-webhook). In this case this 'region' field value is ignored. The 'region' field is not needed if you use [EKS Pod Identities](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html). Instead an AWS_REGION environment variable is added to the cert-manager controller Pod by: [Amazon EKS Pod Identity Agent](https://github.com/aws/eks-pod-identity-agent), In this case this 'region' field value is ignored.
 - `role` (String) Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata
 - `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--acme--solvers--dns01--route53--secret_access_key_secret_ref))
 
@@ -480,7 +477,7 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations that should be added to the create ACME HTTP01 solver pods.
+- `annotations` (Map of String) Annotations that should be added to the created ACME HTTP01 solver pods.
 - `labels` (Map of String) Labels that should be added to the created ACME HTTP01 solver pods.
 
 
@@ -992,7 +989,7 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations that should be added to the create ACME HTTP01 solver pods.
+- `annotations` (Map of String) Annotations that should be added to the created ACME HTTP01 solver pods.
 - `labels` (Map of String) Labels that should be added to the created ACME HTTP01 solver pods.
 
 

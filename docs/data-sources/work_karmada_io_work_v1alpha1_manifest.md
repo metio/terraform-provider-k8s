@@ -52,7 +52,8 @@ Optional:
 
 Optional:
 
-- `suspend_dispatching` (Boolean) SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to all clusters.
+- `preserve_resources_on_deletion` (Boolean) PreserveResourcesOnDeletion controls whether resources should be preserved on the member cluster when the Work object is deleted. If set to true, resources will be preserved on the member cluster. Default is false, which means resources will be deleted along with the Work object.
+- `suspend_dispatching` (Boolean) SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to the corresponding member cluster, and does not prevent status collection.
 - `workload` (Attributes) Workload represents the manifest workload to be deployed on managed cluster. (see [below for nested schema](#nestedatt--spec--workload))
 
 <a id="nestedatt--spec--workload"></a>

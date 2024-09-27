@@ -56,6 +56,7 @@ Optional:
 Optional:
 
 - `apache_httpd` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd))
+- `defaults` (Attributes) (see [below for nested schema](#nestedatt--spec--defaults))
 - `dotnet` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--env))
 - `exporter` (Attributes) (see [below for nested schema](#nestedatt--spec--exporter))
@@ -252,6 +253,14 @@ Optional:
 - `request` (String)
 
 
+
+
+<a id="nestedatt--spec--defaults"></a>
+### Nested Schema for `spec.defaults`
+
+Optional:
+
+- `use_labels_for_resource_attributes` (Boolean)
 
 
 <a id="nestedatt--spec--dotnet"></a>

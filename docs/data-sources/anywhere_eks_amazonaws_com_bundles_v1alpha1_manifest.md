@@ -208,12 +208,13 @@ Required:
 - `acmesolver` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--acmesolver))
 - `cainjector` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--cainjector))
 - `controller` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--controller))
-- `ctl` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--ctl))
 - `manifest` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--manifest))
+- `startupapicheck` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--startupapicheck))
 - `webhook` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--webhook))
 
 Optional:
 
+- `ctl` (Attributes) This field has been deprecated (see [below for nested schema](#nestedatt--spec--versions_bundles--cert_manager--ctl))
 - `version` (String)
 
 <a id="nestedatt--spec--versions_bundles--cert_manager--acmesolver"></a>
@@ -258,8 +259,16 @@ Optional:
 - `uri` (String) The image repository, name, and tag
 
 
-<a id="nestedatt--spec--versions_bundles--cert_manager--ctl"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.ctl`
+<a id="nestedatt--spec--versions_bundles--cert_manager--manifest"></a>
+### Nested Schema for `spec.versions_bundles.cert_manager.manifest`
+
+Optional:
+
+- `uri` (String) URI points to the manifest yaml file
+
+
+<a id="nestedatt--spec--versions_bundles--cert_manager--startupapicheck"></a>
+### Nested Schema for `spec.versions_bundles.cert_manager.startupapicheck`
 
 Optional:
 
@@ -272,16 +281,22 @@ Optional:
 - `uri` (String) The image repository, name, and tag
 
 
-<a id="nestedatt--spec--versions_bundles--cert_manager--manifest"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.manifest`
+<a id="nestedatt--spec--versions_bundles--cert_manager--webhook"></a>
+### Nested Schema for `spec.versions_bundles.cert_manager.webhook`
 
 Optional:
 
-- `uri` (String) URI points to the manifest yaml file
+- `arch` (List of String) Architectures of the asset
+- `description` (String)
+- `image_digest` (String) The SHA256 digest of the image manifest
+- `name` (String) The asset name
+- `os` (String) Operating system of the asset
+- `os_name` (String) Name of the OS like ubuntu, bottlerocket
+- `uri` (String) The image repository, name, and tag
 
 
-<a id="nestedatt--spec--versions_bundles--cert_manager--webhook"></a>
-### Nested Schema for `spec.versions_bundles.cert_manager.webhook`
+<a id="nestedatt--spec--versions_bundles--cert_manager--ctl"></a>
+### Nested Schema for `spec.versions_bundles.cert_manager.ctl`
 
 Optional:
 

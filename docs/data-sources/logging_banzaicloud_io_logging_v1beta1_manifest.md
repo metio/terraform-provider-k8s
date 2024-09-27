@@ -1468,6 +1468,7 @@ Optional:
 - `storage_backlog_mem_limit` (String)
 - `storage_checksum` (String)
 - `storage_delete_irrecoverable_chunks` (String)
+- `storage_max_chunks_up` (Number)
 - `storage_metrics` (String)
 - `storage_path` (String)
 - `storage_sync` (String)
@@ -1749,6 +1750,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_volume_metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--service_monitor_config--tls_config--ca"></a>
@@ -1853,6 +1856,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--fluentbit--config_hot_reload"></a>
@@ -1897,6 +1904,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -2503,6 +2514,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentbit--metrics--service_monitor_config--tls_config--ca"></a>
@@ -2873,6 +2886,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--fluentbit--security"></a>
@@ -2900,6 +2917,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--security--pod_security_context--windows_options))
 
@@ -3847,6 +3865,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--service_monitor_config--tls_config--ca"></a>
@@ -3951,6 +3971,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--fluentd--config_check"></a>
@@ -3978,6 +4002,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -4015,6 +4043,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -4717,6 +4749,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--fluentd--metrics--service_monitor_config--tls_config--ca"></a>
@@ -4920,6 +4954,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--fluentd--scaling"></a>
@@ -4998,6 +5036,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -5102,6 +5144,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--security--pod_security_context--windows_options))
 
@@ -5734,6 +5777,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -6980,6 +7027,7 @@ Optional:
 - `storage_backlog_mem_limit` (String)
 - `storage_checksum` (String)
 - `storage_delete_irrecoverable_chunks` (String)
+- `storage_max_chunks_up` (Number)
 - `storage_metrics` (String)
 - `storage_path` (String)
 - `storage_sync` (String)
@@ -8107,6 +8155,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context"></a>
@@ -8759,6 +8811,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -9413,6 +9469,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context"></a>
@@ -9611,6 +9671,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--windows_options))
 
@@ -9748,6 +9809,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--persistent_volume_claim))
@@ -10142,6 +10204,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--image"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--iscsi"></a>
@@ -10737,6 +10808,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--metrics--service_monitor_config--tls_config--ca"></a>
@@ -11120,6 +11193,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--security--pod_security_context--windows_options))
 
@@ -11317,15 +11391,18 @@ Optional:
 Optional:
 
 - `buffer_volume_metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics))
+- `buffer_volume_metrics_image` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics_image))
 - `buffer_volume_metrics_service` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics_service))
 - `config_check` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check))
 - `config_check_pod` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod))
+- `config_reload_image` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_reload_image))
 - `global_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--global_options))
 - `json_key_delim` (String)
 - `json_key_prefix` (String)
 - `log_iw_size` (Number)
 - `max_connections` (Number)
 - `metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics))
+- `metrics_exporter_image` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics_exporter_image))
 - `metrics_service` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics_service))
 - `readiness_default_check` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--readiness_default_check))
 - `service` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--service))
@@ -11334,6 +11411,7 @@ Optional:
 - `source_date_parser` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--source_date_parser))
 - `source_metrics` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--source_metrics))
 - `stateful_set` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set))
+- `syslog_ng_image` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--syslog_ng_image))
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--tls))
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics"></a>
@@ -11418,6 +11496,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--service_monitor_config--tls_config--ca"></a>
@@ -11504,6 +11584,15 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--syslog_ng--buffer_volume_metrics_image"></a>
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics_image`
+
+Optional:
+
+- `repository` (String)
+- `tag` (String)
 
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics_service"></a>
@@ -12472,6 +12561,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--containers--security_context"></a>
@@ -13124,6 +13217,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -13778,6 +13875,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--syslog_ng--config_check_pod--init_containers--security_context"></a>
@@ -13976,6 +14077,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--security_context--windows_options))
 
@@ -14113,6 +14215,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--config_check_pod--volumes--persistent_volume_claim))
@@ -14509,6 +14612,15 @@ Optional:
 - `type` (String)
 
 
+<a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--image"></a>
+### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
+
+
 <a id="nestedatt--spec--syslog_ng--config_check_pod--volumes--iscsi"></a>
 ### Nested Schema for `spec.syslog_ng.config_check_pod.volumes.iscsi`
 
@@ -14882,6 +14994,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--syslog_ng--config_reload_image"></a>
+### Nested Schema for `spec.syslog_ng.config_reload_image`
+
+Optional:
+
+- `repository` (String)
+- `tag` (String)
+
+
 <a id="nestedatt--spec--syslog_ng--global_options"></a>
 ### Nested Schema for `spec.syslog_ng.global_options`
 
@@ -14983,6 +15104,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--syslog_ng--metrics--service_monitor_config--tls_config--ca"></a>
@@ -15069,6 +15192,15 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--syslog_ng--metrics_exporter_image"></a>
+### Nested Schema for `spec.syslog_ng.metrics_exporter_image`
+
+Optional:
+
+- `repository` (String)
+- `tag` (String)
 
 
 <a id="nestedatt--spec--syslog_ng--metrics_service"></a>
@@ -16251,6 +16383,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--containers--security_context"></a>
@@ -16903,6 +17039,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -17557,6 +17697,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--init_containers--security_context"></a>
@@ -17755,6 +17899,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--security_context--windows_options))
 
@@ -17892,6 +18037,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--persistent_volume_claim))
@@ -18286,6 +18432,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--image"></a>
+### Nested Schema for `spec.syslog_ng.stateful_set.spec.template.spec.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--syslog_ng--stateful_set--spec--template--spec--volumes--iscsi"></a>
@@ -18773,6 +18928,15 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--syslog_ng--syslog_ng_image"></a>
+### Nested Schema for `spec.syslog_ng.syslog_ng_image`
+
+Optional:
+
+- `repository` (String)
+- `tag` (String)
 
 
 <a id="nestedatt--spec--syslog_ng--tls"></a>

@@ -53,7 +53,11 @@ var ignoredAttributes = map[string][]string{
 	"security_istio_io_request_authentication_v1": {
 		"spec.jwtRules.jwks_uri",
 	},
+	"operator_victoriametrics_com_v_logs_v1beta1": {
+		"spec.host_aliases",
+	},
 	"operator_victoriametrics_com_vm_agent_v1beta1": {
+		"spec.host_aliases",
 		"spec.inlineRelabelConfig.source_labels",
 		"spec.inlineRelabelConfig.target_label",
 		"spec.nodeScrapeRelabelTemplate.source_labels",
@@ -62,6 +66,8 @@ var ignoredAttributes = map[string][]string{
 		"spec.podScrapeRelabelTemplate.target_label",
 		"spec.probeScrapeRelabelTemplate.source_labels",
 		"spec.probeScrapeRelabelTemplate.target_label",
+		"spec.inlineUrlRelabelConfig.source_labels",
+		"spec.inlineUrlRelabelConfig.target_label",
 		"spec.remoteWrite.inlineUrlRelabelConfig.source_labels",
 		"spec.remoteWrite.inlineUrlRelabelConfig.target_label",
 		"spec.remoteWrite.streamAggrConfig.rules.input_relabel_configs.source_labels",
@@ -74,6 +80,24 @@ var ignoredAttributes = map[string][]string{
 		"spec.serviceScrapeRelabelTemplate.target_label",
 		"spec.staticScrapeRelabelTemplate.source_labels",
 		"spec.staticScrapeRelabelTemplate.target_label",
+		"spec.streamAggrConfig.rules.input_relabel_configs.source_labels",
+		"spec.streamAggrConfig.rules.input_relabel_configs.target_label",
+		"spec.streamAggrConfig.rules.output_relabel_configs.source_labels",
+		"spec.streamAggrConfig.rules.output_relabel_configs.target_label",
+	},
+	"operator_victoriametrics_com_vm_alert_v1beta1": {
+		"spec.host_aliases",
+	},
+	"operator_victoriametrics_com_vm_alertmanager_v1beta1": {
+		"spec.host_aliases",
+	},
+	"operator_victoriametrics_com_vm_auth_v1beta1": {
+		"spec.host_aliases",
+	},
+	"operator_victoriametrics_com_vm_cluster_v1beta1": {
+		"spec.vminsert.host_aliases",
+		"spec.vmselect.host_aliases",
+		"spec.vmstorage.host_aliases",
 	},
 	"operator_victoriametrics_com_vm_node_scrape_v1beta1": {
 		"spec.metricRelabelConfigs.source_labels",
@@ -88,10 +112,18 @@ var ignoredAttributes = map[string][]string{
 		"spec.podMetricsEndpoints.relabelConfigs.target_label",
 	},
 	"operator_victoriametrics_com_vm_probe_v1beta1": {
+		"spec.metricRelabelConfigs.source_labels",
+		"spec.metricRelabelConfigs.target_label",
 		"spec.targets.ingress.relabelingConfigs.source_labels",
 		"spec.targets.ingress.relabelingConfigs.target_label",
 		"spec.targets.staticConfig.relabelingConfigs.source_labels",
 		"spec.targets.staticConfig.relabelingConfigs.target_label",
+	},
+	"operator_victoriametrics_com_vm_scrape_config_v1beta1": {
+		"spec.metricRelabelConfigs.source_labels",
+		"spec.metricRelabelConfigs.target_label",
+		"spec.relabelConfigs.source_labels",
+		"spec.relabelConfigs.target_label",
 	},
 	"operator_victoriametrics_com_vm_service_scrape_v1beta1": {
 		"spec.endpoints.metricRelabelConfigs.source_labels",
@@ -100,6 +132,7 @@ var ignoredAttributes = map[string][]string{
 		"spec.endpoints.relabelConfigs.target_label",
 	},
 	"operator_victoriametrics_com_vm_single_v1beta1": {
+		"spec.host_aliases",
 		"spec.streamAggrConfig.rules.input_relabel_configs.source_labels",
 		"spec.streamAggrConfig.rules.input_relabel_configs.target_label",
 		"spec.streamAggrConfig.rules.output_relabel_configs.source_labels",
@@ -111,10 +144,4 @@ var ignoredAttributes = map[string][]string{
 		"spec.targetEndpoints.relabelConfigs.source_labels",
 		"spec.targetEndpoints.relabelConfigs.target_label",
 	},
-	//"apps_stateful_set_v1": {
-	//	"spec.volumeClaimTemplates.apiVersion",
-	//	"spec.volumeClaimTemplates.kind",
-	//	"spec.volumeClaimTemplates.metadata",
-	//	"spec.volumeClaimTemplates.status",
-	//},
 }

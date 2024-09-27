@@ -397,10 +397,10 @@ Optional:
 - `auth` (Attributes) Settings used to authenticate with the Grafana instance. (see [below for nested schema](#nestedatt--spec--external_services--grafana--auth))
 - `dashboards` (Attributes List) A list of Grafana dashboards that Kiali can link to. (see [below for nested schema](#nestedatt--spec--external_services--grafana--dashboards))
 - `enabled` (Boolean) When true, Grafana support will be enabled in Kiali.
-- `health_check_url` (String) Used in the Components health feature. This is the URL which Kiali will ping to determine whether the component is reachable or not. It defaults to 'in_cluster_url' when not provided.
-- `in_cluster_url` (String) The URL used for in-cluster access. An example would be 'http://grafana.istio-system:3000'. This URL can contain query parameters if needed, such as '?orgId=1'. If not defined, it will default to 'http://grafana.<istio_namespace>:3000'.
+- `external_url` (String) The URL that the Kiali UI uses when displaying Grafana links to the user. This URL must be accessible to clients external to the cluster (e.g. a browser) in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.
+- `health_check_url` (String) Used in the Components health feature. This is the URL which Kiali will ping to determine whether the component is reachable or not. It defaults to 'internal_url' when not provided.
+- `internal_url` (String) The URL used by Kiali to perform requests and queries to Grafana. An example would be 'http://grafana.istio-system:3000'. This URL can contain query parameters if needed, such as '?orgId=1'. If not defined, it will default to 'http://grafana.<istio_namespace>:3000'.
 - `is_core` (Boolean) Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.
-- `url` (String) The URL that Kiali uses when integrating with Grafana. This URL must be accessible to clients external to the cluster in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.
 
 <a id="nestedatt--spec--external_services--grafana--auth"></a>
 ### Nested Schema for `spec.external_services.grafana.auth`
@@ -546,17 +546,17 @@ Optional:
 
 - `auth` (Attributes) Settings used to authenticate with the Tracing server instance. (see [below for nested schema](#nestedatt--spec--external_services--tracing--auth))
 - `custom_headers` (Map of String) A set of name/value settings that will be passed as headers when requests are sent to the Tracing backend.
-- `enabled` (Boolean) When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.
+- `enabled` (Boolean) When true, connections to the Tracing server are enabled. 'internal_url' and/or 'external_url' need to be provided.
+- `external_url` (String) The URL that the Kiali UI uses when displaying Tracing UI links to the user. This URL must be accessible to clients external to the cluster (e.g. a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>; for example, https://tracing-service:8080/jaeger
 - `grpc_port` (Number) Set port number when 'use_grpc' is true and 'provider' is 'tempo'. By default is '9095'
 - `health_check_url` (String) Used in the Components health feature. This is the url which Kiali will ping to determine whether the component is reachable or not. It defaults to 'url' when not provided.
-- `in_cluster_url` (String) Set URL for in-cluster access, which enables further integration between Kiali and Jaeger. When not provided, Kiali will only show external links using the 'url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685
+- `internal_url` (String) The URL used by Kiali to perform requests and queries to the tracing backend which enables further integration between Kiali and the tracing server. When not provided, Kiali will only show external links using the 'external_url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685
 - `is_core` (Boolean) Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.
 - `namespace_selector` (Boolean) Kiali use this boolean to find traces with a namespace selector : service.namespace.
 - `provider` (String) The trace provider to get the traces from. Value must be one of: 'jaeger' or 'tempo'.
 - `query_scope` (Map of String) A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.
 - `query_timeout` (Number) The amount of time in seconds Kiali will wait for a response from 'jaeger-query' service when fetching traces.
 - `tempo_config` (Attributes) Settings used to configure the access url to the Tempo Datasource in Grafana. (see [below for nested schema](#nestedatt--spec--external_services--tracing--tempo_config))
-- `url` (String) The external URL that will be used to generate links to Jaeger. It must be accessible to clients external to the cluster (e.g: a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>. For example, https://tracing-service:8080/jaeger
 - `use_grpc` (Boolean) Set to true in order to enable GRPC connections between Kiali and Jaeger which will speed up the queries. In some setups you might not be able to use GRPC (e.g. if Jaeger is behind some reverse proxy that doesn't support it). If not specified, this will defalt to 'true'.
 - `whitelist_istio_system` (List of String) Kiali will get the traces of these services found in the Istio control plane namespace.
 

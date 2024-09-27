@@ -179,10 +179,10 @@ Optional:
 
 Optional:
 
-- `indexed_resource_attributes` (List of String) IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.
-- `log_attributes` (Attributes List) LogAttributes contains the configuration for log attributes to store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--log_attributes))
+- `indexed_resource_attributes` (List of String) IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels.
+- `log_attributes` (Attributes List) LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--log_attributes))
 - `resource_attributes` (Attributes) ResourceAttributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--resource_attributes))
-- `scope_attributes` (Attributes List) ScopeAttributes contains the configuration for scope attributes to store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--scope_attributes))
+- `scope_attributes` (Attributes List) ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--global--otlp--scope_attributes))
 
 <a id="nestedatt--spec--limits--global--otlp--log_attributes"></a>
 ### Nested Schema for `spec.limits.global.otlp.log_attributes`
@@ -301,9 +301,9 @@ Optional:
 
 Optional:
 
-- `log_attributes` (Attributes List) LogAttributes contains the configuration for log attributes to store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--log_attributes))
+- `log_attributes` (Attributes List) LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--log_attributes))
 - `resource_attributes` (Attributes) ResourceAttributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--resource_attributes))
-- `scope_attributes` (Attributes List) ScopeAttributes contains the configuration for scope attributes to store them as index labels or structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--scope_attributes))
+- `scope_attributes` (Attributes List) ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether. (see [below for nested schema](#nestedatt--spec--limits--tenants--otlp--scope_attributes))
 
 <a id="nestedatt--spec--limits--tenants--otlp--log_attributes"></a>
 ### Nested Schema for `spec.limits.tenants.otlp.log_attributes`

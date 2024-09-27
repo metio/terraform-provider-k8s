@@ -60,7 +60,7 @@ Optional:
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a dynamic mapping from claims to roles. (see [below for nested schema](#nestedatt--spec--claims_to_roles))
 - `client_id` (String) ClientID is the id of the authentication client (Teleport Auth server).
 - `client_redirect_settings` (Attributes) ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones. (see [below for nested schema](#nestedatt--spec--client_redirect_settings))
-- `client_secret` (String) ClientSecret is used to authenticate the client.
+- `client_secret` (String) ClientSecret is used to authenticate the client. This field supports secret lookup. See the operator documentation for more details.
 - `display` (String) Display is the friendly name for this provider.
 - `google_admin_email` (String) GoogleAdminEmail is the email of a google admin to impersonate.
 - `google_service_account` (String) GoogleServiceAccount is a string containing google service account credentials.

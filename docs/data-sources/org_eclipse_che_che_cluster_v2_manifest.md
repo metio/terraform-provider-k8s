@@ -92,7 +92,9 @@ Optional:
 Optional:
 
 - `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--containers))
+- `node_selector` (Map of String) The node selector limits the nodes that can run the pod.
 - `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--security_context))
+- `tolerations` (Attributes List) The pod tolerations of the component pod limit where the pod can run. (see [below for nested schema](#nestedatt--spec--components--che_server--deployment--tolerations))
 
 <a id="nestedatt--spec--components--che_server--deployment--containers"></a>
 ### Nested Schema for `spec.components.che_server.deployment.containers`
@@ -217,6 +219,18 @@ Optional:
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. The default value is '1724'.
 
 
+<a id="nestedatt--spec--components--che_server--deployment--tolerations"></a>
+### Nested Schema for `spec.components.che_server.deployment.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
 
 <a id="nestedatt--spec--components--che_server--proxy"></a>
 ### Nested Schema for `spec.components.che_server.proxy`
@@ -263,7 +277,9 @@ Required:
 Optional:
 
 - `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--containers))
+- `node_selector` (Map of String) The node selector limits the nodes that can run the pod.
 - `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--security_context))
+- `tolerations` (Attributes List) The pod tolerations of the component pod limit where the pod can run. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment--tolerations))
 
 <a id="nestedatt--spec--components--dashboard--deployment--containers"></a>
 ### Nested Schema for `spec.components.dashboard.deployment.containers`
@@ -388,6 +404,18 @@ Optional:
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. The default value is '1724'.
 
 
+<a id="nestedatt--spec--components--dashboard--deployment--tolerations"></a>
+### Nested Schema for `spec.components.dashboard.deployment.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
 
 <a id="nestedatt--spec--components--dashboard--header_message"></a>
 ### Nested Schema for `spec.components.dashboard.header_message`
@@ -422,7 +450,9 @@ Optional:
 Optional:
 
 - `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--containers))
+- `node_selector` (Map of String) The node selector limits the nodes that can run the pod.
 - `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--security_context))
+- `tolerations` (Attributes List) The pod tolerations of the component pod limit where the pod can run. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment--tolerations))
 
 <a id="nestedatt--spec--components--devfile_registry--deployment--containers"></a>
 ### Nested Schema for `spec.components.devfile_registry.deployment.containers`
@@ -547,6 +577,18 @@ Optional:
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. The default value is '1724'.
 
 
+<a id="nestedatt--spec--components--devfile_registry--deployment--tolerations"></a>
+### Nested Schema for `spec.components.devfile_registry.deployment.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
 
 <a id="nestedatt--spec--components--devfile_registry--external_devfile_registries"></a>
 ### Nested Schema for `spec.components.devfile_registry.external_devfile_registries`
@@ -610,7 +652,9 @@ Optional:
 Optional:
 
 - `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--containers))
+- `node_selector` (Map of String) The node selector limits the nodes that can run the pod.
 - `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--security_context))
+- `tolerations` (Attributes List) The pod tolerations of the component pod limit where the pod can run. (see [below for nested schema](#nestedatt--spec--components--plugin_registry--deployment--tolerations))
 
 <a id="nestedatt--spec--components--plugin_registry--deployment--containers"></a>
 ### Nested Schema for `spec.components.plugin_registry.deployment.containers`
@@ -733,6 +777,18 @@ Optional:
 
 - `fs_group` (Number) A special supplemental group that applies to all containers in a pod. The default value is '1724'.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. The default value is '1724'.
+
+
+<a id="nestedatt--spec--components--plugin_registry--deployment--tolerations"></a>
+### Nested Schema for `spec.components.plugin_registry.deployment.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -1937,7 +1993,9 @@ Optional:
 Optional:
 
 - `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--containers))
+- `node_selector` (Map of String) The node selector limits the nodes that can run the pod.
 - `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--security_context))
+- `tolerations` (Attributes List) The pod tolerations of the component pod limit where the pod can run. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway--deployment--tolerations))
 
 <a id="nestedatt--spec--networking--auth--gateway--deployment--containers"></a>
 ### Nested Schema for `spec.networking.auth.gateway.deployment.containers`
@@ -2060,6 +2118,18 @@ Optional:
 
 - `fs_group` (Number) A special supplemental group that applies to all containers in a pod. The default value is '1724'.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. The default value is '1724'.
+
+
+<a id="nestedatt--spec--networking--auth--gateway--deployment--tolerations"></a>
+### Nested Schema for `spec.networking.auth.gateway.deployment.tolerations`
+
+Optional:
+
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 

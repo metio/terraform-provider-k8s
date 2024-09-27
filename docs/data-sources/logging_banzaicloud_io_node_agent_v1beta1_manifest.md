@@ -111,6 +111,7 @@ Optional:
 - `storage_backlog_mem_limit` (String)
 - `storage_checksum` (String)
 - `storage_delete_irrecoverable_chunks` (String)
+- `storage_max_chunks_up` (Number)
 - `storage_metrics` (String)
 - `storage_path` (String)
 - `storage_sync` (String)
@@ -1238,6 +1239,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--containers--security_context"></a>
@@ -1890,6 +1895,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -2544,6 +2553,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--init_containers--security_context"></a>
@@ -2742,6 +2755,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--security_context--windows_options))
 
@@ -2879,6 +2893,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--persistent_volume_claim))
@@ -3273,6 +3288,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--image"></a>
+### Nested Schema for `spec.node_agent_fluentbit.daemon_set.spec.template.spec.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--node_agent_fluentbit--daemon_set--spec--template--spec--volumes--iscsi"></a>
@@ -3868,6 +3892,8 @@ Optional:
 - `insecure_skip_verify` (Boolean)
 - `key_file` (String)
 - `key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--metrics--service_monitor_config--tls_config--key_secret))
+- `max_version` (String)
+- `min_version` (String)
 - `server_name` (String)
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--service_monitor_config--tls_config--ca"></a>
@@ -4251,6 +4277,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--security--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--security--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--security--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--security--pod_security_context--windows_options))
 

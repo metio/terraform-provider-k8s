@@ -57,49 +57,57 @@ Optional:
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
 - `claim_templates` (Attributes List) ClaimTemplates allows adding additional VolumeClaimTemplates for StatefulSet (see [below for nested schema](#nestedatt--spec--claim_templates))
 - `cluster_advertise_address` (String) ClusterAdvertiseAddress is the explicit address to advertise in cluster. Needs to be provided for non RFC1918 [1] (public) addresses. [1] RFC1918: https://tools.ietf.org/html/rfc1918
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlertmanager object, which shall be mounted into the VMAlertmanager Pods. The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.
+- `cluster_domain_name` (String) ClusterDomainName defines domain name suffix for in-cluster dns addresses aka .cluster.local used to build pod peer addresses for in-cluster communication
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder
 - `config_namespace_selector` (Attributes) ConfigNamespaceSelector defines namespace selector for VMAlertmanagerConfig. Works in combination with Selector. NamespaceSelector nil - only objects at VMAlertmanager namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--config_namespace_selector))
 - `config_raw_yaml` (String) ConfigRawYaml - raw configuration for alertmanager, it helps it to start without secret. priority -> hardcoded ConfigRaw -> ConfigRaw, provided by user -> ConfigSecret.
 - `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'
+- `config_reloader_image_tag` (String) ConfigReloaderImageTag defines image:tag for config-reloader container
+- `config_reloader_resources` (Attributes) ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--config_reloader_resources))
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAlertmanager object, which contains configuration for this VMAlertmanager, configuration must be inside secret key: alertmanager.yaml. It must be created by user. instance. Defaults to 'vmalertmanager-<alertmanager-name>' The secret is mounted into /etc/alertmanager/config.
 - `config_selector` (Attributes) ConfigSelector defines selector for VMAlertmanagerConfig, result config will be merged with with Raw or Secret config. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAlertmanager namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--config_selector))
-- `containers` (List of Map of String) Containers allows injecting additional containers or patching existing containers. This is meant to allow adding an authentication proxy to an VMAlertmanager pod.
-- `disable_namespace_matcher` (Boolean) DisableNamespaceMatcher disables namespace label matcher for VMAlertmanagerConfig It may be useful if alert doesn't have namespace label for some reason
+- `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.
+- `disable_namespace_matcher` (Boolean) DisableNamespaceMatcher disables top route namespace label matcher for VMAlertmanagerConfig It may be useful if alert doesn't have namespace label for some reason
 - `disable_route_continue_enforce` (Boolean) DisableRouteContinueEnforce cancel the behavior for VMAlertmanagerConfig that always enforce first-level route continue to true
+- `disable_self_service_scrape` (Boolean) DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable
 - `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
+- `enforced_top_route_matchers` (List of String) EnforcedTopRouteMatchers defines label matchers to be added for the top route of VMAlertmanagerConfig It allows to make some set of labels required for alerts. https://prometheus.io/docs/alerting/latest/configuration/#matcher
 - `external_url` (String) ExternalURL the VMAlertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if VMAlertmanager is not served from root of a DNS name.
-- `extra_args` (Map of String) ExtraArgs that will be passed to VMAlertmanager pod for example log.level: debug
-- `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMAlertmanager pod
+- `extra_args` (Map of String) ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp
+- `extra_envs` (List of Map of String) ExtraEnvs that will be passed to the application container
+- `gossip_config` (Attributes) GossipConfig defines gossip TLS configuration for Alertmanager cluster (see [below for nested schema](#nestedatt--spec--gossip_config))
+- `host_aliases` (Attributes List) HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
-- `image` (Attributes) Image - docker image settings for VMAlertmanager if no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
+- `image` (Attributes) Image - docker image settings if no specified operator uses default version from operator config (see [below for nested schema](#nestedatt--spec--image))
 - `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespace to use for pulling images from registries see https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the VMAlertmanager configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 - `listen_local` (Boolean) ListenLocal makes the VMAlertmanager server listen on loopback, so that it does not bind against the Pod IP. Note this is only for the VMAlertmanager UI, not the gossip communication.
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
 - `log_format` (String) LogFormat for VMAlertmanager to be configured with.
 - `log_level` (String) Log level for VMAlertmanager to be configured with.
-- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state
+- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
 - `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the alertmanager pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
+- `port` (String) Port listen address
 - `port_name` (String) PortName used for the pods and governing service. This defaults to web
 - `priority_class_name` (String) PriorityClassName class assigned to the Pods
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
 - `readiness_probe` (Map of String) ReadinessProbe that will be added CRD pod
-- `replica_count` (Number) ReplicaCount Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the running cluster equal to the expected
-- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--resources))
+- `replica_count` (Number) ReplicaCount is the expected size of the Application.
+- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--resources))
 - `retention` (String) Retention Time duration VMAlertmanager shall retain data for. Default is '120h', and must match the regular expression '[0-9]+(ms|s|m|h)' (milliseconds seconds minutes hours).
-- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.
+- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.
 - `rolling_update_strategy` (String) RollingUpdateStrategy defines strategy for application updates Default is OnDelete, in this case operator handles update process Can be changed for RollingUpdate
 - `route_prefix` (String) RoutePrefix VMAlertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true, but the server serves requests under a different route prefix. For example for use with 'kubectl proxy'.
 - `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod. https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMAlertmanager object, which shall be mounted into the VMAlertmanager Pods. The Secrets are mounted into /etc/vm/secrets/<secret-name>
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder
 - `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext.
 - `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such ConfigSelector. with selectAllByDefault: true and undefined ConfigSelector and ConfigNamespaceSelector Operator selects all exist alertManagerConfigs with selectAllByDefault: false - selects nothing
-- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the pods
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vmalertmanager VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be added to vmalertmanager service spec (see [below for nested schema](#nestedatt--spec--service_spec))
 - `startup_probe` (Map of String) StartupProbe that will be added to CRD pod
@@ -108,9 +116,12 @@ Optional:
 - `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds period for container graceful termination
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+- `use_default_resources` (Boolean) UseDefaultResources controls resource settings By default, operator sets built-in resource requirements
 - `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the alertmanager container, that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
-- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output StatefulSet definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.
+- `use_vm_config_reloader` (Boolean) UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container (see [below for nested schema](#nestedatt--spec--volume_mounts))
+- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional
+- `web_config` (Attributes) WebConfig defines configuration for webserver https://github.com/prometheus/alertmanager/blob/main/docs/https.md (see [below for nested schema](#nestedatt--spec--web_config))
 
 <a id="nestedatt--spec--claim_templates"></a>
 ### Nested Schema for `spec.claim_templates`
@@ -134,6 +145,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -169,17 +181,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--claim_templates--spec--resources--claims"></a>
-### Nested Schema for `spec.claim_templates.spec.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--claim_templates--spec--selector"></a>
@@ -211,11 +214,13 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--claim_templates--status--conditions))
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. (see [below for nested schema](#nestedatt--spec--claim_templates--status--conditions))
+- `current_volume_attributes_class_name` (String) currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.
+- `modify_volume_status` (Attributes) ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature. (see [below for nested schema](#nestedatt--spec--claim_templates--status--modify_volume_status))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--claim_templates--status--conditions"></a>
 ### Nested Schema for `spec.claim_templates.status.conditions`
@@ -230,7 +235,19 @@ Optional:
 - `last_probe_time` (String) lastProbeTime is the time we probed the condition.
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.
+
+
+<a id="nestedatt--spec--claim_templates--status--modify_volume_status"></a>
+### Nested Schema for `spec.claim_templates.status.modify_volume_status`
+
+Required:
+
+- `status` (String) status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.
+
+Optional:
+
+- `target_volume_attributes_class_name` (String) targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled
 
 
 
@@ -254,6 +271,24 @@ Required:
 Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--config_reloader_resources"></a>
+### Nested Schema for `spec.config_reloader_resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--config_reloader_resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--config_reloader_resources--claims"></a>
+### Nested Schema for `spec.config_reloader_resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -298,6 +333,139 @@ Optional:
 
 
 
+<a id="nestedatt--spec--gossip_config"></a>
+### Nested Schema for `spec.gossip_config`
+
+Optional:
+
+- `tls_client_config` (Attributes) TLSClientConfig defines client TLS configuration for alertmanager (see [below for nested schema](#nestedatt--spec--gossip_config--tls_client_config))
+- `tls_server_config` (Attributes) TLSServerConfig defines server TLS configuration for alertmanager (see [below for nested schema](#nestedatt--spec--gossip_config--tls_server_config))
+
+<a id="nestedatt--spec--gossip_config--tls_client_config"></a>
+### Nested Schema for `spec.gossip_config.tls_client_config`
+
+Optional:
+
+- `ca_file` (String) CAFile defines path to the pre-mounted file with CA mutually exclusive with CASecretRef
+- `ca_secret_ref` (Attributes) CA defines reference for secret with CA content under given key mutually exclusive with CAFile (see [below for nested schema](#nestedatt--spec--gossip_config--tls_client_config--ca_secret_ref))
+- `cert_file` (String) CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef
+- `cert_secret_ref` (Attributes) CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile (see [below for nested schema](#nestedatt--spec--gossip_config--tls_client_config--cert_secret_ref))
+- `insecure_skip_verify` (Boolean) Cert defines reference for secret with CA content under given key mutually exclusive with CertFile
+- `key_file` (String) KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef
+- `key_secret_ref` (Attributes) Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile (see [below for nested schema](#nestedatt--spec--gossip_config--tls_client_config--key_secret_ref))
+- `server_name` (String) ServerName indicates a name of a server
+
+<a id="nestedatt--spec--gossip_config--tls_client_config--ca_secret_ref"></a>
+### Nested Schema for `spec.gossip_config.tls_client_config.ca_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--gossip_config--tls_client_config--cert_secret_ref"></a>
+### Nested Schema for `spec.gossip_config.tls_client_config.cert_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--gossip_config--tls_client_config--key_secret_ref"></a>
+### Nested Schema for `spec.gossip_config.tls_client_config.key_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--gossip_config--tls_server_config"></a>
+### Nested Schema for `spec.gossip_config.tls_server_config`
+
+Optional:
+
+- `cert_file` (String) CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef
+- `cert_secret_ref` (Attributes) CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile (see [below for nested schema](#nestedatt--spec--gossip_config--tls_server_config--cert_secret_ref))
+- `cipher_suites` (List of String) CipherSuites defines list of supported cipher suites for TLS versions up to TLS 1.2 https://golang.org/pkg/crypto/tls/#pkg-constants
+- `client_auth_type` (String) Cert defines reference for secret with CA content under given key mutually exclusive with CertFile ClientAuthType defines server policy for client authentication If you want to enable client authentication (aka mTLS), you need to use RequireAndVerifyClientCert Note, mTLS is supported only at enterprise version of VictoriaMetrics components
+- `client_ca_file` (String) ClientCAFile defines path to the pre-mounted file with CA mutually exclusive with ClientCASecretRef
+- `client_ca_secret_ref` (Attributes) ClientCASecretRef defines reference for secret with CA content under given key mutually exclusive with ClientCAFile (see [below for nested schema](#nestedatt--spec--gossip_config--tls_server_config--client_ca_secret_ref))
+- `curve_preferences` (List of String) CurvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. https://golang.org/pkg/crypto/tls/#CurveID
+- `key_file` (String) KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef
+- `key_secret_ref` (Attributes) Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile (see [below for nested schema](#nestedatt--spec--gossip_config--tls_server_config--key_secret_ref))
+- `max_version` (String) MaxVersion maximum TLS version that is acceptable.
+- `min_version` (String) MinVersion minimum TLS version that is acceptable.
+- `prefer_server_cipher_suites` (Boolean) PreferServerCipherSuites controls whether the server selects the client's most preferred ciphersuite
+
+<a id="nestedatt--spec--gossip_config--tls_server_config--cert_secret_ref"></a>
+### Nested Schema for `spec.gossip_config.tls_server_config.cert_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--gossip_config--tls_server_config--client_ca_secret_ref"></a>
+### Nested Schema for `spec.gossip_config.tls_server_config.client_ca_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--gossip_config--tls_server_config--key_secret_ref"></a>
+### Nested Schema for `spec.gossip_config.tls_server_config.key_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--host_aliases"></a>
+### Nested Schema for `spec.host_aliases`
+
+Required:
+
+- `ip` (String) IP address of the host file entry.
+
+Optional:
+
+- `hostnames` (List of String) Hostnames for the above IP address.
+
+
 <a id="nestedatt--spec--image"></a>
 ### Nested Schema for `spec.image`
 
@@ -313,7 +481,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--pod_disruption_budget"></a>
@@ -435,6 +603,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -470,17 +639,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--storage--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.storage.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--storage--volume_claim_template--spec--selector"></a>
@@ -512,11 +672,13 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--conditions))
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--conditions))
+- `current_volume_attributes_class_name` (String) currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.
+- `modify_volume_status` (Attributes) ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--modify_volume_status))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--conditions"></a>
 ### Nested Schema for `spec.storage.volume_claim_template.status.conditions`
@@ -531,7 +693,19 @@ Optional:
 - `last_probe_time` (String) lastProbeTime is the time we probed the condition.
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.
+
+
+<a id="nestedatt--spec--storage--volume_claim_template--status--modify_volume_status"></a>
+### Nested Schema for `spec.storage.volume_claim_template.status.modify_volume_status`
+
+Required:
+
+- `status` (String) status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.
+
+Optional:
+
+- `target_volume_attributes_class_name` (String) targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled
 
 
 
@@ -546,7 +720,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--tolerations"></a>
@@ -571,7 +745,83 @@ Required:
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).
 - `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+<a id="nestedatt--spec--web_config"></a>
+### Nested Schema for `spec.web_config`
+
+Optional:
+
+- `basic_auth_users` (Map of String) BasicAuthUsers Usernames and hashed passwords that have full access to the web server Passwords must be hashed with bcrypt
+- `http_server_config` (Attributes) HTTPServerConfig defines http server configuration for alertmanager web server (see [below for nested schema](#nestedatt--spec--web_config--http_server_config))
+- `tls_server_config` (Attributes) TLSServerConfig defines server TLS configuration for alertmanager (see [below for nested schema](#nestedatt--spec--web_config--tls_server_config))
+
+<a id="nestedatt--spec--web_config--http_server_config"></a>
+### Nested Schema for `spec.web_config.http_server_config`
+
+Optional:
+
+- `headers` (Map of String) Headers defines list of headers that can be added to HTTP responses.
+- `http2` (Boolean) HTTP2 enables HTTP/2 support. Note that HTTP/2 is only supported with TLS. This can not be changed on the fly.
+
+
+<a id="nestedatt--spec--web_config--tls_server_config"></a>
+### Nested Schema for `spec.web_config.tls_server_config`
+
+Optional:
+
+- `cert_file` (String) CertFile defines path to the pre-mounted file with certificate mutually exclusive with CertSecretRef
+- `cert_secret_ref` (Attributes) CertSecretRef defines reference for secret with certificate content under given key mutually exclusive with CertFile (see [below for nested schema](#nestedatt--spec--web_config--tls_server_config--cert_secret_ref))
+- `cipher_suites` (List of String) CipherSuites defines list of supported cipher suites for TLS versions up to TLS 1.2 https://golang.org/pkg/crypto/tls/#pkg-constants
+- `client_auth_type` (String) Cert defines reference for secret with CA content under given key mutually exclusive with CertFile ClientAuthType defines server policy for client authentication If you want to enable client authentication (aka mTLS), you need to use RequireAndVerifyClientCert Note, mTLS is supported only at enterprise version of VictoriaMetrics components
+- `client_ca_file` (String) ClientCAFile defines path to the pre-mounted file with CA mutually exclusive with ClientCASecretRef
+- `client_ca_secret_ref` (Attributes) ClientCASecretRef defines reference for secret with CA content under given key mutually exclusive with ClientCAFile (see [below for nested schema](#nestedatt--spec--web_config--tls_server_config--client_ca_secret_ref))
+- `curve_preferences` (List of String) CurvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. https://golang.org/pkg/crypto/tls/#CurveID
+- `key_file` (String) KeyFile defines path to the pre-mounted file with certificate key mutually exclusive with KeySecretRef
+- `key_secret_ref` (Attributes) Key defines reference for secret with certificate key content under given key mutually exclusive with KeyFile (see [below for nested schema](#nestedatt--spec--web_config--tls_server_config--key_secret_ref))
+- `max_version` (String) MaxVersion maximum TLS version that is acceptable.
+- `min_version` (String) MinVersion minimum TLS version that is acceptable.
+- `prefer_server_cipher_suites` (Boolean) PreferServerCipherSuites controls whether the server selects the client's most preferred ciphersuite
+
+<a id="nestedatt--spec--web_config--tls_server_config--cert_secret_ref"></a>
+### Nested Schema for `spec.web_config.tls_server_config.cert_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--web_config--tls_server_config--client_ca_secret_ref"></a>
+### Nested Schema for `spec.web_config.tls_server_config.client_ca_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--web_config--tls_server_config--key_secret_ref"></a>
+### Nested Schema for `spec.web_config.tls_server_config.key_secret_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined

@@ -108,6 +108,7 @@ Optional:
 - `oracle` (Attributes) Oracle configures this store to sync secrets using Oracle Vault provider (see [below for nested schema](#nestedatt--spec--provider--oracle))
 - `passbolt` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--passbolt))
 - `passworddepot` (Attributes) Configures a store to sync secrets with a Password Depot instance. (see [below for nested schema](#nestedatt--spec--provider--passworddepot))
+- `previder` (Attributes) Previder configures this store to sync secrets using the Previder provider (see [below for nested schema](#nestedatt--spec--provider--previder))
 - `pulumi` (Attributes) Pulumi configures this store to sync secrets using the Pulumi provider (see [below for nested schema](#nestedatt--spec--provider--pulumi))
 - `scaleway` (Attributes) Scaleway (see [below for nested schema](#nestedatt--spec--provider--scaleway))
 - `secretserver` (Attributes) SecretServer configures this store to sync secrets using SecretServer provider https://docs.delinea.com/online-help/secret-server/start.htm (see [below for nested schema](#nestedatt--spec--provider--secretserver))
@@ -1543,6 +1544,44 @@ Optional:
 
 
 
+<a id="nestedatt--spec--provider--previder"></a>
+### Nested Schema for `spec.provider.previder`
+
+Required:
+
+- `auth` (Attributes) PreviderAuth contains a secretRef for credentials. (see [below for nested schema](#nestedatt--spec--provider--previder--auth))
+
+Optional:
+
+- `base_uri` (String)
+
+<a id="nestedatt--spec--provider--previder--auth"></a>
+### Nested Schema for `spec.provider.previder.auth`
+
+Optional:
+
+- `secret_ref` (Attributes) PreviderAuthSecretRef holds secret references for Previder Vault credentials. (see [below for nested schema](#nestedatt--spec--provider--previder--auth--secret_ref))
+
+<a id="nestedatt--spec--provider--previder--auth--secret_ref"></a>
+### Nested Schema for `spec.provider.previder.auth.secret_ref`
+
+Required:
+
+- `access_token` (Attributes) The AccessToken is used for authentication (see [below for nested schema](#nestedatt--spec--provider--previder--auth--secret_ref--access_token))
+
+<a id="nestedatt--spec--provider--previder--auth--secret_ref--access_token"></a>
+### Nested Schema for `spec.provider.previder.auth.secret_ref.access_token`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
+
+
+
 <a id="nestedatt--spec--provider--pulumi"></a>
 ### Nested Schema for `spec.provider.pulumi`
 
@@ -1551,6 +1590,7 @@ Required:
 - `access_token` (Attributes) AccessToken is the access tokens to sign in to the Pulumi Cloud Console. (see [below for nested schema](#nestedatt--spec--provider--pulumi--access_token))
 - `environment` (String) Environment are YAML documents composed of static key-value pairs, programmatic expressions, dynamically retrieved values from supported providers including all major clouds, and other Pulumi ESC environments. To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
 - `organization` (String) Organization are a space to collaborate on shared projects and stacks. To create a new organization, visit https://app.pulumi.com/ and click 'New Organization'.
+- `project` (String) Project is the name of the Pulumi ESC project the environment belongs to.
 
 Optional:
 

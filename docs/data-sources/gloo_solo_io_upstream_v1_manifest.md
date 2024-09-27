@@ -97,6 +97,7 @@ Optional:
 - `anthropic` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic))
 - `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--azure_openai))
 - `mistral` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral))
+- `multi` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi))
 - `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai))
 
 <a id="nestedatt--spec--ai--anthropic"></a>
@@ -106,6 +107,7 @@ Optional:
 
 - `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic--auth_token))
 - `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic--custom_host))
+- `model` (String)
 - `version` (String)
 
 <a id="nestedatt--spec--ai--anthropic--auth_token"></a>
@@ -141,7 +143,9 @@ Optional:
 
 Optional:
 
+- `api_version` (String)
 - `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--azure_openai--auth_token))
+- `deployment_name` (String)
 - `endpoint` (String)
 
 <a id="nestedatt--spec--ai--azure_openai--auth_token"></a>
@@ -170,6 +174,7 @@ Optional:
 
 - `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral--auth_token))
 - `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral--custom_host))
+- `model` (String)
 
 <a id="nestedatt--spec--ai--mistral--auth_token"></a>
 ### Nested Schema for `spec.ai.mistral.auth_token`
@@ -199,6 +204,174 @@ Optional:
 
 
 
+<a id="nestedatt--spec--ai--multi"></a>
+### Nested Schema for `spec.ai.multi`
+
+Optional:
+
+- `priorities` (Attributes List) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities))
+
+<a id="nestedatt--spec--ai--multi--priorities"></a>
+### Nested Schema for `spec.ai.multi.priorities`
+
+Optional:
+
+- `pool` (Attributes List) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool`
+
+Optional:
+
+- `anthropic` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--anthropic))
+- `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--azure_openai))
+- `mistral` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--mistral))
+- `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--openai))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--anthropic"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.anthropic`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--anthropic--auth_token))
+- `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--anthropic--custom_host))
+- `model` (String)
+- `version` (String)
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--anthropic--auth_token"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.anthropic.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--anthropic--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--anthropic--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.anthropic.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--anthropic--custom_host"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.anthropic.custom_host`
+
+Optional:
+
+- `host` (String)
+- `port` (Number)
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--azure_openai"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.azure_openai`
+
+Optional:
+
+- `api_version` (String)
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--azure_openai--auth_token))
+- `deployment_name` (String)
+- `endpoint` (String)
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--azure_openai--auth_token"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.azure_openai.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--azure_openai--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--azure_openai--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.azure_openai.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--mistral"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.mistral`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--mistral--auth_token))
+- `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--mistral--custom_host))
+- `model` (String)
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--mistral--auth_token"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.mistral.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--mistral--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--mistral--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.mistral.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--mistral--custom_host"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.mistral.custom_host`
+
+Optional:
+
+- `host` (String)
+- `port` (Number)
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--openai"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.openai`
+
+Optional:
+
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--openai--auth_token))
+- `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--openai--custom_host))
+- `model` (String)
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--openai--auth_token"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.openai.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--openai--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--openai--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.openai.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--openai--custom_host"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.openai.custom_host`
+
+Optional:
+
+- `host` (String)
+- `port` (Number)
+
+
+
+
+
+
 <a id="nestedatt--spec--ai--openai"></a>
 ### Nested Schema for `spec.ai.openai`
 
@@ -206,6 +379,7 @@ Optional:
 
 - `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai--auth_token))
 - `custom_host` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai--custom_host))
+- `model` (String)
 
 <a id="nestedatt--spec--ai--openai--auth_token"></a>
 ### Nested Schema for `spec.ai.openai.auth_token`

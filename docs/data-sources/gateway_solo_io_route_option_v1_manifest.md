@@ -118,11 +118,11 @@ Optional:
 
 Optional:
 
-- `backup_models` (List of String)
 - `defaults` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ai--defaults))
 - `prompt_enrichment` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ai--prompt_enrichment))
 - `prompt_guard` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ai--prompt_guard))
 - `rag` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ai--rag))
+- `route_type` (String)
 - `semantic_cache` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ai--semantic_cache))
 
 <a id="nestedatt--spec--options--ai--defaults"></a>
@@ -1970,6 +1970,7 @@ Optional:
 - `num_retries` (Number)
 - `per_try_timeout` (String)
 - `previous_priorities` (Attributes) (see [below for nested schema](#nestedatt--spec--options--retries--previous_priorities))
+- `retriable_status_codes` (List of String)
 - `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--options--retries--retry_back_off))
 - `retry_on` (String)
 

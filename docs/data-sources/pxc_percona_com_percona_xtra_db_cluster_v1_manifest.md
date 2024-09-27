@@ -131,6 +131,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 
@@ -747,6 +751,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--windows_options))
 
@@ -821,6 +826,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -1789,6 +1798,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--haproxy--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--pod_security_context--windows_options))
 
@@ -1937,6 +1947,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--haproxy--sidecar_pv_cs"></a>
@@ -2084,6 +2098,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--haproxy--sidecar_volumes"></a>
@@ -2112,6 +2130,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy--sidecar_volumes--persistent_volume_claim))
@@ -2506,6 +2525,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--haproxy--sidecar_volumes--image"></a>
+### Nested Schema for `spec.haproxy.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--haproxy--sidecar_volumes--iscsi"></a>
@@ -3337,6 +3365,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--haproxy--sidecars--security_context"></a>
@@ -3676,8 +3708,83 @@ Optional:
 
 Optional:
 
+- `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--container_security_context))
 - `image` (String)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--resources))
+
+<a id="nestedatt--spec--init_container--container_security_context"></a>
+### Nested Schema for `spec.init_container.container_security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--container_security_context--app_armor_profile))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--container_security_context--capabilities))
+- `privileged` (Boolean)
+- `proc_mount` (String)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--init_container--container_security_context--windows_options))
+
+<a id="nestedatt--spec--init_container--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.init_container.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--init_container--container_security_context--capabilities"></a>
+### Nested Schema for `spec.init_container.container_security_context.capabilities`
+
+Optional:
+
+- `add` (List of String)
+- `drop` (List of String)
+
+
+<a id="nestedatt--spec--init_container--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.init_container.container_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--init_container--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.init_container.container_security_context.seccomp_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--init_container--container_security_context--windows_options"></a>
+### Nested Schema for `spec.init_container.container_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)
+
+
 
 <a id="nestedatt--spec--init_container--resources"></a>
 ### Nested Schema for `spec.init_container.resources`
@@ -3694,6 +3801,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -3801,6 +3912,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -3910,6 +4025,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -4688,6 +4807,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxysql--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--pod_security_context--windows_options))
 
@@ -4836,6 +4956,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--proxysql--sidecar_pv_cs"></a>
@@ -4983,6 +5107,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--proxysql--sidecar_volumes"></a>
@@ -5011,6 +5139,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--proxysql--sidecar_volumes--persistent_volume_claim))
@@ -5405,6 +5534,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--proxysql--sidecar_volumes--image"></a>
+### Nested Schema for `spec.proxysql.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--proxysql--sidecar_volumes--iscsi"></a>
@@ -6235,6 +6373,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -7346,6 +7488,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--pxc--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--pod_security_context--windows_options))
 
@@ -7527,6 +7670,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--pxc--sidecar_pv_cs"></a>
@@ -7674,6 +7821,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--pxc--sidecar_volumes"></a>
@@ -7702,6 +7853,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--pxc--sidecar_volumes--persistent_volume_claim))
@@ -8096,6 +8248,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--pxc--sidecar_volumes--image"></a>
+### Nested Schema for `spec.pxc.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--pxc--sidecar_volumes--iscsi"></a>
@@ -8926,6 +9087,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 

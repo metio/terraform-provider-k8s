@@ -1223,7 +1223,6 @@ func allResources() []func() resource.Resource {
 		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Resource,
 		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2Resource,
 		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2Resource,
-		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoReferenceGrantV1Alpha2Resource,
 		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTcprouteV1Alpha2Resource,
 		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTlsrouteV1Alpha2Resource,
 		//gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoUdprouteV1Alpha2Resource,

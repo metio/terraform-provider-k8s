@@ -727,6 +727,7 @@ Optional:
 - `image` (String) Image defines the temporal admin tools docker image the instance should run.
 - `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the ui. (see [below for nested schema](#nestedatt--spec--admintools--overrides))
 - `resources` (Attributes) Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--admintools--resources))
+- `version` (String) Version defines the temporal admin tools version the instance should run.
 
 <a id="nestedatt--spec--admintools--overrides"></a>
 ### Nested Schema for `spec.admintools.overrides`

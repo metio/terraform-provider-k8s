@@ -58,7 +58,7 @@ Optional:
 - `api_endpoint_url` (String) APIEndpointURL is the URL of the API endpoint of the Github instance this connector is for.
 - `client_id` (String) ClientID is the Github OAuth app client ID.
 - `client_redirect_settings` (Attributes) ClientRedirectSettings defines which client redirect URLs are allowed for non-browser SSO logins other than the standard localhost ones. (see [below for nested schema](#nestedatt--spec--client_redirect_settings))
-- `client_secret` (String) ClientSecret is the Github OAuth app client secret.
+- `client_secret` (String) ClientSecret is the Github OAuth app client secret. This field supports secret lookup. See the operator documentation for more details.
 - `display` (String) Display is the connector display name.
 - `endpoint_url` (String) EndpointURL is the URL of the GitHub instance this connector is for.
 - `redirect_url` (String) RedirectURL is the authorization callback URL.

@@ -53,14 +53,26 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `workload_meta_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_meta_overrides))
+
 Optional:
 
 - `enable_recreate_workload_on_immutable_field_change` (Boolean)
 - `file_tailers` (Attributes List) (see [below for nested schema](#nestedatt--spec--file_tailers))
 - `image` (Attributes) (see [below for nested schema](#nestedatt--spec--image))
 - `systemd_tailers` (Attributes List) (see [below for nested schema](#nestedatt--spec--systemd_tailers))
-- `workload_meta_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_meta_overrides))
 - `workload_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides))
+
+<a id="nestedatt--spec--workload_meta_overrides"></a>
+### Nested Schema for `spec.workload_meta_overrides`
+
+Optional:
+
+- `annotations` (Map of String)
+- `labels` (Map of String)
+
 
 <a id="nestedatt--spec--file_tailers"></a>
 ### Nested Schema for `spec.file_tailers`
@@ -256,6 +268,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -583,6 +599,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--systemd_tailers--container_overrides--security_context"></a>
@@ -695,15 +715,6 @@ Optional:
 - `name` (String)
 
 
-
-
-<a id="nestedatt--spec--workload_meta_overrides"></a>
-### Nested Schema for `spec.workload_meta_overrides`
-
-Optional:
-
-- `annotations` (Map of String)
-- `labels` (Map of String)
 
 
 <a id="nestedatt--spec--workload_overrides"></a>
@@ -1281,6 +1292,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--workload_overrides--containers--security_context"></a>
@@ -1560,6 +1575,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--workload_overrides--init_containers--security_context"></a>
@@ -1668,6 +1687,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--security_context--windows_options))
 
@@ -1765,6 +1785,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--persistent_volume_claim))
@@ -2159,6 +2180,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--workload_overrides--volumes--image"></a>
+### Nested Schema for `spec.workload_overrides.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--workload_overrides--volumes--iscsi"></a>

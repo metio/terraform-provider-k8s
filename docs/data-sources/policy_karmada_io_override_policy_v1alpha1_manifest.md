@@ -77,6 +77,7 @@ Optional:
 - `annotations_overrider` (Attributes List) AnnotationsOverrider represents the rules dedicated to handling workload annotations (see [below for nested schema](#nestedatt--spec--override_rules--overriders--annotations_overrider))
 - `args_overrider` (Attributes List) ArgsOverrider represents the rules dedicated to handling container args (see [below for nested schema](#nestedatt--spec--override_rules--overriders--args_overrider))
 - `command_overrider` (Attributes List) CommandOverrider represents the rules dedicated to handling container command (see [below for nested schema](#nestedatt--spec--override_rules--overriders--command_overrider))
+- `field_overrider` (Attributes List) FieldOverrider represents the rules dedicated to modifying a specific field in any Kubernetes resource. This allows changing a single field within the resource with multiple operations. It is designed to handle structured field values such as those found in ConfigMaps or Secrets. The current implementation supports JSON and YAML formats, but can easily be extended to support XML in the future. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--field_overrider))
 - `image_overrider` (Attributes List) ImageOverrider represents the rules dedicated to handling image overrides. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--image_overrider))
 - `labels_overrider` (Attributes List) LabelsOverrider represents the rules dedicated to handling workload labels (see [below for nested schema](#nestedatt--spec--override_rules--overriders--labels_overrider))
 - `plaintext` (Attributes List) Plaintext represents override rules defined with plaintext overriders. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--plaintext))
@@ -117,6 +118,45 @@ Required:
 Optional:
 
 - `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
+
+
+<a id="nestedatt--spec--override_rules--overriders--field_overrider"></a>
+### Nested Schema for `spec.override_rules.overriders.field_overrider`
+
+Required:
+
+- `field_path` (String) FieldPath specifies the initial location in the instance document where the operation should take place. The path uses RFC 6901 for navigating into nested structures. For example, the path '/data/db-config.yaml' specifies the configuration data key named 'db-config.yaml' in a ConfigMap: '/data/db-config.yaml'.
+
+Optional:
+
+- `json` (Attributes List) JSON represents the operations performed on the JSON document specified by the FieldPath. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--field_overrider--json))
+- `yaml` (Attributes List) YAML represents the operations performed on the YAML document specified by the FieldPath. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--field_overrider--yaml))
+
+<a id="nestedatt--spec--override_rules--overriders--field_overrider--json"></a>
+### Nested Schema for `spec.override_rules.overriders.field_overrider.json`
+
+Required:
+
+- `operator` (String) Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.
+- `sub_path` (String) SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.
+
+Optional:
+
+- `value` (Map of String) Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.
+
+
+<a id="nestedatt--spec--override_rules--overriders--field_overrider--yaml"></a>
+### Nested Schema for `spec.override_rules.overriders.field_overrider.yaml`
+
+Required:
+
+- `operator` (String) Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.
+- `sub_path` (String) SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.
+
+Optional:
+
+- `value` (Map of String) Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.
+
 
 
 <a id="nestedatt--spec--override_rules--overriders--image_overrider"></a>
@@ -230,6 +270,7 @@ Optional:
 - `annotations_overrider` (Attributes List) AnnotationsOverrider represents the rules dedicated to handling workload annotations (see [below for nested schema](#nestedatt--spec--overriders--annotations_overrider))
 - `args_overrider` (Attributes List) ArgsOverrider represents the rules dedicated to handling container args (see [below for nested schema](#nestedatt--spec--overriders--args_overrider))
 - `command_overrider` (Attributes List) CommandOverrider represents the rules dedicated to handling container command (see [below for nested schema](#nestedatt--spec--overriders--command_overrider))
+- `field_overrider` (Attributes List) FieldOverrider represents the rules dedicated to modifying a specific field in any Kubernetes resource. This allows changing a single field within the resource with multiple operations. It is designed to handle structured field values such as those found in ConfigMaps or Secrets. The current implementation supports JSON and YAML formats, but can easily be extended to support XML in the future. (see [below for nested schema](#nestedatt--spec--overriders--field_overrider))
 - `image_overrider` (Attributes List) ImageOverrider represents the rules dedicated to handling image overrides. (see [below for nested schema](#nestedatt--spec--overriders--image_overrider))
 - `labels_overrider` (Attributes List) LabelsOverrider represents the rules dedicated to handling workload labels (see [below for nested schema](#nestedatt--spec--overriders--labels_overrider))
 - `plaintext` (Attributes List) Plaintext represents override rules defined with plaintext overriders. (see [below for nested schema](#nestedatt--spec--overriders--plaintext))
@@ -270,6 +311,45 @@ Required:
 Optional:
 
 - `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
+
+
+<a id="nestedatt--spec--overriders--field_overrider"></a>
+### Nested Schema for `spec.overriders.field_overrider`
+
+Required:
+
+- `field_path` (String) FieldPath specifies the initial location in the instance document where the operation should take place. The path uses RFC 6901 for navigating into nested structures. For example, the path '/data/db-config.yaml' specifies the configuration data key named 'db-config.yaml' in a ConfigMap: '/data/db-config.yaml'.
+
+Optional:
+
+- `json` (Attributes List) JSON represents the operations performed on the JSON document specified by the FieldPath. (see [below for nested schema](#nestedatt--spec--overriders--field_overrider--json))
+- `yaml` (Attributes List) YAML represents the operations performed on the YAML document specified by the FieldPath. (see [below for nested schema](#nestedatt--spec--overriders--field_overrider--yaml))
+
+<a id="nestedatt--spec--overriders--field_overrider--json"></a>
+### Nested Schema for `spec.overriders.field_overrider.json`
+
+Required:
+
+- `operator` (String) Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.
+- `sub_path` (String) SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.
+
+Optional:
+
+- `value` (Map of String) Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.
+
+
+<a id="nestedatt--spec--overriders--field_overrider--yaml"></a>
+### Nested Schema for `spec.overriders.field_overrider.yaml`
+
+Required:
+
+- `operator` (String) Operator indicates the operation on target field. Available operators are: 'add', 'remove', and 'replace'.
+- `sub_path` (String) SubPath specifies the relative location within the initial FieldPath where the operation should take place. The path uses RFC 6901 for navigating into nested structures.
+
+Optional:
+
+- `value` (Map of String) Value is the new value to set for the specified field if the operation is 'add' or 'replace'. For 'remove' operation, this field is ignored.
+
 
 
 <a id="nestedatt--spec--overriders--image_overrider"></a>

@@ -30,7 +30,7 @@ data "k8s_operator_victoriametrics_com_vm_alertmanager_config_v1beta1_manifest" 
 
 ### Optional
 
-- `spec` (Attributes) VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig it must reference only locally defined objects (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -53,57 +53,15 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `receivers` (Attributes List) Receivers defines alert receivers (see [below for nested schema](#nestedatt--spec--receivers))
+- `route` (Attributes) Route definition for alertmanager, may include nested routes. (see [below for nested schema](#nestedatt--spec--route))
+
 Optional:
 
 - `inhibit_rules` (Attributes List) InhibitRules will only apply for alerts matching the resource's namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules))
-- `mute_time_intervals` (Attributes List) MuteTimeInterval - global mute time See https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval (see [below for nested schema](#nestedatt--spec--mute_time_intervals))
-- `receivers` (Attributes List) Receivers defines alert receivers. without defined Route, receivers will be skipped. (see [below for nested schema](#nestedatt--spec--receivers))
-- `route` (Attributes) Route definition for alertmanager, may include nested routes. (see [below for nested schema](#nestedatt--spec--route))
-- `time_intervals` (Attributes List) ParsingError contents error with context if operator was failed to parse json object from kubernetes api server TimeIntervals modern config option, use it instead of mute_time_intervals (see [below for nested schema](#nestedatt--spec--time_intervals))
-
-<a id="nestedatt--spec--inhibit_rules"></a>
-### Nested Schema for `spec.inhibit_rules`
-
-Optional:
-
-- `equal` (List of String) Labels that must have an equal value in the source and target alert for the inhibition to take effect.
-- `source_matchers` (List of String) SourceMatchers defines a list of matchers for which one or more alerts have to exist for the inhibition to take effect.
-- `target_matchers` (List of String) TargetMatchers defines a list of matchers that have to be fulfilled by the target alerts to be muted.
-
-
-<a id="nestedatt--spec--mute_time_intervals"></a>
-### Nested Schema for `spec.mute_time_intervals`
-
-Required:
-
-- `time_intervals` (Attributes List) TimeIntervals interval configuration (see [below for nested schema](#nestedatt--spec--mute_time_intervals--time_intervals))
-
-Optional:
-
-- `name` (String) Name of interval
-
-<a id="nestedatt--spec--mute_time_intervals--time_intervals"></a>
-### Nested Schema for `spec.mute_time_intervals.time_intervals`
-
-Optional:
-
-- `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']
-- `location` (String) Location in golang time location form, e.g. UTC
-- `months` (List of String) Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']
-- `times` (Attributes List) Times defines time range for mute (see [below for nested schema](#nestedatt--spec--mute_time_intervals--time_intervals--times))
-- `weekdays` (List of String) Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.
-- `years` (List of String) Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']
-
-<a id="nestedatt--spec--mute_time_intervals--time_intervals--times"></a>
-### Nested Schema for `spec.mute_time_intervals.time_intervals.times`
-
-Required:
-
-- `end_time` (String) EndTime for example HH:MM
-- `start_time` (String) StartTime for example HH:MM
-
-
-
+- `time_intervals` (Attributes List) TimeIntervals defines named interval for active/mute notifications interval See https://prometheus.io/docs/alerting/latest/configuration/#time_interval (see [below for nested schema](#nestedatt--spec--time_intervals))
 
 <a id="nestedatt--spec--receivers"></a>
 ### Nested Schema for `spec.receivers`
@@ -145,20 +103,45 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
 - `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--bearer_token_secret))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--oauth2))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config))
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--authorization"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Reference to the secret with value for authorization (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--authorization--credentials))
+- `credentials_file` (String) File with value for authorization
+- `type` (String) Type of authorization, default to bearer
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config--basic_auth"></a>
 ### Nested Schema for `spec.receivers.discord_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.discord_configs.http_config.basic_auth.password`
@@ -169,7 +152,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -182,7 +165,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -196,8 +179,72 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--oauth2"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--discord_configs--http_config--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.discord_configs.http_config.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config--tls_config"></a>
@@ -231,7 +278,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -244,7 +291,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -266,7 +313,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -279,7 +326,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -293,7 +340,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -308,7 +355,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -322,13 +369,13 @@ Optional:
 - `auth_password` (Attributes) AuthPassword defines secret name and key at CRD namespace. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--auth_password))
 - `auth_secret` (Attributes) AuthSecret defines secrent name and key at CRD namespace. It must contain the CRAM-MD5 secret. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--auth_secret))
 - `auth_username` (String) The username to use for authentication.
-- `from` (String) The sender address.
+- `from` (String) The sender address. fallback to global setting if empty
 - `headers` (Map of String) Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.
 - `hello` (String) The hostname to identify to the SMTP server.
 - `html` (String) The HTML body of the email notification.
 - `require_tls` (Boolean) The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
-- `smarthost` (String) The SMTP host through which emails are sent.
+- `smarthost` (String) The SMTP host through which emails are sent. fallback to global setting if empty
 - `text` (String) The text body of the email notification.
 - `tls_config` (Attributes) TLS configuration (see [below for nested schema](#nestedatt--spec--receivers--email_configs--tls_config))
 - `to` (String) The email address to send notifications to.
@@ -342,7 +389,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -355,7 +402,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -390,7 +437,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -403,7 +450,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -425,7 +472,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -438,7 +485,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -452,7 +499,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -475,20 +522,45 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
 - `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--bearer_token_secret))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--oauth2))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config))
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--authorization"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Reference to the secret with value for authorization (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--authorization--credentials))
+- `credentials_file` (String) File with value for authorization
+- `type` (String) Type of authorization, default to bearer
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config--basic_auth"></a>
 ### Nested Schema for `spec.receivers.msteams_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.msteams_configs.http_config.basic_auth.password`
@@ -499,7 +571,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -512,7 +584,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -526,8 +598,72 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--oauth2"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.http_config.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config--tls_config"></a>
@@ -561,7 +697,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -574,7 +710,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -596,7 +732,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -609,7 +745,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -623,7 +759,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -638,7 +774,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -649,7 +785,7 @@ Optional:
 Optional:
 
 - `actions` (String) Comma separated list of actions that will be available for the alert.
-- `api_key` (Attributes) The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--api_key))
+- `api_key` (Attributes) The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD fallback to global setting if empty (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--api_key))
 - `api_url` (String) The URL to send OpsGenie API requests to.
 - `description` (String) Description of the incident.
 - `details` (Map of String) A set of arbitrary key/value pairs that provide further detail about the incident.
@@ -673,7 +809,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -747,7 +883,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -760,7 +896,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -793,7 +929,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -806,7 +942,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -817,7 +953,7 @@ Optional:
 Optional:
 
 - `actions` (Attributes List) A list of Slack actions that are sent with each notification. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--actions))
-- `api_url` (Attributes) The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--api_url))
+- `api_url` (Attributes) The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD fallback to global setting if empty (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--api_url))
 - `callback_id` (String)
 - `channel` (String) The channel or user to send notifications to.
 - `color` (String)
@@ -879,7 +1015,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -918,20 +1054,45 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
 - `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--bearer_token_secret))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--oauth2))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config))
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--authorization"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Reference to the secret with value for authorization (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--authorization--credentials))
+- `credentials_file` (String) File with value for authorization
+- `type` (String) Type of authorization, default to bearer
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config--basic_auth"></a>
 ### Nested Schema for `spec.receivers.sns_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.sns_configs.http_config.basic_auth.password`
@@ -942,7 +1103,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -955,7 +1116,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -969,8 +1130,72 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--oauth2"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--sns_configs--http_config--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.sns_configs.http_config.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config--tls_config"></a>
@@ -1004,7 +1229,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1017,7 +1242,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1039,7 +1264,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1052,7 +1277,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1066,7 +1291,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1093,7 +1318,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1106,7 +1331,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1138,7 +1363,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1146,16 +1371,19 @@ Optional:
 <a id="nestedatt--spec--receivers--victorops_configs"></a>
 ### Nested Schema for `spec.receivers.victorops_configs`
 
+Required:
+
+- `routing_key` (String) A key used to map the alert to a team.
+
 Optional:
 
-- `api_key` (Attributes) The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--api_key))
+- `api_key` (Attributes) The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD fallback to global setting if empty (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--api_key))
 - `api_url` (String) The VictorOps API URL.
 - `custom_fields` (Map of String) Adds optional custom fields https://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537
 - `entity_display_name` (String) Contains summary of the alerted problem.
 - `http_config` (Attributes) The HTTP client's configuration. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config))
 - `message_type` (String) Describes the behavior of the alert (CRITICAL, WARNING, INFO).
 - `monitoring_tool` (String) The monitoring tool the state message is from.
-- `routing_key` (String) A key used to map the alert to a team.
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `state_message` (String) Contains long explanation of the alerted problem.
 
@@ -1168,7 +1396,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1177,20 +1405,45 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
 - `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--bearer_token_secret))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--oauth2))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config))
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--authorization"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Reference to the secret with value for authorization (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--authorization--credentials))
+- `credentials_file` (String) File with value for authorization
+- `type` (String) Type of authorization, default to bearer
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--receivers--victorops_configs--http_config--basic_auth"></a>
 ### Nested Schema for `spec.receivers.victorops_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.victorops_configs.http_config.basic_auth.password`
@@ -1201,7 +1454,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1214,7 +1467,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1228,8 +1481,72 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--oauth2"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--victorops_configs--http_config--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.victorops_configs.http_config.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--receivers--victorops_configs--http_config--tls_config"></a>
@@ -1263,7 +1580,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1276,7 +1593,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1298,7 +1615,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1311,7 +1628,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1325,7 +1642,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1348,20 +1665,45 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
 - `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--bearer_token_secret))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--oauth2))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config))
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--authorization"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Reference to the secret with value for authorization (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--authorization--credentials))
+- `credentials_file` (String) File with value for authorization
+- `type` (String) Type of authorization, default to bearer
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--receivers--webex_configs--http_config--basic_auth"></a>
 ### Nested Schema for `spec.receivers.webex_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.webex_configs.http_config.basic_auth.password`
@@ -1372,7 +1714,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1385,7 +1727,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1399,8 +1741,72 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--oauth2"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.http_config.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--receivers--webex_configs--http_config--tls_config"></a>
@@ -1434,7 +1840,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1447,7 +1853,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1469,7 +1875,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1482,7 +1888,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1496,7 +1902,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1523,7 +1929,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1534,9 +1940,9 @@ Optional:
 Optional:
 
 - `agent_id` (String)
-- `api_secret` (Attributes) The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--api_secret))
-- `api_url` (String) The WeChat API URL.
-- `corp_id` (String) The corp id for authentication.
+- `api_secret` (Attributes) The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig fallback to global alertmanager setting if empty (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--api_secret))
+- `api_url` (String) The WeChat API URL. fallback to global alertmanager setting if empty
+- `corp_id` (String) The corp id for authentication. fallback to global alertmanager setting if empty
 - `http_config` (Attributes) HTTP client configuration. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config))
 - `message` (String) API request data as defined by the WeChat API.
 - `message_type` (String)
@@ -1554,7 +1960,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1563,20 +1969,45 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
 - `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--bearer_token_secret))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--oauth2))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config))
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--authorization"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Reference to the secret with value for authorization (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--authorization--credentials))
+- `credentials_file` (String) File with value for authorization
+- `type` (String) Type of authorization, default to bearer
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
 
 <a id="nestedatt--spec--receivers--wechat_configs--http_config--basic_auth"></a>
 ### Nested Schema for `spec.receivers.wechat_configs.http_config.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password))
-- `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--username))
+- `password` (Attributes) Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password))
+- `password_file` (String) PasswordFile defines path to password file at disk must be pre-mounted
+- `username` (Attributes) Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.wechat_configs.http_config.basic_auth.password`
@@ -1587,7 +2018,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1600,7 +2031,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1614,8 +2045,72 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--oauth2"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_id))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_secret))
+- `client_secret_file` (String) ClientSecretFile defines path for client secret file.
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--wechat_configs--http_config--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.wechat_configs.http_config.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--receivers--wechat_configs--http_config--tls_config"></a>
@@ -1649,7 +2144,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1662,7 +2157,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1684,7 +2179,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1697,7 +2192,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1711,7 +2206,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1734,9 +2229,19 @@ Optional:
 - `group_interval` (String) How long to wait before sending an updated notification.
 - `group_wait` (String) How long to wait before sending the initial notification.
 - `matchers` (List of String) List of matchers that the alert’s labels should match. For the first level route, the operator adds a namespace: 'CRD_NS' matcher. https://prometheus.io/docs/alerting/latest/configuration/#matcher
-- `mute_time_intervals` (List of String) MuteTimeIntervals for alerts
+- `mute_time_intervals` (List of String) MuteTimeIntervals is a list of interval names that will mute matched alert
 - `repeat_interval` (String) How long to wait before repeating the last notification.
 - `routes` (List of String) Child routes. https://prometheus.io/docs/alerting/latest/configuration/#route
+
+
+<a id="nestedatt--spec--inhibit_rules"></a>
+### Nested Schema for `spec.inhibit_rules`
+
+Optional:
+
+- `equal` (List of String) Labels that must have an equal value in the source and target alert for the inhibition to take effect.
+- `source_matchers` (List of String) SourceMatchers defines a list of matchers for which one or more alerts have to exist for the inhibition to take effect.
+- `target_matchers` (List of String) TargetMatchers defines a list of matchers that have to be fulfilled by the target alerts to be muted.
 
 
 <a id="nestedatt--spec--time_intervals"></a>
