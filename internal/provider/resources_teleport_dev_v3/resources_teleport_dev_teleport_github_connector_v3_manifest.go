@@ -182,8 +182,8 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Manifest) Schema(_ context
 					},
 
 					"client_secret": schema.StringAttribute{
-						Description:         "ClientSecret is the Github OAuth app client secret.",
-						MarkdownDescription: "ClientSecret is the Github OAuth app client secret.",
+						Description:         "ClientSecret is the Github OAuth app client secret. This field supports secret lookup. See the operator documentation for more details.",
+						MarkdownDescription: "ClientSecret is the Github OAuth app client secret. This field supports secret lookup. See the operator documentation for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

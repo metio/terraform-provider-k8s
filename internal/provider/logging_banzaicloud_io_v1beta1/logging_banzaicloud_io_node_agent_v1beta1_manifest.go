@@ -53,6 +53,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 				Storage_backlog_mem_limit           *string `tfsdk:"storage_backlog_mem_limit" json:"storage.backlog.mem_limit,omitempty"`
 				Storage_checksum                    *string `tfsdk:"storage_checksum" json:"storage.checksum,omitempty"`
 				Storage_delete_irrecoverable_chunks *string `tfsdk:"storage_delete_irrecoverable_chunks" json:"storage.delete_irrecoverable_chunks,omitempty"`
+				Storage_max_chunks_up               *int64  `tfsdk:"storage_max_chunks_up" json:"storage.max_chunks_up,omitempty"`
 				Storage_metrics                     *string `tfsdk:"storage_metrics" json:"storage.metrics,omitempty"`
 				Storage_path                        *string `tfsdk:"storage_path" json:"storage.path,omitempty"`
 				Storage_sync                        *string `tfsdk:"storage_sync" json:"storage.sync,omitempty"`
@@ -440,7 +441,8 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 								} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 								Resources *struct {
 									Claims *[]struct {
-										Name *string `tfsdk:"name" json:"name,omitempty"`
+										Name    *string `tfsdk:"name" json:"name,omitempty"`
+										Request *string `tfsdk:"request" json:"request,omitempty"`
 									} `tfsdk:"claims" json:"claims,omitempty"`
 									Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 									Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -697,7 +699,8 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 								} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 								Resources *struct {
 									Claims *[]struct {
-										Name *string `tfsdk:"name" json:"name,omitempty"`
+										Name    *string `tfsdk:"name" json:"name,omitempty"`
+										Request *string `tfsdk:"request" json:"request,omitempty"`
 									} `tfsdk:"claims" json:"claims,omitempty"`
 									Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 									Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -956,7 +959,8 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 								} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 								Resources *struct {
 									Claims *[]struct {
-										Name *string `tfsdk:"name" json:"name,omitempty"`
+										Name    *string `tfsdk:"name" json:"name,omitempty"`
+										Request *string `tfsdk:"request" json:"request,omitempty"`
 									} `tfsdk:"claims" json:"claims,omitempty"`
 									Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 									Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1076,8 +1080,9 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 									LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 									Type             *string `tfsdk:"type" json:"type,omitempty"`
 								} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-								SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-								Sysctls            *[]struct {
+								SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+								SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+								Sysctls                  *[]struct {
 									Name  *string `tfsdk:"name" json:"name,omitempty"`
 									Value *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1269,6 +1274,10 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 									Type *string `tfsdk:"type" json:"type,omitempty"`
 								} `tfsdk:"host_path" json:"hostPath,omitempty"`
+								Image *struct {
+									PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+									Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+								} `tfsdk:"image" json:"image,omitempty"`
 								Iscsi *struct {
 									ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 									ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1600,6 +1609,8 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 							Name     *string `tfsdk:"name" json:"name,omitempty"`
 							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 						} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+						MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+						MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				} `tfsdk:"service_monitor_config" json:"serviceMonitorConfig,omitempty"`
@@ -1744,8 +1755,9 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1950,6 +1962,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"storage_delete_irrecoverable_chunks": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"storage_max_chunks_up": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -4517,6 +4537,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																								Optional:            false,
 																								Computed:            false,
 																							},
+
+																							"request": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
 																						},
 																					},
 																					Required: false,
@@ -6227,6 +6255,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"request": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
 																								Computed:            false,
 																							},
 																						},
@@ -7958,6 +7994,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																								Optional:            false,
 																								Computed:            false,
 																							},
+
+																							"request": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
 																						},
 																					},
 																					Required: false,
@@ -8793,6 +8837,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																		Description:         "",
 																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"supplemental_groups_policy": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -10078,6 +10130,31 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																				},
 
 																				"type": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"image": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"pull_policy": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"reference": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -12433,6 +12510,28 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 														Computed: false,
 													},
 
+													"max_version": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+														},
+													},
+
+													"min_version": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+														},
+													},
+
 													"server_name": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -13417,6 +13516,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

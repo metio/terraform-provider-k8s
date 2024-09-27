@@ -90,10 +90,18 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 							} `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
+					NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					SecurityContext *struct {
 						FsGroup   *int64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						RunAsUser *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					Tolerations *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				} `tfsdk:"deployment" json:"deployment,omitempty"`
 				ExtraProperties *map[string]string `tfsdk:"extra_properties" json:"extraProperties,omitempty"`
 				LogLevel        *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
@@ -152,10 +160,18 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 							} `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
+					NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					SecurityContext *struct {
 						FsGroup   *int64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						RunAsUser *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					Tolerations *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				} `tfsdk:"deployment" json:"deployment,omitempty"`
 				HeaderMessage *struct {
 					Show *bool   `tfsdk:"show" json:"show,omitempty"`
@@ -208,10 +224,18 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 							} `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
+					NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					SecurityContext *struct {
 						FsGroup   *int64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						RunAsUser *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					Tolerations *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				} `tfsdk:"deployment" json:"deployment,omitempty"`
 				DisableInternalRegistry   *bool `tfsdk:"disable_internal_registry" json:"disableInternalRegistry,omitempty"`
 				ExternalDevfileRegistries *[]struct {
@@ -281,10 +305,18 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 							} `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
+					NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 					SecurityContext *struct {
 						FsGroup   *int64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						RunAsUser *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					Tolerations *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 				} `tfsdk:"deployment" json:"deployment,omitempty"`
 				DisableInternalRegistry  *bool `tfsdk:"disable_internal_registry" json:"disableInternalRegistry,omitempty"`
 				ExternalPluginRegistries *[]struct {
@@ -823,10 +855,18 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 								} `tfsdk:"request" json:"request,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
 						} `tfsdk:"containers" json:"containers,omitempty"`
+						NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 						SecurityContext *struct {
 							FsGroup   *int64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 							RunAsUser *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 						} `tfsdk:"security_context" json:"securityContext,omitempty"`
+						Tolerations *[]struct {
+							Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+							Key               *string `tfsdk:"key" json:"key,omitempty"`
+							Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+							TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+							Value             *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 					} `tfsdk:"deployment" json:"deployment,omitempty"`
 					KubeRbacProxy *struct {
 						LogLevel *int64 `tfsdk:"log_level" json:"logLevel,omitempty"`
@@ -1218,6 +1258,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												Computed: false,
 											},
 
+											"node_selector": schema.MapAttribute{
+												Description:         "The node selector limits the nodes that can run the pod.",
+												MarkdownDescription: "The node selector limits the nodes that can run the pod.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"security_context": schema.SingleNestedAttribute{
 												Description:         "Security options the pod should run with.",
 												MarkdownDescription: "Security options the pod should run with.",
@@ -1236,6 +1285,57 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "The pod tolerations of the component pod limit where the pod can run.",
+												MarkdownDescription: "The pod tolerations of the component pod limit where the pod can run.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -1611,6 +1711,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												Computed: false,
 											},
 
+											"node_selector": schema.MapAttribute{
+												Description:         "The node selector limits the nodes that can run the pod.",
+												MarkdownDescription: "The node selector limits the nodes that can run the pod.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"security_context": schema.SingleNestedAttribute{
 												Description:         "Security options the pod should run with.",
 												MarkdownDescription: "Security options the pod should run with.",
@@ -1629,6 +1738,57 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "The pod tolerations of the component pod limit where the pod can run.",
+												MarkdownDescription: "The pod tolerations of the component pod limit where the pod can run.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -1964,6 +2124,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												Computed: false,
 											},
 
+											"node_selector": schema.MapAttribute{
+												Description:         "The node selector limits the nodes that can run the pod.",
+												MarkdownDescription: "The node selector limits the nodes that can run the pod.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"security_context": schema.SingleNestedAttribute{
 												Description:         "Security options the pod should run with.",
 												MarkdownDescription: "Security options the pod should run with.",
@@ -1982,6 +2151,57 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "The pod tolerations of the component pod limit where the pod can run.",
+												MarkdownDescription: "The pod tolerations of the component pod limit where the pod can run.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -2438,6 +2658,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												Computed: false,
 											},
 
+											"node_selector": schema.MapAttribute{
+												Description:         "The node selector limits the nodes that can run the pod.",
+												MarkdownDescription: "The node selector limits the nodes that can run the pod.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"security_context": schema.SingleNestedAttribute{
 												Description:         "Security options the pod should run with.",
 												MarkdownDescription: "Security options the pod should run with.",
@@ -2456,6 +2685,57 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tolerations": schema.ListNestedAttribute{
+												Description:         "The pod tolerations of the component pod limit where the pod can run.",
+												MarkdownDescription: "The pod tolerations of the component pod limit where the pod can run.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"effect": schema.StringAttribute{
+															Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"toleration_seconds": schema.Int64Attribute{
+															Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -6273,6 +6553,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 														Computed: false,
 													},
 
+													"node_selector": schema.MapAttribute{
+														Description:         "The node selector limits the nodes that can run the pod.",
+														MarkdownDescription: "The node selector limits the nodes that can run the pod.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"security_context": schema.SingleNestedAttribute{
 														Description:         "Security options the pod should run with.",
 														MarkdownDescription: "Security options the pod should run with.",
@@ -6291,6 +6580,57 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tolerations": schema.ListNestedAttribute{
+														Description:         "The pod tolerations of the component pod limit where the pod can run.",
+														MarkdownDescription: "The pod tolerations of the component pod limit where the pod can run.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"effect": schema.StringAttribute{
+																	Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																	MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"key": schema.StringAttribute{
+																	Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																	MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																	MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"toleration_seconds": schema.Int64Attribute{
+																	Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																	MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																	MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
 															},
 														},
 														Required: false,

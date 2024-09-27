@@ -78,7 +78,8 @@ type HiveOpenshiftIoHiveConfigV1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"velero" json:"velero,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
-		ControllersConfig *struct {
+		ClusterVersionPollInterval *string `tfsdk:"cluster_version_poll_interval" json:"clusterVersionPollInterval,omitempty"`
+		ControllersConfig          *struct {
 			Controllers *[]struct {
 				Config *struct {
 					ClientBurst          *int64 `tfsdk:"client_burst" json:"clientBurst,omitempty"`
@@ -493,6 +494,14 @@ func (r *HiveOpenshiftIoHiveConfigV1Manifest) Schema(_ context.Context, _ dataso
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"cluster_version_poll_interval": schema.StringAttribute{
+						Description:         "ClusterVersionPollInterval is a string duration indicating how much time must pass before checking whether we need to update the hive.openshift.io/version* labels on ClusterDeployment. If zero or unset, we'll only reconcile when the ClusterDeployment changes.",
+						MarkdownDescription: "ClusterVersionPollInterval is a string duration indicating how much time must pass before checking whether we need to update the hive.openshift.io/version* labels on ClusterDeployment. If zero or unset, we'll only reconcile when the ClusterDeployment changes.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"controllers_config": schema.SingleNestedAttribute{

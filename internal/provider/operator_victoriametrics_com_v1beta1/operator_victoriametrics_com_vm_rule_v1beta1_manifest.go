@@ -45,6 +45,9 @@ type OperatorVictoriametricsComVmruleV1Beta1ManifestData struct {
 	Spec *struct {
 		Groups *[]struct {
 			Concurrency         *int64               `tfsdk:"concurrency" json:"concurrency,omitempty"`
+			Eval_alignment      *bool                `tfsdk:"eval_alignment" json:"eval_alignment,omitempty"`
+			Eval_delay          *string              `tfsdk:"eval_delay" json:"eval_delay,omitempty"`
+			Eval_offset         *string              `tfsdk:"eval_offset" json:"eval_offset,omitempty"`
 			Extra_filter_labels *map[string]string   `tfsdk:"extra_filter_labels" json:"extra_filter_labels,omitempty"`
 			Headers             *[]string            `tfsdk:"headers" json:"headers,omitempty"`
 			Interval            *string              `tfsdk:"interval" json:"interval,omitempty"`
@@ -160,9 +163,33 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 									Computed:            false,
 								},
 
+								"eval_alignment": schema.BoolAttribute{
+									Description:         "Optional The evaluation timestamp will be aligned with group's interval, instead of using the actual timestamp that evaluation happens at. It is enabled by default to get more predictable results and to visually align with graphs plotted via Grafana or vmui.",
+									MarkdownDescription: "Optional The evaluation timestamp will be aligned with group's interval, instead of using the actual timestamp that evaluation happens at. It is enabled by default to get more predictable results and to visually align with graphs plotted via Grafana or vmui.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"eval_delay": schema.StringAttribute{
+									Description:         "Optional Adjust the 'time' parameter of group evaluation requests to compensate intentional query delay from the datasource.",
+									MarkdownDescription: "Optional Adjust the 'time' parameter of group evaluation requests to compensate intentional query delay from the datasource.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"eval_offset": schema.StringAttribute{
+									Description:         "Optional Group will be evaluated at the exact offset in the range of [0...interval].",
+									MarkdownDescription: "Optional Group will be evaluated at the exact offset in the range of [0...interval].",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"extra_filter_labels": schema.MapAttribute{
-									Description:         "ExtraFilterLabels optional list of label filters applied to every rule's request withing a group. Is compatible only with VM datasource. See more details at https://docs.victoriametrics.com#prometheus-querying-api-enhancements Deprecated, use params instead",
-									MarkdownDescription: "ExtraFilterLabels optional list of label filters applied to every rule's request withing a group. Is compatible only with VM datasource. See more details at https://docs.victoriametrics.com#prometheus-querying-api-enhancements Deprecated, use params instead",
+									Description:         "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead",
+									MarkdownDescription: "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -315,8 +342,8 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"tenant": schema.StringAttribute{
-									Description:         "Tenant id for group, can be used only with enterprise version of vmalert See more details at https://docs.victoriametrics.com/vmalert.html#multitenancy",
-									MarkdownDescription: "Tenant id for group, can be used only with enterprise version of vmalert See more details at https://docs.victoriametrics.com/vmalert.html#multitenancy",
+									Description:         "Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/vmalert#multitenancy).",
+									MarkdownDescription: "Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/vmalert#multitenancy).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

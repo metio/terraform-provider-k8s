@@ -72,6 +72,7 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"admintools" json:"admintools,omitempty"`
 		Archival *struct {
 			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -1069,6 +1070,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"version": schema.StringAttribute{
+								Description:         "Version defines the temporal admin tools version the instance should run.",
+								MarkdownDescription: "Version defines the temporal admin tools version the instance should run.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

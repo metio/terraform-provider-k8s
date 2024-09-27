@@ -225,6 +225,7 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			ReadFromHead           *bool     `tfsdk:"read_from_head" json:"readFromHead,omitempty"`
 			RefreshIntervalSeconds *int64    `tfsdk:"refresh_interval_seconds" json:"refreshIntervalSeconds,omitempty"`
 			RotateWaitSeconds      *int64    `tfsdk:"rotate_wait_seconds" json:"rotateWaitSeconds,omitempty"`
+			SkipEmptyLines         *bool     `tfsdk:"skip_empty_lines" json:"skipEmptyLines,omitempty"`
 			SkipLongLines          *bool     `tfsdk:"skip_long_lines" json:"skipLongLines,omitempty"`
 			StorageType            *string   `tfsdk:"storage_type" json:"storageType,omitempty"`
 			Tag                    *string   `tfsdk:"tag" json:"tag,omitempty"`
@@ -1727,6 +1728,14 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							"rotate_wait_seconds": schema.Int64Attribute{
 								Description:         "Specify the number of extra time in seconds to monitor a file once is rotated in case some pending data is flushed.",
 								MarkdownDescription: "Specify the number of extra time in seconds to monitor a file once is rotated in case some pending data is flushed.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"skip_empty_lines": schema.BoolAttribute{
+								Description:         "Skips empty lines in the log file from any further processing or output.",
+								MarkdownDescription: "Skips empty lines in the log file from any further processing or output.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

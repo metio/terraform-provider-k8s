@@ -43,10 +43,11 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Affinity   *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
-		ConfigMaps *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-		Containers *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-		DnsConfig  *struct {
+		Affinity                 *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
+		ConfigMaps               *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		Containers               *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		DisableSelfServiceScrape *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+		DnsConfig                *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -61,8 +62,12 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
-		HostNetwork *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-		Image       *struct {
+		HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+		Host_aliases *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
+		Image *struct {
 			PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 			Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 			Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -85,12 +90,13 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
-		LivenessProbe *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-		LogFormat     *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
-		LogLevel      *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-		NodeSelector  *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		Paused        *bool              `tfsdk:"paused" json:"paused,omitempty"`
-		PodMetadata   *struct {
+		LivenessProbe   *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+		LogFormat       *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+		LogLevel        *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+		MinReadySeconds *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		Paused          *bool              `tfsdk:"paused" json:"paused,omitempty"`
+		PodMetadata     *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
@@ -142,9 +148,6 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 			Resources *struct {
-				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
@@ -156,9 +159,10 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"selector" json:"selector,omitempty"`
-			StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-			VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-			VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+			StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+			VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+			VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+			VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
 		StorageDataPath *string `tfsdk:"storage_data_path" json:"storageDataPath,omitempty"`
 		StorageMetadata *struct {
@@ -167,16 +171,25 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"storage_metadata" json:"storageMetadata,omitempty"`
 		StreamAggrConfig *struct {
-			DedupInterval *string `tfsdk:"dedup_interval" json:"dedupInterval,omitempty"`
-			DropInput     *bool   `tfsdk:"drop_input" json:"dropInput,omitempty"`
-			KeepInput     *bool   `tfsdk:"keep_input" json:"keepInput,omitempty"`
-			Rules         *[]struct {
-				By                    *[]string `tfsdk:"by" json:"by,omitempty"`
-				Dedup_interval        *string   `tfsdk:"dedup_interval" json:"dedup_interval,omitempty"`
-				Drop_input_labels     *[]string `tfsdk:"drop_input_labels" json:"drop_input_labels,omitempty"`
-				Flush_on_shutdown     *bool     `tfsdk:"flush_on_shutdown" json:"flush_on_shutdown,omitempty"`
-				Ignore_old_samples    *bool     `tfsdk:"ignore_old_samples" json:"ignore_old_samples,omitempty"`
-				Input_relabel_configs *[]struct {
+			Configmap *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"configmap" json:"configmap,omitempty"`
+			DedupInterval        *string   `tfsdk:"dedup_interval" json:"dedupInterval,omitempty"`
+			DropInput            *bool     `tfsdk:"drop_input" json:"dropInput,omitempty"`
+			DropInputLabels      *[]string `tfsdk:"drop_input_labels" json:"dropInputLabels,omitempty"`
+			IgnoreFirstIntervals *int64    `tfsdk:"ignore_first_intervals" json:"ignoreFirstIntervals,omitempty"`
+			IgnoreOldSamples     *bool     `tfsdk:"ignore_old_samples" json:"ignoreOldSamples,omitempty"`
+			KeepInput            *bool     `tfsdk:"keep_input" json:"keepInput,omitempty"`
+			Rules                *[]struct {
+				By                     *[]string `tfsdk:"by" json:"by,omitempty"`
+				Dedup_interval         *string   `tfsdk:"dedup_interval" json:"dedup_interval,omitempty"`
+				Drop_input_labels      *[]string `tfsdk:"drop_input_labels" json:"drop_input_labels,omitempty"`
+				Flush_on_shutdown      *bool     `tfsdk:"flush_on_shutdown" json:"flush_on_shutdown,omitempty"`
+				Ignore_first_intervals *int64    `tfsdk:"ignore_first_intervals" json:"ignore_first_intervals,omitempty"`
+				Ignore_old_samples     *bool     `tfsdk:"ignore_old_samples" json:"ignore_old_samples,omitempty"`
+				Input_relabel_configs  *[]struct {
 					Action       *string            `tfsdk:"action" json:"action,omitempty"`
 					If           *map[string]string `tfsdk:"if" json:"if,omitempty"`
 					Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -218,6 +231,7 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		TopologySpreadConstraints *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+		UseDefaultResources       *bool                `tfsdk:"use_default_resources" json:"useDefaultResources,omitempty"`
 		UseStrictSecurity         *bool                `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
 		VmBackup                  *struct {
 			AcceptEULA        *bool  `tfsdk:"accept_eula" json:"acceptEULA,omitempty"`
@@ -283,21 +297,23 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			SnapshotCreateURL *string `tfsdk:"snapshot_create_url" json:"snapshotCreateURL,omitempty"`
 			SnapshotDeleteURL *string `tfsdk:"snapshot_delete_url" json:"snapshotDeleteURL,omitempty"`
 			VolumeMounts      *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"vm_backup" json:"vmBackup,omitempty"`
 		VolumeMounts *[]struct {
-			MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-			MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-			Name             *string `tfsdk:"name" json:"name,omitempty"`
-			ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-			SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-			SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+			SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+			SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 		} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		Volumes *[]map[string]string `tfsdk:"volumes" json:"volumes,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -390,8 +406,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"config_maps": schema.ListAttribute{
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMSingle object, which shall be mounted into the VMSingle Pods.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMSingle object, which shall be mounted into the VMSingle Pods.",
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -402,6 +418,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Description:         "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
 						MarkdownDescription: "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
 						ElementType:         types.MapType{ElemType: types.StringType},
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disable_self_service_scrape": schema.BoolAttribute{
+						Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
+						MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -470,8 +494,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"extra_args": schema.MapAttribute{
-						Description:         "ExtraArgs that will be passed to VMSingle pod for example remoteWrite.tmpDataPath: /tmp",
-						MarkdownDescription: "ExtraArgs that will be passed to VMSingle pod for example remoteWrite.tmpDataPath: /tmp",
+						Description:         "ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp",
+						MarkdownDescription: "ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -479,8 +503,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"extra_envs": schema.ListAttribute{
-						Description:         "ExtraEnvs that will be added to VMSingle pod",
-						MarkdownDescription: "ExtraEnvs that will be added to VMSingle pod",
+						Description:         "ExtraEnvs that will be passed to the application container",
+						MarkdownDescription: "ExtraEnvs that will be passed to the application container",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -504,8 +528,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								"ip": schema.StringAttribute{
 									Description:         "IP address of the host file entry.",
 									MarkdownDescription: "IP address of the host file entry.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},
@@ -523,9 +547,37 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
+						MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.SingleNestedAttribute{
-						Description:         "Image - docker image settings for VMSingle if no specified operator uses default config version",
-						MarkdownDescription: "Image - docker image settings for VMSingle if no specified operator uses default config version",
+						Description:         "Image - docker image settings if no specified operator uses default version from operator config",
+						MarkdownDescription: "Image - docker image settings if no specified operator uses default version from operator config",
 						Attributes: map[string]schema.Attribute{
 							"pull_policy": schema.StringAttribute{
 								Description:         "PullPolicy describes how to pull docker image",
@@ -562,8 +614,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -576,8 +628,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"init_containers": schema.ListAttribute{
-						Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the vmSingle configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.",
-						MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the vmSingle configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.",
+						Description:         "InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+						MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -626,12 +678,12 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"license": schema.SingleNestedAttribute{
-						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html",
-						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html",
+						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
+						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/",
-								MarkdownDescription: "Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/",
+								Description:         "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
+								MarkdownDescription: "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -650,8 +702,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -704,6 +756,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Validators: []validator.String{
 							stringvalidator.OneOf("INFO", "WARN", "ERROR", "FATAL", "PANIC"),
 						},
+					},
+
+					"min_ready_seconds": schema.Int64Attribute{
+						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"node_selector": schema.MapAttribute{
@@ -759,16 +819,16 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"port": schema.StringAttribute{
-						Description:         "Port listen port",
-						MarkdownDescription: "Port listen port",
+						Description:         "Port listen address",
+						MarkdownDescription: "Port listen address",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"priority_class_name": schema.StringAttribute{
-						Description:         "PriorityClassName assigned to the Pods",
-						MarkdownDescription: "PriorityClassName assigned to the Pods",
+						Description:         "PriorityClassName class assigned to the Pods",
+						MarkdownDescription: "PriorityClassName class assigned to the Pods",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -803,16 +863,16 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"remove_pvc_after_delete": schema.BoolAttribute{
-						Description:         "RemovePvcAfterDelete - if true, controller adds ownership to pvc and after VMSingle objest deletion - pvc will be garbage collected by controller manager",
-						MarkdownDescription: "RemovePvcAfterDelete - if true, controller adds ownership to pvc and after VMSingle objest deletion - pvc will be garbage collected by controller manager",
+						Description:         "RemovePvcAfterDelete - if true, controller adds ownership to pvc and after VMSingle object deletion - pvc will be garbage collected by controller manager",
+						MarkdownDescription: "RemovePvcAfterDelete - if true, controller adds ownership to pvc and after VMSingle object deletion - pvc will be garbage collected by controller manager",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"replica_count": schema.Int64Attribute{
-						Description:         "ReplicaCount is the expected size of the VMSingle it can be 0 or 1 if you need more - use vm cluster",
-						MarkdownDescription: "ReplicaCount is the expected size of the VMSingle it can be 0 or 1 if you need more - use vm cluster",
+						Description:         "ReplicaCount is the expected size of the Application.",
+						MarkdownDescription: "ReplicaCount is the expected size of the Application.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -865,16 +925,16 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"retention_period": schema.StringAttribute{
-						Description:         "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured retention period https://docs.victoriametrics.com/Single-server-VictoriaMetrics.html#retention",
-						MarkdownDescription: "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured retention period https://docs.victoriametrics.com/Single-server-VictoriaMetrics.html#retention",
+						Description:         "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)",
+						MarkdownDescription: "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"revision_history_limit_count": schema.Int64Attribute{
-						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.",
-						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.",
+						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.",
+						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -897,8 +957,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"secrets": schema.ListAttribute{
-						Description:         "Secrets is a list of Secrets in the same namespace as the VMSingle object, which shall be mounted into the VMSingle Pods.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMSingle object, which shall be mounted into the VMSingle Pods.",
+						Description:         "Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -915,8 +975,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"service_account_name": schema.StringAttribute{
-						Description:         "ServiceAccountName is the name of the ServiceAccount to use to run the VMSingle Pods.",
-						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run the VMSingle Pods.",
+						Description:         "ServiceAccountName is the name of the ServiceAccount to use to run the pods",
+						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run the pods",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1092,25 +1152,6 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 								MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 								Attributes: map[string]schema.Attribute{
-									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"limits": schema.MapAttribute{
 										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1196,6 +1237,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"volume_attributes_class_name": schema.StringAttribute{
+								Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+								MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"volume_mode": schema.StringAttribute{
 								Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 								MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -1264,6 +1313,39 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Description:         "StreamAggrConfig defines stream aggregation configuration for VMSingle",
 						MarkdownDescription: "StreamAggrConfig defines stream aggregation configuration for VMSingle",
 						Attributes: map[string]schema.Attribute{
+							"configmap": schema.SingleNestedAttribute{
+								Description:         "ConfigMap with stream aggregation rules",
+								MarkdownDescription: "ConfigMap with stream aggregation rules",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key to select.",
+										MarkdownDescription: "The key to select.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the ConfigMap or its key must be defined",
+										MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"dedup_interval": schema.StringAttribute{
 								Description:         "Allows setting different de-duplication intervals per each configured remote storage",
 								MarkdownDescription: "Allows setting different de-duplication intervals per each configured remote storage",
@@ -1275,6 +1357,31 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 							"drop_input": schema.BoolAttribute{
 								Description:         "Allow drop all the input samples after the aggregation",
 								MarkdownDescription: "Allow drop all the input samples after the aggregation",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"drop_input_labels": schema.ListAttribute{
+								Description:         "labels to drop from samples for aggregator before stream de-duplication and aggregation",
+								MarkdownDescription: "labels to drop from samples for aggregator before stream de-duplication and aggregation",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ignore_first_intervals": schema.Int64Attribute{
+								Description:         "IgnoreFirstIntervals instructs to ignore first interval",
+								MarkdownDescription: "IgnoreFirstIntervals instructs to ignore first interval",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ignore_old_samples": schema.BoolAttribute{
+								Description:         "IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.",
+								MarkdownDescription: "IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1322,6 +1429,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 										"flush_on_shutdown": schema.BoolAttribute{
 											Description:         "FlushOnShutdown defines whether to flush the aggregation state on process termination or config reload. Is 'false' by default. It is not recommended changing this setting, unless unfinished aggregations states are preferred to missing data points.",
 											MarkdownDescription: "FlushOnShutdown defines whether to flush the aggregation state on process termination or config reload. Is 'false' by default. It is not recommended changing this setting, unless unfinished aggregations states are preferred to missing data points.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ignore_first_intervals": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1585,8 +1700,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 										},
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						},
@@ -1663,6 +1778,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"use_default_resources": schema.BoolAttribute{
+						Description:         "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						MarkdownDescription: "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"use_strict_security": schema.BoolAttribute{
 						Description:         "UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions",
 						MarkdownDescription: "UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions",
@@ -1704,8 +1827,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1827,8 +1950,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1918,8 +2041,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2059,8 +2182,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 							},
 
 							"restore": schema.SingleNestedAttribute{
-								Description:         "Restore Allows to enable restore options for pod Read more: https://docs.victoriametrics.com/vmbackupmanager.html#restore-commands",
-								MarkdownDescription: "Restore Allows to enable restore options for pod Read more: https://docs.victoriametrics.com/vmbackupmanager.html#restore-commands",
+								Description:         "Restore Allows to enable restore options for pod Read [more](https://docs.victoriametrics.com/vmbackupmanager#restore-commands)",
+								MarkdownDescription: "Restore Allows to enable restore options for pod Read [more](https://docs.victoriametrics.com/vmbackupmanager#restore-commands)",
 								Attributes: map[string]schema.Attribute{
 									"on_start": schema.SingleNestedAttribute{
 										Description:         "OnStart defines configuration for restore on pod start",
@@ -2114,8 +2237,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"mount_propagation": schema.StringAttribute{
-											Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-											MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+											Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+											MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2132,6 +2255,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 										"read_only": schema.BoolAttribute{
 											Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 											MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"recursive_read_only": schema.StringAttribute{
+											Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+											MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2165,8 +2296,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"volume_mounts": schema.ListNestedAttribute{
-						Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition. VolumeMounts specified will be appended to other VolumeMounts in the VMSingle container, that are generated as a result of StorageSpec objects.",
-						MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition. VolumeMounts specified will be appended to other VolumeMounts in the VMSingle container, that are generated as a result of StorageSpec objects.",
+						Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container",
+						MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"mount_path": schema.StringAttribute{
@@ -2178,8 +2309,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								},
 
 								"mount_propagation": schema.StringAttribute{
-									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2196,6 +2327,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								"read_only": schema.BoolAttribute{
 									Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 									MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"recursive_read_only": schema.StringAttribute{
+									Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+									MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2224,8 +2363,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"volumes": schema.ListAttribute{
-						Description:         "Volumes allows configuration of additional volumes on the output deploy definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.",
-						MarkdownDescription: "Volumes allows configuration of additional volumes on the output deploy definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.",
+						Description:         "Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional",
+						MarkdownDescription: "Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,

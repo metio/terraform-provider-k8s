@@ -2630,8 +2630,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"annotations": schema.MapAttribute{
-									Description:         "Specifies Annotations to override or add for underlying Pods.",
-									MarkdownDescription: "Specifies Annotations to override or add for underlying Pods.",
+									Description:         "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+									MarkdownDescription: "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -6515,8 +6515,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"labels": schema.MapAttribute{
-									Description:         "Specifies Labels to override or add for underlying Pods.",
-									MarkdownDescription: "Specifies Labels to override or add for underlying Pods.",
+									Description:         "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+									MarkdownDescription: "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -11324,8 +11324,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									MarkdownDescription: "The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components or shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field. This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components.",
 									Attributes: map[string]schema.Attribute{
 										"annotations": schema.MapAttribute{
-											Description:         "Specifies Annotations to override or add for underlying Pods.",
-											MarkdownDescription: "Specifies Annotations to override or add for underlying Pods.",
+											Description:         "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+											MarkdownDescription: "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -15209,8 +15209,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Specifies Labels to override or add for underlying Pods.",
-											MarkdownDescription: "Specifies Labels to override or add for underlying Pods.",
+											Description:         "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
+											MarkdownDescription: "Specifies Labels to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -18888,13 +18888,13 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"termination_policy": schema.StringAttribute{
-						Description:         "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation: - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss. Warning: Choosing an inappropriate termination policy can result in data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
-						MarkdownDescription: "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation: - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Halt': Deletes Cluster resources like Pods and Services but retains Persistent Volume Claims (PVCs), allowing for data preservation while stopping other operations. - 'Delete': Extends the 'Halt' policy by also removing PVCs, leading to a thorough cleanup while removing all persistent data. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss. Warning: Choosing an inappropriate termination policy can result in data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
+						Description:         "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation: - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Delete': Deletes all runtime resources belong to the Cluster. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss. Warning: Choosing an inappropriate termination policy can result in data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
+						MarkdownDescription: "Specifies the behavior when a Cluster is deleted. It defines how resources, data, and backups associated with a Cluster are managed during termination. Choose a policy based on the desired level of resource cleanup and data preservation: - 'DoNotTerminate': Prevents deletion of the Cluster. This policy ensures that all resources remain intact. - 'Delete': Deletes all runtime resources belong to the Cluster. - 'WipeOut': An aggressive policy that deletes all Cluster resources, including volume snapshots and backups in external storage. This results in complete data removal and should be used cautiously, primarily in non-production environments to avoid irreversible data loss. Warning: Choosing an inappropriate termination policy can result in data loss. The 'WipeOut' policy is particularly risky in production environments due to its irreversible nature.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("DoNotTerminate", "Halt", "Delete", "WipeOut"),
+							stringvalidator.OneOf("DoNotTerminate", "Delete", "WipeOut"),
 						},
 					},
 

@@ -46,8 +46,16 @@ type Elbv2K8SAwsIngressClassParamsV1Beta1ManifestData struct {
 		Group          *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"group" json:"group,omitempty"`
-		InboundCIDRs           *[]string `tfsdk:"inbound_cidrs" json:"inboundCIDRs,omitempty"`
-		IpAddressType          *string   `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
+		InboundCIDRs  *[]string `tfsdk:"inbound_cidrs" json:"inboundCIDRs,omitempty"`
+		IpAddressType *string   `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
+		Listeners     *[]struct {
+			ListenerAttributes *[]struct {
+				Key   *string `tfsdk:"key" json:"key,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"listener_attributes" json:"listenerAttributes,omitempty"`
+			Port     *int64  `tfsdk:"port" json:"port,omitempty"`
+			Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+		} `tfsdk:"listeners" json:"listeners,omitempty"`
 		LoadBalancerAttributes *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -182,6 +190,60 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 						Validators: []validator.String{
 							stringvalidator.OneOf("ipv4", "dualstack", "dualstack-without-public-ipv4"),
 						},
+					},
+
+					"listeners": schema.ListNestedAttribute{
+						Description:         "Listeners define a list of listeners with their protocol, port and attributes.",
+						MarkdownDescription: "Listeners define a list of listeners with their protocol, port and attributes.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"listener_attributes": schema.ListNestedAttribute{
+									Description:         "The attributes of the listener",
+									MarkdownDescription: "The attributes of the listener",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the attribute.",
+												MarkdownDescription: "The key of the attribute.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "The value of the attribute.",
+												MarkdownDescription: "The value of the attribute.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"port": schema.Int64Attribute{
+									Description:         "The port of the listener",
+									MarkdownDescription: "The port of the listener",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"protocol": schema.StringAttribute{
+									Description:         "The protocol of the listener",
+									MarkdownDescription: "The protocol of the listener",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"load_balancer_attributes": schema.ListNestedAttribute{

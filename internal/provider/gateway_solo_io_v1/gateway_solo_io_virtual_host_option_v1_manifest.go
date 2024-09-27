@@ -661,7 +661,8 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				PreviousPriorities *struct {
 					UpdateFrequency *int64 `tfsdk:"update_frequency" json:"updateFrequency,omitempty"`
 				} `tfsdk:"previous_priorities" json:"previousPriorities,omitempty"`
-				RetryBackOff *struct {
+				RetriableStatusCodes *[]string `tfsdk:"retriable_status_codes" json:"retriableStatusCodes,omitempty"`
+				RetryBackOff         *struct {
 					BaseInterval *string `tfsdk:"base_interval" json:"baseInterval,omitempty"`
 					MaxInterval  *string `tfsdk:"max_interval" json:"maxInterval,omitempty"`
 				} `tfsdk:"retry_back_off" json:"retryBackOff,omitempty"`
@@ -5521,6 +5522,15 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"retriable_status_codes": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"retry_back_off": schema.SingleNestedAttribute{

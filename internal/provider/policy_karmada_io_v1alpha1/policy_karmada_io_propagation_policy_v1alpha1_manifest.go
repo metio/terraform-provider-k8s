@@ -140,10 +140,11 @@ type PolicyKarmadaIoPropagationPolicyV1Alpha1ManifestData struct {
 				SpreadByLabel *string `tfsdk:"spread_by_label" json:"spreadByLabel,omitempty"`
 			} `tfsdk:"spread_constraints" json:"spreadConstraints,omitempty"`
 		} `tfsdk:"placement" json:"placement,omitempty"`
-		Preemption        *string `tfsdk:"preemption" json:"preemption,omitempty"`
-		Priority          *int64  `tfsdk:"priority" json:"priority,omitempty"`
-		PropagateDeps     *bool   `tfsdk:"propagate_deps" json:"propagateDeps,omitempty"`
-		ResourceSelectors *[]struct {
+		Preemption                  *string `tfsdk:"preemption" json:"preemption,omitempty"`
+		PreserveResourcesOnDeletion *bool   `tfsdk:"preserve_resources_on_deletion" json:"preserveResourcesOnDeletion,omitempty"`
+		Priority                    *int64  `tfsdk:"priority" json:"priority,omitempty"`
+		PropagateDeps               *bool   `tfsdk:"propagate_deps" json:"propagateDeps,omitempty"`
+		ResourceSelectors           *[]struct {
 			ApiVersion    *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind          *string `tfsdk:"kind" json:"kind,omitempty"`
 			LabelSelector *struct {
@@ -917,6 +918,14 @@ func (r *PolicyKarmadaIoPropagationPolicyV1Alpha1Manifest) Schema(_ context.Cont
 						Validators: []validator.String{
 							stringvalidator.OneOf("Always", "Never"),
 						},
+					},
+
+					"preserve_resources_on_deletion": schema.BoolAttribute{
+						Description:         "PreserveResourcesOnDeletion controls whether resources should be preserved on the member clusters when the resource template is deleted. If set to true, resources will be preserved on the member clusters. Default is false, which means resources will be deleted along with the resource template. This setting is particularly useful during workload migration scenarios to ensure that rollback can occur quickly without affecting the workloads running on the member clusters. Additionally, this setting applies uniformly across all member clusters and will not selectively control preservation on only some clusters. Note: This setting does not apply to the deletion of the policy itself. When the policy is deleted, the resource templates and their corresponding propagated resources in member clusters will remain unchanged unless explicitly deleted.",
+						MarkdownDescription: "PreserveResourcesOnDeletion controls whether resources should be preserved on the member clusters when the resource template is deleted. If set to true, resources will be preserved on the member clusters. Default is false, which means resources will be deleted along with the resource template. This setting is particularly useful during workload migration scenarios to ensure that rollback can occur quickly without affecting the workloads running on the member clusters. Additionally, this setting applies uniformly across all member clusters and will not selectively control preservation on only some clusters. Note: This setting does not apply to the deletion of the policy itself. When the policy is deleted, the resource templates and their corresponding propagated resources in member clusters will remain unchanged unless explicitly deleted.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"priority": schema.Int64Attribute{

@@ -1296,6 +1296,7 @@ type LoggingBanzaicloudIoOutputV1Alpha1ManifestData struct {
 				Type                           *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"buffer" json:"buffer,omitempty"`
 			Host        *string            `tfsdk:"host" json:"host,omitempty"`
+			Max_bytes   *int64             `tfsdk:"max_bytes" json:"max_bytes,omitempty"`
 			Port        *int64             `tfsdk:"port" json:"port,omitempty"`
 			Protocol    *string            `tfsdk:"protocol" json:"protocol,omitempty"`
 			Tls         *bool              `tfsdk:"tls" json:"tls,omitempty"`
@@ -11880,6 +11881,14 @@ func (r *LoggingBanzaicloudIoOutputV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "",
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+							},
+
+							"max_bytes": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 

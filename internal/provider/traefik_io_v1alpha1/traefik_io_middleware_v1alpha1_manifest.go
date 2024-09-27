@@ -188,6 +188,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 				IpStrategy *struct {
 					Depth       *int64    `tfsdk:"depth" json:"depth,omitempty"`
 					ExcludedIPs *[]string `tfsdk:"excluded_i_ps" json:"excludedIPs,omitempty"`
+					Ipv6Subnet  *int64    `tfsdk:"ipv6_subnet" json:"ipv6Subnet,omitempty"`
 				} `tfsdk:"ip_strategy" json:"ipStrategy,omitempty"`
 				RequestHeaderName *string `tfsdk:"request_header_name" json:"requestHeaderName,omitempty"`
 				RequestHost       *bool   `tfsdk:"request_host" json:"requestHost,omitempty"`
@@ -197,6 +198,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			IpStrategy *struct {
 				Depth       *int64    `tfsdk:"depth" json:"depth,omitempty"`
 				ExcludedIPs *[]string `tfsdk:"excluded_i_ps" json:"excludedIPs,omitempty"`
+				Ipv6Subnet  *int64    `tfsdk:"ipv6_subnet" json:"ipv6Subnet,omitempty"`
 			} `tfsdk:"ip_strategy" json:"ipStrategy,omitempty"`
 			RejectStatusCode *int64    `tfsdk:"reject_status_code" json:"rejectStatusCode,omitempty"`
 			SourceRange      *[]string `tfsdk:"source_range" json:"sourceRange,omitempty"`
@@ -205,6 +207,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			IpStrategy *struct {
 				Depth       *int64    `tfsdk:"depth" json:"depth,omitempty"`
 				ExcludedIPs *[]string `tfsdk:"excluded_i_ps" json:"excludedIPs,omitempty"`
+				Ipv6Subnet  *int64    `tfsdk:"ipv6_subnet" json:"ipv6Subnet,omitempty"`
 			} `tfsdk:"ip_strategy" json:"ipStrategy,omitempty"`
 			SourceRange *[]string `tfsdk:"source_range" json:"sourceRange,omitempty"`
 		} `tfsdk:"ip_white_list" json:"ipWhiteList,omitempty"`
@@ -245,6 +248,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 				IpStrategy *struct {
 					Depth       *int64    `tfsdk:"depth" json:"depth,omitempty"`
 					ExcludedIPs *[]string `tfsdk:"excluded_i_ps" json:"excludedIPs,omitempty"`
+					Ipv6Subnet  *int64    `tfsdk:"ipv6_subnet" json:"ipv6Subnet,omitempty"`
 				} `tfsdk:"ip_strategy" json:"ipStrategy,omitempty"`
 				RequestHeaderName *string `tfsdk:"request_header_name" json:"requestHeaderName,omitempty"`
 				RequestHost       *bool   `tfsdk:"request_host" json:"requestHost,omitempty"`
@@ -1397,6 +1401,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												Optional:            true,
 												Computed:            false,
 											},
+
+											"ipv6_subnet": schema.Int64Attribute{
+												Description:         "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
+												MarkdownDescription: "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -1453,6 +1465,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"ipv6_subnet": schema.Int64Attribute{
+										Description:         "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
+										MarkdownDescription: "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1501,6 +1521,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										Description:         "ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.",
 										MarkdownDescription: "ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ipv6_subnet": schema.Int64Attribute{
+										Description:         "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
+										MarkdownDescription: "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1778,6 +1806,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												Description:         "ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.",
 												MarkdownDescription: "ExcludedIPs configures Traefik to scan the X-Forwarded-For header and select the first IP not in the list.",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ipv6_subnet": schema.Int64Attribute{
+												Description:         "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
+												MarkdownDescription: "IPv6Subnet configures Traefik to consider all IPv6 addresses from the defined subnet as originating from the same IP. Applies to RemoteAddrStrategy and DepthStrategy.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

@@ -1231,18 +1231,18 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"hosted_zone_id": schema.StringAttribute{
-												Description:         "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
-												MarkdownDescription: "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
+												Description:         "If set, the provider will manage only this zone in Route53 and will not do a lookup using the route53:ListHostedZonesByName api call.",
+												MarkdownDescription: "If set, the provider will manage only this zone in Route53 and will not do a lookup using the route53:ListHostedZonesByName api call.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"region": schema.StringAttribute{
-												Description:         "Always set the region when using AccessKeyID and SecretAccessKey",
-												MarkdownDescription: "Always set the region when using AccessKeyID and SecretAccessKey",
-												Required:            true,
-												Optional:            false,
+												Description:         "Override the AWS region. Route53 is a global service and does not have regional endpoints but the region specified here (or via environment variables) is used as a hint to help compute the correct AWS credential scope and partition when it connects to Route53. See: - [Amazon Route 53 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/r53.html) - [Global services](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/global-services.html) If you omit this region field, cert-manager will use the region from AWS_REGION and AWS_DEFAULT_REGION environment variables, if they are set in the cert-manager controller Pod. The 'region' field is not needed if you use [IAM Roles for Service Accounts (IRSA)](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html). Instead an AWS_REGION environment variable is added to the cert-manager controller Pod by: [Amazon EKS Pod Identity Webhook](https://github.com/aws/amazon-eks-pod-identity-webhook). In this case this 'region' field value is ignored. The 'region' field is not needed if you use [EKS Pod Identities](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html). Instead an AWS_REGION environment variable is added to the cert-manager controller Pod by: [Amazon EKS Pod Identity Agent](https://github.com/aws/eks-pod-identity-agent), In this case this 'region' field value is ignored.",
+												MarkdownDescription: "Override the AWS region. Route53 is a global service and does not have regional endpoints but the region specified here (or via environment variables) is used as a hint to help compute the correct AWS credential scope and partition when it connects to Route53. See: - [Amazon Route 53 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/r53.html) - [Global services](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/global-services.html) If you omit this region field, cert-manager will use the region from AWS_REGION and AWS_DEFAULT_REGION environment variables, if they are set in the cert-manager controller Pod. The 'region' field is not needed if you use [IAM Roles for Service Accounts (IRSA)](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html). Instead an AWS_REGION environment variable is added to the cert-manager controller Pod by: [Amazon EKS Pod Identity Webhook](https://github.com/aws/amazon-eks-pod-identity-webhook). In this case this 'region' field value is ignored. The 'region' field is not needed if you use [EKS Pod Identities](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html). Instead an AWS_REGION environment variable is added to the cert-manager controller Pod by: [Amazon EKS Pod Identity Agent](https://github.com/aws/eks-pod-identity-agent), In this case this 'region' field value is ignored.",
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -1435,8 +1435,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 														MarkdownDescription: "ObjectMeta overrides for the pod used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations that should be added to the create ACME HTTP01 solver pods.",
-																MarkdownDescription: "Annotations that should be added to the create ACME HTTP01 solver pods.",
+																Description:         "Annotations that should be added to the created ACME HTTP01 solver pods.",
+																MarkdownDescription: "Annotations that should be added to the created ACME HTTP01 solver pods.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2681,8 +2681,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 														MarkdownDescription: "ObjectMeta overrides for the pod used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations that should be added to the create ACME HTTP01 solver pods.",
-																MarkdownDescription: "Annotations that should be added to the create ACME HTTP01 solver pods.",
+																Description:         "Annotations that should be added to the created ACME HTTP01 solver pods.",
+																MarkdownDescription: "Annotations that should be added to the created ACME HTTP01 solver pods.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,

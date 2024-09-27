@@ -218,10 +218,10 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					} `tfsdk:"variables" json:"variables,omitempty"`
 				} `tfsdk:"dashboards" json:"dashboards,omitempty"`
 				Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				External_url     *string `tfsdk:"external_url" json:"external_url,omitempty"`
 				Health_check_url *string `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
-				In_cluster_url   *string `tfsdk:"in_cluster_url" json:"in_cluster_url,omitempty"`
+				Internal_url     *string `tfsdk:"internal_url" json:"internal_url,omitempty"`
 				Is_core          *bool   `tfsdk:"is_core" json:"is_core,omitempty"`
-				Url              *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"grafana" json:"grafana,omitempty"`
 			Istio *struct {
 				Component_status *struct {
@@ -291,9 +291,10 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				} `tfsdk:"auth" json:"auth,omitempty"`
 				Custom_headers     *map[string]string `tfsdk:"custom_headers" json:"custom_headers,omitempty"`
 				Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				External_url       *string            `tfsdk:"external_url" json:"external_url,omitempty"`
 				Grpc_port          *int64             `tfsdk:"grpc_port" json:"grpc_port,omitempty"`
 				Health_check_url   *string            `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
-				In_cluster_url     *string            `tfsdk:"in_cluster_url" json:"in_cluster_url,omitempty"`
+				Internal_url       *string            `tfsdk:"internal_url" json:"internal_url,omitempty"`
 				Is_core            *bool              `tfsdk:"is_core" json:"is_core,omitempty"`
 				Namespace_selector *bool              `tfsdk:"namespace_selector" json:"namespace_selector,omitempty"`
 				Provider           *string            `tfsdk:"provider" json:"provider,omitempty"`
@@ -303,7 +304,6 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					Datasource_uid *string `tfsdk:"datasource_uid" json:"datasource_uid,omitempty"`
 					Org_id         *string `tfsdk:"org_id" json:"org_id,omitempty"`
 				} `tfsdk:"tempo_config" json:"tempo_config,omitempty"`
-				Url                    *string   `tfsdk:"url" json:"url,omitempty"`
 				Use_grpc               *bool     `tfsdk:"use_grpc" json:"use_grpc,omitempty"`
 				Whitelist_istio_system *[]string `tfsdk:"whitelist_istio_system" json:"whitelist_istio_system,omitempty"`
 			} `tfsdk:"tracing" json:"tracing,omitempty"`
@@ -1769,17 +1769,25 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Computed:            false,
 									},
 
-									"health_check_url": schema.StringAttribute{
-										Description:         "Used in the Components health feature. This is the URL which Kiali will ping to determine whether the component is reachable or not. It defaults to 'in_cluster_url' when not provided.",
-										MarkdownDescription: "Used in the Components health feature. This is the URL which Kiali will ping to determine whether the component is reachable or not. It defaults to 'in_cluster_url' when not provided.",
+									"external_url": schema.StringAttribute{
+										Description:         "The URL that the Kiali UI uses when displaying Grafana links to the user. This URL must be accessible to clients external to the cluster (e.g. a browser) in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.",
+										MarkdownDescription: "The URL that the Kiali UI uses when displaying Grafana links to the user. This URL must be accessible to clients external to the cluster (e.g. a browser) in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
-									"in_cluster_url": schema.StringAttribute{
-										Description:         "The URL used for in-cluster access. An example would be 'http://grafana.istio-system:3000'. This URL can contain query parameters if needed, such as '?orgId=1'. If not defined, it will default to 'http://grafana.<istio_namespace>:3000'.",
-										MarkdownDescription: "The URL used for in-cluster access. An example would be 'http://grafana.istio-system:3000'. This URL can contain query parameters if needed, such as '?orgId=1'. If not defined, it will default to 'http://grafana.<istio_namespace>:3000'.",
+									"health_check_url": schema.StringAttribute{
+										Description:         "Used in the Components health feature. This is the URL which Kiali will ping to determine whether the component is reachable or not. It defaults to 'internal_url' when not provided.",
+										MarkdownDescription: "Used in the Components health feature. This is the URL which Kiali will ping to determine whether the component is reachable or not. It defaults to 'internal_url' when not provided.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"internal_url": schema.StringAttribute{
+										Description:         "The URL used by Kiali to perform requests and queries to Grafana. An example would be 'http://grafana.istio-system:3000'. This URL can contain query parameters if needed, such as '?orgId=1'. If not defined, it will default to 'http://grafana.<istio_namespace>:3000'.",
+										MarkdownDescription: "The URL used by Kiali to perform requests and queries to Grafana. An example would be 'http://grafana.istio-system:3000'. This URL can contain query parameters if needed, such as '?orgId=1'. If not defined, it will default to 'http://grafana.<istio_namespace>:3000'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1788,14 +1796,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									"is_core": schema.BoolAttribute{
 										Description:         "Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.",
 										MarkdownDescription: "Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"url": schema.StringAttribute{
-										Description:         "The URL that Kiali uses when integrating with Grafana. This URL must be accessible to clients external to the cluster in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.",
-										MarkdownDescription: "The URL that Kiali uses when integrating with Grafana. This URL must be accessible to clients external to the cluster in order for the integration to work properly. If empty, an attempt to auto-discover it is made. This URL can contain query parameters if needed, such as '?orgId=1'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2283,8 +2283,16 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.",
-										MarkdownDescription: "When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.",
+										Description:         "When true, connections to the Tracing server are enabled. 'internal_url' and/or 'external_url' need to be provided.",
+										MarkdownDescription: "When true, connections to the Tracing server are enabled. 'internal_url' and/or 'external_url' need to be provided.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"external_url": schema.StringAttribute{
+										Description:         "The URL that the Kiali UI uses when displaying Tracing UI links to the user. This URL must be accessible to clients external to the cluster (e.g. a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>; for example, https://tracing-service:8080/jaeger",
+										MarkdownDescription: "The URL that the Kiali UI uses when displaying Tracing UI links to the user. This URL must be accessible to clients external to the cluster (e.g. a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>; for example, https://tracing-service:8080/jaeger",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2306,9 +2314,9 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Computed:            false,
 									},
 
-									"in_cluster_url": schema.StringAttribute{
-										Description:         "Set URL for in-cluster access, which enables further integration between Kiali and Jaeger. When not provided, Kiali will only show external links using the 'url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685",
-										MarkdownDescription: "Set URL for in-cluster access, which enables further integration between Kiali and Jaeger. When not provided, Kiali will only show external links using the 'url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685",
+									"internal_url": schema.StringAttribute{
+										Description:         "The URL used by Kiali to perform requests and queries to the tracing backend which enables further integration between Kiali and the tracing server. When not provided, Kiali will only show external links using the 'external_url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685",
+										MarkdownDescription: "The URL used by Kiali to perform requests and queries to the tracing backend which enables further integration between Kiali and the tracing server. When not provided, Kiali will only show external links using the 'external_url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2378,14 +2386,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"url": schema.StringAttribute{
-										Description:         "The external URL that will be used to generate links to Jaeger. It must be accessible to clients external to the cluster (e.g: a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>. For example, https://tracing-service:8080/jaeger",
-										MarkdownDescription: "The external URL that will be used to generate links to Jaeger. It must be accessible to clients external to the cluster (e.g: a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>. For example, https://tracing-service:8080/jaeger",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 
 									"use_grpc": schema.BoolAttribute{

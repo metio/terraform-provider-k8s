@@ -701,7 +701,8 @@ type GatewaySoloIoVirtualServiceV1ManifestData struct {
 					PreviousPriorities *struct {
 						UpdateFrequency *int64 `tfsdk:"update_frequency" json:"updateFrequency,omitempty"`
 					} `tfsdk:"previous_priorities" json:"previousPriorities,omitempty"`
-					RetryBackOff *struct {
+					RetriableStatusCodes *[]string `tfsdk:"retriable_status_codes" json:"retriableStatusCodes,omitempty"`
+					RetryBackOff         *struct {
 						BaseInterval *string `tfsdk:"base_interval" json:"baseInterval,omitempty"`
 						MaxInterval  *string `tfsdk:"max_interval" json:"maxInterval,omitempty"`
 					} `tfsdk:"retry_back_off" json:"retryBackOff,omitempty"`
@@ -1520,8 +1521,7 @@ type GatewaySoloIoVirtualServiceV1ManifestData struct {
 				Name    *string `tfsdk:"name" json:"name,omitempty"`
 				Options *struct {
 					Ai *struct {
-						BackupModels *[]string `tfsdk:"backup_models" json:"backupModels,omitempty"`
-						Defaults     *[]struct {
+						Defaults *[]struct {
 							Field    *string            `tfsdk:"field" json:"field,omitempty"`
 							Override *bool              `tfsdk:"override" json:"override,omitempty"`
 							Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
@@ -1578,6 +1578,7 @@ type GatewaySoloIoVirtualServiceV1ManifestData struct {
 							} `tfsdk:"embedding" json:"embedding,omitempty"`
 							PromptTemplate *string `tfsdk:"prompt_template" json:"promptTemplate,omitempty"`
 						} `tfsdk:"rag" json:"rag,omitempty"`
+						RouteType     *string `tfsdk:"route_type" json:"routeType,omitempty"`
 						SemanticCache *struct {
 							Datastore *struct {
 								Redis *struct {
@@ -2254,7 +2255,8 @@ type GatewaySoloIoVirtualServiceV1ManifestData struct {
 						PreviousPriorities *struct {
 							UpdateFrequency *int64 `tfsdk:"update_frequency" json:"updateFrequency,omitempty"`
 						} `tfsdk:"previous_priorities" json:"previousPriorities,omitempty"`
-						RetryBackOff *struct {
+						RetriableStatusCodes *[]string `tfsdk:"retriable_status_codes" json:"retriableStatusCodes,omitempty"`
+						RetryBackOff         *struct {
 							BaseInterval *string `tfsdk:"base_interval" json:"baseInterval,omitempty"`
 							MaxInterval  *string `tfsdk:"max_interval" json:"maxInterval,omitempty"`
 						} `tfsdk:"retry_back_off" json:"retryBackOff,omitempty"`
@@ -8429,6 +8431,15 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 												Computed: false,
 											},
 
+											"retriable_status_codes": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"retry_back_off": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -13780,15 +13791,6 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
-														"backup_models": schema.ListAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
 														"defaults": schema.ListNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -14134,6 +14136,14 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"route_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"semantic_cache": schema.SingleNestedAttribute{
@@ -18523,6 +18533,15 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"retriable_status_codes": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"retry_back_off": schema.SingleNestedAttribute{

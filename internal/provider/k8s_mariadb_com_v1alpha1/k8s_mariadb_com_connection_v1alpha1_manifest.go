@@ -50,29 +50,18 @@ type K8SMariadbComConnectionV1Alpha1ManifestData struct {
 		} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 		Host       *string `tfsdk:"host" json:"host,omitempty"`
 		MariaDbRef *struct {
-			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
-			Name            *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
-			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
-			WaitForIt       *bool   `tfsdk:"wait_for_it" json:"waitForIt,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			WaitForIt *bool   `tfsdk:"wait_for_it" json:"waitForIt,omitempty"`
 		} `tfsdk:"maria_db_ref" json:"mariaDbRef,omitempty"`
 		MaxScaleRef *struct {
-			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
-			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
-			Name            *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
-			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"max_scale_ref" json:"maxScaleRef,omitempty"`
 		Params               *map[string]string `tfsdk:"params" json:"params,omitempty"`
 		PasswordSecretKeyRef *struct {
-			Key      *string `tfsdk:"key" json:"key,omitempty"`
-			Name     *string `tfsdk:"name" json:"name,omitempty"`
-			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			Key  *string `tfsdk:"key" json:"key,omitempty"`
+			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
 		Port           *int64  `tfsdk:"port" json:"port,omitempty"`
 		SecretName     *string `tfsdk:"secret_name" json:"secretName,omitempty"`
@@ -216,57 +205,17 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "MariaDBRef is a reference to the MariaDB to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
 						MarkdownDescription: "MariaDBRef is a reference to the MariaDB to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
 						Attributes: map[string]schema.Attribute{
-							"api_version": schema.StringAttribute{
-								Description:         "API version of the referent.",
-								MarkdownDescription: "API version of the referent.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -289,57 +238,17 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "MaxScaleRef is a reference to the MaxScale to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
 						MarkdownDescription: "MaxScaleRef is a reference to the MaxScale to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
 						Attributes: map[string]schema.Attribute{
-							"api_version": schema.StringAttribute{
-								Description:         "API version of the referent.",
-								MarkdownDescription: "API version of the referent.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -364,24 +273,16 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from. Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"optional": schema.BoolAttribute{
-								Description:         "Specify whether the Secret or its key must be defined",
-								MarkdownDescription: "Specify whether the Secret or its key must be defined",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -44,12 +44,19 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Affinity                *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
-		ConfigMaps              *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-		ConfigReloaderExtraArgs *map[string]string   `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
-		Containers              *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-		Datasource              *struct {
-			OAuth2    *map[string]string `tfsdk:"o_auth2" json:"OAuth2,omitempty"`
+		Affinity                *map[string]string `tfsdk:"affinity" json:"affinity,omitempty"`
+		ConfigMaps              *[]string          `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		ConfigReloaderExtraArgs *map[string]string `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
+		ConfigReloaderImageTag  *string            `tfsdk:"config_reloader_image_tag" json:"configReloaderImageTag,omitempty"`
+		ConfigReloaderResources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
+			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+		} `tfsdk:"config_reloader_resources" json:"configReloaderResources,omitempty"`
+		Containers *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		Datasource *struct {
 			BasicAuth *struct {
 				Password *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -69,34 +76,13 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-			Headers *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			Oauth2  *struct {
-				Client_id *struct {
-					ConfigMap *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"config_map" json:"configMap,omitempty"`
-					Secret *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret" json:"secret,omitempty"`
-				} `tfsdk:"client_id" json:"client_id,omitempty"`
-				Client_secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"client_secret" json:"client_secret,omitempty"`
-				Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
-				Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
-				Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
-			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			Headers   *[]string          `tfsdk:"headers" json:"headers,omitempty"`
+			Oauth2    *map[string]string `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			TlsConfig *map[string]string `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url       *string            `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"datasource" json:"datasource,omitempty"`
-		DnsConfig *struct {
+		DisableSelfServiceScrape *bool `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+		DnsConfig                *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -110,8 +96,16 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 		ExternalLabels         *map[string]string   `tfsdk:"external_labels" json:"externalLabels,omitempty"`
 		ExtraArgs              *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
 		ExtraEnvs              *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
-		HostNetwork            *bool                `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-		Image                  *struct {
+		HostAliases            *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
+		HostNetwork  *bool `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+		Host_aliases *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
+		Image *struct {
 			PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 			Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 			Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
@@ -134,7 +128,6 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 		MinReadySeconds *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
 		NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Notifier        *struct {
-			OAuth2    *map[string]string `tfsdk:"o_auth2" json:"OAuth2,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -154,30 +147,8 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-			Headers *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			Oauth2  *struct {
-				Client_id *struct {
-					ConfigMap *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"config_map" json:"configMap,omitempty"`
-					Secret *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret" json:"secret,omitempty"`
-				} `tfsdk:"client_id" json:"client_id,omitempty"`
-				Client_secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"client_secret" json:"client_secret,omitempty"`
-				Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
-				Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
-				Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
-			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			Headers  *[]string          `tfsdk:"headers" json:"headers,omitempty"`
+			Oauth2   *map[string]string `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Selector *struct {
 				LabelSelector *struct {
 					MatchExpressions *[]struct {
@@ -201,7 +172,6 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"notifier_config_ref" json:"notifierConfigRef,omitempty"`
 		Notifiers *[]struct {
-			OAuth2    *map[string]string `tfsdk:"o_auth2" json:"OAuth2,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -221,30 +191,8 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-			Headers *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			Oauth2  *struct {
-				Client_id *struct {
-					ConfigMap *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"config_map" json:"configMap,omitempty"`
-					Secret *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret" json:"secret,omitempty"`
-				} `tfsdk:"client_id" json:"client_id,omitempty"`
-				Client_secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"client_secret" json:"client_secret,omitempty"`
-				Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
-				Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
-				Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
-			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			Headers  *[]string          `tfsdk:"headers" json:"headers,omitempty"`
+			Oauth2   *map[string]string `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Selector *struct {
 				LabelSelector *struct {
 					MatchExpressions *[]struct {
@@ -280,7 +228,6 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 		} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 		ReadinessProbe *map[string]string `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 		RemoteRead     *struct {
-			OAuth2    *map[string]string `tfsdk:"o_auth2" json:"OAuth2,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -300,36 +247,13 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-			Headers  *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			Lookback *string   `tfsdk:"lookback" json:"lookback,omitempty"`
-			Oauth2   *struct {
-				Client_id *struct {
-					ConfigMap *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"config_map" json:"configMap,omitempty"`
-					Secret *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret" json:"secret,omitempty"`
-				} `tfsdk:"client_id" json:"client_id,omitempty"`
-				Client_secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"client_secret" json:"client_secret,omitempty"`
-				Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
-				Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
-				Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
-			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			Headers   *[]string          `tfsdk:"headers" json:"headers,omitempty"`
+			Lookback  *string            `tfsdk:"lookback" json:"lookback,omitempty"`
+			Oauth2    *map[string]string `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			TlsConfig *map[string]string `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url       *string            `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"remote_read" json:"remoteRead,omitempty"`
 		RemoteWrite *struct {
-			OAuth2    *map[string]string `tfsdk:"o_auth2" json:"OAuth2,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -349,36 +273,14 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
-			Concurrency   *int64    `tfsdk:"concurrency" json:"concurrency,omitempty"`
-			FlushInterval *string   `tfsdk:"flush_interval" json:"flushInterval,omitempty"`
-			Headers       *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			MaxBatchSize  *int64    `tfsdk:"max_batch_size" json:"maxBatchSize,omitempty"`
-			MaxQueueSize  *int64    `tfsdk:"max_queue_size" json:"maxQueueSize,omitempty"`
-			Oauth2        *struct {
-				Client_id *struct {
-					ConfigMap *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"config_map" json:"configMap,omitempty"`
-					Secret *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret" json:"secret,omitempty"`
-				} `tfsdk:"client_id" json:"client_id,omitempty"`
-				Client_secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"client_secret" json:"client_secret,omitempty"`
-				Client_secret_file *string            `tfsdk:"client_secret_file" json:"client_secret_file,omitempty"`
-				Endpoint_params    *map[string]string `tfsdk:"endpoint_params" json:"endpoint_params,omitempty"`
-				Scopes             *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				Token_url          *string            `tfsdk:"token_url" json:"token_url,omitempty"`
-			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			TlsConfig *map[string]string `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
-			Url       *string            `tfsdk:"url" json:"url,omitempty"`
+			Concurrency   *int64             `tfsdk:"concurrency" json:"concurrency,omitempty"`
+			FlushInterval *string            `tfsdk:"flush_interval" json:"flushInterval,omitempty"`
+			Headers       *[]string          `tfsdk:"headers" json:"headers,omitempty"`
+			MaxBatchSize  *int64             `tfsdk:"max_batch_size" json:"maxBatchSize,omitempty"`
+			MaxQueueSize  *int64             `tfsdk:"max_queue_size" json:"maxQueueSize,omitempty"`
+			Oauth2        *map[string]string `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			TlsConfig     *map[string]string `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+			Url           *string            `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"remote_write" json:"remoteWrite,omitempty"`
 		ReplicaCount *int64 `tfsdk:"replica_count" json:"replicaCount,omitempty"`
 		Resources    *struct {
@@ -437,14 +339,17 @@ type OperatorVictoriametricsComVmalertV1Beta1ManifestData struct {
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		TopologySpreadConstraints *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		UpdateStrategy            *string              `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
+		UseDefaultResources       *bool                `tfsdk:"use_default_resources" json:"useDefaultResources,omitempty"`
 		UseStrictSecurity         *bool                `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
+		UseVMConfigReloader       *bool                `tfsdk:"use_vm_config_reloader" json:"useVMConfigReloader,omitempty"`
 		VolumeMounts              *[]struct {
-			MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-			MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-			Name             *string `tfsdk:"name" json:"name,omitempty"`
-			ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-			SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-			SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+			SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+			SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 		} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		Volumes *[]map[string]string `tfsdk:"volumes" json:"volumes,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -537,8 +442,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"config_maps": schema.ListAttribute{
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlert object, which shall be mounted into the VMAlert Pods. The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the VMAlert object, which shall be mounted into the VMAlert Pods. The ConfigMaps are mounted into /etc/vm/configs/<configmap-name>.",
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/configs/CONFIGMAP_NAME folder",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -554,6 +459,60 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"config_reloader_image_tag": schema.StringAttribute{
+						Description:         "ConfigReloaderImageTag defines image:tag for config-reloader container",
+						MarkdownDescription: "ConfigReloaderImageTag defines image:tag for config-reloader container",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"config_reloader_resources": schema.SingleNestedAttribute{
+						Description:         "ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
+						MarkdownDescription: "ConfigReloaderResources config-reloader container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
+						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"limits": schema.MapAttribute{
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"requests": schema.MapAttribute{
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"containers": schema.ListAttribute{
 						Description:         "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
 						MarkdownDescription: "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
@@ -567,22 +526,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Description:         "Datasource Victoria Metrics or VMSelect url. Required parameter. e.g. http://127.0.0.1:8428",
 						MarkdownDescription: "Datasource Victoria Metrics or VMSelect url. Required parameter. e.g. http://127.0.0.1:8428",
 						Attributes: map[string]schema.Attribute{
-							"o_auth2": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"basic_auth": schema.SingleNestedAttribute{
 								Description:         "BasicAuth allow an endpoint to authenticate over basic authentication",
 								MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication",
 								Attributes: map[string]schema.Attribute{
 									"password": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+										Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -593,8 +543,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -614,16 +564,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"password_file": schema.StringAttribute{
-										Description:         "PasswordFile defines path to password file at disk",
-										MarkdownDescription: "PasswordFile defines path to password file at disk",
+										Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+										MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"username": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+										Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -634,8 +584,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -680,8 +630,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -709,158 +659,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 								Computed:            false,
 							},
 
-							"oauth2": schema.SingleNestedAttribute{
+							"oauth2": schema.MapAttribute{
 								Description:         "OAuth2 defines OAuth2 configuration",
 								MarkdownDescription: "OAuth2 defines OAuth2 configuration",
-								Attributes: map[string]schema.Attribute{
-									"client_id": schema.SingleNestedAttribute{
-										Description:         "The secret or configmap containing the OAuth2 client id",
-										MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-										Attributes: map[string]schema.Attribute{
-											"config_map": schema.SingleNestedAttribute{
-												Description:         "ConfigMap containing data to use for the targets.",
-												MarkdownDescription: "ConfigMap containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key to select.",
-														MarkdownDescription: "The key to select.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the ConfigMap or its key must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret": schema.SingleNestedAttribute{
-												Description:         "Secret containing data to use for the targets.",
-												MarkdownDescription: "Secret containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from. Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"client_secret": schema.SingleNestedAttribute{
-										Description:         "The secret containing the OAuth2 client secret",
-										MarkdownDescription: "The secret containing the OAuth2 client secret",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from. Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_secret_file": schema.StringAttribute{
-										Description:         "ClientSecretFile defines path for client secret file.",
-										MarkdownDescription: "ClientSecretFile defines path for client secret file.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"endpoint_params": schema.MapAttribute{
-										Description:         "Parameters to append to the token URL",
-										MarkdownDescription: "Parameters to append to the token URL",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"scopes": schema.ListAttribute{
-										Description:         "OAuth2 scopes used for the token request",
-										MarkdownDescription: "OAuth2 scopes used for the token request",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"token_url": schema.StringAttribute{
-										Description:         "The URL to fetch the token from",
-										MarkdownDescription: "The URL to fetch the token from",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"tls_config": schema.MapAttribute{
@@ -883,6 +688,14 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"disable_self_service_scrape": schema.BoolAttribute{
+						Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
+						MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"dns_config": schema.SingleNestedAttribute{
@@ -976,8 +789,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"extra_args": schema.MapAttribute{
-						Description:         "ExtraArgs that will be passed to VMAlert pod for example -remoteWrite.tmpDataPath=/tmp",
-						MarkdownDescription: "ExtraArgs that will be passed to VMAlert pod for example -remoteWrite.tmpDataPath=/tmp",
+						Description:         "ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp",
+						MarkdownDescription: "ExtraArgs that will be passed to the application container for example remoteWrite.tmpDataPath: /tmp",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -985,12 +798,40 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"extra_envs": schema.ListAttribute{
-						Description:         "ExtraEnvs that will be added to VMAlert pod",
-						MarkdownDescription: "ExtraEnvs that will be added to VMAlert pod",
+						Description:         "ExtraEnvs that will be passed to the application container",
+						MarkdownDescription: "ExtraEnvs that will be passed to the application container",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork.",
+						MarkdownDescription: "HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"host_network": schema.BoolAttribute{
@@ -1001,9 +842,37 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
+						MarkdownDescription: "HostAliasesUnderScore provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. Has Priority over hostAliases field",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.SingleNestedAttribute{
-						Description:         "Image - docker image settings for VMAlert if no specified operator uses default config version",
-						MarkdownDescription: "Image - docker image settings for VMAlert if no specified operator uses default config version",
+						Description:         "Image - docker image settings if no specified operator uses default version from operator config",
+						MarkdownDescription: "Image - docker image settings if no specified operator uses default version from operator config",
 						Attributes: map[string]schema.Attribute{
 							"pull_policy": schema.StringAttribute{
 								Description:         "PullPolicy describes how to pull docker image",
@@ -1040,8 +909,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1054,8 +923,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"init_containers": schema.ListAttribute{
-						Description:         "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the VMAlert configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.",
-						MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the VMAlert configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.",
+						Description:         "InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+						MarkdownDescription: "InitContainers allows adding initContainers to the pod definition. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -1063,12 +932,12 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"license": schema.SingleNestedAttribute{
-						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html",
-						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html",
+						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
+						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/",
-								MarkdownDescription: "Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/",
+								Description:         "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
+								MarkdownDescription: "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1087,8 +956,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1144,8 +1013,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state",
-						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state",
+						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1164,22 +1033,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Description:         "Notifier prometheus alertmanager endpoint spec. Required at least one of notifier or notifiers when there are alerting rules. e.g. http://127.0.0.1:9093 If specified both notifier and notifiers, notifier will be added as last element to notifiers. only one of notifier options could be chosen: notifierConfigRef or notifiers + notifier",
 						MarkdownDescription: "Notifier prometheus alertmanager endpoint spec. Required at least one of notifier or notifiers when there are alerting rules. e.g. http://127.0.0.1:9093 If specified both notifier and notifiers, notifier will be added as last element to notifiers. only one of notifier options could be chosen: notifierConfigRef or notifiers + notifier",
 						Attributes: map[string]schema.Attribute{
-							"o_auth2": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"basic_auth": schema.SingleNestedAttribute{
 								Description:         "BasicAuth allow an endpoint to authenticate over basic authentication",
 								MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication",
 								Attributes: map[string]schema.Attribute{
 									"password": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+										Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1190,8 +1050,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1211,16 +1071,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"password_file": schema.StringAttribute{
-										Description:         "PasswordFile defines path to password file at disk",
-										MarkdownDescription: "PasswordFile defines path to password file at disk",
+										Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+										MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"username": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+										Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1231,8 +1091,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1277,8 +1137,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1306,158 +1166,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 								Computed:            false,
 							},
 
-							"oauth2": schema.SingleNestedAttribute{
+							"oauth2": schema.MapAttribute{
 								Description:         "OAuth2 defines OAuth2 configuration",
 								MarkdownDescription: "OAuth2 defines OAuth2 configuration",
-								Attributes: map[string]schema.Attribute{
-									"client_id": schema.SingleNestedAttribute{
-										Description:         "The secret or configmap containing the OAuth2 client id",
-										MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-										Attributes: map[string]schema.Attribute{
-											"config_map": schema.SingleNestedAttribute{
-												Description:         "ConfigMap containing data to use for the targets.",
-												MarkdownDescription: "ConfigMap containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key to select.",
-														MarkdownDescription: "The key to select.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the ConfigMap or its key must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret": schema.SingleNestedAttribute{
-												Description:         "Secret containing data to use for the targets.",
-												MarkdownDescription: "Secret containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from. Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"client_secret": schema.SingleNestedAttribute{
-										Description:         "The secret containing the OAuth2 client secret",
-										MarkdownDescription: "The secret containing the OAuth2 client secret",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from. Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_secret_file": schema.StringAttribute{
-										Description:         "ClientSecretFile defines path for client secret file.",
-										MarkdownDescription: "ClientSecretFile defines path for client secret file.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"endpoint_params": schema.MapAttribute{
-										Description:         "Parameters to append to the token URL",
-										MarkdownDescription: "Parameters to append to the token URL",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"scopes": schema.ListAttribute{
-										Description:         "OAuth2 scopes used for the token request",
-										MarkdownDescription: "OAuth2 scopes used for the token request",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"token_url": schema.StringAttribute{
-										Description:         "The URL to fetch the token from",
-										MarkdownDescription: "The URL to fetch the token from",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"selector": schema.SingleNestedAttribute{
@@ -1584,8 +1299,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1609,22 +1324,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Notifiers prometheus alertmanager endpoints. Required at least one of notifier or notifiers when there are alerting rules. e.g. http://127.0.0.1:9093 If specified both notifier and notifiers, notifier will be added as last element to notifiers. only one of notifier options could be chosen: notifierConfigRef or notifiers + notifier",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"o_auth2": schema.MapAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
 								"basic_auth": schema.SingleNestedAttribute{
 									Description:         "BasicAuth allow an endpoint to authenticate over basic authentication",
 									MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-											MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+											Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+											MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1635,8 +1341,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1656,16 +1362,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 										},
 
 										"password_file": schema.StringAttribute{
-											Description:         "PasswordFile defines path to password file at disk",
-											MarkdownDescription: "PasswordFile defines path to password file at disk",
+											Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+											MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-											MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+											Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+											MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -1676,8 +1382,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1722,8 +1428,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1751,158 +1457,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									Computed:            false,
 								},
 
-								"oauth2": schema.SingleNestedAttribute{
+								"oauth2": schema.MapAttribute{
 									Description:         "OAuth2 defines OAuth2 configuration",
 									MarkdownDescription: "OAuth2 defines OAuth2 configuration",
-									Attributes: map[string]schema.Attribute{
-										"client_id": schema.SingleNestedAttribute{
-											Description:         "The secret or configmap containing the OAuth2 client id",
-											MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-											Attributes: map[string]schema.Attribute{
-												"config_map": schema.SingleNestedAttribute{
-													Description:         "ConfigMap containing data to use for the targets.",
-													MarkdownDescription: "ConfigMap containing data to use for the targets.",
-													Attributes: map[string]schema.Attribute{
-														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"secret": schema.SingleNestedAttribute{
-													Description:         "Secret containing data to use for the targets.",
-													MarkdownDescription: "Secret containing data to use for the targets.",
-													Attributes: map[string]schema.Attribute{
-														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from. Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-											},
-											Required: true,
-											Optional: false,
-											Computed: false,
-										},
-
-										"client_secret": schema.SingleNestedAttribute{
-											Description:         "The secret containing the OAuth2 client secret",
-											MarkdownDescription: "The secret containing the OAuth2 client secret",
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from. Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the Secret or its key must be defined",
-													MarkdownDescription: "Specify whether the Secret or its key must be defined",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"client_secret_file": schema.StringAttribute{
-											Description:         "ClientSecretFile defines path for client secret file.",
-											MarkdownDescription: "ClientSecretFile defines path for client secret file.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"endpoint_params": schema.MapAttribute{
-											Description:         "Parameters to append to the token URL",
-											MarkdownDescription: "Parameters to append to the token URL",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"scopes": schema.ListAttribute{
-											Description:         "OAuth2 scopes used for the token request",
-											MarkdownDescription: "OAuth2 scopes used for the token request",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"token_url": schema.StringAttribute{
-											Description:         "The URL to fetch the token from",
-											MarkdownDescription: "The URL to fetch the token from",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.LengthAtLeast(1),
-											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"selector": schema.SingleNestedAttribute{
@@ -2095,16 +1656,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"port": schema.StringAttribute{
-						Description:         "Port for listen",
-						MarkdownDescription: "Port for listen",
+						Description:         "Port listen address",
+						MarkdownDescription: "Port listen address",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"priority_class_name": schema.StringAttribute{
-						Description:         "Priority class assigned to the Pods",
-						MarkdownDescription: "Priority class assigned to the Pods",
+						Description:         "PriorityClassName class assigned to the Pods",
+						MarkdownDescription: "PriorityClassName class assigned to the Pods",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2142,22 +1703,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Description:         "RemoteRead Optional URL to read vmalert state (persisted via RemoteWrite) This configuration only makes sense if alerts state has been successfully persisted (via RemoteWrite) before. see -remoteRead.url docs in vmalerts for details. E.g. http://127.0.0.1:8428",
 						MarkdownDescription: "RemoteRead Optional URL to read vmalert state (persisted via RemoteWrite) This configuration only makes sense if alerts state has been successfully persisted (via RemoteWrite) before. see -remoteRead.url docs in vmalerts for details. E.g. http://127.0.0.1:8428",
 						Attributes: map[string]schema.Attribute{
-							"o_auth2": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"basic_auth": schema.SingleNestedAttribute{
 								Description:         "BasicAuth allow an endpoint to authenticate over basic authentication",
 								MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication",
 								Attributes: map[string]schema.Attribute{
 									"password": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+										Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2168,8 +1720,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2189,16 +1741,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"password_file": schema.StringAttribute{
-										Description:         "PasswordFile defines path to password file at disk",
-										MarkdownDescription: "PasswordFile defines path to password file at disk",
+										Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+										MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"username": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+										Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2209,8 +1761,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2255,8 +1807,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2292,158 +1844,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 								Computed:            false,
 							},
 
-							"oauth2": schema.SingleNestedAttribute{
+							"oauth2": schema.MapAttribute{
 								Description:         "OAuth2 defines OAuth2 configuration",
 								MarkdownDescription: "OAuth2 defines OAuth2 configuration",
-								Attributes: map[string]schema.Attribute{
-									"client_id": schema.SingleNestedAttribute{
-										Description:         "The secret or configmap containing the OAuth2 client id",
-										MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-										Attributes: map[string]schema.Attribute{
-											"config_map": schema.SingleNestedAttribute{
-												Description:         "ConfigMap containing data to use for the targets.",
-												MarkdownDescription: "ConfigMap containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key to select.",
-														MarkdownDescription: "The key to select.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the ConfigMap or its key must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret": schema.SingleNestedAttribute{
-												Description:         "Secret containing data to use for the targets.",
-												MarkdownDescription: "Secret containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from. Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"client_secret": schema.SingleNestedAttribute{
-										Description:         "The secret containing the OAuth2 client secret",
-										MarkdownDescription: "The secret containing the OAuth2 client secret",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from. Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_secret_file": schema.StringAttribute{
-										Description:         "ClientSecretFile defines path for client secret file.",
-										MarkdownDescription: "ClientSecretFile defines path for client secret file.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"endpoint_params": schema.MapAttribute{
-										Description:         "Parameters to append to the token URL",
-										MarkdownDescription: "Parameters to append to the token URL",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"scopes": schema.ListAttribute{
-										Description:         "OAuth2 scopes used for the token request",
-										MarkdownDescription: "OAuth2 scopes used for the token request",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"token_url": schema.StringAttribute{
-										Description:         "The URL to fetch the token from",
-										MarkdownDescription: "The URL to fetch the token from",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"tls_config": schema.MapAttribute{
@@ -2472,22 +1879,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Description:         "RemoteWrite Optional URL to remote-write compatible storage to persist vmalert state and rule results to. Rule results will be persisted according to each rule. Alerts state will be persisted in the form of time series named ALERTS and ALERTS_FOR_STATE see -remoteWrite.url docs in vmalerts for details. E.g. http://127.0.0.1:8428",
 						MarkdownDescription: "RemoteWrite Optional URL to remote-write compatible storage to persist vmalert state and rule results to. Rule results will be persisted according to each rule. Alerts state will be persisted in the form of time series named ALERTS and ALERTS_FOR_STATE see -remoteWrite.url docs in vmalerts for details. E.g. http://127.0.0.1:8428",
 						Attributes: map[string]schema.Attribute{
-							"o_auth2": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"basic_auth": schema.SingleNestedAttribute{
 								Description:         "BasicAuth allow an endpoint to authenticate over basic authentication",
 								MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication",
 								Attributes: map[string]schema.Attribute{
 									"password": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+										Description:         "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Password defines reference for secret with password value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2498,8 +1896,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2519,16 +1917,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"password_file": schema.StringAttribute{
-										Description:         "PasswordFile defines path to password file at disk",
-										MarkdownDescription: "PasswordFile defines path to password file at disk",
+										Description:         "PasswordFile defines path to password file at disk must be pre-mounted",
+										MarkdownDescription: "PasswordFile defines path to password file at disk must be pre-mounted",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"username": schema.SingleNestedAttribute{
-										Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
-										MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+										Description:         "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
+										MarkdownDescription: "Username defines reference for secret with username value The secret needs to be in the same namespace as scrape object",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2539,8 +1937,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2585,8 +1983,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2649,158 +2047,13 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 								Computed:            false,
 							},
 
-							"oauth2": schema.SingleNestedAttribute{
+							"oauth2": schema.MapAttribute{
 								Description:         "OAuth2 defines OAuth2 configuration",
 								MarkdownDescription: "OAuth2 defines OAuth2 configuration",
-								Attributes: map[string]schema.Attribute{
-									"client_id": schema.SingleNestedAttribute{
-										Description:         "The secret or configmap containing the OAuth2 client id",
-										MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-										Attributes: map[string]schema.Attribute{
-											"config_map": schema.SingleNestedAttribute{
-												Description:         "ConfigMap containing data to use for the targets.",
-												MarkdownDescription: "ConfigMap containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key to select.",
-														MarkdownDescription: "The key to select.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the ConfigMap or its key must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret": schema.SingleNestedAttribute{
-												Description:         "Secret containing data to use for the targets.",
-												MarkdownDescription: "Secret containing data to use for the targets.",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from. Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"client_secret": schema.SingleNestedAttribute{
-										Description:         "The secret containing the OAuth2 client secret",
-										MarkdownDescription: "The secret containing the OAuth2 client secret",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from. Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_secret_file": schema.StringAttribute{
-										Description:         "ClientSecretFile defines path for client secret file.",
-										MarkdownDescription: "ClientSecretFile defines path for client secret file.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"endpoint_params": schema.MapAttribute{
-										Description:         "Parameters to append to the token URL",
-										MarkdownDescription: "Parameters to append to the token URL",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"scopes": schema.ListAttribute{
-										Description:         "OAuth2 scopes used for the token request",
-										MarkdownDescription: "OAuth2 scopes used for the token request",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"token_url": schema.StringAttribute{
-										Description:         "The URL to fetch the token from",
-										MarkdownDescription: "The URL to fetch the token from",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"tls_config": schema.MapAttribute{
@@ -2826,16 +2079,16 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"replica_count": schema.Int64Attribute{
-						Description:         "ReplicaCount is the expected size of the VMAlert cluster. The controller will eventually make the size of the running cluster equal to the expected size.",
-						MarkdownDescription: "ReplicaCount is the expected size of the VMAlert cluster. The controller will eventually make the size of the running cluster equal to the expected size.",
+						Description:         "ReplicaCount is the expected size of the Application.",
+						MarkdownDescription: "ReplicaCount is the expected size of the Application.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-						MarkdownDescription: "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+						Description:         "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
+						MarkdownDescription: "Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
 								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
@@ -2880,8 +2133,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"revision_history_limit_count": schema.Int64Attribute{
-						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.",
-						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.",
+						Description:         "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.",
+						MarkdownDescription: "The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the Deployment revision history. Has no effect at StatefulSets Defaults to 10.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3046,8 +2299,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"secrets": schema.ListAttribute{
-						Description:         "Secrets is a list of Secrets in the same namespace as the VMAlert object, which shall be mounted into the VMAlert Pods. The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the VMAlert object, which shall be mounted into the VMAlert Pods. The Secrets are mounted into /etc/vm/secrets/<secret-name>.",
+						Description:         "Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Application object, which shall be mounted into the Application container at /etc/vm/secrets/SECRET_NAME folder",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -3072,8 +2325,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"service_account_name": schema.StringAttribute{
-						Description:         "ServiceAccountName is the name of the ServiceAccount to use to run the VMAlert Pods.",
-						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run the VMAlert Pods.",
+						Description:         "ServiceAccountName is the name of the ServiceAccount to use to run the pods",
+						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run the pods",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3237,6 +2490,14 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						},
 					},
 
+					"use_default_resources": schema.BoolAttribute{
+						Description:         "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						MarkdownDescription: "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"use_strict_security": schema.BoolAttribute{
 						Description:         "UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions",
 						MarkdownDescription: "UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions",
@@ -3245,9 +2506,17 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"use_vm_config_reloader": schema.BoolAttribute{
+						Description:         "UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates",
+						MarkdownDescription: "UseVMConfigReloader replaces prometheus-like config-reloader with vm one. It uses secrets watch instead of file watch which greatly increases speed of config updates",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"volume_mounts": schema.ListNestedAttribute{
-						Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition. VolumeMounts specified will be appended to other VolumeMounts in the VMAlert container, that are generated as a result of StorageSpec objects.",
-						MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition. VolumeMounts specified will be appended to other VolumeMounts in the VMAlert container, that are generated as a result of StorageSpec objects.",
+						Description:         "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container",
+						MarkdownDescription: "VolumeMounts allows configuration of additional VolumeMounts on the output Deployment/StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the Application container",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"mount_path": schema.StringAttribute{
@@ -3259,8 +2528,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 								},
 
 								"mount_propagation": schema.StringAttribute{
-									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3277,6 +2546,14 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 								"read_only": schema.BoolAttribute{
 									Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 									MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"recursive_read_only": schema.StringAttribute{
+									Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+									MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3305,8 +2582,8 @@ func (r *OperatorVictoriametricsComVmalertV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"volumes": schema.ListAttribute{
-						Description:         "Volumes allows configuration of additional volumes on the output Deployment definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.",
-						MarkdownDescription: "Volumes allows configuration of additional volumes on the output Deployment definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.",
+						Description:         "Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional",
+						MarkdownDescription: "Volumes allows configuration of additional volumes on the output Deployment/StatefulSet definition. Volumes specified will be appended to other volumes that are generated. / +optional",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
