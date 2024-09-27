@@ -18,6 +18,7 @@ data "k8s_work_karmada_io_work_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+  spec = {}
 }
 ```
 
