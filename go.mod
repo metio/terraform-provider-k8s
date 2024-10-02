@@ -8,7 +8,7 @@ go 1.23.0
 toolchain go1.23.1
 
 require (
-	github.com/gruntwork-io/terratest v0.47.1
+	github.com/gruntwork-io/terratest v0.47.2
 	github.com/hashicorp/terraform-plugin-docs v0.19.4
 	github.com/hashicorp/terraform-plugin-framework v1.12.0
 	github.com/hashicorp/terraform-plugin-framework-validators v0.13.0
