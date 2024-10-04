@@ -115,6 +115,8 @@ type RdsServicesK8SAwsDbclusterV1Alpha1ManifestData struct {
 		PreferredMaintenanceWindow         *string `tfsdk:"preferred_maintenance_window" json:"preferredMaintenanceWindow,omitempty"`
 		PubliclyAccessible                 *bool   `tfsdk:"publicly_accessible" json:"publiclyAccessible,omitempty"`
 		ReplicationSourceIdentifier        *string `tfsdk:"replication_source_identifier" json:"replicationSourceIdentifier,omitempty"`
+		RestoreToTime                      *string `tfsdk:"restore_to_time" json:"restoreToTime,omitempty"`
+		RestoreType                        *string `tfsdk:"restore_type" json:"restoreType,omitempty"`
 		ScalingConfiguration               *struct {
 			AutoPause             *bool   `tfsdk:"auto_pause" json:"autoPause,omitempty"`
 			MaxCapacity           *int64  `tfsdk:"max_capacity" json:"maxCapacity,omitempty"`
@@ -127,16 +129,18 @@ type RdsServicesK8SAwsDbclusterV1Alpha1ManifestData struct {
 			MaxCapacity *float64 `tfsdk:"max_capacity" json:"maxCapacity,omitempty"`
 			MinCapacity *float64 `tfsdk:"min_capacity" json:"minCapacity,omitempty"`
 		} `tfsdk:"serverless_v2_scaling_configuration" json:"serverlessV2ScalingConfiguration,omitempty"`
-		SnapshotIdentifier *string `tfsdk:"snapshot_identifier" json:"snapshotIdentifier,omitempty"`
-		SourceRegion       *string `tfsdk:"source_region" json:"sourceRegion,omitempty"`
-		StorageEncrypted   *bool   `tfsdk:"storage_encrypted" json:"storageEncrypted,omitempty"`
-		StorageType        *string `tfsdk:"storage_type" json:"storageType,omitempty"`
-		Tags               *[]struct {
+		SnapshotIdentifier        *string `tfsdk:"snapshot_identifier" json:"snapshotIdentifier,omitempty"`
+		SourceDBClusterIdentifier *string `tfsdk:"source_db_cluster_identifier" json:"sourceDBClusterIdentifier,omitempty"`
+		SourceRegion              *string `tfsdk:"source_region" json:"sourceRegion,omitempty"`
+		StorageEncrypted          *bool   `tfsdk:"storage_encrypted" json:"storageEncrypted,omitempty"`
+		StorageType               *string `tfsdk:"storage_type" json:"storageType,omitempty"`
+		Tags                      *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
-		VpcSecurityGroupIDs  *[]string `tfsdk:"vpc_security_group_i_ds" json:"vpcSecurityGroupIDs,omitempty"`
-		VpcSecurityGroupRefs *[]struct {
+		UseLatestRestorableTime *bool     `tfsdk:"use_latest_restorable_time" json:"useLatestRestorableTime,omitempty"`
+		VpcSecurityGroupIDs     *[]string `tfsdk:"vpc_security_group_i_ds" json:"vpcSecurityGroupIDs,omitempty"`
+		VpcSecurityGroupRefs    *[]struct {
 			From *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -737,6 +741,25 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
+					"restore_to_time": schema.StringAttribute{
+						Description:         "The date and time to restore the DB cluster to. Valid Values: Value must be a time in Universal Coordinated Time (UTC) format Constraints: * Must be before the latest restorable time for the DB instance * Must be specified if UseLatestRestorableTime parameter isn't provided * Can't be specified if the UseLatestRestorableTime parameter is enabled * Can't be specified if the RestoreType parameter is copy-on-write Example: 2015-03-07T23:45:00Z Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						MarkdownDescription: "The date and time to restore the DB cluster to. Valid Values: Value must be a time in Universal Coordinated Time (UTC) format Constraints: * Must be before the latest restorable time for the DB instance * Must be specified if UseLatestRestorableTime parameter isn't provided * Can't be specified if the UseLatestRestorableTime parameter is enabled * Can't be specified if the RestoreType parameter is copy-on-write Example: 2015-03-07T23:45:00Z Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							validators.DateTime64Validator(),
+						},
+					},
+
+					"restore_type": schema.StringAttribute{
+						Description:         "The type of restore to be performed. You can specify one of the following values: * full-copy - The new DB cluster is restored as a full copy of the source DB cluster. * copy-on-write - The new DB cluster is restored as a clone of the source DB cluster. Constraints: You can't specify copy-on-write if the engine version of the source DB cluster is earlier than 1.11. If you don't specify a RestoreType value, then the new DB cluster is restored as a full copy of the source DB cluster. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						MarkdownDescription: "The type of restore to be performed. You can specify one of the following values: * full-copy - The new DB cluster is restored as a full copy of the source DB cluster. * copy-on-write - The new DB cluster is restored as a clone of the source DB cluster. Constraints: You can't specify copy-on-write if the engine version of the source DB cluster is earlier than 1.11. If you don't specify a RestoreType value, then the new DB cluster is restored as a full copy of the source DB cluster. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"scaling_configuration": schema.SingleNestedAttribute{
 						Description:         "For DB clusters in serverless DB engine mode, the scaling properties of the DB cluster. Valid for: Aurora DB clusters only",
 						MarkdownDescription: "For DB clusters in serverless DB engine mode, the scaling properties of the DB cluster. Valid for: Aurora DB clusters only",
@@ -827,6 +850,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
+					"source_db_cluster_identifier": schema.StringAttribute{
+						Description:         "The identifier of the source DB cluster from which to restore. Constraints: * Must match the identifier of an existing DBCluster. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						MarkdownDescription: "The identifier of the source DB cluster from which to restore. Constraints: * Must match the identifier of an existing DBCluster. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"source_region": schema.StringAttribute{
 						Description:         "SourceRegion is the source region where the resource exists. This is not sent over the wire and is only used for presigning. This value should always have the same region as the source ARN.",
 						MarkdownDescription: "SourceRegion is the source region where the resource exists. This is not sent over the wire and is only used for presigning. This value should always have the same region as the source ARN.",
@@ -876,6 +907,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"use_latest_restorable_time": schema.BoolAttribute{
+						Description:         "A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster isn't restored to the latest restorable backup time. Constraints: Can't be specified if RestoreToTime parameter is provided. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						MarkdownDescription: "A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster isn't restored to the latest restorable backup time. Constraints: Can't be specified if RestoreToTime parameter is provided. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"vpc_security_group_i_ds": schema.ListAttribute{

@@ -44,6 +44,7 @@ type AnywhereEksAmazonawsComTinkerbellDatacenterConfigV1Alpha1ManifestData struc
 
 	Spec *struct {
 		HookImagesURLPath          *string `tfsdk:"hook_images_url_path" json:"hookImagesURLPath,omitempty"`
+		LoadBalancerInterface      *string `tfsdk:"load_balancer_interface" json:"loadBalancerInterface,omitempty"`
 		OsImageURL                 *string `tfsdk:"os_image_url" json:"osImageURL,omitempty"`
 		SkipLoadBalancerDeployment *bool   `tfsdk:"skip_load_balancer_deployment" json:"skipLoadBalancerDeployment,omitempty"`
 		TinkerbellIP               *string `tfsdk:"tinkerbell_ip" json:"tinkerbellIP,omitempty"`
@@ -130,6 +131,14 @@ func (r *AnywhereEksAmazonawsComTinkerbellDatacenterConfigV1Alpha1Manifest) Sche
 					"hook_images_url_path": schema.StringAttribute{
 						Description:         "HookImagesURLPath can be used to override the default Hook images path to pull from a local server.",
 						MarkdownDescription: "HookImagesURLPath can be used to override the default Hook images path to pull from a local server.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"load_balancer_interface": schema.StringAttribute{
+						Description:         "LoadBalancerInterface can be used to configure a load balancer interface for the Tinkerbell stack.",
+						MarkdownDescription: "LoadBalancerInterface can be used to configure a load balancer interface for the Tinkerbell stack.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

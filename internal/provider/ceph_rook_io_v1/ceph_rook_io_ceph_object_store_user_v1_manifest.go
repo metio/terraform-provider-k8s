@@ -154,8 +154,8 @@ func (r *CephRookIoCephObjectStoreUserV1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "Additional admin-level capabilities for the Ceph object store user",
 						Attributes: map[string]schema.Attribute{
 							"amz_cache": schema.StringAttribute{
-								Description:         "Add capabilities for user to send request to RGW Cache API header. Documented in https://docs.ceph.com/en/quincy/radosgw/rgw-cache/#cache-api",
-								MarkdownDescription: "Add capabilities for user to send request to RGW Cache API header. Documented in https://docs.ceph.com/en/quincy/radosgw/rgw-cache/#cache-api",
+								Description:         "Add capabilities for user to send request to RGW Cache API header. Documented in https://docs.ceph.com/en/latest/radosgw/rgw-cache/#cache-api",
+								MarkdownDescription: "Add capabilities for user to send request to RGW Cache API header. Documented in https://docs.ceph.com/en/latest/radosgw/rgw-cache/#cache-api",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

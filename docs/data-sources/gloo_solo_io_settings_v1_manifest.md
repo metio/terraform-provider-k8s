@@ -89,6 +89,7 @@ Optional:
 - `secret_options` (Attributes) (see [below for nested schema](#nestedatt--spec--secret_options))
 - `upstream_options` (Attributes) (see [below for nested schema](#nestedatt--spec--upstream_options))
 - `vault_secret_source` (Attributes) (see [below for nested schema](#nestedatt--spec--vault_secret_source))
+- `watch_namespace_selectors` (Attributes List) (see [below for nested schema](#nestedatt--spec--watch_namespace_selectors))
 - `watch_namespaces` (List of String)
 
 <a id="nestedatt--spec--caching_server"></a>
@@ -1077,3 +1078,22 @@ Optional:
 - `client_key` (String)
 - `insecure` (Boolean)
 - `tls_server_name` (String)
+
+
+
+<a id="nestedatt--spec--watch_namespace_selectors"></a>
+### Nested Schema for `spec.watch_namespace_selectors`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--watch_namespace_selectors--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--watch_namespace_selectors--match_expressions"></a>
+### Nested Schema for `spec.watch_namespace_selectors.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)

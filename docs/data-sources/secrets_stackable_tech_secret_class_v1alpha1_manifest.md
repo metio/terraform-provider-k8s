@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `auto_tls` (Attributes) The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and keypair will be generated and signed for each Pod, keys or certificates are never reused. (see [below for nested schema](#nestedatt--spec--backend--auto_tls))
+- `auto_tls` (Attributes) The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and key pair will be generated and signed for each Pod, keys or certificates are never reused. (see [below for nested schema](#nestedatt--spec--backend--auto_tls))
 - `experimental_cert_manager` (Attributes) The ['experimentalCertManager' backend][1] injects a TLS certificate issued by [cert-manager](https://cert-manager.io/). A new certificate will be requested the first time it is used by a Pod, it will be reused after that (subject to cert-manager renewal rules). [1]: https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-certmanager (see [below for nested schema](#nestedatt--spec--backend--experimental_cert_manager))
 - `k8s_search` (Attributes) The ['k8sSearch' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-k8ssearch) can be used to mount Secrets across namespaces into Pods. (see [below for nested schema](#nestedatt--spec--backend--k8s_search))
 - `kerberos_keytab` (Attributes) The ['kerberosKeytab' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-kerberoskeytab) creates a Kerberos keytab file for a selected realm. The Kerberos KDC and administrator credentials must be provided by the administrator. (see [below for nested schema](#nestedatt--spec--backend--kerberos_keytab))
@@ -87,6 +87,7 @@ Optional:
 
 - `auto_generate` (Boolean) Whether the certificate authority should be managed by Secret Operator, including being generated if it does not already exist.
 - `ca_certificate_lifetime` (String) The lifetime of each generated certificate authority. Should always be more than double 'maxCertificateLifetime'. If 'autoGenerate: true' then the Secret Operator will prepare a new CA certificate the old CA approaches expiration. If 'autoGenerate: false' then the Secret Operator will log a warning instead.
+- `key_generation` (Attributes) The algorithm used to generate a key pair and required configuration settings. Currently only RSA and a key length of 2048, 3072 or 4096 bits can be configured. (see [below for nested schema](#nestedatt--spec--backend--auto_tls--ca--key_generation))
 
 <a id="nestedatt--spec--backend--auto_tls--ca--secret"></a>
 ### Nested Schema for `spec.backend.auto_tls.ca.secret`
@@ -95,6 +96,22 @@ Required:
 
 - `name` (String) Name of the Secret being referred to.
 - `namespace` (String) Namespace of the Secret being referred to.
+
+
+<a id="nestedatt--spec--backend--auto_tls--ca--key_generation"></a>
+### Nested Schema for `spec.backend.auto_tls.ca.key_generation`
+
+Optional:
+
+- `rsa` (Attributes) (see [below for nested schema](#nestedatt--spec--backend--auto_tls--ca--key_generation--rsa))
+
+<a id="nestedatt--spec--backend--auto_tls--ca--key_generation--rsa"></a>
+### Nested Schema for `spec.backend.auto_tls.ca.key_generation.rsa`
+
+Required:
+
+- `length` (Number) The amount of bits used for generating the RSA keypair. Currently, '2048', '3072' and '4096' are supported. Defaults to '2048' bits.
+
 
 
 

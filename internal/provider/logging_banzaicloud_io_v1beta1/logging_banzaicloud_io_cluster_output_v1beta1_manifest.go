@@ -1538,11 +1538,12 @@ type LoggingBanzaicloudIoClusterOutputV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"keytab" json:"keytab,omitempty"`
-			Max_send_retries  *int64  `tfsdk:"max_send_retries" json:"max_send_retries,omitempty"`
-			Message_key_key   *string `tfsdk:"message_key_key" json:"message_key_key,omitempty"`
-			Partition_key     *string `tfsdk:"partition_key" json:"partition_key,omitempty"`
-			Partition_key_key *string `tfsdk:"partition_key_key" json:"partition_key_key,omitempty"`
-			Password          *struct {
+			Max_send_limit_bytes *int64  `tfsdk:"max_send_limit_bytes" json:"max_send_limit_bytes,omitempty"`
+			Max_send_retries     *int64  `tfsdk:"max_send_retries" json:"max_send_retries,omitempty"`
+			Message_key_key      *string `tfsdk:"message_key_key" json:"message_key_key,omitempty"`
+			Partition_key        *string `tfsdk:"partition_key" json:"partition_key,omitempty"`
+			Partition_key_key    *string `tfsdk:"partition_key_key" json:"partition_key_key,omitempty"`
+			Password             *struct {
 				MountFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -13865,6 +13866,14 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Beta1Manifest) Schema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"max_send_limit_bytes": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"max_send_retries": schema.Int64Attribute{

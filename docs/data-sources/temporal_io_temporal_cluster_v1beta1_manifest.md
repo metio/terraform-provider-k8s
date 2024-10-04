@@ -797,6 +797,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+
 
 
 
@@ -858,7 +862,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -894,7 +898,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -907,7 +911,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -966,7 +970,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 <a id="nestedatt--spec--job_resources"></a>
@@ -984,6 +988,10 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
 
 
 
@@ -1101,55 +1109,25 @@ Optional:
 
 Required:
 
-- `selector` (Attributes) Label selector to select the Kubernetes 'Endpoints' objects. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector))
+- `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints))
+- `selector` (Attributes) Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector))
 
 Optional:
 
 - `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--attach_metadata))
 - `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.
-- `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints))
 - `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.
 - `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.
-- `namespace_selector` (Attributes) Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--namespace_selector))
+- `namespace_selector` (Attributes) 'namespaceSelector' defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--namespace_selector))
 - `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.
 - `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.
 - `scrape_class` (String) The scrape class to apply.
 - `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.
 - `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.
 - `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that will be accepted.
-
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
-
-
-
-<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--attach_metadata"></a>
-### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.attach_metadata`
-
-Optional:
-
-- `node` (Boolean) When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.
-
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints`
@@ -1196,7 +1174,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1218,7 +1196,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1231,7 +1209,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1245,7 +1223,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1275,7 +1253,12 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+- `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config))
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.client_id`
@@ -1294,7 +1277,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1307,7 +1290,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1321,8 +1304,105 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--ca"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--ca--secret))
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--ca--secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--cert"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--cert--secret))
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--cert--secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--tls_config--key_secret"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.oauth2.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 
@@ -1352,6 +1432,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config--ca"></a>
@@ -1371,7 +1453,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1384,7 +1466,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1406,7 +1488,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1419,7 +1501,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1433,10 +1515,40 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--attach_metadata"></a>
+### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.attach_metadata`
+
+Optional:
+
+- `node` (Boolean) When set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the 'list' and 'watch' permissions on the 'Nodes' objects.
 
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--namespace_selector"></a>
@@ -1546,6 +1658,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+
 
 
 
@@ -1629,6 +1745,10 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
 
 
 
@@ -1715,6 +1835,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+
 
 
 
@@ -1798,6 +1922,10 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
 
 
 
@@ -1935,6 +2063,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+
 
 
 
@@ -2043,6 +2175,10 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
 
 
 

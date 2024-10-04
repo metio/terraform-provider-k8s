@@ -48,7 +48,12 @@ type SecretsStackableTechSecretClassV1Alpha1ManifestData struct {
 				Ca *struct {
 					AutoGenerate          *bool   `tfsdk:"auto_generate" json:"autoGenerate,omitempty"`
 					CaCertificateLifetime *string `tfsdk:"ca_certificate_lifetime" json:"caCertificateLifetime,omitempty"`
-					Secret                *struct {
+					KeyGeneration         *struct {
+						Rsa *struct {
+							Length *int64 `tfsdk:"length" json:"length,omitempty"`
+						} `tfsdk:"rsa" json:"rsa,omitempty"`
+					} `tfsdk:"key_generation" json:"keyGeneration,omitempty"`
+					Secret *struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"secret" json:"secret,omitempty"`
@@ -173,8 +178,8 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "Each SecretClass is associated with a single [backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend), which dictates the mechanism for issuing that kind of Secret.",
 						Attributes: map[string]schema.Attribute{
 							"auto_tls": schema.SingleNestedAttribute{
-								Description:         "The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and keypair will be generated and signed for each Pod, keys or certificates are never reused.",
-								MarkdownDescription: "The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and keypair will be generated and signed for each Pod, keys or certificates are never reused.",
+								Description:         "The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and key pair will be generated and signed for each Pod, keys or certificates are never reused.",
+								MarkdownDescription: "The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and key pair will be generated and signed for each Pod, keys or certificates are never reused.",
 								Attributes: map[string]schema.Attribute{
 									"ca": schema.SingleNestedAttribute{
 										Description:         "Configures the certificate authority used to issue Pod certificates.",
@@ -194,6 +199,35 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Conte
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"key_generation": schema.SingleNestedAttribute{
+												Description:         "The algorithm used to generate a key pair and required configuration settings. Currently only RSA and a key length of 2048, 3072 or 4096 bits can be configured.",
+												MarkdownDescription: "The algorithm used to generate a key pair and required configuration settings. Currently only RSA and a key length of 2048, 3072 or 4096 bits can be configured.",
+												Attributes: map[string]schema.Attribute{
+													"rsa": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"length": schema.Int64Attribute{
+																Description:         "The amount of bits used for generating the RSA keypair. Currently, '2048', '3072' and '4096' are supported. Defaults to '2048' bits.",
+																MarkdownDescription: "The amount of bits used for generating the RSA keypair. Currently, '2048', '3072' and '4096' are supported. Defaults to '2048' bits.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.OneOf(2048, 3072, 4096),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"secret": schema.SingleNestedAttribute{

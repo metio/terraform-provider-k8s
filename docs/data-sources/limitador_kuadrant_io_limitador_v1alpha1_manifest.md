@@ -57,6 +57,7 @@ Optional:
 
 - `affinity` (Attributes) Affinity is a group of affinity scheduling rules. (see [below for nested schema](#nestedatt--spec--affinity))
 - `image` (String)
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--limits))
 - `listener` (Attributes) (see [below for nested schema](#nestedatt--spec--listener))
 - `pdb` (Attributes) (see [below for nested schema](#nestedatt--spec--pdb))
@@ -441,6 +442,14 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--limits"></a>

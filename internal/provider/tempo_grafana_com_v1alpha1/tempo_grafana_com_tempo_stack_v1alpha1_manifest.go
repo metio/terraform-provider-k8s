@@ -149,9 +149,37 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 		StorageSize      *string `tfsdk:"storage_size" json:"storageSize,omitempty"`
 		Template         *struct {
 			Compactor *struct {
-				NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-				Resources    *struct {
+				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				PodSecurityContext *struct {
+					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions      *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					Sysctls            *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+				Resources *struct {
 					Claims *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
@@ -168,9 +196,37 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 			} `tfsdk:"compactor" json:"compactor,omitempty"`
 			Distributor *struct {
 				Component *struct {
-					NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-					Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-					Resources    *struct {
+					NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					PodSecurityContext *struct {
+						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxOptions      *struct {
+							Level *string `tfsdk:"level" json:"level,omitempty"`
+							Role  *string `tfsdk:"role" json:"role,omitempty"`
+							Type  *string `tfsdk:"type" json:"type,omitempty"`
+							User  *string `tfsdk:"user" json:"user,omitempty"`
+						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+						SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+						Sysctls            *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+						WindowsOptions *struct {
+							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+							HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+					} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+					Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+					Resources *struct {
 						Claims *[]struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
@@ -194,9 +250,37 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 			} `tfsdk:"distributor" json:"distributor,omitempty"`
 			Gateway *struct {
 				Component *struct {
-					NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-					Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-					Resources    *struct {
+					NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					PodSecurityContext *struct {
+						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxOptions      *struct {
+							Level *string `tfsdk:"level" json:"level,omitempty"`
+							Role  *string `tfsdk:"role" json:"role,omitempty"`
+							Type  *string `tfsdk:"type" json:"type,omitempty"`
+							User  *string `tfsdk:"user" json:"user,omitempty"`
+						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+						SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+						Sysctls            *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+						WindowsOptions *struct {
+							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+							HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+					} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+					Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+					Resources *struct {
 						Claims *[]struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
@@ -223,9 +307,37 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 				} `tfsdk:"ingress" json:"ingress,omitempty"`
 			} `tfsdk:"gateway" json:"gateway,omitempty"`
 			Ingester *struct {
-				NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-				Resources    *struct {
+				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				PodSecurityContext *struct {
+					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions      *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					Sysctls            *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+				Resources *struct {
 					Claims *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
@@ -241,9 +353,37 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			} `tfsdk:"ingester" json:"ingester,omitempty"`
 			Querier *struct {
-				NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-				Resources    *struct {
+				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				PodSecurityContext *struct {
+					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions      *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					Sysctls            *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+				Resources *struct {
 					Claims *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
@@ -260,9 +400,37 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 			} `tfsdk:"querier" json:"querier,omitempty"`
 			QueryFrontend *struct {
 				Component *struct {
-					NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-					Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-					Resources    *struct {
+					NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					PodSecurityContext *struct {
+						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxOptions      *struct {
+							Level *string `tfsdk:"level" json:"level,omitempty"`
+							Role  *string `tfsdk:"role" json:"role,omitempty"`
+							Type  *string `tfsdk:"type" json:"type,omitempty"`
+							User  *string `tfsdk:"user" json:"user,omitempty"`
+						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+						SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+						Sysctls            *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+						WindowsOptions *struct {
+							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+							HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+					} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+					Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+					Resources *struct {
 						Claims *[]struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
@@ -853,8 +1021,8 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"replication_factor": schema.Int64Attribute{
-						Description:         "ReplicationFactor is used to define how many component replicas should exist.",
-						MarkdownDescription: "ReplicationFactor is used to define how many component replicas should exist.",
+						Description:         "The replication factor is a configuration setting that determines how many ingesters need to acknowledge the data from the distributors before accepting a span.",
+						MarkdownDescription: "The replication factor is a configuration setting that determines how many ingesters need to acknowledge the data from the distributors before accepting a span.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1113,6 +1281,198 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 										Computed:            false,
 									},
 
+									"pod_security_context": schema.SingleNestedAttribute{
+										Description:         "PodSecurityContext defines security context will be applied to all pods of this component.",
+										MarkdownDescription: "PodSecurityContext defines security context will be applied to all pods of this component.",
+										Attributes: map[string]schema.Attribute{
+											"fs_group": schema.Int64Attribute{
+												Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"fs_group_change_policy": schema.StringAttribute{
+												Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_group": schema.Int64Attribute{
+												Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_non_root": schema.BoolAttribute{
+												Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user": schema.Int64Attribute{
+												Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_options": schema.SingleNestedAttribute{
+												Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"level": schema.StringAttribute{
+														Description:         "Level is SELinux level label that applies to the container.",
+														MarkdownDescription: "Level is SELinux level label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"role": schema.StringAttribute{
+														Description:         "Role is a SELinux role label that applies to the container.",
+														MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "Type is a SELinux type label that applies to the container.",
+														MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user": schema.StringAttribute{
+														Description:         "User is a SELinux user label that applies to the container.",
+														MarkdownDescription: "User is a SELinux user label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+														MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"supplemental_groups": schema.ListAttribute{
+												Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sysctls": schema.ListNestedAttribute{
+												Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of a property to set",
+															MarkdownDescription: "Name of a property to set",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of a property to set",
+															MarkdownDescription: "Value of a property to set",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": schema.SingleNestedAttribute{
+												Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+												MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+												Attributes: map[string]schema.Attribute{
+													"gmsa_credential_spec": schema.StringAttribute{
+														Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+														MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"gmsa_credential_spec_name": schema.StringAttribute{
+														Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+														MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"host_process": schema.BoolAttribute{
+														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user_name": schema.StringAttribute{
+														Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"replicas": schema.Int64Attribute{
 										Description:         "Replicas defines the number of replicas to be created for this component.",
 										MarkdownDescription: "Replicas defines the number of replicas to be created for this component.",
@@ -1238,6 +1598,198 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"pod_security_context": schema.SingleNestedAttribute{
+												Description:         "PodSecurityContext defines security context will be applied to all pods of this component.",
+												MarkdownDescription: "PodSecurityContext defines security context will be applied to all pods of this component.",
+												Attributes: map[string]schema.Attribute{
+													"fs_group": schema.Int64Attribute{
+														Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fs_group_change_policy": schema.StringAttribute{
+														Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_group": schema.Int64Attribute{
+														Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_non_root": schema.BoolAttribute{
+														Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user": schema.Int64Attribute{
+														Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_options": schema.SingleNestedAttribute{
+														Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"level": schema.StringAttribute{
+																Description:         "Level is SELinux level label that applies to the container.",
+																MarkdownDescription: "Level is SELinux level label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"role": schema.StringAttribute{
+																Description:         "Role is a SELinux role label that applies to the container.",
+																MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type is a SELinux type label that applies to the container.",
+																MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"user": schema.StringAttribute{
+																Description:         "User is a SELinux user label that applies to the container.",
+																MarkdownDescription: "User is a SELinux user label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"seccomp_profile": schema.SingleNestedAttribute{
+														Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"supplemental_groups": schema.ListAttribute{
+														Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sysctls": schema.ListNestedAttribute{
+														Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name of a property to set",
+																	MarkdownDescription: "Name of a property to set",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value of a property to set",
+																	MarkdownDescription: "Value of a property to set",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"windows_options": schema.SingleNestedAttribute{
+														Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														Attributes: map[string]schema.Attribute{
+															"gmsa_credential_spec": schema.StringAttribute{
+																Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"gmsa_credential_spec_name": schema.StringAttribute{
+																Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"host_process": schema.BoolAttribute{
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user_name": schema.StringAttribute{
+																Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"replicas": schema.Int64Attribute{
@@ -1411,6 +1963,198 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"pod_security_context": schema.SingleNestedAttribute{
+												Description:         "PodSecurityContext defines security context will be applied to all pods of this component.",
+												MarkdownDescription: "PodSecurityContext defines security context will be applied to all pods of this component.",
+												Attributes: map[string]schema.Attribute{
+													"fs_group": schema.Int64Attribute{
+														Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fs_group_change_policy": schema.StringAttribute{
+														Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_group": schema.Int64Attribute{
+														Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_non_root": schema.BoolAttribute{
+														Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user": schema.Int64Attribute{
+														Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_options": schema.SingleNestedAttribute{
+														Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"level": schema.StringAttribute{
+																Description:         "Level is SELinux level label that applies to the container.",
+																MarkdownDescription: "Level is SELinux level label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"role": schema.StringAttribute{
+																Description:         "Role is a SELinux role label that applies to the container.",
+																MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type is a SELinux type label that applies to the container.",
+																MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"user": schema.StringAttribute{
+																Description:         "User is a SELinux user label that applies to the container.",
+																MarkdownDescription: "User is a SELinux user label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"seccomp_profile": schema.SingleNestedAttribute{
+														Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"supplemental_groups": schema.ListAttribute{
+														Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sysctls": schema.ListNestedAttribute{
+														Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name of a property to set",
+																	MarkdownDescription: "Name of a property to set",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value of a property to set",
+																	MarkdownDescription: "Value of a property to set",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"windows_options": schema.SingleNestedAttribute{
+														Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														Attributes: map[string]schema.Attribute{
+															"gmsa_credential_spec": schema.StringAttribute{
+																Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"gmsa_credential_spec_name": schema.StringAttribute{
+																Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"host_process": schema.BoolAttribute{
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user_name": schema.StringAttribute{
+																Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"replicas": schema.Int64Attribute{
@@ -1614,6 +2358,198 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 										Computed:            false,
 									},
 
+									"pod_security_context": schema.SingleNestedAttribute{
+										Description:         "PodSecurityContext defines security context will be applied to all pods of this component.",
+										MarkdownDescription: "PodSecurityContext defines security context will be applied to all pods of this component.",
+										Attributes: map[string]schema.Attribute{
+											"fs_group": schema.Int64Attribute{
+												Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"fs_group_change_policy": schema.StringAttribute{
+												Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_group": schema.Int64Attribute{
+												Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_non_root": schema.BoolAttribute{
+												Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user": schema.Int64Attribute{
+												Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_options": schema.SingleNestedAttribute{
+												Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"level": schema.StringAttribute{
+														Description:         "Level is SELinux level label that applies to the container.",
+														MarkdownDescription: "Level is SELinux level label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"role": schema.StringAttribute{
+														Description:         "Role is a SELinux role label that applies to the container.",
+														MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "Type is a SELinux type label that applies to the container.",
+														MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user": schema.StringAttribute{
+														Description:         "User is a SELinux user label that applies to the container.",
+														MarkdownDescription: "User is a SELinux user label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+														MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"supplemental_groups": schema.ListAttribute{
+												Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sysctls": schema.ListNestedAttribute{
+												Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of a property to set",
+															MarkdownDescription: "Name of a property to set",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of a property to set",
+															MarkdownDescription: "Value of a property to set",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": schema.SingleNestedAttribute{
+												Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+												MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+												Attributes: map[string]schema.Attribute{
+													"gmsa_credential_spec": schema.StringAttribute{
+														Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+														MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"gmsa_credential_spec_name": schema.StringAttribute{
+														Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+														MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"host_process": schema.BoolAttribute{
+														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user_name": schema.StringAttribute{
+														Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"replicas": schema.Int64Attribute{
 										Description:         "Replicas defines the number of replicas to be created for this component.",
 										MarkdownDescription: "Replicas defines the number of replicas to be created for this component.",
@@ -1735,6 +2671,198 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"pod_security_context": schema.SingleNestedAttribute{
+										Description:         "PodSecurityContext defines security context will be applied to all pods of this component.",
+										MarkdownDescription: "PodSecurityContext defines security context will be applied to all pods of this component.",
+										Attributes: map[string]schema.Attribute{
+											"fs_group": schema.Int64Attribute{
+												Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"fs_group_change_policy": schema.StringAttribute{
+												Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_group": schema.Int64Attribute{
+												Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_non_root": schema.BoolAttribute{
+												Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user": schema.Int64Attribute{
+												Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_options": schema.SingleNestedAttribute{
+												Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"level": schema.StringAttribute{
+														Description:         "Level is SELinux level label that applies to the container.",
+														MarkdownDescription: "Level is SELinux level label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"role": schema.StringAttribute{
+														Description:         "Role is a SELinux role label that applies to the container.",
+														MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "Type is a SELinux type label that applies to the container.",
+														MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user": schema.StringAttribute{
+														Description:         "User is a SELinux user label that applies to the container.",
+														MarkdownDescription: "User is a SELinux user label that applies to the container.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+														MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"supplemental_groups": schema.ListAttribute{
+												Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sysctls": schema.ListNestedAttribute{
+												Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of a property to set",
+															MarkdownDescription: "Name of a property to set",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of a property to set",
+															MarkdownDescription: "Value of a property to set",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": schema.SingleNestedAttribute{
+												Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+												MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+												Attributes: map[string]schema.Attribute{
+													"gmsa_credential_spec": schema.StringAttribute{
+														Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+														MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"gmsa_credential_spec_name": schema.StringAttribute{
+														Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+														MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"host_process": schema.BoolAttribute{
+														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user_name": schema.StringAttribute{
+														Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"replicas": schema.Int64Attribute{
@@ -1862,6 +2990,198 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"pod_security_context": schema.SingleNestedAttribute{
+												Description:         "PodSecurityContext defines security context will be applied to all pods of this component.",
+												MarkdownDescription: "PodSecurityContext defines security context will be applied to all pods of this component.",
+												Attributes: map[string]schema.Attribute{
+													"fs_group": schema.Int64Attribute{
+														Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fs_group_change_policy": schema.StringAttribute{
+														Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_group": schema.Int64Attribute{
+														Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_non_root": schema.BoolAttribute{
+														Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user": schema.Int64Attribute{
+														Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_options": schema.SingleNestedAttribute{
+														Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"level": schema.StringAttribute{
+																Description:         "Level is SELinux level label that applies to the container.",
+																MarkdownDescription: "Level is SELinux level label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"role": schema.StringAttribute{
+																Description:         "Role is a SELinux role label that applies to the container.",
+																MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type is a SELinux type label that applies to the container.",
+																MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"user": schema.StringAttribute{
+																Description:         "User is a SELinux user label that applies to the container.",
+																MarkdownDescription: "User is a SELinux user label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"seccomp_profile": schema.SingleNestedAttribute{
+														Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"supplemental_groups": schema.ListAttribute{
+														Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sysctls": schema.ListNestedAttribute{
+														Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name of a property to set",
+																	MarkdownDescription: "Name of a property to set",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value of a property to set",
+																	MarkdownDescription: "Value of a property to set",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"windows_options": schema.SingleNestedAttribute{
+														Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														Attributes: map[string]schema.Attribute{
+															"gmsa_credential_spec": schema.StringAttribute{
+																Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"gmsa_credential_spec_name": schema.StringAttribute{
+																Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"host_process": schema.BoolAttribute{
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user_name": schema.StringAttribute{
+																Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"replicas": schema.Int64Attribute{

@@ -236,8 +236,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineV1Alpha4Manifest) Schema(_ con
 						MarkdownDescription: "Network is the network configuration for this machine's VM.",
 						Attributes: map[string]schema.Attribute{
 							"devices": schema.ListNestedAttribute{
-								Description:         "Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name",
-								MarkdownDescription: "Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name",
+								Description:         "Devices is the list of network devices used by the virtual machine. ",
+								MarkdownDescription: "Devices is the list of network devices used by the virtual machine. ",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"device_name": schema.StringAttribute{

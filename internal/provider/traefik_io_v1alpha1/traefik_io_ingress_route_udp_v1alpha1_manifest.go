@@ -135,8 +135,8 @@ func (r *TraefikIoIngressRouteUdpV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "IngressRouteUDPSpec defines the desired state of a IngressRouteUDP.",
 				Attributes: map[string]schema.Attribute{
 					"entry_points": schema.ListAttribute{
-						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.",
-						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.",
+						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/entrypoints/ Default: all.",
+						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/entrypoints/ Default: all.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

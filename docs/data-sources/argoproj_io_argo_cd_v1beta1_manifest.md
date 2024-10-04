@@ -104,10 +104,12 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) Custom annotations to pods deployed by the operator
 - `enabled` (Boolean) Enabled is the flag to enable the Application Set Controller during ArgoCD installation. (optional, default 'true')
 - `env` (Attributes List) Env lets you specify environment for applicationSet controller pods (see [below for nested schema](#nestedatt--spec--application_set--env))
 - `extra_command_args` (List of String) ExtraCommandArgs allows users to pass command line arguments to ApplicationSet controller. They get added to default command line arguments provided by the operator. Please note that the command line arguments provided as part of ExtraCommandArgs will not overwrite the default command line arguments.
 - `image` (String) Image is the Argo CD ApplicationSet image (optional)
+- `labels` (Map of String) Custom labels to pods deployed by the operator
 - `log_level` (String) LogLevel describes the log level that should be used by the ApplicationSet controller. Defaults to ArgoCDDefaultLogLevel if not set. Valid options are debug,info, error, and warn.
 - `resources` (Attributes) Resources defines the Compute Resources required by the container for ApplicationSet. (see [below for nested schema](#nestedatt--spec--application_set--resources))
 - `scm_providers` (List of String) SCMProviders defines the list of allowed custom SCM provider API URLs
@@ -262,15 +264,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--application_set--webhook_server--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--application_set--webhook_server--route--tls--external_certificate"></a>
+### Nested Schema for `spec.application_set.webhook_server.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 
@@ -293,11 +304,13 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) Custom annotations to pods deployed by the operator
 - `app_sync` (String) AppSync is used to control the sync frequency, by default the ArgoCD controller polls Git every 3m. Set this to a duration, e.g. 10m or 600s to control the synchronisation frequency.
 - `enabled` (Boolean) Enabled is the flag to enable the Application Controller during ArgoCD installation. (optional, default 'true')
 - `env` (Attributes List) Env lets you specify environment for application controller pods (see [below for nested schema](#nestedatt--spec--controller--env))
 - `extra_command_args` (List of String) Extra Command arguments allows users to pass command line arguments to controller workload. They get added to default command line arguments provided by the operator. Please note that the command line arguments provided as part of ExtraCommandArgs will not overwrite the default command line arguments.
 - `init_containers` (Attributes List) InitContainers defines the list of initialization containers for the Application Controller component. (see [below for nested schema](#nestedatt--spec--controller--init_containers))
+- `labels` (Map of String) Custom labels to pods deployed by the operator
 - `log_format` (String) LogFormat refers to the log format used by the Application Controller component. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.
 - `log_level` (String) LogLevel refers to the log level used by the Application Controller component. Defaults to ArgoCDDefaultLogLevel if not configured. Valid options are debug, info, error, and warn.
 - `parallelism_limit` (Number) ParallelismLimit defines the limit for parallel kubectl operations
@@ -2485,15 +2498,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--grafana--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--grafana--route--tls--external_certificate"></a>
+### Nested Schema for `spec.grafana.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 
@@ -2761,15 +2783,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--prometheus--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--prometheus--route--tls--external_certificate"></a>
+### Nested Schema for `spec.prometheus.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 
@@ -2822,6 +2853,7 @@ Required:
 
 Optional:
 
+- `annotations` (Map of String) Custom annotations to pods deployed by the operator
 - `autotls` (String) AutoTLS specifies the method to use for automatic TLS configuration for the repo server The value specified here can currently be: - openshift - Use the OpenShift service CA to request TLS config
 - `enabled` (Boolean) Enabled is the flag to enable Repo Server during ArgoCD installation. (optional, default 'true')
 - `env` (Attributes List) Env lets you specify environment for repo server pods (see [below for nested schema](#nestedatt--spec--repo--env))
@@ -2829,6 +2861,7 @@ Optional:
 - `extra_repo_command_args` (List of String) Extra Command arguments allows users to pass command line arguments to repo server workload. They get added to default command line arguments provided by the operator. Please note that the command line arguments provided as part of ExtraRepoCommandArgs will not overwrite the default command line arguments.
 - `image` (String) Image is the ArgoCD Repo Server container image.
 - `init_containers` (Attributes List) InitContainers defines the list of initialization containers for the repo server deployment (see [below for nested schema](#nestedatt--spec--repo--init_containers))
+- `labels` (Map of String) Custom labels to pods deployed by the operator
 - `log_format` (String) LogFormat describes the log format that should be used by the Repo Server. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.
 - `log_level` (String) LogLevel describes the log level that should be used by the Repo Server. Defaults to ArgoCDDefaultLogLevel if not set. Valid options are debug, info, error, and warn.
 - `mountsatoken` (Boolean) MountSAToken describes whether you would like to have the Repo server mount the service account token
@@ -4982,6 +5015,7 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) Custom annotations to pods deployed by the operator
 - `autoscale` (Attributes) Autoscale defines the autoscale options for the Argo CD Server component. (see [below for nested schema](#nestedatt--spec--server--autoscale))
 - `enabled` (Boolean) Enabled is the flag to enable ArgoCD Server during ArgoCD installation. (optional, default 'true')
 - `env` (Attributes List) Env lets you specify environment for API server pods (see [below for nested schema](#nestedatt--spec--server--env))
@@ -4991,6 +5025,7 @@ Optional:
 - `ingress` (Attributes) Ingress defines the desired state for an Ingress for the Argo CD Server component. (see [below for nested schema](#nestedatt--spec--server--ingress))
 - `init_containers` (Attributes List) InitContainers defines the list of initialization containers for the Argo CD Server component. (see [below for nested schema](#nestedatt--spec--server--init_containers))
 - `insecure` (Boolean) Insecure toggles the insecure flag.
+- `labels` (Map of String) Custom labels to pods deployed by the operator
 - `log_format` (String) LogFormat refers to the log level to be used by the ArgoCD Server component. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.
 - `log_level` (String) LogLevel refers to the log level to be used by the ArgoCD Server component. Defaults to ArgoCDDefaultLogLevel if not set. Valid options are debug, info, error, and warn.
 - `replicas` (Number) Replicas defines the number of replicas for argocd-server. Default is nil. Value should be greater than or equal to 0. Value will be ignored if Autoscaler is enabled.
@@ -5811,15 +5846,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--server--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--server--route--tls--external_certificate"></a>
+### Nested Schema for `spec.server.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 

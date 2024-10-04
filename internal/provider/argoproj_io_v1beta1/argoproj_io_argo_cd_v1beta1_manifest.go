@@ -47,8 +47,9 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 		AggregatedClusterRoles      *bool   `tfsdk:"aggregated_cluster_roles" json:"aggregatedClusterRoles,omitempty"`
 		ApplicationInstanceLabelKey *string `tfsdk:"application_instance_label_key" json:"applicationInstanceLabelKey,omitempty"`
 		ApplicationSet              *struct {
-			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env     *[]struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Enabled     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env         *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -73,9 +74,10 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
-			ExtraCommandArgs *[]string `tfsdk:"extra_command_args" json:"extraCommandArgs,omitempty"`
-			Image            *string   `tfsdk:"image" json:"image,omitempty"`
-			LogLevel         *string   `tfsdk:"log_level" json:"logLevel,omitempty"`
+			ExtraCommandArgs *[]string          `tfsdk:"extra_command_args" json:"extraCommandArgs,omitempty"`
+			Image            *string            `tfsdk:"image" json:"image,omitempty"`
+			Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LogLevel         *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
 			Resources        *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -105,9 +107,12 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					Path        *string            `tfsdk:"path" json:"path,omitempty"`
 					Tls         *struct {
-						CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-						Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-						DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+						CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+						Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+						DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+						ExternalCertificate      *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 						InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 						Key                           *string `tfsdk:"key" json:"key,omitempty"`
 						Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -122,9 +127,10 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 		} `tfsdk:"banner" json:"banner,omitempty"`
 		ConfigManagementPlugins *string `tfsdk:"config_management_plugins" json:"configManagementPlugins,omitempty"`
 		Controller              *struct {
-			AppSync *string `tfsdk:"app_sync" json:"appSync,omitempty"`
-			Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env     *[]struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			AppSync     *string            `tfsdk:"app_sync" json:"appSync,omitempty"`
+			Enabled     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env         *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -386,9 +392,10 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"init_containers" json:"initContainers,omitempty"`
-			LogFormat        *string `tfsdk:"log_format" json:"logFormat,omitempty"`
-			LogLevel         *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-			ParallelismLimit *int64  `tfsdk:"parallelism_limit" json:"parallelismLimit,omitempty"`
+			Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LogFormat        *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+			LogLevel         *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+			ParallelismLimit *int64             `tfsdk:"parallelism_limit" json:"parallelismLimit,omitempty"`
 			Processors       *struct {
 				Operation *int64 `tfsdk:"operation" json:"operation,omitempty"`
 				Status    *int64 `tfsdk:"status" json:"status,omitempty"`
@@ -976,9 +983,12 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Path        *string            `tfsdk:"path" json:"path,omitempty"`
 				Tls         *struct {
-					CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-					Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-					DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+					Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					ExternalCertificate      *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 					InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 					Key                           *string `tfsdk:"key" json:"key,omitempty"`
 					Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -1090,9 +1100,12 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Path        *string            `tfsdk:"path" json:"path,omitempty"`
 				Tls         *struct {
-					CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-					Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-					DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+					Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					ExternalCertificate      *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 					InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 					Key                           *string `tfsdk:"key" json:"key,omitempty"`
 					Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -1123,9 +1136,10 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"redis" json:"redis,omitempty"`
 		Repo *struct {
-			Autotls *string `tfsdk:"autotls" json:"autotls,omitempty"`
-			Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env     *[]struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Autotls     *string            `tfsdk:"autotls" json:"autotls,omitempty"`
+			Enabled     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env         *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -1389,11 +1403,12 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"init_containers" json:"initContainers,omitempty"`
-			LogFormat    *string `tfsdk:"log_format" json:"logFormat,omitempty"`
-			LogLevel     *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-			Mountsatoken *bool   `tfsdk:"mountsatoken" json:"mountsatoken,omitempty"`
-			Remote       *string `tfsdk:"remote" json:"remote,omitempty"`
-			Replicas     *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
+			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LogFormat    *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+			LogLevel     *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+			Mountsatoken *bool              `tfsdk:"mountsatoken" json:"mountsatoken,omitempty"`
+			Remote       *string            `tfsdk:"remote" json:"remote,omitempty"`
+			Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources    *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -1971,7 +1986,8 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 		ResourceInclusions     *string `tfsdk:"resource_inclusions" json:"resourceInclusions,omitempty"`
 		ResourceTrackingMethod *string `tfsdk:"resource_tracking_method" json:"resourceTrackingMethod,omitempty"`
 		Server                 *struct {
-			Autoscale *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Autoscale   *struct {
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				Hpa     *struct {
 					MaxReplicas    *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
@@ -2271,10 +2287,11 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"init_containers" json:"initContainers,omitempty"`
-			Insecure  *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
-			LogFormat *string `tfsdk:"log_format" json:"logFormat,omitempty"`
-			LogLevel  *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-			Replicas  *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
+			Insecure  *bool              `tfsdk:"insecure" json:"insecure,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LogFormat *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+			LogLevel  *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+			Replicas  *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -2288,9 +2305,12 @@ type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Path        *string            `tfsdk:"path" json:"path,omitempty"`
 				Tls         *struct {
-					CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-					Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-					DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+					Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					ExternalCertificate      *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 					InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 					Key                           *string `tfsdk:"key" json:"key,omitempty"`
 					Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -3003,6 +3023,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "ArgoCDApplicationSet defines whether the Argo CD ApplicationSet controller should be installed.",
 						MarkdownDescription: "ArgoCDApplicationSet defines whether the Argo CD ApplicationSet controller should be installed.",
 						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Custom annotations to pods deployed by the operator",
+								MarkdownDescription: "Custom annotations to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "Enabled is the flag to enable the Application Set Controller during ArgoCD installation. (optional, default 'true')",
 								MarkdownDescription: "Enabled is the flag to enable the Application Set Controller during ArgoCD installation. (optional, default 'true')",
@@ -3183,6 +3212,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 							"image": schema.StringAttribute{
 								Description:         "Image is the Argo CD ApplicationSet image (optional)",
 								MarkdownDescription: "Image is the Argo CD ApplicationSet image (optional)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Custom labels to pods deployed by the operator",
+								MarkdownDescription: "Custom labels to pods deployed by the operator",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3409,8 +3447,8 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 													},
 
 													"certificate": schema.StringAttribute{
-														Description:         "certificate provides certificate contents",
-														MarkdownDescription: "certificate provides certificate contents",
+														Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+														MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3424,12 +3462,32 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 														Computed:            false,
 													},
 
+													"external_certificate": schema.SingleNestedAttribute{
+														Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+														MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"insecure_edge_termination_policy": schema.StringAttribute{
-														Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-														MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+														Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+														MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+														},
 													},
 
 													"key": schema.StringAttribute{
@@ -3441,11 +3499,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 													},
 
 													"termination": schema.StringAttribute{
-														Description:         "termination indicates termination type.",
-														MarkdownDescription: "termination indicates termination type.",
+														Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+														MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+														},
 													},
 												},
 												Required: false,
@@ -3513,6 +3574,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "Controller defines the Application Controller options for ArgoCD.",
 						MarkdownDescription: "Controller defines the Application Controller options for ArgoCD.",
 						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Custom annotations to pods deployed by the operator",
+								MarkdownDescription: "Custom annotations to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"app_sync": schema.StringAttribute{
 								Description:         "AppSync is used to control the sync frequency, by default the ArgoCD controller polls Git every 3m. Set this to a duration, e.g. 10m or 600s to control the synchronisation frequency.",
 								MarkdownDescription: "AppSync is used to control the sync frequency, by default the ArgoCD controller polls Git every 3m. Set this to a duration, e.g. 10m or 600s to control the synchronisation frequency.",
@@ -5271,6 +5341,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Custom labels to pods deployed by the operator",
+								MarkdownDescription: "Custom labels to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"log_format": schema.StringAttribute{
@@ -9240,8 +9319,8 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "certificate provides certificate contents",
-												MarkdownDescription: "certificate provides certificate contents",
+												Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+												MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9255,12 +9334,32 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 												Computed:            false,
 											},
 
+											"external_certificate": schema.SingleNestedAttribute{
+												Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+												},
 											},
 
 											"key": schema.StringAttribute{
@@ -9272,11 +9371,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "termination indicates termination type.",
-												MarkdownDescription: "termination indicates termination type.",
+												Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+												MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+												},
 											},
 										},
 										Required: false,
@@ -10012,8 +10114,8 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "certificate provides certificate contents",
-												MarkdownDescription: "certificate provides certificate contents",
+												Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+												MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10027,12 +10129,32 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 												Computed:            false,
 											},
 
+											"external_certificate": schema.SingleNestedAttribute{
+												Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+												},
 											},
 
 											"key": schema.StringAttribute{
@@ -10044,11 +10166,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "termination indicates termination type.",
-												MarkdownDescription: "termination indicates termination type.",
+												Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+												MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+												},
 											},
 										},
 										Required: false,
@@ -10230,6 +10355,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "Repo defines the repo server options for Argo CD.",
 						MarkdownDescription: "Repo defines the repo server options for Argo CD.",
 						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Custom annotations to pods deployed by the operator",
+								MarkdownDescription: "Custom annotations to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"autotls": schema.StringAttribute{
 								Description:         "AutoTLS specifies the method to use for automatic TLS configuration for the repo server The value specified here can currently be: - openshift - Use the OpenShift service CA to request TLS config",
 								MarkdownDescription: "AutoTLS specifies the method to use for automatic TLS configuration for the repo server The value specified here can currently be: - openshift - Use the OpenShift service CA to request TLS config",
@@ -12004,6 +12138,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Custom labels to pods deployed by the operator",
+								MarkdownDescription: "Custom labels to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"log_format": schema.StringAttribute{
@@ -15903,6 +16046,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "Server defines the options for the ArgoCD Server component.",
 						MarkdownDescription: "Server defines the options for the ArgoCD Server component.",
 						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Custom annotations to pods deployed by the operator",
+								MarkdownDescription: "Custom annotations to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"autoscale": schema.SingleNestedAttribute{
 								Description:         "Autoscale defines the autoscale options for the Argo CD Server component.",
 								MarkdownDescription: "Autoscale defines the autoscale options for the Argo CD Server component.",
@@ -17911,6 +18063,15 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
+							"labels": schema.MapAttribute{
+								Description:         "Custom labels to pods deployed by the operator",
+								MarkdownDescription: "Custom labels to pods deployed by the operator",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"log_format": schema.StringAttribute{
 								Description:         "LogFormat refers to the log level to be used by the ArgoCD Server component. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.",
 								MarkdownDescription: "LogFormat refers to the log level to be used by the ArgoCD Server component. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.",
@@ -18032,8 +18193,8 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "certificate provides certificate contents",
-												MarkdownDescription: "certificate provides certificate contents",
+												Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+												MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -18047,12 +18208,32 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 												Computed:            false,
 											},
 
+											"external_certificate": schema.SingleNestedAttribute{
+												Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+												},
 											},
 
 											"key": schema.StringAttribute{
@@ -18064,11 +18245,14 @@ func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "termination indicates termination type.",
-												MarkdownDescription: "termination indicates termination type.",
+												Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+												MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+												},
 											},
 										},
 										Required: false,

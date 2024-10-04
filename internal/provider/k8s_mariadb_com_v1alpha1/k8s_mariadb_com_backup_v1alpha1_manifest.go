@@ -76,6 +76,7 @@ type K8SMariadbComBackupV1Alpha1ManifestData struct {
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Args                   *[]string `tfsdk:"args" json:"args,omitempty"`
 		BackoffLimit           *int64    `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
+		Compression            *string   `tfsdk:"compression" json:"compression,omitempty"`
 		Databases              *[]string `tfsdk:"databases" json:"databases,omitempty"`
 		FailedJobsHistoryLimit *int64    `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 		IgnoreGlobalPriv       *bool     `tfsdk:"ignore_global_priv" json:"ignoreGlobalPriv,omitempty"`
@@ -514,6 +515,17 @@ func (r *K8SMariadbComBackupV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"compression": schema.StringAttribute{
+						Description:         "Compression algorithm to be used in the Backup.",
+						MarkdownDescription: "Compression algorithm to be used in the Backup.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("none", "bzip2", "gzip"),
+						},
 					},
 
 					"databases": schema.ListAttribute{

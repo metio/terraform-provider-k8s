@@ -43,6 +43,10 @@ type TinkerbellOrgWorkflowV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		BootOptions *struct {
+			OneTimeNetboot     *bool `tfsdk:"one_time_netboot" json:"oneTimeNetboot,omitempty"`
+			ToggleAllowNetboot *bool `tfsdk:"toggle_allow_netboot" json:"toggleAllowNetboot,omitempty"`
+		} `tfsdk:"boot_options" json:"bootOptions,omitempty"`
 		HardwareMap *map[string]string `tfsdk:"hardware_map" json:"hardwareMap,omitempty"`
 		HardwareRef *string            `tfsdk:"hardware_ref" json:"hardwareRef,omitempty"`
 		TemplateRef *string            `tfsdk:"template_ref" json:"templateRef,omitempty"`
@@ -126,9 +130,34 @@ func (r *TinkerbellOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ data
 				Description:         "WorkflowSpec defines the desired state of Workflow.",
 				MarkdownDescription: "WorkflowSpec defines the desired state of Workflow.",
 				Attributes: map[string]schema.Attribute{
+					"boot_options": schema.SingleNestedAttribute{
+						Description:         "BootOptions are options that control the booting of Hardware.",
+						MarkdownDescription: "BootOptions are options that control the booting of Hardware.",
+						Attributes: map[string]schema.Attribute{
+							"one_time_netboot": schema.BoolAttribute{
+								Description:         "OneTimeNetboot indicates whether the controller should create a job.bmc.tinkerbell.org object for getting the associated hardware into a netbooting state. A HardwareRef that contains a spec.BmcRef must be provided.",
+								MarkdownDescription: "OneTimeNetboot indicates whether the controller should create a job.bmc.tinkerbell.org object for getting the associated hardware into a netbooting state. A HardwareRef that contains a spec.BmcRef must be provided.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"toggle_allow_netboot": schema.BoolAttribute{
+								Description:         "ToggleAllowNetboot indicates whether the controller should toggle the field in the associated hardware for allowing PXE booting. This will be enabled before a Workflow is executed and disabled after the Workflow has completed successfully. A HardwareRef must be provided.",
+								MarkdownDescription: "ToggleAllowNetboot indicates whether the controller should toggle the field in the associated hardware for allowing PXE booting. This will be enabled before a Workflow is executed and disabled after the Workflow has completed successfully. A HardwareRef must be provided.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"hardware_map": schema.MapAttribute{
-						Description:         "A mapping of template devices to hadware mac addresses",
-						MarkdownDescription: "A mapping of template devices to hadware mac addresses",
+						Description:         "A mapping of template devices to hadware mac addresses.",
+						MarkdownDescription: "A mapping of template devices to hadware mac addresses.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

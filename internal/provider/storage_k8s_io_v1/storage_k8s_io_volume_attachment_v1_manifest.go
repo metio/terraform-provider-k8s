@@ -361,8 +361,8 @@ func (r *StorageK8SIoVolumeAttachmentV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"source": schema.SingleNestedAttribute{
-						Description:         "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set.",
-						MarkdownDescription: "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set.",
+						Description:         "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistentVolumes can be attached via external attacher, in the future we may allow also inline volumes in pods. Exactly one member can be set.",
+						MarkdownDescription: "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistentVolumes can be attached via external attacher, in the future we may allow also inline volumes in pods. Exactly one member can be set.",
 						Attributes: map[string]schema.Attribute{
 							"inline_volume_spec": schema.SingleNestedAttribute{
 								Description:         "PersistentVolumeSpec is the specification of a persistent volume.",

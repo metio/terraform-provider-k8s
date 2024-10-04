@@ -509,6 +509,14 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			TlsServerName *string `tfsdk:"tls_server_name" json:"tlsServerName,omitempty"`
 			Token         *string `tfsdk:"token" json:"token,omitempty"`
 		} `tfsdk:"vault_secret_source" json:"vaultSecretSource,omitempty"`
+		WatchNamespaceSelectors *[]struct {
+			MatchExpressions *[]struct {
+				Key      *string   `tfsdk:"key" json:"key,omitempty"`
+				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+				Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+		} `tfsdk:"watch_namespace_selectors" json:"watchNamespaceSelectors,omitempty"`
 		WatchNamespaces *[]string `tfsdk:"watch_namespaces" json:"watchNamespaces,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -3782,6 +3790,62 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"watch_namespace_selectors": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"match_expressions": schema.ListNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"operator": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"values": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"match_labels": schema.MapAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

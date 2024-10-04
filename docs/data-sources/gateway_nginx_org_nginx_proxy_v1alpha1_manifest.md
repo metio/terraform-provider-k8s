@@ -68,9 +68,9 @@ Optional:
 <a id="nestedatt--spec--rewrite_client_ip--trusted_addresses"></a>
 ### Nested Schema for `spec.rewrite_client_ip.trusted_addresses`
 
-Optional:
+Required:
 
-- `type` (String) Type specifies the type of address. Default is 'cidr' which specifies that the address is a CIDR block.
+- `type` (String) Type specifies the type of address.
 - `value` (String) Value specifies the address value.
 
 

@@ -100,7 +100,17 @@ Optional:
 
 Optional:
 
-- `endpoint` (String) Endpoint is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common
+- `additional_headers_ref` (Attributes) AdditionalHeadersRef refers to a secret that contains extra headers to send in the probe request, this is primarily useful if an authentication token is required by the endpoint. (see [below for nested schema](#nestedatt--spec--health_check--additional_headers_ref))
+- `allow_insecure_certificate` (Boolean) AllowInsecureCertificate will instruct the health check probe to not fail on a self-signed or otherwise invalid SSL certificate this is primarily used in development or testing environments
 - `failure_threshold` (Number) FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy
+- `interval` (String) Interval defines how frequently this probe should execute
+- `path` (String) Path is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common
 - `port` (Number) Port to connect to the host on. Must be either 80, 443 or 1024-49151
 - `protocol` (String) Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'
+
+<a id="nestedatt--spec--health_check--additional_headers_ref"></a>
+### Nested Schema for `spec.health_check.additional_headers_ref`
+
+Required:
+
+- `name` (String)

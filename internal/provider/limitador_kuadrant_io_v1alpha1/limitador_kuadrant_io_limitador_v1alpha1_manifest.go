@@ -167,7 +167,10 @@ type LimitadorKuadrantIoLimitadorV1Alpha1ManifestData struct {
 				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 			} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
-		Image  *string `tfsdk:"image" json:"image,omitempty"`
+		Image            *string `tfsdk:"image" json:"image,omitempty"`
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		Limits *[]struct {
 			Conditions *[]string `tfsdk:"conditions" json:"conditions,omitempty"`
 			Max_value  *int64    `tfsdk:"max_value" json:"max_value,omitempty"`
@@ -1123,6 +1126,25 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"image_pull_secrets": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"limits": schema.ListNestedAttribute{

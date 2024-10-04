@@ -55,12 +55,21 @@ Optional:
 
 Optional:
 
+- `availability_gates` (Attributes List) availabilityGates specifies additional conditions to include when evaluating Cluster Available condition. NOTE: this field is considered only for computing v1beta2 conditions. (see [below for nested schema](#nestedatt--spec--availability_gates))
 - `cluster_network` (Attributes) Cluster network configuration. (see [below for nested schema](#nestedatt--spec--cluster_network))
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_endpoint))
 - `control_plane_ref` (Attributes) ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster. (see [below for nested schema](#nestedatt--spec--control_plane_ref))
 - `infrastructure_ref` (Attributes) InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider. (see [below for nested schema](#nestedatt--spec--infrastructure_ref))
 - `paused` (Boolean) Paused can be used to prevent controllers from processing the Cluster and all its associated objects.
 - `topology` (Attributes) This encapsulates the topology for the cluster. NOTE: It is required to enable the ClusterTopology feature gate flag to activate managed topologies support; this feature is highly experimental, and parts of it might still be not implemented. (see [below for nested schema](#nestedatt--spec--topology))
+
+<a id="nestedatt--spec--availability_gates"></a>
+### Nested Schema for `spec.availability_gates`
+
+Required:
+
+- `condition_type` (String) conditionType refers to a positive polarity condition (status true means good) with matching type in the Cluster's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as availability gates.
+
 
 <a id="nestedatt--spec--cluster_network"></a>
 ### Nested Schema for `spec.cluster_network`

@@ -158,6 +158,7 @@ Optional:
 - `pool` (Attributes) Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used (see [below for nested schema](#nestedatt--spec--ipam--pool))
 - `pools` (Attributes) Pools contains the list of assigned IPAM pools for this node. (see [below for nested schema](#nestedatt--spec--ipam--pools))
 - `pre_allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.
+- `static_ip_tags` (Map of String) StaticIPTags are used to determine the pool of IPs from which to attribute a static IP to the node. For example in AWS this is used to filter Elastic IP Addresses.
 
 <a id="nestedatt--spec--ipam--ipv6_pool"></a>
 ### Nested Schema for `spec.ipam.ipv6_pool`

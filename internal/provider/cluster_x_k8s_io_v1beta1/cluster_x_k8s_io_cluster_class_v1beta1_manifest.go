@@ -152,6 +152,8 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 			Schema   *struct {
 				OpenAPIV3Schema *struct {
 					AdditionalProperties                 *map[string]string `tfsdk:"additional_properties" json:"additionalProperties,omitempty"`
+					AllOf                                *map[string]string `tfsdk:"all_of" json:"allOf,omitempty"`
+					AnyOf                                *map[string]string `tfsdk:"any_of" json:"anyOf,omitempty"`
 					Default                              *map[string]string `tfsdk:"default" json:"default,omitempty"`
 					Description                          *string            `tfsdk:"description" json:"description,omitempty"`
 					Enum                                 *[]string          `tfsdk:"enum" json:"enum,omitempty"`
@@ -168,11 +170,14 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 					MinLength                            *int64             `tfsdk:"min_length" json:"minLength,omitempty"`
 					MinProperties                        *int64             `tfsdk:"min_properties" json:"minProperties,omitempty"`
 					Minimum                              *int64             `tfsdk:"minimum" json:"minimum,omitempty"`
+					Not                                  *map[string]string `tfsdk:"not" json:"not,omitempty"`
+					OneOf                                *map[string]string `tfsdk:"one_of" json:"oneOf,omitempty"`
 					Pattern                              *string            `tfsdk:"pattern" json:"pattern,omitempty"`
 					Properties                           *map[string]string `tfsdk:"properties" json:"properties,omitempty"`
 					Required                             *[]string          `tfsdk:"required" json:"required,omitempty"`
 					Type                                 *string            `tfsdk:"type" json:"type,omitempty"`
 					UniqueItems                          *bool              `tfsdk:"unique_items" json:"uniqueItems,omitempty"`
+					X_kubernetes_int_or_string           *bool              `tfsdk:"x_kubernetes_int_or_string" json:"x-kubernetes-int-or-string,omitempty"`
 					X_kubernetes_preserve_unknown_fields *bool              `tfsdk:"x_kubernetes_preserve_unknown_fields" json:"x-kubernetes-preserve-unknown-fields,omitempty"`
 					X_kubernetes_validations             *[]struct {
 						FieldPath         *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
@@ -1110,6 +1115,24 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
+												"all_of": schema.MapAttribute{
+													Description:         "AllOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "AllOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"any_of": schema.MapAttribute{
+													Description:         "AnyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "AnyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"default": schema.MapAttribute{
 													Description:         "Default is the default value of the variable. NOTE: Can be set for all types.",
 													MarkdownDescription: "Default is the default value of the variable. NOTE: Can be set for all types.",
@@ -1242,6 +1265,24 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
+												"not": schema.MapAttribute{
+													Description:         "Not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "Not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"one_of": schema.MapAttribute{
+													Description:         "OneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "OneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"pattern": schema.StringAttribute{
 													Description:         "Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.",
 													MarkdownDescription: "Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.",
@@ -1279,6 +1320,14 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												"unique_items": schema.BoolAttribute{
 													Description:         "UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.",
 													MarkdownDescription: "UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"x_kubernetes_int_or_string": schema.BoolAttribute{
+													Description:         "x-kubernetes-int-or-string specifies that this value is either an integer or a string. If this is true, an empty type is allowed and type as child of anyOf is permitted if following one of the following patterns: 1) anyOf: - type: integer - type: string 2) allOf: - anyOf: - type: integer - type: string - ... zero or more",
+													MarkdownDescription: "x-kubernetes-int-or-string specifies that this value is either an integer or a string. If this is true, an empty type is allowed and type as child of anyOf is permitted if following one of the following patterns: 1) anyOf: - type: integer - type: string 2) allOf: - anyOf: - type: integer - type: string - ... zero or more",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

@@ -109,11 +109,11 @@ Optional:
 
 Required:
 
-- `authentication_class` (String) A name/key which references an authentication class. To get the concrete ['AuthenticationClass'], we must resolve it. This resolution can be achieved by using ['ClientAuthenticationDetails::resolve_class'].
+- `authentication_class` (String) Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.
 
 Optional:
 
-- `oidc` (Attributes) This field contains authentication provider specific configuration. Use ['ClientAuthenticationDetails::oidc_or_error'] to get the value or report an error to the user. (see [below for nested schema](#nestedatt--spec--cluster_config--authentication--oidc))
+- `oidc` (Attributes) This field contains OIDC-specific configuration. It is only required in case OIDC is used. (see [below for nested schema](#nestedatt--spec--cluster_config--authentication--oidc))
 
 <a id="nestedatt--spec--cluster_config--authentication--oidc"></a>
 ### Nested Schema for `spec.cluster_config.authentication.oidc`
@@ -173,9 +173,9 @@ Optional:
 <a id="nestedatt--spec--image--pull_secrets"></a>
 ### Nested Schema for `spec.image.pull_secrets`
 
-Optional:
+Required:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -231,15 +231,12 @@ Optional:
 <a id="nestedatt--spec--coordinators--role_groups--config--affinity"></a>
 ### Nested Schema for `spec.coordinators.role_groups.config.affinity`
 
-Required:
-
-- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-
 Optional:
 
+- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 - `node_selector` (Map of String) Simple key-value pairs forming a nodeSelector, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 
 
 <a id="nestedatt--spec--coordinators--role_groups--config--logging"></a>
@@ -379,15 +376,12 @@ Optional:
 <a id="nestedatt--spec--coordinators--config--affinity"></a>
 ### Nested Schema for `spec.coordinators.config.affinity`
 
-Required:
-
-- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-
 Optional:
 
+- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 - `node_selector` (Map of String) Simple key-value pairs forming a nodeSelector, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 
 
 <a id="nestedatt--spec--coordinators--config--logging"></a>
@@ -572,15 +566,12 @@ Optional:
 <a id="nestedatt--spec--workers--role_groups--config--affinity"></a>
 ### Nested Schema for `spec.workers.role_groups.config.affinity`
 
-Required:
-
-- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-
 Optional:
 
+- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 - `node_selector` (Map of String) Simple key-value pairs forming a nodeSelector, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 
 
 <a id="nestedatt--spec--workers--role_groups--config--logging"></a>
@@ -720,15 +711,12 @@ Optional:
 <a id="nestedatt--spec--workers--config--affinity"></a>
 ### Nested Schema for `spec.workers.config.affinity`
 
-Required:
-
-- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
-
 Optional:
 
+- `node_affinity` (Map of String) Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 - `node_selector` (Map of String) Simple key-value pairs forming a nodeSelector, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_affinity` (Map of String) Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
+- `pod_anti_affinity` (Map of String) Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
 
 
 <a id="nestedatt--spec--workers--config--logging"></a>

@@ -574,8 +574,8 @@ func (r *SecretsHashicorpComVaultAuthV1Beta1Manifest) Schema(_ context.Context, 
 					},
 
 					"vault_connection_ref": schema.StringAttribute{
-						Description:         "VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.",
-						MarkdownDescription: "VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.",
+						Description:         "VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to the namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.",
+						MarkdownDescription: "VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to the namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -57,13 +57,13 @@ Optional:
 
 Required:
 
-- `data_pool` (Attributes) The data pool settings (see [below for nested schema](#nestedatt--spec--data_pool))
-- `metadata_pool` (Attributes) The metadata pool settings (see [below for nested schema](#nestedatt--spec--metadata_pool))
 - `zone_group` (String) The display name for the ceph users
 
 Optional:
 
 - `custom_endpoints` (List of String) If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Service endpoint created by Rook, you must set this to the externally reachable endpoint(s). You may include the port in the definition. For example: 'https://my-object-store.my-domain.net:443'. In many cases, you should set this to the endpoint of the ingress resource that makes the CephObjectStore associated with this CephObjectStoreZone reachable to peer clusters. The list can have one or more endpoints pointing to different RGW servers in the zone. If a CephObjectStore endpoint is omitted from this list, that object store's gateways will not receive multisite replication data (see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).
+- `data_pool` (Attributes) The data pool settings (see [below for nested schema](#nestedatt--spec--data_pool))
+- `metadata_pool` (Attributes) The metadata pool settings (see [below for nested schema](#nestedatt--spec--metadata_pool))
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object zone deletion
 - `shared_pools` (Attributes) The pool information when configuring RADOS namespaces in existing pools. (see [below for nested schema](#nestedatt--spec--shared_pools))
 

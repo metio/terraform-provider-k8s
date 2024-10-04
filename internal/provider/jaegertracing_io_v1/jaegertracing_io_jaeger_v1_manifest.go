@@ -2773,6 +2773,7 @@ type JaegertracingIoJaegerV1ManifestData struct {
 				HtpasswdFile *string `tfsdk:"htpasswd_file" json:"htpasswdFile,omitempty"`
 				Sar          *string `tfsdk:"sar" json:"sar,omitempty"`
 				SkipLogout   *bool   `tfsdk:"skip_logout" json:"skipLogout,omitempty"`
+				Timeout      *string `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"openshift" json:"openshift,omitempty"`
 			Options   *map[string]string `tfsdk:"options" json:"options,omitempty"`
 			PathType  *string            `tfsdk:"path_type" json:"pathType,omitempty"`
@@ -24434,6 +24435,14 @@ func (r *JaegertracingIoJaegerV1Manifest) Schema(_ context.Context, _ datasource
 									},
 
 									"skip_logout": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

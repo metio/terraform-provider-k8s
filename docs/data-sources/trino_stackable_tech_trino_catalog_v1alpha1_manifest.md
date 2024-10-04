@@ -108,19 +108,22 @@ Required:
 
 Optional:
 
-- `inline` (Attributes) Inline definition of an S3 connection. (see [below for nested schema](#nestedatt--spec--connector--delta_lake--s3--inline))
-- `reference` (String) A reference to an S3Connection resource.
+- `inline` (Attributes) S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3). (see [below for nested schema](#nestedatt--spec--connector--delta_lake--s3--inline))
+- `reference` (String)
 
 <a id="nestedatt--spec--connector--delta_lake--s3--inline"></a>
 ### Nested Schema for `spec.connector.delta_lake.s3.inline`
+
+Required:
+
+- `host` (String) Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.
 
 Optional:
 
 - `access_style` (String) Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).
 - `credentials` (Attributes) If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient. (see [below for nested schema](#nestedatt--spec--connector--delta_lake--s3--inline--credentials))
-- `host` (String) Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.
 - `port` (Number) Port the S3 server listens on. If not specified the product will determine the port to use.
-- `tls` (Attributes) If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting. (see [below for nested schema](#nestedatt--spec--connector--delta_lake--s3--inline--tls))
+- `tls` (Attributes) Use a TLS connection. If not specified no TLS will be used. (see [below for nested schema](#nestedatt--spec--connector--delta_lake--s3--inline--tls))
 
 <a id="nestedatt--spec--connector--delta_lake--s3--inline--credentials"></a>
 ### Nested Schema for `spec.connector.delta_lake.s3.inline.credentials`
@@ -138,6 +141,7 @@ Optional:
 
 Optional:
 
+- `listener_volumes` (List of String) The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.
 - `node` (Boolean) The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.
 - `pod` (Boolean) The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.
 - `services` (List of String) The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.
@@ -207,10 +211,10 @@ Optional:
 Required:
 
 - `key` (String) The key to select.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -220,10 +224,10 @@ Optional:
 Required:
 
 - `key` (String) The key of the secret to select from. Must be a valid secret key.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -284,19 +288,22 @@ Required:
 
 Optional:
 
-- `inline` (Attributes) Inline definition of an S3 connection. (see [below for nested schema](#nestedatt--spec--connector--hive--s3--inline))
-- `reference` (String) A reference to an S3Connection resource.
+- `inline` (Attributes) S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3). (see [below for nested schema](#nestedatt--spec--connector--hive--s3--inline))
+- `reference` (String)
 
 <a id="nestedatt--spec--connector--hive--s3--inline"></a>
 ### Nested Schema for `spec.connector.hive.s3.inline`
+
+Required:
+
+- `host` (String) Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.
 
 Optional:
 
 - `access_style` (String) Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).
 - `credentials` (Attributes) If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient. (see [below for nested schema](#nestedatt--spec--connector--hive--s3--inline--credentials))
-- `host` (String) Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.
 - `port` (Number) Port the S3 server listens on. If not specified the product will determine the port to use.
-- `tls` (Attributes) If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting. (see [below for nested schema](#nestedatt--spec--connector--hive--s3--inline--tls))
+- `tls` (Attributes) Use a TLS connection. If not specified no TLS will be used. (see [below for nested schema](#nestedatt--spec--connector--hive--s3--inline--tls))
 
 <a id="nestedatt--spec--connector--hive--s3--inline--credentials"></a>
 ### Nested Schema for `spec.connector.hive.s3.inline.credentials`
@@ -314,6 +321,7 @@ Optional:
 
 Optional:
 
+- `listener_volumes` (List of String) The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.
 - `node` (Boolean) The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.
 - `pod` (Boolean) The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.
 - `services` (List of String) The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.
@@ -390,19 +398,22 @@ Required:
 
 Optional:
 
-- `inline` (Attributes) Inline definition of an S3 connection. (see [below for nested schema](#nestedatt--spec--connector--iceberg--s3--inline))
-- `reference` (String) A reference to an S3Connection resource.
+- `inline` (Attributes) S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3). (see [below for nested schema](#nestedatt--spec--connector--iceberg--s3--inline))
+- `reference` (String)
 
 <a id="nestedatt--spec--connector--iceberg--s3--inline"></a>
 ### Nested Schema for `spec.connector.iceberg.s3.inline`
+
+Required:
+
+- `host` (String) Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.
 
 Optional:
 
 - `access_style` (String) Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).
 - `credentials` (Attributes) If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient. (see [below for nested schema](#nestedatt--spec--connector--iceberg--s3--inline--credentials))
-- `host` (String) Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.
 - `port` (Number) Port the S3 server listens on. If not specified the product will determine the port to use.
-- `tls` (Attributes) If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting. (see [below for nested schema](#nestedatt--spec--connector--iceberg--s3--inline--tls))
+- `tls` (Attributes) Use a TLS connection. If not specified no TLS will be used. (see [below for nested schema](#nestedatt--spec--connector--iceberg--s3--inline--tls))
 
 <a id="nestedatt--spec--connector--iceberg--s3--inline--credentials"></a>
 ### Nested Schema for `spec.connector.iceberg.s3.inline.credentials`
@@ -420,6 +431,7 @@ Optional:
 
 Optional:
 
+- `listener_volumes` (List of String) The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.
 - `node` (Boolean) The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.
 - `pod` (Boolean) The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.
 - `services` (List of String) The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.

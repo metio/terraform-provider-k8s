@@ -97,7 +97,7 @@ Optional:
 
 Optional:
 
-- `type_` (String)
+- `type` (String)
 
 
 

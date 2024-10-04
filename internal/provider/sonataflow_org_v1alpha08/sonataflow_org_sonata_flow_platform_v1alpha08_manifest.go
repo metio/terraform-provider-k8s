@@ -122,6 +122,20 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 		DevMode *struct {
 			BaseImage *string `tfsdk:"base_image" json:"baseImage,omitempty"`
 		} `tfsdk:"dev_mode" json:"devMode,omitempty"`
+		Eventing *struct {
+			Broker *struct {
+				CACerts *string `tfsdk:"ca_certs" json:"CACerts,omitempty"`
+				Ref     *struct {
+					Address    *string `tfsdk:"address" json:"address,omitempty"`
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Group      *string `tfsdk:"group" json:"group,omitempty"`
+					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name       *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"ref" json:"ref,omitempty"`
+				Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+			} `tfsdk:"broker" json:"broker,omitempty"`
+		} `tfsdk:"eventing" json:"eventing,omitempty"`
 		Persistence *struct {
 			Postgresql *struct {
 				JdbcUrl   *string `tfsdk:"jdbc_url" json:"jdbcUrl,omitempty"`
@@ -222,6 +236,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -244,6 +260,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -267,6 +285,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -289,6 +309,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -359,6 +381,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -378,6 +403,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -462,7 +490,11 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						} `tfsdk:"resources" json:"resources,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -528,12 +560,13 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"container" json:"container,omitempty"`
 					Containers *[]struct {
@@ -592,6 +625,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -611,6 +647,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -694,9 +733,14 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -762,12 +806,13 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
@@ -849,6 +894,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -868,6 +916,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -951,9 +1002,14 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1019,12 +1075,13 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -1055,6 +1112,10 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 					SecurityContext *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1205,9 +1266,6 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 									Resources *struct {
-										Claims *[]struct {
-											Name *string `tfsdk:"name" json:"name,omitempty"`
-										} `tfsdk:"claims" json:"claims,omitempty"`
 										Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 										Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 									} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1219,9 +1277,10 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"selector" json:"selector,omitempty"`
-									StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-									VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-									VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+									StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+									VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+									VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+									VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 								} `tfsdk:"spec" json:"spec,omitempty"`
 							} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 						} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1302,6 +1361,20 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						Projected *struct {
 							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 							Sources     *[]struct {
+								ClusterTrustBundle *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									Name       *string `tfsdk:"name" json:"name,omitempty"`
+									Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+									Path       *string `tfsdk:"path" json:"path,omitempty"`
+									SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+								} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 								ConfigMap *struct {
 									Items *[]struct {
 										Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1403,6 +1476,18 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
+				Source *struct {
+					CACerts *string `tfsdk:"ca_certs" json:"CACerts,omitempty"`
+					Ref     *struct {
+						Address    *string `tfsdk:"address" json:"address,omitempty"`
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						Group      *string `tfsdk:"group" json:"group,omitempty"`
+						Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name       *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"ref" json:"ref,omitempty"`
+					Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+				} `tfsdk:"source" json:"source,omitempty"`
 			} `tfsdk:"data_index" json:"dataIndex,omitempty"`
 			JobService *struct {
 				Enabled     *bool `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -1469,6 +1554,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1491,6 +1578,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1514,6 +1603,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1536,6 +1627,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1606,6 +1699,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1625,6 +1721,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1709,7 +1808,11 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						} `tfsdk:"resources" json:"resources,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1775,12 +1878,13 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"container" json:"container,omitempty"`
 					Containers *[]struct {
@@ -1839,6 +1943,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1858,6 +1965,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1941,9 +2051,14 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -2009,12 +2124,13 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
@@ -2096,6 +2212,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -2115,6 +2234,9 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 									Port   *string `tfsdk:"port" json:"port,omitempty"`
 									Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 								} `tfsdk:"http_get" json:"httpGet,omitempty"`
+								Sleep *struct {
+									Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+								} `tfsdk:"sleep" json:"sleep,omitempty"`
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" json:"host,omitempty"`
 									Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -2198,9 +2320,14 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -2266,12 +2393,13 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -2302,6 +2430,10 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 					SecurityContext *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -2452,9 +2584,6 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 									Resources *struct {
-										Claims *[]struct {
-											Name *string `tfsdk:"name" json:"name,omitempty"`
-										} `tfsdk:"claims" json:"claims,omitempty"`
 										Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 										Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 									} `tfsdk:"resources" json:"resources,omitempty"`
@@ -2466,9 +2595,10 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"selector" json:"selector,omitempty"`
-									StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-									VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-									VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+									StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+									VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+									VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+									VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 								} `tfsdk:"spec" json:"spec,omitempty"`
 							} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 						} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -2549,6 +2679,20 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						Projected *struct {
 							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 							Sources     *[]struct {
+								ClusterTrustBundle *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									Name       *string `tfsdk:"name" json:"name,omitempty"`
+									Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+									Path       *string `tfsdk:"path" json:"path,omitempty"`
+									SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+								} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 								ConfigMap *struct {
 									Items *[]struct {
 										Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -2650,6 +2794,30 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 						} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
+				Sink *struct {
+					CACerts *string `tfsdk:"ca_certs" json:"CACerts,omitempty"`
+					Ref     *struct {
+						Address    *string `tfsdk:"address" json:"address,omitempty"`
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						Group      *string `tfsdk:"group" json:"group,omitempty"`
+						Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name       *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"ref" json:"ref,omitempty"`
+					Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+				} `tfsdk:"sink" json:"sink,omitempty"`
+				Source *struct {
+					CACerts *string `tfsdk:"ca_certs" json:"CACerts,omitempty"`
+					Ref     *struct {
+						Address    *string `tfsdk:"address" json:"address,omitempty"`
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						Group      *string `tfsdk:"group" json:"group,omitempty"`
+						Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name       *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"ref" json:"ref,omitempty"`
+					Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+				} `tfsdk:"source" json:"source,omitempty"`
 			} `tfsdk:"job_service" json:"jobService,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -2878,8 +3046,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2969,8 +3137,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3038,8 +3206,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3129,8 +3297,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3234,6 +3402,97 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"eventing": schema.SingleNestedAttribute{
+						Description:         "Eventing describes the information required for Knative Eventing integration in the platform.",
+						MarkdownDescription: "Eventing describes the information required for Knative Eventing integration in the platform.",
+						Attributes: map[string]schema.Attribute{
+							"broker": schema.SingleNestedAttribute{
+								Description:         "Broker to communicate with workflow deployment. It can be the default broker when the workflow, Dataindex, or Jobservice does not have a sink or source specified.",
+								MarkdownDescription: "Broker to communicate with workflow deployment. It can be the default broker when the workflow, Dataindex, or Jobservice does not have a sink or source specified.",
+								Attributes: map[string]schema.Attribute{
+									"ca_certs": schema.StringAttribute{
+										Description:         "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+										MarkdownDescription: "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ref": schema.SingleNestedAttribute{
+										Description:         "Ref points to an Addressable.",
+										MarkdownDescription: "Ref points to an Addressable.",
+										Attributes: map[string]schema.Attribute{
+											"address": schema.StringAttribute{
+												Description:         "Address points to a specific Address Name.",
+												MarkdownDescription: "Address points to a specific Address Name.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"api_version": schema.StringAttribute{
+												Description:         "API version of the referent.",
+												MarkdownDescription: "API version of the referent.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"group": schema.StringAttribute{
+												Description:         "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+												MarkdownDescription: "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kind": schema.StringAttribute{
+												Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+												MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"uri": schema.StringAttribute{
+										Description:         "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+										MarkdownDescription: "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -3383,8 +3642,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3416,8 +3675,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3815,8 +4074,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "A label query over a set of resources, in this case pods.",
-																					MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																					Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3866,6 +4125,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
@@ -3964,8 +4241,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "A label query over a set of resources, in this case pods.",
-																			MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																			Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4015,6 +4292,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -4113,8 +4408,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "A label query over a set of resources, in this case pods.",
-																					MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																					Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4164,6 +4459,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
@@ -4262,8 +4575,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "A label query over a set of resources, in this case pods.",
-																			MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																			Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4313,6 +4626,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -4470,8 +4801,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4561,8 +4892,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4602,8 +4933,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The ConfigMap to select from",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4635,8 +4966,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The Secret to select from",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4771,6 +5102,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		Computed: false,
 																	},
 
+																	"sleep": schema.SingleNestedAttribute{
+																		Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																		MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																		Attributes: map[string]schema.Attribute{
+																			"seconds": schema.Int64Attribute{
+																				Description:         "Seconds is the number of seconds to sleep.",
+																				MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"tcp_socket": schema.SingleNestedAttribute{
 																		Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 																		MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -4883,6 +5231,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																				Required:            false,
 																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sleep": schema.SingleNestedAttribute{
+																		Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																		MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																		Attributes: map[string]schema.Attribute{
+																			"seconds": schema.Int64Attribute{
+																				Description:         "Seconds is the number of seconds to sleep.",
+																				MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																			},
 																		},
@@ -5448,6 +5813,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																Computed:            false,
 															},
 
+															"app_armor_profile": schema.SingleNestedAttribute{
+																Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																Attributes: map[string]schema.Attribute{
+																	"localhost_profile": schema.StringAttribute{
+																		Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																		MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																		MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"capabilities": schema.SingleNestedAttribute{
 																Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 																MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -5569,8 +5959,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																Attributes: map[string]schema.Attribute{
 																	"localhost_profile": schema.StringAttribute{
-																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5610,8 +6000,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	},
 
 																	"host_process": schema.BoolAttribute{
-																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5909,8 +6299,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"mount_propagation": schema.StringAttribute{
-																	Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																	MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																	Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																	MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5927,6 +6317,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																"read_only": schema.BoolAttribute{
 																	Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																	MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"recursive_read_only": schema.StringAttribute{
+																	Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+																	MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -6020,8 +6418,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -6111,8 +6509,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -6152,8 +6550,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The ConfigMap to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6185,8 +6583,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The Secret to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6321,6 +6719,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 																			MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -6433,6 +6848,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -6994,6 +7426,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 															MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -7004,6 +7444,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"capabilities": schema.SingleNestedAttribute{
@@ -7127,8 +7592,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -7168,8 +7633,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -7467,8 +7932,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	},
 
 																	"mount_propagation": schema.StringAttribute{
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7485,6 +7950,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	"read_only": schema.BoolAttribute{
 																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+																		MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7613,8 +8086,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														"ip": schema.StringAttribute{
 															Description:         "IP address of the host file entry.",
 															MarkdownDescription: "IP address of the host file entry.",
-															Required:            false,
-															Optional:            true,
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -7670,8 +8143,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7744,8 +8217,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -7835,8 +8308,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -7876,8 +8349,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The ConfigMap to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7909,8 +8382,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The Secret to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8045,6 +8518,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 																			MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -8157,6 +8647,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -8718,6 +9225,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 															MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -8728,6 +9243,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"capabilities": schema.SingleNestedAttribute{
@@ -8851,8 +9391,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -8892,8 +9432,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9191,8 +9731,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	},
 
 																	"mount_propagation": schema.StringAttribute{
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9209,6 +9749,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	"read_only": schema.BoolAttribute{
 																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+																		MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9370,8 +9918,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"resource_claim_template_name": schema.StringAttribute{
-																	Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be <pod name>-<resource name>, where <resource name> is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long). An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
-																	MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be <pod name>-<resource name>, where <resource name> is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long). An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+																	Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+																	MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -9435,6 +9983,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 												Description:         "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field.",
 												MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 														MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -9521,8 +10094,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 														Attributes: map[string]schema.Attribute{
 															"localhost_profile": schema.StringAttribute{
-																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9598,8 +10171,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 															},
 
 															"host_process": schema.BoolAttribute{
-																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9791,8 +10364,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														},
 
 														"min_domains": schema.Int64Attribute{
-															Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-															MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+															Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
+															MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -10014,8 +10587,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10064,8 +10637,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10137,8 +10710,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -10182,8 +10755,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10234,8 +10807,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"field_ref": schema.SingleNestedAttribute{
-																				Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																				MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																				Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																				MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																				Attributes: map[string]schema.Attribute{
 																					"api_version": schema.StringAttribute{
 																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -10451,25 +11024,6 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					Attributes: map[string]schema.Attribute{
-																						"claims": schema.ListNestedAttribute{
-																							Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																							MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																							NestedObject: schema.NestedAttributeObject{
-																								Attributes: map[string]schema.Attribute{
-																									"name": schema.StringAttribute{
-																										Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																										MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																										Required:            true,
-																										Optional:            false,
-																										Computed:            false,
-																									},
-																								},
-																							},
-																							Required: false,
-																							Optional: true,
-																							Computed: false,
-																						},
-
 																						"limits": schema.MapAttribute{
 																							Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -10550,6 +11104,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				"storage_class_name": schema.StringAttribute{
 																					Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																					MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"volume_attributes_class_name": schema.StringAttribute{
+																					Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																					MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -10679,8 +11241,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10935,8 +11497,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -11101,6 +11663,101 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "sources is the list of volume projections",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
+																			"cluster_trust_bundle": schema.SingleNestedAttribute{
+																				Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																				MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																				Attributes: map[string]schema.Attribute{
+																					"label_selector": schema.SingleNestedAttribute{
+																						Description:         "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																						MarkdownDescription: "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																						Attributes: map[string]schema.Attribute{
+																							"match_expressions": schema.ListNestedAttribute{
+																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																								NestedObject: schema.NestedAttributeObject{
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "key is the label key that the selector applies to.",
+																											MarkdownDescription: "key is the label key that the selector applies to.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"operator": schema.StringAttribute{
+																											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"values": schema.ListAttribute{
+																											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											ElementType:         types.StringType,
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": schema.MapAttribute{
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																						MarkdownDescription: "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																						MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.StringAttribute{
+																						Description:         "Relative path from the volume root to write the bundle.",
+																						MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"signer_name": schema.StringAttribute{
+																						Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																						MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
 																			"config_map": schema.SingleNestedAttribute{
 																				Description:         "configMap information about the configMap data to project",
 																				MarkdownDescription: "configMap information about the configMap data to project",
@@ -11141,8 +11798,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -11171,8 +11828,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"field_ref": schema.SingleNestedAttribute{
-																									Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																									MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																									Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																									MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																									Attributes: map[string]schema.Attribute{
 																										"api_version": schema.StringAttribute{
 																											Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -11295,8 +11952,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -11474,8 +12131,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -11540,8 +12197,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -11690,8 +12347,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -11768,6 +12425,88 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source": schema.SingleNestedAttribute{
+										Description:         "Defines the source where the Dataindex receives events from",
+										MarkdownDescription: "Defines the source where the Dataindex receives events from",
+										Attributes: map[string]schema.Attribute{
+											"ca_certs": schema.StringAttribute{
+												Description:         "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+												MarkdownDescription: "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ref": schema.SingleNestedAttribute{
+												Description:         "Ref points to an Addressable.",
+												MarkdownDescription: "Ref points to an Addressable.",
+												Attributes: map[string]schema.Attribute{
+													"address": schema.StringAttribute{
+														Description:         "Address points to a specific Address Name.",
+														MarkdownDescription: "Address points to a specific Address Name.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"api_version": schema.StringAttribute{
+														Description:         "API version of the referent.",
+														MarkdownDescription: "API version of the referent.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"group": schema.StringAttribute{
+														Description:         "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+														MarkdownDescription: "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+														MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"uri": schema.StringAttribute{
+												Description:         "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+												MarkdownDescription: "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -12139,8 +12878,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "A label query over a set of resources, in this case pods.",
-																					MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																					Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -12190,6 +12929,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
@@ -12288,8 +13045,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "A label query over a set of resources, in this case pods.",
-																			MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																			Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -12339,6 +13096,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -12437,8 +13212,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "A label query over a set of resources, in this case pods.",
-																					MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																					Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																					MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -12488,6 +13263,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
@@ -12586,8 +13379,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "A label query over a set of resources, in this case pods.",
-																			MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																			Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																			MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -12637,6 +13430,24 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -12794,8 +13605,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -12885,8 +13696,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -12926,8 +13737,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The ConfigMap to select from",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -12959,8 +13770,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The Secret to select from",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -13095,6 +13906,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		Computed: false,
 																	},
 
+																	"sleep": schema.SingleNestedAttribute{
+																		Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																		MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																		Attributes: map[string]schema.Attribute{
+																			"seconds": schema.Int64Attribute{
+																				Description:         "Seconds is the number of seconds to sleep.",
+																				MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"tcp_socket": schema.SingleNestedAttribute{
 																		Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 																		MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -13207,6 +14035,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																				Required:            false,
 																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sleep": schema.SingleNestedAttribute{
+																		Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																		MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																		Attributes: map[string]schema.Attribute{
+																			"seconds": schema.Int64Attribute{
+																				Description:         "Seconds is the number of seconds to sleep.",
+																				MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																			},
 																		},
@@ -13772,6 +14617,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																Computed:            false,
 															},
 
+															"app_armor_profile": schema.SingleNestedAttribute{
+																Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																Attributes: map[string]schema.Attribute{
+																	"localhost_profile": schema.StringAttribute{
+																		Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																		MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																		MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"capabilities": schema.SingleNestedAttribute{
 																Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 																MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -13893,8 +14763,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																Attributes: map[string]schema.Attribute{
 																	"localhost_profile": schema.StringAttribute{
-																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -13934,8 +14804,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	},
 
 																	"host_process": schema.BoolAttribute{
-																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -14233,8 +15103,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"mount_propagation": schema.StringAttribute{
-																	Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																	MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																	Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																	MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -14251,6 +15121,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																"read_only": schema.BoolAttribute{
 																	Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																	MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"recursive_read_only": schema.StringAttribute{
+																	Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+																	MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -14344,8 +15222,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -14435,8 +15313,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -14476,8 +15354,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The ConfigMap to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -14509,8 +15387,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The Secret to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -14645,6 +15523,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 																			MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -14757,6 +15652,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -15318,6 +16230,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 															MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -15328,6 +16248,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"capabilities": schema.SingleNestedAttribute{
@@ -15451,8 +16396,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -15492,8 +16437,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -15791,8 +16736,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	},
 
 																	"mount_propagation": schema.StringAttribute{
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -15809,6 +16754,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	"read_only": schema.BoolAttribute{
 																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+																		MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -15937,8 +16890,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														"ip": schema.StringAttribute{
 															Description:         "IP address of the host file entry.",
 															MarkdownDescription: "IP address of the host file entry.",
-															Required:            false,
-															Optional:            true,
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -15994,8 +16947,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -16068,8 +17021,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -16159,8 +17112,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -16200,8 +17153,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The ConfigMap to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -16233,8 +17186,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		MarkdownDescription: "The Secret to select from",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -16369,6 +17322,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																			Computed: false,
 																		},
 
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"tcp_socket": schema.SingleNestedAttribute{
 																			Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 																			MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -16481,6 +17451,23 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																					Required:            false,
 																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"sleep": schema.SingleNestedAttribute{
+																			Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+																			MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																			Attributes: map[string]schema.Attribute{
+																				"seconds": schema.Int64Attribute{
+																					Description:         "Seconds is the number of seconds to sleep.",
+																					MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -17042,6 +18029,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 															Computed: false,
 														},
 
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"security_context": schema.SingleNestedAttribute{
 															Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 															MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -17052,6 +18047,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"capabilities": schema.SingleNestedAttribute{
@@ -17175,8 +18195,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -17216,8 +18236,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -17515,8 +18535,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	},
 
 																	"mount_propagation": schema.StringAttribute{
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -17533,6 +18553,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	"read_only": schema.BoolAttribute{
 																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+																		MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -17694,8 +18722,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"resource_claim_template_name": schema.StringAttribute{
-																	Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be <pod name>-<resource name>, where <resource name> is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long). An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
-																	MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be <pod name>-<resource name>, where <resource name> is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long). An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+																	Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+																	MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -17759,6 +18787,31 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 												Description:         "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field.",
 												MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field.",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 														MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -17845,8 +18898,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 														Attributes: map[string]schema.Attribute{
 															"localhost_profile": schema.StringAttribute{
-																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -17922,8 +18975,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 															},
 
 															"host_process": schema.BoolAttribute{
-																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -18115,8 +19168,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 														},
 
 														"min_domains": schema.Int64Attribute{
-															Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-															MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+															Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
+															MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -18338,8 +19391,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -18388,8 +19441,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -18461,8 +19514,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -18506,8 +19559,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -18558,8 +19611,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"field_ref": schema.SingleNestedAttribute{
-																				Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																				MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																				Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																				MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																				Attributes: map[string]schema.Attribute{
 																					"api_version": schema.StringAttribute{
 																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -18775,25 +19828,6 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					Attributes: map[string]schema.Attribute{
-																						"claims": schema.ListNestedAttribute{
-																							Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																							MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																							NestedObject: schema.NestedAttributeObject{
-																								Attributes: map[string]schema.Attribute{
-																									"name": schema.StringAttribute{
-																										Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																										MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																										Required:            true,
-																										Optional:            false,
-																										Computed:            false,
-																									},
-																								},
-																							},
-																							Required: false,
-																							Optional: true,
-																							Computed: false,
-																						},
-
 																						"limits": schema.MapAttribute{
 																							Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -18874,6 +19908,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																				"storage_class_name": schema.StringAttribute{
 																					Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																					MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"volume_attributes_class_name": schema.StringAttribute{
+																					Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																					MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -19003,8 +20045,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -19259,8 +20301,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -19425,6 +20467,101 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "sources is the list of volume projections",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
+																			"cluster_trust_bundle": schema.SingleNestedAttribute{
+																				Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																				MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																				Attributes: map[string]schema.Attribute{
+																					"label_selector": schema.SingleNestedAttribute{
+																						Description:         "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																						MarkdownDescription: "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																						Attributes: map[string]schema.Attribute{
+																							"match_expressions": schema.ListNestedAttribute{
+																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																								NestedObject: schema.NestedAttributeObject{
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "key is the label key that the selector applies to.",
+																											MarkdownDescription: "key is the label key that the selector applies to.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"operator": schema.StringAttribute{
+																											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"values": schema.ListAttribute{
+																											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											ElementType:         types.StringType,
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": schema.MapAttribute{
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																						MarkdownDescription: "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																						MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.StringAttribute{
+																						Description:         "Relative path from the volume root to write the bundle.",
+																						MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"signer_name": schema.StringAttribute{
+																						Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																						MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
 																			"config_map": schema.SingleNestedAttribute{
 																				Description:         "configMap information about the configMap data to project",
 																				MarkdownDescription: "configMap information about the configMap data to project",
@@ -19465,8 +20602,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -19495,8 +20632,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"field_ref": schema.SingleNestedAttribute{
-																									Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																									MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																									Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																									MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																									Attributes: map[string]schema.Attribute{
 																										"api_version": schema.StringAttribute{
 																											Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -19619,8 +20756,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -19798,8 +20935,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -19864,8 +21001,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -20014,8 +21151,8 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 																	MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -20092,6 +21229,170 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sink": schema.SingleNestedAttribute{
+										Description:         "Defines the sink where the Jobservice sends events to",
+										MarkdownDescription: "Defines the sink where the Jobservice sends events to",
+										Attributes: map[string]schema.Attribute{
+											"ca_certs": schema.StringAttribute{
+												Description:         "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+												MarkdownDescription: "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ref": schema.SingleNestedAttribute{
+												Description:         "Ref points to an Addressable.",
+												MarkdownDescription: "Ref points to an Addressable.",
+												Attributes: map[string]schema.Attribute{
+													"address": schema.StringAttribute{
+														Description:         "Address points to a specific Address Name.",
+														MarkdownDescription: "Address points to a specific Address Name.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"api_version": schema.StringAttribute{
+														Description:         "API version of the referent.",
+														MarkdownDescription: "API version of the referent.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"group": schema.StringAttribute{
+														Description:         "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+														MarkdownDescription: "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+														MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"uri": schema.StringAttribute{
+												Description:         "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+												MarkdownDescription: "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source": schema.SingleNestedAttribute{
+										Description:         "Defines the source where the Jobservice receives events from",
+										MarkdownDescription: "Defines the source where the Jobservice receives events from",
+										Attributes: map[string]schema.Attribute{
+											"ca_certs": schema.StringAttribute{
+												Description:         "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+												MarkdownDescription: "CACerts are Certification Authority (CA) certificates in PEM format according to https://www.rfc-editor.org/rfc/rfc7468. If set, these CAs are appended to the set of CAs provided by the Addressable target, if any.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ref": schema.SingleNestedAttribute{
+												Description:         "Ref points to an Addressable.",
+												MarkdownDescription: "Ref points to an Addressable.",
+												Attributes: map[string]schema.Attribute{
+													"address": schema.StringAttribute{
+														Description:         "Address points to a specific Address Name.",
+														MarkdownDescription: "Address points to a specific Address Name.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"api_version": schema.StringAttribute{
+														Description:         "API version of the referent.",
+														MarkdownDescription: "API version of the referent.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"group": schema.StringAttribute{
+														Description:         "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+														MarkdownDescription: "Group of the API, without the version of the group. This can be used as an alternative to the APIVersion, and then resolved using ResolveGroup. Note: This API is EXPERIMENTAL and might break anytime. For more details: https://github.com/knative/eventing/issues/5086",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+														MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ This is optional field, it gets defaulted to the object holding it if left out.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"uri": schema.StringAttribute{
+												Description:         "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+												MarkdownDescription: "URI can be an absolute URL(non-empty scheme and non-empty host) pointing to the target or a relative URI. Relative URIs will be resolved using the base URI retrieved from Ref.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,

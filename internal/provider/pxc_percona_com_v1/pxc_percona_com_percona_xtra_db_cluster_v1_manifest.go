@@ -400,6 +400,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 		} `tfsdk:"backup" json:"backup,omitempty"`
 		CrVersion                 *string `tfsdk:"cr_version" json:"crVersion,omitempty"`
 		EnableCRValidationWebhook *bool   `tfsdk:"enable_cr_validation_webhook" json:"enableCRValidationWebhook,omitempty"`
+		EnableVolumeExpansion     *bool   `tfsdk:"enable_volume_expansion" json:"enableVolumeExpansion,omitempty"`
 		Haproxy                   *struct {
 			Affinity *struct {
 				Advanced *struct {
@@ -6235,6 +6236,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 					},
 
 					"enable_cr_validation_webhook": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"enable_volume_expansion": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

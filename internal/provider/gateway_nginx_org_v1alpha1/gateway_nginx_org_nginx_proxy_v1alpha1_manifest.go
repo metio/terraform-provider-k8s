@@ -183,21 +183,21 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"type": schema.StringAttribute{
-											Description:         "Type specifies the type of address. Default is 'cidr' which specifies that the address is a CIDR block.",
-											MarkdownDescription: "Type specifies the type of address. Default is 'cidr' which specifies that the address is a CIDR block.",
-											Required:            false,
-											Optional:            true,
+											Description:         "Type specifies the type of address.",
+											MarkdownDescription: "Type specifies the type of address.",
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("cidr"),
+												stringvalidator.OneOf("CIDR", "IPAddress", "Hostname"),
 											},
 										},
 
 										"value": schema.StringAttribute{
 											Description:         "Value specifies the address value.",
 											MarkdownDescription: "Value specifies the address value.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},

@@ -251,7 +251,20 @@ Optional:
 
 Optional:
 
-- `cidr` (String) Cidr configures the network cidr of the subnetwork that contains the service attachment.
+- `cidr` (String) Cidr specifies the cidr to use when creating a service attachment subnet.
+- `existing` (Attributes) Existing specifies a pre-existing subnet to use instead of creating a new service attachment subnet. This is required when using BYO VPCs. It must be in the same region as the api-int load balancer, be configured with a purpose of 'Private Service Connect', and have sufficient routing and firewall rules to access the api-int load balancer. (see [below for nested schema](#nestedatt--spec--platform--gcp--private_service_connect--service_attachment--subnet--existing))
+
+<a id="nestedatt--spec--platform--gcp--private_service_connect--service_attachment--subnet--existing"></a>
+### Nested Schema for `spec.platform.gcp.private_service_connect.service_attachment.subnet.existing`
+
+Required:
+
+- `name` (String) Name specifies the name of the existing subnet.
+
+Optional:
+
+- `project` (String) Project specifies the project the subnet exists in. This is required for Shared VPC.
+
 
 
 

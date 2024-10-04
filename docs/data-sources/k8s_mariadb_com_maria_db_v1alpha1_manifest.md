@@ -1222,12 +1222,14 @@ Optional:
 Optional:
 
 - `cluster_bootstrap_timeout` (String) ClusterBootstrapTimeout is the time limit for bootstrapping a cluster. Once this timeout is reached, the Galera recovery state is reset and a new cluster bootstrap will be attempted.
+- `cluster_downscale_timeout` (String) ClusterDownscaleTimeout represents the maximum duration for downscaling the cluster's StatefulSet during the recovery process.
 - `cluster_healthy_timeout` (String) ClusterHealthyTimeout represents the duration at which a Galera cluster, that consistently failed health checks, is considered unhealthy, and consequently the Galera recovery process will be initiated by the operator.
 - `cluster_monitor_interval` (String) ClusterMonitorInterval represents the interval used to monitor the Galera cluster health.
+- `cluster_upscale_timeout` (String) ClusterUpscaleTimeout represents the maximum duration for upscaling the cluster's StatefulSet during the recovery process.
 - `enabled` (Boolean) Enabled is a flag to enable GaleraRecovery.
 - `force_cluster_bootstrap_in_pod` (String) ForceClusterBootstrapInPod allows you to manually initiate the bootstrap process in a specific Pod. IMPORTANT: Use this option only in exceptional circumstances. Not selecting the Pod with the highest sequence number may result in data loss. IMPORTANT: Ensure you unset this field after completing the bootstrap to allow the operator to choose the appropriate Pod to bootstrap from in an event of cluster recovery.
 - `job` (Attributes) Job defines a Job that co-operates with mariadb-operator by performing the Galera cluster recovery . (see [below for nested schema](#nestedatt--spec--galera--recovery--job))
-- `min_cluster_size` (String) MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (1) or a percentage (50%). If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated. It defaults to '1' replica.
+- `min_cluster_size` (String) MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (1) or a percentage (50%). If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated. It defaults to '1' replica, and it is highly recommendeded to keep this value at '1' in most cases. If set to more than one replica, the cluster recovery process may restart the healthy replicas as well.
 - `pod_recovery_timeout` (String) PodRecoveryTimeout is the time limit for recevorying the sequence of a Pod during the cluster recovery.
 - `pod_sync_timeout` (String) PodSyncTimeout is the time limit for a Pod to join the cluster after having performed a cluster bootstrap during the cluster recovery.
 

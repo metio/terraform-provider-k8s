@@ -3206,6 +3206,7 @@ Optional:
 - `kafka_agg_max_bytes` (Number)
 - `kafka_agg_max_messages` (Number)
 - `keytab` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--keytab))
+- `max_send_limit_bytes` (Number)
 - `max_send_retries` (Number)
 - `message_key_key` (String)
 - `partition_key` (String)

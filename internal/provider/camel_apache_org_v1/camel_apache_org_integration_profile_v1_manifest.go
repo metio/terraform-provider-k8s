@@ -483,8 +483,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Metadata(_ context.Context,
 
 func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.",
-		MarkdownDescription: "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.",
+		Description:         "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. Deprecated: may be removed in future releases. Make use of IntegrationPlatform instead.",
+		MarkdownDescription: "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. Deprecated: may be removed in future releases. Make use of IntegrationPlatform instead.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

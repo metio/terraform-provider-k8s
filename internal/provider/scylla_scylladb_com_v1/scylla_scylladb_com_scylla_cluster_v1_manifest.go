@@ -4561,8 +4561,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"host_networking": schema.BoolAttribute{
-								Description:         "hostNetworking determines if scylla uses the host's network namespace. Setting this option avoids going through Kubernetes SDN and exposes scylla on node's IP.",
-								MarkdownDescription: "hostNetworking determines if scylla uses the host's network namespace. Setting this option avoids going through Kubernetes SDN and exposes scylla on node's IP.",
+								Description:         "hostNetworking determines if scylla uses the host's network namespace. Setting this option avoids going through Kubernetes SDN and exposes scylla on node's IP. Deprecated: 'hostNetworking' is deprecated and may be ignored in the future.",
+								MarkdownDescription: "hostNetworking determines if scylla uses the host's network namespace. Setting this option avoids going through Kubernetes SDN and exposes scylla on node's IP. Deprecated: 'hostNetworking' is deprecated and may be ignored in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

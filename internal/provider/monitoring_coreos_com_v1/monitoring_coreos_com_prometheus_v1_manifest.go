@@ -1326,7 +1326,8 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"rule_namespace_selector" json:"ruleNamespaceSelector,omitempty"`
-		RuleSelector *struct {
+		RuleQueryOffset *string `tfsdk:"rule_query_offset" json:"ruleQueryOffset,omitempty"`
+		RuleSelector    *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -10952,6 +10953,17 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"rule_query_offset": schema.StringAttribute{
+						Description:         "Defines the offset the rule evaluation timestamp of this particular group by the specified duration into the past. It requires Prometheus >= v2.53.0.",
+						MarkdownDescription: "Defines the offset the rule evaluation timestamp of this particular group by the specified duration into the past. It requires Prometheus >= v2.53.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"rule_selector": schema.SingleNestedAttribute{

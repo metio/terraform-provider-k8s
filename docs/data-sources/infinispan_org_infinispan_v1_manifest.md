@@ -568,6 +568,7 @@ Optional:
 Optional:
 
 - `categories` (Map of String)
+- `pattern` (String) A custom pattern to be applied to the Log4j STDOUT output
 
 
 <a id="nestedatt--spec--scheduling"></a>

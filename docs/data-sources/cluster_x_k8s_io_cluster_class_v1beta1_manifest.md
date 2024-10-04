@@ -315,6 +315,8 @@ Required:
 Optional:
 
 - `additional_properties` (Map of String) AdditionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
+- `all_of` (Map of String) AllOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
+- `any_of` (Map of String) AnyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
 - `default` (Map of String) Default is the default value of the variable. NOTE: Can be set for all types.
 - `description` (String) Description is a human-readable description of this variable.
 - `enum` (List of String) Enum is the list of valid values of the variable. NOTE: Can be set for all types.
@@ -331,10 +333,13 @@ Optional:
 - `min_length` (Number) MinLength is the min length of a string variable. NOTE: Can only be set if type is string.
 - `min_properties` (Number) MinProperties is the minimum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.
 - `minimum` (Number) Minimum is the minimum of an integer or number variable. If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum. If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum. NOTE: Can only be set if type is integer or number.
+- `not` (Map of String) Not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
+- `one_of` (Map of String) OneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
 - `pattern` (String) Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.
 - `properties` (Map of String) Properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
 - `required` (List of String) Required specifies which fields of an object are required. NOTE: Can only be set if type is object.
 - `unique_items` (Boolean) UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.
+- `x_kubernetes_int_or_string` (Boolean) x-kubernetes-int-or-string specifies that this value is either an integer or a string. If this is true, an empty type is allowed and type as child of anyOf is permitted if following one of the following patterns: 1) anyOf: - type: integer - type: string 2) allOf: - anyOf: - type: integer - type: string - ... zero or more
 - `x_kubernetes_preserve_unknown_fields` (Boolean) XPreserveUnknownFields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.
 - `x_kubernetes_validations` (Attributes List) XValidations describes a list of validation rules written in the CEL expression language. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_kubernetes_validations))
 - `x_metadata` (Attributes) XMetadata is the metadata of a variable or a nested field within a variable. It can be used to add additional data for higher level tools. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_metadata))
