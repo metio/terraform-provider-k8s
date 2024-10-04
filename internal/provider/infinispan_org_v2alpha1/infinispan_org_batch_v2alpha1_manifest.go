@@ -46,6 +46,10 @@ type InfinispanOrgBatchV2Alpha1ManifestData struct {
 		Cluster   *string `tfsdk:"cluster" json:"cluster,omitempty"`
 		Config    *string `tfsdk:"config" json:"config,omitempty"`
 		ConfigMap *string `tfsdk:"config_map" json:"configMap,omitempty"`
+		Container *struct {
+			Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
+			Memory *string `tfsdk:"memory" json:"memory,omitempty"`
+		} `tfsdk:"container" json:"container,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -148,6 +152,31 @@ func (r *InfinispanOrgBatchV2Alpha1Manifest) Schema(_ context.Context, _ datasou
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"container": schema.SingleNestedAttribute{
+						Description:         "Specify resource requirements per container",
+						MarkdownDescription: "Specify resource requirements per container",
+						Attributes: map[string]schema.Attribute{
+							"cpu": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"memory": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

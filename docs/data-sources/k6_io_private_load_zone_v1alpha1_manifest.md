@@ -81,6 +81,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--image_pull_secrets"></a>

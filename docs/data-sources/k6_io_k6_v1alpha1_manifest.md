@@ -265,6 +265,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -324,6 +326,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -399,6 +403,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -458,6 +464,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -514,6 +522,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -524,6 +533,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--container_security_context--windows_options))
+
+<a id="nestedatt--spec--initializer--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.initializer.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--initializer--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.initializer.container_security_context.capabilities`
@@ -809,6 +830,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -985,6 +1007,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--initializer--security_context"></a>
@@ -992,6 +1018,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -1000,8 +1027,21 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--initializer--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--security_context--windows_options))
+
+<a id="nestedatt--spec--initializer--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.initializer.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--initializer--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.initializer.security_context.se_linux_options`
@@ -1111,6 +1151,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -1141,6 +1182,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--persistent_volume_claim))
@@ -1376,6 +1418,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -1411,17 +1454,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--initializer--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--initializer--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.initializer.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--initializer--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -1545,6 +1579,15 @@ Optional:
 - `type` (String)
 
 
+<a id="nestedatt--spec--initializer--volumes--image"></a>
+### Nested Schema for `spec.initializer.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
+
+
 <a id="nestedatt--spec--initializer--volumes--iscsi"></a>
 ### Nested Schema for `spec.initializer.volumes.iscsi`
 
@@ -1637,10 +1680,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--initializer--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.initializer.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--initializer--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.initializer.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--initializer--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--initializer--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.initializer.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--initializer--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.initializer.volumes.projected.sources.config_map`
@@ -2052,6 +2133,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -2111,6 +2194,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -2186,6 +2271,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -2245,6 +2332,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -2301,6 +2390,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -2311,6 +2401,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--container_security_context--windows_options))
+
+<a id="nestedatt--spec--runner--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.runner.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--runner--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.runner.container_security_context.capabilities`
@@ -2596,6 +2698,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -2772,6 +2875,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--runner--security_context"></a>
@@ -2779,6 +2886,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -2787,8 +2895,21 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--runner--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--security_context--windows_options))
+
+<a id="nestedatt--spec--runner--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.runner.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--runner--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.runner.security_context.se_linux_options`
@@ -2898,6 +3019,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -2928,6 +3050,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--persistent_volume_claim))
@@ -3163,6 +3286,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -3198,17 +3322,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--runner--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--runner--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.runner.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--runner--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -3332,6 +3447,15 @@ Optional:
 - `type` (String)
 
 
+<a id="nestedatt--spec--runner--volumes--image"></a>
+### Nested Schema for `spec.runner.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
+
+
 <a id="nestedatt--spec--runner--volumes--iscsi"></a>
 ### Nested Schema for `spec.runner.volumes.iscsi`
 
@@ -3424,10 +3548,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--runner--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.runner.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--runner--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.runner.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--runner--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--runner--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.runner.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--runner--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.runner.volumes.projected.sources.config_map`
@@ -3841,6 +4003,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -3900,6 +4064,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -3975,6 +4141,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -4034,6 +4202,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -4090,6 +4260,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--container_security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--container_security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4100,6 +4271,18 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--container_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--container_security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--container_security_context--windows_options))
+
+<a id="nestedatt--spec--starter--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.starter.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--starter--container_security_context--capabilities"></a>
 ### Nested Schema for `spec.starter.container_security_context.capabilities`
@@ -4385,6 +4568,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -4561,6 +4745,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--starter--security_context"></a>
@@ -4568,6 +4756,7 @@ Required:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -4576,8 +4765,21 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--starter--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--security_context--windows_options))
+
+<a id="nestedatt--spec--starter--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.starter.security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
 
 <a id="nestedatt--spec--starter--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.starter.security_context.se_linux_options`
@@ -4687,6 +4889,7 @@ Optional:
 
 - `mount_propagation` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -4717,6 +4920,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--persistent_volume_claim))
@@ -4952,6 +5156,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -4987,17 +5192,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--starter--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--starter--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
-### Nested Schema for `spec.starter.volumes.ephemeral.volume_claim_template.spec.resources.claims`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--starter--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -5121,6 +5317,15 @@ Optional:
 - `type` (String)
 
 
+<a id="nestedatt--spec--starter--volumes--image"></a>
+### Nested Schema for `spec.starter.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
+
+
 <a id="nestedatt--spec--starter--volumes--iscsi"></a>
 ### Nested Schema for `spec.starter.volumes.iscsi`
 
@@ -5213,10 +5418,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--starter--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.starter.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--starter--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.starter.volumes.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--starter--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--starter--volumes--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.starter.volumes.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--starter--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.starter.volumes.projected.sources.config_map`

@@ -60,6 +60,7 @@ Optional:
 - `clustering` (Attributes) Multi-cluster related features. (see [below for nested schema](#nestedatt--spec--clustering))
 - `custom_dashboards` (List of Map of String) A list of user-defined custom monitoring dashboards that you can use to generate metrics charts for your applications. The server has some built-in dashboards; if you define a custom dashboard here with the same name as a built-in dashboard, your custom dashboard takes precedence and will overwrite the built-in dashboard. You can disable one or more of the built-in dashboards by simply defining an empty dashboard. An example of an additional user-defined dashboard, ''' - name: myapp title: My App Metrics items: - chart: name: 'Thread Count' spans: 4 metricName: 'thread-count' dataType: 'raw' ''' An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard), ''' - name: envoy ''' To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/
 - `deployment` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment))
+- `extensions` (Attributes List) Defines third-party extensions whose metrics can be integrated into the Kiali traffic graph. (see [below for nested schema](#nestedatt--spec--extensions))
 - `external_services` (Attributes) These external service configuration settings define how to connect to the external services like Prometheus, Grafana, and Jaeger. Regarding sensitive values in the external_services 'auth' sections: Some external services configured below support an 'auth' sub-section in order to tell Kiali how it should authenticate with the external services. Credentials used to authenticate Kiali to those external services can be defined in the 'auth.password' and 'auth.token' values within the 'auth' sub-section. Because these are sensitive values, you may not want to declare the actual credentials here in the Kiali CR. In this case, you may store the actual password or token string in a Kubernetes secret. If you do, you need to set the 'auth.password' or 'auth.token' to a value in the format 'secret:<secretName>:<secretKey>' where '<secretName>' is the name of the secret object that Kiali can access, and '<secretKey>' is the name of the key within the named secret that contains the actual password or token string. For example, if Grafana requires a password, you can store that password in a secret named 'myGrafanaCredentials' in a key named 'myGrafanaPw'. In this case, you would set 'external_services.grafana.auth.password' to 'secret:myGrafanaCredentials:myGrafanaPw'. (see [below for nested schema](#nestedatt--spec--external_services))
 - `health_config` (Attributes) This section defines what it means for nodes to be healthy. For more details, see https://kiali.io/docs/configuration/health/ (see [below for nested schema](#nestedatt--spec--health_config))
 - `identity` (Attributes) Settings that define the Kiali server identity. (see [below for nested schema](#nestedatt--spec--identity))
@@ -322,6 +323,15 @@ Optional:
 - `sampler_rate` (String) With this setting every sampler_rate-th message will be logged. By default, every message is logged. As an example, setting this to ''2'' means every other message will be logged. The value of this setting is a string but must be parsable as an integer.
 - `time_field_format` (String) The log message timestamp format. This supports a golang time format (see https://golang.org/pkg/time/)
 
+
+
+<a id="nestedatt--spec--extensions"></a>
+### Nested Schema for `spec.extensions`
+
+Optional:
+
+- `enabled` (Boolean) Determines if the Kiali traffic graph should incorporate the extension's metrics.
+- `name` (String) The name that is used to identify the metric time series for the extension.
 
 
 <a id="nestedatt--spec--external_services"></a>
@@ -643,22 +653,12 @@ Optional:
 
 Optional:
 
-- `certificates_information_indicators` (Attributes) Flag to enable/disable displaying certificates information and which secrets to grant read permissions. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--certificates_information_indicators))
 - `disabled_features` (List of String) There may be some features that admins do not want to be accessible to users (even in 'view only' mode). In this case, this setting allows you to disable one or more of those features entirely.
 - `istio_annotation_action` (Boolean) Flag to enable/disable an Action to edit annotations.
 - `istio_injection_action` (Boolean) Flag to enable/disable an Action to label a namespace for automatic Istio Sidecar injection.
 - `istio_upgrade_action` (Boolean) Flag to activate the Kiali functionality of upgrading namespaces to point to an installed Istio Canary revision. Related Canary upgrade and current revisions of Istio should be defined in 'istio_canary_revision' section.
 - `ui_defaults` (Attributes) Default settings for the UI. These defaults apply to all users. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults))
 - `validations` (Attributes) Features specific to the validations subsystem. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--validations))
-
-<a id="nestedatt--spec--kiali_feature_flags--certificates_information_indicators"></a>
-### Nested Schema for `spec.kiali_feature_flags.certificates_information_indicators`
-
-Optional:
-
-- `enabled` (Boolean)
-- `secrets` (List of String)
-
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults"></a>
 ### Nested Schema for `spec.kiali_feature_flags.ui_defaults`

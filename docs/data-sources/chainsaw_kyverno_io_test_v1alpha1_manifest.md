@@ -61,6 +61,7 @@ Optional:
 - `catch` (Attributes List) Catch defines what the steps will execute when an error happens. This will be combined with catch handlers defined at the step level. (see [below for nested schema](#nestedatt--spec--catch))
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--clusters))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `concurrent` (Boolean) Concurrent determines whether the test should run concurrently with other tests.
 - `delay_before_cleanup` (String) DelayBeforeCleanup adds a delay between the time a test ends and the time cleanup starts.
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration.
@@ -69,6 +70,7 @@ Optional:
 - `force_termination_grace_period` (String) ForceTerminationGracePeriod forces the termination grace period on pods, statefulsets, daemonsets and deployments.
 - `namespace` (String) Namespace determines whether the test should run in a random ephemeral namespace or not.
 - `namespace_template` (Map of String) NamespaceTemplate defines a template to create the test namespace.
+- `namespace_template_compiler` (String) NamespaceTemplateCompiler defines the default compiler to use when evaluating expressions.
 - `scenarios` (Attributes List) Scenarios defines test scenarios. (see [below for nested schema](#nestedatt--spec--scenarios))
 - `skip` (Boolean) Skip determines whether the test should skipped.
 - `skip_delete` (Boolean) SkipDelete determines whether the resources created by the test should be deleted after the test is executed.
@@ -85,6 +87,7 @@ Optional:
 - `cleanup` (Attributes List) Cleanup defines what will be executed after the test is terminated. (see [below for nested schema](#nestedatt--spec--steps--cleanup))
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--clusters))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in both the Configuration and the Test.
 - `description` (String) Description contains a description of the test step.
 - `finally` (Attributes List) Finally defines what the step will execute after the step is terminated. (see [below for nested schema](#nestedatt--spec--steps--finally))
@@ -103,6 +106,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--catch"></a>
 ### Nested Schema for `spec.steps.catch`
@@ -110,6 +117,7 @@ Required:
 Optional:
 
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--catch--command))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--catch--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--describe))
 - `description` (String) Description contains a description of the operation.
@@ -148,6 +156,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--catch--command--clusters"></a>
 ### Nested Schema for `spec.steps.catch.command.clusters`
@@ -169,6 +181,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--catch--command--outputs"></a>
 ### Nested Schema for `spec.steps.catch.command.outputs`
@@ -180,6 +196,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -206,6 +223,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--catch--delete--clusters"></a>
@@ -387,6 +408,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--catch--script--clusters"></a>
 ### Nested Schema for `spec.steps.catch.script.clusters`
@@ -408,6 +433,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--catch--script--outputs"></a>
 ### Nested Schema for `spec.steps.catch.script.outputs`
@@ -419,6 +448,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -504,6 +534,7 @@ Optional:
 Optional:
 
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--cleanup--command))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe))
 - `description` (String) Description contains a description of the operation.
@@ -542,6 +573,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--cleanup--command--clusters"></a>
 ### Nested Schema for `spec.steps.cleanup.command.clusters`
@@ -563,6 +598,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--cleanup--command--outputs"></a>
 ### Nested Schema for `spec.steps.cleanup.command.outputs`
@@ -574,6 +613,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -600,6 +640,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--cleanup--delete--clusters"></a>
@@ -781,6 +825,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--cleanup--script--clusters"></a>
 ### Nested Schema for `spec.steps.cleanup.script.clusters`
@@ -802,6 +850,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--cleanup--script--outputs"></a>
 ### Nested Schema for `spec.steps.cleanup.script.outputs`
@@ -813,6 +865,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -910,6 +963,7 @@ Optional:
 Optional:
 
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--finally--command))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--finally--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--describe))
 - `description` (String) Description contains a description of the operation.
@@ -948,6 +1002,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--finally--command--clusters"></a>
 ### Nested Schema for `spec.steps.finally.command.clusters`
@@ -969,6 +1027,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--finally--command--outputs"></a>
 ### Nested Schema for `spec.steps.finally.command.outputs`
@@ -980,6 +1042,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1006,6 +1069,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--finally--delete--clusters"></a>
@@ -1187,6 +1254,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--finally--script--clusters"></a>
 ### Nested Schema for `spec.steps.finally.script.clusters`
@@ -1208,6 +1279,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--finally--script--outputs"></a>
 ### Nested Schema for `spec.steps.finally.script.outputs`
@@ -1219,6 +1294,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1319,6 +1395,7 @@ Optional:
 - `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include things like configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--try--apply))
 - `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--try--assert))
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--try--command))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `continue_on_error` (Boolean) ContinueOnError determines whether a test should continue or not in case the operation was not successful. Even if the test continues executing, it will still be reported as failed.
 - `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--try--create))
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--try--delete))
@@ -1359,6 +1436,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--apply--clusters"></a>
 ### Nested Schema for `spec.steps.try.apply.clusters`
@@ -1394,6 +1475,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1418,6 +1500,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--try--assert--clusters"></a>
@@ -1461,6 +1547,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--command--clusters"></a>
 ### Nested Schema for `spec.steps.try.command.clusters`
@@ -1482,6 +1572,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--command--outputs"></a>
 ### Nested Schema for `spec.steps.try.command.outputs`
@@ -1493,6 +1587,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1520,6 +1615,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--try--create--clusters"></a>
@@ -1556,6 +1655,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1582,6 +1682,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--try--delete--clusters"></a>
@@ -1675,6 +1779,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--steps--try--error--clusters"></a>
@@ -1771,6 +1879,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--patch--clusters"></a>
 ### Nested Schema for `spec.steps.try.patch.clusters`
@@ -1806,6 +1918,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1878,6 +1991,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1906,6 +2020,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--script--clusters"></a>
 ### Nested Schema for `spec.steps.try.script.clusters`
@@ -1927,6 +2045,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--script--outputs"></a>
 ### Nested Schema for `spec.steps.try.script.outputs`
@@ -1938,6 +2060,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -1974,6 +2097,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--steps--try--update--clusters"></a>
 ### Nested Schema for `spec.steps.try.update.clusters`
@@ -2009,6 +2136,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -2106,6 +2234,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 
 
@@ -2118,6 +2250,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch"></a>
 ### Nested Schema for `spec.catch`
@@ -2125,6 +2261,7 @@ Required:
 Optional:
 
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--catch--command))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--catch--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--catch--describe))
 - `description` (String) Description contains a description of the operation.
@@ -2163,6 +2300,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--command--clusters"></a>
 ### Nested Schema for `spec.catch.command.clusters`
@@ -2184,6 +2325,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--command--outputs"></a>
 ### Nested Schema for `spec.catch.command.outputs`
@@ -2195,6 +2340,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -2221,6 +2367,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--catch--delete--clusters"></a>
@@ -2402,6 +2552,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--script--clusters"></a>
 ### Nested Schema for `spec.catch.script.clusters`
@@ -2423,6 +2577,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--script--outputs"></a>
 ### Nested Schema for `spec.catch.script.outputs`
@@ -2434,6 +2592,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -2539,6 +2698,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 

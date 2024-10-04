@@ -7213,6 +7213,7 @@ Optional:
 - `htpasswd_file` (String)
 - `sar` (String)
 - `skip_logout` (Boolean)
+- `timeout` (String)
 
 
 <a id="nestedatt--spec--ingress--resources"></a>

@@ -100,7 +100,7 @@ Optional:
 
 Required:
 
-- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. TODO(akutz) Make sure at least one network matches the ClusterSpec.CloudProviderConfiguration.Network.Name (see [below for nested schema](#nestedatt--spec--template--spec--network--devices))
+- `devices` (Attributes List) Devices is the list of network devices used by the virtual machine. (see [below for nested schema](#nestedatt--spec--template--spec--network--devices))
 
 Optional:
 

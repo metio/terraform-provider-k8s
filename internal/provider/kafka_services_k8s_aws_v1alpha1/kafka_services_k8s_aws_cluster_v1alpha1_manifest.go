@@ -55,7 +55,7 @@ type KafkaServicesK8SAwsClusterV1Alpha1ManifestData struct {
 			ClientSubnets        *[]string `tfsdk:"client_subnets" json:"clientSubnets,omitempty"`
 			ConnectivityInfo     *struct {
 				PublicAccess *struct {
-					Type_ *string `tfsdk:"type_" json:"type_,omitempty"`
+					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"public_access" json:"publicAccess,omitempty"`
 			} `tfsdk:"connectivity_info" json:"connectivityInfo,omitempty"`
 			InstanceType   *string   `tfsdk:"instance_type" json:"instanceType,omitempty"`
@@ -287,7 +287,7 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 										Description:         "Broker public access control.",
 										MarkdownDescription: "Broker public access control.",
 										Attributes: map[string]schema.Attribute{
-											"type_": schema.StringAttribute{
+											"type": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,

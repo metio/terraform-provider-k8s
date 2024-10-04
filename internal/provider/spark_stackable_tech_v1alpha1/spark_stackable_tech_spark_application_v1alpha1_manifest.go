@@ -194,9 +194,10 @@ type SparkStackableTechSparkApplicationV1Alpha1ManifestData struct {
 								AccessStyle *string `tfsdk:"access_style" json:"accessStyle,omitempty"`
 								Credentials *struct {
 									Scope *struct {
-										Node     *bool     `tfsdk:"node" json:"node,omitempty"`
-										Pod      *bool     `tfsdk:"pod" json:"pod,omitempty"`
-										Services *[]string `tfsdk:"services" json:"services,omitempty"`
+										ListenerVolumes *[]string `tfsdk:"listener_volumes" json:"listenerVolumes,omitempty"`
+										Node            *bool     `tfsdk:"node" json:"node,omitempty"`
+										Pod             *bool     `tfsdk:"pod" json:"pod,omitempty"`
+										Services        *[]string `tfsdk:"services" json:"services,omitempty"`
 									} `tfsdk:"scope" json:"scope,omitempty"`
 									SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 								} `tfsdk:"credentials" json:"credentials,omitempty"`
@@ -230,9 +231,10 @@ type SparkStackableTechSparkApplicationV1Alpha1ManifestData struct {
 				AccessStyle *string `tfsdk:"access_style" json:"accessStyle,omitempty"`
 				Credentials *struct {
 					Scope *struct {
-						Node     *bool     `tfsdk:"node" json:"node,omitempty"`
-						Pod      *bool     `tfsdk:"pod" json:"pod,omitempty"`
-						Services *[]string `tfsdk:"services" json:"services,omitempty"`
+						ListenerVolumes *[]string `tfsdk:"listener_volumes" json:"listenerVolumes,omitempty"`
+						Node            *bool     `tfsdk:"node" json:"node,omitempty"`
+						Pod             *bool     `tfsdk:"pod" json:"pod,omitempty"`
+						Services        *[]string `tfsdk:"services" json:"services,omitempty"`
 					} `tfsdk:"scope" json:"scope,omitempty"`
 					SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 				} `tfsdk:"credentials" json:"credentials,omitempty"`
@@ -424,8 +426,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												MarkdownDescription: "Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -442,8 +444,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												MarkdownDescription: "Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -451,8 +453,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												MarkdownDescription: "Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},
@@ -717,10 +719,10 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													Required:            false,
-													Optional:            true,
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -808,10 +810,10 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													Required:            false,
-													Optional:            true,
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
@@ -864,8 +866,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												MarkdownDescription: "Same as the 'spec.affinity.nodeAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -882,8 +884,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												MarkdownDescription: "Same as the 'spec.affinity.podAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -891,8 +893,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												MarkdownDescription: "Same as the 'spec.affinity.podAntiAffinity' field on the Pod, see the [Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},
@@ -1279,18 +1281,18 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"bucket": schema.SingleNestedAttribute{
-										Description:         "An S3 bucket definition, it can either be a reference to an explicit S3Bucket object, or it can be an inline definition of a bucket. Read the [S3 resources concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3) to learn more.",
-										MarkdownDescription: "An S3 bucket definition, it can either be a reference to an explicit S3Bucket object, or it can be an inline definition of a bucket. Read the [S3 resources concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3) to learn more.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"inline": schema.SingleNestedAttribute{
-												Description:         "An inline definition, containing the S3 bucket properties.",
-												MarkdownDescription: "An inline definition, containing the S3 bucket properties.",
+												Description:         "S3 bucket specification containing the bucket name and an inlined or referenced connection specification. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+												MarkdownDescription: "S3 bucket specification containing the bucket name and an inlined or referenced connection specification. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
 												Attributes: map[string]schema.Attribute{
 													"bucket_name": schema.StringAttribute{
 														Description:         "The name of the S3 bucket.",
 														MarkdownDescription: "The name of the S3 bucket.",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 
@@ -1299,8 +1301,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 														MarkdownDescription: "The definition of an S3 connection, either inline or as a reference.",
 														Attributes: map[string]schema.Attribute{
 															"inline": schema.SingleNestedAttribute{
-																Description:         "Inline definition of an S3 connection.",
-																MarkdownDescription: "Inline definition of an S3 connection.",
+																Description:         "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																MarkdownDescription: "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
 																Attributes: map[string]schema.Attribute{
 																	"access_style": schema.StringAttribute{
 																		Description:         "Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).",
@@ -1321,6 +1323,15 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 																				Description:         "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
 																				MarkdownDescription: "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
 																				Attributes: map[string]schema.Attribute{
+																					"listener_volumes": schema.ListAttribute{
+																						Description:         "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+																						MarkdownDescription: "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"node": schema.BoolAttribute{
 																						Description:         "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
 																						MarkdownDescription: "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
@@ -1365,10 +1376,10 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 																	},
 
 																	"host": schema.StringAttribute{
-																		Description:         "Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
-																		MarkdownDescription: "Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
-																		Required:            false,
-																		Optional:            true,
+																		Description:         "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+																		MarkdownDescription: "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																	},
 
@@ -1384,8 +1395,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 																	},
 
 																	"tls": schema.SingleNestedAttribute{
-																		Description:         "If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting.",
-																		MarkdownDescription: "If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting.",
+																		Description:         "Use a TLS connection. If not specified no TLS will be used.",
+																		MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
 																		Attributes: map[string]schema.Attribute{
 																			"verification": schema.SingleNestedAttribute{
 																				Description:         "The verification method used to verify the certificates of the server and/or the client.",
@@ -1451,15 +1462,15 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 															},
 
 															"reference": schema.StringAttribute{
-																Description:         "A reference to an S3Connection resource.",
-																MarkdownDescription: "A reference to an S3Connection resource.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 														},
-														Required: false,
-														Optional: true,
+														Required: true,
+														Optional: false,
 														Computed: false,
 													},
 												},
@@ -1469,8 +1480,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 											},
 
 											"reference": schema.StringAttribute{
-												Description:         "A reference to an S3 bucket object. This is simply the name of the 'S3Bucket' resource.",
-												MarkdownDescription: "A reference to an S3 bucket object. This is simply the name of the 'S3Bucket' resource.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1531,8 +1542,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Configure an S3 connection that the SparkApplication has access to. Read more in the [Spark S3 usage guide](https://docs.stackable.tech/home/nightly/spark-k8s/usage-guide/s3).",
 						Attributes: map[string]schema.Attribute{
 							"inline": schema.SingleNestedAttribute{
-								Description:         "Inline definition of an S3 connection.",
-								MarkdownDescription: "Inline definition of an S3 connection.",
+								Description:         "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+								MarkdownDescription: "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
 								Attributes: map[string]schema.Attribute{
 									"access_style": schema.StringAttribute{
 										Description:         "Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).",
@@ -1553,6 +1564,15 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
 												MarkdownDescription: "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
 												Attributes: map[string]schema.Attribute{
+													"listener_volumes": schema.ListAttribute{
+														Description:         "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+														MarkdownDescription: "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"node": schema.BoolAttribute{
 														Description:         "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
 														MarkdownDescription: "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
@@ -1597,10 +1617,10 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 									},
 
 									"host": schema.StringAttribute{
-										Description:         "Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
-										MarkdownDescription: "Hostname of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
-										Required:            false,
-										Optional:            true,
+										Description:         "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+										MarkdownDescription: "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
@@ -1616,8 +1636,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 									},
 
 									"tls": schema.SingleNestedAttribute{
-										Description:         "If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting.",
-										MarkdownDescription: "If you want to use TLS when talking to S3 you can enable TLS encrypted communication with this setting.",
+										Description:         "Use a TLS connection. If not specified no TLS will be used.",
+										MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
 										Attributes: map[string]schema.Attribute{
 											"verification": schema.SingleNestedAttribute{
 												Description:         "The verification method used to verify the certificates of the server and/or the client.",
@@ -1683,8 +1703,8 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"reference": schema.StringAttribute{
-								Description:         "A reference to an S3Connection resource.",
-								MarkdownDescription: "A reference to an S3Connection resource.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1741,10 +1761,10 @@ func (r *SparkStackableTechSparkApplicationV1Alpha1Manifest) Schema(_ context.Co
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											Required:            false,
-											Optional:            true,
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},

@@ -53,6 +53,7 @@ Optional:
 
 - `catch` (Attributes List) Catch defines what the tests steps will execute when an error happens. This will be combined with catch handlers defined at the test and step levels. (see [below for nested schema](#nestedatt--spec--catch))
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--clusters))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `delay_before_cleanup` (String) DelayBeforeCleanup adds a delay between the time a test ends and the time cleanup starts.
 - `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.
 - `exclude_test_regex` (String) ExcludeTestRegex is used to exclude tests based on a regular expression.
@@ -62,6 +63,7 @@ Optional:
 - `include_test_regex` (String) IncludeTestRegex is used to include tests based on a regular expression.
 - `namespace` (String) Namespace defines the namespace to use for tests. If not specified, every test will execute in a random ephemeral namespace unless the namespace is overridden in a the test spec.
 - `namespace_template` (Map of String) NamespaceTemplate defines a template to create the test namespace.
+- `namespace_template_compiler` (String) NamespaceTemplateCompiler defines the default compiler to use when evaluating expressions.
 - `parallel` (Number) The maximum number of tests to run at once.
 - `repeat_count` (Number) RepeatCount indicates how many times the tests should be executed.
 - `report_format` (String) ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.
@@ -78,6 +80,7 @@ Optional:
 Optional:
 
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--catch--command))
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--catch--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--catch--describe))
 - `description` (String) Description contains a description of the operation.
@@ -116,6 +119,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--command--clusters"></a>
 ### Nested Schema for `spec.catch.command.clusters`
@@ -137,6 +144,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--command--outputs"></a>
 ### Nested Schema for `spec.catch.command.outputs`
@@ -148,6 +159,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 
@@ -174,6 +186,10 @@ Required:
 
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
+
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 
 
 <a id="nestedatt--spec--catch--delete--clusters"></a>
@@ -355,6 +371,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--script--clusters"></a>
 ### Nested Schema for `spec.catch.script.clusters`
@@ -376,6 +396,10 @@ Required:
 - `name` (String) Name the name of the binding.
 - `value` (Map of String) Value value of the binding.
 
+Optional:
+
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
+
 
 <a id="nestedatt--spec--catch--script--outputs"></a>
 ### Nested Schema for `spec.catch.script.outputs`
@@ -387,6 +411,7 @@ Required:
 
 Optional:
 
+- `compiler` (String) Compiler defines the default compiler to use when evaluating expressions.
 - `match` (Map of String) Match defines the matching statement.
 
 

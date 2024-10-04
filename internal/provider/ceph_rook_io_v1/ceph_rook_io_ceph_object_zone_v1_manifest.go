@@ -605,8 +605,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -963,8 +963,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

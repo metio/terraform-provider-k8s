@@ -59,6 +59,7 @@ Optional:
 - `backup` (Attributes) (see [below for nested schema](#nestedatt--spec--backup))
 - `cr_version` (String)
 - `enable_cr_validation_webhook` (Boolean)
+- `enable_volume_expansion` (Boolean)
 - `haproxy` (Attributes) (see [below for nested schema](#nestedatt--spec--haproxy))
 - `ignore_annotations` (List of String)
 - `ignore_labels` (List of String)

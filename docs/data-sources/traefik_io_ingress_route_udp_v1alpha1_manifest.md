@@ -59,7 +59,7 @@ Required:
 
 Optional:
 
-- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.
+- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/entrypoints/ Default: all.
 
 <a id="nestedatt--spec--routes"></a>
 ### Nested Schema for `spec.routes`

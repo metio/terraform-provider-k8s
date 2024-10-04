@@ -61,3 +61,12 @@ Optional:
 
 - `config` (String) Batch string to be executed
 - `config_map` (String) Name of the ConfigMap containing the batch and resource files to be executed
+- `container` (Attributes) Specify resource requirements per container (see [below for nested schema](#nestedatt--spec--container))
+
+<a id="nestedatt--spec--container"></a>
+### Nested Schema for `spec.container`
+
+Optional:
+
+- `cpu` (String)
+- `memory` (String)

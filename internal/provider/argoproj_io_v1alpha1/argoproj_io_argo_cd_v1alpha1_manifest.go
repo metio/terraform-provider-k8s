@@ -101,9 +101,12 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					Path        *string            `tfsdk:"path" json:"path,omitempty"`
 					Tls         *struct {
-						CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-						Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-						DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+						CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+						Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+						DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+						ExternalCertificate      *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 						InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 						Key                           *string `tfsdk:"key" json:"key,omitempty"`
 						Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -213,9 +216,12 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Path        *string            `tfsdk:"path" json:"path,omitempty"`
 				Tls         *struct {
-					CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-					Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-					DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+					Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					ExternalCertificate      *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 					InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 					Key                           *string `tfsdk:"key" json:"key,omitempty"`
 					Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -327,9 +333,12 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Path        *string            `tfsdk:"path" json:"path,omitempty"`
 				Tls         *struct {
-					CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-					Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-					DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+					Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					ExternalCertificate      *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 					InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 					Key                           *string `tfsdk:"key" json:"key,omitempty"`
 					Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -1285,9 +1294,12 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				Path        *string            `tfsdk:"path" json:"path,omitempty"`
 				Tls         *struct {
-					CaCertificate                 *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
-					Certificate                   *string `tfsdk:"certificate" json:"certificate,omitempty"`
-					DestinationCACertificate      *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					CaCertificate            *string `tfsdk:"ca_certificate" json:"caCertificate,omitempty"`
+					Certificate              *string `tfsdk:"certificate" json:"certificate,omitempty"`
+					DestinationCACertificate *string `tfsdk:"destination_ca_certificate" json:"destinationCACertificate,omitempty"`
+					ExternalCertificate      *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"external_certificate" json:"externalCertificate,omitempty"`
 					InsecureEdgeTerminationPolicy *string `tfsdk:"insecure_edge_termination_policy" json:"insecureEdgeTerminationPolicy,omitempty"`
 					Key                           *string `tfsdk:"key" json:"key,omitempty"`
 					Termination                   *string `tfsdk:"termination" json:"termination,omitempty"`
@@ -1822,8 +1834,8 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 													},
 
 													"certificate": schema.StringAttribute{
-														Description:         "certificate provides certificate contents",
-														MarkdownDescription: "certificate provides certificate contents",
+														Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+														MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1837,12 +1849,32 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 														Computed:            false,
 													},
 
+													"external_certificate": schema.SingleNestedAttribute{
+														Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+														MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"insecure_edge_termination_policy": schema.StringAttribute{
-														Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-														MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+														Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+														MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+														},
 													},
 
 													"key": schema.StringAttribute{
@@ -1854,11 +1886,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 													},
 
 													"termination": schema.StringAttribute{
-														Description:         "termination indicates termination type.",
-														MarkdownDescription: "termination indicates termination type.",
+														Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+														MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+														},
 													},
 												},
 												Required: false,
@@ -2589,8 +2624,8 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "certificate provides certificate contents",
-												MarkdownDescription: "certificate provides certificate contents",
+												Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+												MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2604,12 +2639,32 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 												Computed:            false,
 											},
 
+											"external_certificate": schema.SingleNestedAttribute{
+												Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+												},
 											},
 
 											"key": schema.StringAttribute{
@@ -2621,11 +2676,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "termination indicates termination type.",
-												MarkdownDescription: "termination indicates termination type.",
+												Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+												MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+												},
 											},
 										},
 										Required: false,
@@ -3361,8 +3419,8 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "certificate provides certificate contents",
-												MarkdownDescription: "certificate provides certificate contents",
+												Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+												MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3376,12 +3434,32 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 												Computed:            false,
 											},
 
+											"external_certificate": schema.SingleNestedAttribute{
+												Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+												},
 											},
 
 											"key": schema.StringAttribute{
@@ -3393,11 +3471,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "termination indicates termination type.",
-												MarkdownDescription: "termination indicates termination type.",
+												Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+												MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+												},
 											},
 										},
 										Required: false,
@@ -9774,8 +9855,8 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"certificate": schema.StringAttribute{
-												Description:         "certificate provides certificate contents",
-												MarkdownDescription: "certificate provides certificate contents",
+												Description:         "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
+												MarkdownDescription: "certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9789,12 +9870,32 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 												Computed:            false,
 											},
 
+											"external_certificate": schema.SingleNestedAttribute{
+												Description:         "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												MarkdownDescription: "externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"insecure_edge_termination_policy": schema.StringAttribute{
-												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
-												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												Description:         "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
+												MarkdownDescription: "insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Allow", "None", "Redirect", ""),
+												},
 											},
 
 											"key": schema.StringAttribute{
@@ -9806,11 +9907,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"termination": schema.StringAttribute{
-												Description:         "termination indicates termination type.",
-												MarkdownDescription: "termination indicates termination type.",
+												Description:         "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
+												MarkdownDescription: "termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("edge", "reencrypt", "passthrough"),
+												},
 											},
 										},
 										Required: false,

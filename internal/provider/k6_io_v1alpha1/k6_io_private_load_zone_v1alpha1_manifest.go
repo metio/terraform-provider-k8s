@@ -50,7 +50,8 @@ type K6IoPrivateLoadZoneV1Alpha1ManifestData struct {
 		NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Resources    *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -187,6 +188,14 @@ func (r *K6IoPrivateLoadZoneV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"request": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},

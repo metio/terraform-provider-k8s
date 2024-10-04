@@ -67,6 +67,7 @@ Optional:
 - `interval` (String) Interval determines how often rules in the group are evaluated.
 - `limit` (Number) Limit the number of alerts an alerting rule and series a recording rule can produce. Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.
 - `partial_response_strategy` (String) PartialResponseStrategy is only used by ThanosRuler and will be ignored by Prometheus instances. More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response
+- `query_offset` (String) Defines the offset the rule evaluation timestamp of this particular group by the specified duration into the past. It requires Prometheus >= v2.53.0. It is not supported for ThanosRuler.
 - `rules` (Attributes List) List of alerting and recording rules. (see [below for nested schema](#nestedatt--spec--groups--rules))
 
 <a id="nestedatt--spec--groups--rules"></a>

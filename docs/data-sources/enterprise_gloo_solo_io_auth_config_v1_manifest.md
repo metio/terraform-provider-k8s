@@ -93,6 +93,7 @@ Optional:
 - `headers_from_metadata_entry` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--api_key_auth--headers_from_metadata_entry))
 - `k8s_secret_apikey_storage` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--api_key_auth--k8s_secret_apikey_storage))
 - `label_selector` (Map of String)
+- `skip_metadata_validation` (Boolean)
 
 <a id="nestedatt--spec--configs--api_key_auth--aerospike_apikey_storage"></a>
 ### Nested Schema for `spec.configs.api_key_auth.aerospike_apikey_storage`

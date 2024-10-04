@@ -57,10 +57,15 @@ type KuadrantIoDnsrecordV1Alpha1ManifestData struct {
 			Targets       *[]string `tfsdk:"targets" json:"targets,omitempty"`
 		} `tfsdk:"endpoints" json:"endpoints,omitempty"`
 		HealthCheck *struct {
-			Endpoint         *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			FailureThreshold *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
-			Port             *int64  `tfsdk:"port" json:"port,omitempty"`
-			Protocol         *string `tfsdk:"protocol" json:"protocol,omitempty"`
+			AdditionalHeadersRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"additional_headers_ref" json:"additionalHeadersRef,omitempty"`
+			AllowInsecureCertificate *bool   `tfsdk:"allow_insecure_certificate" json:"allowInsecureCertificate,omitempty"`
+			FailureThreshold         *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			Interval                 *string `tfsdk:"interval" json:"interval,omitempty"`
+			Path                     *string `tfsdk:"path" json:"path,omitempty"`
+			Port                     *int64  `tfsdk:"port" json:"port,omitempty"`
+			Protocol                 *string `tfsdk:"protocol" json:"protocol,omitempty"`
 		} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 		OwnerID     *string `tfsdk:"owner_id" json:"ownerID,omitempty"`
 		ProviderRef *struct {
@@ -239,15 +244,29 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway",
 						MarkdownDescription: "HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway",
 						Attributes: map[string]schema.Attribute{
-							"endpoint": schema.StringAttribute{
-								Description:         "Endpoint is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
-								MarkdownDescription: "Endpoint is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
+							"additional_headers_ref": schema.SingleNestedAttribute{
+								Description:         "AdditionalHeadersRef refers to a secret that contains extra headers to send in the probe request, this is primarily useful if an authentication token is required by the endpoint.",
+								MarkdownDescription: "AdditionalHeadersRef refers to a secret that contains extra headers to send in the probe request, this is primarily useful if an authentication token is required by the endpoint.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"allow_insecure_certificate": schema.BoolAttribute{
+								Description:         "AllowInsecureCertificate will instruct the health check probe to not fail on a self-signed or otherwise invalid SSL certificate this is primarily used in development or testing environments",
+								MarkdownDescription: "AllowInsecureCertificate will instruct the health check probe to not fail on a self-signed or otherwise invalid SSL certificate this is primarily used in development or testing environments",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\?|\/)[\w\-.~:\/?#\[\]@!$&'()*+,;=]+(?:[a-zA-Z0-9]|\/){1}$`), ""),
-								},
 							},
 
 							"failure_threshold": schema.Int64Attribute{
@@ -256,6 +275,25 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"interval": schema.StringAttribute{
+								Description:         "Interval defines how frequently this probe should execute",
+								MarkdownDescription: "Interval defines how frequently this probe should execute",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"path": schema.StringAttribute{
+								Description:         "Path is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
+								MarkdownDescription: "Path is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(?:\?|\/)[\w\-.~:\/?#\[\]@!$&'()*+,;=]+(?:[a-zA-Z0-9]|\/){1}$`), ""),
+								},
 							},
 
 							"port": schema.Int64Attribute{

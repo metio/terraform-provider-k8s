@@ -67,7 +67,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 			} `tfsdk:"overrides" json:"overrides,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -140,7 +141,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 		JobInitContainers *[]map[string]string `tfsdk:"job_init_containers" json:"jobInitContainers,omitempty"`
 		JobResources      *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -259,9 +261,48 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 										Name     *string `tfsdk:"name" json:"name,omitempty"`
 										Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 									} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-									EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-									Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-									TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+									EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+									NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+									ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+									ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+									ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+									Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+									TlsConfig            *struct {
+										Ca *struct {
+											ConfigMap *struct {
+												Key      *string `tfsdk:"key" json:"key,omitempty"`
+												Name     *string `tfsdk:"name" json:"name,omitempty"`
+												Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+											} `tfsdk:"config_map" json:"configMap,omitempty"`
+											Secret *struct {
+												Key      *string `tfsdk:"key" json:"key,omitempty"`
+												Name     *string `tfsdk:"name" json:"name,omitempty"`
+												Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+											} `tfsdk:"secret" json:"secret,omitempty"`
+										} `tfsdk:"ca" json:"ca,omitempty"`
+										Cert *struct {
+											ConfigMap *struct {
+												Key      *string `tfsdk:"key" json:"key,omitempty"`
+												Name     *string `tfsdk:"name" json:"name,omitempty"`
+												Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+											} `tfsdk:"config_map" json:"configMap,omitempty"`
+											Secret *struct {
+												Key      *string `tfsdk:"key" json:"key,omitempty"`
+												Name     *string `tfsdk:"name" json:"name,omitempty"`
+												Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+											} `tfsdk:"secret" json:"secret,omitempty"`
+										} `tfsdk:"cert" json:"cert,omitempty"`
+										InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+										KeySecret          *struct {
+											Key      *string `tfsdk:"key" json:"key,omitempty"`
+											Name     *string `tfsdk:"name" json:"name,omitempty"`
+											Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+										} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+										MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+										MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+										ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+									} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+									TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 								} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 								Params      *map[string][]string `tfsdk:"params" json:"params,omitempty"`
 								Path        *string              `tfsdk:"path" json:"path,omitempty"`
@@ -313,6 +354,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 										Name     *string `tfsdk:"name" json:"name,omitempty"`
 										Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 									} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+									MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+									MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 									ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 								} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 								TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
@@ -634,7 +677,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -665,7 +709,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -697,7 +742,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -728,7 +774,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -776,7 +823,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -815,7 +863,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 			Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1042,6 +1091,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													Optional:            false,
 													Computed:            false,
 												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -1184,8 +1241,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1230,8 +1287,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1263,8 +1320,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1475,8 +1532,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1511,6 +1568,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},
@@ -1908,8 +1973,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0.",
 																Attributes: map[string]schema.Attribute{
 																	"node": schema.BoolAttribute{
-																		Description:         "When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.",
-																		MarkdownDescription: "When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.",
+																		Description:         "When set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the 'list' and 'watch' permissions on the 'Nodes' objects.",
+																		MarkdownDescription: "When set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the 'list' and 'watch' permissions on the 'Nodes' objects.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1932,8 +1997,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"endpoints": schema.ListNestedAttribute{
-																Description:         "List of endpoints part of this ServiceMonitor.",
-																MarkdownDescription: "List of endpoints part of this ServiceMonitor.",
+																Description:         "List of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
+																MarkdownDescription: "List of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"authorization": schema.SingleNestedAttribute{
@@ -1953,8 +2018,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2003,8 +2068,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2036,8 +2101,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2082,8 +2147,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -2245,8 +2310,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2278,8 +2343,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2316,8 +2381,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2345,6 +2410,42 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					Computed:            false,
 																				},
 
+																				"no_proxy": schema.StringAttribute{
+																					Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																					MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"proxy_connect_header": schema.MapAttribute{
+																					Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																					MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"proxy_from_environment": schema.BoolAttribute{
+																					Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																					MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"proxy_url": schema.StringAttribute{
+																					Description:         "'proxyURL' defines the HTTP proxy server to use.",
+																					MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																					Validators: []validator.String{
+																						stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																					},
+																				},
+
 																				"scopes": schema.ListAttribute{
 																					Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 																					MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -2352,6 +2453,236 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
+																				},
+
+																				"tls_config": schema.SingleNestedAttribute{
+																					Description:         "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+																					MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+																					Attributes: map[string]schema.Attribute{
+																						"ca": schema.SingleNestedAttribute{
+																							Description:         "Certificate authority used when verifying server certificates.",
+																							MarkdownDescription: "Certificate authority used when verifying server certificates.",
+																							Attributes: map[string]schema.Attribute{
+																								"config_map": schema.SingleNestedAttribute{
+																									Description:         "ConfigMap containing data to use for the targets.",
+																									MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "The key to select.",
+																											MarkdownDescription: "The key to select.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"name": schema.StringAttribute{
+																											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"optional": schema.BoolAttribute{
+																											Description:         "Specify whether the ConfigMap or its key must be defined",
+																											MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"secret": schema.SingleNestedAttribute{
+																									Description:         "Secret containing data to use for the targets.",
+																									MarkdownDescription: "Secret containing data to use for the targets.",
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "The key of the secret to select from. Must be a valid secret key.",
+																											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"name": schema.StringAttribute{
+																											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"optional": schema.BoolAttribute{
+																											Description:         "Specify whether the Secret or its key must be defined",
+																											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"cert": schema.SingleNestedAttribute{
+																							Description:         "Client certificate to present when doing client-authentication.",
+																							MarkdownDescription: "Client certificate to present when doing client-authentication.",
+																							Attributes: map[string]schema.Attribute{
+																								"config_map": schema.SingleNestedAttribute{
+																									Description:         "ConfigMap containing data to use for the targets.",
+																									MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "The key to select.",
+																											MarkdownDescription: "The key to select.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"name": schema.StringAttribute{
+																											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"optional": schema.BoolAttribute{
+																											Description:         "Specify whether the ConfigMap or its key must be defined",
+																											MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"secret": schema.SingleNestedAttribute{
+																									Description:         "Secret containing data to use for the targets.",
+																									MarkdownDescription: "Secret containing data to use for the targets.",
+																									Attributes: map[string]schema.Attribute{
+																										"key": schema.StringAttribute{
+																											Description:         "The key of the secret to select from. Must be a valid secret key.",
+																											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																											Required:            true,
+																											Optional:            false,
+																											Computed:            false,
+																										},
+
+																										"name": schema.StringAttribute{
+																											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+
+																										"optional": schema.BoolAttribute{
+																											Description:         "Specify whether the Secret or its key must be defined",
+																											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																											Required:            false,
+																											Optional:            true,
+																											Computed:            false,
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"insecure_skip_verify": schema.BoolAttribute{
+																							Description:         "Disable target certificate validation.",
+																							MarkdownDescription: "Disable target certificate validation.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"key_secret": schema.SingleNestedAttribute{
+																							Description:         "Secret containing the client key file for the targets.",
+																							MarkdownDescription: "Secret containing the client key file for the targets.",
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "The key of the secret to select from. Must be a valid secret key.",
+																									MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"name": schema.StringAttribute{
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"optional": schema.BoolAttribute{
+																									Description:         "Specify whether the Secret or its key must be defined",
+																									MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"max_version": schema.StringAttribute{
+																							Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																							MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																							Validators: []validator.String{
+																								stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																							},
+																						},
+
+																						"min_version": schema.StringAttribute{
+																							Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																							MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																							Validators: []validator.String{
+																								stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																							},
+																						},
+
+																						"server_name": schema.StringAttribute{
+																							Description:         "Used to verify the hostname for the targets.",
+																							MarkdownDescription: "Used to verify the hostname for the targets.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
 																				},
 
 																				"token_url": schema.StringAttribute{
@@ -2525,8 +2856,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2558,8 +2889,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2608,8 +2939,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2641,8 +2972,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2703,8 +3034,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2721,6 +3052,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"max_version": schema.StringAttribute{
+																					Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																					MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																					Validators: []validator.String{
+																						stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																					},
+																				},
+
+																				"min_version": schema.StringAttribute{
+																					Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																					MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																					Validators: []validator.String{
+																						stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																					},
 																				},
 
 																				"server_name": schema.StringAttribute{
@@ -2745,8 +3098,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 																	},
 																},
-																Required: false,
-																Optional: true,
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 
@@ -2791,8 +3144,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"namespace_selector": schema.SingleNestedAttribute{
-																Description:         "Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from.",
-																MarkdownDescription: "Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from.",
+																Description:         "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
+																MarkdownDescription: "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
 																Attributes: map[string]schema.Attribute{
 																	"any": schema.BoolAttribute{
 																		Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
@@ -2854,8 +3207,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"selector": schema.SingleNestedAttribute{
-																Description:         "Label selector to select the Kubernetes 'Endpoints' objects.",
-																MarkdownDescription: "Label selector to select the Kubernetes 'Endpoints' objects.",
+																Description:         "Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from.",
+																MarkdownDescription: "Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4976,6 +5329,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															Optional:            false,
 															Computed:            false,
 														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -5172,6 +5533,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -5380,6 +5749,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															Optional:            false,
 															Computed:            false,
 														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -5576,6 +5953,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -5875,6 +6260,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															Optional:            false,
 															Computed:            false,
 														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -6122,6 +6515,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

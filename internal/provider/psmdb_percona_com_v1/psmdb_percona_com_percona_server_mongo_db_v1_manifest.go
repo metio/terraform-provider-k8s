@@ -1262,9 +1262,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
-				NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 				ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 				ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
@@ -3086,6 +3084,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 		SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 		Secrets       *struct {
 			EncryptionKey *string `tfsdk:"encryption_key" json:"encryptionKey,omitempty"`
+			KeyFile       *string `tfsdk:"key_file" json:"keyFile,omitempty"`
 			LdapSecret    *string `tfsdk:"ldap_secret" json:"ldapSecret,omitempty"`
 			Sse           *string `tfsdk:"sse" json:"sse,omitempty"`
 			Ssl           *string `tfsdk:"ssl" json:"ssl,omitempty"`
@@ -4066,9 +4065,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
-					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 					ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
 					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
@@ -6044,7 +6041,6 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
@@ -15173,26 +15169,10 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Computed:            false,
 										},
 
-										"load_balancer_ip": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"load_balancer_source_ranges": schema.ListAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"node_port": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -27446,6 +27426,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 								Computed:            false,
 							},
 
+							"key_file": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"ldap_secret": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -34038,26 +34026,10 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
-											"load_balancer_ip": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"load_balancer_source_ranges": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"node_port": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -47343,14 +47315,6 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"load_balancer_ip": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

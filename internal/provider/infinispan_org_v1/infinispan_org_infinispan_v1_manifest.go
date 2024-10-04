@@ -221,6 +221,7 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 		} `tfsdk:"jmx" json:"jmx,omitempty"`
 		Logging *struct {
 			Categories *map[string]string `tfsdk:"categories" json:"categories,omitempty"`
+			Pattern    *string            `tfsdk:"pattern" json:"pattern,omitempty"`
 		} `tfsdk:"logging" json:"logging,omitempty"`
 		Replicas   *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Scheduling *struct {
@@ -1735,6 +1736,14 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pattern": schema.StringAttribute{
+								Description:         "A custom pattern to be applied to the Log4j STDOUT output",
+								MarkdownDescription: "A custom pattern to be applied to the Log4j STDOUT output",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

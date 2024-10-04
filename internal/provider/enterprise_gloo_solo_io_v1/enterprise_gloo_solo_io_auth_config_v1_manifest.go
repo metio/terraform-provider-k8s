@@ -99,7 +99,8 @@ type EnterpriseGlooSoloIoAuthConfigV1ManifestData struct {
 					} `tfsdk:"api_key_secret_refs" json:"apiKeySecretRefs,omitempty"`
 					LabelSelector *map[string]string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
 				} `tfsdk:"k8s_secret_apikey_storage" json:"k8sSecretApikeyStorage,omitempty"`
-				LabelSelector *map[string]string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				LabelSelector          *map[string]string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				SkipMetadataValidation *bool              `tfsdk:"skip_metadata_validation" json:"skipMetadataValidation,omitempty"`
 			} `tfsdk:"api_key_auth" json:"apiKeyAuth,omitempty"`
 			BasicAuth *struct {
 				Apr *struct {
@@ -957,6 +958,14 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"skip_metadata_validation": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

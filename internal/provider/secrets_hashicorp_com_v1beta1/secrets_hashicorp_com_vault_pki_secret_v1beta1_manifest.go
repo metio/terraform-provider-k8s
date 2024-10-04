@@ -441,8 +441,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"namespace": schema.StringAttribute{
-						Description:         "Namespace to get the secret from in Vault",
-						MarkdownDescription: "Namespace to get the secret from in Vault",
+						Description:         "Namespace of the secrets engine mount in Vault. If not set, the namespace that's part of VaultAuth resource will be inferred.",
+						MarkdownDescription: "Namespace of the secrets engine mount in Vault. If not set, the namespace that's part of VaultAuth resource will be inferred.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -549,8 +549,8 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"vault_auth_ref": schema.StringAttribute{
-						Description:         "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
-						MarkdownDescription: "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
+						Description:         "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to the namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
+						MarkdownDescription: "VaultAuthRef to the VaultAuth resource, can be prefixed with a namespace, eg: 'namespaceA/vaultAuthRefB'. If no namespace prefix is provided it will default to the namespace of the VaultAuth CR. If no value is specified for VaultAuthRef the Operator will default to the 'default' VaultAuth, configured in the operator's namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

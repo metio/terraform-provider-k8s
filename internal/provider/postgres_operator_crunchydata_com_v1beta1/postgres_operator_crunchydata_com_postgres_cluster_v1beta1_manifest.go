@@ -6888,6 +6888,9 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								},
 								Required: false,

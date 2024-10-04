@@ -4316,8 +4316,8 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.Int64{
-									int64validator.AtLeast(0),
-									int64validator.AtMost(65536),
+									int64validator.AtLeast(1),
+									int64validator.AtMost(65535),
 								},
 							},
 

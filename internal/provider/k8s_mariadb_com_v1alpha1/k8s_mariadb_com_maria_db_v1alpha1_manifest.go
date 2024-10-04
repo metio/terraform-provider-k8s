@@ -455,8 +455,10 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 			ProviderOptions *map[string]string `tfsdk:"provider_options" json:"providerOptions,omitempty"`
 			Recovery        *struct {
 				ClusterBootstrapTimeout    *string `tfsdk:"cluster_bootstrap_timeout" json:"clusterBootstrapTimeout,omitempty"`
+				ClusterDownscaleTimeout    *string `tfsdk:"cluster_downscale_timeout" json:"clusterDownscaleTimeout,omitempty"`
 				ClusterHealthyTimeout      *string `tfsdk:"cluster_healthy_timeout" json:"clusterHealthyTimeout,omitempty"`
 				ClusterMonitorInterval     *string `tfsdk:"cluster_monitor_interval" json:"clusterMonitorInterval,omitempty"`
+				ClusterUpscaleTimeout      *string `tfsdk:"cluster_upscale_timeout" json:"clusterUpscaleTimeout,omitempty"`
 				Enabled                    *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 				ForceClusterBootstrapInPod *string `tfsdk:"force_cluster_bootstrap_in_pod" json:"forceClusterBootstrapInPod,omitempty"`
 				Job                        *struct {
@@ -3977,6 +3979,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Computed:            false,
 									},
 
+									"cluster_downscale_timeout": schema.StringAttribute{
+										Description:         "ClusterDownscaleTimeout represents the maximum duration for downscaling the cluster's StatefulSet during the recovery process.",
+										MarkdownDescription: "ClusterDownscaleTimeout represents the maximum duration for downscaling the cluster's StatefulSet during the recovery process.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"cluster_healthy_timeout": schema.StringAttribute{
 										Description:         "ClusterHealthyTimeout represents the duration at which a Galera cluster, that consistently failed health checks, is considered unhealthy, and consequently the Galera recovery process will be initiated by the operator.",
 										MarkdownDescription: "ClusterHealthyTimeout represents the duration at which a Galera cluster, that consistently failed health checks, is considered unhealthy, and consequently the Galera recovery process will be initiated by the operator.",
@@ -3988,6 +3998,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									"cluster_monitor_interval": schema.StringAttribute{
 										Description:         "ClusterMonitorInterval represents the interval used to monitor the Galera cluster health.",
 										MarkdownDescription: "ClusterMonitorInterval represents the interval used to monitor the Galera cluster health.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cluster_upscale_timeout": schema.StringAttribute{
+										Description:         "ClusterUpscaleTimeout represents the maximum duration for upscaling the cluster's StatefulSet during the recovery process.",
+										MarkdownDescription: "ClusterUpscaleTimeout represents the maximum duration for upscaling the cluster's StatefulSet during the recovery process.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4081,8 +4099,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"min_cluster_size": schema.StringAttribute{
-										Description:         "MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (1) or a percentage (50%). If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated. It defaults to '1' replica.",
-										MarkdownDescription: "MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (1) or a percentage (50%). If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated. It defaults to '1' replica.",
+										Description:         "MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (1) or a percentage (50%). If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated. It defaults to '1' replica, and it is highly recommendeded to keep this value at '1' in most cases. If set to more than one replica, the cluster recovery process may restart the healthy replicas as well.",
+										MarkdownDescription: "MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (1) or a percentage (50%). If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated. It defaults to '1' replica, and it is highly recommendeded to keep this value at '1' in most cases. If set to more than one replica, the cluster recovery process may restart the healthy replicas as well.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

@@ -3,12 +3,12 @@
 page_title: "k8s_camel_apache_org_integration_profile_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "camel.apache.org"
 description: |-
-  IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.
+  IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. Deprecated: may be removed in future releases. Make use of IntegrationPlatform instead.
 ---
 
 # k8s_camel_apache_org_integration_profile_v1_manifest (Data Source)
 
-IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.
+IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. Deprecated: may be removed in future releases. Make use of IntegrationPlatform instead.
 
 ## Example Usage
 

@@ -141,7 +141,11 @@ type HiveOpenshiftIoClusterPoolV1ManifestData struct {
 					Enabled           *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 					ServiceAttachment *struct {
 						Subnet *struct {
-							Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+							Cidr     *string `tfsdk:"cidr" json:"cidr,omitempty"`
+							Existing *struct {
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Project *string `tfsdk:"project" json:"project,omitempty"`
+							} `tfsdk:"existing" json:"existing,omitempty"`
 						} `tfsdk:"subnet" json:"subnet,omitempty"`
 					} `tfsdk:"service_attachment" json:"serviceAttachment,omitempty"`
 				} `tfsdk:"private_service_connect" json:"privateServiceConnect,omitempty"`
@@ -896,11 +900,36 @@ func (r *HiveOpenshiftIoClusterPoolV1Manifest) Schema(_ context.Context, _ datas
 														MarkdownDescription: "Subnet configures the subnetwork that contains the service attachment.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "Cidr configures the network cidr of the subnetwork that contains the service attachment.",
-																MarkdownDescription: "Cidr configures the network cidr of the subnetwork that contains the service attachment.",
+																Description:         "Cidr specifies the cidr to use when creating a service attachment subnet.",
+																MarkdownDescription: "Cidr specifies the cidr to use when creating a service attachment subnet.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+
+															"existing": schema.SingleNestedAttribute{
+																Description:         "Existing specifies a pre-existing subnet to use instead of creating a new service attachment subnet. This is required when using BYO VPCs. It must be in the same region as the api-int load balancer, be configured with a purpose of 'Private Service Connect', and have sufficient routing and firewall rules to access the api-int load balancer.",
+																MarkdownDescription: "Existing specifies a pre-existing subnet to use instead of creating a new service attachment subnet. This is required when using BYO VPCs. It must be in the same region as the api-int load balancer, be configured with a purpose of 'Private Service Connect', and have sufficient routing and firewall rules to access the api-int load balancer.",
+																Attributes: map[string]schema.Attribute{
+																	"name": schema.StringAttribute{
+																		Description:         "Name specifies the name of the existing subnet.",
+																		MarkdownDescription: "Name specifies the name of the existing subnet.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"project": schema.StringAttribute{
+																		Description:         "Project specifies the project the subnet exists in. This is required for Shared VPC.",
+																		MarkdownDescription: "Project specifies the project the subnet exists in. This is required for Shared VPC.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
 															},
 														},
 														Required: false,

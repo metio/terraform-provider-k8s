@@ -55,18 +55,25 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 			Allowed_https_hostnames      *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
 			Insecure_allowed_cidr_ranges *[]string `tfsdk:"insecure_allowed_cidr_ranges" json:"insecure_allowed_cidr_ranges,omitempty"`
 		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
-		Client_secret              *string   `tfsdk:"client_secret" json:"client_secret,omitempty"`
-		Display                    *string   `tfsdk:"display" json:"display,omitempty"`
-		Google_admin_email         *string   `tfsdk:"google_admin_email" json:"google_admin_email,omitempty"`
-		Google_service_account     *string   `tfsdk:"google_service_account" json:"google_service_account,omitempty"`
-		Google_service_account_uri *string   `tfsdk:"google_service_account_uri" json:"google_service_account_uri,omitempty"`
-		Issuer_url                 *string   `tfsdk:"issuer_url" json:"issuer_url,omitempty"`
-		Max_age                    *string   `tfsdk:"max_age" json:"max_age,omitempty"`
-		Prompt                     *string   `tfsdk:"prompt" json:"prompt,omitempty"`
-		Provider                   *string   `tfsdk:"provider" json:"provider,omitempty"`
-		Redirect_url               *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
-		Scope                      *[]string `tfsdk:"scope" json:"scope,omitempty"`
-		Username_claim             *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
+		Client_secret              *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
+		Display                    *string `tfsdk:"display" json:"display,omitempty"`
+		Google_admin_email         *string `tfsdk:"google_admin_email" json:"google_admin_email,omitempty"`
+		Google_service_account     *string `tfsdk:"google_service_account" json:"google_service_account,omitempty"`
+		Google_service_account_uri *string `tfsdk:"google_service_account_uri" json:"google_service_account_uri,omitempty"`
+		Issuer_url                 *string `tfsdk:"issuer_url" json:"issuer_url,omitempty"`
+		Max_age                    *string `tfsdk:"max_age" json:"max_age,omitempty"`
+		Mfa                        *struct {
+			Acr_values    *string `tfsdk:"acr_values" json:"acr_values,omitempty"`
+			Client_id     *string `tfsdk:"client_id" json:"client_id,omitempty"`
+			Client_secret *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
+			Enabled       *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Prompt        *string `tfsdk:"prompt" json:"prompt,omitempty"`
+		} `tfsdk:"mfa" json:"mfa,omitempty"`
+		Prompt         *string   `tfsdk:"prompt" json:"prompt,omitempty"`
+		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
+		Redirect_url   *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
+		Scope          *[]string `tfsdk:"scope" json:"scope,omitempty"`
+		Username_claim *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -288,6 +295,55 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"mfa": schema.SingleNestedAttribute{
+						Description:         "MFASettings contains settings to enable SSO MFA checks through this auth connector.",
+						MarkdownDescription: "MFASettings contains settings to enable SSO MFA checks through this auth connector.",
+						Attributes: map[string]schema.Attribute{
+							"acr_values": schema.StringAttribute{
+								Description:         "AcrValues are Authentication Context Class Reference values. The meaning of the ACR value is context-specific and varies for identity providers. Some identity providers support MFA specific contexts, such Okta with its 'phr' (phishing-resistant) ACR.",
+								MarkdownDescription: "AcrValues are Authentication Context Class Reference values. The meaning of the ACR value is context-specific and varies for identity providers. Some identity providers support MFA specific contexts, such Okta with its 'phr' (phishing-resistant) ACR.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"client_id": schema.StringAttribute{
+								Description:         "ClientID is the OIDC OAuth app client ID.",
+								MarkdownDescription: "ClientID is the OIDC OAuth app client ID.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"client_secret": schema.StringAttribute{
+								Description:         "ClientSecret is the OIDC OAuth app client secret.",
+								MarkdownDescription: "ClientSecret is the OIDC OAuth app client secret.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enabled": schema.BoolAttribute{
+								Description:         "Enabled specified whether this OIDC connector supports MFA checks. Defaults to false.",
+								MarkdownDescription: "Enabled specified whether this OIDC connector supports MFA checks. Defaults to false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"prompt": schema.StringAttribute{
+								Description:         "Prompt is an optional OIDC prompt. An empty string omits prompt. If not specified, it defaults to select_account for backwards compatibility.",
+								MarkdownDescription: "Prompt is an optional OIDC prompt. An empty string omits prompt. If not specified, it defaults to select_account for backwards compatibility.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"prompt": schema.StringAttribute{

@@ -60,10 +60,15 @@ type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 			Allowed_https_hostnames      *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
 			Insecure_allowed_cidr_ranges *[]string `tfsdk:"insecure_allowed_cidr_ranges" json:"insecure_allowed_cidr_ranges,omitempty"`
 		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
-		Display                 *string `tfsdk:"display" json:"display,omitempty"`
-		Entity_descriptor       *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
-		Entity_descriptor_url   *string `tfsdk:"entity_descriptor_url" json:"entity_descriptor_url,omitempty"`
-		Issuer                  *string `tfsdk:"issuer" json:"issuer,omitempty"`
+		Display               *string `tfsdk:"display" json:"display,omitempty"`
+		Entity_descriptor     *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
+		Entity_descriptor_url *string `tfsdk:"entity_descriptor_url" json:"entity_descriptor_url,omitempty"`
+		Issuer                *string `tfsdk:"issuer" json:"issuer,omitempty"`
+		Mfa                   *struct {
+			Enabled               *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Entity_descriptor     *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
+			Entity_descriptor_url *string `tfsdk:"entity_descriptor_url" json:"entity_descriptor_url,omitempty"`
+		} `tfsdk:"mfa" json:"mfa,omitempty"`
 		Provider                *string `tfsdk:"provider" json:"provider,omitempty"`
 		Service_provider_issuer *string `tfsdk:"service_provider_issuer" json:"service_provider_issuer,omitempty"`
 		Signing_key_pair        *struct {
@@ -302,6 +307,39 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"mfa": schema.SingleNestedAttribute{
+						Description:         "MFASettings contains settings to enable SSO MFA checks through this auth connector.",
+						MarkdownDescription: "MFASettings contains settings to enable SSO MFA checks through this auth connector.",
+						Attributes: map[string]schema.Attribute{
+							"enabled": schema.BoolAttribute{
+								Description:         "Enabled specified whether this SAML connector supports MFA checks. Defaults to false.",
+								MarkdownDescription: "Enabled specified whether this SAML connector supports MFA checks. Defaults to false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"entity_descriptor": schema.StringAttribute{
+								Description:         "EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements.",
+								MarkdownDescription: "EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"entity_descriptor_url": schema.StringAttribute{
+								Description:         "EntityDescriptorUrl is a URL that supplies a configuration XML.",
+								MarkdownDescription: "EntityDescriptorUrl is a URL that supplies a configuration XML.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"provider": schema.StringAttribute{

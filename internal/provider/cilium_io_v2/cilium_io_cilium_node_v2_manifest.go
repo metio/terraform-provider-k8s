@@ -118,7 +118,8 @@ type CiliumIoCiliumNodeV2ManifestData struct {
 					Pool *string `tfsdk:"pool" json:"pool,omitempty"`
 				} `tfsdk:"requested" json:"requested,omitempty"`
 			} `tfsdk:"pools" json:"pools,omitempty"`
-			Pre_allocate *int64 `tfsdk:"pre_allocate" json:"pre-allocate,omitempty"`
+			Pre_allocate   *int64             `tfsdk:"pre_allocate" json:"pre-allocate,omitempty"`
+			Static_ip_tags *map[string]string `tfsdk:"static_ip_tags" json:"static-ip-tags,omitempty"`
 		} `tfsdk:"ipam" json:"ipam,omitempty"`
 		Nodeidentity *int64 `tfsdk:"nodeidentity" json:"nodeidentity,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -747,6 +748,15 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 								Validators: []validator.Int64{
 									int64validator.AtLeast(0),
 								},
+							},
+
+							"static_ip_tags": schema.MapAttribute{
+								Description:         "StaticIPTags are used to determine the pool of IPs from which to attribute a static IP to the node. For example in AWS this is used to filter Elastic IP Addresses.",
+								MarkdownDescription: "StaticIPTags are used to determine the pool of IPs from which to attribute a static IP to the node. For example in AWS this is used to filter Elastic IP Addresses.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

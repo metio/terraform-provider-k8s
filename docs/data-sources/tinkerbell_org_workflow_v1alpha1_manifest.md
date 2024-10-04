@@ -55,6 +55,15 @@ Optional:
 
 Optional:
 
-- `hardware_map` (Map of String) A mapping of template devices to hadware mac addresses
+- `boot_options` (Attributes) BootOptions are options that control the booting of Hardware. (see [below for nested schema](#nestedatt--spec--boot_options))
+- `hardware_map` (Map of String) A mapping of template devices to hadware mac addresses.
 - `hardware_ref` (String) Name of the Hardware associated with this workflow.
 - `template_ref` (String) Name of the Template associated with this workflow.
+
+<a id="nestedatt--spec--boot_options"></a>
+### Nested Schema for `spec.boot_options`
+
+Optional:
+
+- `one_time_netboot` (Boolean) OneTimeNetboot indicates whether the controller should create a job.bmc.tinkerbell.org object for getting the associated hardware into a netbooting state. A HardwareRef that contains a spec.BmcRef must be provided.
+- `toggle_allow_netboot` (Boolean) ToggleAllowNetboot indicates whether the controller should toggle the field in the associated hardware for allowing PXE booting. This will be enabled before a Workflow is executed and disabled after the Workflow has completed successfully. A HardwareRef must be provided.

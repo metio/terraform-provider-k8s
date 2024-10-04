@@ -180,8 +180,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Metadata(_ context.Context, re
 
 func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-traefikservice",
-		MarkdownDescription: "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-traefikservice",
+		Description:         "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#kind-traefikservice",
+		MarkdownDescription: "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#kind-traefikservice",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -584,8 +584,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sticky": schema.SingleNestedAttribute{
-											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
-											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
 											Attributes: map[string]schema.Attribute{
 												"cookie": schema.SingleNestedAttribute{
 													Description:         "Cookie defines the sticky cookie configuration.",
@@ -745,8 +745,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"sticky": schema.SingleNestedAttribute{
-								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
-								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
 								Attributes: map[string]schema.Attribute{
 									"cookie": schema.SingleNestedAttribute{
 										Description:         "Cookie defines the sticky cookie configuration.",
@@ -1023,8 +1023,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sticky": schema.SingleNestedAttribute{
-											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
-											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
 											Attributes: map[string]schema.Attribute{
 												"cookie": schema.SingleNestedAttribute{
 													Description:         "Cookie defines the sticky cookie configuration.",
@@ -1103,8 +1103,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"sticky": schema.SingleNestedAttribute{
-								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
-								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
 								Attributes: map[string]schema.Attribute{
 									"cookie": schema.SingleNestedAttribute{
 										Description:         "Cookie defines the sticky cookie configuration.",

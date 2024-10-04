@@ -44,15 +44,17 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		Bindings *[]struct {
-			Name  *string            `tfsdk:"name" json:"name,omitempty"`
-			Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+			Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+			Name     *string            `tfsdk:"name" json:"name,omitempty"`
+			Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"bindings" json:"bindings,omitempty"`
 		Catch *[]struct {
 			Command *struct {
 				Args     *[]string `tfsdk:"args" json:"args,omitempty"`
 				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"bindings" json:"bindings,omitempty"`
 				Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 				Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -62,22 +64,26 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"clusters" json:"clusters,omitempty"`
 				Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 				Env        *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				Outputs *[]struct {
-					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
 				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"command" json:"command,omitempty"`
-			Delete *struct {
+			Compiler *string `tfsdk:"compiler" json:"compiler,omitempty"`
+			Delete   *struct {
 				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"bindings" json:"bindings,omitempty"`
 				Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 				Clusters *struct {
@@ -156,8 +162,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
 			Script *struct {
 				Bindings *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"bindings" json:"bindings,omitempty"`
 				Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 				Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -167,13 +174,15 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"clusters" json:"clusters,omitempty"`
 				Content *string `tfsdk:"content" json:"content,omitempty"`
 				Env     *[]struct {
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				Outputs *[]struct {
-					Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-					Name  *string            `tfsdk:"name" json:"name,omitempty"`
-					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+					Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+					Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+					Name     *string            `tfsdk:"name" json:"name,omitempty"`
+					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
 				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -213,6 +222,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			Context    *string `tfsdk:"context" json:"context,omitempty"`
 			Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
 		} `tfsdk:"clusters" json:"clusters,omitempty"`
+		Compiler                    *string            `tfsdk:"compiler" json:"compiler,omitempty"`
 		Concurrent                  *bool              `tfsdk:"concurrent" json:"concurrent,omitempty"`
 		DelayBeforeCleanup          *string            `tfsdk:"delay_before_cleanup" json:"delayBeforeCleanup,omitempty"`
 		DeletionPropagationPolicy   *string            `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
@@ -221,25 +231,29 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 		ForceTerminationGracePeriod *string            `tfsdk:"force_termination_grace_period" json:"forceTerminationGracePeriod,omitempty"`
 		Namespace                   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 		NamespaceTemplate           *map[string]string `tfsdk:"namespace_template" json:"namespaceTemplate,omitempty"`
+		NamespaceTemplateCompiler   *string            `tfsdk:"namespace_template_compiler" json:"namespaceTemplateCompiler,omitempty"`
 		Scenarios                   *[]struct {
 			Bindings *[]struct {
-				Name  *string            `tfsdk:"name" json:"name,omitempty"`
-				Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+				Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+				Name     *string            `tfsdk:"name" json:"name,omitempty"`
+				Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"bindings" json:"bindings,omitempty"`
 		} `tfsdk:"scenarios" json:"scenarios,omitempty"`
 		Skip       *bool `tfsdk:"skip" json:"skip,omitempty"`
 		SkipDelete *bool `tfsdk:"skip_delete" json:"skipDelete,omitempty"`
 		Steps      *[]struct {
 			Bindings *[]struct {
-				Name  *string            `tfsdk:"name" json:"name,omitempty"`
-				Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+				Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+				Name     *string            `tfsdk:"name" json:"name,omitempty"`
+				Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"bindings" json:"bindings,omitempty"`
 			Catch *[]struct {
 				Command *struct {
 					Args     *[]string `tfsdk:"args" json:"args,omitempty"`
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -249,22 +263,26 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
-				Delete *struct {
+				Compiler *string `tfsdk:"compiler" json:"compiler,omitempty"`
+				Delete   *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -343,8 +361,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
 				Script *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -354,13 +373,15 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -399,8 +420,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Command *struct {
 					Args     *[]string `tfsdk:"args" json:"args,omitempty"`
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -410,22 +432,26 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
-				Delete *struct {
+				Compiler *string `tfsdk:"compiler" json:"compiler,omitempty"`
+				Delete   *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -504,8 +530,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
 				Script *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -515,13 +542,15 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -561,14 +590,16 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Context    *string `tfsdk:"context" json:"context,omitempty"`
 				Kubeconfig *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
 			} `tfsdk:"clusters" json:"clusters,omitempty"`
+			Compiler                  *string `tfsdk:"compiler" json:"compiler,omitempty"`
 			DeletionPropagationPolicy *string `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
 			Description               *string `tfsdk:"description" json:"description,omitempty"`
 			Finally                   *[]struct {
 				Command *struct {
 					Args     *[]string `tfsdk:"args" json:"args,omitempty"`
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -578,22 +609,26 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
-				Delete *struct {
+				Compiler *string `tfsdk:"compiler" json:"compiler,omitempty"`
+				Delete   *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -672,8 +707,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"pod_logs" json:"podLogs,omitempty"`
 				Script *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -683,13 +719,15 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -738,8 +776,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 			Try *[]struct {
 				Apply *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -753,9 +792,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"expect" json:"expect,omitempty"`
 					File    *string `tfsdk:"file" json:"file,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 					Template *bool              `tfsdk:"template" json:"template,omitempty"`
@@ -763,8 +803,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"apply" json:"apply,omitempty"`
 				Assert *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -779,8 +820,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Command *struct {
 					Args     *[]string `tfsdk:"args" json:"args,omitempty"`
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -790,23 +832,27 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Entrypoint *string `tfsdk:"entrypoint" json:"entrypoint,omitempty"`
 					Env        *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
-				ContinueOnError *bool `tfsdk:"continue_on_error" json:"continueOnError,omitempty"`
+				Compiler        *string `tfsdk:"compiler" json:"compiler,omitempty"`
+				ContinueOnError *bool   `tfsdk:"continue_on_error" json:"continueOnError,omitempty"`
 				Create          *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -820,9 +866,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"expect" json:"expect,omitempty"`
 					File    *string `tfsdk:"file" json:"file,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 					Template *bool              `tfsdk:"template" json:"template,omitempty"`
@@ -830,8 +877,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"create" json:"create,omitempty"`
 				Delete *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -871,8 +919,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Description *string `tfsdk:"description" json:"description,omitempty"`
 				Error       *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -912,8 +961,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"get" json:"get,omitempty"`
 				Patch *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -927,9 +977,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"expect" json:"expect,omitempty"`
 					File    *string `tfsdk:"file" json:"file,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 					Template *bool              `tfsdk:"template" json:"template,omitempty"`
@@ -959,9 +1010,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					Outputs   *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					Path    *string `tfsdk:"path" json:"path,omitempty"`
 					Port    *string `tfsdk:"port" json:"port,omitempty"`
@@ -969,8 +1021,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"proxy" json:"proxy,omitempty"`
 				Script *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Check    *map[string]string `tfsdk:"check" json:"check,omitempty"`
 					Cluster  *string            `tfsdk:"cluster" json:"cluster,omitempty"`
@@ -980,13 +1033,15 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"clusters" json:"clusters,omitempty"`
 					Content *string `tfsdk:"content" json:"content,omitempty"`
 					Env     *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"env" json:"env,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -997,8 +1052,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"sleep" json:"sleep,omitempty"`
 				Update *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 					Cluster  *string `tfsdk:"cluster" json:"cluster,omitempty"`
 					Clusters *struct {
@@ -1012,9 +1068,10 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"expect" json:"expect,omitempty"`
 					File    *string `tfsdk:"file" json:"file,omitempty"`
 					Outputs *[]struct {
-						Match *map[string]string `tfsdk:"match" json:"match,omitempty"`
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Match    *map[string]string `tfsdk:"match" json:"match,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 					Template *bool              `tfsdk:"template" json:"template,omitempty"`
@@ -1050,8 +1107,9 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				Template *string `tfsdk:"template" json:"template,omitempty"`
 				With     *struct {
 					Bindings *[]struct {
-						Name  *string            `tfsdk:"name" json:"name,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Compiler *string            `tfsdk:"compiler" json:"compiler,omitempty"`
+						Name     *string            `tfsdk:"name" json:"name,omitempty"`
+						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"bindings" json:"bindings,omitempty"`
 				} `tfsdk:"with" json:"with,omitempty"`
 			} `tfsdk:"use" json:"use,omitempty"`
@@ -1138,6 +1196,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "Bindings defines additional binding key/values.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"compiler": schema.StringAttribute{
+									Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+									MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("jp", "cel"),
+									},
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Name the name of the binding.",
 									MarkdownDescription: "Name the name of the binding.",
@@ -1187,6 +1256,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Bindings defines additional binding key/values.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "Name the name of the binding.",
 														MarkdownDescription: "Name the name of the binding.",
@@ -1268,6 +1348,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Env defines additional environment variables.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "Name the name of the binding.",
 														MarkdownDescription: "Name the name of the binding.",
@@ -1299,6 +1390,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Outputs defines output bindings.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"match": schema.MapAttribute{
 														Description:         "Match defines the matching statement.",
 														MarkdownDescription: "Match defines the matching statement.",
@@ -1363,6 +1465,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Computed: false,
 								},
 
+								"compiler": schema.StringAttribute{
+									Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+									MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("jp", "cel"),
+									},
+								},
+
 								"delete": schema.SingleNestedAttribute{
 									Description:         "Delete represents a deletion operation.",
 									MarkdownDescription: "Delete represents a deletion operation.",
@@ -1372,6 +1485,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Bindings defines additional binding key/values.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "Name the name of the binding.",
 														MarkdownDescription: "Name the name of the binding.",
@@ -1941,6 +2065,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Bindings defines additional binding key/values.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "Name the name of the binding.",
 														MarkdownDescription: "Name the name of the binding.",
@@ -2022,6 +2157,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Env defines additional environment variables.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "Name the name of the binding.",
 														MarkdownDescription: "Name the name of the binding.",
@@ -2053,6 +2199,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "Outputs defines output bindings.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"compiler": schema.StringAttribute{
+														Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+														MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("jp", "cel"),
+														},
+													},
+
 													"match": schema.MapAttribute{
 														Description:         "Match defines the matching statement.",
 														MarkdownDescription: "Match defines the matching statement.",
@@ -2342,6 +2499,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"compiler": schema.StringAttribute{
+						Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+						MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("jp", "cel"),
+						},
+					},
+
 					"concurrent": schema.BoolAttribute{
 						Description:         "Concurrent determines whether the test should run concurrently with other tests.",
 						MarkdownDescription: "Concurrent determines whether the test should run concurrently with other tests.",
@@ -2410,6 +2578,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"namespace_template_compiler": schema.StringAttribute{
+						Description:         "NamespaceTemplateCompiler defines the default compiler to use when evaluating expressions.",
+						MarkdownDescription: "NamespaceTemplateCompiler defines the default compiler to use when evaluating expressions.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("jp", "cel"),
+						},
+					},
+
 					"scenarios": schema.ListNestedAttribute{
 						Description:         "Scenarios defines test scenarios.",
 						MarkdownDescription: "Scenarios defines test scenarios.",
@@ -2420,6 +2599,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "Bindings defines binding key/values.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"compiler": schema.StringAttribute{
+												Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+												MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("jp", "cel"),
+												},
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "Name the name of the binding.",
 												MarkdownDescription: "Name the name of the binding.",
@@ -2478,6 +2668,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "Bindings defines additional binding key/values.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"compiler": schema.StringAttribute{
+												Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+												MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("jp", "cel"),
+												},
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "Name the name of the binding.",
 												MarkdownDescription: "Name the name of the binding.",
@@ -2527,6 +2728,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -2608,6 +2820,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -2639,6 +2862,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -2703,6 +2937,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed: false,
 											},
 
+											"compiler": schema.StringAttribute{
+												Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+												MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("jp", "cel"),
+												},
+											},
+
 											"delete": schema.SingleNestedAttribute{
 												Description:         "Delete represents a deletion operation.",
 												MarkdownDescription: "Delete represents a deletion operation.",
@@ -2712,6 +2957,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -3281,6 +3537,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -3362,6 +3629,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -3393,6 +3671,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -3672,6 +3961,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -3753,6 +4053,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -3784,6 +4095,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -3848,6 +4170,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed: false,
 											},
 
+											"compiler": schema.StringAttribute{
+												Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+												MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("jp", "cel"),
+												},
+											},
+
 											"delete": schema.SingleNestedAttribute{
 												Description:         "Delete represents a deletion operation.",
 												MarkdownDescription: "Delete represents a deletion operation.",
@@ -3857,6 +4190,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -4426,6 +4770,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -4507,6 +4862,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -4538,6 +4904,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -4827,6 +5204,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Computed: false,
 								},
 
+								"compiler": schema.StringAttribute{
+									Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+									MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("jp", "cel"),
+									},
+								},
+
 								"deletion_propagation_policy": schema.StringAttribute{
 									Description:         "DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in both the Configuration and the Test.",
 									MarkdownDescription: "DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in both the Configuration and the Test.",
@@ -4869,6 +5257,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -4950,6 +5349,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -4981,6 +5391,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -5045,6 +5466,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed: false,
 											},
 
+											"compiler": schema.StringAttribute{
+												Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+												MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("jp", "cel"),
+												},
+											},
+
 											"delete": schema.SingleNestedAttribute{
 												Description:         "Delete represents a deletion operation.",
 												MarkdownDescription: "Delete represents a deletion operation.",
@@ -5054,6 +5486,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -5623,6 +6066,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -5704,6 +6158,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -5735,6 +6200,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -6086,6 +6562,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -6195,6 +6682,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -6269,6 +6767,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -6384,6 +6893,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -6465,6 +6985,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -6496,6 +7027,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -6560,6 +7102,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed: false,
 											},
 
+											"compiler": schema.StringAttribute{
+												Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+												MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("jp", "cel"),
+												},
+											},
+
 											"continue_on_error": schema.BoolAttribute{
 												Description:         "ContinueOnError determines whether a test should continue or not in case the operation was not successful. Even if the test continues executing, it will still be reported as failed.",
 												MarkdownDescription: "ContinueOnError determines whether a test should continue or not in case the operation was not successful. Even if the test continues executing, it will still be reported as failed.",
@@ -6577,6 +7130,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -6686,6 +7250,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -6760,6 +7335,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -7053,6 +7639,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -7345,6 +7942,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -7454,6 +8062,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -7683,6 +8302,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -7756,6 +8386,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -7837,6 +8478,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Env defines additional environment variables.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -7868,6 +8520,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -7958,6 +8621,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Bindings defines additional binding key/values.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Name the name of the binding.",
 																	MarkdownDescription: "Name the name of the binding.",
@@ -8067,6 +8741,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														MarkdownDescription: "Outputs defines output bindings.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"compiler": schema.StringAttribute{
+																	Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																	MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("jp", "cel"),
+																	},
+																},
+
 																"match": schema.MapAttribute{
 																	Description:         "Match defines the matching statement.",
 																	MarkdownDescription: "Match defines the matching statement.",
@@ -8328,6 +9013,17 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "Bindings defines additional binding key/values.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"compiler": schema.StringAttribute{
+																Description:         "Compiler defines the default compiler to use when evaluating expressions.",
+																MarkdownDescription: "Compiler defines the default compiler to use when evaluating expressions.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("jp", "cel"),
+																},
+															},
+
 															"name": schema.StringAttribute{
 																Description:         "Name the name of the binding.",
 																MarkdownDescription: "Name the name of the binding.",

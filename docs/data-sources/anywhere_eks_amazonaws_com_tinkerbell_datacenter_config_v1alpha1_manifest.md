@@ -60,5 +60,6 @@ Required:
 Optional:
 
 - `hook_images_url_path` (String) HookImagesURLPath can be used to override the default Hook images path to pull from a local server.
+- `load_balancer_interface` (String) LoadBalancerInterface can be used to configure a load balancer interface for the Tinkerbell stack.
 - `os_image_url` (String) OSImageURL can be used to override the default OS image path to pull from a local server. OSImageURL is a URL to the OS image used during provisioning. To perform modular upgrades the OSImageURL must be specified on the TinkerbellMachineConfig objects. You cannot specify an OSImageURL on the TinkerbellDatacenterConfig and TinkerbellMachineConfigs simultaneously. It must include the Kubernetes version(s). For example, a URL used for Kubernetes 1.27 could be http://localhost:8080/ubuntu-2204-1.27.tgz
 - `skip_load_balancer_deployment` (Boolean) SkipLoadBalancerDeployment when set to 'true' can be used to skip deploying a load balancer to expose Tinkerbell stack. Users will need to deploy and configure a load balancer manually after the cluster is created.

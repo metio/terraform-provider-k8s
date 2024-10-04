@@ -44,6 +44,9 @@ type ClusterXK8SIoClusterV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AvailabilityGates *[]struct {
+			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
+		} `tfsdk:"availability_gates" json:"availabilityGates,omitempty"`
 		ClusterNetwork *struct {
 			ApiServerPort *int64 `tfsdk:"api_server_port" json:"apiServerPort,omitempty"`
 			Pods          *struct {
@@ -279,6 +282,30 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "ClusterSpec defines the desired state of Cluster.",
 				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.",
 				Attributes: map[string]schema.Attribute{
+					"availability_gates": schema.ListNestedAttribute{
+						Description:         "availabilityGates specifies additional conditions to include when evaluating Cluster Available condition. NOTE: this field is considered only for computing v1beta2 conditions.",
+						MarkdownDescription: "availabilityGates specifies additional conditions to include when evaluating Cluster Available condition. NOTE: this field is considered only for computing v1beta2 conditions.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"condition_type": schema.StringAttribute{
+									Description:         "conditionType refers to a positive polarity condition (status true means good) with matching type in the Cluster's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as availability gates.",
+									MarkdownDescription: "conditionType refers to a positive polarity condition (status true means good) with matching type in the Cluster's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as availability gates.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(316),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`), ""),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"cluster_network": schema.SingleNestedAttribute{
 						Description:         "Cluster network configuration.",
 						MarkdownDescription: "Cluster network configuration.",

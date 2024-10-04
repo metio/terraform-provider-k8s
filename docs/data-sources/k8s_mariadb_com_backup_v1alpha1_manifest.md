@@ -63,6 +63,7 @@ Optional:
 - `affinity` (Attributes) Affinity to be used in the Pod. (see [below for nested schema](#nestedatt--spec--affinity))
 - `args` (List of String) Args to be used in the Container.
 - `backoff_limit` (Number) BackoffLimit defines the maximum number of attempts to successfully take a Backup.
+- `compression` (String) Compression algorithm to be used in the Backup.
 - `databases` (List of String) Databases defines the logical databases to be backed up. If not provided, all databases are backed up.
 - `failed_jobs_history_limit` (Number) FailedJobsHistoryLimit defines the maximum number of failed Jobs to be displayed.
 - `ignore_global_priv` (Boolean) IgnoreGlobalPriv indicates to ignore the mysql.global_priv in backups. If not provided, it will default to true when the referred MariaDB instance has Galera enabled and otherwise to false. See: https://github.com/mariadb-operator/mariadb-operator/issues/556

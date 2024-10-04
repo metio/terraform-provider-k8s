@@ -52,8 +52,12 @@ type EksServicesK8SAwsAddonV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"cluster_ref" json:"clusterRef,omitempty"`
-		ConfigurationValues   *string `tfsdk:"configuration_values" json:"configurationValues,omitempty"`
-		Name                  *string `tfsdk:"name" json:"name,omitempty"`
+		ConfigurationValues     *string `tfsdk:"configuration_values" json:"configurationValues,omitempty"`
+		Name                    *string `tfsdk:"name" json:"name,omitempty"`
+		PodIdentityAssociations *[]struct {
+			RoleARN        *string `tfsdk:"role_arn" json:"roleARN,omitempty"`
+			ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+		} `tfsdk:"pod_identity_associations" json:"podIdentityAssociations,omitempty"`
 		ResolveConflicts      *string `tfsdk:"resolve_conflicts" json:"resolveConflicts,omitempty"`
 		ServiceAccountRoleARN *string `tfsdk:"service_account_role_arn" json:"serviceAccountRoleARN,omitempty"`
 		ServiceAccountRoleRef *struct {
@@ -215,6 +219,33 @@ func (r *EksServicesK8SAwsAddonV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"pod_identity_associations": schema.ListNestedAttribute{
+						Description:         "An array of Pod Identity Assocations to be created. Each EKS Pod Identity association maps a Kubernetes service account to an IAM Role. For more information, see Attach an IAM Role to an Amazon EKS add-on using Pod Identity (https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html) in the EKS User Guide.",
+						MarkdownDescription: "An array of Pod Identity Assocations to be created. Each EKS Pod Identity association maps a Kubernetes service account to an IAM Role. For more information, see Attach an IAM Role to an Amazon EKS add-on using Pod Identity (https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html) in the EKS User Guide.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"role_arn": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"service_account": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"resolve_conflicts": schema.StringAttribute{

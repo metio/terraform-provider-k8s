@@ -166,6 +166,10 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 			Version_label       *string              `tfsdk:"version_label" json:"version_label,omitempty"`
 			View_only_mode      *bool                `tfsdk:"view_only_mode" json:"view_only_mode,omitempty"`
 		} `tfsdk:"deployment" json:"deployment,omitempty"`
+		Extensions *[]struct {
+			Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Name    *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"extensions" json:"extensions,omitempty"`
 		External_services *struct {
 			Custom_dashboards *struct {
 				Discovery_auto_threshold *int64  `tfsdk:"discovery_auto_threshold" json:"discovery_auto_threshold,omitempty"`
@@ -337,10 +341,6 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 		} `tfsdk:"istio_labels" json:"istio_labels,omitempty"`
 		Istio_namespace     *string `tfsdk:"istio_namespace" json:"istio_namespace,omitempty"`
 		Kiali_feature_flags *struct {
-			Certificates_information_indicators *struct {
-				Enabled *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
-				Secrets *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
-			} `tfsdk:"certificates_information_indicators" json:"certificates_information_indicators,omitempty"`
 			Disabled_features       *[]string `tfsdk:"disabled_features" json:"disabled_features,omitempty"`
 			Istio_annotation_action *bool     `tfsdk:"istio_annotation_action" json:"istio_annotation_action,omitempty"`
 			Istio_injection_action  *bool     `tfsdk:"istio_injection_action" json:"istio_injection_action,omitempty"`
@@ -1399,6 +1399,33 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"extensions": schema.ListNestedAttribute{
+						Description:         "Defines third-party extensions whose metrics can be integrated into the Kiali traffic graph. ",
+						MarkdownDescription: "Defines third-party extensions whose metrics can be integrated into the Kiali traffic graph. ",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Description:         "Determines if the Kiali traffic graph should incorporate the extension's metrics.",
+									MarkdownDescription: "Determines if the Kiali traffic graph should incorporate the extension's metrics.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "The name that is used to identify the metric time series for the extension.",
+									MarkdownDescription: "The name that is used to identify the metric time series for the extension.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,
@@ -2612,32 +2639,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 						Description:         "Kiali features that can be enabled or disabled.",
 						MarkdownDescription: "Kiali features that can be enabled or disabled.",
 						Attributes: map[string]schema.Attribute{
-							"certificates_information_indicators": schema.SingleNestedAttribute{
-								Description:         "Flag to enable/disable displaying certificates information and which secrets to grant read permissions.",
-								MarkdownDescription: "Flag to enable/disable displaying certificates information and which secrets to grant read permissions.",
-								Attributes: map[string]schema.Attribute{
-									"enabled": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"secrets": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"disabled_features": schema.ListAttribute{
 								Description:         "There may be some features that admins do not want to be accessible to users (even in 'view only' mode). In this case, this setting allows you to disable one or more of those features entirely.",
 								MarkdownDescription: "There may be some features that admins do not want to be accessible to users (even in 'view only' mode). In this case, this setting allows you to disable one or more of those features entirely.",

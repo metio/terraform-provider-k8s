@@ -260,15 +260,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--application_set--webhook_server--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--application_set--webhook_server--route--tls--external_certificate"></a>
+### Nested Schema for `spec.application_set.webhook_server.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 
@@ -526,15 +535,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--grafana--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--grafana--route--tls--external_certificate"></a>
+### Nested Schema for `spec.grafana.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 
@@ -802,15 +820,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--prometheus--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--prometheus--route--tls--external_certificate"></a>
+### Nested Schema for `spec.prometheus.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 
@@ -3242,15 +3269,24 @@ Optional:
 
 Required:
 
-- `termination` (String) termination indicates termination type.
+- `termination` (String) termination indicates termination type. * edge - TLS termination is done by the router and http is used to communicate with the backend (default) * passthrough - Traffic is sent straight to the destination without the router providing TLS termination * reencrypt - TLS termination is done by the router and https is used to communicate with the backend Note: passthrough termination is incompatible with httpHeader actions
 
 Optional:
 
 - `ca_certificate` (String) caCertificate provides the cert authority certificate contents
-- `certificate` (String) certificate provides certificate contents
+- `certificate` (String) certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate.
 - `destination_ca_certificate` (String) destinationCACertificate provides the contents of the ca certificate of the final destination. When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.
-- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (default) * Disable - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
+- `external_certificate` (Attributes) externalCertificate provides certificate contents as a secret reference. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. The secret referenced should be present in the same namespace as that of the Route. Forbidden when 'certificate' is set. (see [below for nested schema](#nestedatt--spec--server--route--tls--external_certificate))
+- `insecure_edge_termination_policy` (String) insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80. * Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only) (default). * None - no traffic is allowed on the insecure port. * Redirect - clients are redirected to the secure port.
 - `key` (String) key provides key file contents
+
+<a id="nestedatt--spec--server--route--tls--external_certificate"></a>
+### Nested Schema for `spec.server.route.tls.external_certificate`
+
+Optional:
+
+- `name` (String) name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
 
 
 

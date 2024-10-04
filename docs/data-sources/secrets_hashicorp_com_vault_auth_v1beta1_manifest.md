@@ -68,7 +68,7 @@ Optional:
 - `params` (Map of String) Params to use when authenticating to Vault
 - `storage_encryption` (Attributes) StorageEncryption provides the necessary configuration to encrypt the client storage cache. This should only be configured when client cache persistence with encryption is enabled. This is done by passing setting the manager's commandline argument --client-cache-persistence-model=direct-encrypted. Typically, there should only ever be one VaultAuth configured with StorageEncryption in the Cluster, and it should have the label: cacheStorageEncryption=true (see [below for nested schema](#nestedatt--spec--storage_encryption))
 - `vault_auth_global_ref` (Attributes) VaultAuthGlobalRef. (see [below for nested schema](#nestedatt--spec--vault_auth_global_ref))
-- `vault_connection_ref` (String) VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.
+- `vault_connection_ref` (String) VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to the namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.
 
 <a id="nestedatt--spec--app_role"></a>
 ### Nested Schema for `spec.app_role`
