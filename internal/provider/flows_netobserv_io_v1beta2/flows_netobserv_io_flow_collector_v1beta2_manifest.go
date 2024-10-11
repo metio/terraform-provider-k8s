@@ -204,6 +204,7 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 					IcmpCode    *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
 					IcmpType    *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
 					PeerIP      *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
+					PktDrops    *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
 					Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
 					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
 					SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
@@ -2237,6 +2238,14 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											"peer_ip": schema.StringAttribute{
 												Description:         "'peerIP' defines the IP address to filter flows by. Example: '10.10.10.10'.",
 												MarkdownDescription: "'peerIP' defines the IP address to filter flows by. Example: '10.10.10.10'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"pkt_drops": schema.BoolAttribute{
+												Description:         "'pktDrops', to filter flows with packet drops",
+												MarkdownDescription: "'pktDrops', to filter flows with packet drops",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

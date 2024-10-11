@@ -61,6 +61,7 @@ Optional:
 - `deployments` (Attributes List) A mapping of deployment name to override (see [below for nested schema](#nestedatt--spec--deployments))
 - `high_availability` (Attributes) Allows specification of HA control plane (see [below for nested schema](#nestedatt--spec--high_availability))
 - `manifests` (Attributes List) A list of eventing manifests, which will be installed by the operator (see [below for nested schema](#nestedatt--spec--manifests))
+- `namespace` (Attributes) A field of namespace name to override the labels and annotations (see [below for nested schema](#nestedatt--spec--namespace))
 - `pod_disruption_budgets` (Attributes List) A mapping of podDisruptionBudget name to override (see [below for nested schema](#nestedatt--spec--pod_disruption_budgets))
 - `registry` (Attributes) A means to override the corresponding deployment images in the upstream. This affects both apps/v1.Deployment and caching.internal.knative.dev/v1alpha1.Image. (see [below for nested schema](#nestedatt--spec--registry))
 - `services` (Attributes List) A mapping of service name to override (see [below for nested schema](#nestedatt--spec--services))
@@ -590,6 +591,15 @@ Optional:
 Optional:
 
 - `url` (String) The link of the manifest URL
+
+
+<a id="nestedatt--spec--namespace"></a>
+### Nested Schema for `spec.namespace`
+
+Optional:
+
+- `annotations` (Map of String) Annotations overrides labels for the namespace and its template.
+- `labels` (Map of String) Labels overrides labels for the namespace and its template.
 
 
 <a id="nestedatt--spec--pod_disruption_budgets"></a>

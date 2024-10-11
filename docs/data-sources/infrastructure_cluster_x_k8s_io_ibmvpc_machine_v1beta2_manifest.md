@@ -61,7 +61,10 @@ Required:
 Optional:
 
 - `boot_volume` (Attributes) BootVolume contains machines's boot volume configurations like size, iops etc.. (see [below for nested schema](#nestedatt--spec--boot_volume))
+- `catalog_offering` (Attributes) CatalogOffering is the Catalog Offering OS image which would be installed on the instance. An OfferingCRN or VersionCRN is required, the PlanCRN is optional. (see [below for nested schema](#nestedatt--spec--catalog_offering))
+- `load_balancer_pool_members` (Attributes List) LoadBalancerPoolMembers is the set of IBM Cloud VPC Load Balancer Backend Pools the machine should be added to as a member. (see [below for nested schema](#nestedatt--spec--load_balancer_pool_members))
 - `name` (String) Name of the instance.
+- `placement_target` (Attributes) PlacementTarget is the placement restrictions to use for the virtual server instance. No restrictions are used when this field is not defined. (see [below for nested schema](#nestedatt--spec--placement_target))
 - `primary_network_interface` (Attributes) PrimaryNetworkInterface is required to specify subnet. (see [below for nested schema](#nestedatt--spec--primary_network_interface))
 - `profile` (String) Profile indicates the flavor of instance. Example: bx2-8x32 means 8 vCPUs 32 GB RAM 16 Gbps TODO: add a reference link of profile
 - `provider_id` (String) ProviderID is the unique identifier as specified by the cloud provider.
@@ -89,12 +92,101 @@ Optional:
 - `size_gi_b` (Number) SizeGiB is the size of the virtual server's boot disk in GiB. Default to the size of the image's 'minimum_provisioned_size'.
 
 
+<a id="nestedatt--spec--catalog_offering"></a>
+### Nested Schema for `spec.catalog_offering`
+
+Optional:
+
+- `offering_crn` (String) OfferingCRN defines the IBM Cloud Catalog Offering CRN. Using the OfferingCRN expects that the latest version of the Offering will be used. If a specific version should be used instead, rely on VersionCRN.
+- `plan_crn` (String) PlanCRN defines the IBM Cloud Catalog Offering Plan CRN to use for the Offering.
+- `version_crn` (String) VersionCRN defines the IBM Cloud Catalog Offering Version CRN. A specific version of the Catalog Offering will be used, as defined by this CRN.
+
+
+<a id="nestedatt--spec--load_balancer_pool_members"></a>
+### Nested Schema for `spec.load_balancer_pool_members`
+
+Required:
+
+- `load_balancer` (Attributes) LoadBalancer defines the Load Balancer the Pool Member is for. (see [below for nested schema](#nestedatt--spec--load_balancer_pool_members--load_balancer))
+- `pool` (Attributes) Pool defines the Load Balancer Pool the Pool Member should be in. (see [below for nested schema](#nestedatt--spec--load_balancer_pool_members--pool))
+- `port` (Number) Port defines the Port the Load Balancer Pool Member listens for traffic.
+
+Optional:
+
+- `weight` (Number) Weight of the service member. Only applicable if the pool algorithm is 'weighted_round_robin'.
+
+<a id="nestedatt--spec--load_balancer_pool_members--load_balancer"></a>
+### Nested Schema for `spec.load_balancer_pool_members.load_balancer`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+<a id="nestedatt--spec--load_balancer_pool_members--pool"></a>
+### Nested Schema for `spec.load_balancer_pool_members.pool`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+
+<a id="nestedatt--spec--placement_target"></a>
+### Nested Schema for `spec.placement_target`
+
+Optional:
+
+- `dedicated_host` (Attributes) DedicatedHost defines the Dedicated Host to place a VPC Machine (Instance) on. (see [below for nested schema](#nestedatt--spec--placement_target--dedicated_host))
+- `dedicated_host_group` (Attributes) DedicatedHostGroup defines the Dedicated Host Group to use when placing a VPC Machine (Instance). (see [below for nested schema](#nestedatt--spec--placement_target--dedicated_host_group))
+- `placement_group` (Attributes) PlacementGroup defines the Placement Group to use when placing a VPC Machine (Instance). (see [below for nested schema](#nestedatt--spec--placement_target--placement_group))
+
+<a id="nestedatt--spec--placement_target--dedicated_host"></a>
+### Nested Schema for `spec.placement_target.dedicated_host`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+<a id="nestedatt--spec--placement_target--dedicated_host_group"></a>
+### Nested Schema for `spec.placement_target.dedicated_host_group`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+<a id="nestedatt--spec--placement_target--placement_group"></a>
+### Nested Schema for `spec.placement_target.placement_group`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+
 <a id="nestedatt--spec--primary_network_interface"></a>
 ### Nested Schema for `spec.primary_network_interface`
 
 Optional:
 
+- `security_groups` (Attributes List) SecurityGroups defines a set of IBM Cloud VPC Security Groups to attach to the network interface. (see [below for nested schema](#nestedatt--spec--primary_network_interface--security_groups))
 - `subnet` (String) Subnet ID of the network interface.
+
+<a id="nestedatt--spec--primary_network_interface--security_groups"></a>
+### Nested Schema for `spec.primary_network_interface.security_groups`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
 
 
 <a id="nestedatt--spec--ssh_keys"></a>

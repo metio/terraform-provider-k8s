@@ -873,12 +873,31 @@ Optional:
 
 Optional:
 
+- `agent_proxy_resources` (Attributes) Resource requirements for the agent proxy container. (see [below for nested schema](#nestedatt--spec--resources--agent_proxy_resources))
 - `auth_proxy_resources` (Attributes) Resource requirements for the auth proxy. (see [below for nested schema](#nestedatt--spec--resources--auth_proxy_resources))
 - `core_resources` (Attributes) Resource requirements for the Cryostat application. If specifying a memory limit, at least 384MiB is recommended. (see [below for nested schema](#nestedatt--spec--resources--core_resources))
 - `data_source_resources` (Attributes) Resource requirements for the JFR Data Source container. (see [below for nested schema](#nestedatt--spec--resources--data_source_resources))
 - `database_resources` (Attributes) Resource requirements for the database container. (see [below for nested schema](#nestedatt--spec--resources--database_resources))
 - `grafana_resources` (Attributes) Resource requirements for the Grafana container. (see [below for nested schema](#nestedatt--spec--resources--grafana_resources))
 - `object_storage_resources` (Attributes) Resource requirements for the object storage container. (see [below for nested schema](#nestedatt--spec--resources--object_storage_resources))
+
+<a id="nestedatt--spec--resources--agent_proxy_resources"></a>
+### Nested Schema for `spec.resources.agent_proxy_resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--agent_proxy_resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--resources--agent_proxy_resources--claims"></a>
+### Nested Schema for `spec.resources.agent_proxy_resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
 
 <a id="nestedatt--spec--resources--auth_proxy_resources"></a>
 ### Nested Schema for `spec.resources.auth_proxy_resources`
@@ -1390,6 +1409,7 @@ Optional:
 
 Optional:
 
+- `agent_proxy_security_context` (Attributes) Security Context to apply to the agent proxy container. (see [below for nested schema](#nestedatt--spec--security_options--agent_proxy_security_context))
 - `auth_proxy_security_context` (Attributes) Security Context to apply to the auth proxy container. (see [below for nested schema](#nestedatt--spec--security_options--auth_proxy_security_context))
 - `core_security_context` (Attributes) Security Context to apply to the Cryostat application container. (see [below for nested schema](#nestedatt--spec--security_options--core_security_context))
 - `data_source_security_context` (Attributes) Security Context to apply to the JFR Data Source container. (see [below for nested schema](#nestedatt--spec--security_options--data_source_security_context))
@@ -1397,6 +1417,67 @@ Optional:
 - `grafana_security_context` (Attributes) Security Context to apply to the Grafana container. (see [below for nested schema](#nestedatt--spec--security_options--grafana_security_context))
 - `pod_security_context` (Attributes) Security Context to apply to the Cryostat pod. (see [below for nested schema](#nestedatt--spec--security_options--pod_security_context))
 - `storage_security_context` (Attributes) Security Context to apply to the storage container. (see [below for nested schema](#nestedatt--spec--security_options--storage_security_context))
+
+<a id="nestedatt--spec--security_options--agent_proxy_security_context"></a>
+### Nested Schema for `spec.security_options.agent_proxy_security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_options--agent_proxy_security_context--capabilities))
+- `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
+- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_options--agent_proxy_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_options--agent_proxy_security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_options--agent_proxy_security_context--windows_options))
+
+<a id="nestedatt--spec--security_options--agent_proxy_security_context--capabilities"></a>
+### Nested Schema for `spec.security_options.agent_proxy_security_context.capabilities`
+
+Optional:
+
+- `add` (List of String) Added capabilities
+- `drop` (List of String) Removed capabilities
+
+
+<a id="nestedatt--spec--security_options--agent_proxy_security_context--se_linux_options"></a>
+### Nested Schema for `spec.security_options.agent_proxy_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String) Level is SELinux level label that applies to the container.
+- `role` (String) Role is a SELinux role label that applies to the container.
+- `type` (String) Type is a SELinux type label that applies to the container.
+- `user` (String) User is a SELinux user label that applies to the container.
+
+
+<a id="nestedatt--spec--security_options--agent_proxy_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.security_options.agent_proxy_security_context.seccomp_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
+
+
+<a id="nestedatt--spec--security_options--agent_proxy_security_context--windows_options"></a>
+### Nested Schema for `spec.security_options.agent_proxy_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+
+
 
 <a id="nestedatt--spec--security_options--auth_proxy_security_context"></a>
 ### Nested Schema for `spec.security_options.auth_proxy_security_context`
@@ -1830,8 +1911,20 @@ Optional:
 
 Optional:
 
+- `agent_config` (Attributes) Specification for the service responsible for agents to communicate with Cryostat. (see [below for nested schema](#nestedatt--spec--service_options--agent_config))
 - `core_config` (Attributes) Specification for the service responsible for the Cryostat application. (see [below for nested schema](#nestedatt--spec--service_options--core_config))
 - `reports_config` (Attributes) Specification for the service responsible for the cryostat-reports sidecars. (see [below for nested schema](#nestedatt--spec--service_options--reports_config))
+
+<a id="nestedatt--spec--service_options--agent_config"></a>
+### Nested Schema for `spec.service_options.agent_config`
+
+Optional:
+
+- `annotations` (Map of String) Annotations to add to the service during its creation.
+- `http_port` (Number) HTTP port number for the Cryostat agent API service. Defaults to 8282.
+- `labels` (Map of String) Labels to add to the service during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.
+- `service_type` (String) Type of service to create. Defaults to 'ClusterIP'.
+
 
 <a id="nestedatt--spec--service_options--core_config"></a>
 ### Nested Schema for `spec.service_options.core_config`

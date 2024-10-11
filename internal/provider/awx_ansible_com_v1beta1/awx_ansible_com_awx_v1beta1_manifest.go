@@ -2315,16 +2315,16 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"ldap_cacert_secret": schema.StringAttribute{
-						Description:         "Secret where can be found the LDAP trusted Certificate Authority Bundle",
-						MarkdownDescription: "Secret where can be found the LDAP trusted Certificate Authority Bundle",
+						Description:         "(Deprecated) Secret where can be found the LDAP trusted Certificate Authority Bundle",
+						MarkdownDescription: "(Deprecated) Secret where can be found the LDAP trusted Certificate Authority Bundle",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ldap_password_secret": schema.StringAttribute{
-						Description:         "Secret where can be found the LDAP bind password",
-						MarkdownDescription: "Secret where can be found the LDAP bind password",
+						Description:         "(Deprecated) Secret where can be found the LDAP bind password",
+						MarkdownDescription: "(Deprecated) Secret where can be found the LDAP bind password",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

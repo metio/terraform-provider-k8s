@@ -53,8 +53,17 @@ Optional:
 
 - `disable_http2` (Boolean) DisableHTTP2 defines if http2 should be disabled for all servers. Default is false, meaning http2 will be enabled for all servers.
 - `ip_family` (String) IPFamily specifies the IP family to be used by the NGINX. Default is 'dual', meaning the server will use both IPv4 and IPv6.
+- `logging` (Attributes) Logging defines logging related settings for NGINX. (see [below for nested schema](#nestedatt--spec--logging))
 - `rewrite_client_ip` (Attributes) RewriteClientIP defines configuration for rewriting the client IP to the original client's IP. (see [below for nested schema](#nestedatt--spec--rewrite_client_ip))
 - `telemetry` (Attributes) Telemetry specifies the OpenTelemetry configuration. (see [below for nested schema](#nestedatt--spec--telemetry))
+
+<a id="nestedatt--spec--logging"></a>
+### Nested Schema for `spec.logging`
+
+Optional:
+
+- `error_level` (String) ErrorLevel defines the error log level. Possible log levels listed in order of increasing severity are debug, info, notice, warn, error, crit, alert, and emerg. Setting a certain log level will cause all messages of the specified and more severe log levels to be logged. For example, the log level 'error' will cause error, crit, alert, and emerg messages to be logged. https://nginx.org/en/docs/ngx_core_module.html#error_log
+
 
 <a id="nestedatt--spec--rewrite_client_ip"></a>
 ### Nested Schema for `spec.rewrite_client_ip`

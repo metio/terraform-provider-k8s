@@ -85,6 +85,9 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 						} `tfsdk:"env" json:"env,omitempty"`
 						Resources *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -128,10 +131,13 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					HostPort *int64 `tfsdk:"host_port" json:"hostPort,omitempty"`
 				} `tfsdk:"host_port_config" json:"hostPortConfig,omitempty"`
 				Instrumentation *struct {
-					DisabledNamespaces *[]string          `tfsdk:"disabled_namespaces" json:"disabledNamespaces,omitempty"`
-					Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-					EnabledNamespaces  *[]string          `tfsdk:"enabled_namespaces" json:"enabledNamespaces,omitempty"`
-					LibVersions        *map[string]string `tfsdk:"lib_versions" json:"libVersions,omitempty"`
+					DisabledNamespaces *[]string `tfsdk:"disabled_namespaces" json:"disabledNamespaces,omitempty"`
+					Enabled            *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+					EnabledNamespaces  *[]string `tfsdk:"enabled_namespaces" json:"enabledNamespaces,omitempty"`
+					LanguageDetection  *struct {
+						Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+					} `tfsdk:"language_detection" json:"languageDetection,omitempty"`
+					LibVersions *map[string]string `tfsdk:"lib_versions" json:"libVersions,omitempty"`
 				} `tfsdk:"instrumentation" json:"instrumentation,omitempty"`
 				UnixDomainSocketConfig *struct {
 					Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -149,6 +155,11 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				} `tfsdk:"threats" json:"threats,omitempty"`
 			} `tfsdk:"asm" json:"asm,omitempty"`
+			Autoscaling *struct {
+				Workload *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"workload" json:"workload,omitempty"`
+			} `tfsdk:"autoscaling" json:"autoscaling,omitempty"`
 			ClusterChecks *struct {
 				Enabled                 *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				UseClusterChecksRunners *bool `tfsdk:"use_cluster_checks_runners" json:"useClusterChecksRunners,omitempty"`
@@ -223,6 +234,11 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 			} `tfsdk:"ebpf_check" json:"ebpfCheck,omitempty"`
 			EventCollection *struct {
 				CollectKubernetesEvents *bool `tfsdk:"collect_kubernetes_events" json:"collectKubernetesEvents,omitempty"`
+				CollectedEventTypes     *[]struct {
+					Kind    *string   `tfsdk:"kind" json:"kind,omitempty"`
+					Reasons *[]string `tfsdk:"reasons" json:"reasons,omitempty"`
+				} `tfsdk:"collected_event_types" json:"collectedEventTypes,omitempty"`
+				UnbundleEvents *bool `tfsdk:"unbundle_events" json:"unbundleEvents,omitempty"`
 			} `tfsdk:"event_collection" json:"eventCollection,omitempty"`
 			ExternalMetricsServer *struct {
 				Enabled  *bool `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -337,8 +353,10 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 			} `tfsdk:"remote_configuration" json:"remoteConfiguration,omitempty"`
 			Sbom *struct {
 				ContainerImage *struct {
-					Analyzers *[]string `tfsdk:"analyzers" json:"analyzers,omitempty"`
-					Enabled   *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+					Analyzers                 *[]string `tfsdk:"analyzers" json:"analyzers,omitempty"`
+					Enabled                   *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+					OverlayFSDirectScan       *bool     `tfsdk:"overlay_fs_direct_scan" json:"overlayFSDirectScan,omitempty"`
+					UncompressedLayersSupport *bool     `tfsdk:"uncompressed_layers_support" json:"uncompressedLayersSupport,omitempty"`
 				} `tfsdk:"container_image" json:"containerImage,omitempty"`
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				Host    *struct {
@@ -417,6 +435,9 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				Port         *int64  `tfsdk:"port" json:"port,omitempty"`
 				PortRange    *int64  `tfsdk:"port_range" json:"portRange,omitempty"`
 				Resources    *struct {
+					Claims *[]struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
@@ -452,9 +473,10 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				ForceEnableLocalService *bool   `tfsdk:"force_enable_local_service" json:"forceEnableLocalService,omitempty"`
 				NameOverride            *string `tfsdk:"name_override" json:"nameOverride,omitempty"`
 			} `tfsdk:"local_service" json:"localService,omitempty"`
-			LogLevel              *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-			NamespaceLabelsAsTags *map[string]string `tfsdk:"namespace_labels_as_tags" json:"namespaceLabelsAsTags,omitempty"`
-			NetworkPolicy         *struct {
+			LogLevel                   *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+			NamespaceAnnotationsAsTags *map[string]string `tfsdk:"namespace_annotations_as_tags" json:"namespaceAnnotationsAsTags,omitempty"`
+			NamespaceLabelsAsTags      *map[string]string `tfsdk:"namespace_labels_as_tags" json:"namespaceLabelsAsTags,omitempty"`
+			NetworkPolicy              *struct {
 				Create               *bool `tfsdk:"create" json:"create,omitempty"`
 				DnsSelectorEndpoints *[]struct {
 					MatchExpressions *[]struct {
@@ -692,6 +714,9 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				Resources *struct {
+					Claims *[]struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
@@ -759,8 +784,17 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"config_map" json:"configMap,omitempty"`
 			} `tfsdk:"custom_configurations" json:"customConfigurations,omitempty"`
-			Disabled *bool `tfsdk:"disabled" json:"disabled,omitempty"`
-			Env      *[]struct {
+			Disabled  *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+			DnsConfig *struct {
+				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+				Options     *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"options" json:"options,omitempty"`
+				Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+			DnsPolicy *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			Env       *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -859,6 +893,13 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
 				Value             *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+			UpdateStrategy *struct {
+				RollingUpdate *struct {
+					MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
+					MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				} `tfsdk:"rolling_update" json:"rollingUpdate,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 			Volumes *[]struct {
 				AwsElasticBlockStore *struct {
 					FsType    *string `tfsdk:"fs_type" json:"fsType,omitempty"`
@@ -947,11 +988,15 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 								Name     *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"data_source" json:"dataSource,omitempty"`
 							DataSourceRef *struct {
-								ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-								Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+								Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
+								Claims *[]struct {
+									Name *string `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1492,6 +1537,25 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															Description:         "ResourceRequirements specifies the resource requirements for the profile.",
 															MarkdownDescription: "ResourceRequirements specifies the resource requirements for the profile.",
 															Attributes: map[string]schema.Attribute{
+																"claims": schema.ListNestedAttribute{
+																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1502,8 +1566,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1806,6 +1870,23 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 
+											"language_detection": schema.SingleNestedAttribute{
+												Description:         "LanguageDetection detects languages and adds them as annotations on Deployments, but does not use these languages for injecting libraries to workload pods. (Requires Agent 7.52.0+ and Cluster Agent 7.52.0+)",
+												MarkdownDescription: "LanguageDetection detects languages and adds them as annotations on Deployments, but does not use these languages for injecting libraries to workload pods. (Requires Agent 7.52.0+ and Cluster Agent 7.52.0+)",
+												Attributes: map[string]schema.Attribute{
+													"enabled": schema.BoolAttribute{
+														Description:         "Enabled enables Language Detection to automatically detect languages of user workloads (beta). Requires SingleStepInstrumentation.Enabled to be true. Default: true",
+														MarkdownDescription: "Enabled enables Language Detection to automatically detect languages of user workloads (beta). Requires SingleStepInstrumentation.Enabled to be true. Default: true",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"lib_versions": schema.MapAttribute{
 												Description:         "LibVersions configures injection of specific tracing library versions with Single Step Instrumentation. <Library>: <Version> ex: 'java': 'v1.18.0'",
 												MarkdownDescription: "LibVersions configures injection of specific tracing library versions with Single Step Instrumentation. <Library>: <Version> ex: 'java': 'v1.18.0'",
@@ -1895,6 +1976,32 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											"enabled": schema.BoolAttribute{
 												Description:         "Enabled enables ASM App & API Protection. Default: false",
 												MarkdownDescription: "Enabled enables ASM App & API Protection. Default: false",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"autoscaling": schema.SingleNestedAttribute{
+								Description:         "Autoscaling configuration.",
+								MarkdownDescription: "Autoscaling configuration.",
+								Attributes: map[string]schema.Attribute{
+									"workload": schema.SingleNestedAttribute{
+										Description:         "Workload contains the configuration for the workload autoscaling product.",
+										MarkdownDescription: "Workload contains the configuration for the workload autoscaling product.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled enables the workload autoscaling product. Default: false",
+												MarkdownDescription: "Enabled enables the workload autoscaling product. Default: false",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2029,8 +2136,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "HostBenchmarks contains configuration for host benchmarks.",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
-												Description:         "Enabled enables host benchmarks. Default: false",
-												MarkdownDescription: "Enabled enables host benchmarks. Default: false",
+												Description:         "Enabled enables host benchmarks. Default: true",
+												MarkdownDescription: "Enabled enables host benchmarks. Default: true",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2359,6 +2466,42 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 									"collect_kubernetes_events": schema.BoolAttribute{
 										Description:         "CollectKubernetesEvents enables Kubernetes event collection. Default: true",
 										MarkdownDescription: "CollectKubernetesEvents enables Kubernetes event collection. Default: true",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"collected_event_types": schema.ListNestedAttribute{
+										Description:         "CollectedEventTypes defines the list of events to collect when UnbundleEvents is enabled. Default: [ {'kind':'Pod','reasons':['Failed','BackOff','Unhealthy','FailedScheduling','FailedMount','FailedAttachVolume']}, {'kind':'Node','reasons':['TerminatingEvictedPod','NodeNotReady','Rebooted','HostPortConflict']}, {'kind':'CronJob','reasons':['SawCompletedJob']} ]",
+										MarkdownDescription: "CollectedEventTypes defines the list of events to collect when UnbundleEvents is enabled. Default: [ {'kind':'Pod','reasons':['Failed','BackOff','Unhealthy','FailedScheduling','FailedMount','FailedAttachVolume']}, {'kind':'Node','reasons':['TerminatingEvictedPod','NodeNotReady','Rebooted','HostPortConflict']}, {'kind':'CronJob','reasons':['SawCompletedJob']} ]",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"kind": schema.StringAttribute{
+													Description:         "Kind is the kind of event to collect. (ex: Pod, Node, CronJob)",
+													MarkdownDescription: "Kind is the kind of event to collect. (ex: Pod, Node, CronJob)",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"reasons": schema.ListAttribute{
+													Description:         "Reasons is a list of event reasons to collect. (ex: Failed, BackOff, Unhealthy)",
+													MarkdownDescription: "Reasons is a list of event reasons to collect. (ex: Failed, BackOff, Unhealthy)",
+													ElementType:         types.StringType,
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"unbundle_events": schema.BoolAttribute{
+										Description:         "UnbundleEvents enables collection of Kubernetes events as individual events. Default: false",
+										MarkdownDescription: "UnbundleEvents enables collection of Kubernetes events as individual events. Default: false",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3099,6 +3242,22 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												Optional:            true,
 												Computed:            false,
 											},
+
+											"overlay_fs_direct_scan": schema.BoolAttribute{
+												Description:         "Enable this option to enable experimental overlayFS direct scan. Default: false",
+												MarkdownDescription: "Enable this option to enable experimental overlayFS direct scan. Default: false",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"uncompressed_layers_support": schema.BoolAttribute{
+												Description:         "Enable this option to enable support for uncompressed layers. Default: false",
+												MarkdownDescription: "Enable this option to enable support for uncompressed layers. Default: false",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -3596,6 +3755,25 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Description:         "Resources is the requests and limits for the FIPS sidecar container.",
 										MarkdownDescription: "Resources is the requests and limits for the FIPS sidecar container.",
 										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"limits": schema.MapAttribute{
 												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -3606,8 +3784,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3826,6 +4004,15 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 							"log_level": schema.StringAttribute{
 								Description:         "LogLevel sets logging verbosity. This can be overridden by container. Valid log levels are: trace, debug, info, warn, error, critical, and off. Default: 'info'",
 								MarkdownDescription: "LogLevel sets logging verbosity. This can be overridden by container. Valid log levels are: trace, debug, info, warn, error, critical, and off. Default: 'info'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace_annotations_as_tags": schema.MapAttribute{
+								Description:         "Provide a mapping of Kubernetes Namespace Annotations to Datadog Tags. <KUBERNETES_LABEL>: <DATADOG_TAG_KEY>",
+								MarkdownDescription: "Provide a mapping of Kubernetes Namespace Annotations to Datadog Tags. <KUBERNETES_LABEL>: <DATADOG_TAG_KEY>",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5043,8 +5230,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+												Description:         "GRPC specifies an action involving a GRPC port.",
+												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5085,8 +5272,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name",
-																	MarkdownDescription: "The header field name",
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -5252,8 +5439,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+												Description:         "GRPC specifies an action involving a GRPC port.",
+												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5294,8 +5481,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "The header field name",
-																	MarkdownDescription: "The header field name",
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -5418,6 +5605,25 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Description:         "Specify the Request and Limits of the pods To get guaranteed QoS class, specify requests and limits equal. See also: http://kubernetes.io/docs/user-guide/compute-resources/",
 										MarkdownDescription: "Specify the Request and Limits of the pods To get guaranteed QoS class, specify requests and limits equal. See also: http://kubernetes.io/docs/user-guide/compute-resources/",
 										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"limits": schema.MapAttribute{
 												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -5428,8 +5634,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5660,8 +5866,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 												Attributes: map[string]schema.Attribute{
 													"localhost_profile": schema.StringAttribute{
-														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5701,8 +5907,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"host_process": schema.BoolAttribute{
-														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5870,6 +6076,68 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 							"disabled": schema.BoolAttribute{
 								Description:         "Disabled force disables a component.",
 								MarkdownDescription: "Disabled force disables a component.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"dns_config": schema.SingleNestedAttribute{
+								Description:         "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+								MarkdownDescription: "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+								Attributes: map[string]schema.Attribute{
+									"nameservers": schema.ListAttribute{
+										Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+										MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"options": schema.ListNestedAttribute{
+										Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+										MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Required.",
+													MarkdownDescription: "Required.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"searches": schema.ListAttribute{
+										Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+										MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"dns_policy": schema.StringAttribute{
+								Description:         "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
+								MarkdownDescription: "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6383,8 +6651,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 										Attributes: map[string]schema.Attribute{
 											"localhost_profile": schema.StringAttribute{
-												Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+												Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6404,8 +6672,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"supplemental_groups": schema.ListAttribute{
-										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6460,8 +6728,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"host_process": schema.BoolAttribute{
-												Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6537,6 +6805,48 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"update_strategy": schema.SingleNestedAttribute{
+								Description:         "The deployment strategy to use to replace existing pods with new ones.",
+								MarkdownDescription: "The deployment strategy to use to replace existing pods with new ones.",
+								Attributes: map[string]schema.Attribute{
+									"rolling_update": schema.SingleNestedAttribute{
+										Description:         "Configure the rolling update strategy of the Deployment or DaemonSet.",
+										MarkdownDescription: "Configure the rolling update strategy of the Deployment or DaemonSet.",
+										Attributes: map[string]schema.Attribute{
+											"max_surge": schema.StringAttribute{
+												Description:         "MaxSurge behaves differently based on the Kubernetes resource. Refer to the Kubernetes API documentation for additional details.",
+												MarkdownDescription: "MaxSurge behaves differently based on the Kubernetes resource. Refer to the Kubernetes API documentation for additional details.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_unavailable": schema.StringAttribute{
+												Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Refer to the Kubernetes API documentation for additional details..",
+												MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Refer to the Kubernetes API documentation for additional details..",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Type can be 'RollingUpdate' or 'OnDelete' for DaemonSets and 'RollingUpdate' or 'Recreate' for Deployments",
+										MarkdownDescription: "Type can be 'RollingUpdate' or 'OnDelete' for DaemonSets and 'RollingUpdate' or 'Recreate' for Deployments",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -7039,8 +7349,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"size_limit": schema.StringAttribute{
-													Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-													MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+													Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+													MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7082,8 +7392,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"data_source": schema.SingleNestedAttribute{
-																	Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-																	MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																	Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+																	MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
 																	Attributes: map[string]schema.Attribute{
 																		"api_group": schema.StringAttribute{
 																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -7115,8 +7425,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"data_source_ref": schema.SingleNestedAttribute{
-																	Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-																	MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																	Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																	MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																	Attributes: map[string]schema.Attribute{
 																		"api_group": schema.StringAttribute{
 																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -7141,6 +7451,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																			Optional:            false,
 																			Computed:            false,
 																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																			MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -7151,6 +7469,25 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	Attributes: map[string]schema.Attribute{
+																		"claims": schema.ListNestedAttribute{
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"limits": schema.MapAttribute{
 																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -7161,8 +7498,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,

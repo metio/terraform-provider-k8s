@@ -59,7 +59,7 @@ Required:
 Optional:
 
 - `parameters` (Attributes) Parameters identifies a configuration with additional parameters for the check. (see [below for nested schema](#nestedatt--spec--parameters))
-- `retry_delay_minutes` (Number) RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. The default is 15 min.
+- `retry_delay_minutes` (Number) RetryDelayMinutes specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. Deprecated: retryDelayMinutes has already been deprecated since v0.8 and will be removed in v1beta2.
 
 <a id="nestedatt--spec--parameters"></a>
 ### Nested Schema for `spec.parameters`

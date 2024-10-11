@@ -96,11 +96,21 @@ Optional:
 - `image_tag` (String) Image Tag for Jindo Fuse(e.g. 2.3.0-SNAPSHOT)
 - `labels` (Map of String) Labels will be added on all the JindoFS pods. DEPRECATED: this is a deprecated field. Please use PodMetadata.Labels instead. Note: this field is set to be exclusive with PodMetadata.Labels
 - `log_config` (Map of String)
+- `metrics` (Attributes) Define whether fuse metrics will be enabled. (see [below for nested schema](#nestedatt--spec--fuse--metrics))
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the fuse client to fit on a node, this option only effect when global is enabled
 - `pod_metadata` (Attributes) PodMetadata defines labels and annotations that will be propagated to Jindo's fuse pods (see [below for nested schema](#nestedatt--spec--fuse--pod_metadata))
 - `properties` (Map of String) Configurable properties for Jindo System. <br>
 - `resources` (Attributes) Resources that will be requested by Jindo Fuse. <br> <br> Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--fuse--resources))
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--fuse--tolerations))
+
+<a id="nestedatt--spec--fuse--metrics"></a>
+### Nested Schema for `spec.fuse.metrics`
+
+Optional:
+
+- `enabled` (Boolean) Enabled decides whether to expose client metrics.
+- `scrape_target` (String) ScrapeTarget decides which fuse component will be scraped by Prometheus. It is a list separated by comma where supported items are [MountPod, Sidecar, All (indicates MountPod and Sidecar), None]. Defaults to None when it is not explicitly set.
+
 
 <a id="nestedatt--spec--fuse--pod_metadata"></a>
 ### Nested Schema for `spec.fuse.pod_metadata`

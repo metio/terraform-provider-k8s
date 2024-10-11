@@ -419,14 +419,14 @@ func (r *SecretsHashicorpComHcpvaultSecretsAppV1Beta1Manifest) Schema(_ context.
 								MarkdownDescription: "Dynamic configures sync behavior for dynamic secrets.",
 								Attributes: map[string]schema.Attribute{
 									"renewal_percent": schema.Int64Attribute{
-										Description:         "RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent minus jitter.",
-										MarkdownDescription: "RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent minus jitter.",
+										Description:         "RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent plus up to 10% jitter.",
+										MarkdownDescription: "RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent plus up to 10% jitter.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.Int64{
 											int64validator.AtLeast(0),
-											int64validator.AtMost(100),
+											int64validator.AtMost(90),
 										},
 									},
 								},

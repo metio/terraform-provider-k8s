@@ -166,8 +166,8 @@ func (r *AppsKubeblocksIoComponentVersionV1Manifest) Schema(_ context.Context, _
 								},
 
 								"images": schema.MapAttribute{
-									Description:         "Images define the new images for different containers within the release.",
-									MarkdownDescription: "Images define the new images for different containers within the release.",
+									Description:         "Images define the new images for containers, actions or external applications within the release. If an image is specified for a lifecycle action, the key should be the field name (case-insensitive) of the action in the LifecycleActions struct.",
+									MarkdownDescription: "Images define the new images for containers, actions or external applications within the release. If an image is specified for a lifecycle action, the key should be the field name (case-insensitive) of the action in the LifecycleActions struct.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,

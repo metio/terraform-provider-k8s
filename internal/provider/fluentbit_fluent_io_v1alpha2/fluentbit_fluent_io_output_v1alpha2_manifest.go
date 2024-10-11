@@ -104,8 +104,9 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"customer_id" json:"customerID,omitempty"`
-			LogType   *string `tfsdk:"log_type" json:"logType,omitempty"`
-			SharedKey *struct {
+			LogType    *string `tfsdk:"log_type" json:"logType,omitempty"`
+			LogTypeKey *string `tfsdk:"log_type_key" json:"logTypeKey,omitempty"`
+			SharedKey  *struct {
 				ValueFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1573,6 +1574,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"log_type": schema.StringAttribute{
 								Description:         "Name of the event type.",
 								MarkdownDescription: "Name of the event type.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"log_type_key": schema.StringAttribute{
+								Description:         "Set a record key that will populate 'logtype'. If the key is found, it will have precedence",
+								MarkdownDescription: "Set a record key that will populate 'logtype'. If the key is found, it will have precedence",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -13521,8 +13521,8 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 							},
 
 							"hadoop_conf": schema.MapAttribute{
-								Description:         "HadoopConf carries user-specified Hadoop configuration properties as they would use the the '--conf' option in spark-submit. The SparkApplication controller automatically adds prefix 'spark.hadoop.' to Hadoop configuration properties.",
-								MarkdownDescription: "HadoopConf carries user-specified Hadoop configuration properties as they would use the the '--conf' option in spark-submit. The SparkApplication controller automatically adds prefix 'spark.hadoop.' to Hadoop configuration properties.",
+								Description:         "HadoopConf carries user-specified Hadoop configuration properties as they would use the '--conf' option in spark-submit. The SparkApplication controller automatically adds prefix 'spark.hadoop.' to Hadoop configuration properties.",
+								MarkdownDescription: "HadoopConf carries user-specified Hadoop configuration properties as they would use the '--conf' option in spark-submit. The SparkApplication controller automatically adds prefix 'spark.hadoop.' to Hadoop configuration properties.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

@@ -384,7 +384,7 @@ Optional:
 - `token` (String) Token / API key to access Prometheus, for token-based authentication. May refer to a secret.
 - `type` (String) The type of authentication to use when contacting the server. Use 'bearer' to send the token to the Prometheus server. Use 'basic' to connect with username and password credentials. Use 'none' to not use any authentication (this is the default).
 - `use_kiali_token` (Boolean) When true and if 'auth.type' is 'bearer', Kiali Service Account token will be used for the API calls to Prometheus (in this case, 'auth.token' config is ignored).
-- `username` (String) Username to be used when making requests to Prometheus with 'basic' authentication.
+- `username` (String) Username to be used when making requests to Prometheus with 'basic' authentication. May refer to a secret.
 
 
 <a id="nestedatt--spec--external_services--custom_dashboards--prometheus--thanos_proxy"></a>
@@ -423,7 +423,7 @@ Optional:
 - `token` (String) Token / API key to access Grafana, for token-based authentication. May refer to a secret.
 - `type` (String) The type of authentication to use when contacting the server. Use 'bearer' to send the token to the Grafana server. Use 'basic' to connect with username and password credentials. Use 'none' to not use any authentication (this is the default).
 - `use_kiali_token` (Boolean) When true and if 'auth.type' is 'bearer', Kiali Service Account token will be used for the API calls to Grafana (in this case, 'auth.token' config is ignored).
-- `username` (String) Username to be used when making requests to Grafana with 'basic' authentication.
+- `username` (String) Username to be used when making requests to Grafana with 'basic' authentication. May refer to a secret.
 
 
 <a id="nestedatt--spec--external_services--grafana--dashboards"></a>
@@ -535,7 +535,7 @@ Optional:
 - `token` (String) Token / API key to access Prometheus, for token-based authentication. May refer to a secret.
 - `type` (String) The type of authentication to use when contacting the server. Use 'bearer' to send the token to the Prometheus server. Use 'basic' to connect with username and password credentials. Use 'none' to not use any authentication (this is the default).
 - `use_kiali_token` (Boolean) When true and if 'auth.type' is 'bearer', Kiali Service Account token will be used for the API calls to Prometheus (in this case, 'auth.token' config is ignored).
-- `username` (String) Username to be used when making requests to Prometheus with 'basic' authentication.
+- `username` (String) Username to be used when making requests to Prometheus with 'basic' authentication. May refer to a secret.
 
 
 <a id="nestedatt--spec--external_services--prometheus--thanos_proxy"></a>
@@ -581,7 +581,7 @@ Optional:
 - `token` (String) Token / API key to access the Tracing server, for token-based authentication. May refer to a secret.
 - `type` (String) The type of authentication to use when contacting the server. Use 'bearer' to send the token to the Tracing server. Use 'basic' to connect with username and password credentials. Use 'none' to not use any authentication (this is the default).
 - `use_kiali_token` (Boolean) When true and if 'auth.type' is 'bearer', Kiali Service Account token will be used for the API calls to the Tracing server (in this case, 'auth.token' config is ignored).
-- `username` (String) Username to be used when making requests to the Tracing server with 'basic' authentication.
+- `username` (String) Username to be used when making requests to the Tracing server with 'basic' authentication. May refer to a secret.
 
 
 <a id="nestedatt--spec--external_services--tracing--tempo_config"></a>

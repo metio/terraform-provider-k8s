@@ -208,9 +208,12 @@ Optional:
 <a id="nestedatt--spec--limits--global--otlp--resource_attributes--attributes"></a>
 ### Nested Schema for `spec.limits.global.otlp.resource_attributes.attributes`
 
-Optional:
+Required:
 
 - `action` (String) Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.
+
+Optional:
+
 - `attributes` (List of String) Attributes is the list of attributes to configure indexing or drop them altogether.
 - `regex` (String) Regex allows choosing the attributes by matching a regular expression.
 
@@ -329,9 +332,12 @@ Optional:
 <a id="nestedatt--spec--limits--tenants--otlp--resource_attributes--attributes"></a>
 ### Nested Schema for `spec.limits.tenants.otlp.resource_attributes.attributes`
 
-Optional:
+Required:
 
 - `action` (String) Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.
+
+Optional:
+
 - `attributes` (List of String) Attributes is the list of attributes to configure indexing or drop them altogether.
 - `regex` (String) Regex allows choosing the attributes by matching a regular expression.
 

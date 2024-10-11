@@ -157,7 +157,8 @@ type MulticlusterCrdAntreaIoResourceImportV1Alpha1ManifestData struct {
 					Fqdn    *string `tfsdk:"fqdn" json:"fqdn,omitempty"`
 					Group   *string `tfsdk:"group" json:"group,omitempty"`
 					IpBlock *struct {
-						Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						Cidr   *string   `tfsdk:"cidr" json:"cidr,omitempty"`
+						Except *[]string `tfsdk:"except" json:"except,omitempty"`
 					} `tfsdk:"ip_block" json:"ipBlock,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
@@ -234,7 +235,8 @@ type MulticlusterCrdAntreaIoResourceImportV1Alpha1ManifestData struct {
 					Fqdn    *string `tfsdk:"fqdn" json:"fqdn,omitempty"`
 					Group   *string `tfsdk:"group" json:"group,omitempty"`
 					IpBlock *struct {
-						Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						Cidr   *string   `tfsdk:"cidr" json:"cidr,omitempty"`
+						Except *[]string `tfsdk:"except" json:"except,omitempty"`
 					} `tfsdk:"ip_block" json:"ipBlock,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
@@ -334,7 +336,8 @@ type MulticlusterCrdAntreaIoResourceImportV1Alpha1ManifestData struct {
 					Fqdn    *string `tfsdk:"fqdn" json:"fqdn,omitempty"`
 					Group   *string `tfsdk:"group" json:"group,omitempty"`
 					IpBlock *struct {
-						Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						Cidr   *string   `tfsdk:"cidr" json:"cidr,omitempty"`
+						Except *[]string `tfsdk:"except" json:"except,omitempty"`
 					} `tfsdk:"ip_block" json:"ipBlock,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
@@ -411,7 +414,8 @@ type MulticlusterCrdAntreaIoResourceImportV1Alpha1ManifestData struct {
 					Fqdn    *string `tfsdk:"fqdn" json:"fqdn,omitempty"`
 					Group   *string `tfsdk:"group" json:"group,omitempty"`
 					IpBlock *struct {
-						Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						Cidr   *string   `tfsdk:"cidr" json:"cidr,omitempty"`
+						Except *[]string `tfsdk:"except" json:"except,omitempty"`
 					} `tfsdk:"ip_block" json:"ipBlock,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
@@ -1378,10 +1382,19 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"except": schema.ListAttribute{
+																Description:         "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 														},
@@ -1886,10 +1899,19 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"except": schema.ListAttribute{
+																Description:         "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 														},
@@ -2552,10 +2574,19 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"except": schema.ListAttribute{
+																Description:         "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 														},
@@ -3060,10 +3091,19 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"except": schema.ListAttribute{
+																Description:         "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																MarkdownDescription: "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 														},

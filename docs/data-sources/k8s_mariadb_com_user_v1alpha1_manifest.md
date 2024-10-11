@@ -61,7 +61,7 @@ Optional:
 
 - `cleanup_policy` (String) CleanupPolicy defines the behavior for cleaning up a SQL resource.
 - `host` (String) Host related to the User.
-- `max_user_connections` (Number) MaxUserConnections defines the maximum number of connections that the User can establish.
+- `max_user_connections` (Number) MaxUserConnections defines the maximum number of simultaneous connections that the User can establish.
 - `name` (String) Name overrides the default name provided by metadata.name.
 - `password_hash_secret_key_ref` (Attributes) PasswordHashSecretKeyRef is a reference to the password hash to be used by the User. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password hash. (see [below for nested schema](#nestedatt--spec--password_hash_secret_key_ref))
 - `password_plugin` (Attributes) PasswordPlugin is a reference to the password plugin and arguments to be used by the User. (see [below for nested schema](#nestedatt--spec--password_plugin))

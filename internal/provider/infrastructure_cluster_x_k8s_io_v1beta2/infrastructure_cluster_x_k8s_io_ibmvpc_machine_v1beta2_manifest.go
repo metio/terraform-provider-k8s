@@ -51,12 +51,47 @@ type InfrastructureClusterXK8SIoIbmvpcmachineV1Beta2ManifestData struct {
 			Profile                      *string `tfsdk:"profile" json:"profile,omitempty"`
 			SizeGiB                      *int64  `tfsdk:"size_gi_b" json:"sizeGiB,omitempty"`
 		} `tfsdk:"boot_volume" json:"bootVolume,omitempty"`
+		CatalogOffering *struct {
+			OfferingCRN *string `tfsdk:"offering_crn" json:"offeringCRN,omitempty"`
+			PlanCRN     *string `tfsdk:"plan_crn" json:"planCRN,omitempty"`
+			VersionCRN  *string `tfsdk:"version_crn" json:"versionCRN,omitempty"`
+		} `tfsdk:"catalog_offering" json:"catalogOffering,omitempty"`
 		Image *struct {
 			Id   *string `tfsdk:"id" json:"id,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image" json:"image,omitempty"`
-		Name                    *string `tfsdk:"name" json:"name,omitempty"`
+		LoadBalancerPoolMembers *[]struct {
+			LoadBalancer *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
+			Pool *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"pool" json:"pool,omitempty"`
+			Port   *int64 `tfsdk:"port" json:"port,omitempty"`
+			Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+		} `tfsdk:"load_balancer_pool_members" json:"loadBalancerPoolMembers,omitempty"`
+		Name            *string `tfsdk:"name" json:"name,omitempty"`
+		PlacementTarget *struct {
+			DedicatedHost *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"dedicated_host" json:"dedicatedHost,omitempty"`
+			DedicatedHostGroup *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"dedicated_host_group" json:"dedicatedHostGroup,omitempty"`
+			PlacementGroup *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"placement_group" json:"placementGroup,omitempty"`
+		} `tfsdk:"placement_target" json:"placementTarget,omitempty"`
 		PrimaryNetworkInterface *struct {
+			SecurityGroups *[]struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"security_groups" json:"securityGroups,omitempty"`
 			Subnet *string `tfsdk:"subnet" json:"subnet,omitempty"`
 		} `tfsdk:"primary_network_interface" json:"primaryNetworkInterface,omitempty"`
 		Profile    *string `tfsdk:"profile" json:"profile,omitempty"`
@@ -206,6 +241,39 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineV1Beta2Manifest) Schema(_ conte
 						Computed: false,
 					},
 
+					"catalog_offering": schema.SingleNestedAttribute{
+						Description:         "CatalogOffering is the Catalog Offering OS image which would be installed on the instance. An OfferingCRN or VersionCRN is required, the PlanCRN is optional.",
+						MarkdownDescription: "CatalogOffering is the Catalog Offering OS image which would be installed on the instance. An OfferingCRN or VersionCRN is required, the PlanCRN is optional.",
+						Attributes: map[string]schema.Attribute{
+							"offering_crn": schema.StringAttribute{
+								Description:         "OfferingCRN defines the IBM Cloud Catalog Offering CRN. Using the OfferingCRN expects that the latest version of the Offering will be used. If a specific version should be used instead, rely on VersionCRN.",
+								MarkdownDescription: "OfferingCRN defines the IBM Cloud Catalog Offering CRN. Using the OfferingCRN expects that the latest version of the Offering will be used. If a specific version should be used instead, rely on VersionCRN.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"plan_crn": schema.StringAttribute{
+								Description:         "PlanCRN defines the IBM Cloud Catalog Offering Plan CRN to use for the Offering.",
+								MarkdownDescription: "PlanCRN defines the IBM Cloud Catalog Offering Plan CRN to use for the Offering.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"version_crn": schema.StringAttribute{
+								Description:         "VersionCRN defines the IBM Cloud Catalog Offering Version CRN. A specific version of the Catalog Offering will be used, as defined by this CRN.",
+								MarkdownDescription: "VersionCRN defines the IBM Cloud Catalog Offering Version CRN. A specific version of the Catalog Offering will be used, as defined by this CRN.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.SingleNestedAttribute{
 						Description:         "Image is the OS image which would be install on the instance. ID will take higher precedence over Name if both specified.",
 						MarkdownDescription: "Image is the OS image which would be install on the instance. ID will take higher precedence over Name if both specified.",
@@ -237,6 +305,95 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineV1Beta2Manifest) Schema(_ conte
 						Computed: false,
 					},
 
+					"load_balancer_pool_members": schema.ListNestedAttribute{
+						Description:         "LoadBalancerPoolMembers is the set of IBM Cloud VPC Load Balancer Backend Pools the machine should be added to as a member.",
+						MarkdownDescription: "LoadBalancerPoolMembers is the set of IBM Cloud VPC Load Balancer Backend Pools the machine should be added to as a member.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"load_balancer": schema.SingleNestedAttribute{
+									Description:         "LoadBalancer defines the Load Balancer the Pool Member is for.",
+									MarkdownDescription: "LoadBalancer defines the Load Balancer the Pool Member is for.",
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "id of the resource.",
+											MarkdownDescription: "id of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name of the resource.",
+											MarkdownDescription: "name of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"pool": schema.SingleNestedAttribute{
+									Description:         "Pool defines the Load Balancer Pool the Pool Member should be in.",
+									MarkdownDescription: "Pool defines the Load Balancer Pool the Pool Member should be in.",
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "id of the resource.",
+											MarkdownDescription: "id of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name of the resource.",
+											MarkdownDescription: "name of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"port": schema.Int64Attribute{
+									Description:         "Port defines the Port the Load Balancer Pool Member listens for traffic.",
+									MarkdownDescription: "Port defines the Port the Load Balancer Pool Member listens for traffic.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"weight": schema.Int64Attribute{
+									Description:         "Weight of the service member. Only applicable if the pool algorithm is 'weighted_round_robin'.",
+									MarkdownDescription: "Weight of the service member. Only applicable if the pool algorithm is 'weighted_round_robin'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"name": schema.StringAttribute{
 						Description:         "Name of the instance.",
 						MarkdownDescription: "Name of the instance.",
@@ -245,10 +402,145 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineV1Beta2Manifest) Schema(_ conte
 						Computed:            false,
 					},
 
+					"placement_target": schema.SingleNestedAttribute{
+						Description:         "PlacementTarget is the placement restrictions to use for the virtual server instance. No restrictions are used when this field is not defined.",
+						MarkdownDescription: "PlacementTarget is the placement restrictions to use for the virtual server instance. No restrictions are used when this field is not defined.",
+						Attributes: map[string]schema.Attribute{
+							"dedicated_host": schema.SingleNestedAttribute{
+								Description:         "DedicatedHost defines the Dedicated Host to place a VPC Machine (Instance) on.",
+								MarkdownDescription: "DedicatedHost defines the Dedicated Host to place a VPC Machine (Instance) on.",
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										Description:         "id of the resource.",
+										MarkdownDescription: "id of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "name of the resource.",
+										MarkdownDescription: "name of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"dedicated_host_group": schema.SingleNestedAttribute{
+								Description:         "DedicatedHostGroup defines the Dedicated Host Group to use when placing a VPC Machine (Instance).",
+								MarkdownDescription: "DedicatedHostGroup defines the Dedicated Host Group to use when placing a VPC Machine (Instance).",
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										Description:         "id of the resource.",
+										MarkdownDescription: "id of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "name of the resource.",
+										MarkdownDescription: "name of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"placement_group": schema.SingleNestedAttribute{
+								Description:         "PlacementGroup defines the Placement Group to use when placing a VPC Machine (Instance).",
+								MarkdownDescription: "PlacementGroup defines the Placement Group to use when placing a VPC Machine (Instance).",
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										Description:         "id of the resource.",
+										MarkdownDescription: "id of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "name of the resource.",
+										MarkdownDescription: "name of the resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"primary_network_interface": schema.SingleNestedAttribute{
 						Description:         "PrimaryNetworkInterface is required to specify subnet.",
 						MarkdownDescription: "PrimaryNetworkInterface is required to specify subnet.",
 						Attributes: map[string]schema.Attribute{
+							"security_groups": schema.ListNestedAttribute{
+								Description:         "SecurityGroups defines a set of IBM Cloud VPC Security Groups to attach to the network interface.",
+								MarkdownDescription: "SecurityGroups defines a set of IBM Cloud VPC Security Groups to attach to the network interface.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "id of the resource.",
+											MarkdownDescription: "id of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name of the resource.",
+											MarkdownDescription: "name of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"subnet": schema.StringAttribute{
 								Description:         "Subnet ID of the network interface.",
 								MarkdownDescription: "Subnet ID of the network interface.",

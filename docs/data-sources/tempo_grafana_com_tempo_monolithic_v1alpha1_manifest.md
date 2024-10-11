@@ -66,6 +66,7 @@ Optional:
 - `resources` (Attributes) Resources defines the compute resource requirements of the Tempo container. (see [below for nested schema](#nestedatt--spec--resources))
 - `service_account` (String) ServiceAccount defines the Service Account to use for all Tempo components.
 - `storage` (Attributes) Storage defines the storage configuration. (see [below for nested schema](#nestedatt--spec--storage))
+- `timeout` (String) Timeout configures the same timeout on all components starting at ingress down to the ingestor/querier. Timeout configuration on a specific component has a higher precedence. Default is 30 seconds.
 - `tolerations` (Attributes List) Tolerations defines the tolerations of a node to schedule the pod onto it. (see [below for nested schema](#nestedatt--spec--tolerations))
 
 <a id="nestedatt--spec--affinity"></a>
@@ -531,6 +532,7 @@ Required:
 Optional:
 
 - `authentication` (Attributes) Authentication defines the options for the oauth proxy used to protect jaeger UI (see [below for nested schema](#nestedatt--spec--jaegerui--authentication))
+- `find_traces_concurrent_requests` (Number) FindTracesConcurrentRequests defines how many concurrent request a single trace search can submit (defaults 2). The search for traces in Jaeger submits limit+1 requests. First requests finds trace IDs and then it fetches entire traces by ID. This property allows Jaeger to fetch traces in parallel. Note that by default a single Tempo querier can process 20 concurrent search jobs. Increasing this property might require scaling up querier instances, especially on error 'job queue full' See also Tempo's extraConfig: querier.max_concurrent_queries (20 default) query_frontend.max_outstanding_per_tenant: (2000 default). Increase if the query-frontend returns 429
 - `ingress` (Attributes) Ingress defines the Ingress configuration for the Jaeger UI. (see [below for nested schema](#nestedatt--spec--jaegerui--ingress))
 - `resources` (Attributes) Resources defines the compute resource requirements of the Jaeger UI container. (see [below for nested schema](#nestedatt--spec--jaegerui--resources))
 - `route` (Attributes) Route defines the OpenShift route configuration for the Jaeger UI. (see [below for nested schema](#nestedatt--spec--jaegerui--route))

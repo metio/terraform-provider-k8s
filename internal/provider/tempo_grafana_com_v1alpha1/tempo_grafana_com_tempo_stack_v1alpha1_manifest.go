@@ -457,8 +457,9 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 						} `tfsdk:"resources" json:"resources,omitempty"`
 						Sar *string `tfsdk:"sar" json:"sar,omitempty"`
 					} `tfsdk:"authentication" json:"authentication,omitempty"`
-					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
-					Ingress *struct {
+					Enabled                      *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+					FindTracesConcurrentRequests *int64 `tfsdk:"find_traces_concurrent_requests" json:"findTracesConcurrentRequests,omitempty"`
+					Ingress                      *struct {
 						Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Host             *string            `tfsdk:"host" json:"host,omitempty"`
 						IngressClassName *string            `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
@@ -523,6 +524,7 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 			} `tfsdk:"authorization" json:"authorization,omitempty"`
 			Mode *string `tfsdk:"mode" json:"mode,omitempty"`
 		} `tfsdk:"tenants" json:"tenants,omitempty"`
+		Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -3377,6 +3379,14 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Computed:            false,
 											},
 
+											"find_traces_concurrent_requests": schema.Int64Attribute{
+												Description:         "FindTracesConcurrentRequests defines how many concurrent request a single trace search can submit (defaults querier.replicas*2). The search for traces in Jaeger submits limit+1 requests. First requests finds trace IDs and then it fetches entire traces by ID. This property allows Jaeger to fetch traces in parallel. Note that by default a single Tempo querier can process 20 concurrent search jobs. Increasing this property might require scaling up querier instances, especially on error 'job queue full' See also Tempo's extraConfig: querier.max_concurrent_queries (20 default) query_frontend.max_outstanding_per_tenant: (2000 default). Increase if the query-frontend returns 429",
+												MarkdownDescription: "FindTracesConcurrentRequests defines how many concurrent request a single trace search can submit (defaults querier.replicas*2). The search for traces in Jaeger submits limit+1 requests. First requests finds trace IDs and then it fetches entire traces by ID. This property allows Jaeger to fetch traces in parallel. Note that by default a single Tempo querier can process 20 concurrent search jobs. Increasing this property might require scaling up querier instances, especially on error 'job queue full' See also Tempo's extraConfig: querier.max_concurrent_queries (20 default) query_frontend.max_outstanding_per_tenant: (2000 default). Increase if the query-frontend returns 429",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"ingress": schema.SingleNestedAttribute{
 												Description:         "Ingress defines the options for the Jaeger Query ingress.",
 												MarkdownDescription: "Ingress defines the options for the Jaeger Query ingress.",
@@ -3807,6 +3817,14 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"timeout": schema.StringAttribute{
+						Description:         "Timeout configures the same timeout on all components starting at ingress down to the ingestor/querier. Timeout configuration on a specific component has a higher precedence. Defaults to 30 seconds.",
+						MarkdownDescription: "Timeout configures the same timeout on all components starting at ingress down to the ingestor/querier. Timeout configuration on a specific component has a higher precedence. Defaults to 30 seconds.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

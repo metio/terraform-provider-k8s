@@ -207,8 +207,8 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 					},
 
 					"client_id": schema.StringAttribute{
-						Description:         "ClientID is the id of the authentication client (Teleport Auth server).",
-						MarkdownDescription: "ClientID is the id of the authentication client (Teleport Auth server).",
+						Description:         "ClientID is the id of the authentication client (Teleport Auth Service).",
+						MarkdownDescription: "ClientID is the id of the authentication client (Teleport Auth Service).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

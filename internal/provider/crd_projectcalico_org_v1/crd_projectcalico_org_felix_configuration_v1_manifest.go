@@ -123,6 +123,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		InterfaceExclude                   *string   `tfsdk:"interface_exclude" json:"interfaceExclude,omitempty"`
 		InterfacePrefix                    *string   `tfsdk:"interface_prefix" json:"interfacePrefix,omitempty"`
 		InterfaceRefreshInterval           *string   `tfsdk:"interface_refresh_interval" json:"interfaceRefreshInterval,omitempty"`
+		IpForwarding                       *string   `tfsdk:"ip_forwarding" json:"ipForwarding,omitempty"`
 		IpipEnabled                        *bool     `tfsdk:"ipip_enabled" json:"ipipEnabled,omitempty"`
 		IpipMTU                            *int64    `tfsdk:"ipip_mtu" json:"ipipMTU,omitempty"`
 		IpsetsRefreshInterval              *string   `tfsdk:"ipsets_refresh_interval" json:"ipsetsRefreshInterval,omitempty"`
@@ -952,6 +953,17 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$`), ""),
+						},
+					},
+
+					"ip_forwarding": schema.StringAttribute{
+						Description:         "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. [Default: Enabled]",
+						MarkdownDescription: "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. [Default: Enabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
 						},
 					},
 

@@ -1001,8 +1001,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																"action": schema.StringAttribute{
 																	Description:         "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
 																	MarkdownDescription: "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																	Validators: []validator.String{
 																		stringvalidator.OneOf("index_label", "structured_metadata", "drop"),
@@ -1357,8 +1357,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																"action": schema.StringAttribute{
 																	Description:         "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
 																	MarkdownDescription: "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																	Validators: []validator.String{
 																		stringvalidator.OneOf("index_label", "structured_metadata", "drop"),

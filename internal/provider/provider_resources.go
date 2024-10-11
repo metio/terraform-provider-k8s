@@ -301,6 +301,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta2"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta3"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kube_green_com_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kubean_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/kubecost_com_v1alpha1"
@@ -324,6 +325,7 @@ import (
 	//"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta5"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta6"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta7"
+	//"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta8"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/limitador_kuadrant_io_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/listeners_stackable_tech_v1alpha1"
 	//"github.com/metio/terraform-provider-k8s/internal/provider/litmuschaos_io_v1alpha1"
@@ -1517,6 +1519,7 @@ func allResources() []func() resource.Resource {
 		//kuadrant_io_v1beta1.NewKuadrantIoKuadrantV1Beta1Resource,
 		//kuadrant_io_v1beta2.NewKuadrantIoAuthPolicyV1Beta2Resource,
 		//kuadrant_io_v1beta2.NewKuadrantIoRateLimitPolicyV1Beta2Resource,
+		//kuadrant_io_v1beta3.NewKuadrantIoRateLimitPolicyV1Beta3Resource,
 		//kube_green_com_v1alpha1.NewKubeGreenComSleepInfoV1Alpha1Resource,
 		//kubean_io_v1alpha1.NewKubeanIoClusterOperationV1Alpha1Resource,
 		//kubean_io_v1alpha1.NewKubeanIoClusterV1Alpha1Resource,
@@ -1626,6 +1629,9 @@ func allResources() []func() resource.Resource {
 		//lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenSecretV1Beta7Resource,
 		//lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta7Resource,
 		//lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuRegistryCredentialV1Beta7Resource,
+		//lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuBitwardenSecretV1Beta8Resource,
+		//lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta8Resource,
+		//lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuRegistryCredentialV1Beta8Resource,
 		//limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1Resource,
 		//listeners_stackable_tech_v1alpha1.NewListenersStackableTechListenerClassV1Alpha1Resource,
 		//listeners_stackable_tech_v1alpha1.NewListenersStackableTechListenerV1Alpha1Resource,

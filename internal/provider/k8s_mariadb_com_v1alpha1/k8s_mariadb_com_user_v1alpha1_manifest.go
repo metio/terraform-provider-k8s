@@ -208,8 +208,8 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"max_user_connections": schema.Int64Attribute{
-						Description:         "MaxUserConnections defines the maximum number of connections that the User can establish.",
-						MarkdownDescription: "MaxUserConnections defines the maximum number of connections that the User can establish.",
+						Description:         "MaxUserConnections defines the maximum number of simultaneous connections that the User can establish.",
+						MarkdownDescription: "MaxUserConnections defines the maximum number of simultaneous connections that the User can establish.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

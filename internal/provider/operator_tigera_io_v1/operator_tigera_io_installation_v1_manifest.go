@@ -7540,8 +7540,8 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"fips_mode": schema.StringAttribute{
-						Description:         "FIPSMode uses images and features only that are using FIPS 140-2 validated cryptographic modules and standards. Default: Disabled",
-						MarkdownDescription: "FIPSMode uses images and features only that are using FIPS 140-2 validated cryptographic modules and standards. Default: Disabled",
+						Description:         "FIPSMode uses images and features only that are using FIPS 140-2 validated cryptographic modules and standards. Only supported for Variant=Calico. Default: Disabled",
+						MarkdownDescription: "FIPSMode uses images and features only that are using FIPS 140-2 validated cryptographic modules and standards. Only supported for Variant=Calico. Default: Disabled",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -74,6 +74,7 @@ Optional:
 - `storage_size` (String) StorageSize for PVCs used by ingester. Defaults to 10Gi.
 - `template` (Attributes) Template defines requirements for a set of tempo components. (see [below for nested schema](#nestedatt--spec--template))
 - `tenants` (Attributes) Tenants defines the per-tenant authentication and authorization spec. (see [below for nested schema](#nestedatt--spec--tenants))
+- `timeout` (String) Timeout configures the same timeout on all components starting at ingress down to the ingestor/querier. Timeout configuration on a specific component has a higher precedence. Defaults to 30 seconds.
 
 <a id="nestedatt--spec--storage"></a>
 ### Nested Schema for `spec.storage`
@@ -1025,6 +1026,7 @@ Optional:
 
 - `authentication` (Attributes) Authentication defines the options for the oauth proxy used to protect jaeger UI (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--authentication))
 - `enabled` (Boolean) Enabled defines if the Jaeger Query component should be created.
+- `find_traces_concurrent_requests` (Number) FindTracesConcurrentRequests defines how many concurrent request a single trace search can submit (defaults querier.replicas*2). The search for traces in Jaeger submits limit+1 requests. First requests finds trace IDs and then it fetches entire traces by ID. This property allows Jaeger to fetch traces in parallel. Note that by default a single Tempo querier can process 20 concurrent search jobs. Increasing this property might require scaling up querier instances, especially on error 'job queue full' See also Tempo's extraConfig: querier.max_concurrent_queries (20 default) query_frontend.max_outstanding_per_tenant: (2000 default). Increase if the query-frontend returns 429
 - `ingress` (Attributes) Ingress defines the options for the Jaeger Query ingress. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--ingress))
 - `monitor_tab` (Attributes) MonitorTab defines the monitor tab configuration. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--monitor_tab))
 - `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources))

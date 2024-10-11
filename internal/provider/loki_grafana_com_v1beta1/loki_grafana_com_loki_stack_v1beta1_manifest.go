@@ -546,8 +546,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 					"management_state": schema.StringAttribute{
 						Description:         "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
 						MarkdownDescription: "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("Managed", "Unmanaged"),

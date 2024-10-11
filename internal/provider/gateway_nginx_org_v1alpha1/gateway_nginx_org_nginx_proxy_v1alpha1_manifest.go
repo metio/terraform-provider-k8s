@@ -44,8 +44,11 @@ type GatewayNginxOrgNginxProxyV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		DisableHTTP2    *bool   `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
-		IpFamily        *string `tfsdk:"ip_family" json:"ipFamily,omitempty"`
+		DisableHTTP2 *bool   `tfsdk:"disable_http2" json:"disableHTTP2,omitempty"`
+		IpFamily     *string `tfsdk:"ip_family" json:"ipFamily,omitempty"`
+		Logging      *struct {
+			ErrorLevel *string `tfsdk:"error_level" json:"errorLevel,omitempty"`
+		} `tfsdk:"logging" json:"logging,omitempty"`
 		RewriteClientIP *struct {
 			Mode             *string `tfsdk:"mode" json:"mode,omitempty"`
 			SetIPRecursively *bool   `tfsdk:"set_ip_recursively" json:"setIPRecursively,omitempty"`
@@ -152,6 +155,26 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Validators: []validator.String{
 							stringvalidator.OneOf("dual", "ipv4", "ipv6"),
 						},
+					},
+
+					"logging": schema.SingleNestedAttribute{
+						Description:         "Logging defines logging related settings for NGINX.",
+						MarkdownDescription: "Logging defines logging related settings for NGINX.",
+						Attributes: map[string]schema.Attribute{
+							"error_level": schema.StringAttribute{
+								Description:         "ErrorLevel defines the error log level. Possible log levels listed in order of increasing severity are debug, info, notice, warn, error, crit, alert, and emerg. Setting a certain log level will cause all messages of the specified and more severe log levels to be logged. For example, the log level 'error' will cause error, crit, alert, and emerg messages to be logged. https://nginx.org/en/docs/ngx_core_module.html#error_log",
+								MarkdownDescription: "ErrorLevel defines the error log level. Possible log levels listed in order of increasing severity are debug, info, notice, warn, error, crit, alert, and emerg. Setting a certain log level will cause all messages of the specified and more severe log levels to be logged. For example, the log level 'error' will cause error, crit, alert, and emerg messages to be logged. https://nginx.org/en/docs/ngx_core_module.html#error_log",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("debug", "info", "notice", "warn", "error", "crit", "alert", "emerg"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"rewrite_client_ip": schema.SingleNestedAttribute{

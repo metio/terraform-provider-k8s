@@ -90,7 +90,7 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-es-proxy
+- `name` (String) Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-ui-apis, and tigera-es-proxy (deprecated).
 
 Optional:
 

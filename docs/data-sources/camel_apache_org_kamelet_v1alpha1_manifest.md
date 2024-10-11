@@ -233,7 +233,7 @@ Optional:
 - `content_ref` (String) the confimap reference holding the source content
 - `content_type` (String) the content type (tipically text or binary)
 - `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
-- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
+- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources Deprecated: no longer in use.
 - `language` (String) specify which is the language (Camel DSL) used to interpret this source code
 - `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
 - `name` (String) the name of the specification

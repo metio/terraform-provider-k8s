@@ -412,7 +412,11 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.
+
+Optional:
+
+- `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--from--namespace_selector"></a>
@@ -609,7 +613,11 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.
+
+Optional:
+
+- `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
 <a id="nestedatt--spec--cluster_network_policy--egress--to--namespace_selector"></a>
@@ -891,7 +899,11 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.
+
+Optional:
+
+- `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--from--namespace_selector"></a>
@@ -1088,7 +1100,11 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.
+- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24'.
+
+Optional:
+
+- `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/28' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
 <a id="nestedatt--spec--cluster_network_policy--ingress--to--namespace_selector"></a>
