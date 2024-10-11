@@ -441,6 +441,15 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"containers" json:"containers,omitempty"`
+		DnsConfig *struct {
+			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+			Options     *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"options" json:"options,omitempty"`
+			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+		DnsPolicy               *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 		EnforcedNamespaceLabel  *string `tfsdk:"enforced_namespace_label" json:"enforcedNamespaceLabel,omitempty"`
 		EvaluationInterval      *string `tfsdk:"evaluation_interval" json:"evaluationInterval,omitempty"`
 		ExcludedFromEnforcement *[]struct {
@@ -4072,6 +4081,74 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"dns_config": schema.SingleNestedAttribute{
+						Description:         "Defines the DNS configuration for the pods.",
+						MarkdownDescription: "Defines the DNS configuration for the pods.",
+						Attributes: map[string]schema.Attribute{
+							"nameservers": schema.ListAttribute{
+								Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.",
+								MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"options": schema.ListNestedAttribute{
+								Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+								MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name is required and must be unique.",
+											MarkdownDescription: "Name is required and must be unique.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value is optional.",
+											MarkdownDescription: "Value is optional.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"searches": schema.ListAttribute{
+								Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.",
+								MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"dns_policy": schema.StringAttribute{
+						Description:         "Defines the DNS policy for the pods.",
+						MarkdownDescription: "Defines the DNS policy for the pods.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("ClusterFirstWithHostNet", "ClusterFirst", "Default", "None"),
+						},
 					},
 
 					"enforced_namespace_label": schema.StringAttribute{

@@ -75,10 +75,13 @@ type DataFluidIoThinRuntimeV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
-			Image           *string `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			ImageTag        *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
-			LivenessProbe   *struct {
+			Image            *string `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			ImageTag      *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
+			LivenessProbe *struct {
 				Exec *struct {
 					Command *[]string `tfsdk:"command" json:"command,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
@@ -162,6 +165,9 @@ type DataFluidIoThinRuntimeV1Alpha1ManifestData struct {
 				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"fuse" json:"fuse,omitempty"`
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		Management *struct {
 			CleanCachePolicy *struct {
 				GracePeriodSeconds *int64 `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
@@ -822,10 +828,13 @@ type DataFluidIoThinRuntimeV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
-			Image           *string `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			ImageTag        *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
-			LivenessProbe   *struct {
+			Image            *string `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			ImageTag      *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
+			LivenessProbe *struct {
 				Exec *struct {
 					Command *[]string `tfsdk:"command" json:"command,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
@@ -1201,6 +1210,25 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"image_tag": schema.StringAttribute{
@@ -1780,6 +1808,25 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_pull_secrets": schema.ListNestedAttribute{
+						Description:         "ImagePullSecrets that will be used to pull images",
+						MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,
@@ -6195,6 +6242,25 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"image_tag": schema.StringAttribute{

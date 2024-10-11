@@ -106,8 +106,8 @@ Optional:
 - `init_projects_container_image` (String) Registry path to the init projects container to use
 - `ipv6_disabled` (Boolean) Disable web container's nginx ipv6 listener
 - `kind` (String) Kind of the deployment type
-- `ldap_cacert_secret` (String) Secret where can be found the LDAP trusted Certificate Authority Bundle
-- `ldap_password_secret` (String) Secret where can be found the LDAP bind password
+- `ldap_cacert_secret` (String) (Deprecated) Secret where can be found the LDAP trusted Certificate Authority Bundle
+- `ldap_password_secret` (String) (Deprecated) Secret where can be found the LDAP bind password
 - `loadbalancer_class` (String) Class of LoadBalancer to use
 - `loadbalancer_ip` (String) Assign LoadBalancer IP address
 - `loadbalancer_port` (Number) Port to use for the loadbalancer

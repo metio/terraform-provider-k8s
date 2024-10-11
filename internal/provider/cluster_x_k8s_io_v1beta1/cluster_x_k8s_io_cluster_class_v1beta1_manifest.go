@@ -1312,8 +1312,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												"type": schema.StringAttribute{
 													Description:         "Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.",
 													MarkdownDescription: "Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.",
-													Required:            true,
-													Optional:            false,
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 

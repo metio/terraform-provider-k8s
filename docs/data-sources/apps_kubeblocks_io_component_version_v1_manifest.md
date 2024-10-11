@@ -71,7 +71,7 @@ Required:
 
 Required:
 
-- `images` (Map of String) Images define the new images for different containers within the release.
+- `images` (Map of String) Images define the new images for containers, actions or external applications within the release. If an image is specified for a lifecycle action, the key should be the field name (case-insensitive) of the action in the LifecycleActions struct.
 - `name` (String) Name is a unique identifier for this release. Cannot be updated.
 - `service_version` (String) ServiceVersion defines the version of the well-known service that the component provides. The version should follow the syntax and semantics of the 'Semantic Versioning' specification (http://semver.org/). If the release is used, it will serve as the service version for component instances, overriding the one defined in the component definition. Cannot be updated.
 

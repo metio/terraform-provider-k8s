@@ -59,6 +59,7 @@ Required:
 Optional:
 
 - `fuse` (Attributes) The component spec of thinRuntime (see [below for nested schema](#nestedatt--spec--fuse))
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `node_publish_secret_policy` (String) NodePublishSecretPolicy describes the policy to decide which to do with node publish secret when mounting an existing persistent volume.
 - `volumes` (Attributes List) Volumes is the list of Kubernetes volumes that can be mounted by runtime components and/or fuses. (see [below for nested schema](#nestedatt--spec--volumes))
 - `worker` (Attributes) The component spec of worker (see [below for nested schema](#nestedatt--spec--worker))
@@ -74,6 +75,7 @@ Optional:
 - `env` (Attributes List) Environment variables that will be used by thinRuntime Fuse (see [below for nested schema](#nestedatt--spec--fuse--env))
 - `image` (String) Image for thinRuntime fuse
 - `image_pull_policy` (String) One of the three policies: 'Always', 'IfNotPresent', 'Never'
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--fuse--image_pull_secrets))
 - `image_tag` (String) Image for thinRuntime fuse
 - `liveness_probe` (Attributes) livenessProbe of thin fuse pod (see [below for nested schema](#nestedatt--spec--fuse--liveness_probe))
 - `network_mode` (String) Whether to use hostnetwork or not
@@ -157,6 +159,14 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+
+
+<a id="nestedatt--spec--fuse--image_pull_secrets"></a>
+### Nested Schema for `spec.fuse.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--fuse--liveness_probe"></a>
@@ -353,6 +363,14 @@ Optional:
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
+
+
+<a id="nestedatt--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--volumes"></a>
@@ -1158,6 +1176,7 @@ Optional:
 - `env` (Attributes List) Environment variables that will be used by thinRuntime component. (see [below for nested schema](#nestedatt--spec--worker--env))
 - `image` (String) Image for thinRuntime fuse
 - `image_pull_policy` (String) One of the three policies: 'Always', 'IfNotPresent', 'Never'
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--worker--image_pull_secrets))
 - `image_tag` (String) Image for thinRuntime fuse
 - `liveness_probe` (Attributes) livenessProbe of thin fuse pod (see [below for nested schema](#nestedatt--spec--worker--liveness_probe))
 - `network_mode` (String) Whether to use hostnetwork or not
@@ -1241,6 +1260,14 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+
+
+<a id="nestedatt--spec--worker--image_pull_secrets"></a>
+### Nested Schema for `spec.worker.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--worker--liveness_probe"></a>

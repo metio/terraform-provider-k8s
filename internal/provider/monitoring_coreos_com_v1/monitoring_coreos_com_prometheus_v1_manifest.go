@@ -619,7 +619,16 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"containers" json:"containers,omitempty"`
-		DisableCompaction             *bool     `tfsdk:"disable_compaction" json:"disableCompaction,omitempty"`
+		DisableCompaction *bool `tfsdk:"disable_compaction" json:"disableCompaction,omitempty"`
+		DnsConfig         *struct {
+			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+			Options     *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"options" json:"options,omitempty"`
+			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+		DnsPolicy                     *string   `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 		EnableAdminAPI                *bool     `tfsdk:"enable_admin_api" json:"enableAdminAPI,omitempty"`
 		EnableFeatures                *[]string `tfsdk:"enable_features" json:"enableFeatures,omitempty"`
 		EnableRemoteWriteReceiver     *bool     `tfsdk:"enable_remote_write_receiver" json:"enableRemoteWriteReceiver,omitempty"`
@@ -1342,6 +1351,9 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				ResendDelay        *string `tfsdk:"resend_delay" json:"resendDelay,omitempty"`
 			} `tfsdk:"alert" json:"alert,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
+		Runtime *struct {
+			GoGC *int64 `tfsdk:"go_gc" json:"goGC,omitempty"`
+		} `tfsdk:"runtime" json:"runtime,omitempty"`
 		SampleLimit   *int64 `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
 		ScrapeClasses *[]struct {
 			AttachMetadata *struct {
@@ -6062,6 +6074,74 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"dns_config": schema.SingleNestedAttribute{
+						Description:         "Defines the DNS configuration for the pods.",
+						MarkdownDescription: "Defines the DNS configuration for the pods.",
+						Attributes: map[string]schema.Attribute{
+							"nameservers": schema.ListAttribute{
+								Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.",
+								MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"options": schema.ListNestedAttribute{
+								Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+								MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name is required and must be unique.",
+											MarkdownDescription: "Name is required and must be unique.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value is optional.",
+											MarkdownDescription: "Value is optional.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"searches": schema.ListAttribute{
+								Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.",
+								MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"dns_policy": schema.StringAttribute{
+						Description:         "Defines the DNS policy for the pods.",
+						MarkdownDescription: "Defines the DNS policy for the pods.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("ClusterFirstWithHostNet", "ClusterFirst", "Default", "None"),
+						},
 					},
 
 					"enable_admin_api": schema.BoolAttribute{
@@ -11055,6 +11135,26 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"runtime": schema.SingleNestedAttribute{
+						Description:         "RuntimeConfig configures the values for the Prometheus process behavior",
+						MarkdownDescription: "RuntimeConfig configures the values for the Prometheus process behavior",
+						Attributes: map[string]schema.Attribute{
+							"go_gc": schema.Int64Attribute{
+								Description:         "The Go garbage collection target percentage. Lowering this number may increase the CPU usage. See: https://tip.golang.org/doc/gc-guide#GOGC",
+								MarkdownDescription: "The Go garbage collection target percentage. Lowering this number may increase the CPU usage. See: https://tip.golang.org/doc/gc-guide#GOGC",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(-1),
+								},
 							},
 						},
 						Required: false,

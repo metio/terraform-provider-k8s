@@ -67,6 +67,7 @@ Optional:
 - `admission_controller` (Attributes) AdmissionController configuration. (see [below for nested schema](#nestedatt--spec--features--admission_controller))
 - `apm` (Attributes) APM (Application Performance Monitoring) configuration. (see [below for nested schema](#nestedatt--spec--features--apm))
 - `asm` (Attributes) ASM (Application Security Management) configuration. (see [below for nested schema](#nestedatt--spec--features--asm))
+- `autoscaling` (Attributes) Autoscaling configuration. (see [below for nested schema](#nestedatt--spec--features--autoscaling))
 - `cluster_checks` (Attributes) ClusterChecks configuration. (see [below for nested schema](#nestedatt--spec--features--cluster_checks))
 - `cspm` (Attributes) CSPM (Cloud Security Posture Management) configuration. (see [below for nested schema](#nestedatt--spec--features--cspm))
 - `cws` (Attributes) CWS (Cloud Workload Security) configuration. (see [below for nested schema](#nestedatt--spec--features--cws))
@@ -226,8 +227,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--features--admission_controller--agent_sidecar_injection--profiles--resources--claims"></a>
+### Nested Schema for `spec.features.admission_controller.agent_sidecar_injection.profiles.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 
@@ -322,7 +332,16 @@ Optional:
 - `disabled_namespaces` (List of String) DisabledNamespaces disables injecting the Datadog APM libraries into pods in specific namespaces.
 - `enabled` (Boolean) Enabled enables injecting the Datadog APM libraries into all pods in the cluster. Default: false
 - `enabled_namespaces` (List of String) EnabledNamespaces enables injecting the Datadog APM libraries into pods in specific namespaces.
+- `language_detection` (Attributes) LanguageDetection detects languages and adds them as annotations on Deployments, but does not use these languages for injecting libraries to workload pods. (Requires Agent 7.52.0+ and Cluster Agent 7.52.0+) (see [below for nested schema](#nestedatt--spec--features--apm--instrumentation--language_detection))
 - `lib_versions` (Map of String) LibVersions configures injection of specific tracing library versions with Single Step Instrumentation. <Library>: <Version> ex: 'java': 'v1.18.0'
+
+<a id="nestedatt--spec--features--apm--instrumentation--language_detection"></a>
+### Nested Schema for `spec.features.apm.instrumentation.language_detection`
+
+Optional:
+
+- `enabled` (Boolean) Enabled enables Language Detection to automatically detect languages of user workloads (beta). Requires SingleStepInstrumentation.Enabled to be true. Default: true
+
 
 
 <a id="nestedatt--spec--features--apm--unix_domain_socket_config"></a>
@@ -366,6 +385,22 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Enabled enables ASM App & API Protection. Default: false
+
+
+
+<a id="nestedatt--spec--features--autoscaling"></a>
+### Nested Schema for `spec.features.autoscaling`
+
+Optional:
+
+- `workload` (Attributes) Workload contains the configuration for the workload autoscaling product. (see [below for nested schema](#nestedatt--spec--features--autoscaling--workload))
+
+<a id="nestedatt--spec--features--autoscaling--workload"></a>
+### Nested Schema for `spec.features.autoscaling.workload`
+
+Optional:
+
+- `enabled` (Boolean) Enabled enables the workload autoscaling product. Default: false
 
 
 
@@ -424,7 +459,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enabled enables host benchmarks. Default: false
+- `enabled` (Boolean) Enabled enables host benchmarks. Default: true
 
 
 
@@ -571,6 +606,17 @@ Optional:
 Optional:
 
 - `collect_kubernetes_events` (Boolean) CollectKubernetesEvents enables Kubernetes event collection. Default: true
+- `collected_event_types` (Attributes List) CollectedEventTypes defines the list of events to collect when UnbundleEvents is enabled. Default: [ {'kind':'Pod','reasons':['Failed','BackOff','Unhealthy','FailedScheduling','FailedMount','FailedAttachVolume']}, {'kind':'Node','reasons':['TerminatingEvictedPod','NodeNotReady','Rebooted','HostPortConflict']}, {'kind':'CronJob','reasons':['SawCompletedJob']} ] (see [below for nested schema](#nestedatt--spec--features--event_collection--collected_event_types))
+- `unbundle_events` (Boolean) UnbundleEvents enables collection of Kubernetes events as individual events. Default: false
+
+<a id="nestedatt--spec--features--event_collection--collected_event_types"></a>
+### Nested Schema for `spec.features.event_collection.collected_event_types`
+
+Required:
+
+- `kind` (String) Kind is the kind of event to collect. (ex: Pod, Node, CronJob)
+- `reasons` (List of String) Reasons is a list of event reasons to collect. (ex: Failed, BackOff, Unhealthy)
+
 
 
 <a id="nestedatt--spec--features--external_metrics_server"></a>
@@ -861,6 +907,8 @@ Optional:
 
 - `analyzers` (List of String) Analyzers to use for SBOM collection.
 - `enabled` (Boolean) Enable this option to activate SBOM collection. Default: false
+- `overlay_fs_direct_scan` (Boolean) Enable this option to enable experimental overlayFS direct scan. Default: false
+- `uncompressed_layers_support` (Boolean) Enable this option to enable support for uncompressed layers. Default: false
 
 
 <a id="nestedatt--spec--features--sbom--host"></a>
@@ -908,6 +956,7 @@ Optional:
 - `kubelet` (Attributes) Kubelet contains the kubelet configuration parameters. (see [below for nested schema](#nestedatt--spec--global--kubelet))
 - `local_service` (Attributes) LocalService contains configuration to customize the internal traffic policy service. (see [below for nested schema](#nestedatt--spec--global--local_service))
 - `log_level` (String) LogLevel sets logging verbosity. This can be overridden by container. Valid log levels are: trace, debug, info, warn, error, critical, and off. Default: 'info'
+- `namespace_annotations_as_tags` (Map of String) Provide a mapping of Kubernetes Namespace Annotations to Datadog Tags. <KUBERNETES_LABEL>: <DATADOG_TAG_KEY>
 - `namespace_labels_as_tags` (Map of String) Provide a mapping of Kubernetes Namespace Labels to Datadog Tags. <KUBERNETES_NAMESPACE_LABEL>: <DATADOG_TAG_KEY>
 - `network_policy` (Attributes) NetworkPolicy contains the network configuration. (see [below for nested schema](#nestedatt--spec--global--network_policy))
 - `node_labels_as_tags` (Map of String) Provide a mapping of Kubernetes Node Labels to Datadog Tags. <KUBERNETES_NODE_LABEL>: <DATADOG_TAG_KEY>
@@ -1079,8 +1128,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--global--fips--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--global--fips--resources--claims"></a>
+### Nested Schema for `spec.global.fips.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 
@@ -1218,6 +1276,8 @@ Optional:
 - `create_rbac` (Boolean) Set CreateRbac to false to prevent automatic creation of Role/ClusterRole for this component
 - `custom_configurations` (Attributes) CustomConfiguration allows to specify custom configuration files for 'datadog.yaml', 'datadog-cluster.yaml', 'security-agent.yaml', and 'system-probe.yaml'. The content is merged with configuration generated by the Datadog Operator, with priority given to custom configuration. WARNING: It is possible to override values set in the 'DatadogAgent'. (see [below for nested schema](#nestedatt--spec--override--custom_configurations))
 - `disabled` (Boolean) Disabled force disables a component.
+- `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--override--dns_config))
+- `dns_policy` (String) Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
 - `env` (Attributes List) Specify additional environment variables for all containers in this component Priority is Container > Component. See also: https://docs.datadoghq.com/agent/kubernetes/?tab=helm#environment-variables (see [below for nested schema](#nestedatt--spec--override--env))
 - `extra_checksd` (Attributes) Checksd configuration allowing to specify custom checks placed under /etc/datadog-agent/checks.d/ See https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6 for more details. (see [below for nested schema](#nestedatt--spec--override--extra_checksd))
 - `extra_confd` (Attributes) Confd configuration allowing to specify config files for custom checks placed under /etc/datadog-agent/conf.d/. See https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6 for more details. (see [below for nested schema](#nestedatt--spec--override--extra_confd))
@@ -1232,6 +1292,7 @@ Optional:
 - `security_context` (Attributes) Pod-level SecurityContext. (see [below for nested schema](#nestedatt--spec--override--security_context))
 - `service_account_name` (String) Sets the ServiceAccount used by this component. Ignored if the field CreateRbac is true.
 - `tolerations` (Attributes List) Configure the component tolerations. (see [below for nested schema](#nestedatt--spec--override--tolerations))
+- `update_strategy` (Attributes) The deployment strategy to use to replace existing pods with new ones. (see [below for nested schema](#nestedatt--spec--override--update_strategy))
 - `volumes` (Attributes List) Specify additional volumes in the different components (Datadog Agent, Cluster Agent, Cluster Check Runner). (see [below for nested schema](#nestedatt--spec--override--volumes))
 
 <a id="nestedatt--spec--override--affinity"></a>
@@ -1709,7 +1770,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--override--containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -1757,7 +1818,7 @@ Optional:
 
 Required:
 
-- `name` (String) The header field name
+- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -1782,7 +1843,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--override--containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -1830,7 +1891,7 @@ Optional:
 
 Required:
 
-- `name` (String) The header field name
+- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -1853,8 +1914,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--override--containers--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--override--containers--resources--claims"></a>
+### Nested Schema for `spec.override.containers.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 <a id="nestedatt--spec--override--containers--seccomp_config"></a>
@@ -1943,7 +2013,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--override--containers--security_context--windows_options"></a>
@@ -1953,7 +2023,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -2003,6 +2073,25 @@ Optional:
 
 - `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
+
+
+
+<a id="nestedatt--spec--override--dns_config"></a>
+### Nested Schema for `spec.override.dns_config`
+
+Optional:
+
+- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--override--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
+
+<a id="nestedatt--spec--override--dns_config--options"></a>
+### Nested Schema for `spec.override.dns_config.options`
+
+Optional:
+
+- `name` (String) Required.
+- `value` (String)
 
 
 
@@ -2175,7 +2264,7 @@ Optional:
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
 - `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--override--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--override--security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
 - `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--override--security_context--sysctls))
 - `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--override--security_context--windows_options))
 
@@ -2199,7 +2288,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--override--security_context--sysctls"></a>
@@ -2218,7 +2307,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -2233,6 +2322,24 @@ Optional:
 - `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
 - `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
 - `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+
+
+<a id="nestedatt--spec--override--update_strategy"></a>
+### Nested Schema for `spec.override.update_strategy`
+
+Optional:
+
+- `rolling_update` (Attributes) Configure the rolling update strategy of the Deployment or DaemonSet. (see [below for nested schema](#nestedatt--spec--override--update_strategy--rolling_update))
+- `type` (String) Type can be 'RollingUpdate' or 'OnDelete' for DaemonSets and 'RollingUpdate' or 'Recreate' for Deployments
+
+<a id="nestedatt--spec--override--update_strategy--rolling_update"></a>
+### Nested Schema for `spec.override.update_strategy.rolling_update`
+
+Optional:
+
+- `max_surge` (String) MaxSurge behaves differently based on the Kubernetes resource. Refer to the Kubernetes API documentation for additional details.
+- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Refer to the Kubernetes API documentation for additional details..
+
 
 
 <a id="nestedatt--spec--override--volumes"></a>
@@ -2464,7 +2571,7 @@ Optional:
 Optional:
 
 - `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
 
 <a id="nestedatt--spec--override--volumes--ephemeral"></a>
@@ -2491,8 +2598,8 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--data_source_ref))
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
@@ -2523,6 +2630,7 @@ Required:
 Optional:
 
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--resources"></a>
@@ -2530,8 +2638,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
+### Nested Schema for `spec.override.volumes.ephemeral.volume_claim_template.spec.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 <a id="nestedatt--spec--override--volumes--ephemeral--volume_claim_template--spec--selector"></a>

@@ -301,6 +301,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kube_green_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kubean_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kubecost_com_v1alpha1"
@@ -324,6 +325,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta5"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta6"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta7"
+	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta8"
 	"github.com/metio/terraform-provider-k8s/internal/provider/limitador_kuadrant_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/listeners_stackable_tech_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/litmuschaos_io_v1alpha1"
@@ -2478,6 +2480,8 @@ func allDataSources() []func() datasource.DataSource {
 		kuadrant_io_v1beta2.NewKuadrantIoAuthPolicyV1Beta2Manifest,
 		// kuadrant_io_v1beta2.NewKuadrantIoRateLimitPolicyV1Beta2DataSource,
 		kuadrant_io_v1beta2.NewKuadrantIoRateLimitPolicyV1Beta2Manifest,
+		// kuadrant_io_v1beta3.NewKuadrantIoRateLimitPolicyV1Beta3DataSource,
+		kuadrant_io_v1beta3.NewKuadrantIoRateLimitPolicyV1Beta3Manifest,
 		// kube_green_com_v1alpha1.NewKubeGreenComSleepInfoV1Alpha1DataSource,
 		kube_green_com_v1alpha1.NewKubeGreenComSleepInfoV1Alpha1Manifest,
 		// kubean_io_v1alpha1.NewKubeanIoClusterOperationV1Alpha1DataSource,
@@ -2696,6 +2700,12 @@ func allDataSources() []func() datasource.DataSource {
 		lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta7Manifest,
 		// lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuRegistryCredentialV1Beta7DataSource,
 		lerentis_uploadfilter24_eu_v1beta7.NewLerentisUploadfilter24EuRegistryCredentialV1Beta7Manifest,
+		// lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuBitwardenSecretV1Beta8DataSource,
+		lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuBitwardenSecretV1Beta8Manifest,
+		// lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta8DataSource,
+		lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuBitwardenTemplateV1Beta8Manifest,
+		// lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuRegistryCredentialV1Beta8DataSource,
+		lerentis_uploadfilter24_eu_v1beta8.NewLerentisUploadfilter24EuRegistryCredentialV1Beta8Manifest,
 		// limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1DataSource,
 		limitador_kuadrant_io_v1alpha1.NewLimitadorKuadrantIoLimitadorV1Alpha1Manifest,
 		// listeners_stackable_tech_v1alpha1.NewListenersStackableTechListenerClassV1Alpha1DataSource,

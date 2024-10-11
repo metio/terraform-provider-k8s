@@ -195,6 +195,12 @@ type DataFluidIoDataLoadV1Alpha1ManifestData struct {
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		RunAfter *struct {
 			AffinityStrategy *struct {
+				DependOn *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name       *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"depend_on" json:"dependOn,omitempty"`
 				Policy  *string `tfsdk:"policy" json:"policy,omitempty"`
 				Prefers *[]struct {
 					Name   *string `tfsdk:"name" json:"name,omitempty"`
@@ -1324,6 +1330,50 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Description:         "AffinityStrategy specifies the pod affinity strategy with the referent operation.",
 								MarkdownDescription: "AffinityStrategy specifies the pod affinity strategy with the referent operation.",
 								Attributes: map[string]schema.Attribute{
+									"depend_on": schema.SingleNestedAttribute{
+										Description:         "Specifies the dependent preceding operation in a workflow. If not set, use the operation referred to by RunAfter.",
+										MarkdownDescription: "Specifies the dependent preceding operation in a workflow. If not set, use the operation referred to by RunAfter.",
+										Attributes: map[string]schema.Attribute{
+											"api_version": schema.StringAttribute{
+												Description:         "API version of the referent operation",
+												MarkdownDescription: "API version of the referent operation",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kind": schema.StringAttribute{
+												Description:         "Kind specifies the type of the referent operation",
+												MarkdownDescription: "Kind specifies the type of the referent operation",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("DataLoad", "DataBackup", "DataMigrate", "DataProcess"),
+												},
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name specifies the name of the referent operation",
+												MarkdownDescription: "Name specifies the name of the referent operation",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "Namespace specifies the namespace of the referent operation.",
+												MarkdownDescription: "Namespace specifies the namespace of the referent operation.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"policy": schema.StringAttribute{
 										Description:         "Policy one of: '', 'Require', 'Prefer'",
 										MarkdownDescription: "Policy one of: '', 'Require', 'Prefer'",

@@ -973,8 +973,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"cpuset": schema.BoolAttribute{
-						Description:         "cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated and may be ignored in the future.",
-						MarkdownDescription: "cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated and may be ignored in the future.",
+						Description:         "cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated. It is now treated as if it is always set to true regardless of its value.",
+						MarkdownDescription: "cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated. It is now treated as if it is always set to true regardless of its value.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

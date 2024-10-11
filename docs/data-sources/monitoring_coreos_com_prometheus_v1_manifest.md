@@ -68,6 +68,8 @@ Optional:
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into /etc/prometheus/configmaps/<configmap-name> in the 'prometheus' container.
 - `containers` (Attributes List) Containers allows injecting additional containers or modifying operator generated containers. This can be used to allow adding an authentication proxy to the Pods or to change the behavior of an operator generated container. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The names of containers managed by the operator are: * 'prometheus' * 'config-reloader' * 'thanos-sidecar' Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. (see [below for nested schema](#nestedatt--spec--containers))
 - `disable_compaction` (Boolean) When true, the Prometheus compaction is disabled.
+- `dns_config` (Attributes) Defines the DNS configuration for the pods. (see [below for nested schema](#nestedatt--spec--dns_config))
+- `dns_policy` (String) Defines the DNS policy for the pods.
 - `enable_admin_api` (Boolean) Enables access to the Prometheus web admin API. WARNING: Enabling the admin APIs enables mutating endpoints, to delete data, shutdown Prometheus, and more. Enabling this should be done with care and the user is advised to add additional authentication authorization via a proxy to ensure only clients authorized to perform these actions can do so. For more information: https://prometheus.io/docs/prometheus/latest/querying/api/#tsdb-admin-apis
 - `enable_features` (List of String) Enable access to Prometheus feature flags. By default, no features are enabled. Enabling features which are disabled by default is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. For more information see https://prometheus.io/docs/prometheus/latest/feature_flags/
 - `enable_remote_write_receiver` (Boolean) Enable Prometheus to be used as a receiver for the Prometheus remote write protocol. WARNING: This is not considered an efficient way of ingesting samples. Use it with caution for specific low-volume use cases. It is not suitable for replacing the ingestion via scraping and turning Prometheus into a push-based metrics collection system. For more information see https://prometheus.io/docs/prometheus/latest/querying/api/#remote-write-receiver It requires Prometheus >= v2.33.0.
@@ -131,6 +133,7 @@ Optional:
 - `rule_query_offset` (String) Defines the offset the rule evaluation timestamp of this particular group by the specified duration into the past. It requires Prometheus >= v2.53.0.
 - `rule_selector` (Attributes) PrometheusRule objects to be selected for rule evaluation. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--rule_selector))
 - `rules` (Attributes) Defines the configuration of the Prometheus rules' engine. (see [below for nested schema](#nestedatt--spec--rules))
+- `runtime` (Attributes) RuntimeConfig configures the values for the Prometheus process behavior (see [below for nested schema](#nestedatt--spec--runtime))
 - `sample_limit` (Number) SampleLimit defines per-scrape limit on number of scraped samples that will be accepted. Only valid in Prometheus versions 2.45.0 and newer. Note that the global limit only applies to scrape objects that don't specify an explicit limit value. If you want to enforce a maximum limit for all scrape objects, refer to enforcedSampleLimit.
 - `scrape_classes` (Attributes List) List of scrape classes to expose to scraping objects such as PodMonitors, ServiceMonitors, Probes and ScrapeConfigs. This is an *experimental feature*, it may change in any upcoming release in a breaking way. (see [below for nested schema](#nestedatt--spec--scrape_classes))
 - `scrape_config_namespace_selector` (Attributes) Namespaces to match for ScrapeConfig discovery. An empty label selector matches all namespaces. A null label selector matches the current namespace only. Note that the ScrapeConfig custom resource definition is currently at Alpha level. (see [below for nested schema](#nestedatt--spec--scrape_config_namespace_selector))
@@ -1665,6 +1668,28 @@ Optional:
 - `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--dns_config"></a>
+### Nested Schema for `spec.dns_config`
+
+Optional:
+
+- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.
+
+<a id="nestedatt--spec--dns_config--options"></a>
+### Nested Schema for `spec.dns_config.options`
+
+Required:
+
+- `name` (String) Name is required and must be unique.
+
+Optional:
+
+- `value` (String) Value is optional.
 
 
 
@@ -3396,6 +3421,14 @@ Optional:
 - `for_outage_tolerance` (String) Max time to tolerate prometheus outage for restoring 'for' state of alert.
 - `resend_delay` (String) Minimum amount of time to wait before resending an alert to Alertmanager.
 
+
+
+<a id="nestedatt--spec--runtime"></a>
+### Nested Schema for `spec.runtime`
+
+Optional:
+
+- `go_gc` (Number) The Go garbage collection target percentage. Lowering this number may increase the CPU usage. See: https://tip.golang.org/doc/gc-guide#GOGC
 
 
 <a id="nestedatt--spec--scrape_classes"></a>

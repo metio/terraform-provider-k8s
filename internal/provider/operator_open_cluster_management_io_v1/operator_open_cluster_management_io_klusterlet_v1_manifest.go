@@ -85,8 +85,15 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
-			KubeAPIBurst *int64 `tfsdk:"kube_api_burst" json:"kubeAPIBurst,omitempty"`
-			KubeAPIQPS   *int64 `tfsdk:"kube_apiqps" json:"kubeAPIQPS,omitempty"`
+			KubeAPIBurst       *int64 `tfsdk:"kube_api_burst" json:"kubeAPIBurst,omitempty"`
+			KubeAPIQPS         *int64 `tfsdk:"kube_apiqps" json:"kubeAPIQPS,omitempty"`
+			RegistrationDriver *struct {
+				AuthType *string `tfsdk:"auth_type" json:"authType,omitempty"`
+				AwsIrsa  *struct {
+					HubClusterArn     *string `tfsdk:"hub_cluster_arn" json:"hubClusterArn,omitempty"`
+					ManagedClusterArn *string `tfsdk:"managed_cluster_arn" json:"managedClusterArn,omitempty"`
+				} `tfsdk:"aws_irsa" json:"awsIrsa,omitempty"`
+			} `tfsdk:"registration_driver" json:"registrationDriver,omitempty"`
 		} `tfsdk:"registration_configuration" json:"registrationConfiguration,omitempty"`
 		RegistrationImagePullSpec *string `tfsdk:"registration_image_pull_spec" json:"registrationImagePullSpec,omitempty"`
 		ResourceRequirement       *struct {
@@ -488,6 +495,57 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"registration_driver": schema.SingleNestedAttribute{
+								Description:         "This provides driver details required to register with hub",
+								MarkdownDescription: "This provides driver details required to register with hub",
+								Attributes: map[string]schema.Attribute{
+									"auth_type": schema.StringAttribute{
+										Description:         "Type of the authentication used by managedcluster to register as well as pull work from hub. Possible values are csr and awsirsa.",
+										MarkdownDescription: "Type of the authentication used by managedcluster to register as well as pull work from hub. Possible values are csr and awsirsa.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("csr", "awsirsa"),
+										},
+									},
+
+									"aws_irsa": schema.SingleNestedAttribute{
+										Description:         "Contain the details required for registering with hub cluster (ie: an EKS cluster) using AWS IAM roles for service account. This is required only when the authType is awsirsa.",
+										MarkdownDescription: "Contain the details required for registering with hub cluster (ie: an EKS cluster) using AWS IAM roles for service account. This is required only when the authType is awsirsa.",
+										Attributes: map[string]schema.Attribute{
+											"hub_cluster_arn": schema.StringAttribute{
+												Description:         "The arn of the hub cluster (ie: an EKS cluster). This will be required to pass information to hub, which hub will use to create IAM identities for this klusterlet. Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1.",
+												MarkdownDescription: "The arn of the hub cluster (ie: an EKS cluster). This will be required to pass information to hub, which hub will use to create IAM identities for this klusterlet. Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"managed_cluster_arn": schema.StringAttribute{
+												Description:         "The arn of the managed cluster (ie: an EKS cluster). This will be required to generate the md5hash which will be used as a suffix to create IAM role on hub as well as used by kluslerlet-agent, to assume role suffixed with the md5hash, on startup. Example - arn:eks:us-west-2:12345678910:cluster/managed-cluster1.",
+												MarkdownDescription: "The arn of the managed cluster (ie: an EKS cluster). This will be required to generate the md5hash which will be used as a suffix to create IAM role on hub as well as used by kluslerlet-agent, to assume role suffixed with the md5hash, on startup. Example - arn:eks:us-west-2:12345678910:cluster/managed-cluster1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

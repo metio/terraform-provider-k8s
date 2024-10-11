@@ -47,8 +47,9 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 			AuthenticationMode                      *string `tfsdk:"authentication_mode" json:"authenticationMode,omitempty"`
 			BootstrapClusterCreatorAdminPermissions *bool   `tfsdk:"bootstrap_cluster_creator_admin_permissions" json:"bootstrapClusterCreatorAdminPermissions,omitempty"`
 		} `tfsdk:"access_config" json:"accessConfig,omitempty"`
-		ClientRequestToken *string `tfsdk:"client_request_token" json:"clientRequestToken,omitempty"`
-		EncryptionConfig   *[]struct {
+		BootstrapSelfManagedAddons *bool   `tfsdk:"bootstrap_self_managed_addons" json:"bootstrapSelfManagedAddons,omitempty"`
+		ClientRequestToken         *string `tfsdk:"client_request_token" json:"clientRequestToken,omitempty"`
+		EncryptionConfig           *[]struct {
 			Provider *struct {
 				KeyARN *string `tfsdk:"key_arn" json:"keyARN,omitempty"`
 				KeyRef *struct {
@@ -104,8 +105,11 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"role_ref" json:"roleRef,omitempty"`
-		Tags    *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
-		Version *string            `tfsdk:"version" json:"version,omitempty"`
+		Tags          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+		UpgradePolicy *struct {
+			SupportType *string `tfsdk:"support_type" json:"supportType,omitempty"`
+		} `tfsdk:"upgrade_policy" json:"upgradePolicy,omitempty"`
+		Version *string `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -209,6 +213,14 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"bootstrap_self_managed_addons": schema.BoolAttribute{
+						Description:         "If you set this value to False when creating a cluster, the default networking add-ons will not be installed. The default networking addons include vpc-cni, coredns, and kube-proxy. Use this option when you plan to install third-party alternative add-ons or self-manage the default networking add-ons.",
+						MarkdownDescription: "If you set this value to False when creating a cluster, the default networking add-ons will not be installed. The default networking addons include vpc-cni, coredns, and kube-proxy. Use this option when you plan to install third-party alternative add-ons or self-manage the default networking add-ons.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"client_request_token": schema.StringAttribute{
@@ -576,6 +588,23 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"upgrade_policy": schema.SingleNestedAttribute{
+						Description:         "New clusters, by default, have extended support enabled. You can disable extended support when creating a cluster by setting this value to STANDARD.",
+						MarkdownDescription: "New clusters, by default, have extended support enabled. You can disable extended support when creating a cluster by setting this value to STANDARD.",
+						Attributes: map[string]schema.Attribute{
+							"support_type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"version": schema.StringAttribute{

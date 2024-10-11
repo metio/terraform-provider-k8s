@@ -160,13 +160,13 @@ func (r *OperatorTigeraIoManagerV1Manifest) Schema(_ context.Context, _ datasour
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-es-proxy",
-																	MarkdownDescription: "Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-es-proxy",
+																	Description:         "Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-ui-apis, and tigera-es-proxy (deprecated).",
+																	MarkdownDescription: "Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-ui-apis, and tigera-es-proxy (deprecated).",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																	Validators: []validator.String{
-																		stringvalidator.OneOf("tigera-voltron", "tigera-manager", "tigera-es-proxy"),
+																		stringvalidator.OneOf("tigera-voltron", "tigera-manager", "tigera-es-proxy", "tigera-ui-apis"),
 																	},
 																},
 

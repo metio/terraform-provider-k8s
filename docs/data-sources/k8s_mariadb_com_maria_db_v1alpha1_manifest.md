@@ -96,6 +96,7 @@ Optional:
 - `security_context` (Attributes) SecurityContext holds security configuration that will be applied to a container. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service` (Attributes) Service defines a template to configure the general Service object. The network traffic of this Service will be routed to all Pods. (see [below for nested schema](#nestedatt--spec--service))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to be used by the Pods.
+- `service_ports` (Attributes List) ServicePorts is the list of additional named ports to be added to the Services created by the operator. (see [below for nested schema](#nestedatt--spec--service_ports))
 - `sidecar_containers` (Attributes List) SidecarContainers to be used in the Pod. (see [below for nested schema](#nestedatt--spec--sidecar_containers))
 - `storage` (Attributes) Storage defines the storage options to be used for provisioning the PVCs mounted by MariaDB. (see [below for nested schema](#nestedatt--spec--storage))
 - `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not. This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.
@@ -1292,6 +1293,7 @@ Optional:
 - `args` (List of String) Args to be used in the Container.
 - `command` (List of String) Command to be used in the Container.
 - `image_pull_policy` (String) ImagePullPolicy is the image pull policy. One of 'Always', 'Never' or 'IfNotPresent'. If not defined, it defaults to 'IfNotPresent'.
+- `name` (String) Name to be given to the container.
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--init_containers--resources))
 - `volume_mounts` (Attributes List) VolumeMounts to be used in the Container. (see [below for nested schema](#nestedatt--spec--init_containers--volume_mounts))
 
@@ -1677,6 +1679,7 @@ Optional:
 - `port` (Number) Port where the exporter will be listening for connections.
 - `priority_class_name` (String) PriorityClassName to be used in the Pod.
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--resources))
+- `security_context` (Attributes) SecurityContext holds container-level security attributes. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--security_context))
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--tolerations))
 
 <a id="nestedatt--spec--max_scale--metrics--exporter--affinity"></a>
@@ -1796,18 +1799,15 @@ Optional:
 
 Optional:
 
-- `app_armor_profile` (Attributes) appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--app_armor_profile))
-- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
-- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.
-- `supplemental_groups_policy` (String) Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.
-- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--sysctls))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--windows_options))
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--app_armor_profile))
+- `fs_group` (Number)
+- `fs_group_change_policy` (String) PodFSGroupChangePolicy holds policies that will be used for applying fsGroup to a volume when volume is mounted.
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String)
 
 <a id="nestedatt--spec--max_scale--metrics--exporter--pod_security_context--app_armor_profile"></a>
 ### Nested Schema for `spec.max_scale.metrics.exporter.pod_security_context.app_armor_profile`
@@ -1844,26 +1844,6 @@ Optional:
 - `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
-<a id="nestedatt--spec--max_scale--metrics--exporter--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.max_scale.metrics.exporter.pod_security_context.sysctls`
-
-Required:
-
-- `name` (String) Name of a property to set
-- `value` (String) Value of a property to set
-
-
-<a id="nestedatt--spec--max_scale--metrics--exporter--pod_security_context--windows_options"></a>
-### Nested Schema for `spec.max_scale.metrics.exporter.pod_security_context.windows_options`
-
-Optional:
-
-- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
-- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
-- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-
-
 
 <a id="nestedatt--spec--max_scale--metrics--exporter--resources"></a>
 ### Nested Schema for `spec.max_scale.metrics.exporter.resources`
@@ -1872,6 +1852,29 @@ Optional:
 
 - `limits` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
 - `requests` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
+
+
+<a id="nestedatt--spec--max_scale--metrics--exporter--security_context"></a>
+### Nested Schema for `spec.max_scale.metrics.exporter.security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `capabilities` (Attributes) Adds and removes POSIX capabilities from running containers. (see [below for nested schema](#nestedatt--spec--max_scale--metrics--exporter--security_context--capabilities))
+- `privileged` (Boolean)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+
+<a id="nestedatt--spec--max_scale--metrics--exporter--security_context--capabilities"></a>
+### Nested Schema for `spec.max_scale.metrics.exporter.security_context.capabilities`
+
+Optional:
+
+- `add` (List of String) Added capabilities
+- `drop` (List of String) Removed capabilities
+
 
 
 <a id="nestedatt--spec--max_scale--metrics--exporter--tolerations"></a>
@@ -2005,6 +2008,7 @@ Optional:
 - `port` (Number) Port where the exporter will be listening for connections.
 - `priority_class_name` (String) PriorityClassName to be used in the Pod.
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--metrics--exporter--resources))
+- `security_context` (Attributes) SecurityContext holds container-level security attributes. (see [below for nested schema](#nestedatt--spec--metrics--exporter--security_context))
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--metrics--exporter--tolerations))
 
 <a id="nestedatt--spec--metrics--exporter--affinity"></a>
@@ -2124,18 +2128,15 @@ Optional:
 
 Optional:
 
-- `app_armor_profile` (Attributes) appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--app_armor_profile))
-- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
-- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.
-- `supplemental_groups_policy` (String) Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.
-- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--sysctls))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--windows_options))
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--app_armor_profile))
+- `fs_group` (Number)
+- `fs_group_change_policy` (String) PodFSGroupChangePolicy holds policies that will be used for applying fsGroup to a volume when volume is mounted.
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--metrics--exporter--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String)
 
 <a id="nestedatt--spec--metrics--exporter--pod_security_context--app_armor_profile"></a>
 ### Nested Schema for `spec.metrics.exporter.pod_security_context.app_armor_profile`
@@ -2172,26 +2173,6 @@ Optional:
 - `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
-<a id="nestedatt--spec--metrics--exporter--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.metrics.exporter.pod_security_context.sysctls`
-
-Required:
-
-- `name` (String) Name of a property to set
-- `value` (String) Value of a property to set
-
-
-<a id="nestedatt--spec--metrics--exporter--pod_security_context--windows_options"></a>
-### Nested Schema for `spec.metrics.exporter.pod_security_context.windows_options`
-
-Optional:
-
-- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
-- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
-- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-
-
 
 <a id="nestedatt--spec--metrics--exporter--resources"></a>
 ### Nested Schema for `spec.metrics.exporter.resources`
@@ -2200,6 +2181,29 @@ Optional:
 
 - `limits` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
 - `requests` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
+
+
+<a id="nestedatt--spec--metrics--exporter--security_context"></a>
+### Nested Schema for `spec.metrics.exporter.security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `capabilities` (Attributes) Adds and removes POSIX capabilities from running containers. (see [below for nested schema](#nestedatt--spec--metrics--exporter--security_context--capabilities))
+- `privileged` (Boolean)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+
+<a id="nestedatt--spec--metrics--exporter--security_context--capabilities"></a>
+### Nested Schema for `spec.metrics.exporter.security_context.capabilities`
+
+Optional:
+
+- `add` (List of String) Added capabilities
+- `drop` (List of String) Removed capabilities
+
 
 
 <a id="nestedatt--spec--metrics--exporter--tolerations"></a>
@@ -2333,18 +2337,15 @@ Optional:
 
 Optional:
 
-- `app_armor_profile` (Attributes) appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--app_armor_profile))
-- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
-- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.
-- `supplemental_groups_policy` (String) Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.
-- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--sysctls))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--pod_security_context--windows_options))
+- `app_armor_profile` (Attributes) AppArmorProfile defines a pod or container's AppArmor settings. (see [below for nested schema](#nestedatt--spec--pod_security_context--app_armor_profile))
+- `fs_group` (Number)
+- `fs_group_change_policy` (String) PodFSGroupChangePolicy holds policies that will be used for applying fsGroup to a volume when volume is mounted.
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String)
 
 <a id="nestedatt--spec--pod_security_context--app_armor_profile"></a>
 ### Nested Schema for `spec.pod_security_context.app_armor_profile`
@@ -2379,26 +2380,6 @@ Required:
 Optional:
 
 - `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
-
-
-<a id="nestedatt--spec--pod_security_context--sysctls"></a>
-### Nested Schema for `spec.pod_security_context.sysctls`
-
-Required:
-
-- `name` (String) Name of a property to set
-- `value` (String) Value of a property to set
-
-
-<a id="nestedatt--spec--pod_security_context--windows_options"></a>
-### Nested Schema for `spec.pod_security_context.windows_options`
-
-Optional:
-
-- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
-- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
-- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
 
@@ -2691,6 +2672,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--service_ports"></a>
+### Nested Schema for `spec.service_ports`
+
+Required:
+
+- `name` (String)
+- `port` (Number)
+
+
 <a id="nestedatt--spec--sidecar_containers"></a>
 ### Nested Schema for `spec.sidecar_containers`
 
@@ -2703,6 +2693,7 @@ Optional:
 - `args` (List of String) Args to be used in the Container.
 - `command` (List of String) Command to be used in the Container.
 - `image_pull_policy` (String) ImagePullPolicy is the image pull policy. One of 'Always', 'Never' or 'IfNotPresent'. If not defined, it defaults to 'IfNotPresent'.
+- `name` (String) Name to be given to the container.
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--sidecar_containers--resources))
 - `volume_mounts` (Attributes List) VolumeMounts to be used in the Container. (see [below for nested schema](#nestedatt--spec--sidecar_containers--volume_mounts))
 

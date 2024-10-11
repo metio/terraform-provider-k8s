@@ -126,6 +126,7 @@ Optional:
 - `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--registration_configuration--feature_gates))
 - `kube_api_burst` (Number) KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100
 - `kube_apiqps` (Number) KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50
+- `registration_driver` (Attributes) This provides driver details required to register with hub (see [below for nested schema](#nestedatt--spec--registration_configuration--registration_driver))
 
 <a id="nestedatt--spec--registration_configuration--bootstrap_kube_configs"></a>
 ### Nested Schema for `spec.registration_configuration.bootstrap_kube_configs`
@@ -163,6 +164,24 @@ Required:
 Optional:
 
 - `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+
+
+<a id="nestedatt--spec--registration_configuration--registration_driver"></a>
+### Nested Schema for `spec.registration_configuration.registration_driver`
+
+Optional:
+
+- `auth_type` (String) Type of the authentication used by managedcluster to register as well as pull work from hub. Possible values are csr and awsirsa.
+- `aws_irsa` (Attributes) Contain the details required for registering with hub cluster (ie: an EKS cluster) using AWS IAM roles for service account. This is required only when the authType is awsirsa. (see [below for nested schema](#nestedatt--spec--registration_configuration--registration_driver--aws_irsa))
+
+<a id="nestedatt--spec--registration_configuration--registration_driver--aws_irsa"></a>
+### Nested Schema for `spec.registration_configuration.registration_driver.aws_irsa`
+
+Optional:
+
+- `hub_cluster_arn` (String) The arn of the hub cluster (ie: an EKS cluster). This will be required to pass information to hub, which hub will use to create IAM identities for this klusterlet. Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1.
+- `managed_cluster_arn` (String) The arn of the managed cluster (ie: an EKS cluster). This will be required to generate the md5hash which will be used as a suffix to create IAM role on hub as well as used by kluslerlet-agent, to assume role suffixed with the md5hash, on startup. Example - arn:eks:us-west-2:12345678910:cluster/managed-cluster1.
+
 
 
 

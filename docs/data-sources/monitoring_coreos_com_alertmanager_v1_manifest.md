@@ -69,6 +69,8 @@ Optional:
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into '/etc/alertmanager/configmaps/<configmap-name>' in the 'alertmanager' container.
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as the Alertmanager object, which contains the configuration for this Alertmanager instance. If empty, it defaults to 'alertmanager-<alertmanager-name>'. The Alertmanager configuration should be available under the 'alertmanager.yaml' key. Additional keys from the original secret are copied to the generated secret and mounted into the '/etc/alertmanager/config' directory in the 'alertmanager' container. If either the secret or the 'alertmanager.yaml' key is missing, the operator provisions a minimal Alertmanager configuration with one empty receiver (effectively dropping alert notifications).
 - `containers` (Attributes List) Containers allows injecting additional containers. This is meant to allow adding an authentication proxy to an Alertmanager pod. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The current container names are: 'alertmanager' and 'config-reloader'. Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. (see [below for nested schema](#nestedatt--spec--containers))
+- `dns_config` (Attributes) Defines the DNS configuration for the pods. (see [below for nested schema](#nestedatt--spec--dns_config))
+- `dns_policy` (String) Defines the DNS policy for the pods.
 - `enable_features` (List of String) Enable access to Alertmanager feature flags. By default, no features are enabled. Enabling features which are disabled by default is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. It requires Alertmanager >= 0.27.0.
 - `external_url` (String) The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name.
 - `force_enable_cluster_mode` (Boolean) ForceEnableClusterMode ensures Alertmanager does not deactivate the cluster mode when running with a single replica. Use case is e.g. spanning an Alertmanager cluster across Kubernetes clusters with a single replica in each.
@@ -1668,6 +1670,28 @@ Optional:
 - `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--dns_config"></a>
+### Nested Schema for `spec.dns_config`
+
+Optional:
+
+- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.
+
+<a id="nestedatt--spec--dns_config--options"></a>
+### Nested Schema for `spec.dns_config.options`
+
+Required:
+
+- `name` (String) Name is required and must be unique.
+
+Optional:
+
+- `value` (String) Value is optional.
 
 
 

@@ -75,7 +75,7 @@ Optional:
 - `driver_ingress_options` (Attributes List) DriverIngressOptions allows configuring the Service and the Ingress to expose ports inside Spark Driver (see [below for nested schema](#nestedatt--spec--driver_ingress_options))
 - `dynamic_allocation` (Attributes) DynamicAllocation configures dynamic allocation that becomes available for the Kubernetes scheduler backend since Spark 3.0. (see [below for nested schema](#nestedatt--spec--dynamic_allocation))
 - `failure_retries` (Number) FailureRetries is the number of times to retry a failed application before giving up. This is best effort and actual retry attempts can be >= the value specified.
-- `hadoop_conf` (Map of String) HadoopConf carries user-specified Hadoop configuration properties as they would use the the '--conf' option in spark-submit. The SparkApplication controller automatically adds prefix 'spark.hadoop.' to Hadoop configuration properties.
+- `hadoop_conf` (Map of String) HadoopConf carries user-specified Hadoop configuration properties as they would use the '--conf' option in spark-submit. The SparkApplication controller automatically adds prefix 'spark.hadoop.' to Hadoop configuration properties.
 - `hadoop_config_map` (String) HadoopConfigMap carries the name of the ConfigMap containing Hadoop configuration files such as core-site.xml. The controller will add environment variable HADOOP_CONF_DIR to the path where the ConfigMap is mounted to.
 - `image` (String) Image is the container image for the driver, executor, and init-container. Any custom container images for the driver, executor, or init-container takes precedence over this.
 - `image_pull_policy` (String) ImagePullPolicy is the image pull policy for the driver, executor, and init-container.

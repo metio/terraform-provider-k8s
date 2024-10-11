@@ -64,6 +64,7 @@ type DatadoghqComDatadogMonitorV1Alpha1ManifestData struct {
 			OnMissingData          *string   `tfsdk:"on_missing_data" json:"onMissingData,omitempty"`
 			RenotifyInterval       *int64    `tfsdk:"renotify_interval" json:"renotifyInterval,omitempty"`
 			RenotifyOccurrences    *int64    `tfsdk:"renotify_occurrences" json:"renotifyOccurrences,omitempty"`
+			RenotifyStatuses       *[]string `tfsdk:"renotify_statuses" json:"renotifyStatuses,omitempty"`
 			RequireFullWindow      *bool     `tfsdk:"require_full_window" json:"requireFullWindow,omitempty"`
 			ThresholdWindows       *struct {
 				RecoveryWindow *string `tfsdk:"recovery_window" json:"recoveryWindow,omitempty"`
@@ -242,8 +243,8 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"locked": schema.BoolAttribute{
-								Description:         "Whether or not the monitor is locked (only editable by creator and admins).",
-								MarkdownDescription: "Whether or not the monitor is locked (only editable by creator and admins).",
+								Description:         "DEPRECATED: Whether or not the monitor is locked (only editable by creator and admins). Use 'restricted_roles' instead.",
+								MarkdownDescription: "DEPRECATED: Whether or not the monitor is locked (only editable by creator and admins). Use 'restricted_roles' instead.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -317,6 +318,15 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 							"renotify_occurrences": schema.Int64Attribute{
 								Description:         "The number of times re-notification messages should be sent on the current status at the provided re-notification interval.",
 								MarkdownDescription: "The number of times re-notification messages should be sent on the current status at the provided re-notification interval.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"renotify_statuses": schema.ListAttribute{
+								Description:         "The types of statuses for which re-notification messages should be sent. Valid values are alert, warn, no data.",
+								MarkdownDescription: "The types of statuses for which re-notification messages should be sent. Valid values are alert, warn, no data.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

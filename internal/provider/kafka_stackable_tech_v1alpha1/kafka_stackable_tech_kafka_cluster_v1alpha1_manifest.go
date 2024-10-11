@@ -53,6 +53,8 @@ type KafkaStackableTechKafkaClusterV1Alpha1ManifestData struct {
 					PodAffinity     *map[string]string `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
+				BootstrapListenerClass  *string `tfsdk:"bootstrap_listener_class" json:"bootstrapListenerClass,omitempty"`
+				BrokerListenerClass     *string `tfsdk:"broker_listener_class" json:"brokerListenerClass,omitempty"`
 				GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
 				Logging                 *struct {
 					Containers *struct {
@@ -114,6 +116,8 @@ type KafkaStackableTechKafkaClusterV1Alpha1ManifestData struct {
 						PodAffinity     *map[string]string `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
+					BootstrapListenerClass  *string `tfsdk:"bootstrap_listener_class" json:"bootstrapListenerClass,omitempty"`
+					BrokerListenerClass     *string `tfsdk:"broker_listener_class" json:"brokerListenerClass,omitempty"`
 					GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
 					Logging                 *struct {
 						Containers *struct {
@@ -334,6 +338,22 @@ func (r *KafkaStackableTechKafkaClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"bootstrap_listener_class": schema.StringAttribute{
+										Description:         "The ListenerClass used for bootstrapping new clients. Should use a stable ListenerClass to avoid unnecessary client restarts (such as 'cluster-internal' or 'external-stable').",
+										MarkdownDescription: "The ListenerClass used for bootstrapping new clients. Should use a stable ListenerClass to avoid unnecessary client restarts (such as 'cluster-internal' or 'external-stable').",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"broker_listener_class": schema.StringAttribute{
+										Description:         "The ListenerClass used for connecting to brokers. Should use a direct connection ListenerClass to minimize cost and minimize performance overhead (such as 'cluster-internal' or 'external-unstable').",
+										MarkdownDescription: "The ListenerClass used for connecting to brokers. Should use a direct connection ListenerClass to minimize cost and minimize performance overhead (such as 'cluster-internal' or 'external-unstable').",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"graceful_shutdown_timeout": schema.StringAttribute{
@@ -724,6 +744,22 @@ func (r *KafkaStackableTechKafkaClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"bootstrap_listener_class": schema.StringAttribute{
+												Description:         "The ListenerClass used for bootstrapping new clients. Should use a stable ListenerClass to avoid unnecessary client restarts (such as 'cluster-internal' or 'external-stable').",
+												MarkdownDescription: "The ListenerClass used for bootstrapping new clients. Should use a stable ListenerClass to avoid unnecessary client restarts (such as 'cluster-internal' or 'external-stable').",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"broker_listener_class": schema.StringAttribute{
+												Description:         "The ListenerClass used for connecting to brokers. Should use a direct connection ListenerClass to minimize cost and minimize performance overhead (such as 'cluster-internal' or 'external-unstable').",
+												MarkdownDescription: "The ListenerClass used for connecting to brokers. Should use a direct connection ListenerClass to minimize cost and minimize performance overhead (such as 'cluster-internal' or 'external-unstable').",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"graceful_shutdown_timeout": schema.StringAttribute{

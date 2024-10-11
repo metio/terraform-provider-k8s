@@ -154,4 +154,4 @@ Optional:
 
 Optional:
 
-- `renewal_percent` (Number) RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent minus jitter.
+- `renewal_percent` (Number) RenewalPercent is the percent out of 100 of a dynamic secret's TTL when new secrets are generated. Defaults to 67 percent plus up to 10% jitter.

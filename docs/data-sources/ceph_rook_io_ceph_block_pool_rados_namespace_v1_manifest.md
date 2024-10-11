@@ -59,4 +59,26 @@ Required:
 
 Optional:
 
+- `mirroring` (Attributes) Mirroring configuration of CephBlockPoolRadosNamespace (see [below for nested schema](#nestedatt--spec--mirroring))
 - `name` (String) The name of the CephBlockPoolRadosNamespaceSpec namespace. If not set, the default is the name of the CR.
+
+<a id="nestedatt--spec--mirroring"></a>
+### Nested Schema for `spec.mirroring`
+
+Required:
+
+- `mode` (String) Mode is the mirroring mode; either pool or image
+
+Optional:
+
+- `remote_namespace` (String) RemoteNamespace is the name of the CephBlockPoolRadosNamespace on the secondary cluster CephBlockPool
+- `snapshot_schedules` (Attributes List) SnapshotSchedules is the scheduling of snapshot for mirrored images (see [below for nested schema](#nestedatt--spec--mirroring--snapshot_schedules))
+
+<a id="nestedatt--spec--mirroring--snapshot_schedules"></a>
+### Nested Schema for `spec.mirroring.snapshot_schedules`
+
+Optional:
+
+- `interval` (String) Interval represent the periodicity of the snapshot.
+- `path` (String) Path is the path to snapshot, only valid for CephFS
+- `start_time` (String) StartTime indicates when to start the snapshot

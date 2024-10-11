@@ -211,8 +211,9 @@ type TempoGrafanaComTempoMonolithicV1Alpha1ManifestData struct {
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				Sar *string `tfsdk:"sar" json:"sar,omitempty"`
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
-			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
-			Ingress *struct {
+			Enabled                      *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+			FindTracesConcurrentRequests *int64 `tfsdk:"find_traces_concurrent_requests" json:"findTracesConcurrentRequests,omitempty"`
+			Ingress                      *struct {
 				Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				Host             *string            `tfsdk:"host" json:"host,omitempty"`
@@ -327,6 +328,7 @@ type TempoGrafanaComTempoMonolithicV1Alpha1ManifestData struct {
 				Size *string `tfsdk:"size" json:"size,omitempty"`
 			} `tfsdk:"traces" json:"traces,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
+		Timeout     *string `tfsdk:"timeout" json:"timeout,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -1527,6 +1529,14 @@ func (r *TempoGrafanaComTempoMonolithicV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"find_traces_concurrent_requests": schema.Int64Attribute{
+								Description:         "FindTracesConcurrentRequests defines how many concurrent request a single trace search can submit (defaults 2). The search for traces in Jaeger submits limit+1 requests. First requests finds trace IDs and then it fetches entire traces by ID. This property allows Jaeger to fetch traces in parallel. Note that by default a single Tempo querier can process 20 concurrent search jobs. Increasing this property might require scaling up querier instances, especially on error 'job queue full' See also Tempo's extraConfig: querier.max_concurrent_queries (20 default) query_frontend.max_outstanding_per_tenant: (2000 default). Increase if the query-frontend returns 429",
+								MarkdownDescription: "FindTracesConcurrentRequests defines how many concurrent request a single trace search can submit (defaults 2). The search for traces in Jaeger submits limit+1 requests. First requests finds trace IDs and then it fetches entire traces by ID. This property allows Jaeger to fetch traces in parallel. Note that by default a single Tempo querier can process 20 concurrent search jobs. Increasing this property might require scaling up querier instances, especially on error 'job queue full' See also Tempo's extraConfig: querier.max_concurrent_queries (20 default) query_frontend.max_outstanding_per_tenant: (2000 default). Increase if the query-frontend returns 429",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"ingress": schema.SingleNestedAttribute{
 								Description:         "Ingress defines the Ingress configuration for the Jaeger UI.",
 								MarkdownDescription: "Ingress defines the Ingress configuration for the Jaeger UI.",
@@ -2287,6 +2297,14 @@ func (r *TempoGrafanaComTempoMonolithicV1Alpha1Manifest) Schema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"timeout": schema.StringAttribute{
+						Description:         "Timeout configures the same timeout on all components starting at ingress down to the ingestor/querier. Timeout configuration on a specific component has a higher precedence. Default is 30 seconds.",
+						MarkdownDescription: "Timeout configures the same timeout on all components starting at ingress down to the ingestor/querier. Timeout configuration on a specific component has a higher precedence. Default is 30 seconds.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{

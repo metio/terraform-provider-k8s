@@ -172,8 +172,8 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"retry_delay_minutes": schema.Int64Attribute{
-						Description:         "RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. The default is 15 min.",
-						MarkdownDescription: "RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. The default is 15 min.",
+						Description:         "RetryDelayMinutes specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. Deprecated: retryDelayMinutes has already been deprecated since v0.8 and will be removed in v1beta2.",
+						MarkdownDescription: "RetryDelayMinutes specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. Deprecated: retryDelayMinutes has already been deprecated since v0.8 and will be removed in v1beta2.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -317,8 +317,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"interceptors": schema.ListAttribute{
-									Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
-									MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
+									Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources Deprecated: no longer in use.",
+									MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources Deprecated: no longer in use.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

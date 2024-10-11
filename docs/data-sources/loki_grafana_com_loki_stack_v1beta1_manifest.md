@@ -55,6 +55,7 @@ Optional:
 
 Required:
 
+- `management_state` (String) ManagementState defines if the CR should be managed by the operator or not. Default is managed.
 - `size` (String) Size defines one of the support Loki deployment scale out sizes.
 - `storage` (Attributes) Storage defines the spec for the object storage endpoint to store logs. (see [below for nested schema](#nestedatt--spec--storage))
 - `storage_class_name` (String) Storage class name defines the storage class for ingester/querier PVCs.
@@ -62,7 +63,6 @@ Required:
 Optional:
 
 - `limits` (Attributes) Limits defines the per-tenant limits to be applied to log stream processing and the per-tenant the config overrides. (see [below for nested schema](#nestedatt--spec--limits))
-- `management_state` (String) ManagementState defines if the CR should be managed by the operator or not. Default is managed.
 - `replication_factor` (Number) ReplicationFactor defines the policy for log stream replication.
 - `rules` (Attributes) Rules defines the spec for the ruler component (see [below for nested schema](#nestedatt--spec--rules))
 - `template` (Attributes) Template defines the resource/limits/tolerations/nodeselectors per component (see [below for nested schema](#nestedatt--spec--template))

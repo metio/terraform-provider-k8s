@@ -63,11 +63,16 @@ type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 		Display               *string `tfsdk:"display" json:"display,omitempty"`
 		Entity_descriptor     *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
 		Entity_descriptor_url *string `tfsdk:"entity_descriptor_url" json:"entity_descriptor_url,omitempty"`
+		Force_authn           *string `tfsdk:"force_authn" json:"force_authn,omitempty"`
 		Issuer                *string `tfsdk:"issuer" json:"issuer,omitempty"`
 		Mfa                   *struct {
+			Cert                  *string `tfsdk:"cert" json:"cert,omitempty"`
 			Enabled               *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Entity_descriptor     *string `tfsdk:"entity_descriptor" json:"entity_descriptor,omitempty"`
 			Entity_descriptor_url *string `tfsdk:"entity_descriptor_url" json:"entity_descriptor_url,omitempty"`
+			Force_authn           *string `tfsdk:"force_authn" json:"force_authn,omitempty"`
+			Issuer                *string `tfsdk:"issuer" json:"issuer,omitempty"`
+			Sso                   *string `tfsdk:"sso" json:"sso,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
 		Provider                *string `tfsdk:"provider" json:"provider,omitempty"`
 		Service_provider_issuer *string `tfsdk:"service_provider_issuer" json:"service_provider_issuer,omitempty"`
@@ -301,6 +306,14 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 						Computed:            false,
 					},
 
+					"force_authn": schema.StringAttribute{
+						Description:         "ForceAuthn specified whether re-authentication should be forced on login. UNSPECIFIED is treated as NO.",
+						MarkdownDescription: "ForceAuthn specified whether re-authentication should be forced on login. UNSPECIFIED is treated as NO.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"issuer": schema.StringAttribute{
 						Description:         "Issuer is the identity provider issuer.",
 						MarkdownDescription: "Issuer is the identity provider issuer.",
@@ -313,6 +326,14 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 						Description:         "MFASettings contains settings to enable SSO MFA checks through this auth connector.",
 						MarkdownDescription: "MFASettings contains settings to enable SSO MFA checks through this auth connector.",
 						Attributes: map[string]schema.Attribute{
+							"cert": schema.StringAttribute{
+								Description:         "Cert is the identity provider certificate PEM. IDP signs '<Response>' responses using this certificate.",
+								MarkdownDescription: "Cert is the identity provider certificate PEM. IDP signs '<Response>' responses using this certificate.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "Enabled specified whether this SAML connector supports MFA checks. Defaults to false.",
 								MarkdownDescription: "Enabled specified whether this SAML connector supports MFA checks. Defaults to false.",
@@ -322,8 +343,8 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 							},
 
 							"entity_descriptor": schema.StringAttribute{
-								Description:         "EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements.",
-								MarkdownDescription: "EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements.",
+								Description:         "EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements. Usually set from EntityDescriptorUrl.",
+								MarkdownDescription: "EntityDescriptor is XML with descriptor. It can be used to supply configuration parameters in one XML file rather than supplying them in the individual elements. Usually set from EntityDescriptorUrl.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -332,6 +353,30 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 							"entity_descriptor_url": schema.StringAttribute{
 								Description:         "EntityDescriptorUrl is a URL that supplies a configuration XML.",
 								MarkdownDescription: "EntityDescriptorUrl is a URL that supplies a configuration XML.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"force_authn": schema.StringAttribute{
+								Description:         "ForceAuthn specified whether re-authentication should be forced for MFA checks. UNSPECIFIED is treated as YES to always re-authentication for MFA checks. This should only be set to NO if the IdP is setup to perform MFA checks on top of active user sessions.",
+								MarkdownDescription: "ForceAuthn specified whether re-authentication should be forced for MFA checks. UNSPECIFIED is treated as YES to always re-authentication for MFA checks. This should only be set to NO if the IdP is setup to perform MFA checks on top of active user sessions.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"issuer": schema.StringAttribute{
+								Description:         "Issuer is the identity provider issuer. Usually set from EntityDescriptor.",
+								MarkdownDescription: "Issuer is the identity provider issuer. Usually set from EntityDescriptor.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sso": schema.StringAttribute{
+								Description:         "SSO is the URL of the identity provider's SSO service. Usually set from EntityDescriptor.",
+								MarkdownDescription: "SSO is the URL of the identity provider's SSO service. Usually set from EntityDescriptor.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -208,6 +208,7 @@ Required:
 Optional:
 
 - `log_type` (String) Name of the event type.
+- `log_type_key` (String) Set a record key that will populate 'logtype'. If the key is found, it will have precedence
 - `time_generated` (Boolean) If set, overrides the timeKey value with the 'time-generated-field' HTTP header value.
 - `time_key` (String) Specify the name of the key where the timestamp is stored.
 

@@ -1869,8 +1869,8 @@ func (r *CamelApacheOrgPipeV1Manifest) Schema(_ context.Context, _ datasource.Sc
 										},
 
 										"interceptors": schema.ListAttribute{
-											Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
-											MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
+											Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources Deprecated: no longer in use.",
+											MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources Deprecated: no longer in use.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -9737,8 +9737,8 @@ func (r *CamelApacheOrgPipeV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 
 											"components": schema.StringAttribute{
-												Description:         "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes. A specific customizer is activated for each specified component. E.g. for the 'timer' component, the 'cron-timer' customizer is activated (it's present in the 'org.apache.camel.k:camel-k-cron' library). Supported components are currently: 'cron', 'timer' and 'quartz'.",
-												MarkdownDescription: "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes. A specific customizer is activated for each specified component. E.g. for the 'timer' component, the 'cron-timer' customizer is activated (it's present in the 'org.apache.camel.k:camel-k-cron' library). Supported components are currently: 'cron', 'timer' and 'quartz'.",
+												Description:         "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes. Supported components are currently: 'cron', 'timer' and 'quartz'.",
+												MarkdownDescription: "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes. Supported components are currently: 'cron', 'timer' and 'quartz'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

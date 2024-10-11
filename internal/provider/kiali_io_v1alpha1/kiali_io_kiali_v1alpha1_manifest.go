@@ -1538,8 +1538,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 													},
 
 													"username": schema.StringAttribute{
-														Description:         "Username to be used when making requests to Prometheus with 'basic' authentication.",
-														MarkdownDescription: "Username to be used when making requests to Prometheus with 'basic' authentication.",
+														Description:         "Username to be used when making requests to Prometheus with 'basic' authentication. May refer to a secret.",
+														MarkdownDescription: "Username to be used when making requests to Prometheus with 'basic' authentication. May refer to a secret.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1716,8 +1716,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 
 											"username": schema.StringAttribute{
-												Description:         "Username to be used when making requests to Grafana with 'basic' authentication.",
-												MarkdownDescription: "Username to be used when making requests to Grafana with 'basic' authentication.",
+												Description:         "Username to be used when making requests to Grafana with 'basic' authentication. May refer to a secret.",
+												MarkdownDescription: "Username to be used when making requests to Grafana with 'basic' authentication. May refer to a secret.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2115,8 +2115,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 
 											"username": schema.StringAttribute{
-												Description:         "Username to be used when making requests to Prometheus with 'basic' authentication.",
-												MarkdownDescription: "Username to be used when making requests to Prometheus with 'basic' authentication.",
+												Description:         "Username to be used when making requests to Prometheus with 'basic' authentication. May refer to a secret.",
+												MarkdownDescription: "Username to be used when making requests to Prometheus with 'basic' authentication. May refer to a secret.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2288,8 +2288,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 
 											"username": schema.StringAttribute{
-												Description:         "Username to be used when making requests to the Tracing server with 'basic' authentication.",
-												MarkdownDescription: "Username to be used when making requests to the Tracing server with 'basic' authentication.",
+												Description:         "Username to be used when making requests to the Tracing server with 'basic' authentication. May refer to a secret.",
+												MarkdownDescription: "Username to be used when making requests to the Tracing server with 'basic' authentication. May refer to a secret.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

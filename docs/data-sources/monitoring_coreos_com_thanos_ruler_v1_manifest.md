@@ -62,6 +62,8 @@ Optional:
 - `alertmanagers_config` (Attributes) Define configuration for connecting to alertmanager. Only available with thanos v0.10.0 and higher. Maps to the 'alertmanagers.config' arg. (see [below for nested schema](#nestedatt--spec--alertmanagers_config))
 - `alertmanagers_url` (List of String) Define URLs to send alerts to Alertmanager. For Thanos v0.10.0 and higher, AlertManagersConfig should be used instead. Note: this field will be ignored if AlertManagersConfig is specified. Maps to the 'alertmanagers.url' arg.
 - `containers` (Attributes List) Containers allows injecting additional containers or modifying operator generated containers. This can be used to allow adding an authentication proxy to a ThanosRuler pod or to change the behavior of an operator generated container. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The current container names are: 'thanos-ruler' and 'config-reloader'. Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. (see [below for nested schema](#nestedatt--spec--containers))
+- `dns_config` (Attributes) Defines the DNS configuration for the pods. (see [below for nested schema](#nestedatt--spec--dns_config))
+- `dns_policy` (String) Defines the DNS policy for the pods.
 - `enforced_namespace_label` (String) EnforcedNamespaceLabel enforces adding a namespace label of origin for each alert and metric that is user created. The label value will always be the namespace of the object that is being created.
 - `evaluation_interval` (String) Interval between consecutive evaluations.
 - `excluded_from_enforcement` (Attributes List) List of references to PrometheusRule objects to be excluded from enforcing a namespace label of origin. Applies only if enforcedNamespaceLabel set to true. (see [below for nested schema](#nestedatt--spec--excluded_from_enforcement))
@@ -1159,6 +1161,28 @@ Optional:
 - `recursive_read_only` (String) RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.
 - `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
 - `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
+
+
+
+<a id="nestedatt--spec--dns_config"></a>
+### Nested Schema for `spec.dns_config`
+
+Optional:
+
+- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy.
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy.
+
+<a id="nestedatt--spec--dns_config--options"></a>
+### Nested Schema for `spec.dns_config.options`
+
+Required:
+
+- `name` (String) Name is required and must be unique.
+
+Optional:
+
+- `value` (String) Value is optional.
 
 
 

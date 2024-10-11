@@ -114,6 +114,7 @@ Optional:
 - `icmp_code` (Number) ICMPCode defines the ICMP code to filter flows by.
 - `icmp_type` (Number) ICMPType defines the ICMP type to filter flows by.
 - `peer_ip` (String) PeerIP defines the IP address to filter flows by. Example: 10.10.10.10
+- `pkt_drops` (Boolean) 'pktDrops', to filter flows with packet drops
 - `ports` (String) Ports defines the ports to filter flows by. it can be user for either source or destination ports. To filter a single port, set a single port as an integer value. For example, ports: 80. To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.
 - `protocol` (String) Protocol defines the protocol to filter flows by.
 - `source_ports` (String) SourcePorts defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, sourcePorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.

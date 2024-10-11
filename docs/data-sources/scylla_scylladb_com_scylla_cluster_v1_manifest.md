@@ -60,7 +60,7 @@ Optional:
 - `alternator` (Attributes) alternator designates this cluster an Alternator cluster. (see [below for nested schema](#nestedatt--spec--alternator))
 - `automatic_orphaned_node_cleanup` (Boolean) automaticOrphanedNodeCleanup controls if automatic orphan node cleanup should be performed.
 - `backups` (Attributes List) backups specifies backup tasks in Scylla Manager. When Scylla Manager is not installed, these will be ignored. (see [below for nested schema](#nestedatt--spec--backups))
-- `cpuset` (Boolean) cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated and may be ignored in the future.
+- `cpuset` (Boolean) cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated. It is now treated as if it is always set to true regardless of its value.
 - `datacenter` (Attributes) datacenter holds a specification of a datacenter. (see [below for nested schema](#nestedatt--spec--datacenter))
 - `developer_mode` (Boolean) developerMode determines if the cluster runs in developer-mode.
 - `dns_domains` (List of String) dnsDomains is a list of DNS domains this cluster is reachable by. These domains are used when setting up the infrastructure, like certificates. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.

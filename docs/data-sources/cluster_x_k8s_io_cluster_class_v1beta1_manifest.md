@@ -308,10 +308,6 @@ Required:
 <a id="nestedatt--spec--variables--schema--open_apiv3_schema"></a>
 ### Nested Schema for `spec.variables.schema.open_apiv3_schema`
 
-Required:
-
-- `type` (String) Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.
-
 Optional:
 
 - `additional_properties` (Map of String) AdditionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
@@ -338,6 +334,7 @@ Optional:
 - `pattern` (String) Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.
 - `properties` (Map of String) Properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
 - `required` (List of String) Required specifies which fields of an object are required. NOTE: Can only be set if type is object.
+- `type` (String) Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.
 - `unique_items` (Boolean) UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.
 - `x_kubernetes_int_or_string` (Boolean) x-kubernetes-int-or-string specifies that this value is either an integer or a string. If this is true, an empty type is allowed and type as child of anyOf is permitted if following one of the following patterns: 1) anyOf: - type: integer - type: string 2) allOf: - anyOf: - type: integer - type: string - ... zero or more
 - `x_kubernetes_preserve_unknown_fields` (Boolean) XPreserveUnknownFields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.

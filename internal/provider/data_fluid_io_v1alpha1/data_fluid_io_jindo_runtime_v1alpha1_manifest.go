@@ -59,8 +59,12 @@ type DataFluidIoJindoRuntimeV1Alpha1ManifestData struct {
 			ImageTag        *string            `tfsdk:"image_tag" json:"imageTag,omitempty"`
 			Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			LogConfig       *map[string]string `tfsdk:"log_config" json:"logConfig,omitempty"`
-			NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			PodMetadata     *struct {
+			Metrics         *struct {
+				Enabled      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				ScrapeTarget *string `tfsdk:"scrape_target" json:"scrapeTarget,omitempty"`
+			} `tfsdk:"metrics" json:"metrics,omitempty"`
+			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			PodMetadata  *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
@@ -972,6 +976,31 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"metrics": schema.SingleNestedAttribute{
+								Description:         "Define whether fuse metrics will be enabled.",
+								MarkdownDescription: "Define whether fuse metrics will be enabled.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Enabled decides whether to expose client metrics.",
+										MarkdownDescription: "Enabled decides whether to expose client metrics.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"scrape_target": schema.StringAttribute{
+										Description:         "ScrapeTarget decides which fuse component will be scraped by Prometheus. It is a list separated by comma where supported items are [MountPod, Sidecar, All (indicates MountPod and Sidecar), None]. Defaults to None when it is not explicitly set.",
+										MarkdownDescription: "ScrapeTarget decides which fuse component will be scraped by Prometheus. It is a list separated by comma where supported items are [MountPod, Sidecar, All (indicates MountPod and Sidecar), None]. Defaults to None when it is not explicitly set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"node_selector": schema.MapAttribute{

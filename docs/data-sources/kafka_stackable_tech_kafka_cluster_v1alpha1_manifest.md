@@ -173,6 +173,8 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) These configuration settings control [Pod placement](https://docs.stackable.tech/home/nightly/concepts/operations/pod_placement). (see [below for nested schema](#nestedatt--spec--brokers--role_groups--config--affinity))
+- `bootstrap_listener_class` (String) The ListenerClass used for bootstrapping new clients. Should use a stable ListenerClass to avoid unnecessary client restarts (such as 'cluster-internal' or 'external-stable').
+- `broker_listener_class` (String) The ListenerClass used for connecting to brokers. Should use a direct connection ListenerClass to minimize cost and minimize performance overhead (such as 'cluster-internal' or 'external-unstable').
 - `graceful_shutdown_timeout` (String) Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.
 - `logging` (Attributes) Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging). (see [below for nested schema](#nestedatt--spec--brokers--role_groups--config--logging))
 - `resources` (Attributes) Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any. (see [below for nested schema](#nestedatt--spec--brokers--role_groups--config--resources))
@@ -316,6 +318,8 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) These configuration settings control [Pod placement](https://docs.stackable.tech/home/nightly/concepts/operations/pod_placement). (see [below for nested schema](#nestedatt--spec--brokers--config--affinity))
+- `bootstrap_listener_class` (String) The ListenerClass used for bootstrapping new clients. Should use a stable ListenerClass to avoid unnecessary client restarts (such as 'cluster-internal' or 'external-stable').
+- `broker_listener_class` (String) The ListenerClass used for connecting to brokers. Should use a direct connection ListenerClass to minimize cost and minimize performance overhead (such as 'cluster-internal' or 'external-unstable').
 - `graceful_shutdown_timeout` (String) Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.
 - `logging` (Attributes) Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging). (see [below for nested schema](#nestedatt--spec--brokers--config--logging))
 - `resources` (Attributes) Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any. (see [below for nested schema](#nestedatt--spec--brokers--config--resources))

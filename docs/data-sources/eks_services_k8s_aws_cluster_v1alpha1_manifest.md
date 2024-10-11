@@ -61,6 +61,7 @@ Required:
 Optional:
 
 - `access_config` (Attributes) The access configuration for the cluster. (see [below for nested schema](#nestedatt--spec--access_config))
+- `bootstrap_self_managed_addons` (Boolean) If you set this value to False when creating a cluster, the default networking add-ons will not be installed. The default networking addons include vpc-cni, coredns, and kube-proxy. Use this option when you plan to install third-party alternative add-ons or self-manage the default networking add-ons.
 - `client_request_token` (String) A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
 - `encryption_config` (Attributes List) The encryption configuration for the cluster. (see [below for nested schema](#nestedatt--spec--encryption_config))
 - `kubernetes_network_config` (Attributes) The Kubernetes network configuration for the cluster. (see [below for nested schema](#nestedatt--spec--kubernetes_network_config))
@@ -69,6 +70,7 @@ Optional:
 - `role_arn` (String) The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to Amazon Web Services API operations on your behalf. For more information, see Amazon EKS Service IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) in the Amazon EKS User Guide .
 - `role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--role_ref))
 - `tags` (Map of String) Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.
+- `upgrade_policy` (Attributes) New clusters, by default, have extended support enabled. You can disable extended support when creating a cluster by setting this value to STANDARD. (see [below for nested schema](#nestedatt--spec--upgrade_policy))
 - `version` (String) The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used. The default version might not be the latest version available.
 
 <a id="nestedatt--spec--resources_vpc_config"></a>
@@ -221,3 +223,12 @@ Optional:
 
 - `name` (String)
 - `namespace` (String)
+
+
+
+<a id="nestedatt--spec--upgrade_policy"></a>
+### Nested Schema for `spec.upgrade_policy`
+
+Optional:
+
+- `support_type` (String)

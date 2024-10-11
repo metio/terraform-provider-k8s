@@ -44,7 +44,16 @@ type CephRookIoCephBlockPoolRadosNamespaceV1ManifestData struct {
 
 	Spec *struct {
 		BlockPoolName *string `tfsdk:"block_pool_name" json:"blockPoolName,omitempty"`
-		Name          *string `tfsdk:"name" json:"name,omitempty"`
+		Mirroring     *struct {
+			Mode              *string `tfsdk:"mode" json:"mode,omitempty"`
+			RemoteNamespace   *string `tfsdk:"remote_namespace" json:"remoteNamespace,omitempty"`
+			SnapshotSchedules *[]struct {
+				Interval  *string `tfsdk:"interval" json:"interval,omitempty"`
+				Path      *string `tfsdk:"path" json:"path,omitempty"`
+				StartTime *string `tfsdk:"start_time" json:"startTime,omitempty"`
+			} `tfsdk:"snapshot_schedules" json:"snapshotSchedules,omitempty"`
+		} `tfsdk:"mirroring" json:"mirroring,omitempty"`
+		Name *string `tfsdk:"name" json:"name,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -131,6 +140,69 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Schema(_ context.Conte
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"mirroring": schema.SingleNestedAttribute{
+						Description:         "Mirroring configuration of CephBlockPoolRadosNamespace",
+						MarkdownDescription: "Mirroring configuration of CephBlockPoolRadosNamespace",
+						Attributes: map[string]schema.Attribute{
+							"mode": schema.StringAttribute{
+								Description:         "Mode is the mirroring mode; either pool or image",
+								MarkdownDescription: "Mode is the mirroring mode; either pool or image",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("", "pool", "image"),
+								},
+							},
+
+							"remote_namespace": schema.StringAttribute{
+								Description:         "RemoteNamespace is the name of the CephBlockPoolRadosNamespace on the secondary cluster CephBlockPool",
+								MarkdownDescription: "RemoteNamespace is the name of the CephBlockPoolRadosNamespace on the secondary cluster CephBlockPool",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"snapshot_schedules": schema.ListNestedAttribute{
+								Description:         "SnapshotSchedules is the scheduling of snapshot for mirrored images",
+								MarkdownDescription: "SnapshotSchedules is the scheduling of snapshot for mirrored images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"interval": schema.StringAttribute{
+											Description:         "Interval represent the periodicity of the snapshot.",
+											MarkdownDescription: "Interval represent the periodicity of the snapshot.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"path": schema.StringAttribute{
+											Description:         "Path is the path to snapshot, only valid for CephFS",
+											MarkdownDescription: "Path is the path to snapshot, only valid for CephFS",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"start_time": schema.StringAttribute{
+											Description:         "StartTime indicates when to start the snapshot",
+											MarkdownDescription: "StartTime indicates when to start the snapshot",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"name": schema.StringAttribute{

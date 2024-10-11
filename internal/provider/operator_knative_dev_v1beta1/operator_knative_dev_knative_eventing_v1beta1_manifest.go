@@ -232,6 +232,10 @@ type OperatorKnativeDevKnativeEventingV1Beta1ManifestData struct {
 		Manifests *[]struct {
 			URL *string `tfsdk:"url" json:"URL,omitempty"`
 		} `tfsdk:"manifests" json:"manifests,omitempty"`
+		Namespace *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"namespace" json:"namespace,omitempty"`
 		PodDisruptionBudgets *[]struct {
 			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
@@ -1794,6 +1798,33 @@ func (r *OperatorKnativeDevKnativeEventingV1Beta1Manifest) Schema(_ context.Cont
 									Optional:            true,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"namespace": schema.SingleNestedAttribute{
+						Description:         "A field of namespace name to override the labels and annotations",
+						MarkdownDescription: "A field of namespace name to override the labels and annotations",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Annotations overrides labels for the namespace and its template.",
+								MarkdownDescription: "Annotations overrides labels for the namespace and its template.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels overrides labels for the namespace and its template.",
+								MarkdownDescription: "Labels overrides labels for the namespace and its template.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
