@@ -4363,6 +4363,7 @@ Optional:
 
 Optional:
 
+- `archives` (List of String) Archives is a list of archives to be extracted into the working directory of each executor.
 - `exclude_packages` (List of String) ExcludePackages is a list of 'groupId:artifactId', to exclude while resolving the dependencies provided in Packages to avoid dependency conflicts.
 - `files` (List of String) Files is a list of files the Spark application depends on.
 - `jars` (List of String) Jars is a list of JAR files the Spark application depends on.

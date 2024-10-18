@@ -44,8 +44,9 @@ type TinkerbellOrgWorkflowV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		BootOptions *struct {
-			OneTimeNetboot     *bool `tfsdk:"one_time_netboot" json:"oneTimeNetboot,omitempty"`
-			ToggleAllowNetboot *bool `tfsdk:"toggle_allow_netboot" json:"toggleAllowNetboot,omitempty"`
+			BootMode           *string `tfsdk:"boot_mode" json:"bootMode,omitempty"`
+			IsoURL             *string `tfsdk:"iso_url" json:"isoURL,omitempty"`
+			ToggleAllowNetboot *bool   `tfsdk:"toggle_allow_netboot" json:"toggleAllowNetboot,omitempty"`
 		} `tfsdk:"boot_options" json:"bootOptions,omitempty"`
 		HardwareMap *map[string]string `tfsdk:"hardware_map" json:"hardwareMap,omitempty"`
 		HardwareRef *string            `tfsdk:"hardware_ref" json:"hardwareRef,omitempty"`
@@ -134,9 +135,20 @@ func (r *TinkerbellOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "BootOptions are options that control the booting of Hardware.",
 						MarkdownDescription: "BootOptions are options that control the booting of Hardware.",
 						Attributes: map[string]schema.Attribute{
-							"one_time_netboot": schema.BoolAttribute{
-								Description:         "OneTimeNetboot indicates whether the controller should create a job.bmc.tinkerbell.org object for getting the associated hardware into a netbooting state. A HardwareRef that contains a spec.BmcRef must be provided.",
-								MarkdownDescription: "OneTimeNetboot indicates whether the controller should create a job.bmc.tinkerbell.org object for getting the associated hardware into a netbooting state. A HardwareRef that contains a spec.BmcRef must be provided.",
+							"boot_mode": schema.StringAttribute{
+								Description:         "BootMode is the type of booting that will be done.",
+								MarkdownDescription: "BootMode is the type of booting that will be done.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("netboot", "iso"),
+								},
+							},
+
+							"iso_url": schema.StringAttribute{
+								Description:         "ISOURL is the URL of the ISO that will be one-time booted. When this field is set, the controller will create a job.bmc.tinkerbell.org object for getting the associated hardware into a CDROM booting state. A HardwareRef that contains a spec.BmcRef must be provided.",
+								MarkdownDescription: "ISOURL is the URL of the ISO that will be one-time booted. When this field is set, the controller will create a job.bmc.tinkerbell.org object for getting the associated hardware into a CDROM booting state. A HardwareRef that contains a spec.BmcRef must be provided.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

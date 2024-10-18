@@ -112,7 +112,104 @@ Optional:
 Optional:
 
 - `anti_affinity_enabled` (Boolean) AntiAffinityEnabled configures PodAntiAffinity so each Pod is scheduled in a different Node, enabling HA. Make sure you have at least as many Nodes available as the replicas to not end up with unscheduled Pods.
+- `node_affinity` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core (see [below for nested schema](#nestedatt--spec--affinity--node_affinity))
 - `pod_anti_affinity` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity`
@@ -139,27 +236,27 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String) A label selector operator is the set of operators that can be used in a selector requirement.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -174,27 +271,27 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String) A label selector operator is the set of operators that can be used in a selector requirement.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 

@@ -40013,8 +40013,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Replicas pauses the canary if = 0.",
+						MarkdownDescription: "Replicas pauses the canary if = 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

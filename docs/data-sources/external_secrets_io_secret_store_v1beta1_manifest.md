@@ -1172,6 +1172,7 @@ Required:
 
 Optional:
 
+- `recursive` (Boolean)
 - `secrets_path` (String)
 
 

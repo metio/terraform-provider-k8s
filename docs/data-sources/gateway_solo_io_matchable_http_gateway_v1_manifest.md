@@ -1040,7 +1040,9 @@ Optional:
 Optional:
 
 - `cluster_name` (String)
+- `collector_hostname` (String)
 - `collector_upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref))
+- `remote_config` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--remote_config))
 - `service_name` (String)
 
 <a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--collector_upstream_ref"></a>
@@ -1050,6 +1052,15 @@ Optional:
 
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--spec--http_gateway--options--http_connection_manager_settings--tracing--datadog_config--remote_config"></a>
+### Nested Schema for `spec.http_gateway.options.http_connection_manager_settings.tracing.datadog_config.remote_config`
+
+Optional:
+
+- `disabled` (Boolean)
+- `polling_interval` (String)
 
 
 

@@ -2333,7 +2333,7 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
-													stringvalidator.OneOf("ingress", "route"),
+													stringvalidator.OneOf("ingress", "route", ""),
 												},
 											},
 										},
@@ -3443,7 +3443,7 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.OneOf("ingress", "route"),
+															stringvalidator.OneOf("ingress", "route", ""),
 														},
 													},
 												},

@@ -58,6 +58,7 @@ Optional:
 - `clean_cache_policy` (Attributes) CleanCachePolicy defines cleanCache Policy (see [below for nested schema](#nestedatt--spec--clean_cache_policy))
 - `fuse` (Attributes) The component spec of Jindo Fuse (see [below for nested schema](#nestedatt--spec--fuse))
 - `hadoop_config` (String) Name of the configMap used to support HDFS configurations when using HDFS as Jindo's UFS. The configMap must be in the same namespace with the JindoRuntime. The configMap should contain user-specific HDFS conf files in it. For now, only 'hdfs-site.xml' and 'core-site.xml' are supported. It must take the filename of the conf file as the key and content of the file as the value.
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `jindo_version` (Attributes) The version information that instructs fluid to orchestrate a particular version of Jindo. (see [below for nested schema](#nestedatt--spec--jindo_version))
 - `labels` (Map of String) Labels will be added on all the JindoFS pods. DEPRECATED: this is a deprecated field. Please use PodMetadata.Labels instead. Note: this field is set to be exclusive with PodMetadata.Labels
 - `log_config` (Map of String)
@@ -93,6 +94,7 @@ Optional:
 - `env` (Map of String) Environment variables that will be used by Jindo Fuse
 - `image` (String) Image for Jindo Fuse(e.g. jindo/jindo-fuse)
 - `image_pull_policy` (String) One of the three policies: 'Always', 'IfNotPresent', 'Never'
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--fuse--image_pull_secrets))
 - `image_tag` (String) Image Tag for Jindo Fuse(e.g. 2.3.0-SNAPSHOT)
 - `labels` (Map of String) Labels will be added on all the JindoFS pods. DEPRECATED: this is a deprecated field. Please use PodMetadata.Labels instead. Note: this field is set to be exclusive with PodMetadata.Labels
 - `log_config` (Map of String)
@@ -102,6 +104,14 @@ Optional:
 - `properties` (Map of String) Configurable properties for Jindo System. <br>
 - `resources` (Attributes) Resources that will be requested by Jindo Fuse. <br> <br> Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--fuse--resources))
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--fuse--tolerations))
+
+<a id="nestedatt--spec--fuse--image_pull_secrets"></a>
+### Nested Schema for `spec.fuse.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--fuse--metrics"></a>
 ### Nested Schema for `spec.fuse.metrics`
@@ -152,6 +162,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
 <a id="nestedatt--spec--jindo_version"></a>
 ### Nested Schema for `spec.jindo_version`
 
@@ -169,6 +187,7 @@ Optional:
 
 - `disabled` (Boolean) If disable JindoFS master or worker
 - `env` (Map of String) Environment variables that will be used by Jindo component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--master--image_pull_secrets))
 - `labels` (Map of String) Labels will be added on JindoFS Master or Worker pods. DEPRECATED: This is a deprecated field. Please use PodMetadata instead. Note: this field is set to be exclusive with PodMetadata.Labels
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
 - `pod_metadata` (Attributes) PodMetadata defines labels and annotations that will be propagated to Jindo's pods (see [below for nested schema](#nestedatt--spec--master--pod_metadata))
@@ -178,6 +197,14 @@ Optional:
 - `resources` (Attributes) Resources that will be requested by the Jindo component. <br> <br> Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--master--resources))
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--master--tolerations))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the jindo runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--master--volume_mounts))
+
+<a id="nestedatt--spec--master--image_pull_secrets"></a>
+### Nested Schema for `spec.master.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--master--pod_metadata"></a>
 ### Nested Schema for `spec.master.pod_metadata`
@@ -1872,6 +1899,7 @@ Optional:
 
 - `disabled` (Boolean) If disable JindoFS master or worker
 - `env` (Map of String) Environment variables that will be used by Jindo component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--worker--image_pull_secrets))
 - `labels` (Map of String) Labels will be added on JindoFS Master or Worker pods. DEPRECATED: This is a deprecated field. Please use PodMetadata instead. Note: this field is set to be exclusive with PodMetadata.Labels
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
 - `pod_metadata` (Attributes) PodMetadata defines labels and annotations that will be propagated to Jindo's pods (see [below for nested schema](#nestedatt--spec--worker--pod_metadata))
@@ -1881,6 +1909,14 @@ Optional:
 - `resources` (Attributes) Resources that will be requested by the Jindo component. <br> <br> Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--worker--resources))
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--worker--tolerations))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the jindo runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--worker--volume_mounts))
+
+<a id="nestedatt--spec--worker--image_pull_secrets"></a>
+### Nested Schema for `spec.worker.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--worker--pod_metadata"></a>
 ### Nested Schema for `spec.worker.pod_metadata`

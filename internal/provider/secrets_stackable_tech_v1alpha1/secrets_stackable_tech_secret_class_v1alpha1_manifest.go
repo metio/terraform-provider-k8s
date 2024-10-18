@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -541,6 +542,9 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Conte
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[-.a-zA-Z0-9]+$`), ""),
+										},
 									},
 								},
 								Required: false,

@@ -185,7 +185,9 @@ type LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1ManifestData struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"host_path" json:"hostPath,omitempty"`
 			Pvc *struct {
-				Source *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Source      *struct {
 					ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 					ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 				} `tfsdk:"source" json:"source,omitempty"`
@@ -1976,6 +1978,24 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Manifest) Schema(_ con
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"source": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",

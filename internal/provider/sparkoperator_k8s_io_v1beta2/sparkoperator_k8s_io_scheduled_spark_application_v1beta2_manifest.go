@@ -59,6 +59,7 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 				Resources         *map[string]string `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"batch_scheduler_options" json:"batchSchedulerOptions,omitempty"`
 			Deps *struct {
+				Archives        *[]string `tfsdk:"archives" json:"archives,omitempty"`
 				ExcludePackages *[]string `tfsdk:"exclude_packages" json:"excludePackages,omitempty"`
 				Files           *[]string `tfsdk:"files" json:"files,omitempty"`
 				Jars            *[]string `tfsdk:"jars" json:"jars,omitempty"`
@@ -2270,6 +2271,15 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 								Description:         "Deps captures all possible types of dependencies of a Spark application.",
 								MarkdownDescription: "Deps captures all possible types of dependencies of a Spark application.",
 								Attributes: map[string]schema.Attribute{
+									"archives": schema.ListAttribute{
+										Description:         "Archives is a list of archives to be extracted into the working directory of each executor.",
+										MarkdownDescription: "Archives is a list of archives to be extracted into the working directory of each executor.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"exclude_packages": schema.ListAttribute{
 										Description:         "ExcludePackages is a list of 'groupId:artifactId', to exclude while resolving the dependencies provided in Packages to avoid dependency conflicts.",
 										MarkdownDescription: "ExcludePackages is a list of 'groupId:artifactId', to exclude while resolving the dependencies provided in Packages to avoid dependency conflicts.",

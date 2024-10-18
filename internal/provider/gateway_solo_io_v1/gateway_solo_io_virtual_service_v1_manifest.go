@@ -1538,12 +1538,36 @@ type GatewaySoloIoVirtualServiceV1ManifestData struct {
 						} `tfsdk:"prompt_enrichment" json:"promptEnrichment,omitempty"`
 						PromptGuard *struct {
 							Request *struct {
-								CustomResponseMessage *string   `tfsdk:"custom_response_message" json:"customResponseMessage,omitempty"`
-								Matches               *[]string `tfsdk:"matches" json:"matches,omitempty"`
+								CustomResponse *struct {
+									Message    *string `tfsdk:"message" json:"message,omitempty"`
+									StatusCode *int64  `tfsdk:"status_code" json:"statusCode,omitempty"`
+								} `tfsdk:"custom_response" json:"customResponse,omitempty"`
+								Regex *struct {
+									Builtins *[]string `tfsdk:"builtins" json:"builtins,omitempty"`
+									Matches  *[]string `tfsdk:"matches" json:"matches,omitempty"`
+								} `tfsdk:"regex" json:"regex,omitempty"`
+								Webhook *struct {
+									Headers *[]struct {
+										Key       *string `tfsdk:"key" json:"key,omitempty"`
+										MatchType *string `tfsdk:"match_type" json:"matchType,omitempty"`
+									} `tfsdk:"headers" json:"headers,omitempty"`
+									Host *string `tfsdk:"host" json:"host,omitempty"`
+									Port *int64  `tfsdk:"port" json:"port,omitempty"`
+								} `tfsdk:"webhook" json:"webhook,omitempty"`
 							} `tfsdk:"request" json:"request,omitempty"`
 							Response *struct {
-								Builtins *[]string `tfsdk:"builtins" json:"builtins,omitempty"`
-								Matches  *[]string `tfsdk:"matches" json:"matches,omitempty"`
+								Regex *struct {
+									Builtins *[]string `tfsdk:"builtins" json:"builtins,omitempty"`
+									Matches  *[]string `tfsdk:"matches" json:"matches,omitempty"`
+								} `tfsdk:"regex" json:"regex,omitempty"`
+								Webhook *struct {
+									Headers *[]struct {
+										Key       *string `tfsdk:"key" json:"key,omitempty"`
+										MatchType *string `tfsdk:"match_type" json:"matchType,omitempty"`
+									} `tfsdk:"headers" json:"headers,omitempty"`
+									Host *string `tfsdk:"host" json:"host,omitempty"`
+									Port *int64  `tfsdk:"port" json:"port,omitempty"`
+								} `tfsdk:"webhook" json:"webhook,omitempty"`
 							} `tfsdk:"response" json:"response,omitempty"`
 						} `tfsdk:"prompt_guard" json:"promptGuard,omitempty"`
 						Rag *struct {
@@ -13898,21 +13922,116 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
-																		"custom_response_message": schema.StringAttribute{
+																		"custom_response": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
+																			Attributes: map[string]schema.Attribute{
+																				"message": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"status_code": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 
-																		"matches": schema.ListAttribute{
+																		"regex": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
+																			Attributes: map[string]schema.Attribute{
+																				"builtins": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"matches": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"webhook": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"headers": schema.ListNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"match_type": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"host": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"port": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -13924,22 +14043,87 @@ func (r *GatewaySoloIoVirtualServiceV1Manifest) Schema(_ context.Context, _ data
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
-																		"builtins": schema.ListAttribute{
+																		"regex": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
+																			Attributes: map[string]schema.Attribute{
+																				"builtins": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"matches": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 
-																		"matches": schema.ListAttribute{
+																		"webhook": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
+																			Attributes: map[string]schema.Attribute{
+																				"headers": schema.ListNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					NestedObject: schema.NestedAttributeObject{
+																						Attributes: map[string]schema.Attribute{
+																							"key": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"match_type": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"host": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"port": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																					Validators: []validator.Int64{
+																						int64validator.AtLeast(0),
+																						int64validator.AtMost(4.294967295e+09),
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,

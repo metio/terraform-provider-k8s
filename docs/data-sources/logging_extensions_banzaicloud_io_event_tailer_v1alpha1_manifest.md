@@ -419,6 +419,8 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String)
+- `labels` (Map of String)
 - `source` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--pvc--source))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--pvc--spec))
 

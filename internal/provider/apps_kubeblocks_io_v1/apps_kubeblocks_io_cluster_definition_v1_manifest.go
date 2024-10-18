@@ -55,6 +55,10 @@ type AppsKubeblocksIoClusterDefinitionV1ManifestData struct {
 				Terminate *[]string `tfsdk:"terminate" json:"terminate,omitempty"`
 				Update    *[]string `tfsdk:"update" json:"update,omitempty"`
 			} `tfsdk:"orders" json:"orders,omitempty"`
+			Shardings *[]struct {
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
+				ShardingDef *string `tfsdk:"sharding_def" json:"shardingDef,omitempty"`
+			} `tfsdk:"shardings" json:"shardings,omitempty"`
 		} `tfsdk:"topologies" json:"topologies,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -65,8 +69,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Metadata(_ context.Context
 
 func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components, ensuring a controlled and predictable management of component lifecycles.",
-		MarkdownDescription: "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components, ensuring a controlled and predictable management of component lifecycles.",
+		Description:         "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components and/or Shardings, each linked to a ComponentDefinition or a ShardingDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown between Components and/or Shardings, ensuring a controlled and predictable management of cluster lifecycles.",
+		MarkdownDescription: "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components and/or Shardings, each linked to a ComponentDefinition or a ShardingDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown between Components and/or Shardings, ensuring a controlled and predictable management of cluster lifecycles.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -158,8 +162,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 											},
 										},
 									},
-									Required: true,
-									Optional: false,
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 
@@ -187,8 +191,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 									MarkdownDescription: "Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
 									Attributes: map[string]schema.Attribute{
 										"provision": schema.ListAttribute{
-											Description:         "Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together. Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
-											MarkdownDescription: "Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together. Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											Description:         "Specifies the order for creating and initializing entities. This is designed for entities that depend on one another. Entities without dependencies can be grouped together. Entities that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Specifies the order for creating and initializing entities. This is designed for entities that depend on one another. Entities without dependencies can be grouped together. Entities that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -196,8 +200,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 										},
 
 										"terminate": schema.ListAttribute{
-											Description:         "Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies. Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
-											MarkdownDescription: "Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies. Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											Description:         "Outlines the order for stopping and deleting entities. This sequence is designed for entities that require a graceful shutdown or have interdependencies. Entities that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Outlines the order for stopping and deleting entities. This sequence is designed for entities that require a graceful shutdown or have interdependencies. Entities that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -205,12 +209,46 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 										},
 
 										"update": schema.ListAttribute{
-											Description:         "Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures. Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
-											MarkdownDescription: "Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures. Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											Description:         "Update determines the order for updating entities' specifications, such as image upgrades or resource scaling. This sequence is designed for entities that have dependencies or require specific update procedures. Entities that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Update determines the order for updating entities' specifications, such as image upgrades or resource scaling. This sequence is designed for entities that have dependencies or require specific update procedures. Entities that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"shardings": schema.ListNestedAttribute{
+									Description:         "Shardings specifies the shardings in the topology.",
+									MarkdownDescription: "Shardings specifies the shardings in the topology.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Defines the unique identifier of the sharding within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.",
+												MarkdownDescription: "Defines the unique identifier of the sharding within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(16),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
+												},
+											},
+
+											"sharding_def": schema.StringAttribute{
+												Description:         "Specifies the sharding definition that defines the characteristics and behavior of the sharding. The system selects the ShardingDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ShardingDefinition CR. 2. Flexible and automatic selection of the most up-to-date ShardingDefinition CR by specifying a regular expression pattern. Once set, this field cannot be updated.",
+												MarkdownDescription: "Specifies the sharding definition that defines the characteristics and behavior of the sharding. The system selects the ShardingDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ShardingDefinition CR. 2. Flexible and automatic selection of the most up-to-date ShardingDefinition CR by specifying a regular expression pattern. Once set, this field cannot be updated.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(64),
+												},
+											},
 										},
 									},
 									Required: false,

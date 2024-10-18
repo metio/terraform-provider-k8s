@@ -654,6 +654,7 @@ Optional:
 Optional:
 
 - `credential_name` (String) TLS certificate name.
+- `https_redirect` (Boolean) If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.
 - `mode` (String) TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.
 
 
@@ -693,6 +694,7 @@ Optional:
 Optional:
 
 - `credential_name` (String) TLS certificate name.
+- `https_redirect` (Boolean) If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.
 - `mode` (String) TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.
 
 

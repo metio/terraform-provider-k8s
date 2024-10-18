@@ -459,10 +459,15 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					Tracing           *struct {
 						DatadogConfig *struct {
 							ClusterName          *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+							CollectorHostname    *string `tfsdk:"collector_hostname" json:"collectorHostname,omitempty"`
 							CollectorUpstreamRef *struct {
 								Name      *string `tfsdk:"name" json:"name,omitempty"`
 								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"collector_upstream_ref" json:"collectorUpstreamRef,omitempty"`
+							RemoteConfig *struct {
+								Disabled        *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
+								PollingInterval *string `tfsdk:"polling_interval" json:"pollingInterval,omitempty"`
+							} `tfsdk:"remote_config" json:"remoteConfig,omitempty"`
 							ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 						} `tfsdk:"datadog_config" json:"datadogConfig,omitempty"`
 						EnvironmentVariablesForTags *[]struct {
@@ -3676,6 +3681,14 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																Computed:            false,
 															},
 
+															"collector_hostname": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"collector_upstream_ref": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -3689,6 +3702,31 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																	},
 
 																	"namespace": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"remote_config": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"disabled": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"polling_interval": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,

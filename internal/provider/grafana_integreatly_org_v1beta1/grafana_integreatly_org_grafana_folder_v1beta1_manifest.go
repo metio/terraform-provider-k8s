@@ -58,6 +58,7 @@ type GrafanaIntegreatlyOrgGrafanaFolderV1Beta1ManifestData struct {
 		Permissions     *string `tfsdk:"permissions" json:"permissions,omitempty"`
 		ResyncPeriod    *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
 		Title           *string `tfsdk:"title" json:"title,omitempty"`
+		Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -139,16 +140,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 				MarkdownDescription: "GrafanaFolderSpec defines the desired state of GrafanaFolder",
 				Attributes: map[string]schema.Attribute{
 					"allow_cross_namespace_import": schema.BoolAttribute{
-						Description:         "allow to import this resources from an operator in a different namespace",
-						MarkdownDescription: "allow to import this resources from an operator in a different namespace",
+						Description:         "Enable matching Grafana instances outside the current namespace",
+						MarkdownDescription: "Enable matching Grafana instances outside the current namespace",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"instance_selector": schema.SingleNestedAttribute{
-						Description:         "selects Grafanas for import",
-						MarkdownDescription: "selects Grafanas for import",
+						Description:         "Selects Grafanas for import",
+						MarkdownDescription: "Selects Grafanas for import",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -217,16 +218,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"permissions": schema.StringAttribute{
-						Description:         "raw json with folder permissions",
-						MarkdownDescription: "raw json with folder permissions",
+						Description:         "Raw json with folder permissions, potentially exported from Grafana",
+						MarkdownDescription: "Raw json with folder permissions, potentially exported from Grafana",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resync_period": schema.StringAttribute{
-						Description:         "how often the folder is synced, defaults to 5m if not set",
-						MarkdownDescription: "how often the folder is synced, defaults to 5m if not set",
+						Description:         "How often the folder is synced, defaults to 5m if not set",
+						MarkdownDescription: "How often the folder is synced, defaults to 5m if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -236,8 +237,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"title": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Display name of the folder in Grafana",
+						MarkdownDescription: "Display name of the folder in Grafana",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"uid": schema.StringAttribute{
+						Description:         "Manually specify the UID the Folder is created with",
+						MarkdownDescription: "Manually specify the UID the Folder is created with",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

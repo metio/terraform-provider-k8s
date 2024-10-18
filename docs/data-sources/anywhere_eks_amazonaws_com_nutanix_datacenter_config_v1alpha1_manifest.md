@@ -85,6 +85,7 @@ Optional:
 
 - `cluster` (Attributes) Cluster is the Prism Element cluster name or uuid that is connected to the Prism Central. (see [below for nested schema](#nestedatt--spec--failure_domains--cluster))
 - `subnets` (Attributes List) Subnets holds the list of subnets identifiers cluster's network subnets. (see [below for nested schema](#nestedatt--spec--failure_domains--subnets))
+- `worker_machine_groups` (List of String) Worker Machine Groups holds the list of worker machine group names that will use this failure domain.
 
 <a id="nestedatt--spec--failure_domains--cluster"></a>
 ### Nested Schema for `spec.failure_domains.cluster`

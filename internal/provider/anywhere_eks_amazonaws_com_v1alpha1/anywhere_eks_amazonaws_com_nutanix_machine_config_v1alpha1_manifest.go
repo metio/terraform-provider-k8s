@@ -53,6 +53,11 @@ type AnywhereEksAmazonawsComNutanixMachineConfigV1Alpha1ManifestData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 			Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
 		} `tfsdk:"cluster" json:"cluster,omitempty"`
+		Gpus *[]struct {
+			DeviceID *int64  `tfsdk:"device_id" json:"deviceID,omitempty"`
+			Name     *string `tfsdk:"name" json:"name,omitempty"`
+			Type     *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"gpus" json:"gpus,omitempty"`
 		Image *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -217,6 +222,44 @@ func (r *AnywhereEksAmazonawsComNutanixMachineConfigV1Alpha1Manifest) Schema(_ c
 						},
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"gpus": schema.ListNestedAttribute{
+						Description:         "List of GPU devices that should be added to the VMs.",
+						MarkdownDescription: "List of GPU devices that should be added to the VMs.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"device_id": schema.Int64Attribute{
+									Description:         "deviceID is the device ID of the GPU device.",
+									MarkdownDescription: "deviceID is the device ID of the GPU device.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "vendorID is the vendor ID of the GPU device.",
+									MarkdownDescription: "vendorID is the vendor ID of the GPU device.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"type": schema.StringAttribute{
+									Description:         "type is the type of the GPU device.",
+									MarkdownDescription: "type is the type of the GPU device.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("deviceID", "name"),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

@@ -225,31 +225,42 @@ Optional:
 
 Optional:
 
-- `csi` (Attributes) Represents a source location of a volume to mount, managed by an external CSI driver (see [below for nested schema](#nestedatt--spec--storage--volume--csi))
-- `empty_dir` (Attributes) Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--storage--volume--empty_dir))
-- `nfs` (Attributes) Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling. (see [below for nested schema](#nestedatt--spec--storage--volume--nfs))
-- `persistent_volume_claim` (Attributes) PersistentVolumeClaimVolumeSource references the user's PVC in the same namespace. This volume finds the bound PV and mounts that volume for the pod. A PersistentVolumeClaimVolumeSource is, essentially, a wrapper around another type of volume that is owned by someone else (the system). (see [below for nested schema](#nestedatt--spec--storage--volume--persistent_volume_claim))
+- `config_map` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--config_map))
+- `csi` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--csi))
+- `empty_dir` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--empty_dir))
+- `nfs` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--nfs))
+- `persistent_volume_claim` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--persistent_volume_claim))
+- `secret` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--secret))
+
+<a id="nestedatt--spec--storage--volume--config_map"></a>
+### Nested Schema for `spec.storage.volume.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `name` (String)
+
 
 <a id="nestedatt--spec--storage--volume--csi"></a>
 ### Nested Schema for `spec.storage.volume.csi`
 
 Required:
 
-- `driver` (String) driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
+- `driver` (String)
 
 Optional:
 
-- `fs_type` (String) fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
-- `node_publish_secret_ref` (Attributes) nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. (see [below for nested schema](#nestedatt--spec--storage--volume--csi--node_publish_secret_ref))
-- `read_only` (Boolean) readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
-- `volume_attributes` (Map of String) volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+- `fs_type` (String)
+- `node_publish_secret_ref` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core. (see [below for nested schema](#nestedatt--spec--storage--volume--csi--node_publish_secret_ref))
+- `read_only` (Boolean)
+- `volume_attributes` (Map of String)
 
 <a id="nestedatt--spec--storage--volume--csi--node_publish_secret_ref"></a>
 ### Nested Schema for `spec.storage.volume.csi.node_publish_secret_ref`
 
 Optional:
 
-- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String)
 
 
 
@@ -258,8 +269,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `medium` (String) StorageMedium defines ways that storage can be allocated to a volume.
+- `size_limit` (String)
 
 
 <a id="nestedatt--spec--storage--volume--nfs"></a>
@@ -267,12 +278,12 @@ Optional:
 
 Required:
 
-- `path` (String) path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
-- `server` (String) server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `path` (String)
+- `server` (String)
 
 Optional:
 
-- `read_only` (Boolean) readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+- `read_only` (Boolean)
 
 
 <a id="nestedatt--spec--storage--volume--persistent_volume_claim"></a>
@@ -280,11 +291,20 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String)
 
 Optional:
 
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--storage--volume--secret"></a>
+### Nested Schema for `spec.storage.volume.secret`
+
+Optional:
+
+- `default_mode` (Number)
+- `secret_name` (String)
 
 
 
@@ -295,7 +315,104 @@ Optional:
 Optional:
 
 - `anti_affinity_enabled` (Boolean) AntiAffinityEnabled configures PodAntiAffinity so each Pod is scheduled in a different Node, enabling HA. Make sure you have at least as many Nodes available as the replicas to not end up with unscheduled Pods.
+- `node_affinity` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core (see [below for nested schema](#nestedatt--spec--affinity--node_affinity))
 - `pod_anti_affinity` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--affinity--node_affinity"></a>
+### Nested Schema for `spec.affinity.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.affinity.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String) A node selector operator is the set of operators that can be used in a node selector requirement.
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity`
@@ -322,27 +439,27 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String) A label selector operator is the set of operators that can be used in a selector requirement.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -357,27 +474,27 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String) A label selector operator is the set of operators that can be used in a selector requirement.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 

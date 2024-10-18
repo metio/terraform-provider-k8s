@@ -103,6 +103,7 @@ type InfraContribFluxcdIoTerraformV1Alpha2ManifestData struct {
 			Url     *string `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"health_checks" json:"healthChecks,omitempty"`
 		Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
+		MaxRetryInterval      *string `tfsdk:"max_retry_interval" json:"maxRetryInterval,omitempty"`
 		Parallelism           *int64  `tfsdk:"parallelism" json:"parallelism,omitempty"`
 		Path                  *string `tfsdk:"path" json:"path,omitempty"`
 		PlanOnly              *bool   `tfsdk:"plan_only" json:"planOnly,omitempty"`
@@ -115,6 +116,7 @@ type InfraContribFluxcdIoTerraformV1Alpha2ManifestData struct {
 			Retries *int64 `tfsdk:"retries" json:"retries,omitempty"`
 		} `tfsdk:"remediation" json:"remediation,omitempty"`
 		RetryInterval     *string `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+		RetryStrategy     *string `tfsdk:"retry_strategy" json:"retryStrategy,omitempty"`
 		RunnerPodTemplate *struct {
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -1481,6 +1483,14 @@ func (r *InfraContribFluxcdIoTerraformV1Alpha2Manifest) Schema(_ context.Context
 						Computed:            false,
 					},
 
+					"max_retry_interval": schema.StringAttribute{
+						Description:         "The maximum requeue duration after a previously failed reconciliation. Only applicable when RetryStrategy is set to ExponentialBackoff. The default value is 24 hours when not specified.",
+						MarkdownDescription: "The maximum requeue duration after a previously failed reconciliation. Only applicable when RetryStrategy is set to ExponentialBackoff. The default value is 24 hours when not specified.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"parallelism": schema.Int64Attribute{
 						Description:         "Parallelism limits the number of concurrent operations of Terraform apply step. Zero (0) means using the default value.",
 						MarkdownDescription: "Parallelism limits the number of concurrent operations of Terraform apply step. Zero (0) means using the default value.",
@@ -1563,6 +1573,17 @@ func (r *InfraContribFluxcdIoTerraformV1Alpha2Manifest) Schema(_ context.Context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"retry_strategy": schema.StringAttribute{
+						Description:         "The strategy to use when retrying a previously failed reconciliation. The default strategy is StaticInterval and the retry interval is based on the RetryInterval value. The ExponentialBackoff strategy uses the formula: 2^reconciliationFailures * RetryInterval with a maximum requeue duration of MaxRetryInterval.",
+						MarkdownDescription: "The strategy to use when retrying a previously failed reconciliation. The default strategy is StaticInterval and the retry interval is based on the RetryInterval value. The ExponentialBackoff strategy uses the formula: 2^reconciliationFailures * RetryInterval with a maximum requeue duration of MaxRetryInterval.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("StaticInterval", "ExponentialBackoff"),
+						},
 					},
 
 					"runner_pod_template": schema.SingleNestedAttribute{

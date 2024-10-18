@@ -86,6 +86,7 @@ Optional:
 - `logging` (Attributes) (see [below for nested schema](#nestedatt--spec--logging))
 - `mount_path` (String)
 - `pod_management_policy` (String)
+- `pools_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--pools_metadata))
 - `priority_class_name` (String)
 - `prometheus_operator` (Boolean)
 - `readiness` (Attributes) (see [below for nested schema](#nestedatt--spec--readiness))
@@ -3458,6 +3459,15 @@ Optional:
 - `quiet` (Boolean)
 
 
+<a id="nestedatt--spec--pools_metadata"></a>
+### Nested Schema for `spec.pools_metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `labels` (Map of String)
+
+
 <a id="nestedatt--spec--readiness"></a>
 ### Nested Schema for `spec.readiness`
 
@@ -3538,6 +3548,8 @@ Optional:
 
 - `console_service_annotations` (Map of String)
 - `console_service_labels` (Map of String)
+- `kes_service_annotations` (Map of String)
+- `kes_service_labels` (Map of String)
 - `minio_service_annotations` (Map of String)
 - `minio_service_labels` (Map of String)
 

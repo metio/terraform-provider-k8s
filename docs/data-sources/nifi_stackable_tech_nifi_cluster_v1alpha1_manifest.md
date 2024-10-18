@@ -81,6 +81,7 @@ Required:
 
 Optional:
 
+- `create_reporting_task_job` (Attributes) This section creates a 'create-reporting-task' Kubernetes Job, which enables the export of Prometheus metrics within NiFi. (see [below for nested schema](#nestedatt--spec--cluster_config--create_reporting_task_job))
 - `extra_volumes` (List of Map of String) Extra volumes similar to '.spec.volumes' on a Pod to mount into every container, this can be useful to for example make client certificates, keytabs or similar things available to processors. These volumes will be mounted into all pods at '/stackable/userdata/{volumename}'. See also the [external files usage guide](https://docs.stackable.tech/home/nightly/nifi/usage_guide/extra-volumes).
 - `host_header_check` (Attributes) Configuration of allowed proxies e.g. load balancers or Kubernetes Ingress. Using a proxy that is not allowed by NiFi results in a failed host header check. (see [below for nested schema](#nestedatt--spec--cluster_config--host_header_check))
 - `listener_class` (String) This field controls which type of Service the Operator creates for this NifiCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.
@@ -122,6 +123,15 @@ Optional:
 
 - `algorithm` (String) This is setting the 'nifi.sensitive.props.algorithm' property in NiFi. This setting configures the encryption algorithm to use to encrypt sensitive properties. Valid values are: 'nifiPbkdf2AesGcm256' (the default value), 'nifiArgon2AesGcm256', The following algorithms are deprecated and will be removed in future versions: 'nifiArgon2AesGcm128', 'nifiBcryptAesGcm128', 'nifiBcryptAesGcm256', 'nifiPbkdf2AesGcm128', 'nifiScryptAesGcm128', 'nifiScryptAesGcm256'. Learn more about the specifics of the algorithm parameters in the [NiFi documentation](https://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#property-encryption-algorithms).
 - `auto_generate` (Boolean) Whether to generate the 'keySecret' if it is missing. Defaults to 'false'.
+
+
+<a id="nestedatt--spec--cluster_config--create_reporting_task_job"></a>
+### Nested Schema for `spec.cluster_config.create_reporting_task_job`
+
+Optional:
+
+- `enabled` (Boolean) Wether the Kubernetes Job should be created, defaults to true. It can be helpful to disable the Job, e.g. when you configOverride an authentication mechanism, which the Job currently can't use to authenticate against NiFi.
+- `pod_overrides` (Map of String) Here you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on the Pod of the create-reporting-task Kubernetes Job. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.
 
 
 <a id="nestedatt--spec--cluster_config--host_header_check"></a>

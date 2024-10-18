@@ -77,6 +77,7 @@ Optional:
 - `file_mappings` (Attributes List) List of all configuration files to be created in initialization. (see [below for nested schema](#nestedatt--spec--file_mappings))
 - `force` (Boolean) Force instructs the controller to unconditionally re-plan and re-apply TF resources. Defaults to false.
 - `health_checks` (Attributes List) List of health checks to be performed. (see [below for nested schema](#nestedatt--spec--health_checks))
+- `max_retry_interval` (String) The maximum requeue duration after a previously failed reconciliation. Only applicable when RetryStrategy is set to ExponentialBackoff. The default value is 24 hours when not specified.
 - `parallelism` (Number) Parallelism limits the number of concurrent operations of Terraform apply step. Zero (0) means using the default value.
 - `path` (String) Path to the directory containing Terraform (.tf) files. Defaults to 'None', which translates to the root path of the SourceRef.
 - `plan_only` (Boolean) PlanOnly specifies if the reconciliation should or should not stop at plan phase.
@@ -84,6 +85,7 @@ Optional:
 - `refresh_before_apply` (Boolean) RefreshBeforeApply forces refreshing of the state before the apply step.
 - `remediation` (Attributes) Remediation specifies what the controller should do when reconciliation fails. The default is to not perform any action. (see [below for nested schema](#nestedatt--spec--remediation))
 - `retry_interval` (String) The interval at which to retry a previously failed reconciliation. The default value is 15 when not specified.
+- `retry_strategy` (String) The strategy to use when retrying a previously failed reconciliation. The default strategy is StaticInterval and the retry interval is based on the RetryInterval value. The ExponentialBackoff strategy uses the formula: 2^reconciliationFailures * RetryInterval with a maximum requeue duration of MaxRetryInterval.
 - `runner_pod_template` (Attributes) (see [below for nested schema](#nestedatt--spec--runner_pod_template))
 - `runner_termination_grace_period_seconds` (Number) Configure the termination grace period for the runner pod. Use this parameter to allow the Terraform process to gracefully shutdown. Consider increasing for large, complex or slow-moving Terraform managed resources.
 - `service_account_name` (String) Name of a ServiceAccount for the runner Pod to provision Terraform resources. Default to tf-runner.

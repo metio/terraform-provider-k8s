@@ -1360,6 +1360,10 @@ type KueueXK8SIoWorkloadV1Beta1ManifestData struct {
 					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"spec" json:"spec,omitempty"`
 			} `tfsdk:"template" json:"template,omitempty"`
+			TopologyRequest *struct {
+				Preferred *string `tfsdk:"preferred" json:"preferred,omitempty"`
+				Required  *string `tfsdk:"required" json:"required,omitempty"`
+			} `tfsdk:"topology_request" json:"topologyRequest,omitempty"`
 		} `tfsdk:"pod_sets" json:"podSets,omitempty"`
 		Priority            *int64  `tfsdk:"priority" json:"priority,omitempty"`
 		PriorityClassName   *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
@@ -10264,6 +10268,31 @@ func (r *KueueXK8SIoWorkloadV1Beta1Manifest) Schema(_ context.Context, _ datasou
 									},
 									Required: true,
 									Optional: false,
+									Computed: false,
+								},
+
+								"topology_request": schema.SingleNestedAttribute{
+									Description:         "topologyRequest defines the topology request for the PodSet.",
+									MarkdownDescription: "topologyRequest defines the topology request for the PodSet.",
+									Attributes: map[string]schema.Attribute{
+										"preferred": schema.StringAttribute{
+											Description:         "preferred indicates the topology level preferred by the PodSet, as indicated by the 'kueue.x-k8s.io/podset-preferred-topology' PodSet annotation.",
+											MarkdownDescription: "preferred indicates the topology level preferred by the PodSet, as indicated by the 'kueue.x-k8s.io/podset-preferred-topology' PodSet annotation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"required": schema.StringAttribute{
+											Description:         "required indicates the topology level required by the PodSet, as indicated by the 'kueue.x-k8s.io/podset-required-topology' PodSet annotation.",
+											MarkdownDescription: "required indicates the topology level required by the PodSet, as indicated by the 'kueue.x-k8s.io/podset-required-topology' PodSet annotation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 							},

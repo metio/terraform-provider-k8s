@@ -65,5 +65,6 @@ Optional:
 
 Optional:
 
-- `one_time_netboot` (Boolean) OneTimeNetboot indicates whether the controller should create a job.bmc.tinkerbell.org object for getting the associated hardware into a netbooting state. A HardwareRef that contains a spec.BmcRef must be provided.
+- `boot_mode` (String) BootMode is the type of booting that will be done.
+- `iso_url` (String) ISOURL is the URL of the ISO that will be one-time booted. When this field is set, the controller will create a job.bmc.tinkerbell.org object for getting the associated hardware into a CDROM booting state. A HardwareRef that contains a spec.BmcRef must be provided.
 - `toggle_allow_netboot` (Boolean) ToggleAllowNetboot indicates whether the controller should toggle the field in the associated hardware for allowing PXE booting. This will be enabled before a Workflow is executed and disabled after the Workflow has completed successfully. A HardwareRef must be provided.

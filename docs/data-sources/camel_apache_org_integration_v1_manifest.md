@@ -3298,7 +3298,7 @@ Optional:
 - `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.
 - `resources` (List of String) A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path
 - `scan_kamelets_implicit_label_secrets` (Boolean) Deprecated: no longer available since version 2.5.
-- `volumes` (List of String) A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]
+- `volumes` (List of String) A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]. If the PVC is not found, the Integration fails. You can use the syntax [pvcname:/container/path:size:accessMode<:storageClass>] to create a dynamic PVC based on the Storage Class provided or the default cluster Storage Class. However, if the PVC exists, the operator would mount it.
 
 
 <a id="nestedatt--spec--traits--openapi"></a>

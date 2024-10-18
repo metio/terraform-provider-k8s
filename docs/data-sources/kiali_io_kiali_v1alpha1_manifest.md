@@ -175,6 +175,7 @@ Optional:
 - `affinity` (Attributes) Affinity definitions that are to be used to define the nodes where the Kiali pod should be constrained. See the Kubernetes documentation on Assigning Pods to Nodes for the proper syntax for these three different affinity types. (see [below for nested schema](#nestedatt--spec--deployment--affinity))
 - `cluster_wide_access` (Boolean) Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.discovery_selectors.default' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and define the desired selectors in 'deployment.discovery_selectors.default'. When not set, this value will default to 'true'.
 - `configmap_annotations` (Map of String) Custom annotations to be created on the Kiali ConfigMap.
+- `custom_envs` (Attributes List) Defines additional environment variables to be set in the Kiali server pod. This is typically used for (but not limited to) setting proxy environment variables such as HTTP_PROXY, HTTPS_PROXY, and/or NO_PROXY. (see [below for nested schema](#nestedatt--spec--deployment--custom_envs))
 - `custom_secrets` (Attributes List) Defines additional secrets that are to be mounted in the Kiali pod. These are useful to contain certs that are used by Kiali to securely connect to third party systems (for example, see 'external_services.tracing.auth.ca_file'). These secrets must be created by an external mechanism. Kiali will not generate these secrets; it is assumed these secrets are externally managed. You can define 0, 1, or more secrets. An example configuration is, ''' custom_secrets: - name: mysecret mount: /mysecret-path - name: my-other-secret mount: /my-other-secret-location optional: true ''' (see [below for nested schema](#nestedatt--spec--deployment--custom_secrets))
 - `discovery_selectors` (Attributes) Discovery selectors used to determine which namespaces are accessible to Kiali and which namespaces are visible to Kiali users. You can define discovery selectors to match namespaces on the local cluster as well as remote clusters. The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC permissions. These selectors will have similar semantics as defined by Istio ( https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig ) and the syntax of the equality-based and set-based label selectors are documented by Kubernetes here ( https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements ) (see [below for nested schema](#nestedatt--spec--deployment--discovery_selectors))
 - `dns` (Attributes) The Kiali server pod's DNS configuration. Kubernetes supports different DNS policies and configurations. For further details, consult the Kubernetes documentation - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/ (see [below for nested schema](#nestedatt--spec--deployment--dns))
@@ -211,6 +212,15 @@ Optional:
 - `node` (Map of String)
 - `pod` (Map of String)
 - `pod_anti` (Map of String)
+
+
+<a id="nestedatt--spec--deployment--custom_envs"></a>
+### Nested Schema for `spec.deployment.custom_envs`
+
+Required:
+
+- `name` (String) The name of the custom environment variable.
+- `value` (String) The value of the custom environment variable.
 
 
 <a id="nestedatt--spec--deployment--custom_secrets"></a>
@@ -591,6 +601,7 @@ Optional:
 
 - `datasource_uid` (String) The unique identifier (uid) of the Tempo datasource in Grafana.
 - `org_id` (String) The Id of the organization that the dashboard is in. Default to 1 (the first and default organization).
+- `url_format` (String) The URL format for the external url. Can be 'jaeger' or 'grafana'. Default to 'grafana'. Grafana will need a Grafana url in the Grafana settings.
 
 
 

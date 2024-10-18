@@ -99,7 +99,11 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 			} `tfsdk:"affinity" json:"affinity,omitempty"`
 			Cluster_wide_access   *bool              `tfsdk:"cluster_wide_access" json:"cluster_wide_access,omitempty"`
 			Configmap_annotations *map[string]string `tfsdk:"configmap_annotations" json:"configmap_annotations,omitempty"`
-			Custom_secrets        *[]struct {
+			Custom_envs           *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"custom_envs" json:"custom_envs,omitempty"`
+			Custom_secrets *[]struct {
 				Csi      *map[string]string `tfsdk:"csi" json:"csi,omitempty"`
 				Mount    *string            `tfsdk:"mount" json:"mount,omitempty"`
 				Name     *string            `tfsdk:"name" json:"name,omitempty"`
@@ -307,6 +311,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Tempo_config       *struct {
 					Datasource_uid *string `tfsdk:"datasource_uid" json:"datasource_uid,omitempty"`
 					Org_id         *string `tfsdk:"org_id" json:"org_id,omitempty"`
+					Url_format     *string `tfsdk:"url_format" json:"url_format,omitempty"`
 				} `tfsdk:"tempo_config" json:"tempo_config,omitempty"`
 				Use_grpc               *bool     `tfsdk:"use_grpc" json:"use_grpc,omitempty"`
 				Whitelist_istio_system *[]string `tfsdk:"whitelist_istio_system" json:"whitelist_istio_system,omitempty"`
@@ -910,6 +915,33 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"custom_envs": schema.ListNestedAttribute{
+								Description:         "Defines additional environment variables to be set in the Kiali server pod. This is typically used for (but not limited to) setting proxy environment variables such as HTTP_PROXY, HTTPS_PROXY, and/or NO_PROXY.",
+								MarkdownDescription: "Defines additional environment variables to be set in the Kiali server pod. This is typically used for (but not limited to) setting proxy environment variables such as HTTP_PROXY, HTTPS_PROXY, and/or NO_PROXY.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "The name of the custom environment variable.",
+											MarkdownDescription: "The name of the custom environment variable.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "The value of the custom environment variable.",
+											MarkdownDescription: "The value of the custom environment variable.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"custom_secrets": schema.ListNestedAttribute{
@@ -2405,6 +2437,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 											"org_id": schema.StringAttribute{
 												Description:         "The Id of the organization that the dashboard is in. Default to 1 (the first and default organization).",
 												MarkdownDescription: "The Id of the organization that the dashboard is in. Default to 1 (the first and default organization).",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"url_format": schema.StringAttribute{
+												Description:         "The URL format for the external url. Can be 'jaeger' or 'grafana'. Default to 'grafana'. Grafana will need a Grafana url in the Grafana settings.",
+												MarkdownDescription: "The URL format for the external url. Can be 'jaeger' or 'grafana'. Default to 'grafana'. Grafana will need a Grafana url in the Grafana settings.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

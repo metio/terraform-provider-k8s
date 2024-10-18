@@ -1336,11 +1336,12 @@ type AppsKubeblocksIoClusterV1ManifestData struct {
 				WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 			} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		} `tfsdk:"scheduling_policy" json:"schedulingPolicy,omitempty"`
-		Services      *map[string]string `tfsdk:"services" json:"services,omitempty"`
-		ShardingSpecs *[]struct {
-			Name     *string `tfsdk:"name" json:"name,omitempty"`
-			Shards   *int64  `tfsdk:"shards" json:"shards,omitempty"`
-			Template *struct {
+		Services  *map[string]string `tfsdk:"services" json:"services,omitempty"`
+		Shardings *[]struct {
+			Name        *string `tfsdk:"name" json:"name,omitempty"`
+			ShardingDef *string `tfsdk:"sharding_def" json:"shardingDef,omitempty"`
+			Shards      *int64  `tfsdk:"shards" json:"shards,omitempty"`
+			Template    *struct {
 				Annotations  *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				ComponentDef *string            `tfsdk:"component_def" json:"componentDef,omitempty"`
 				Configs      *[]struct {
@@ -2460,7 +2461,7 @@ type AppsKubeblocksIoClusterV1ManifestData struct {
 					} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 				} `tfsdk:"volumes" json:"volumes,omitempty"`
 			} `tfsdk:"template" json:"template,omitempty"`
-		} `tfsdk:"sharding_specs" json:"shardingSpecs,omitempty"`
+		} `tfsdk:"shardings" json:"shardings,omitempty"`
 		TerminationPolicy *string `tfsdk:"termination_policy" json:"terminationPolicy,omitempty"`
 		Topology          *string `tfsdk:"topology" json:"topology,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -2625,8 +2626,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"component_specs": schema.ListNestedAttribute{
-						Description:         "Specifies a list of ClusterComponentSpec objects used to define the individual Components that make up a Cluster. This field allows for detailed configuration of each Component within the Cluster. Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
-						MarkdownDescription: "Specifies a list of ClusterComponentSpec objects used to define the individual Components that make up a Cluster. This field allows for detailed configuration of each Component within the Cluster. Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
+						Description:         "Specifies a list of ClusterComponentSpec objects used to define the individual Components that make up a Cluster. This field allows for detailed configuration of each Component within the Cluster. Note: 'shardings' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
+						MarkdownDescription: "Specifies a list of ClusterComponentSpec objects used to define the individual Components that make up a Cluster. This field allows for detailed configuration of each Component within the Cluster. Note: 'shardings' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"annotations": schema.MapAttribute{
@@ -6524,8 +6525,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.",
-									MarkdownDescription: "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.",
+									Description:         "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'clusterSharding'), but required otherwise.",
+									MarkdownDescription: "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'clusterSharding'), but required otherwise.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -11282,22 +11283,22 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"services": schema.MapAttribute{
-						Description:         "Defines a list of additional Services that are exposed by a Cluster. This field allows Services of selected Components, either from 'componentSpecs' or 'shardingSpecs' to be exposed, alongside Services defined with ComponentService. Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
-						MarkdownDescription: "Defines a list of additional Services that are exposed by a Cluster. This field allows Services of selected Components, either from 'componentSpecs' or 'shardingSpecs' to be exposed, alongside Services defined with ComponentService. Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
+						Description:         "Defines a list of additional Services that are exposed by a Cluster. This field allows Services of selected Components, either from 'componentSpecs' or 'shardings' to be exposed, alongside Services defined with ComponentService. Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
+						MarkdownDescription: "Defines a list of additional Services that are exposed by a Cluster. This field allows Services of selected Components, either from 'componentSpecs' or 'shardings' to be exposed, alongside Services defined with ComponentService. Services defined here can be referenced by other clusters using the ServiceRefClusterSelector.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
-					"sharding_specs": schema.ListNestedAttribute{
-						Description:         "Specifies a list of ShardingSpec objects that manage the sharding topology for Cluster Components. Each ShardingSpec organizes components into shards, with each shard corresponding to a Component. Components within a shard are all based on a common ClusterComponentSpec template, ensuring uniform configurations. This field supports dynamic resharding by facilitating the addition or removal of shards through the 'shards' field in ShardingSpec. Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
-						MarkdownDescription: "Specifies a list of ShardingSpec objects that manage the sharding topology for Cluster Components. Each ShardingSpec organizes components into shards, with each shard corresponding to a Component. Components within a shard are all based on a common ClusterComponentSpec template, ensuring uniform configurations. This field supports dynamic resharding by facilitating the addition or removal of shards through the 'shards' field in ShardingSpec. Note: 'shardingSpecs' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
+					"shardings": schema.ListNestedAttribute{
+						Description:         "Specifies a list of ClusterSharding objects that manage the sharding topology for Cluster Components. Each ClusterSharding organizes components into shards, with each shard corresponding to a Component. Components within a shard are all based on a common ClusterComponentSpec template, ensuring uniform configurations. This field supports dynamic resharding by facilitating the addition or removal of shards through the 'shards' field in ClusterSharding. Note: 'shardings' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
+						MarkdownDescription: "Specifies a list of ClusterSharding objects that manage the sharding topology for Cluster Components. Each ClusterSharding organizes components into shards, with each shard corresponding to a Component. Components within a shard are all based on a common ClusterComponentSpec template, ensuring uniform configurations. This field supports dynamic resharding by facilitating the addition or removal of shards through the 'shards' field in ClusterSharding. Note: 'shardings' and 'componentSpecs' cannot both be empty; at least one must be defined to configure a Cluster.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting Component name would be 'my-shard-abc'. Note that the name defined in Component template('shardingSpec.template.name') will be disregarded when generating the Component names of the shards. The 'shardingSpec.name' field takes precedence.",
-									MarkdownDescription: "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(shardingSpec.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting Component name would be 'my-shard-abc'. Note that the name defined in Component template('shardingSpec.template.name') will be disregarded when generating the Component names of the shards. The 'shardingSpec.name' field takes precedence.",
+									Description:         "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(clusterSharding.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting Component name would be 'my-shard-abc'. Note that the name defined in Component template('clusterSharding.template.name') will be disregarded when generating the Component names of the shards. The 'clusterSharding.name' field takes precedence.",
+									MarkdownDescription: "Represents the common parent part of all shard names. This identifier is included as part of the Service DNS name and must comply with IANA service naming rules. It is used to generate the names of underlying Components following the pattern '$(clusterSharding.name)-$(ShardID)'. ShardID is a random string that is appended to the Name to generate unique identifiers for each shard. For example, if the sharding specification name is 'my-shard' and the ShardID is 'abc', the resulting Component name would be 'my-shard-abc'. Note that the name defined in Component template('clusterSharding.template.name') will be disregarded when generating the Component names of the shards. The 'clusterSharding.name' field takes precedence.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -11307,9 +11308,20 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									},
 								},
 
+								"sharding_def": schema.StringAttribute{
+									Description:         "Specifies the ShardingDefinition custom resource (CR) that defines the sharding's characteristics and behavior. The full name or regular expression is supported to match the ShardingDefinition.",
+									MarkdownDescription: "Specifies the ShardingDefinition custom resource (CR) that defines the sharding's characteristics and behavior. The full name or regular expression is supported to match the ShardingDefinition.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(64),
+									},
+								},
+
 								"shards": schema.Int64Attribute{
-									Description:         "Specifies the desired number of shards. Users can declare the desired number of shards through this field. KubeBlocks dynamically creates and deletes Components based on the difference between the desired and actual number of shards. KubeBlocks provides lifecycle management for sharding, including: - Executing the postProvision Action defined in the ComponentDefinition when the number of shards increases. This allows for custom actions to be performed after a new shard is provisioned. - Executing the preTerminate Action defined in the ComponentDefinition when the number of shards decreases. This enables custom cleanup or data migration tasks to be executed before a shard is terminated. Resources and data associated with the corresponding Component will also be deleted.",
-									MarkdownDescription: "Specifies the desired number of shards. Users can declare the desired number of shards through this field. KubeBlocks dynamically creates and deletes Components based on the difference between the desired and actual number of shards. KubeBlocks provides lifecycle management for sharding, including: - Executing the postProvision Action defined in the ComponentDefinition when the number of shards increases. This allows for custom actions to be performed after a new shard is provisioned. - Executing the preTerminate Action defined in the ComponentDefinition when the number of shards decreases. This enables custom cleanup or data migration tasks to be executed before a shard is terminated. Resources and data associated with the corresponding Component will also be deleted.",
+									Description:         "Specifies the desired number of shards. Users can declare the desired number of shards through this field. KubeBlocks dynamically creates and deletes Components based on the difference between the desired and actual number of shards. KubeBlocks provides lifecycle management for sharding, including: - Executing the shardProvision Action defined in the ShardingDefinition when the number of shards increases. This allows for custom actions to be performed after a new shard is provisioned. - Executing the shardTerminate Action defined in the ShardingDefinition when the number of shards decreases. This enables custom cleanup or data migration tasks to be executed before a shard is terminated. Resources and data associated with the corresponding Component will also be deleted.",
+									MarkdownDescription: "Specifies the desired number of shards. Users can declare the desired number of shards through this field. KubeBlocks dynamically creates and deletes Components based on the difference between the desired and actual number of shards. KubeBlocks provides lifecycle management for sharding, including: - Executing the shardProvision Action defined in the ShardingDefinition when the number of shards increases. This allows for custom actions to be performed after a new shard is provisioned. - Executing the shardTerminate Action defined in the ShardingDefinition when the number of shards decreases. This enables custom cleanup or data migration tasks to be executed before a shard is terminated. Resources and data associated with the corresponding Component will also be deleted.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -11320,8 +11332,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"template": schema.SingleNestedAttribute{
-									Description:         "The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components or shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field. This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components.",
-									MarkdownDescription: "The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components or shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field. This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components.",
+									Description:         "The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components of shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field. This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components.",
+									MarkdownDescription: "The template for generating Components for shards, where each shard consists of one Component. This field is of type ClusterComponentSpec, which encapsulates all the required details and definitions for creating and managing the Components. KubeBlocks uses this template to generate a set of identical Components of shards. All the generated Components will have the same specifications and definitions as specified in the 'template' field. This allows for the creation of multiple Components with consistent configurations, enabling sharding and distribution of workloads across Components.",
 									Attributes: map[string]schema.Attribute{
 										"annotations": schema.MapAttribute{
 											Description:         "Specifies Annotations to override or add for underlying Pods, PVCs, Account & TLS Secrets, Services Owned by Component.",
@@ -15218,8 +15230,8 @@ func (r *AppsKubeblocksIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.",
-											MarkdownDescription: "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'shardingSpec'), but required otherwise.",
+											Description:         "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'clusterSharding'), but required otherwise.",
+											MarkdownDescription: "Specifies the Component's name. It's part of the Service DNS name and must comply with the IANA service naming rule. The name is optional when ClusterComponentSpec is used as a template (e.g., in 'clusterSharding'), but required otherwise.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

@@ -665,7 +665,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
 				Pvc *struct {
-					Source *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Source      *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 					} `tfsdk:"source" json:"source,omitempty"`
@@ -720,6 +722,35 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"buffer_volume_image" json:"bufferVolumeImage,omitempty"`
+			BufferVolumeLivenessProbe *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TcpSocket           *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"buffer_volume_liveness_probe" json:"bufferVolumeLivenessProbe,omitempty"`
 			BufferVolumeMetrics *struct {
 				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
 				Path                    *string `tfsdk:"path" json:"path,omitempty"`
@@ -1194,7 +1225,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
 				Pvc *struct {
-					Source *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Source      *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 					} `tfsdk:"source" json:"source,omitempty"`
@@ -1548,7 +1581,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
 				Pvc *struct {
-					Source *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Source      *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 					} `tfsdk:"source" json:"source,omitempty"`
@@ -1603,6 +1638,35 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"buffer_volume_image" json:"bufferVolumeImage,omitempty"`
+			BufferVolumeLivenessProbe *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TcpSocket           *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"buffer_volume_liveness_probe" json:"bufferVolumeLivenessProbe,omitempty"`
 			BufferVolumeMetrics *struct {
 				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
 				Path                    *string `tfsdk:"path" json:"path,omitempty"`
@@ -1781,7 +1845,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"host_path" json:"hostPath,omitempty"`
 					Pvc *struct {
-						Source *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Source      *struct {
 							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
@@ -1856,7 +1922,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
 				Pvc *struct {
-					Source *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Source      *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 					} `tfsdk:"source" json:"source,omitempty"`
@@ -3039,7 +3107,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"host_path" json:"hostPath,omitempty"`
 					Pvc *struct {
-						Source *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Source      *struct {
 							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
@@ -4649,7 +4719,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"host_path" json:"hostPath,omitempty"`
 					Pvc *struct {
-						Source *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Source      *struct {
 							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
@@ -4882,6 +4954,43 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"buffer_volume_metrics_image" json:"bufferVolumeMetricsImage,omitempty"`
+			BufferVolumeMetricsLivenessProbe *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TcpSocket           *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"buffer_volume_metrics_liveness_probe" json:"bufferVolumeMetricsLivenessProbe,omitempty"`
+			BufferVolumeMetricsResources *struct {
+				Claims *[]struct {
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
+				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+			} `tfsdk:"buffer_volume_metrics_resources" json:"bufferVolumeMetricsResources,omitempty"`
 			BufferVolumeMetricsService *struct {
 				Metadata *struct {
 					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -12168,6 +12277,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"source": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -12525,6 +12652,199 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"tag": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"buffer_volume_liveness_probe": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -15849,6 +16169,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"source": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -18221,6 +18559,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"source": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -18578,6 +18934,199 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"tag": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"buffer_volume_liveness_probe": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -19820,6 +20369,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"source": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -20317,6 +20884,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"source": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -28458,6 +29043,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"source": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -39391,6 +39994,24 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"source": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -40993,6 +41614,253 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									"tag": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"buffer_volume_metrics_liveness_probe": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"buffer_volume_metrics_resources": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"limits": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"requests": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

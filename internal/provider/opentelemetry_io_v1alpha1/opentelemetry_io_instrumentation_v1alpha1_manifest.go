@@ -174,6 +174,13 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 		} `tfsdk:"env" json:"env,omitempty"`
 		Exporter *struct {
 			Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Tls      *struct {
+				Ca_file       *string `tfsdk:"ca_file" json:"ca_file,omitempty"`
+				Cert_file     *string `tfsdk:"cert_file" json:"cert_file,omitempty"`
+				ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+				Key_file      *string `tfsdk:"key_file" json:"key_file,omitempty"`
+				SecretName    *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"exporter" json:"exporter,omitempty"`
 		Go *struct {
 			Env *[]struct {
@@ -1320,6 +1327,55 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"tls": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"ca_file": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cert_file": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"config_map_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_file": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"secret_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

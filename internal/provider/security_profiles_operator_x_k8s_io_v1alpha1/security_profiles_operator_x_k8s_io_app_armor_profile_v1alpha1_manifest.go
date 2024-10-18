@@ -43,6 +43,27 @@ type SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Abstract *struct {
+			Capability *struct {
+				AllowedCapabilities *[]string `tfsdk:"allowed_capabilities" json:"allowedCapabilities,omitempty"`
+			} `tfsdk:"capability" json:"capability,omitempty"`
+			Executable *struct {
+				AllowedExecutables *[]string `tfsdk:"allowed_executables" json:"allowedExecutables,omitempty"`
+				AllowedLibraries   *[]string `tfsdk:"allowed_libraries" json:"allowedLibraries,omitempty"`
+			} `tfsdk:"executable" json:"executable,omitempty"`
+			Filesystem *struct {
+				ReadOnlyPaths  *[]string `tfsdk:"read_only_paths" json:"readOnlyPaths,omitempty"`
+				ReadWritePaths *[]string `tfsdk:"read_write_paths" json:"readWritePaths,omitempty"`
+				WriteOnlyPaths *[]string `tfsdk:"write_only_paths" json:"writeOnlyPaths,omitempty"`
+			} `tfsdk:"filesystem" json:"filesystem,omitempty"`
+			Network *struct {
+				AllowRaw         *bool `tfsdk:"allow_raw" json:"allowRaw,omitempty"`
+				AllowedProtocols *struct {
+					AllowTcp *bool `tfsdk:"allow_tcp" json:"allowTcp,omitempty"`
+					AllowUdp *bool `tfsdk:"allow_udp" json:"allowUdp,omitempty"`
+				} `tfsdk:"allowed_protocols" json:"allowedProtocols,omitempty"`
+			} `tfsdk:"network" json:"network,omitempty"`
+		} `tfsdk:"abstract" json:"abstract,omitempty"`
 		Policy *string `tfsdk:"policy" json:"policy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -124,11 +145,143 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 				Description:         "AppArmorProfileSpec defines the desired state of AppArmorProfile",
 				MarkdownDescription: "AppArmorProfileSpec defines the desired state of AppArmorProfile",
 				Attributes: map[string]schema.Attribute{
+					"abstract": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"capability": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allowed_capabilities": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"executable": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allowed_executables": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"allowed_libraries": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"filesystem": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"read_only_paths": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"read_write_paths": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"write_only_paths": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"network": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allow_raw": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"allowed_protocols": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"allow_tcp": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"allow_udp": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"policy": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 				},

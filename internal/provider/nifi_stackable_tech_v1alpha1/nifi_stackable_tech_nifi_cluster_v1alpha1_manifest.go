@@ -52,6 +52,10 @@ type NifiStackableTechNifiClusterV1Alpha1ManifestData struct {
 					ExtraScopes             *[]string `tfsdk:"extra_scopes" json:"extraScopes,omitempty"`
 				} `tfsdk:"oidc" json:"oidc,omitempty"`
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
+			CreateReportingTaskJob *struct {
+				Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			} `tfsdk:"create_reporting_task_job" json:"createReportingTaskJob,omitempty"`
 			ExtraVolumes    *[]map[string]string `tfsdk:"extra_volumes" json:"extraVolumes,omitempty"`
 			HostHeaderCheck *struct {
 				AdditionalAllowedHosts *[]string `tfsdk:"additional_allowed_hosts" json:"additionalAllowedHosts,omitempty"`
@@ -424,6 +428,32 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 								},
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"create_reporting_task_job": schema.SingleNestedAttribute{
+								Description:         "This section creates a 'create-reporting-task' Kubernetes Job, which enables the export of Prometheus metrics within NiFi.",
+								MarkdownDescription: "This section creates a 'create-reporting-task' Kubernetes Job, which enables the export of Prometheus metrics within NiFi.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Wether the Kubernetes Job should be created, defaults to true. It can be helpful to disable the Job, e.g. when you configOverride an authentication mechanism, which the Job currently can't use to authenticate against NiFi.",
+										MarkdownDescription: "Wether the Kubernetes Job should be created, defaults to true. It can be helpful to disable the Job, e.g. when you configOverride an authentication mechanism, which the Job currently can't use to authenticate against NiFi.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pod_overrides": schema.MapAttribute{
+										Description:         "Here you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on the Pod of the create-reporting-task Kubernetes Job. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
+										MarkdownDescription: "Here you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on the Pod of the create-reporting-task Kubernetes Job. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 

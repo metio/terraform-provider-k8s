@@ -67,6 +67,7 @@ type SqsServicesK8SAwsQueueV1Alpha1ManifestData struct {
 		ReceiveMessageWaitTimeSeconds *string            `tfsdk:"receive_message_wait_time_seconds" json:"receiveMessageWaitTimeSeconds,omitempty"`
 		RedriveAllowPolicy            *string            `tfsdk:"redrive_allow_policy" json:"redriveAllowPolicy,omitempty"`
 		RedrivePolicy                 *string            `tfsdk:"redrive_policy" json:"redrivePolicy,omitempty"`
+		SqsManagedSSEEnabled          *string            `tfsdk:"sqs_managed_sse_enabled" json:"sqsManagedSSEEnabled,omitempty"`
 		Tags                          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		VisibilityTimeout             *string            `tfsdk:"visibility_timeout" json:"visibilityTimeout,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -306,6 +307,14 @@ func (r *SqsServicesK8SAwsQueueV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"redrive_policy": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"sqs_managed_sse_enabled": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

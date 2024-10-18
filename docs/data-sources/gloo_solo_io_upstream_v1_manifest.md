@@ -96,6 +96,7 @@ Optional:
 
 - `anthropic` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--anthropic))
 - `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--azure_openai))
+- `gemini` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--gemini))
 - `mistral` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--mistral))
 - `multi` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi))
 - `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--openai))
@@ -167,6 +168,34 @@ Optional:
 
 
 
+<a id="nestedatt--spec--ai--gemini"></a>
+### Nested Schema for `spec.ai.gemini`
+
+Optional:
+
+- `api_version` (String)
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--gemini--auth_token))
+- `model` (String)
+
+<a id="nestedatt--spec--ai--gemini--auth_token"></a>
+### Nested Schema for `spec.ai.gemini.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--gemini--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--gemini--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.gemini.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+
 <a id="nestedatt--spec--ai--mistral"></a>
 ### Nested Schema for `spec.ai.mistral`
 
@@ -225,6 +254,7 @@ Optional:
 
 - `anthropic` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--anthropic))
 - `azure_openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--azure_openai))
+- `gemini` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--gemini))
 - `mistral` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--mistral))
 - `openai` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--openai))
 
@@ -286,6 +316,34 @@ Optional:
 
 <a id="nestedatt--spec--ai--multi--priorities--pool--azure_openai--auth_token--secret_ref"></a>
 ### Nested Schema for `spec.ai.multi.priorities.pool.azure_openai.auth_token.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--gemini"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.gemini`
+
+Optional:
+
+- `api_version` (String)
+- `auth_token` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--gemini--auth_token))
+- `model` (String)
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--gemini--auth_token"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.gemini.auth_token`
+
+Optional:
+
+- `inline` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ai--multi--priorities--pool--gemini--auth_token--secret_ref))
+
+<a id="nestedatt--spec--ai--multi--priorities--pool--gemini--auth_token--secret_ref"></a>
+### Nested Schema for `spec.ai.multi.priorities.pool.gemini.auth_token.secret_ref`
 
 Optional:
 

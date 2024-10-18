@@ -56,6 +56,7 @@ type KueueXK8SIoResourceFlavorV1Beta1ManifestData struct {
 			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+		TopologyName *string `tfsdk:"topology_name" json:"topologyName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -228,6 +229,14 @@ func (r *KueueXK8SIoResourceFlavorV1Beta1Manifest) Schema(_ context.Context, _ d
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"topology_name": schema.StringAttribute{
+						Description:         "topologyName indicates topology for the TAS ResourceFlavor. When specified, it enables scraping of the topology information from the nodes matching to the Resource Flavor node labels.",
+						MarkdownDescription: "topologyName indicates topology for the TAS ResourceFlavor. When specified, it enables scraping of the topology information from the nodes matching to the Resource Flavor node labels.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

@@ -45,7 +45,38 @@ type K8SMariadbComRestoreV1Alpha1ManifestData struct {
 	Spec *struct {
 		Affinity *struct {
 			AntiAffinityEnabled *bool `tfsdk:"anti_affinity_enabled" json:"antiAffinityEnabled,omitempty"`
-			PodAntiAffinity     *struct {
+			NodeAffinity        *struct {
+				PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+					Preference *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchFields *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+					} `tfsdk:"preference" json:"preference,omitempty"`
+					Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+				} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				RequiredDuringSchedulingIgnoredDuringExecution *struct {
+					NodeSelectorTerms *[]struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchFields *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+					} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+			} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+			PodAntiAffinity *struct {
 				PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 					PodAffinityTerm *struct {
 						LabelSelector *struct {
@@ -172,6 +203,10 @@ type K8SMariadbComRestoreV1Alpha1ManifestData struct {
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		Volume *struct {
+			ConfigMap *struct {
+				DefaultMode *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"config_map" json:"configMap,omitempty"`
 			Csi *struct {
 				Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
 				FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
@@ -194,6 +229,10 @@ type K8SMariadbComRestoreV1Alpha1ManifestData struct {
 				ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 				ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 			} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+			Secret *struct {
+				DefaultMode *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+				SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+			} `tfsdk:"secret" json:"secret,omitempty"`
 		} `tfsdk:"volume" json:"volume,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -287,6 +326,207 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Computed:            false,
 							},
 
+							"node_affinity": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+								Attributes: map[string]schema.Attribute{
+									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"preference": schema.SingleNestedAttribute{
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_fields": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+
+												"weight": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+										Attributes: map[string]schema.Attribute{
+											"node_selector_terms": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_fields": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_anti_affinity": schema.SingleNestedAttribute{
 								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
 								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
@@ -301,33 +541,33 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-															MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "A label selector operator is the set of operators that can be used in a selector requirement.",
+																				MarkdownDescription: "A label selector operator is the set of operators that can be used in a selector requirement.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -341,8 +581,8 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -387,33 +627,33 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-													MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "A label selector operator is the set of operators that can be used in a selector requirement.",
+																		MarkdownDescription: "A label selector operator is the set of operators that can be used in a selector requirement.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -427,8 +667,8 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1140,33 +1380,58 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Description:         "Volume is a Kubernetes Volume object that contains a backup.",
 						MarkdownDescription: "Volume is a Kubernetes Volume object that contains a backup.",
 						Attributes: map[string]schema.Attribute{
+							"config_map": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"default_mode": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"csi": schema.SingleNestedAttribute{
-								Description:         "Represents a source location of a volume to mount, managed by an external CSI driver",
-								MarkdownDescription: "Represents a source location of a volume to mount, managed by an external CSI driver",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"driver": schema.StringAttribute{
-										Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
-										MarkdownDescription: "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"fs_type": schema.StringAttribute{
-										Description:         "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
-										MarkdownDescription: "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"node_publish_secret_ref": schema.SingleNestedAttribute{
-										Description:         "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
-										MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1178,16 +1443,16 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"read_only": schema.BoolAttribute{
-										Description:         "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
-										MarkdownDescription: "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"volume_attributes": schema.MapAttribute{
-										Description:         "volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
-										MarkdownDescription: "volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1200,20 +1465,20 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"empty_dir": schema.SingleNestedAttribute{
-								Description:         "Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling.",
-								MarkdownDescription: "Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"medium": schema.StringAttribute{
-										Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-										MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+										Description:         "StorageMedium defines ways that storage can be allocated to a volume.",
+										MarkdownDescription: "StorageMedium defines ways that storage can be allocated to a volume.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"size_limit": schema.StringAttribute{
-										Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-										MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1225,28 +1490,28 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"nfs": schema.SingleNestedAttribute{
-								Description:         "Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling.",
-								MarkdownDescription: "Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"path": schema.StringAttribute{
-										Description:         "path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-										MarkdownDescription: "path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"read_only": schema.BoolAttribute{
-										Description:         "readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-										MarkdownDescription: "readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"server": schema.StringAttribute{
-										Description:         "server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-										MarkdownDescription: "server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1258,20 +1523,45 @@ func (r *K8SMariadbComRestoreV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"persistent_volume_claim": schema.SingleNestedAttribute{
-								Description:         "PersistentVolumeClaimVolumeSource references the user's PVC in the same namespace. This volume finds the bound PV and mounts that volume for the pod. A PersistentVolumeClaimVolumeSource is, essentially, a wrapper around another type of volume that is owned by someone else (the system).",
-								MarkdownDescription: "PersistentVolumeClaimVolumeSource references the user's PVC in the same namespace. This volume finds the bound PV and mounts that volume for the pod. A PersistentVolumeClaimVolumeSource is, essentially, a wrapper around another type of volume that is owned by someone else (the system).",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"claim_name": schema.StringAttribute{
-										Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-										MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"read_only": schema.BoolAttribute{
-										Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
-										MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secret": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"default_mode": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"secret_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

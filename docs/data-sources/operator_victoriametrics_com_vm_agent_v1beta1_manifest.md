@@ -165,8 +165,10 @@ Optional:
 
 - `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth))
 - `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--bearer_token_secret))
+- `force_vm_proto` (Boolean) ForceVMProto forces using VictoriaMetrics protocol for sending data to -remoteWrite.url
 - `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName: headerValue vmagent supports since 1.79.0 version
 - `inline_url_relabel_config` (Attributes List) InlineUrlRelabelConfig defines relabeling config for remoteWriteURL, it can be defined at crd spec. (see [below for nested schema](#nestedatt--spec--remote_write--inline_url_relabel_config))
+- `max_disk_usage` (String) MaxDiskUsage defines the maximum file-based buffer size in bytes for -remoteWrite.url
 - `oauth2` (Attributes) OAuth2 defines auth configuration (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
 - `send_timeout` (String) Timeout for sending a single block of data to -remoteWrite.url (default 1m0s)
 - `stream_aggr_config` (Attributes) StreamAggrConfig defines stream aggregation configuration for VMAgent for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config))

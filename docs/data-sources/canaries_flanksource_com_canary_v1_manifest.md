@@ -94,7 +94,7 @@ Optional:
 - `postgres` (Attributes List) (see [below for nested schema](#nestedatt--spec--postgres))
 - `prometheus` (Attributes List) (see [below for nested schema](#nestedatt--spec--prometheus))
 - `redis` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis))
-- `replicas` (Number)
+- `replicas` (Number) Replicas pauses the canary if = 0.
 - `restic` (Attributes List) (see [below for nested schema](#nestedatt--spec--restic))
 - `result_mode` (String)
 - `s3` (Attributes List) (see [below for nested schema](#nestedatt--spec--s3))

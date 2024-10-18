@@ -50,16 +50,19 @@ type DataFluidIoJindoRuntimeV1Alpha1ManifestData struct {
 			MaxRetryAttempts   *int64 `tfsdk:"max_retry_attempts" json:"maxRetryAttempts,omitempty"`
 		} `tfsdk:"clean_cache_policy" json:"cleanCachePolicy,omitempty"`
 		Fuse *struct {
-			Args            *[]string          `tfsdk:"args" json:"args,omitempty"`
-			CleanPolicy     *string            `tfsdk:"clean_policy" json:"cleanPolicy,omitempty"`
-			Disabled        *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
-			Env             *map[string]string `tfsdk:"env" json:"env,omitempty"`
-			Image           *string            `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			ImageTag        *string            `tfsdk:"image_tag" json:"imageTag,omitempty"`
-			Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			LogConfig       *map[string]string `tfsdk:"log_config" json:"logConfig,omitempty"`
-			Metrics         *struct {
+			Args             *[]string          `tfsdk:"args" json:"args,omitempty"`
+			CleanPolicy      *string            `tfsdk:"clean_policy" json:"cleanPolicy,omitempty"`
+			Disabled         *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Image            *string            `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy  *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			ImageTag  *string            `tfsdk:"image_tag" json:"imageTag,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LogConfig *map[string]string `tfsdk:"log_config" json:"logConfig,omitempty"`
+			Metrics   *struct {
 				Enabled      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 				ScrapeTarget *string `tfsdk:"scrape_target" json:"scrapeTarget,omitempty"`
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
@@ -84,7 +87,10 @@ type DataFluidIoJindoRuntimeV1Alpha1ManifestData struct {
 				Value             *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		} `tfsdk:"fuse" json:"fuse,omitempty"`
-		HadoopConfig *string `tfsdk:"hadoop_config" json:"hadoopConfig,omitempty"`
+		HadoopConfig     *string `tfsdk:"hadoop_config" json:"hadoopConfig,omitempty"`
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		JindoVersion *struct {
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -93,8 +99,11 @@ type DataFluidIoJindoRuntimeV1Alpha1ManifestData struct {
 		Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		LogConfig *map[string]string `tfsdk:"log_config" json:"logConfig,omitempty"`
 		Master    *struct {
-			Disabled     *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Disabled         *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodMetadata  *struct {
@@ -759,8 +768,11 @@ type DataFluidIoJindoRuntimeV1Alpha1ManifestData struct {
 			} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 		} `tfsdk:"volumes" json:"volumes,omitempty"`
 		Worker *struct {
-			Disabled     *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Disabled         *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodMetadata  *struct {
@@ -950,6 +962,25 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"image_tag": schema.StringAttribute{
@@ -1158,6 +1189,25 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Computed:            false,
 					},
 
+					"image_pull_secrets": schema.ListNestedAttribute{
+						Description:         "ImagePullSecrets that will be used to pull images",
+						MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"jindo_version": schema.SingleNestedAttribute{
 						Description:         "The version information that instructs fluid to orchestrate a particular version of Jindo.",
 						MarkdownDescription: "The version information that instructs fluid to orchestrate a particular version of Jindo.",
@@ -1228,6 +1278,25 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"labels": schema.MapAttribute{
@@ -5710,6 +5779,25 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"labels": schema.MapAttribute{

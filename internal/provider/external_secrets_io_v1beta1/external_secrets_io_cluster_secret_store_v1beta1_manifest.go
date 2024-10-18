@@ -461,6 +461,7 @@ type ExternalSecretsIoClusterSecretStoreV1Beta1ManifestData struct {
 				SecretsScope *struct {
 					EnvironmentSlug *string `tfsdk:"environment_slug" json:"environmentSlug,omitempty"`
 					ProjectSlug     *string `tfsdk:"project_slug" json:"projectSlug,omitempty"`
+					Recursive       *bool   `tfsdk:"recursive" json:"recursive,omitempty"`
 					SecretsPath     *string `tfsdk:"secrets_path" json:"secretsPath,omitempty"`
 				} `tfsdk:"secrets_scope" json:"secretsScope,omitempty"`
 			} `tfsdk:"infisical" json:"infisical,omitempty"`
@@ -3666,6 +3667,14 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
+												Computed:            false,
+											},
+
+											"recursive": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 

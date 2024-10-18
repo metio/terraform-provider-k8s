@@ -250,6 +250,7 @@ type OperatorKnativeDevKnativeServingV1Beta1ManifestData struct {
 						} `tfsdk:"port" json:"port,omitempty"`
 						Tls *struct {
 							CredentialName *string `tfsdk:"credential_name" json:"credentialName,omitempty"`
+							HttpsRedirect  *bool   `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
 							Mode           *string `tfsdk:"mode" json:"mode,omitempty"`
 						} `tfsdk:"tls" json:"tls,omitempty"`
 					} `tfsdk:"servers" json:"servers,omitempty"`
@@ -266,6 +267,7 @@ type OperatorKnativeDevKnativeServingV1Beta1ManifestData struct {
 						} `tfsdk:"port" json:"port,omitempty"`
 						Tls *struct {
 							CredentialName *string `tfsdk:"credential_name" json:"credentialName,omitempty"`
+							HttpsRedirect  *bool   `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
 							Mode           *string `tfsdk:"mode" json:"mode,omitempty"`
 						} `tfsdk:"tls" json:"tls,omitempty"`
 					} `tfsdk:"servers" json:"servers,omitempty"`
@@ -1954,6 +1956,14 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Schema(_ context.Conte
 																	Computed:            false,
 																},
 
+																"https_redirect": schema.BoolAttribute{
+																	Description:         "If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.",
+																	MarkdownDescription: "If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"mode": schema.StringAttribute{
 																	Description:         "TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.",
 																	MarkdownDescription: "TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.",
@@ -2053,6 +2063,14 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Schema(_ context.Conte
 																"credential_name": schema.StringAttribute{
 																	Description:         "TLS certificate name.",
 																	MarkdownDescription: "TLS certificate name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"https_redirect": schema.BoolAttribute{
+																	Description:         "If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.",
+																	MarkdownDescription: "If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,

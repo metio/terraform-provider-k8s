@@ -1980,8 +1980,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 							},
 
 							"create_host_user": schema.BoolAttribute{
-								Description:         "CreateHostUser allows users to be automatically created on a host",
-								MarkdownDescription: "CreateHostUser allows users to be automatically created on a host",
+								Description:         "Deprecated: use CreateHostUserMode instead.",
+								MarkdownDescription: "Deprecated: use CreateHostUserMode instead.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

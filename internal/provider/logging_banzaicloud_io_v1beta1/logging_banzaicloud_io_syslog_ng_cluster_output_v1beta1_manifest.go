@@ -942,7 +942,8 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"opentelemetry" json:"opentelemetry,omitempty"`
-		Redis *struct {
+		Protected *bool `tfsdk:"protected" json:"protected,omitempty"`
+		Redis     *struct {
 			Auth *struct {
 				MountFrom *struct {
 					SecretKeyRef *struct {
@@ -7402,6 +7403,14 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"protected": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"redis": schema.SingleNestedAttribute{
