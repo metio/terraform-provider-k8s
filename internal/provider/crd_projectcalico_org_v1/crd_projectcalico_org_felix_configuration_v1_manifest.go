@@ -957,8 +957,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"ip_forwarding": schema.StringAttribute{
-						Description:         "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. [Default: Enabled]",
-						MarkdownDescription: "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. [Default: Enabled]",
+						Description:         "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. In BPF mode, due to a kernel interaction, either IPForwarding must be enabled or BPFEnforceRPF must be disabled. [Default: Enabled]",
+						MarkdownDescription: "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. In BPF mode, due to a kernel interaction, either IPForwarding must be enabled or BPFEnforceRPF must be disabled. [Default: Enabled]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

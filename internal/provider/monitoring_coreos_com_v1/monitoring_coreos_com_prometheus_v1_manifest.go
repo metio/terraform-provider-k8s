@@ -6362,8 +6362,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"host_network": schema.BoolAttribute{
-						Description:         "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically.",
-						MarkdownDescription: "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically.",
+						Description:         "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically (unless '.spec.DNSPolicy' is set to a different value).",
+						MarkdownDescription: "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically (unless '.spec.DNSPolicy' is set to a different value).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -8156,8 +8156,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"otlp": schema.SingleNestedAttribute{
-						Description:         "Settings related to the OTLP receiver feature. It requires Prometheus >= v2.54.0.",
-						MarkdownDescription: "Settings related to the OTLP receiver feature. It requires Prometheus >= v2.54.0.",
+						Description:         "Settings related to the OTLP receiver feature. It requires Prometheus >= v2.55.0.",
+						MarkdownDescription: "Settings related to the OTLP receiver feature. It requires Prometheus >= v2.55.0.",
 						Attributes: map[string]schema.Attribute{
 							"promote_resource_attributes": schema.ListAttribute{
 								Description:         "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none.",

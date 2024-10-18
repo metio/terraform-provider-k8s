@@ -373,6 +373,7 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
+			ForceVMProto           *bool     `tfsdk:"force_vm_proto" json:"forceVMProto,omitempty"`
 			Headers                *[]string `tfsdk:"headers" json:"headers,omitempty"`
 			InlineUrlRelabelConfig *[]struct {
 				Action       *string            `tfsdk:"action" json:"action,omitempty"`
@@ -386,7 +387,8 @@ type OperatorVictoriametricsComVmagentV1Beta1ManifestData struct {
 				SourceLabels *[]string          `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 				TargetLabel  *string            `tfsdk:"target_label" json:"targetLabel,omitempty"`
 			} `tfsdk:"inline_url_relabel_config" json:"inlineUrlRelabelConfig,omitempty"`
-			Oauth2 *struct {
+			MaxDiskUsage *string `tfsdk:"max_disk_usage" json:"maxDiskUsage,omitempty"`
+			Oauth2       *struct {
 				Client_id *struct {
 					ConfigMap *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -3170,6 +3172,14 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Computed: false,
 								},
 
+								"force_vm_proto": schema.BoolAttribute{
+									Description:         "ForceVMProto forces using VictoriaMetrics protocol for sending data to -remoteWrite.url",
+									MarkdownDescription: "ForceVMProto forces using VictoriaMetrics protocol for sending data to -remoteWrite.url",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"headers": schema.ListAttribute{
 									Description:         "Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName: headerValue vmagent supports since 1.79.0 version",
 									MarkdownDescription: "Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName: headerValue vmagent supports since 1.79.0 version",
@@ -3272,6 +3282,14 @@ func (r *OperatorVictoriametricsComVmagentV1Beta1Manifest) Schema(_ context.Cont
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"max_disk_usage": schema.StringAttribute{
+									Description:         "MaxDiskUsage defines the maximum file-based buffer size in bytes for -remoteWrite.url",
+									MarkdownDescription: "MaxDiskUsage defines the maximum file-based buffer size in bytes for -remoteWrite.url",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"oauth2": schema.SingleNestedAttribute{

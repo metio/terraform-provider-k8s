@@ -57,5 +57,6 @@ Required:
 
 Optional:
 
+- `preferred_address_type` (String) Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.
 - `service_annotations` (Map of String) Annotations that should be added to the Service object.
 - `service_external_traffic_policy` (String) 'externalTrafficPolicy' that should be set on the created ['Service'] objects. The default is 'Local' (in contrast to 'Cluster'), as we aim to direct traffic to a node running the workload and we should keep testing that as the primary configuration. Cluster is a fallback option for providers that break Local mode (IONOS so far).

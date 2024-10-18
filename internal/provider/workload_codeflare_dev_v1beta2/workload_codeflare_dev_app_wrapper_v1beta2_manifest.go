@@ -63,7 +63,8 @@ type WorkloadCodeflareDevAppWrapperV1Beta2ManifestData struct {
 			} `tfsdk:"pod_sets" json:"podSets,omitempty"`
 			Template *map[string]string `tfsdk:"template" json:"template,omitempty"`
 		} `tfsdk:"components" json:"components,omitempty"`
-		Suspend *bool `tfsdk:"suspend" json:"suspend,omitempty"`
+		ManagedBy *string `tfsdk:"managed_by" json:"managedBy,omitempty"`
+		Suspend   *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -287,6 +288,14 @@ func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Schema(_ context.Context
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"managed_by": schema.StringAttribute{
+						Description:         "ManagedBy is used to indicate the controller or entity that manages the AppWrapper.",
+						MarkdownDescription: "ManagedBy is used to indicate the controller or entity that manages the AppWrapper.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"suspend": schema.BoolAttribute{

@@ -56,6 +56,7 @@ Optional:
 Optional:
 
 - `device_model_ref` (Attributes) Required: DeviceModelRef is reference to the device model used as a template to create the device instance. (see [below for nested schema](#nestedatt--spec--device_model_ref))
+- `methods` (Attributes List) List of methods of device. methods list item must be unique by method.Name. (see [below for nested schema](#nestedatt--spec--methods))
 - `node_name` (String) NodeName is a request to schedule this device onto a specific node. If it is non-empty, the scheduler simply schedules this device onto that node, assuming that it fits resource requirements.
 - `properties` (Attributes List) List of properties which describe the device properties. properties list item must be unique by properties.Name. (see [below for nested schema](#nestedatt--spec--properties))
 - `protocol` (Attributes) Required: The protocol configuration used to connect to the device. (see [below for nested schema](#nestedatt--spec--protocol))
@@ -66,6 +67,16 @@ Optional:
 Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+
+
+<a id="nestedatt--spec--methods"></a>
+### Nested Schema for `spec.methods`
+
+Optional:
+
+- `description` (String) Define the description of device method.
+- `name` (String) Required: The device method name to be accessed. It must be unique.
+- `property_names` (List of String) PropertyNames are list of device properties that device methods can control. Required: A device method can control multiple device properties.
 
 
 <a id="nestedatt--spec--properties"></a>

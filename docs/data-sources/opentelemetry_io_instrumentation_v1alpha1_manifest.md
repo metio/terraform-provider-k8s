@@ -452,6 +452,19 @@ Optional:
 Optional:
 
 - `endpoint` (String)
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--exporter--tls))
+
+<a id="nestedatt--spec--exporter--tls"></a>
+### Nested Schema for `spec.exporter.tls`
+
+Optional:
+
+- `ca_file` (String)
+- `cert_file` (String)
+- `config_map_name` (String)
+- `key_file` (String)
+- `secret_name` (String)
+
 
 
 <a id="nestedatt--spec--go"></a>

@@ -55,16 +55,17 @@ Optional:
 
 Required:
 
-- `instance_selector` (Attributes) selects Grafanas for import (see [below for nested schema](#nestedatt--spec--instance_selector))
+- `instance_selector` (Attributes) Selects Grafanas for import (see [below for nested schema](#nestedatt--spec--instance_selector))
 
 Optional:
 
-- `allow_cross_namespace_import` (Boolean) allow to import this resources from an operator in a different namespace
+- `allow_cross_namespace_import` (Boolean) Enable matching Grafana instances outside the current namespace
 - `parent_folder_ref` (String) Reference to an existing GrafanaFolder CR in the same namespace
 - `parent_folder_uid` (String) UID of the folder in which the current folder should be created
-- `permissions` (String) raw json with folder permissions
-- `resync_period` (String) how often the folder is synced, defaults to 5m if not set
-- `title` (String)
+- `permissions` (String) Raw json with folder permissions, potentially exported from Grafana
+- `resync_period` (String) How often the folder is synced, defaults to 5m if not set
+- `title` (String) Display name of the folder in Grafana
+- `uid` (String) Manually specify the UID the Folder is created with
 
 <a id="nestedatt--spec--instance_selector"></a>
 ### Nested Schema for `spec.instance_selector`

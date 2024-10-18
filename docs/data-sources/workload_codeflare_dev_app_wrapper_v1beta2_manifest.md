@@ -59,6 +59,7 @@ Required:
 
 Optional:
 
+- `managed_by` (String) ManagedBy is used to indicate the controller or entity that manages the AppWrapper.
 - `suspend` (Boolean) Suspend suspends the AppWrapper when set to true
 
 <a id="nestedatt--spec--components"></a>

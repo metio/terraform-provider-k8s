@@ -67,6 +67,7 @@ Required:
 Optional:
 
 - `additional_categories` (Attributes List) additionalCategories is a list of optional categories to be added to the VM. Categories must be created in Prism Central before they can be used. (see [below for nested schema](#nestedatt--spec--additional_categories))
+- `gpus` (Attributes List) List of GPU devices that should be added to the VMs. (see [below for nested schema](#nestedatt--spec--gpus))
 - `project` (Attributes) Project is an optional property that specifies the Prism Central project so that machine resources can be linked to it. The project identifier (uuid or name) can be obtained from the Prism Central console or using the Prism Central API. (see [below for nested schema](#nestedatt--spec--project))
 - `users` (Attributes List) (see [below for nested schema](#nestedatt--spec--users))
 
@@ -116,6 +117,19 @@ Optional:
 
 - `key` (String) key is the Key of the category in the Prism Central.
 - `value` (String) value is the category value linked to the key in the Prism Central.
+
+
+<a id="nestedatt--spec--gpus"></a>
+### Nested Schema for `spec.gpus`
+
+Required:
+
+- `type` (String) type is the type of the GPU device.
+
+Optional:
+
+- `device_id` (Number) deviceID is the device ID of the GPU device.
+- `name` (String) vendorID is the vendor ID of the GPU device.
 
 
 <a id="nestedatt--spec--project"></a>

@@ -1614,7 +1614,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$|^$`), ""),
 								},
 							},
 
@@ -1625,7 +1625,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$|^$`), ""),
 								},
 							},
 
@@ -1636,7 +1636,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$|^$`), ""),
 								},
 							},
 
@@ -1647,7 +1647,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$|^$`), ""),
 								},
 							},
 
@@ -1658,7 +1658,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$|^$`), ""),
 								},
 							},
 
@@ -1669,7 +1669,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$|^$`), ""),
 								},
 							},
 
@@ -1680,7 +1680,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$|^$`), ""),
 								},
 							},
 
@@ -1691,7 +1691,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$|^$`), ""),
 								},
 							},
 						},

@@ -1020,6 +1020,7 @@ Optional:
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.
 - `preconditions` (Map of String) Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/
+- `selector` (Attributes) Selector allows you to select target resources with their labels. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--selector))
 - `uid` (String) UID specifies the resource uid.
 
 <a id="nestedatt--spec--rules--mutate--targets--context"></a>
@@ -1136,6 +1137,28 @@ Optional:
 - `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPath expression evaluates to nil
 - `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used to transform the variable.
 - `value` (Map of String) Value is any arbitrary JSON object representable in YAML or JSON form.
+
+
+
+<a id="nestedatt--spec--rules--mutate--targets--selector"></a>
+### Nested Schema for `spec.rules.mutate.targets.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--mutate--targets--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.mutate.targets.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 

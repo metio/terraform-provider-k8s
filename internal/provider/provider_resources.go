@@ -1534,6 +1534,8 @@ func allResources() []func() resource.Resource {
 		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoAdmissionCheckV1Beta1Resource,
 		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoClusterQueueV1Beta1Resource,
 		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoLocalQueueV1Beta1Resource,
+		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoMultiKueueClusterV1Beta1Resource,
+		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoMultiKueueConfigV1Beta1Resource,
 		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoProvisioningRequestConfigV1Beta1Resource,
 		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoResourceFlavorV1Beta1Resource,
 		//kueue_x_k8s_io_v1beta1.NewKueueXK8SIoWorkloadPriorityClassV1Beta1Resource,

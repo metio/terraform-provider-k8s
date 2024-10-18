@@ -50,6 +50,7 @@ type AppTerraformIoWorkspaceV1Alpha2ManifestData struct {
 		} `tfsdk:"agent_pool" json:"agentPool,omitempty"`
 		AllowDestroyPlan     *bool   `tfsdk:"allow_destroy_plan" json:"allowDestroyPlan,omitempty"`
 		ApplyMethod          *string `tfsdk:"apply_method" json:"applyMethod,omitempty"`
+		DeletionPolicy       *string `tfsdk:"deletion_policy" json:"deletionPolicy,omitempty"`
 		Description          *string `tfsdk:"description" json:"description,omitempty"`
 		EnvironmentVariables *[]struct {
 			Description *string `tfsdk:"description" json:"description,omitempty"`
@@ -285,6 +286,17 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^(auto|manual)$`), ""),
+						},
+					},
+
+					"deletion_policy": schema.StringAttribute{
+						Description:         "The Deletion Policy specifies the behavior of the custom resource and its associated workspace when the custom resource is deleted. - 'retain': When the custom resource is deleted, the associated workspace is retained. - 'soft': Attempts to delete the associated workspace only if it does not contain any managed resources. - 'destroy': Executes a destroy operation to remove all resources managed by the associated workspace. Once the destruction of these resources is successful, the workspace itself is deleted, followed by the removal of the custom resource. - 'force': Forcefully and immediately deletes the workspace and the custom resource. Default: 'retain'.",
+						MarkdownDescription: "The Deletion Policy specifies the behavior of the custom resource and its associated workspace when the custom resource is deleted. - 'retain': When the custom resource is deleted, the associated workspace is retained. - 'soft': Attempts to delete the associated workspace only if it does not contain any managed resources. - 'destroy': Executes a destroy operation to remove all resources managed by the associated workspace. Once the destruction of these resources is successful, the workspace itself is deleted, followed by the removal of the custom resource. - 'force': Forcefully and immediately deletes the workspace and the custom resource. Default: 'retain'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("retain", "soft", "destroy", "force"),
 						},
 					},
 

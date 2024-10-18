@@ -77,6 +77,7 @@ Optional:
 
 - `min_count` (Number) minCount is the minimum number of pods for the spec acceptable if the workload supports partial admission. If not provided, partial admission for the current PodSet is not enabled. Only one podSet within the workload can use this. This is an alpha field and requires enabling PartialAdmission feature gate.
 - `name` (String) name is the PodSet name.
+- `topology_request` (Attributes) topologyRequest defines the topology request for the PodSet. (see [below for nested schema](#nestedatt--spec--pod_sets--topology_request))
 
 <a id="nestedatt--spec--pod_sets--template"></a>
 ### Nested Schema for `spec.pod_sets.template`
@@ -3455,3 +3456,15 @@ Optional:
 - `fs_type` (String) fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `storage_policy_id` (String) storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
 - `storage_policy_name` (String) storagePolicyName is the storage Policy Based Management (SPBM) profile name.
+
+
+
+
+
+<a id="nestedatt--spec--pod_sets--topology_request"></a>
+### Nested Schema for `spec.pod_sets.topology_request`
+
+Optional:
+
+- `preferred` (String) preferred indicates the topology level preferred by the PodSet, as indicated by the 'kueue.x-k8s.io/podset-preferred-topology' PodSet annotation.
+- `required` (String) required indicates the topology level required by the PodSet, as indicated by the 'kueue.x-k8s.io/podset-required-topology' PodSet annotation.

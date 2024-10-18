@@ -3845,8 +3845,46 @@ Optional:
 
 Optional:
 
-- `custom_response_message` (String)
+- `custom_response` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--custom_response))
+- `regex` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--regex))
+- `webhook` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--webhook))
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--custom_response"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.request.custom_response`
+
+Optional:
+
+- `message` (String)
+- `status_code` (Number)
+
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--regex"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.request.regex`
+
+Optional:
+
+- `builtins` (List of String)
 - `matches` (List of String)
+
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--webhook"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.request.webhook`
+
+Optional:
+
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--webhook--headers))
+- `host` (String)
+- `port` (Number)
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--request--webhook--headers"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.request.webhook.headers`
+
+Optional:
+
+- `key` (String)
+- `match_type` (String)
+
+
 
 
 <a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response"></a>
@@ -3854,8 +3892,36 @@ Optional:
 
 Optional:
 
+- `regex` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response--regex))
+- `webhook` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response--webhook))
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response--regex"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.response.regex`
+
+Optional:
+
 - `builtins` (List of String)
 - `matches` (List of String)
+
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response--webhook"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.response.webhook`
+
+Optional:
+
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response--webhook--headers))
+- `host` (String)
+- `port` (Number)
+
+<a id="nestedatt--spec--virtual_host--routes--options--ai--prompt_guard--response--webhook--headers"></a>
+### Nested Schema for `spec.virtual_host.routes.options.ai.prompt_guard.response.webhook.headers`
+
+Optional:
+
+- `key` (String)
+- `match_type` (String)
+
+
 
 
 

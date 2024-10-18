@@ -829,6 +829,7 @@ type CloudwatchAwsAmazonComAmazonCloudWatchAgentV1Alpha1ManifestData struct {
 				EnableMetrics *bool `tfsdk:"enable_metrics" json:"enableMetrics,omitempty"`
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 		} `tfsdk:"observability" json:"observability,omitempty"`
+		OtelConfig          *string            `tfsdk:"otel_config" json:"otelConfig,omitempty"`
 		PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodDisruptionBudget *struct {
 			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -6619,6 +6620,14 @@ func (r *CloudwatchAwsAmazonComAmazonCloudWatchAgentV1Alpha1Manifest) Schema(_ c
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"otel_config": schema.StringAttribute{
+						Description:         "Config is the raw YAML to be used as the collector's configuration. Refer to the OpenTelemetry Collector documentation for details.",
+						MarkdownDescription: "Config is the raw YAML to be used as the collector's configuration. Refer to the OpenTelemetry Collector documentation for details.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"pod_annotations": schema.MapAttribute{

@@ -531,7 +531,15 @@ type KyvernoIoPolicyV1ManifestData struct {
 					Name          *string            `tfsdk:"name" json:"name,omitempty"`
 					Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 					Preconditions *map[string]string `tfsdk:"preconditions" json:"preconditions,omitempty"`
-					Uid           *string            `tfsdk:"uid" json:"uid,omitempty"`
+					Selector      *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"selector" json:"selector,omitempty"`
+					Uid *string `tfsdk:"uid" json:"uid,omitempty"`
 				} `tfsdk:"targets" json:"targets,omitempty"`
 			} `tfsdk:"mutate" json:"mutate,omitempty"`
 			Name                   *string            `tfsdk:"name" json:"name,omitempty"`
@@ -4437,6 +4445,60 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"selector": schema.SingleNestedAttribute{
+														Description:         "Selector allows you to select target resources with their labels.",
+														MarkdownDescription: "Selector allows you to select target resources with their labels.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"uid": schema.StringAttribute{

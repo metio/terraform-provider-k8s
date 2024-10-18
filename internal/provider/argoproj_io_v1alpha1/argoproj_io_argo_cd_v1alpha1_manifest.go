@@ -1227,7 +1227,8 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 					TargetCPUUtilizationPercentage *int64 `tfsdk:"target_cpu_utilization_percentage" json:"targetCPUUtilizationPercentage,omitempty"`
 				} `tfsdk:"hpa" json:"hpa,omitempty"`
 			} `tfsdk:"autoscale" json:"autoscale,omitempty"`
-			Env *[]struct {
+			EnableRolloutsUI *bool `tfsdk:"enable_rollouts_ui" json:"enableRolloutsUI,omitempty"`
+			Env              *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -9390,6 +9391,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"enable_rollouts_ui": schema.BoolAttribute{
+								Description:         "EnableRolloutsUI will add the Argo Rollouts UI extension in ArgoCD Dashboard.",
+								MarkdownDescription: "EnableRolloutsUI will add the Argo Rollouts UI extension in ArgoCD Dashboard.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"env": schema.ListNestedAttribute{

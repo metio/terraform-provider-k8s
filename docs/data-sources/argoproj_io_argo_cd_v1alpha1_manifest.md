@@ -3047,6 +3047,7 @@ Optional:
 Optional:
 
 - `autoscale` (Attributes) Autoscale defines the autoscale options for the Argo CD Server component. (see [below for nested schema](#nestedatt--spec--server--autoscale))
+- `enable_rollouts_ui` (Boolean) EnableRolloutsUI will add the Argo Rollouts UI extension in ArgoCD Dashboard.
 - `env` (Attributes List) Env lets you specify environment for API server pods (see [below for nested schema](#nestedatt--spec--server--env))
 - `extra_command_args` (List of String) Extra Command arguments that would append to the Argo CD server command. ExtraCommandArgs will not be added, if one of these commands is already part of the server command with same or different value.
 - `grpc` (Attributes) GRPC defines the state for the Argo CD Server GRPC options. (see [below for nested schema](#nestedatt--spec--server--grpc))

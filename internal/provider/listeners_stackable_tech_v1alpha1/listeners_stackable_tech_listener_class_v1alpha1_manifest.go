@@ -42,6 +42,7 @@ type ListenersStackableTechListenerClassV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		PreferredAddressType         *string            `tfsdk:"preferred_address_type" json:"preferredAddressType,omitempty"`
 		ServiceAnnotations           *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 		ServiceExternalTrafficPolicy *string            `tfsdk:"service_external_traffic_policy" json:"serviceExternalTrafficPolicy,omitempty"`
 		ServiceType                  *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
@@ -113,6 +114,17 @@ func (r *ListenersStackableTechListenerClassV1Alpha1Manifest) Schema(_ context.C
 				Description:         "Defines a policy for how [Listeners](https://docs.stackable.tech/home/nightly/listener-operator/listener) should be exposed. Read the [ListenerClass documentation](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass) for more information.",
 				MarkdownDescription: "Defines a policy for how [Listeners](https://docs.stackable.tech/home/nightly/listener-operator/listener) should be exposed. Read the [ListenerClass documentation](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass) for more information.",
 				Attributes: map[string]schema.Attribute{
+					"preferred_address_type": schema.StringAttribute{
+						Description:         "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.",
+						MarkdownDescription: "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Hostname", "IP"),
+						},
+					},
+
 					"service_annotations": schema.MapAttribute{
 						Description:         "Annotations that should be added to the Service object.",
 						MarkdownDescription: "Annotations that should be added to the Service object.",

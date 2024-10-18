@@ -3144,8 +3144,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"volumes": schema.ListAttribute{
-										Description:         "A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]",
-										MarkdownDescription: "A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]",
+										Description:         "A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]. If the PVC is not found, the Integration fails. You can use the syntax [pvcname:/container/path:size:accessMode<:storageClass>] to create a dynamic PVC based on the Storage Class provided or the default cluster Storage Class. However, if the PVC exists, the operator would mount it.",
+										MarkdownDescription: "A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]. If the PVC is not found, the Integration fails. You can use the syntax [pvcname:/container/path:size:accessMode<:storageClass>] to create a dynamic PVC based on the Storage Class provided or the default cluster Storage Class. However, if the PVC exists, the operator would mount it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

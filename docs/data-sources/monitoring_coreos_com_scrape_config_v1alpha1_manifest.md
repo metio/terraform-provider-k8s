@@ -5531,10 +5531,13 @@ Optional:
 <a id="nestedatt--spec--static_configs"></a>
 ### Nested Schema for `spec.static_configs`
 
+Required:
+
+- `targets` (List of String) List of targets for this static configuration.
+
 Optional:
 
 - `labels` (Map of String) Labels assigned to all metrics scraped from the targets.
-- `targets` (List of String) List of targets for this static configuration.
 
 
 <a id="nestedatt--spec--tls_config"></a>

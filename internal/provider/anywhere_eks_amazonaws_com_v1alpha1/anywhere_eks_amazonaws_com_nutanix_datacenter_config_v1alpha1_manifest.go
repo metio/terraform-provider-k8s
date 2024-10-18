@@ -62,6 +62,7 @@ type AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1ManifestData struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 				Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
 			} `tfsdk:"subnets" json:"subnets,omitempty"`
+			WorkerMachineGroups *[]string `tfsdk:"worker_machine_groups" json:"workerMachineGroups,omitempty"`
 		} `tfsdk:"failure_domains" json:"failureDomains,omitempty"`
 		Insecure *bool  `tfsdk:"insecure" json:"insecure,omitempty"`
 		Port     *int64 `tfsdk:"port" json:"port,omitempty"`
@@ -276,6 +277,15 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Schema(
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"worker_machine_groups": schema.ListAttribute{
+									Description:         "Worker Machine Groups holds the list of worker machine group names that will use this failure domain.",
+									MarkdownDescription: "Worker Machine Groups holds the list of worker machine group names that will use this failure domain.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 							},
 						},

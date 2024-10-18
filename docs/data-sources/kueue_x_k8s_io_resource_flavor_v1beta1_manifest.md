@@ -57,6 +57,7 @@ Optional:
 - `node_labels` (Map of String) nodeLabels are labels that associate the ResourceFlavor with Nodes that have the same labels. When a Workload is admitted, its podsets can only get assigned ResourceFlavors whose nodeLabels match the nodeSelector and nodeAffinity fields. Once a ResourceFlavor is assigned to a podSet, the ResourceFlavor's nodeLabels should be injected into the pods of the Workload by the controller that integrates with the Workload object. nodeLabels can be up to 8 elements.
 - `node_taints` (Attributes List) nodeTaints are taints that the nodes associated with this ResourceFlavor have. Workloads' podsets must have tolerations for these nodeTaints in order to get assigned this ResourceFlavor during admission. An example of a nodeTaint is cloud.provider.com/preemptible='true':NoSchedule nodeTaints can be up to 8 elements. (see [below for nested schema](#nestedatt--spec--node_taints))
 - `tolerations` (Attributes List) tolerations are extra tolerations that will be added to the pods admitted in the quota associated with this resource flavor. An example of a toleration is cloud.provider.com/preemptible='true':NoSchedule tolerations can be up to 8 elements. (see [below for nested schema](#nestedatt--spec--tolerations))
+- `topology_name` (String) topologyName indicates topology for the TAS ResourceFlavor. When specified, it enables scraping of the topology information from the nodes matching to the Resource Flavor node labels.
 
 <a id="nestedatt--spec--node_taints"></a>
 ### Nested Schema for `spec.node_taints`

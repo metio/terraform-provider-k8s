@@ -67,6 +67,7 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 			Client_id     *string `tfsdk:"client_id" json:"client_id,omitempty"`
 			Client_secret *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
 			Enabled       *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Max_age       *string `tfsdk:"max_age" json:"max_age,omitempty"`
 			Prompt        *string `tfsdk:"prompt" json:"prompt,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
 		Prompt         *string   `tfsdk:"prompt" json:"prompt,omitempty"`
@@ -328,6 +329,14 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 							"enabled": schema.BoolAttribute{
 								Description:         "Enabled specified whether this OIDC connector supports MFA checks. Defaults to false.",
 								MarkdownDescription: "Enabled specified whether this OIDC connector supports MFA checks. Defaults to false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_age": schema.StringAttribute{
+								Description:         "MaxAge is the amount of time in nanoseconds that an IdP session is valid for. Defaults to 0 to always force re-authentication for MFA checks. This should only be set to a non-zero value if the IdP is setup to perform MFA checks on top of active user sessions.",
+								MarkdownDescription: "MaxAge is the amount of time in nanoseconds that an IdP session is valid for. Defaults to 0 to always force re-authentication for MFA checks. This should only be set to a non-zero value if the IdP is setup to perform MFA checks on top of active user sessions.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

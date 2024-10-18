@@ -76,6 +76,7 @@ Optional:
 - `mode` (String) Mode represents how the collector should be deployed (deployment, daemonset, statefulset or sidecar)
 - `node_selector` (Map of String) NodeSelector to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode
 - `observability` (Attributes) ObservabilitySpec defines how telemetry data gets handled. (see [below for nested schema](#nestedatt--spec--observability))
+- `otel_config` (String) Config is the raw YAML to be used as the collector's configuration. Refer to the OpenTelemetry Collector documentation for details.
 - `pod_annotations` (Map of String) PodAnnotations is the set of annotations that will be attached to Collector and Target Allocator pods.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget specifies the pod disruption budget configuration to use for the AmazonCloudWatchAgent workload. (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_security_context` (Attributes) PodSecurityContext configures the pod security context for the amazon-cloudwatch-agent pod, when running as a deployment, daemonset, or statefulset. In sidecar mode, the amazon-cloudwatch-agent-operator will ignore this setting. (see [below for nested schema](#nestedatt--spec--pod_security_context))

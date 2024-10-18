@@ -178,6 +178,8 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String)
+- `labels` (Map of String)
 - `source` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--pvc--source))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--buffer_storage_volume--pvc--spec))
 
@@ -4137,6 +4139,8 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String)
+- `labels` (Map of String)
 - `source` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--pvc--source))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--positiondb--pvc--spec))
 

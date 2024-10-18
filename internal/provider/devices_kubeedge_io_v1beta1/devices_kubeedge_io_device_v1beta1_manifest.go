@@ -46,6 +46,11 @@ type DevicesKubeedgeIoDeviceV1Beta1ManifestData struct {
 		DeviceModelRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"device_model_ref" json:"deviceModelRef,omitempty"`
+		Methods *[]struct {
+			Description   *string   `tfsdk:"description" json:"description,omitempty"`
+			Name          *string   `tfsdk:"name" json:"name,omitempty"`
+			PropertyNames *[]string `tfsdk:"property_names" json:"propertyNames,omitempty"`
+		} `tfsdk:"methods" json:"methods,omitempty"`
 		NodeName   *string `tfsdk:"node_name" json:"nodeName,omitempty"`
 		Properties *[]struct {
 			CollectCycle *int64 `tfsdk:"collect_cycle" json:"collectCycle,omitempty"`
@@ -204,6 +209,42 @@ func (r *DevicesKubeedgeIoDeviceV1Beta1Manifest) Schema(_ context.Context, _ dat
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"methods": schema.ListNestedAttribute{
+						Description:         "List of methods of device. methods list item must be unique by method.Name.",
+						MarkdownDescription: "List of methods of device. methods list item must be unique by method.Name.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"description": schema.StringAttribute{
+									Description:         "Define the description of device method.",
+									MarkdownDescription: "Define the description of device method.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Required: The device method name to be accessed. It must be unique.",
+									MarkdownDescription: "Required: The device method name to be accessed. It must be unique.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"property_names": schema.ListAttribute{
+									Description:         "PropertyNames are list of device properties that device methods can control. Required: A device method can control multiple device properties.",
+									MarkdownDescription: "PropertyNames are list of device properties that device methods can control. Required: A device method can control multiple device properties.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

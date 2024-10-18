@@ -66,6 +66,7 @@ Optional:
 - `mqtt` (Attributes) (see [below for nested schema](#nestedatt--spec--mqtt))
 - `openobserve` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve))
 - `opentelemetry` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry))
+- `protected` (Boolean)
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--redis))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--s3))
 - `splunk_hec_event` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event))

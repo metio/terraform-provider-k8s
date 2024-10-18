@@ -49,7 +49,38 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 		} `tfsdk:"admin" json:"admin,omitempty"`
 		Affinity *struct {
 			AntiAffinityEnabled *bool `tfsdk:"anti_affinity_enabled" json:"antiAffinityEnabled,omitempty"`
-			PodAntiAffinity     *struct {
+			NodeAffinity        *struct {
+				PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+					Preference *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchFields *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+					} `tfsdk:"preference" json:"preference,omitempty"`
+					Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+				} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				RequiredDuringSchedulingIgnoredDuringExecution *struct {
+					NodeSelectorTerms *[]struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchFields *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+					} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+			} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+			PodAntiAffinity *struct {
 				PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 					PodAffinityTerm *struct {
 						LabelSelector *struct {
@@ -260,7 +291,38 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			Exporter *struct {
 				Affinity *struct {
 					AntiAffinityEnabled *bool `tfsdk:"anti_affinity_enabled" json:"antiAffinityEnabled,omitempty"`
-					PodAntiAffinity     *struct {
+					NodeAffinity        *struct {
+						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+							Preference *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchFields *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+							} `tfsdk:"preference" json:"preference,omitempty"`
+							Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+						RequiredDuringSchedulingIgnoredDuringExecution *struct {
+							NodeSelectorTerms *[]struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchFields *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+							} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+					} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+					PodAntiAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 							PodAffinityTerm *struct {
 								LabelSelector *struct {
@@ -604,6 +666,207 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Computed:            false,
 							},
 
+							"node_affinity": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+								Attributes: map[string]schema.Attribute{
+									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"preference": schema.SingleNestedAttribute{
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_fields": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+
+												"weight": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+										Attributes: map[string]schema.Attribute{
+											"node_selector_terms": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_fields": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_anti_affinity": schema.SingleNestedAttribute{
 								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
 								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
@@ -618,33 +881,33 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-															MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "A label selector operator is the set of operators that can be used in a selector requirement.",
+																				MarkdownDescription: "A label selector operator is the set of operators that can be used in a selector requirement.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -658,8 +921,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -704,33 +967,33 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-													MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "A label selector operator is the set of operators that can be used in a selector requirement.",
+																		MarkdownDescription: "A label selector operator is the set of operators that can be used in a selector requirement.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -744,8 +1007,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2020,6 +2283,207 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed:            false,
 											},
 
+											"node_affinity": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+												Attributes: map[string]schema.Attribute{
+													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"preference": schema.SingleNestedAttribute{
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_fields": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"weight": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+														Attributes: map[string]schema.Attribute{
+															"node_selector_terms": schema.ListNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_fields": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						MarkdownDescription: "A node selector operator is the set of operators that can be used in a node selector requirement.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"pod_anti_affinity": schema.SingleNestedAttribute{
 												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
 												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
@@ -2034,33 +2498,33 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																			MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
-																					Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																					MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "key is the label key that the selector applies to.",
-																								MarkdownDescription: "key is the label key that the selector applies to.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"operator": schema.StringAttribute{
-																								Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																								MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																								Description:         "A label selector operator is the set of operators that can be used in a selector requirement.",
+																								MarkdownDescription: "A label selector operator is the set of operators that can be used in a selector requirement.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"values": schema.ListAttribute{
-																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -2074,8 +2538,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"match_labels": schema.MapAttribute{
-																					Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																					MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2120,33 +2584,33 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																	MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "A label selector operator is the set of operators that can be used in a selector requirement.",
+																						MarkdownDescription: "A label selector operator is the set of operators that can be used in a selector requirement.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2160,8 +2624,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,

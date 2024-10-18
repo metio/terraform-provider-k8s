@@ -1337,6 +1337,10 @@ type MinioMinIoTenantV2ManifestData struct {
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			VolumesPerServer *int64 `tfsdk:"volumes_per_server" json:"volumesPerServer,omitempty"`
 		} `tfsdk:"pools" json:"pools,omitempty"`
+		PoolsMetadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"pools_metadata" json:"poolsMetadata,omitempty"`
 		PriorityClassName  *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 		PrometheusOperator *bool   `tfsdk:"prometheus_operator" json:"prometheusOperator,omitempty"`
 		Readiness          *struct {
@@ -1373,6 +1377,8 @@ type MinioMinIoTenantV2ManifestData struct {
 		ServiceMetadata    *struct {
 			ConsoleServiceAnnotations *map[string]string `tfsdk:"console_service_annotations" json:"consoleServiceAnnotations,omitempty"`
 			ConsoleServiceLabels      *map[string]string `tfsdk:"console_service_labels" json:"consoleServiceLabels,omitempty"`
+			KesServiceAnnotations     *map[string]string `tfsdk:"kes_service_annotations" json:"kesServiceAnnotations,omitempty"`
+			KesServiceLabels          *map[string]string `tfsdk:"kes_service_labels" json:"kesServiceLabels,omitempty"`
 			MinioServiceAnnotations   *map[string]string `tfsdk:"minio_service_annotations" json:"minioServiceAnnotations,omitempty"`
 			MinioServiceLabels        *map[string]string `tfsdk:"minio_service_labels" json:"minioServiceLabels,omitempty"`
 		} `tfsdk:"service_metadata" json:"serviceMetadata,omitempty"`
@@ -10798,6 +10804,33 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 						Computed: false,
 					},
 
+					"pools_metadata": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"priority_class_name": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -11037,6 +11070,24 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 							},
 
 							"console_service_labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kes_service_annotations": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kes_service_labels": schema.MapAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,

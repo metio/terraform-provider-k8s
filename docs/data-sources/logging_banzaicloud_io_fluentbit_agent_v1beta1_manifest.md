@@ -60,6 +60,7 @@ Optional:
 - `buffer_storage_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume))
 - `buffer_volume_args` (List of String)
 - `buffer_volume_image` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_image))
+- `buffer_volume_liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_liveness_probe))
 - `buffer_volume_metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_metrics))
 - `buffer_volume_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_resources))
 - `config_hot_reload` (Attributes) (see [below for nested schema](#nestedatt--spec--config_hot_reload))
@@ -563,6 +564,8 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String)
+- `labels` (Map of String)
 - `source` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--pvc--source))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--pvc--spec))
 
@@ -694,6 +697,79 @@ Optional:
 Optional:
 
 - `name` (String)
+
+
+
+<a id="nestedatt--spec--buffer_volume_liveness_probe"></a>
+### Nested Schema for `spec.buffer_volume_liveness_probe`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_liveness_probe--exec))
+- `failure_threshold` (Number)
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_liveness_probe--http_get))
+- `initial_delay_seconds` (Number)
+- `period_seconds` (Number)
+- `success_threshold` (Number)
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_liveness_probe--tcp_socket))
+- `termination_grace_period_seconds` (Number)
+- `timeout_seconds` (Number)
+
+<a id="nestedatt--spec--buffer_volume_liveness_probe--exec"></a>
+### Nested Schema for `spec.buffer_volume_liveness_probe.exec`
+
+Optional:
+
+- `command` (List of String)
+
+
+<a id="nestedatt--spec--buffer_volume_liveness_probe--grpc"></a>
+### Nested Schema for `spec.buffer_volume_liveness_probe.grpc`
+
+Required:
+
+- `port` (Number)
+
+Optional:
+
+- `service` (String)
+
+
+<a id="nestedatt--spec--buffer_volume_liveness_probe--http_get"></a>
+### Nested Schema for `spec.buffer_volume_liveness_probe.http_get`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--buffer_volume_liveness_probe--http_get--http_headers))
+- `path` (String)
+- `scheme` (String)
+
+<a id="nestedatt--spec--buffer_volume_liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.buffer_volume_liveness_probe.http_get.http_headers`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--buffer_volume_liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.buffer_volume_liveness_probe.tcp_socket`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
 
 
 
@@ -1710,6 +1786,8 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String)
+- `labels` (Map of String)
 - `source` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--pvc--source))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--pvc--spec))
 

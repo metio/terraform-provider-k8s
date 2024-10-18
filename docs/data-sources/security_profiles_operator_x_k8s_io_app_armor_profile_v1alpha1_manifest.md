@@ -56,6 +56,60 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
+Optional:
 
+- `abstract` (Attributes) (see [below for nested schema](#nestedatt--spec--abstract))
 - `policy` (String)
+
+<a id="nestedatt--spec--abstract"></a>
+### Nested Schema for `spec.abstract`
+
+Optional:
+
+- `capability` (Attributes) (see [below for nested schema](#nestedatt--spec--abstract--capability))
+- `executable` (Attributes) (see [below for nested schema](#nestedatt--spec--abstract--executable))
+- `filesystem` (Attributes) (see [below for nested schema](#nestedatt--spec--abstract--filesystem))
+- `network` (Attributes) (see [below for nested schema](#nestedatt--spec--abstract--network))
+
+<a id="nestedatt--spec--abstract--capability"></a>
+### Nested Schema for `spec.abstract.capability`
+
+Optional:
+
+- `allowed_capabilities` (List of String)
+
+
+<a id="nestedatt--spec--abstract--executable"></a>
+### Nested Schema for `spec.abstract.executable`
+
+Optional:
+
+- `allowed_executables` (List of String)
+- `allowed_libraries` (List of String)
+
+
+<a id="nestedatt--spec--abstract--filesystem"></a>
+### Nested Schema for `spec.abstract.filesystem`
+
+Optional:
+
+- `read_only_paths` (List of String)
+- `read_write_paths` (List of String)
+- `write_only_paths` (List of String)
+
+
+<a id="nestedatt--spec--abstract--network"></a>
+### Nested Schema for `spec.abstract.network`
+
+Optional:
+
+- `allow_raw` (Boolean)
+- `allowed_protocols` (Attributes) (see [below for nested schema](#nestedatt--spec--abstract--network--allowed_protocols))
+
+<a id="nestedatt--spec--abstract--network--allowed_protocols"></a>
+### Nested Schema for `spec.abstract.network.allowed_protocols`
+
+Optional:
+
+- `allow_tcp` (Boolean)
+- `allow_udp` (Boolean)
