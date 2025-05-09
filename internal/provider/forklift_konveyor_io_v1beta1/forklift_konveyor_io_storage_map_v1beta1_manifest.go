@@ -49,6 +49,12 @@ type ForkliftKonveyorIoStorageMapV1Beta1ManifestData struct {
 				StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
 				VolumeMode   *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
 			} `tfsdk:"destination" json:"destination,omitempty"`
+			OffloadPlugin *struct {
+				VsphereXcopyConfig *struct {
+					SecretRef            *string `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+					StorageVendorProduct *string `tfsdk:"storage_vendor_product" json:"storageVendorProduct,omitempty"`
+				} `tfsdk:"vsphere_xcopy_config" json:"vsphereXcopyConfig,omitempty"`
+			} `tfsdk:"offload_plugin" json:"offloadPlugin,omitempty"`
 			Source *struct {
 				Id        *string `tfsdk:"id" json:"id,omitempty"`
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -197,6 +203,43 @@ func (r *ForkliftKonveyorIoStorageMapV1Beta1Manifest) Schema(_ context.Context, 
 									},
 									Required: true,
 									Optional: false,
+									Computed: false,
+								},
+
+								"offload_plugin": schema.SingleNestedAttribute{
+									Description:         "Offload Plugin",
+									MarkdownDescription: "Offload Plugin",
+									Attributes: map[string]schema.Attribute{
+										"vsphere_xcopy_config": schema.SingleNestedAttribute{
+											Description:         "VSphereXcopyPluginConfig works with the Vsphere Xcopy Volume Populator to offload the copy to Vsphere and the storage array.",
+											MarkdownDescription: "VSphereXcopyPluginConfig works with the Vsphere Xcopy Volume Populator to offload the copy to Vsphere and the storage array.",
+											Attributes: map[string]schema.Attribute{
+												"secret_ref": schema.StringAttribute{
+													Description:         "SecretRef is the name of the secret with the storage credentials for the plugin. The secret should reside in the same namespace where the source provider is.",
+													MarkdownDescription: "SecretRef is the name of the secret with the storage credentials for the plugin. The secret should reside in the same namespace where the source provider is.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"storage_vendor_product": schema.StringAttribute{
+													Description:         "StorageVendorProduct the string identifier of the storage vendor product",
+													MarkdownDescription: "StorageVendorProduct the string identifier of the storage vendor product",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("vantara", "ontap"),
+													},
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 

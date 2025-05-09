@@ -125,12 +125,12 @@ func (r *IpamClusterXK8SIoIpaddressClaimV1Alpha1Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPAddressClaimSpec is the desired state of an IPAddressClaim.",
-				MarkdownDescription: "IPAddressClaimSpec is the desired state of an IPAddressClaim.",
+				Description:         "spec is the desired state of IPAddressClaim.",
+				MarkdownDescription: "spec is the desired state of IPAddressClaim.",
 				Attributes: map[string]schema.Attribute{
 					"pool_ref": schema.SingleNestedAttribute{
-						Description:         "PoolRef is a reference to the pool from which an IP address should be created.",
-						MarkdownDescription: "PoolRef is a reference to the pool from which an IP address should be created.",
+						Description:         "poolRef is a reference to the pool from which an IP address should be created.",
+						MarkdownDescription: "poolRef is a reference to the pool from which an IP address should be created.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
 								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",

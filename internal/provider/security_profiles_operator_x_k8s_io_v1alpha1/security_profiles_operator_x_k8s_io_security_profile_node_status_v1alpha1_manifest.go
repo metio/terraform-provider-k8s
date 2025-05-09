@@ -37,7 +37,6 @@ type SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1ManifestData
 
 	Metadata struct {
 		Name        string            `tfsdk:"name" json:"name"`
-		Namespace   string            `tfsdk:"namespace" json:"namespace"`
 		Labels      map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		Annotations map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 	} `tfsdk:"metadata" json:"metadata"`
@@ -73,18 +72,6 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest
 					"name": schema.StringAttribute{
 						Description:         "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
 						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
-						Required:            true,
-						Optional:            false,
-						Computed:            false,
-						Validators: []validator.String{
-							validators.NameValidator(),
-							stringvalidator.LengthAtLeast(1),
-						},
-					},
-
-					"namespace": schema.StringAttribute{
-						Description:         "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
-						MarkdownDescription: "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

@@ -48,20 +48,22 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 			Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Configuration *struct {
 				BackupOptions *struct {
-					OplogSpanMin *float64           `tfsdk:"oplog_span_min" json:"oplogSpanMin,omitempty"`
-					Priority     *map[string]string `tfsdk:"priority" json:"priority,omitempty"`
-					Timeouts     *struct {
+					NumParallelCollections *int64             `tfsdk:"num_parallel_collections" json:"numParallelCollections,omitempty"`
+					OplogSpanMin           *float64           `tfsdk:"oplog_span_min" json:"oplogSpanMin,omitempty"`
+					Priority               *map[string]string `tfsdk:"priority" json:"priority,omitempty"`
+					Timeouts               *struct {
 						StartingStatus *int64 `tfsdk:"starting_status" json:"startingStatus,omitempty"`
 					} `tfsdk:"timeouts" json:"timeouts,omitempty"`
 				} `tfsdk:"backup_options" json:"backupOptions,omitempty"`
 				RestoreOptions *struct {
-					BatchSize           *int64             `tfsdk:"batch_size" json:"batchSize,omitempty"`
-					DownloadChunkMb     *int64             `tfsdk:"download_chunk_mb" json:"downloadChunkMb,omitempty"`
-					MaxDownloadBufferMb *int64             `tfsdk:"max_download_buffer_mb" json:"maxDownloadBufferMb,omitempty"`
-					MongodLocation      *string            `tfsdk:"mongod_location" json:"mongodLocation,omitempty"`
-					MongodLocationMap   *map[string]string `tfsdk:"mongod_location_map" json:"mongodLocationMap,omitempty"`
-					NumDownloadWorkers  *int64             `tfsdk:"num_download_workers" json:"numDownloadWorkers,omitempty"`
-					NumInsertionWorkers *int64             `tfsdk:"num_insertion_workers" json:"numInsertionWorkers,omitempty"`
+					BatchSize              *int64             `tfsdk:"batch_size" json:"batchSize,omitempty"`
+					DownloadChunkMb        *int64             `tfsdk:"download_chunk_mb" json:"downloadChunkMb,omitempty"`
+					MaxDownloadBufferMb    *int64             `tfsdk:"max_download_buffer_mb" json:"maxDownloadBufferMb,omitempty"`
+					MongodLocation         *string            `tfsdk:"mongod_location" json:"mongodLocation,omitempty"`
+					MongodLocationMap      *map[string]string `tfsdk:"mongod_location_map" json:"mongodLocationMap,omitempty"`
+					NumDownloadWorkers     *int64             `tfsdk:"num_download_workers" json:"numDownloadWorkers,omitempty"`
+					NumInsertionWorkers    *int64             `tfsdk:"num_insertion_workers" json:"numInsertionWorkers,omitempty"`
+					NumParallelCollections *int64             `tfsdk:"num_parallel_collections" json:"numParallelCollections,omitempty"`
 				} `tfsdk:"restore_options" json:"restoreOptions,omitempty"`
 			} `tfsdk:"configuration" json:"configuration,omitempty"`
 			ContainerSecurityContext *struct {
@@ -117,6 +119,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -157,7 +160,11 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 					Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
 				} `tfsdk:"azure" json:"azure,omitempty"`
-				S3 *struct {
+				Filesystem *struct {
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"filesystem" json:"filesystem,omitempty"`
+				Main *bool `tfsdk:"main" json:"main,omitempty"`
+				S3   *struct {
 					Bucket                *string `tfsdk:"bucket" json:"bucket,omitempty"`
 					CredentialsSecret     *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 					DebugLogLevels        *string `tfsdk:"debug_log_levels" json:"debugLogLevels,omitempty"`
@@ -193,6 +200,15 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				StorageName      *string `tfsdk:"storage_name" json:"storageName,omitempty"`
 				Type             *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"tasks" json:"tasks,omitempty"`
+			VolumeMounts *[]struct {
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
 		ClusterServiceDNSMode   *string   `tfsdk:"cluster_service_dns_mode" json:"clusterServiceDNSMode,omitempty"`
 		ClusterServiceDNSSuffix *string   `tfsdk:"cluster_service_dns_suffix" json:"clusterServiceDNSSuffix,omitempty"`
@@ -279,11 +295,12 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
-			Enabled      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Image        *string `tfsdk:"image" json:"image,omitempty"`
-			MongodParams *string `tfsdk:"mongod_params" json:"mongodParams,omitempty"`
-			MongosParams *string `tfsdk:"mongos_params" json:"mongosParams,omitempty"`
-			Resources    *struct {
+			CustomClusterName *string `tfsdk:"custom_cluster_name" json:"customClusterName,omitempty"`
+			Enabled           *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Image             *string `tfsdk:"image" json:"image,omitempty"`
+			MongodParams      *string `tfsdk:"mongod_params" json:"mongodParams,omitempty"`
+			MongosParams      *string `tfsdk:"mongos_params" json:"mongosParams,omitempty"`
+			Resources         *struct {
 				Claims *[]struct {
 					Name    *string `tfsdk:"name" json:"name,omitempty"`
 					Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -1031,6 +1048,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -1262,6 +1280,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 				ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
@@ -1529,6 +1548,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2040,6 +2060,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -2285,6 +2306,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2342,6 +2364,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 			ReplsetOverrides *struct {
 				Horizons *map[string]string `tfsdk:"horizons" json:"horizons,omitempty"`
 				Host     *string            `tfsdk:"host" json:"host,omitempty"`
+				Priority *int64             `tfsdk:"priority" json:"priority,omitempty"`
 				Tags     *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"replset_overrides" json:"replsetOverrides,omitempty"`
 			Resources *struct {
@@ -2802,6 +2825,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 							Port *string `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+					StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 				} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 				LivenessProbe *struct {
 					Exec *struct {
@@ -3834,6 +3858,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 									Port *string `tfsdk:"port" json:"port,omitempty"`
 								} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 							} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+							StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 						} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 						LivenessProbe *struct {
 							Exec *struct {
@@ -4065,6 +4090,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
 					ServiceLabels            *map[string]string `tfsdk:"service_labels" json:"serviceLabels,omitempty"`
@@ -4332,6 +4358,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -4843,6 +4870,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 									Port *string `tfsdk:"port" json:"port,omitempty"`
 								} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 							} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+							StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 						} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 						LivenessProbe *struct {
 							Exec *struct {
@@ -5088,6 +5116,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -5145,6 +5174,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 				ReplsetOverrides *struct {
 					Horizons *map[string]string `tfsdk:"horizons" json:"horizons,omitempty"`
 					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Priority *int64             `tfsdk:"priority" json:"priority,omitempty"`
 					Tags     *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 				} `tfsdk:"replset_overrides" json:"replsetOverrides,omitempty"`
 				Resources *struct {
@@ -5605,6 +5635,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -6041,6 +6072,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					NodePort                 *int64             `tfsdk:"node_port" json:"nodePort,omitempty"`
 					ServiceAnnotations       *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
@@ -6099,6 +6131,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -6614,6 +6647,7 @@ type PsmdbPerconaComPerconaServerMongoDbV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -6950,6 +6984,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"num_parallel_collections": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"oplog_span_min": schema.Float64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -7043,6 +7085,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											},
 
 											"num_insertion_workers": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"num_parallel_collections": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -7427,6 +7477,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										Computed:            false,
 									},
 
+									"se_linux_change_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"se_linux_options": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -7698,6 +7756,31 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"filesystem": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"main": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"s3": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -7950,8 +8033,75 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("logical", "physical"),
+												stringvalidator.OneOf("logical", "physical", "incremental", "incremental-base"),
 											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"volume_mounts": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"mount_path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"mount_propagation": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"read_only": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"recursive_read_only": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_path_expr": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 									},
 								},
@@ -8549,6 +8699,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"custom_cluster_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"enabled": schema.BoolAttribute{
@@ -13576,6 +13734,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 																Optional: true,
 																Computed: false,
 															},
+
+															"stop_signal": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -15164,6 +15330,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"load_balancer_class": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -16979,6 +17153,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												},
 
 												"run_as_user": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"se_linux_change_policy": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -20393,6 +20575,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 																Optional: true,
 																Computed: false,
 															},
+
+															"stop_signal": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -22068,6 +22258,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Computed:            false,
 										},
 
+										"se_linux_change_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"se_linux_options": schema.SingleNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -22448,6 +22646,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 										},
 
 										"host": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"priority": schema.Int64Attribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -25518,6 +25724,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+
+													"stop_signal": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 												},
 												Required: false,
@@ -32433,6 +32647,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 																	Optional: true,
 																	Computed: false,
 																},
+
+																"stop_signal": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
 															},
 															Required: false,
 															Optional: true,
@@ -34021,6 +34243,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"load_balancer_class": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -35836,6 +36066,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 													},
 
 													"run_as_user": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_change_policy": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,
@@ -39250,6 +39488,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 																	Optional: true,
 																	Computed: false,
 																},
+
+																"stop_signal": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
 															},
 															Required: false,
 															Optional: true,
@@ -40925,6 +41171,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"se_linux_options": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -41305,6 +41559,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											},
 
 											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"priority": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -44376,6 +44638,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -47320,6 +47590,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
+											"load_balancer_class": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"load_balancer_source_ranges": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -47718,6 +47996,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -51157,6 +51443,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -52674,8 +52968,8 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context
 											Computed:            false,
 										},
 									},
-									Required: true,
-									Optional: false,
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 

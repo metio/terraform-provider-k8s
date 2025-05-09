@@ -1,0 +1,5 @@
+output "manifests" {
+  value = {
+    "example" = data.k8s_addons_cluster_x_k8s_io_cluster_resource_set_v1beta2_manifest.example.yaml
+  }
+}

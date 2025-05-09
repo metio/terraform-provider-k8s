@@ -42,11 +42,18 @@ type OperationsKubeedgeIoNodeUpgradeJobV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		CheckItems      *[]string `tfsdk:"check_items" json:"checkItems,omitempty"`
-		Concurrency     *int64    `tfsdk:"concurrency" json:"concurrency,omitempty"`
-		FailureTolerate *string   `tfsdk:"failure_tolerate" json:"failureTolerate,omitempty"`
-		Image           *string   `tfsdk:"image" json:"image,omitempty"`
-		LabelSelector   *struct {
+		CheckItems        *[]string `tfsdk:"check_items" json:"checkItems,omitempty"`
+		Concurrency       *int64    `tfsdk:"concurrency" json:"concurrency,omitempty"`
+		FailureTolerate   *string   `tfsdk:"failure_tolerate" json:"failureTolerate,omitempty"`
+		Image             *string   `tfsdk:"image" json:"image,omitempty"`
+		ImageDigestGatter *struct {
+			RegistryAPI *struct {
+				Host  *string `tfsdk:"host" json:"host,omitempty"`
+				Token *string `tfsdk:"token" json:"token,omitempty"`
+			} `tfsdk:"registry_api" json:"registryAPI,omitempty"`
+			Value *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"image_digest_gatter" json:"imageDigestGatter,omitempty"`
+		LabelSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -54,9 +61,10 @@ type OperationsKubeedgeIoNodeUpgradeJobV1Alpha1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-		NodeNames      *[]string `tfsdk:"node_names" json:"nodeNames,omitempty"`
-		TimeoutSeconds *int64    `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
-		Version        *string   `tfsdk:"version" json:"version,omitempty"`
+		NodeNames           *[]string `tfsdk:"node_names" json:"nodeNames,omitempty"`
+		RequireConfirmation *bool     `tfsdk:"require_confirmation" json:"requireConfirmation,omitempty"`
+		TimeoutSeconds      *int64    `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		Version             *string   `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -158,6 +166,48 @@ func (r *OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"image_digest_gatter": schema.SingleNestedAttribute{
+						Description:         "ImageDigestGatter define registry v2 interface access configuration. As a transition, it is not required at first, and the image digest is checked when this field is set.",
+						MarkdownDescription: "ImageDigestGatter define registry v2 interface access configuration. As a transition, it is not required at first, and the image digest is checked when this field is set.",
+						Attributes: map[string]schema.Attribute{
+							"registry_api": schema.SingleNestedAttribute{
+								Description:         "RegistryAPI define registry v2 interface access configuration",
+								MarkdownDescription: "RegistryAPI define registry v2 interface access configuration",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"token": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"value": schema.StringAttribute{
+								Description:         "Value used to directly set a value to check image",
+								MarkdownDescription: "Value used to directly set a value to check image",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"label_selector": schema.SingleNestedAttribute{
 						Description:         "LabelSelector is a filter to select member clusters by labels. It must match a node's labels for the NodeUpgradeJob to be operated on that node. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.",
 						MarkdownDescription: "LabelSelector is a filter to select member clusters by labels. It must match a node's labels for the NodeUpgradeJob to be operated on that node. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.",
@@ -216,6 +266,14 @@ func (r *OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest) Schema(_ context.Co
 						Description:         "NodeNames is a request to select some specific nodes. If it is non-empty, the upgrade job simply select these edge nodes to do upgrade operation. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.",
 						MarkdownDescription: "NodeNames is a request to select some specific nodes. If it is non-empty, the upgrade job simply select these edge nodes to do upgrade operation. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"require_confirmation": schema.BoolAttribute{
+						Description:         "RequireConfirmation specifies whether you need to confirm the upgrade. The default RequireConfirmation value is false.",
+						MarkdownDescription: "RequireConfirmation specifies whether you need to confirm the upgrade. The default RequireConfirmation value is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

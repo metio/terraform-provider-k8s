@@ -46,6 +46,7 @@ type RayIoRayServiceV1ManifestData struct {
 
 	Spec *struct {
 		DeploymentUnhealthySecondThreshold *int64 `tfsdk:"deployment_unhealthy_second_threshold" json:"deploymentUnhealthySecondThreshold,omitempty"`
+		ExcludeHeadPodFromServeSvc         *bool  `tfsdk:"exclude_head_pod_from_serve_svc" json:"excludeHeadPodFromServeSvc,omitempty"`
 		RayClusterConfig                   *struct {
 			AutoscalerOptions *struct {
 				Env *[]struct {
@@ -89,7 +90,8 @@ type RayIoRayServiceV1ManifestData struct {
 				ImagePullPolicy    *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 				Resources          *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -138,8 +140,60 @@ type RayIoRayServiceV1ManifestData struct {
 					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"autoscaler_options" json:"autoscalerOptions,omitempty"`
-			EnableInTreeAutoscaling *bool `tfsdk:"enable_in_tree_autoscaling" json:"enableInTreeAutoscaling,omitempty"`
-			HeadGroupSpec           *struct {
+			EnableInTreeAutoscaling  *bool `tfsdk:"enable_in_tree_autoscaling" json:"enableInTreeAutoscaling,omitempty"`
+			GcsFaultToleranceOptions *struct {
+				ExternalStorageNamespace *string `tfsdk:"external_storage_namespace" json:"externalStorageNamespace,omitempty"`
+				RedisAddress             *string `tfsdk:"redis_address" json:"redisAddress,omitempty"`
+				RedisPassword            *struct {
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+							FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+							Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+							Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"redis_password" json:"redisPassword,omitempty"`
+				RedisUsername *struct {
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+							FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+							Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+							Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"redis_username" json:"redisUsername,omitempty"`
+			} `tfsdk:"gcs_fault_tolerance_options" json:"gcsFaultToleranceOptions,omitempty"`
+			HeadGroupSpec *struct {
 				EnableIngress *bool `tfsdk:"enable_ingress" json:"enableIngress,omitempty"`
 				HeadService   *struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -437,6 +491,7 @@ type RayIoRayServiceV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -510,7 +565,8 @@ type RayIoRayServiceV1ManifestData struct {
 							} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -694,6 +750,7 @@ type RayIoRayServiceV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -767,7 +824,8 @@ type RayIoRayServiceV1ManifestData struct {
 							} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -954,6 +1012,7 @@ type RayIoRayServiceV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -1027,7 +1086,8 @@ type RayIoRayServiceV1ManifestData struct {
 							} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1128,12 +1188,18 @@ type RayIoRayServiceV1ManifestData struct {
 							ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 						} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 						ResourceClaims *[]struct {
-							Name   *string `tfsdk:"name" json:"name,omitempty"`
-							Source *struct {
-								ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
-								ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
-							} `tfsdk:"source" json:"source,omitempty"`
+							Name                      *string `tfsdk:"name" json:"name,omitempty"`
+							ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+							ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 						} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
+						Resources *struct {
+							Claims *[]struct {
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"resources" json:"resources,omitempty"`
 						RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 						SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -1150,6 +1216,7 @@ type RayIoRayServiceV1ManifestData struct {
 							RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 							RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 							RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+							SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 							SeLinuxOptions      *struct {
 								Level *string `tfsdk:"level" json:"level,omitempty"`
 								Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1160,8 +1227,9 @@ type RayIoRayServiceV1ManifestData struct {
 								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 								Type             *string `tfsdk:"type" json:"type,omitempty"`
 							} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-							SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-							Sysctls            *[]struct {
+							SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+							SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+							Sysctls                  *[]struct {
 								Name  *string `tfsdk:"name" json:"name,omitempty"`
 								Value *string `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1360,6 +1428,10 @@ type RayIoRayServiceV1ManifestData struct {
 								Path *string `tfsdk:"path" json:"path,omitempty"`
 								Type *string `tfsdk:"type" json:"type,omitempty"`
 							} `tfsdk:"host_path" json:"hostPath,omitempty"`
+							Image *struct {
+								PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+								Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+							} `tfsdk:"image" json:"image,omitempty"`
 							Iscsi *struct {
 								ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 								ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1515,18 +1587,21 @@ type RayIoRayServiceV1ManifestData struct {
 				} `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"head_group_spec" json:"headGroupSpec,omitempty"`
 			HeadServiceAnnotations *map[string]string `tfsdk:"head_service_annotations" json:"headServiceAnnotations,omitempty"`
+			ManagedBy              *string            `tfsdk:"managed_by" json:"managedBy,omitempty"`
 			RayVersion             *string            `tfsdk:"ray_version" json:"rayVersion,omitempty"`
 			Suspend                *bool              `tfsdk:"suspend" json:"suspend,omitempty"`
 			WorkerGroupSpecs       *[]struct {
-				GroupName      *string            `tfsdk:"group_name" json:"groupName,omitempty"`
-				MaxReplicas    *int64             `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
-				MinReplicas    *int64             `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
-				NumOfHosts     *int64             `tfsdk:"num_of_hosts" json:"numOfHosts,omitempty"`
-				RayStartParams *map[string]string `tfsdk:"ray_start_params" json:"rayStartParams,omitempty"`
-				Replicas       *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-				ScaleStrategy  *struct {
+				GroupName          *string            `tfsdk:"group_name" json:"groupName,omitempty"`
+				IdleTimeoutSeconds *int64             `tfsdk:"idle_timeout_seconds" json:"idleTimeoutSeconds,omitempty"`
+				MaxReplicas        *int64             `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
+				MinReplicas        *int64             `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
+				NumOfHosts         *int64             `tfsdk:"num_of_hosts" json:"numOfHosts,omitempty"`
+				RayStartParams     *map[string]string `tfsdk:"ray_start_params" json:"rayStartParams,omitempty"`
+				Replicas           *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+				ScaleStrategy      *struct {
 					WorkersToDelete *[]string `tfsdk:"workers_to_delete" json:"workersToDelete,omitempty"`
 				} `tfsdk:"scale_strategy" json:"scaleStrategy,omitempty"`
+				Suspend  *bool `tfsdk:"suspend" json:"suspend,omitempty"`
 				Template *struct {
 					Metadata *struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -1755,6 +1830,7 @@ type RayIoRayServiceV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -1828,7 +1904,8 @@ type RayIoRayServiceV1ManifestData struct {
 							} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -2012,6 +2089,7 @@ type RayIoRayServiceV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -2085,7 +2163,8 @@ type RayIoRayServiceV1ManifestData struct {
 							} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -2272,6 +2351,7 @@ type RayIoRayServiceV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -2345,7 +2425,8 @@ type RayIoRayServiceV1ManifestData struct {
 							} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -2446,12 +2527,18 @@ type RayIoRayServiceV1ManifestData struct {
 							ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 						} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 						ResourceClaims *[]struct {
-							Name   *string `tfsdk:"name" json:"name,omitempty"`
-							Source *struct {
-								ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
-								ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
-							} `tfsdk:"source" json:"source,omitempty"`
+							Name                      *string `tfsdk:"name" json:"name,omitempty"`
+							ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+							ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 						} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
+						Resources *struct {
+							Claims *[]struct {
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"resources" json:"resources,omitempty"`
 						RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 						SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -2468,6 +2555,7 @@ type RayIoRayServiceV1ManifestData struct {
 							RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 							RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 							RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+							SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 							SeLinuxOptions      *struct {
 								Level *string `tfsdk:"level" json:"level,omitempty"`
 								Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2478,8 +2566,9 @@ type RayIoRayServiceV1ManifestData struct {
 								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 								Type             *string `tfsdk:"type" json:"type,omitempty"`
 							} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-							SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-							Sysctls            *[]struct {
+							SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+							SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+							Sysctls                  *[]struct {
 								Name  *string `tfsdk:"name" json:"name,omitempty"`
 								Value *string `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -2678,6 +2767,10 @@ type RayIoRayServiceV1ManifestData struct {
 								Path *string `tfsdk:"path" json:"path,omitempty"`
 								Type *string `tfsdk:"type" json:"type,omitempty"`
 							} `tfsdk:"host_path" json:"hostPath,omitempty"`
+							Image *struct {
+								PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+								Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+							} `tfsdk:"image" json:"image,omitempty"`
 							Iscsi *struct {
 								ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 								ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -2901,6 +2994,9 @@ type RayIoRayServiceV1ManifestData struct {
 			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"serve_service" json:"serveService,omitempty"`
 		ServiceUnhealthySecondThreshold *int64 `tfsdk:"service_unhealthy_second_threshold" json:"serviceUnhealthySecondThreshold,omitempty"`
+		UpgradeStrategy                 *struct {
+			Type *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"upgrade_strategy" json:"upgradeStrategy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -2982,6 +3078,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"deployment_unhealthy_second_threshold": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"exclude_head_pod_from_serve_svc": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -3264,6 +3368,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -3609,6 +3721,331 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"gcs_fault_tolerance_options": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"external_storage_namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"redis_address": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"redis_password": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"config_map_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"api_version": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"field_path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_field_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"divisor": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"resource": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"redis_username": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"config_map_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"api_version": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"field_path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_field_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"divisor": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"resource": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"head_group_spec": schema.SingleNestedAttribute{
@@ -4063,8 +4500,8 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																					"error": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
-																						Required:            false,
-																						Optional:            true,
+																						Required:            true,
+																						Optional:            false,
 																						Computed:            false,
 																						Validators: []validator.String{
 																							stringvalidator.LengthAtMost(316),
@@ -5631,6 +6068,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Optional: true,
 																			Computed: false,
 																		},
+
+																		"stop_signal": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -6123,6 +6568,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -7343,6 +7796,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Optional: true,
 																			Computed: false,
 																		},
+
+																		"stop_signal": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -7835,6 +8296,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -9080,6 +9549,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Optional: true,
 																			Computed: false,
 																		},
+
+																		"stop_signal": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -9572,6 +10049,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -10276,19 +10761,46 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Computed:            false,
 																},
 
-																"source": schema.SingleNestedAttribute{
+																"resource_claim_name": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"resource_claim_template_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resources": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"claims": schema.ListNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
-																		"resource_claim_name": schema.StringAttribute{
+																		"name": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 
-																		"resource_claim_template_name": schema.StringAttribute{
+																		"request": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -10296,10 +10808,28 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			Computed:            false,
 																		},
 																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
 																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limits": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"requests": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
 															},
 														},
 														Required: false,
@@ -10419,6 +10949,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																Computed:            false,
 															},
 
+															"se_linux_change_policy": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"se_linux_options": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -10489,6 +11027,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																Description:         "",
 																MarkdownDescription: "",
 																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"supplemental_groups_policy": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11837,6 +12383,31 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Computed: false,
 																},
 
+																"image": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"pull_policy": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"reference": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"iscsi": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -12873,6 +13444,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 								Computed:            false,
 							},
 
+							"managed_by": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"ray_version": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -12899,6 +13478,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"idle_timeout_seconds": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -12959,6 +13546,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"suspend": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"template": schema.SingleNestedAttribute{
@@ -14460,6 +15055,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				Optional: true,
 																				Computed: false,
 																			},
+
+																			"stop_signal": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
 																		},
 																		Required: false,
 																		Optional: true,
@@ -14952,6 +15555,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							MarkdownDescription: "",
 																							Required:            true,
 																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"request": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
 																							Computed:            false,
 																						},
 																					},
@@ -16172,6 +16783,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				Optional: true,
 																				Computed: false,
 																			},
+
+																			"stop_signal": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
 																		},
 																		Required: false,
 																		Optional: true,
@@ -16664,6 +17283,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							MarkdownDescription: "",
 																							Required:            true,
 																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"request": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
 																							Computed:            false,
 																						},
 																					},
@@ -17909,6 +18536,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				Optional: true,
 																				Computed: false,
 																			},
+
+																			"stop_signal": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
 																		},
 																		Required: false,
 																		Optional: true,
@@ -18401,6 +19036,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							MarkdownDescription: "",
 																							Required:            true,
 																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"request": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
 																							Computed:            false,
 																						},
 																					},
@@ -19105,19 +19748,46 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		Computed:            false,
 																	},
 
-																	"source": schema.SingleNestedAttribute{
+																	"resource_claim_name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"resource_claim_template_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"resources": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"claims": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
-																			"resource_claim_name": schema.StringAttribute{
+																			"name": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																			},
 
-																			"resource_claim_template_name": schema.StringAttribute{
+																			"request": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -19125,10 +19795,28 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				Computed:            false,
 																			},
 																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
 																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"limits": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"requests": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 															},
 															Required: false,
@@ -19248,6 +19936,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Computed:            false,
 																},
 
+																"se_linux_change_policy": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"se_linux_options": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -19318,6 +20014,14 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	Description:         "",
 																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"supplemental_groups_policy": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -20666,6 +21370,31 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		Computed: false,
 																	},
 
+																	"image": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"pull_policy": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"reference": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"iscsi": schema.SingleNestedAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -21694,8 +22423,8 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 								Computed: false,
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -22147,8 +22876,8 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	"error": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtMost(316),
@@ -22205,6 +22934,23 @@ func (r *RayIoRayServiceV1Manifest) Schema(_ context.Context, _ datasource.Schem
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"upgrade_strategy": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

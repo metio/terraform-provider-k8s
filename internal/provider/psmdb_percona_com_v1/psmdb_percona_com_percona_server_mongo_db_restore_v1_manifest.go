@@ -51,9 +51,12 @@ type PsmdbPerconaComPerconaServerMongoDbrestoreV1ManifestData struct {
 				EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 				Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
-			Completed            *string            `tfsdk:"completed" json:"completed,omitempty"`
-			Destination          *string            `tfsdk:"destination" json:"destination,omitempty"`
-			Error                *string            `tfsdk:"error" json:"error,omitempty"`
+			Completed   *string `tfsdk:"completed" json:"completed,omitempty"`
+			Destination *string `tfsdk:"destination" json:"destination,omitempty"`
+			Error       *string `tfsdk:"error" json:"error,omitempty"`
+			Filesystem  *struct {
+				Path *string `tfsdk:"path" json:"path,omitempty"`
+			} `tfsdk:"filesystem" json:"filesystem,omitempty"`
 			LastTransition       *string            `tfsdk:"last_transition" json:"lastTransition,omitempty"`
 			LatestRestorableTime *string            `tfsdk:"latest_restorable_time" json:"latestRestorableTime,omitempty"`
 			PbmName              *string            `tfsdk:"pbm_name" json:"pbmName,omitempty"`
@@ -258,6 +261,23 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"filesystem": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"path": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"last_transition": schema.StringAttribute{

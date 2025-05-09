@@ -237,11 +237,11 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -487,7 +487,7 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
-																			stringvalidator.OneOf("Header", "Cookie", "SourceIP", "QueryParameter", "FilterState"),
+																			stringvalidator.OneOf("Header", "Cookie", "Connection", "SourceIP", "QueryParameter", "FilterState"),
 																		},
 																	},
 																},
@@ -671,7 +671,7 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
-																			stringvalidator.OneOf("Header", "Cookie", "SourceIP", "QueryParameter", "FilterState"),
+																			stringvalidator.OneOf("Header", "Cookie", "Connection", "SourceIP", "QueryParameter", "FilterState"),
 																		},
 																	},
 																},
@@ -884,11 +884,11 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

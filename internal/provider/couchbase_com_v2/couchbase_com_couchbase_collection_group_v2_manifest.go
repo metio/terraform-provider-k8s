@@ -43,8 +43,9 @@ type CouchbaseComCouchbaseCollectionGroupV2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		MaxTTL *string   `tfsdk:"max_ttl" json:"maxTTL,omitempty"`
-		Names  *[]string `tfsdk:"names" json:"names,omitempty"`
+		History *bool     `tfsdk:"history" json:"history,omitempty"`
+		MaxTTL  *string   `tfsdk:"max_ttl" json:"maxTTL,omitempty"`
+		Names   *[]string `tfsdk:"names" json:"names,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -125,9 +126,17 @@ func (r *CouchbaseComCouchbaseCollectionGroupV2Manifest) Schema(_ context.Contex
 				Description:         "Spec defines the desired state of the resource.",
 				MarkdownDescription: "Spec defines the desired state of the resource.",
 				Attributes: map[string]schema.Attribute{
+					"history": schema.BoolAttribute{
+						Description:         "History defines whether change history is retained for the collection. If this field is set, it will override the historyRetention.collectionDefault bucket level value. This is only supported with storageBackend=magma at the bucket level.",
+						MarkdownDescription: "History defines whether change history is retained for the collection. If this field is set, it will override the historyRetention.collectionDefault bucket level value. This is only supported with storageBackend=magma at the bucket level.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"max_ttl": schema.StringAttribute{
-						Description:         "MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must be a duration in the range 0-2147483648s, defaulting to 0. More info: https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must be a duration in the range 0-2147483648s, defaulting to 0. More info: https://golang.org/pkg/time/#ParseDuration",
+						Description:         "MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must either be a duration in the range 0-2147483648s or '-1', defaulting to 0. If set to '-1', the collection's bucket will be prevented from setting a default expiration on the collection's documents. More info: https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must either be a duration in the range 0-2147483648s or '-1', defaulting to 0. If set to '-1', the collection's bucket will be prevented from setting a default expiration on the collection's documents. More info: https://golang.org/pkg/time/#ParseDuration",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -170,16 +170,16 @@ func (r *AnywhereEksAmazonawsComNutanixMachineConfigV1Alpha1Manifest) Schema(_ c
 								"key": schema.StringAttribute{
 									Description:         "key is the Key of the category in the Prism Central.",
 									MarkdownDescription: "key is the Key of the category in the Prism Central.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
 									Description:         "value is the category value linked to the key in the Prism Central.",
 									MarkdownDescription: "value is the category value linked to the key in the Prism Central.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},

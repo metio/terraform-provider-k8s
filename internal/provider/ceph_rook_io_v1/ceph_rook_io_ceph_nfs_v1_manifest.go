@@ -3344,8 +3344,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3370,8 +3370,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3395,8 +3395,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3487,8 +3487,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",

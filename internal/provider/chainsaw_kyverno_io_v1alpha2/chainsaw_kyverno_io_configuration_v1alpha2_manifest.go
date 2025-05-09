@@ -88,9 +88,10 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 						Name     *string            `tfsdk:"name" json:"name,omitempty"`
 						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
-					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
-					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
-					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
+					SkipCommandOutput *bool   `tfsdk:"skip_command_output" json:"skipCommandOutput,omitempty"`
+					SkipLogOutput     *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
+					Timeout           *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir           *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
 				Compiler *string `tfsdk:"compiler" json:"compiler,omitempty"`
 				Delete   *struct {
@@ -198,9 +199,10 @@ type ChainsawKyvernoIoConfigurationV1Alpha2ManifestData struct {
 						Name     *string            `tfsdk:"name" json:"name,omitempty"`
 						Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
-					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
-					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
-					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
+					SkipCommandOutput *bool   `tfsdk:"skip_command_output" json:"skipCommandOutput,omitempty"`
+					SkipLogOutput     *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
+					Timeout           *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir           *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
 				Sleep *struct {
 					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -644,6 +646,14 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"skip_command_output": schema.BoolAttribute{
+													Description:         "SkipCommandOutput removes the command from the output logs.",
+													MarkdownDescription: "SkipCommandOutput removes the command from the output logs.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"skip_log_output": schema.BoolAttribute{
@@ -1455,6 +1465,14 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
+												"skip_command_output": schema.BoolAttribute{
+													Description:         "SkipCommandOutput removes the command from the output logs.",
+													MarkdownDescription: "SkipCommandOutput removes the command from the output logs.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"skip_log_output": schema.BoolAttribute{
 													Description:         "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
 													MarkdownDescription: "SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.",
@@ -1770,8 +1788,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Report contains properties for the report.",
 						Attributes: map[string]schema.Attribute{
 							"format": schema.StringAttribute{
-								Description:         "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION).",
-								MarkdownDescription: "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION).",
+								Description:         "ReportFormat determines test report format (JSON, XML, JUNIT-TEST, JUNIT-STEP, JUNIT-OPERATION).",
+								MarkdownDescription: "ReportFormat determines test report format (JSON, XML, JUNIT-TEST, JUNIT-STEP, JUNIT-OPERATION).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

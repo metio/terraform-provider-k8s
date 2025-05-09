@@ -107,6 +107,9 @@ type DevicesKubeedgeIoDeviceV1Beta1ManifestData struct {
 					Retained *bool   `tfsdk:"retained" json:"retained,omitempty"`
 					Topic    *string `tfsdk:"topic" json:"topic,omitempty"`
 				} `tfsdk:"mqtt" json:"mqtt,omitempty"`
+				Otel *struct {
+					EndpointURL *string `tfsdk:"endpoint_url" json:"endpointURL,omitempty"`
+				} `tfsdk:"otel" json:"otel,omitempty"`
 			} `tfsdk:"push_method" json:"pushMethod,omitempty"`
 			ReportCycle   *int64 `tfsdk:"report_cycle" json:"reportCycle,omitempty"`
 			ReportToCloud *bool  `tfsdk:"report_to_cloud" json:"reportToCloud,omitempty"`
@@ -204,8 +207,8 @@ func (r *DevicesKubeedgeIoDeviceV1Beta1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "Required: DeviceModelRef is reference to the device model used as a template to create the device instance.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -594,6 +597,23 @@ func (r *DevicesKubeedgeIoDeviceV1Beta1Manifest) Schema(_ context.Context, _ dat
 												"topic": schema.StringAttribute{
 													Description:         "publish topic for mqtt",
 													MarkdownDescription: "publish topic for mqtt",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"otel": schema.SingleNestedAttribute{
+											Description:         "OTEL Push Method configuration for otel",
+											MarkdownDescription: "OTEL Push Method configuration for otel",
+											Attributes: map[string]schema.Attribute{
+												"endpoint_url": schema.StringAttribute{
+													Description:         "the target endpoint URL the Exporter will connect to, like https://localhost:4318/v1/metrics",
+													MarkdownDescription: "the target endpoint URL the Exporter will connect to, like https://localhost:4318/v1/metrics",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

@@ -194,8 +194,8 @@ func (r *PersistentVolumeClaimV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"data_source_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "TypedObjectReference contains enough information to let you locate the typed referenced object",
+						MarkdownDescription: "TypedObjectReference contains enough information to let you locate the typed referenced object",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
 								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",

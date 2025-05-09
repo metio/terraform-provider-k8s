@@ -342,6 +342,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -723,6 +724,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1051,7 +1053,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
@@ -1103,6 +1104,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2062,7 +2064,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
@@ -2114,6 +2115,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2536,7 +2538,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
@@ -2588,6 +2589,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2959,7 +2961,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
@@ -3011,6 +3012,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -4654,8 +4656,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"connect_timeout": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5123,8 +5125,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"idle_time": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5451,6 +5453,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 														Computed:            false,
 													},
 
+													"se_linux_change_policy": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"se_linux_options": schema.SingleNestedAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -5618,8 +5628,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"read_timeout": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5889,8 +5899,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"server_id": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5905,8 +5915,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"size": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -6609,8 +6619,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"write_timeout": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 										},
@@ -8030,6 +8040,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -10256,14 +10274,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"load_balancer_ip": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"load_balancer_source_ranges": schema.ListAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -10610,6 +10620,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -14972,8 +14990,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 							"size": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -17027,14 +17045,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"load_balancer_ip": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"load_balancer_source_ranges": schema.ListAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -17381,6 +17391,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -17826,8 +17844,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 							"size": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -20228,14 +20246,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"load_balancer_ip": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"load_balancer_source_ranges": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -20582,6 +20592,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -21027,8 +21045,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									"size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
@@ -23082,14 +23100,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"load_balancer_ip": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"load_balancer_source_ranges": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -23436,6 +23446,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -23881,8 +23899,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									"size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
