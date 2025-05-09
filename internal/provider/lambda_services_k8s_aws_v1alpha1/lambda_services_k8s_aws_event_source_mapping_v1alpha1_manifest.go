@@ -203,24 +203,24 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"batch_size": schema.Int64Attribute{
-						Description:         "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB). * Amazon Kinesis – Default 100. Max 10,000. * Amazon DynamoDB Streams – Default 100. Max 10,000. * Amazon Simple Queue Service – Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10. * Amazon Managed Streaming for Apache Kafka – Default 100. Max 10,000. * Self-managed Apache Kafka – Default 100. Max 10,000. * Amazon MQ (ActiveMQ and RabbitMQ) – Default 100. Max 10,000.",
-						MarkdownDescription: "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB). * Amazon Kinesis – Default 100. Max 10,000. * Amazon DynamoDB Streams – Default 100. Max 10,000. * Amazon Simple Queue Service – Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10. * Amazon Managed Streaming for Apache Kafka – Default 100. Max 10,000. * Self-managed Apache Kafka – Default 100. Max 10,000. * Amazon MQ (ActiveMQ and RabbitMQ) – Default 100. Max 10,000.",
+						Description:         "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB). * Amazon Kinesis – Default 100. Max 10,000. * Amazon DynamoDB Streams – Default 100. Max 10,000. * Amazon Simple Queue Service – Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10. * Amazon Managed Streaming for Apache Kafka – Default 100. Max 10,000. * Self-managed Apache Kafka – Default 100. Max 10,000. * Amazon MQ (ActiveMQ and RabbitMQ) – Default 100. Max 10,000. * DocumentDB – Default 100. Max 10,000.",
+						MarkdownDescription: "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB). * Amazon Kinesis – Default 100. Max 10,000. * Amazon DynamoDB Streams – Default 100. Max 10,000. * Amazon Simple Queue Service – Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10. * Amazon Managed Streaming for Apache Kafka – Default 100. Max 10,000. * Self-managed Apache Kafka – Default 100. Max 10,000. * Amazon MQ (ActiveMQ and RabbitMQ) – Default 100. Max 10,000. * DocumentDB – Default 100. Max 10,000.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bisect_batch_on_function_error": schema.BoolAttribute{
-						Description:         "(Streams only) If the function returns an error, split the batch in two and retry.",
-						MarkdownDescription: "(Streams only) If the function returns an error, split the batch in two and retry.",
+						Description:         "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry.",
+						MarkdownDescription: "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"destination_config": schema.SingleNestedAttribute{
-						Description:         "(Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded records.",
-						MarkdownDescription: "(Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded records.",
+						Description:         "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration object that specifies the destination of an event after Lambda processes it.",
+						MarkdownDescription: "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration object that specifies the destination of an event after Lambda processes it.",
 						Attributes: map[string]schema.Attribute{
 							"on_failure": schema.SingleNestedAttribute{
 								Description:         "A destination for events that failed processing.",
@@ -240,8 +240,8 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"on_success": schema.SingleNestedAttribute{
-								Description:         "A destination for events that were processed successfully.",
-								MarkdownDescription: "A destination for events that were processed successfully.",
+								Description:         "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination.",
+								MarkdownDescription: "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination.",
 								Attributes: map[string]schema.Attribute{
 									"destination": schema.StringAttribute{
 										Description:         "",
@@ -270,8 +270,8 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"event_source_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the event source. * Amazon Kinesis – The ARN of the data stream or a stream consumer. * Amazon DynamoDB Streams – The ARN of the stream. * Amazon Simple Queue Service – The ARN of the queue. * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster. * Amazon MQ – The ARN of the broker.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the event source. * Amazon Kinesis – The ARN of the data stream or a stream consumer. * Amazon DynamoDB Streams – The ARN of the stream. * Amazon Simple Queue Service – The ARN of the queue. * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster. * Amazon MQ – The ARN of the broker.",
+						Description:         "The Amazon Resource Name (ARN) of the event source. * Amazon Kinesis – The ARN of the data stream or a stream consumer. * Amazon DynamoDB Streams – The ARN of the stream. * Amazon Simple Queue Service – The ARN of the queue. * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster or the ARN of the VPC connection (for cross-account event source mappings (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)). * Amazon MQ – The ARN of the broker. * Amazon DocumentDB – The ARN of the DocumentDB change stream.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the event source. * Amazon Kinesis – The ARN of the data stream or a stream consumer. * Amazon DynamoDB Streams – The ARN of the stream. * Amazon Simple Queue Service – The ARN of the queue. * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster or the ARN of the VPC connection (for cross-account event source mappings (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)). * Amazon MQ – The ARN of the broker. * Amazon DocumentDB – The ARN of the DocumentDB change stream.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -340,8 +340,8 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"function_name": schema.StringAttribute{
-						Description:         "The name of the Lambda function. Name formats * Function name – MyFunction. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD. * Partial ARN – 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function. Name formats * Function name – MyFunction. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD. * Partial ARN – 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
+						Description:         "The name or ARN of the Lambda function. Name formats * Function name – MyFunction. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD. * Partial ARN – 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
+						MarkdownDescription: "The name or ARN of the Lambda function. Name formats * Function name – MyFunction. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD. * Partial ARN – 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -382,8 +382,8 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"function_response_types": schema.ListAttribute{
-						Description:         "(Streams and Amazon SQS) A list of current response type enums applied to the event source mapping.",
-						MarkdownDescription: "(Streams and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+						Description:         "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+						MarkdownDescription: "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -391,32 +391,32 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"maximum_batching_window_in_seconds": schema.Int64Attribute{
-						Description:         "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, and Amazon MQ event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For streams and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.",
-						MarkdownDescription: "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, and Amazon MQ event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For streams and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.",
+						Description:         "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.",
+						MarkdownDescription: "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"maximum_record_age_in_seconds": schema.Int64Attribute{
-						Description:         "(Streams only) Discard records older than the specified age. The default value is infinite (-1).",
-						MarkdownDescription: "(Streams only) Discard records older than the specified age. The default value is infinite (-1).",
+						Description:         "(Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is infinite (-1).",
+						MarkdownDescription: "(Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is infinite (-1).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"maximum_retry_attempts": schema.Int64Attribute{
-						Description:         "(Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.",
-						MarkdownDescription: "(Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.",
+						Description:         "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.",
+						MarkdownDescription: "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"parallelization_factor": schema.Int64Attribute{
-						Description:         "(Streams only) The number of batches to process from each shard concurrently.",
-						MarkdownDescription: "(Streams only) The number of batches to process from each shard concurrently.",
+						Description:         "(Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently.",
+						MarkdownDescription: "(Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -547,16 +547,16 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"starting_position": schema.StringAttribute{
-						Description:         "The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is supported only for Amazon Kinesis streams.",
-						MarkdownDescription: "The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is supported only for Amazon Kinesis streams.",
+						Description:         "The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. AT_TIMESTAMP is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.",
+						MarkdownDescription: "The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. AT_TIMESTAMP is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"starting_position_timestamp": schema.StringAttribute{
-						Description:         "With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.",
-						MarkdownDescription: "With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.",
+						Description:         "With StartingPosition set to AT_TIMESTAMP, the time from which to start reading. StartingPositionTimestamp cannot be in the future.",
+						MarkdownDescription: "With StartingPosition set to AT_TIMESTAMP, the time from which to start reading. StartingPositionTimestamp cannot be in the future.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -575,8 +575,8 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"tumbling_window_in_seconds": schema.Int64Attribute{
-						Description:         "(Streams only) The duration in seconds of a processing window. The range is between 1 second and 900 seconds.",
-						MarkdownDescription: "(Streams only) The duration in seconds of a processing window. The range is between 1 second and 900 seconds.",
+						Description:         "(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.",
+						MarkdownDescription: "(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

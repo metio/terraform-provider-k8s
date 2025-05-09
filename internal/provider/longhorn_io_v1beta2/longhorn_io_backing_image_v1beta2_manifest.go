@@ -44,8 +44,10 @@ type LonghornIoBackingImageV1Beta2ManifestData struct {
 
 	Spec *struct {
 		Checksum        *string `tfsdk:"checksum" json:"checksum,omitempty"`
+		DataEngine      *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DiskFileSpecMap *struct {
-			EvictionRequested *bool `tfsdk:"eviction_requested" json:"evictionRequested,omitempty"`
+			DataEngine        *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
+			EvictionRequested *bool   `tfsdk:"eviction_requested" json:"evictionRequested,omitempty"`
 		} `tfsdk:"disk_file_spec_map" json:"diskFileSpecMap,omitempty"`
 		DiskSelector      *[]string          `tfsdk:"disk_selector" json:"diskSelector,omitempty"`
 		Disks             *map[string]string `tfsdk:"disks" json:"disks,omitempty"`
@@ -143,10 +145,32 @@ func (r *LonghornIoBackingImageV1Beta2Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"data_engine": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("v1", "v2"),
+						},
+					},
+
 					"disk_file_spec_map": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"data_engine": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("v1", "v2"),
+								},
+							},
+
 							"eviction_requested": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",

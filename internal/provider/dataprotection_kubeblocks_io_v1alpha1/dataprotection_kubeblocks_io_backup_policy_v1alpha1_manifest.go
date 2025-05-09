@@ -47,8 +47,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 	Spec *struct {
 		BackoffLimit  *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
 		BackupMethods *[]struct {
-			ActionSetName *string `tfsdk:"action_set_name" json:"actionSetName,omitempty"`
-			Env           *[]struct {
+			ActionSetName    *string `tfsdk:"action_set_name" json:"actionSetName,omitempty"`
+			CompatibleMethod *string `tfsdk:"compatible_method" json:"compatibleMethod,omitempty"`
+			Env              *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -193,8 +194,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"pass_phrase_secret_key_ref" json:"passPhraseSecretKeyRef,omitempty"`
 		} `tfsdk:"encryption_config" json:"encryptionConfig,omitempty"`
-		PathPrefix *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
-		Target     *struct {
+		PathPrefix      *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
+		RetentionPolicy *string `tfsdk:"retention_policy" json:"retentionPolicy,omitempty"`
+		Target          *struct {
 			ConnectionCredential *struct {
 				HostKey     *string `tfsdk:"host_key" json:"hostKey,omitempty"`
 				PasswordKey *string `tfsdk:"password_key" json:"passwordKey,omitempty"`
@@ -386,6 +388,17 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"compatible_method": schema.StringAttribute{
+									Description:         "The name of the compatible full backup method, used by incremental backups.",
+									MarkdownDescription: "The name of the compatible full backup method, used by incremental backups.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+									},
 								},
 
 								"env": schema.ListNestedAttribute{
@@ -1381,6 +1394,17 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"retention_policy": schema.StringAttribute{
+						Description:         "Specifies the backup retention policy. This has a precedence over 'backup.spec.retentionPeriod'.",
+						MarkdownDescription: "Specifies the backup retention policy. This has a precedence over 'backup.spec.retentionPeriod'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("retainLatestBackup", "none"),
+						},
 					},
 
 					"target": schema.SingleNestedAttribute{

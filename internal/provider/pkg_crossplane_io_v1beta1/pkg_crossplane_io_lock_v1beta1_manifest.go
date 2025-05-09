@@ -42,11 +42,15 @@ type PkgCrossplaneIoLockV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Packages *[]struct {
+		ApiVersion   *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 		Dependencies *[]struct {
+			ApiVersion  *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Constraints *string `tfsdk:"constraints" json:"constraints,omitempty"`
+			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
 			Package     *string `tfsdk:"package" json:"package,omitempty"`
 			Type        *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"dependencies" json:"dependencies,omitempty"`
+		Kind    *string `tfsdk:"kind" json:"kind,omitempty"`
 		Name    *string `tfsdk:"name" json:"name,omitempty"`
 		Source  *string `tfsdk:"source" json:"source,omitempty"`
 		Type    *string `tfsdk:"type" json:"type,omitempty"`
@@ -120,16 +124,40 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
+						"api_version": schema.StringAttribute{
+							Description:         "APIVersion of the package.",
+							MarkdownDescription: "APIVersion of the package.",
+							Required:            false,
+							Optional:            true,
+							Computed:            false,
+						},
+
 						"dependencies": schema.ListNestedAttribute{
 							Description:         "Dependencies are the list of dependencies of this package. The order of the dependencies will dictate the order in which they are resolved.",
 							MarkdownDescription: "Dependencies are the list of dependencies of this package. The order of the dependencies will dictate the order in which they are resolved.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
+									"api_version": schema.StringAttribute{
+										Description:         "APIVersion of the package.",
+										MarkdownDescription: "APIVersion of the package.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"constraints": schema.StringAttribute{
 										Description:         "Constraints is a valid semver range or a digest, which will be used to select a valid dependency version.",
 										MarkdownDescription: "Constraints is a valid semver range or a digest, which will be used to select a valid dependency version.",
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "Kind of the package (not the kind of the package revision).",
+										MarkdownDescription: "Kind of the package (not the kind of the package revision).",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 
@@ -142,17 +170,28 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "Type is the type of package. Can be either Configuration or Provider.",
-										MarkdownDescription: "Type is the type of package. Can be either Configuration or Provider.",
-										Required:            true,
-										Optional:            false,
+										Description:         "Type is the type of package. Can be either Configuration or Provider. Deprecated: Specify an apiVersion and kind instead.",
+										MarkdownDescription: "Type is the type of package. Can be either Configuration or Provider. Deprecated: Specify an apiVersion and kind instead.",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Configuration", "Provider", "Function"),
+										},
 									},
 								},
 							},
 							Required: true,
 							Optional: false,
 							Computed: false,
+						},
+
+						"kind": schema.StringAttribute{
+							Description:         "Kind of the package (not the kind of the package revision).",
+							MarkdownDescription: "Kind of the package (not the kind of the package revision).",
+							Required:            false,
+							Optional:            true,
+							Computed:            false,
 						},
 
 						"name": schema.StringAttribute{
@@ -172,11 +211,14 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasou
 						},
 
 						"type": schema.StringAttribute{
-							Description:         "Type is the type of package. Can be either Configuration or Provider.",
-							MarkdownDescription: "Type is the type of package. Can be either Configuration or Provider.",
-							Required:            true,
-							Optional:            false,
+							Description:         "Type is the type of package. Deprecated: Specify an apiVersion and kind instead.",
+							MarkdownDescription: "Type is the type of package. Deprecated: Specify an apiVersion and kind instead.",
+							Required:            false,
+							Optional:            true,
 							Computed:            false,
+							Validators: []validator.String{
+								stringvalidator.OneOf("Configuration", "Provider", "Function"),
+							},
 						},
 
 						"version": schema.StringAttribute{

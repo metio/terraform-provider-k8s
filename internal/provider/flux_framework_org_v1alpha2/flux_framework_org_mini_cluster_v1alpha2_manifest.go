@@ -135,6 +135,7 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
 			CurveCert      *string `tfsdk:"curve_cert" json:"curveCert,omitempty"`
+			DisableSocket  *bool   `tfsdk:"disable_socket" json:"disableSocket,omitempty"`
 			LogLevel       *int64  `tfsdk:"log_level" json:"logLevel,omitempty"`
 			MinimalService *bool   `tfsdk:"minimal_service" json:"minimalService,omitempty"`
 			MungeSecret    *string `tfsdk:"munge_secret" json:"mungeSecret,omitempty"`
@@ -142,8 +143,10 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 			OptionFlags    *string `tfsdk:"option_flags" json:"optionFlags,omitempty"`
 			Scheduler      *struct {
 				QueuePolicy *string `tfsdk:"queue_policy" json:"queuePolicy,omitempty"`
+				Simple      *bool   `tfsdk:"simple" json:"simple,omitempty"`
 			} `tfsdk:"scheduler" json:"scheduler,omitempty"`
 			SubmitCommand *string `tfsdk:"submit_command" json:"submitCommand,omitempty"`
+			Topology      *string `tfsdk:"topology" json:"topology,omitempty"`
 			Wrap          *string `tfsdk:"wrap" json:"wrap,omitempty"`
 		} `tfsdk:"flux" json:"flux,omitempty"`
 		Interactive *bool              `tfsdk:"interactive" json:"interactive,omitempty"`
@@ -962,6 +965,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"disable_socket": schema.BoolAttribute{
+								Description:         "Disable specifying the socket path",
+								MarkdownDescription: "Disable specifying the socket path",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"log_level": schema.Int64Attribute{
 								Description:         "Log level to use for flux logging (only in non TestMode)",
 								MarkdownDescription: "Log level to use for flux logging (only in non TestMode)",
@@ -1013,6 +1024,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"simple": schema.BoolAttribute{
+										Description:         "Use sched-simple (no support for GPU)",
+										MarkdownDescription: "Use sched-simple (no support for GPU)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1022,6 +1041,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							"submit_command": schema.StringAttribute{
 								Description:         "Modify flux submit to be something else",
 								MarkdownDescription: "Modify flux submit to be something else",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"topology": schema.StringAttribute{
+								Description:         "Specify a custom Topology",
+								MarkdownDescription: "Specify a custom Topology",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

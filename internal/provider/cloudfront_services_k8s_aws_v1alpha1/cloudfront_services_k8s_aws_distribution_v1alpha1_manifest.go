@@ -228,6 +228,11 @@ type CloudfrontServicesK8SAwsDistributionV1Alpha1ManifestData struct {
 					S3OriginConfig *struct {
 						OriginAccessIdentity *string `tfsdk:"origin_access_identity" json:"originAccessIdentity,omitempty"`
 					} `tfsdk:"s3_origin_config" json:"s3OriginConfig,omitempty"`
+					VpcOriginConfig *struct {
+						OriginKeepaliveTimeout *int64  `tfsdk:"origin_keepalive_timeout" json:"originKeepaliveTimeout,omitempty"`
+						OriginReadTimeout      *int64  `tfsdk:"origin_read_timeout" json:"originReadTimeout,omitempty"`
+						VpcOriginID            *string `tfsdk:"vpc_origin_id" json:"vpcOriginID,omitempty"`
+					} `tfsdk:"vpc_origin_config" json:"vpcOriginConfig,omitempty"`
 				} `tfsdk:"items" json:"items,omitempty"`
 			} `tfsdk:"origins" json:"origins,omitempty"`
 			PriceClass   *string `tfsdk:"price_class" json:"priceClass,omitempty"`
@@ -255,6 +260,10 @@ type CloudfrontServicesK8SAwsDistributionV1Alpha1ManifestData struct {
 			} `tfsdk:"viewer_certificate" json:"viewerCertificate,omitempty"`
 			WebACLID *string `tfsdk:"web_aclid" json:"webACLID,omitempty"`
 		} `tfsdk:"distribution_config" json:"distributionConfig,omitempty"`
+		Tags *[]struct {
+			Key   *string `tfsdk:"key" json:"key,omitempty"`
+			Value *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"tags" json:"tags,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -523,8 +532,8 @@ func (r *CloudfrontServicesK8SAwsDistributionV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"function_associations": schema.SingleNestedAttribute{
-													Description:         "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. CloudFront functions must be published to the LIVE stage to associate them with a cache behavior.",
-													MarkdownDescription: "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. CloudFront functions must be published to the LIVE stage to associate them with a cache behavior.",
+													Description:         "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. Your functions must be published to the LIVE stage to associate them with a cache behavior.",
+													MarkdownDescription: "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. Your functions must be published to the LIVE stage to associate them with a cache behavior.",
 													Attributes: map[string]schema.Attribute{
 														"items": schema.ListNestedAttribute{
 															Description:         "",
@@ -966,8 +975,8 @@ func (r *CloudfrontServicesK8SAwsDistributionV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"function_associations": schema.SingleNestedAttribute{
-										Description:         "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. CloudFront functions must be published to the LIVE stage to associate them with a cache behavior.",
-										MarkdownDescription: "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. CloudFront functions must be published to the LIVE stage to associate them with a cache behavior.",
+										Description:         "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. Your functions must be published to the LIVE stage to associate them with a cache behavior.",
+										MarkdownDescription: "A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. Your functions must be published to the LIVE stage to associate them with a cache behavior.",
 										Attributes: map[string]schema.Attribute{
 											"items": schema.ListNestedAttribute{
 												Description:         "",
@@ -1199,8 +1208,8 @@ func (r *CloudfrontServicesK8SAwsDistributionV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"logging": schema.SingleNestedAttribute{
-								Description:         "A complex type that controls whether access logs are written for the distribution.",
-								MarkdownDescription: "A complex type that controls whether access logs are written for the distribution.",
+								Description:         "A complex type that specifies whether access logs are written for the distribution. If you already enabled standard logging (legacy) and you want to enable standard logging (v2) to send your access logs to Amazon S3, we recommend that you specify a different Amazon S3 bucket or use a separate path in the same bucket (for example, use a log prefix or partitioning). This helps you keep track of which log files are associated with which logging subscription and prevents log files from overwriting each other. For more information, see Standard logging (access logs) (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the Amazon CloudFront Developer Guide.",
+								MarkdownDescription: "A complex type that specifies whether access logs are written for the distribution. If you already enabled standard logging (legacy) and you want to enable standard logging (v2) to send your access logs to Amazon S3, we recommend that you specify a different Amazon S3 bucket or use a separate path in the same bucket (for example, use a log prefix or partitioning). This helps you keep track of which log files are associated with which logging subscription and prevents log files from overwriting each other. For more information, see Standard logging (access logs) (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the Amazon CloudFront Developer Guide.",
 								Attributes: map[string]schema.Attribute{
 									"bucket": schema.StringAttribute{
 										Description:         "",
@@ -1523,6 +1532,39 @@ func (r *CloudfrontServicesK8SAwsDistributionV1Alpha1Manifest) Schema(_ context.
 													Optional: true,
 													Computed: false,
 												},
+
+												"vpc_origin_config": schema.SingleNestedAttribute{
+													Description:         "An Amazon CloudFront VPC origin configuration.",
+													MarkdownDescription: "An Amazon CloudFront VPC origin configuration.",
+													Attributes: map[string]schema.Attribute{
+														"origin_keepalive_timeout": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"origin_read_timeout": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"vpc_origin_id": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
 											},
 										},
 										Required: false,
@@ -1695,6 +1737,33 @@ func (r *CloudfrontServicesK8SAwsDistributionV1Alpha1Manifest) Schema(_ context.
 						},
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"tags": schema.ListNestedAttribute{
+						Description:         "A complex type that contains Tag elements.",
+						MarkdownDescription: "A complex type that contains Tag elements.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"key": schema.StringAttribute{
+									Description:         "A string that contains Tag key. The string length should be between 1 and 128 characters. Valid characters include a-z, A-Z, 0-9, space, and the special characters _ - . : / = + @.",
+									MarkdownDescription: "A string that contains Tag key. The string length should be between 1 and 128 characters. Valid characters include a-z, A-Z, 0-9, space, and the special characters _ - . : / = + @.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				},

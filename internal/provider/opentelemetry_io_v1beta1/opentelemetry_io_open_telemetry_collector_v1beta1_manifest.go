@@ -869,6 +869,10 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 				EnableMetrics                *bool `tfsdk:"enable_metrics" json:"enableMetrics,omitempty"`
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 		} `tfsdk:"observability" json:"observability,omitempty"`
+		PersistentVolumeClaimRetentionPolicy *struct {
+			WhenDeleted *string `tfsdk:"when_deleted" json:"whenDeleted,omitempty"`
+			WhenScaled  *string `tfsdk:"when_scaled" json:"whenScaled,omitempty"`
+		} `tfsdk:"persistent_volume_claim_retention_policy" json:"persistentVolumeClaimRetentionPolicy,omitempty"`
 		PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodDisruptionBudget *struct {
 			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -892,6 +896,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 			SeLinuxOptions      *struct {
 				Level *string `tfsdk:"level" json:"level,omitempty"`
 				Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1109,9 +1114,10 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 			} `tfsdk:"affinity" json:"affinity,omitempty"`
-			AllocationStrategy *string `tfsdk:"allocation_strategy" json:"allocationStrategy,omitempty"`
-			Enabled            *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env                *[]struct {
+			AllocationStrategy           *string `tfsdk:"allocation_strategy" json:"allocationStrategy,omitempty"`
+			CollectorNotReadyGracePeriod *string `tfsdk:"collector_not_ready_grace_period" json:"collectorNotReadyGracePeriod,omitempty"`
+			Enabled                      *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env                          *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -1159,6 +1165,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1183,7 +1190,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
 			PrometheusCR *struct {
-				Enabled            *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				AllowNamespaces    *[]string `tfsdk:"allow_namespaces" json:"allowNamespaces,omitempty"`
+				DenyNamespaces     *[]string `tfsdk:"deny_namespaces" json:"denyNamespaces,omitempty"`
+				Enabled            *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
 				PodMonitorSelector *struct {
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1192,6 +1201,22 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"pod_monitor_selector" json:"podMonitorSelector,omitempty"`
+				ProbeSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"probe_selector" json:"probeSelector,omitempty"`
+				ScrapeConfigSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"scrape_config_selector" json:"scrapeConfigSelector,omitempty"`
 				ScrapeInterval         *string `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
 				ServiceMonitorSelector *struct {
 					MatchExpressions *[]struct {
@@ -7247,6 +7272,31 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 						Computed: false,
 					},
 
+					"persistent_volume_claim_retention_policy": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"when_deleted": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"when_scaled": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"pod_annotations": schema.MapAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -7397,6 +7447,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 							},
 
 							"run_as_user": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_change_policy": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -8887,6 +8945,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 								},
 							},
 
+							"collector_not_ready_grace_period": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -9211,6 +9277,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 										Computed:            false,
 									},
 
+									"se_linux_change_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"se_linux_options": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -9371,6 +9445,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"allow_namespaces": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"deny_namespaces": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enabled": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -9380,6 +9472,114 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 									},
 
 									"pod_monitor_selector": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"probe_selector": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scrape_config_selector": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{

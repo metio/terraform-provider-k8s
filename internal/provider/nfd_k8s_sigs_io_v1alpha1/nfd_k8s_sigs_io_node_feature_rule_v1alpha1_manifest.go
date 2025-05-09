@@ -37,21 +37,28 @@ type NfdK8SSigsIoNodeFeatureRuleV1Alpha1ManifestData struct {
 
 	Metadata struct {
 		Name        string            `tfsdk:"name" json:"name"`
+		Namespace   string            `tfsdk:"namespace" json:"namespace"`
 		Labels      map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		Annotations map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
 		Rules *[]struct {
-			Labels         *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			LabelsTemplate *string            `tfsdk:"labels_template" json:"labelsTemplate,omitempty"`
-			MatchAny       *[]struct {
+			Annotations       *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExtendedResources *map[string]string `tfsdk:"extended_resources" json:"extendedResources,omitempty"`
+			Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LabelsTemplate    *string            `tfsdk:"labels_template" json:"labelsTemplate,omitempty"`
+			MatchAny          *[]struct {
 				MatchFeatures *[]struct {
 					Feature          *string `tfsdk:"feature" json:"feature,omitempty"`
 					MatchExpressions *struct {
 						Op    *string   `tfsdk:"op" json:"op,omitempty"`
 						Value *[]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchName *struct {
+						Op    *string   `tfsdk:"op" json:"op,omitempty"`
+						Value *[]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"match_name" json:"matchName,omitempty"`
 				} `tfsdk:"match_features" json:"matchFeatures,omitempty"`
 			} `tfsdk:"match_any" json:"matchAny,omitempty"`
 			MatchFeatures *[]struct {
@@ -60,8 +67,18 @@ type NfdK8SSigsIoNodeFeatureRuleV1Alpha1ManifestData struct {
 					Op    *string   `tfsdk:"op" json:"op,omitempty"`
 					Value *[]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchName *struct {
+					Op    *string   `tfsdk:"op" json:"op,omitempty"`
+					Value *[]string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"match_name" json:"matchName,omitempty"`
 			} `tfsdk:"match_features" json:"matchFeatures,omitempty"`
-			Name         *string            `tfsdk:"name" json:"name,omitempty"`
+			Name   *string `tfsdk:"name" json:"name,omitempty"`
+			Taints *[]struct {
+				Effect    *string `tfsdk:"effect" json:"effect,omitempty"`
+				Key       *string `tfsdk:"key" json:"key,omitempty"`
+				TimeAdded *string `tfsdk:"time_added" json:"timeAdded,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"taints" json:"taints,omitempty"`
 			Vars         *map[string]string `tfsdk:"vars" json:"vars,omitempty"`
 			VarsTemplate *string            `tfsdk:"vars_template" json:"varsTemplate,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
@@ -95,6 +112,18 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Schema(_ context.Context, 
 					"name": schema.StringAttribute{
 						Description:         "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
 						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+						Validators: []validator.String{
+							validators.NameValidator(),
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
+					"namespace": schema.StringAttribute{
+						Description:         "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
+						MarkdownDescription: "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -138,6 +167,24 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "Rules is a list of node customization rules.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"annotations": schema.MapAttribute{
+									Description:         "Annotations to create if the rule matches.",
+									MarkdownDescription: "Annotations to create if the rule matches.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"extended_resources": schema.MapAttribute{
+									Description:         "ExtendedResources to create if the rule matches.",
+									MarkdownDescription: "ExtendedResources to create if the rule matches.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"labels": schema.MapAttribute{
 									Description:         "Labels to create if the rule matches.",
 									MarkdownDescription: "Labels to create if the rule matches.",
@@ -201,6 +248,35 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Schema(_ context.Context, 
 															Optional: false,
 															Computed: false,
 														},
+
+														"match_name": schema.SingleNestedAttribute{
+															Description:         "MatchName in an expression that is matched against the name of each element in the feature set.",
+															MarkdownDescription: "MatchName in an expression that is matched against the name of each element in the feature set.",
+															Attributes: map[string]schema.Attribute{
+																"op": schema.StringAttribute{
+																	Description:         "Op is the operator to be applied.",
+																	MarkdownDescription: "Op is the operator to be applied.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("In", "NotIn", "InRegexp", "Exists", "DoesNotExist", "Gt", "Lt", "GtLt", "IsTrue", "IsFalse"),
+																	},
+																},
+
+																"value": schema.ListAttribute{
+																	Description:         "Value is the list of values that the operand evaluates the input against. Value should be empty if the operator is Exists, DoesNotExist, IsTrue or IsFalse. Value should contain exactly one element if the operator is Gt or Lt and exactly two elements if the operator is GtLt. In other cases Value should contain at least one element.",
+																	MarkdownDescription: "Value is the list of values that the operand evaluates the input against. Value should be empty if the operator is Exists, DoesNotExist, IsTrue or IsFalse. Value should contain exactly one element if the operator is Gt or Lt and exactly two elements if the operator is GtLt. In other cases Value should contain at least one element.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
 													},
 												},
 												Required: true,
@@ -255,6 +331,35 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Schema(_ context.Context, 
 												Optional: false,
 												Computed: false,
 											},
+
+											"match_name": schema.SingleNestedAttribute{
+												Description:         "MatchName in an expression that is matched against the name of each element in the feature set.",
+												MarkdownDescription: "MatchName in an expression that is matched against the name of each element in the feature set.",
+												Attributes: map[string]schema.Attribute{
+													"op": schema.StringAttribute{
+														Description:         "Op is the operator to be applied.",
+														MarkdownDescription: "Op is the operator to be applied.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("In", "NotIn", "InRegexp", "Exists", "DoesNotExist", "Gt", "Lt", "GtLt", "IsTrue", "IsFalse"),
+														},
+													},
+
+													"value": schema.ListAttribute{
+														Description:         "Value is the list of values that the operand evaluates the input against. Value should be empty if the operator is Exists, DoesNotExist, IsTrue or IsFalse. Value should contain exactly one element if the operator is Gt or Lt and exactly two elements if the operator is GtLt. In other cases Value should contain at least one element.",
+														MarkdownDescription: "Value is the list of values that the operand evaluates the input against. Value should be empty if the operator is Exists, DoesNotExist, IsTrue or IsFalse. Value should contain exactly one element if the operator is Gt or Lt and exactly two elements if the operator is GtLt. In other cases Value should contain at least one element.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										},
 									},
 									Required: false,
@@ -268,6 +373,52 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Schema(_ context.Context, 
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+								},
+
+								"taints": schema.ListNestedAttribute{
+									Description:         "Taints to create if the rule matches.",
+									MarkdownDescription: "Taints to create if the rule matches.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"effect": schema.StringAttribute{
+												Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+												MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"key": schema.StringAttribute{
+												Description:         "Required. The taint key to be applied to a node.",
+												MarkdownDescription: "Required. The taint key to be applied to a node.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"time_added": schema.StringAttribute{
+												Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+												MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													validators.DateTime64Validator(),
+												},
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "The taint value corresponding to the taint key.",
+												MarkdownDescription: "The taint value corresponding to the taint key.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"vars": schema.MapAttribute{

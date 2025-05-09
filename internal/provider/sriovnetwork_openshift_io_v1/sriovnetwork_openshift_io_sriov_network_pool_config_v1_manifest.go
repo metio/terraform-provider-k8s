@@ -55,6 +55,7 @@ type SriovnetworkOpenshiftIoSriovNetworkPoolConfigV1ManifestData struct {
 		OvsHardwareOffloadConfig *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"ovs_hardware_offload_config" json:"ovsHardwareOffloadConfig,omitempty"`
+		RdmaMode *string `tfsdk:"rdma_mode" json:"rdmaMode,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -212,6 +213,17 @@ func (r *SriovnetworkOpenshiftIoSriovNetworkPoolConfigV1Manifest) Schema(_ conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"rdma_mode": schema.StringAttribute{
+						Description:         "RDMA subsystem. Allowed value 'shared', 'exclusive'.",
+						MarkdownDescription: "RDMA subsystem. Allowed value 'shared', 'exclusive'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("shared", "exclusive"),
+						},
 					},
 				},
 				Required: false,

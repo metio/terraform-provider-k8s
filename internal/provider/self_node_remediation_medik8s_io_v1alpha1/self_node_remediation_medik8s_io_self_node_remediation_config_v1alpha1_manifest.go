@@ -58,6 +58,7 @@ type SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1ManifestData s
 		HostPort                            *int64  `tfsdk:"host_port" json:"hostPort,omitempty"`
 		IsSoftwareRebootEnabled             *bool   `tfsdk:"is_software_reboot_enabled" json:"isSoftwareRebootEnabled,omitempty"`
 		MaxApiErrorThreshold                *int64  `tfsdk:"max_api_error_threshold" json:"maxApiErrorThreshold,omitempty"`
+		MinPeersForRemediation              *int64  `tfsdk:"min_peers_for_remediation" json:"minPeersForRemediation,omitempty"`
 		PeerApiServerTimeout                *string `tfsdk:"peer_api_server_timeout" json:"peerApiServerTimeout,omitempty"`
 		PeerDialTimeout                     *string `tfsdk:"peer_dial_timeout" json:"peerDialTimeout,omitempty"`
 		PeerRequestTimeout                  *string `tfsdk:"peer_request_timeout" json:"peerRequestTimeout,omitempty"`
@@ -252,6 +253,17 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 						Computed:            false,
 						Validators: []validator.Int64{
 							int64validator.AtLeast(1),
+						},
+					},
+
+					"min_peers_for_remediation": schema.Int64Attribute{
+						Description:         "Minimum number of peer workers/control nodes to attempt to contact before deciding if node is unhealthy or not if set to zero, no other peers will be required to be present for remediation action to occur when this node has lost API server access. If an insufficient number of peers are found, we will not attempt to ask any peer nodes (if present) whether they see that the current node has been marked unhealthy with a SelfNodeRemediation CR",
+						MarkdownDescription: "Minimum number of peer workers/control nodes to attempt to contact before deciding if node is unhealthy or not if set to zero, no other peers will be required to be present for remediation action to occur when this node has lost API server access. If an insufficient number of peers are found, we will not attempt to ask any peer nodes (if present) whether they see that the current node has been marked unhealthy with a SelfNodeRemediation CR",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
 						},
 					},
 

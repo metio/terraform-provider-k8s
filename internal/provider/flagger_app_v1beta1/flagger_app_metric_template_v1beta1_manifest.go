@@ -44,9 +44,10 @@ type FlaggerAppMetricTemplateV1Beta1ManifestData struct {
 
 	Spec *struct {
 		Provider *struct {
-			Address            *string `tfsdk:"address" json:"address,omitempty"`
-			InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
-			Region             *string `tfsdk:"region" json:"region,omitempty"`
+			Address            *string              `tfsdk:"address" json:"address,omitempty"`
+			Headers            *map[string][]string `tfsdk:"headers" json:"headers,omitempty"`
+			InsecureSkipVerify *bool                `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+			Region             *string              `tfsdk:"region" json:"region,omitempty"`
 			SecretRef          *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
@@ -145,6 +146,15 @@ func (r *FlaggerAppMetricTemplateV1Beta1Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"headers": schema.MapAttribute{
+								Description:         "Headers to add to HTTP(S) requests",
+								MarkdownDescription: "Headers to add to HTTP(S) requests",
+								ElementType:         types.ListType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"insecure_skip_verify": schema.BoolAttribute{
 								Description:         "Disable SSL certificate validation for the provider address",
 								MarkdownDescription: "Disable SSL certificate validation for the provider address",
@@ -185,7 +195,7 @@ func (r *FlaggerAppMetricTemplateV1Beta1Manifest) Schema(_ context.Context, _ da
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("prometheus", "influxdb", "datadog", "stackdriver", "cloudwatch", "newrelic", "graphite", "dynatrace", "keptn"),
+									stringvalidator.OneOf("prometheus", "influxdb", "datadog", "stackdriver", "cloudwatch", "newrelic", "graphite", "dynatrace", "keptn", "splunk"),
 								},
 							},
 						},

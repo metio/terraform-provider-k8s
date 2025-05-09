@@ -146,16 +146,16 @@ func (r *ClusterXK8SIoMachineV1Alpha4Manifest) Schema(_ context.Context, _ datas
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "MachineSpec defines the desired state of Machine.",
-				MarkdownDescription: "MachineSpec defines the desired state of Machine.",
+				Description:         "spec is the desired state of Machine.",
+				MarkdownDescription: "spec is the desired state of Machine.",
 				Attributes: map[string]schema.Attribute{
 					"bootstrap": schema.SingleNestedAttribute{
-						Description:         "Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.",
-						MarkdownDescription: "Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.",
+						Description:         "bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.",
+						MarkdownDescription: "bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.",
 						Attributes: map[string]schema.Attribute{
 							"config_ref": schema.SingleNestedAttribute{
-								Description:         "ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.DataSecretName without the need of a controller.",
-								MarkdownDescription: "ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.DataSecretName without the need of a controller.",
+								Description:         "configRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.DataSecretName without the need of a controller.",
+								MarkdownDescription: "configRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.DataSecretName without the need of a controller.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "API version of the referent.",
@@ -219,8 +219,8 @@ func (r *ClusterXK8SIoMachineV1Alpha4Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"data_secret_name": schema.StringAttribute{
-								Description:         "DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.",
-								MarkdownDescription: "DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.",
+								Description:         "dataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.",
+								MarkdownDescription: "dataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -232,8 +232,8 @@ func (r *ClusterXK8SIoMachineV1Alpha4Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"cluster_name": schema.StringAttribute{
-						Description:         "ClusterName is the name of the Cluster this object belongs to.",
-						MarkdownDescription: "ClusterName is the name of the Cluster this object belongs to.",
+						Description:         "clusterName is the name of the Cluster this object belongs to.",
+						MarkdownDescription: "clusterName is the name of the Cluster this object belongs to.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -243,16 +243,16 @@ func (r *ClusterXK8SIoMachineV1Alpha4Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"failure_domain": schema.StringAttribute{
-						Description:         "FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
-						MarkdownDescription: "FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
+						Description:         "failureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
+						MarkdownDescription: "failureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"infrastructure_ref": schema.SingleNestedAttribute{
-						Description:         "InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.",
-						MarkdownDescription: "InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.",
+						Description:         "infrastructureRef is a required reference to a custom resource offered by an infrastructure provider.",
+						MarkdownDescription: "infrastructureRef is a required reference to a custom resource offered by an infrastructure provider.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -316,24 +316,24 @@ func (r *ClusterXK8SIoMachineV1Alpha4Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"node_drain_timeout": schema.StringAttribute{
-						Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
-						MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+						Description:         "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+						MarkdownDescription: "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"provider_id": schema.StringAttribute{
-						Description:         "ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.",
-						MarkdownDescription: "ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.",
+						Description:         "providerID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.",
+						MarkdownDescription: "providerID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.",
-						MarkdownDescription: "Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.",
+						Description:         "version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.",
+						MarkdownDescription: "version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

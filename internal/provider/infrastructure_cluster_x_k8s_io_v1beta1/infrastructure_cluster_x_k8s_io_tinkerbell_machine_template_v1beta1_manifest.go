@@ -46,6 +46,10 @@ type InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1ManifestData str
 	Spec *struct {
 		Template *struct {
 			Spec *struct {
+				BootOptions *struct {
+					BootMode *string `tfsdk:"boot_mode" json:"bootMode,omitempty"`
+					IsoURL   *string `tfsdk:"iso_url" json:"isoURL,omitempty"`
+				} `tfsdk:"boot_options" json:"bootOptions,omitempty"`
 				HardwareAffinity *struct {
 					Preferred *[]struct {
 						HardwareAffinityTerm *struct {
@@ -168,6 +172,34 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 								Description:         "Spec is the specification of the desired behavior of the machine.",
 								MarkdownDescription: "Spec is the specification of the desired behavior of the machine.",
 								Attributes: map[string]schema.Attribute{
+									"boot_options": schema.SingleNestedAttribute{
+										Description:         "BootOptions are options that control the booting of Hardware.",
+										MarkdownDescription: "BootOptions are options that control the booting of Hardware.",
+										Attributes: map[string]schema.Attribute{
+											"boot_mode": schema.StringAttribute{
+												Description:         "BootMode is the type of booting that will be done. Must be one of 'none', 'netboot', or 'iso'.",
+												MarkdownDescription: "BootMode is the type of booting that will be done. Must be one of 'none', 'netboot', or 'iso'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("none", "netboot", "iso"),
+												},
+											},
+
+											"iso_url": schema.StringAttribute{
+												Description:         "ISOURL is the URL of the ISO that will be one-time booted. A HardwareRef that contains a spec.BmcRef must be provided. The format of the ISOURL must be http://$IP:$Port/iso/hook.iso The name of the ISO file must have the .iso extension, but the name can be anything. The $IP and $Port should generally point to the IP and Port of the Smee server as this is where the ISO patching endpoint lives. The controller will append the MAC address of the hardware in the ISO URL right before the iso file name in the URL. MAC address is then used to retrieve hardware specific information such as IPAM info, custom kernel cmd line args and populate the worker ID for the tink worker/agent. For ex. the above format would be replaced to http://$IP:$Port/iso/<macAddress>/hook.iso",
+												MarkdownDescription: "ISOURL is the URL of the ISO that will be one-time booted. A HardwareRef that contains a spec.BmcRef must be provided. The format of the ISOURL must be http://$IP:$Port/iso/hook.iso The name of the ISO file must have the .iso extension, but the name can be anything. The $IP and $Port should generally point to the IP and Port of the Smee server as this is where the ISO patching endpoint lives. The controller will append the MAC address of the hardware in the ISO URL right before the iso file name in the URL. MAC address is then used to retrieve hardware specific information such as IPAM info, custom kernel cmd line args and populate the worker ID for the tink worker/agent. For ex. the above format would be replaced to http://$IP:$Port/iso/<macAddress>/hook.iso",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"hardware_affinity": schema.SingleNestedAttribute{
 										Description:         "HardwareAffinity allows filtering for hardware.",
 										MarkdownDescription: "HardwareAffinity allows filtering for hardware.",

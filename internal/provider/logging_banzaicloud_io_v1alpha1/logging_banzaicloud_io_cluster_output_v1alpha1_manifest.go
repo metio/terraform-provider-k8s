@@ -934,8 +934,7 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 			With_transporter_log         *bool   `tfsdk:"with_transporter_log" json:"with_transporter_log,omitempty"`
 			Write_operation              *string `tfsdk:"write_operation" json:"write_operation,omitempty"`
 		} `tfsdk:"elasticsearch" json:"elasticsearch,omitempty"`
-		EnabledNamespaces *[]string `tfsdk:"enabled_namespaces" json:"enabledNamespaces,omitempty"`
-		File              *struct {
+		File *struct {
 			Add_path_suffix *bool `tfsdk:"add_path_suffix" json:"add_path_suffix,omitempty"`
 			Append          *bool `tfsdk:"append" json:"append,omitempty"`
 			Buffer          *struct {
@@ -1296,12 +1295,13 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 				Total_limit_size               *string `tfsdk:"total_limit_size" json:"total_limit_size,omitempty"`
 				Type                           *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"buffer" json:"buffer,omitempty"`
-			Host        *string            `tfsdk:"host" json:"host,omitempty"`
-			Max_bytes   *int64             `tfsdk:"max_bytes" json:"max_bytes,omitempty"`
-			Port        *int64             `tfsdk:"port" json:"port,omitempty"`
-			Protocol    *string            `tfsdk:"protocol" json:"protocol,omitempty"`
-			Tls         *bool              `tfsdk:"tls" json:"tls,omitempty"`
-			Tls_options *map[string]string `tfsdk:"tls_options" json:"tls_options,omitempty"`
+			Host               *string            `tfsdk:"host" json:"host,omitempty"`
+			Max_bytes          *int64             `tfsdk:"max_bytes" json:"max_bytes,omitempty"`
+			Port               *int64             `tfsdk:"port" json:"port,omitempty"`
+			Protocol           *string            `tfsdk:"protocol" json:"protocol,omitempty"`
+			Tls                *bool              `tfsdk:"tls" json:"tls,omitempty"`
+			Tls_options        *map[string]string `tfsdk:"tls_options" json:"tls_options,omitempty"`
+			Udp_transport_type *string            `tfsdk:"udp_transport_type" json:"udp_transport_type,omitempty"`
 		} `tfsdk:"gelf" json:"gelf,omitempty"`
 		Http *struct {
 			Auth *struct {
@@ -1375,6 +1375,7 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 				Total_limit_size               *string `tfsdk:"total_limit_size" json:"total_limit_size,omitempty"`
 				Type                           *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"buffer" json:"buffer,omitempty"`
+			Compress                        *string `tfsdk:"compress" json:"compress,omitempty"`
 			Content_type                    *string `tfsdk:"content_type" json:"content_type,omitempty"`
 			Endpoint                        *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
 			Error_response_as_unrecoverable *bool   `tfsdk:"error_response_as_unrecoverable" json:"error_response_as_unrecoverable,omitempty"`
@@ -1383,16 +1384,18 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 				Message_key *string `tfsdk:"message_key" json:"message_key,omitempty"`
 				Type        *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"format" json:"format,omitempty"`
-			Headers                  *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-			Http_method              *string            `tfsdk:"http_method" json:"http_method,omitempty"`
-			Json_array               *bool              `tfsdk:"json_array" json:"json_array,omitempty"`
-			Open_timeout             *int64             `tfsdk:"open_timeout" json:"open_timeout,omitempty"`
-			Proxy                    *string            `tfsdk:"proxy" json:"proxy,omitempty"`
-			Read_timeout             *int64             `tfsdk:"read_timeout" json:"read_timeout,omitempty"`
-			Retryable_response_codes *[]string          `tfsdk:"retryable_response_codes" json:"retryable_response_codes,omitempty"`
-			Slow_flush_log_threshold *string            `tfsdk:"slow_flush_log_threshold" json:"slow_flush_log_threshold,omitempty"`
-			Ssl_timeout              *int64             `tfsdk:"ssl_timeout" json:"ssl_timeout,omitempty"`
-			Tls_ca_cert_path         *struct {
+			Headers                   *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+			Headers_from_placeholders *map[string]string `tfsdk:"headers_from_placeholders" json:"headers_from_placeholders,omitempty"`
+			Http_method               *string            `tfsdk:"http_method" json:"http_method,omitempty"`
+			Json_array                *bool              `tfsdk:"json_array" json:"json_array,omitempty"`
+			Open_timeout              *int64             `tfsdk:"open_timeout" json:"open_timeout,omitempty"`
+			Proxy                     *string            `tfsdk:"proxy" json:"proxy,omitempty"`
+			Read_timeout              *int64             `tfsdk:"read_timeout" json:"read_timeout,omitempty"`
+			Retryable_response_codes  *[]string          `tfsdk:"retryable_response_codes" json:"retryable_response_codes,omitempty"`
+			Reuse_connections         *bool              `tfsdk:"reuse_connections" json:"reuse_connections,omitempty"`
+			Slow_flush_log_threshold  *string            `tfsdk:"slow_flush_log_threshold" json:"slow_flush_log_threshold,omitempty"`
+			Ssl_timeout               *int64             `tfsdk:"ssl_timeout" json:"ssl_timeout,omitempty"`
+			Tls_ca_cert_path          *struct {
 				MountFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1560,7 +1563,101 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"password" json:"password,omitempty"`
-			Principal                *string `tfsdk:"principal" json:"principal,omitempty"`
+			Principal       *string `tfsdk:"principal" json:"principal,omitempty"`
+			Rdkafka_options *struct {
+				Allow_auto_create_topics                *bool   `tfsdk:"allow_auto_create_topics" json:"allow.auto.create.topics,omitempty"`
+				Api_version_fallback_ms                 *int64  `tfsdk:"api_version_fallback_ms" json:"api.version.fallback.ms,omitempty"`
+				Api_version_request                     *bool   `tfsdk:"api_version_request" json:"api.version.request,omitempty"`
+				Api_version_request_timeout_ms          *int64  `tfsdk:"api_version_request_timeout_ms" json:"api.version.request.timeout.ms,omitempty"`
+				Background_event_cb                     *string `tfsdk:"background_event_cb" json:"background_event_cb,omitempty"`
+				Bootstrap_servers                       *string `tfsdk:"bootstrap_servers" json:"bootstrap.servers,omitempty"`
+				Broker_address_family                   *string `tfsdk:"broker_address_family" json:"broker.address.family,omitempty"`
+				Broker_address_ttl                      *int64  `tfsdk:"broker_address_ttl" json:"broker.address.ttl,omitempty"`
+				Broker_version_fallback                 *string `tfsdk:"broker_version_fallback" json:"broker.version.fallback,omitempty"`
+				Builtin_features                        *string `tfsdk:"builtin_features" json:"builtin.features,omitempty"`
+				Client_id                               *string `tfsdk:"client_id" json:"client.id,omitempty"`
+				Closesocket_cb                          *string `tfsdk:"closesocket_cb" json:"closesocket_cb,omitempty"`
+				Connect_cb                              *string `tfsdk:"connect_cb" json:"connect_cb,omitempty"`
+				Connections_max_idle_ms                 *int64  `tfsdk:"connections_max_idle_ms" json:"connections.max.idle.ms,omitempty"`
+				Debug                                   *string `tfsdk:"debug" json:"debug,omitempty"`
+				Default_topic_conf                      *string `tfsdk:"default_topic_conf" json:"default_topic_conf,omitempty"`
+				Enable_random_seed                      *bool   `tfsdk:"enable_random_seed" json:"enable.random.seed,omitempty"`
+				Enable_sasl_oauthbearer_unsecure_jwt    *bool   `tfsdk:"enable_sasl_oauthbearer_unsecure_jwt" json:"enable.sasl.oauthbearer.unsecure.jwt,omitempty"`
+				Enable_ssl_certificate_verification     *bool   `tfsdk:"enable_ssl_certificate_verification" json:"enable.ssl.certificate.verification,omitempty"`
+				Enabled_events                          *int64  `tfsdk:"enabled_events" json:"enabled_events,omitempty"`
+				Error_cb                                *string `tfsdk:"error_cb" json:"error_cb,omitempty"`
+				Interceptors                            *string `tfsdk:"interceptors" json:"interceptors,omitempty"`
+				Internal_termination_signal             *int64  `tfsdk:"internal_termination_signal" json:"internal.termination.signal,omitempty"`
+				Log_connection_close                    *bool   `tfsdk:"log_connection_close" json:"log.connection.close,omitempty"`
+				Log_queue                               *bool   `tfsdk:"log_queue" json:"log.queue,omitempty"`
+				Log_thread_name                         *bool   `tfsdk:"log_thread_name" json:"log.thread.name,omitempty"`
+				Log_cb                                  *string `tfsdk:"log_cb" json:"log_cb,omitempty"`
+				Log_level                               *int64  `tfsdk:"log_level" json:"log_level,omitempty"`
+				Max_in_flight                           *int64  `tfsdk:"max_in_flight" json:"max.in.flight,omitempty"`
+				Max_in_flight_requests_per_connection   *int64  `tfsdk:"max_in_flight_requests_per_connection" json:"max.in.flight.requests.per.connection,omitempty"`
+				Message_copy_max_bytes                  *int64  `tfsdk:"message_copy_max_bytes" json:"message.copy.max.bytes,omitempty"`
+				Message_max_bytes                       *int64  `tfsdk:"message_max_bytes" json:"message.max.bytes,omitempty"`
+				Metadata_broker_list                    *string `tfsdk:"metadata_broker_list" json:"metadata.broker.list,omitempty"`
+				Metadata_max_age_ms                     *int64  `tfsdk:"metadata_max_age_ms" json:"metadata.max.age.ms,omitempty"`
+				Oauthbearer_token_refresh_cb            *string `tfsdk:"oauthbearer_token_refresh_cb" json:"oauthbearer_token_refresh_cb,omitempty"`
+				Opaque                                  *string `tfsdk:"opaque" json:"opaque,omitempty"`
+				Open_cb                                 *string `tfsdk:"open_cb" json:"open_cb,omitempty"`
+				Plugin_library_paths                    *string `tfsdk:"plugin_library_paths" json:"plugin.library.paths,omitempty"`
+				Receive_message_max_bytes               *int64  `tfsdk:"receive_message_max_bytes" json:"receive.message.max.bytes,omitempty"`
+				Reconnect_backoff_max_ms                *int64  `tfsdk:"reconnect_backoff_max_ms" json:"reconnect.backoff.max.ms,omitempty"`
+				Reconnect_backoff_ms                    *int64  `tfsdk:"reconnect_backoff_ms" json:"reconnect.backoff.ms,omitempty"`
+				Resolve_cb                              *string `tfsdk:"resolve_cb" json:"resolve_cb,omitempty"`
+				Sasl_kerberos_keytab                    *string `tfsdk:"sasl_kerberos_keytab" json:"sasl.kerberos.keytab,omitempty"`
+				Sasl_kerberos_kinit_cmd                 *string `tfsdk:"sasl_kerberos_kinit_cmd" json:"sasl.kerberos.kinit.cmd,omitempty"`
+				Sasl_kerberos_min_time_before_relogin   *int64  `tfsdk:"sasl_kerberos_min_time_before_relogin" json:"sasl.kerberos.min.time.before.relogin,omitempty"`
+				Sasl_kerberos_principal                 *string `tfsdk:"sasl_kerberos_principal" json:"sasl.kerberos.principal,omitempty"`
+				Sasl_kerberos_service_name              *string `tfsdk:"sasl_kerberos_service_name" json:"sasl.kerberos.service.name,omitempty"`
+				Sasl_mechanisms                         *string `tfsdk:"sasl_mechanisms" json:"sasl.mechanisms,omitempty"`
+				Sasl_oauthbearer_client_id              *string `tfsdk:"sasl_oauthbearer_client_id" json:"sasl.oauthbearer.client.id,omitempty"`
+				Sasl_oauthbearer_client_secret          *string `tfsdk:"sasl_oauthbearer_client_secret" json:"sasl.oauthbearer.client.secret,omitempty"`
+				Sasl_oauthbearer_config                 *string `tfsdk:"sasl_oauthbearer_config" json:"sasl.oauthbearer.config,omitempty"`
+				Sasl_oauthbearer_extensions             *string `tfsdk:"sasl_oauthbearer_extensions" json:"sasl.oauthbearer.extensions,omitempty"`
+				Sasl_oauthbearer_method                 *string `tfsdk:"sasl_oauthbearer_method" json:"sasl.oauthbearer.method,omitempty"`
+				Sasl_oauthbearer_scope                  *string `tfsdk:"sasl_oauthbearer_scope" json:"sasl.oauthbearer.scope,omitempty"`
+				Sasl_oauthbearer_token_endpoint_url     *string `tfsdk:"sasl_oauthbearer_token_endpoint_url" json:"sasl.oauthbearer.token.endpoint.url,omitempty"`
+				Sasl_password                           *string `tfsdk:"sasl_password" json:"sasl.password,omitempty"`
+				Sasl_username                           *string `tfsdk:"sasl_username" json:"sasl.username,omitempty"`
+				Security_protocol                       *string `tfsdk:"security_protocol" json:"security.protocol,omitempty"`
+				Socket_blocking_max_ms                  *int64  `tfsdk:"socket_blocking_max_ms" json:"socket.blocking.max.ms,omitempty"`
+				Socket_connection_setup_timeout_ms      *int64  `tfsdk:"socket_connection_setup_timeout_ms" json:"socket.connection.setup.timeout.ms,omitempty"`
+				Socket_keepalive_enable                 *bool   `tfsdk:"socket_keepalive_enable" json:"socket.keepalive.enable,omitempty"`
+				Socket_max_fails                        *int64  `tfsdk:"socket_max_fails" json:"socket.max.fails,omitempty"`
+				Socket_nagle_disable                    *bool   `tfsdk:"socket_nagle_disable" json:"socket.nagle.disable,omitempty"`
+				Socket_receive_buffer_bytes             *int64  `tfsdk:"socket_receive_buffer_bytes" json:"socket.receive.buffer.bytes,omitempty"`
+				Socket_send_buffer_bytes                *int64  `tfsdk:"socket_send_buffer_bytes" json:"socket.send.buffer.bytes,omitempty"`
+				Socket_timeout_ms                       *int64  `tfsdk:"socket_timeout_ms" json:"socket.timeout.ms,omitempty"`
+				Socket_cb                               *string `tfsdk:"socket_cb" json:"socket_cb,omitempty"`
+				Ssl_ca_location                         *string `tfsdk:"ssl_ca_location" json:"ssl.ca.location,omitempty"`
+				Ssl_ca_pem                              *string `tfsdk:"ssl_ca_pem" json:"ssl.ca.pem,omitempty"`
+				Ssl_certificate_location                *string `tfsdk:"ssl_certificate_location" json:"ssl.certificate.location,omitempty"`
+				Ssl_certificate_pem                     *string `tfsdk:"ssl_certificate_pem" json:"ssl.certificate.pem,omitempty"`
+				Ssl_cipher_suites                       *string `tfsdk:"ssl_cipher_suites" json:"ssl.cipher.suites,omitempty"`
+				Ssl_crl_location                        *string `tfsdk:"ssl_crl_location" json:"ssl.crl.location,omitempty"`
+				Ssl_curves_list                         *string `tfsdk:"ssl_curves_list" json:"ssl.curves.list,omitempty"`
+				Ssl_endpoint_identification_algorithm   *string `tfsdk:"ssl_endpoint_identification_algorithm" json:"ssl.endpoint.identification.algorithm,omitempty"`
+				Ssl_engine_id                           *string `tfsdk:"ssl_engine_id" json:"ssl.engine.id,omitempty"`
+				Ssl_engine_location                     *string `tfsdk:"ssl_engine_location" json:"ssl.engine.location,omitempty"`
+				Ssl_key_location                        *string `tfsdk:"ssl_key_location" json:"ssl.key.location,omitempty"`
+				Ssl_key_password                        *string `tfsdk:"ssl_key_password" json:"ssl.key.password,omitempty"`
+				Ssl_key_pem                             *string `tfsdk:"ssl_key_pem" json:"ssl.key.pem,omitempty"`
+				Ssl_keystore_location                   *string `tfsdk:"ssl_keystore_location" json:"ssl.keystore.location,omitempty"`
+				Ssl_keystore_password                   *string `tfsdk:"ssl_keystore_password" json:"ssl.keystore.password,omitempty"`
+				Ssl_providers                           *string `tfsdk:"ssl_providers" json:"ssl.providers,omitempty"`
+				Ssl_sigalgs_list                        *string `tfsdk:"ssl_sigalgs_list" json:"ssl.sigalgs.list,omitempty"`
+				Statistics_interval_ms                  *int64  `tfsdk:"statistics_interval_ms" json:"statistics.interval.ms,omitempty"`
+				Stats_cb                                *string `tfsdk:"stats_cb" json:"stats_cb,omitempty"`
+				Throttle_cb                             *string `tfsdk:"throttle_cb" json:"throttle_cb,omitempty"`
+				Topic_blacklist                         *string `tfsdk:"topic_blacklist" json:"topic.blacklist,omitempty"`
+				Topic_metadata_propagation_max_ms       *int64  `tfsdk:"topic_metadata_propagation_max_ms" json:"topic.metadata.propagation.max.ms,omitempty"`
+				Topic_metadata_refresh_fast_interval_ms *int64  `tfsdk:"topic_metadata_refresh_fast_interval_ms" json:"topic.metadata.refresh.fast.interval.ms,omitempty"`
+				Topic_metadata_refresh_interval_ms      *int64  `tfsdk:"topic_metadata_refresh_interval_ms" json:"topic.metadata.refresh.interval.ms,omitempty"`
+				Topic_metadata_refresh_sparse           *bool   `tfsdk:"topic_metadata_refresh_sparse" json:"topic.metadata.refresh.sparse,omitempty"`
+			} `tfsdk:"rdkafka_options" json:"rdkafka_options,omitempty"`
 			Required_acks            *int64  `tfsdk:"required_acks" json:"required_acks,omitempty"`
 			Sasl_over_ssl            *bool   `tfsdk:"sasl_over_ssl" json:"sasl_over_ssl,omitempty"`
 			Scram_mechanism          *string `tfsdk:"scram_mechanism" json:"scram_mechanism,omitempty"`
@@ -2245,7 +2342,9 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"license_key" json:"license_key,omitempty"`
 		} `tfsdk:"newrelic" json:"newrelic,omitempty"`
-		Nullout    *map[string]string `tfsdk:"nullout" json:"nullout,omitempty"`
+		Nullout *struct {
+			Never_flush *bool `tfsdk:"never_flush" json:"never_flush,omitempty"`
+		} `tfsdk:"nullout" json:"nullout,omitempty"`
 		Opensearch *struct {
 			Application_name *string `tfsdk:"application_name" json:"application_name,omitempty"`
 			Buffer           *struct {
@@ -2535,6 +2634,7 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 			Reload_after              *string `tfsdk:"reload_after" json:"reload_after,omitempty"`
 			Reload_connections        *bool   `tfsdk:"reload_connections" json:"reload_connections,omitempty"`
 			Reload_on_failure         *bool   `tfsdk:"reload_on_failure" json:"reload_on_failure,omitempty"`
+			Remove_keys               *string `tfsdk:"remove_keys" json:"remove_keys,omitempty"`
 			Remove_keys_on_update     *string `tfsdk:"remove_keys_on_update" json:"remove_keys_on_update,omitempty"`
 			Remove_keys_on_update_key *string `tfsdk:"remove_keys_on_update_key" json:"remove_keys_on_update_key,omitempty"`
 			Request_timeout           *string `tfsdk:"request_timeout" json:"request_timeout,omitempty"`
@@ -3124,81 +3224,6 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ManifestData struct {
 			Sqs_url                  *string `tfsdk:"sqs_url" json:"sqs_url,omitempty"`
 			Tag_property_name        *string `tfsdk:"tag_property_name" json:"tag_property_name,omitempty"`
 		} `tfsdk:"sqs" json:"sqs,omitempty"`
-		Sumologic *struct {
-			Add_timestamp *bool `tfsdk:"add_timestamp" json:"add_timestamp,omitempty"`
-			Buffer        *struct {
-				Chunk_full_threshold           *string `tfsdk:"chunk_full_threshold" json:"chunk_full_threshold,omitempty"`
-				Chunk_limit_records            *int64  `tfsdk:"chunk_limit_records" json:"chunk_limit_records,omitempty"`
-				Chunk_limit_size               *string `tfsdk:"chunk_limit_size" json:"chunk_limit_size,omitempty"`
-				Compress                       *string `tfsdk:"compress" json:"compress,omitempty"`
-				Delayed_commit_timeout         *string `tfsdk:"delayed_commit_timeout" json:"delayed_commit_timeout,omitempty"`
-				Disable_chunk_backup           *bool   `tfsdk:"disable_chunk_backup" json:"disable_chunk_backup,omitempty"`
-				Disabled                       *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
-				Flush_at_shutdown              *bool   `tfsdk:"flush_at_shutdown" json:"flush_at_shutdown,omitempty"`
-				Flush_interval                 *string `tfsdk:"flush_interval" json:"flush_interval,omitempty"`
-				Flush_mode                     *string `tfsdk:"flush_mode" json:"flush_mode,omitempty"`
-				Flush_thread_burst_interval    *string `tfsdk:"flush_thread_burst_interval" json:"flush_thread_burst_interval,omitempty"`
-				Flush_thread_count             *int64  `tfsdk:"flush_thread_count" json:"flush_thread_count,omitempty"`
-				Flush_thread_interval          *string `tfsdk:"flush_thread_interval" json:"flush_thread_interval,omitempty"`
-				Overflow_action                *string `tfsdk:"overflow_action" json:"overflow_action,omitempty"`
-				Path                           *string `tfsdk:"path" json:"path,omitempty"`
-				Queue_limit_length             *int64  `tfsdk:"queue_limit_length" json:"queue_limit_length,omitempty"`
-				Queued_chunks_limit_size       *int64  `tfsdk:"queued_chunks_limit_size" json:"queued_chunks_limit_size,omitempty"`
-				Retry_exponential_backoff_base *string `tfsdk:"retry_exponential_backoff_base" json:"retry_exponential_backoff_base,omitempty"`
-				Retry_forever                  *bool   `tfsdk:"retry_forever" json:"retry_forever,omitempty"`
-				Retry_max_interval             *string `tfsdk:"retry_max_interval" json:"retry_max_interval,omitempty"`
-				Retry_max_times                *int64  `tfsdk:"retry_max_times" json:"retry_max_times,omitempty"`
-				Retry_randomize                *bool   `tfsdk:"retry_randomize" json:"retry_randomize,omitempty"`
-				Retry_secondary_threshold      *string `tfsdk:"retry_secondary_threshold" json:"retry_secondary_threshold,omitempty"`
-				Retry_timeout                  *string `tfsdk:"retry_timeout" json:"retry_timeout,omitempty"`
-				Retry_type                     *string `tfsdk:"retry_type" json:"retry_type,omitempty"`
-				Retry_wait                     *string `tfsdk:"retry_wait" json:"retry_wait,omitempty"`
-				Tags                           *string `tfsdk:"tags" json:"tags,omitempty"`
-				Timekey                        *string `tfsdk:"timekey" json:"timekey,omitempty"`
-				Timekey_use_utc                *bool   `tfsdk:"timekey_use_utc" json:"timekey_use_utc,omitempty"`
-				Timekey_wait                   *string `tfsdk:"timekey_wait" json:"timekey_wait,omitempty"`
-				Timekey_zone                   *string `tfsdk:"timekey_zone" json:"timekey_zone,omitempty"`
-				Total_limit_size               *string `tfsdk:"total_limit_size" json:"total_limit_size,omitempty"`
-				Type                           *string `tfsdk:"type" json:"type,omitempty"`
-			} `tfsdk:"buffer" json:"buffer,omitempty"`
-			Compress          *bool     `tfsdk:"compress" json:"compress,omitempty"`
-			Compress_encoding *string   `tfsdk:"compress_encoding" json:"compress_encoding,omitempty"`
-			Custom_dimensions *string   `tfsdk:"custom_dimensions" json:"custom_dimensions,omitempty"`
-			Custom_fields     *[]string `tfsdk:"custom_fields" json:"custom_fields,omitempty"`
-			Data_type         *string   `tfsdk:"data_type" json:"data_type,omitempty"`
-			Delimiter         *string   `tfsdk:"delimiter" json:"delimiter,omitempty"`
-			Disable_cookies   *bool     `tfsdk:"disable_cookies" json:"disable_cookies,omitempty"`
-			Endpoint          *struct {
-				MountFrom *struct {
-					SecretKeyRef *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-				Value     *string `tfsdk:"value" json:"value,omitempty"`
-				ValueFrom *struct {
-					SecretKeyRef *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-			} `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Log_format               *string `tfsdk:"log_format" json:"log_format,omitempty"`
-			Log_key                  *string `tfsdk:"log_key" json:"log_key,omitempty"`
-			Metric_data_format       *string `tfsdk:"metric_data_format" json:"metric_data_format,omitempty"`
-			Open_timeout             *int64  `tfsdk:"open_timeout" json:"open_timeout,omitempty"`
-			Proxy_uri                *string `tfsdk:"proxy_uri" json:"proxy_uri,omitempty"`
-			Slow_flush_log_threshold *string `tfsdk:"slow_flush_log_threshold" json:"slow_flush_log_threshold,omitempty"`
-			Source_category          *string `tfsdk:"source_category" json:"source_category,omitempty"`
-			Source_host              *string `tfsdk:"source_host" json:"source_host,omitempty"`
-			Source_name              *string `tfsdk:"source_name" json:"source_name,omitempty"`
-			Source_name_key          *string `tfsdk:"source_name_key" json:"source_name_key,omitempty"`
-			Sumo_client              *string `tfsdk:"sumo_client" json:"sumo_client,omitempty"`
-			Timestamp_key            *string `tfsdk:"timestamp_key" json:"timestamp_key,omitempty"`
-			Verify_ssl               *bool   `tfsdk:"verify_ssl" json:"verify_ssl,omitempty"`
-		} `tfsdk:"sumologic" json:"sumologic,omitempty"`
 		Syslog *struct {
 			Allow_self_signed_cert *bool `tfsdk:"allow_self_signed_cert" json:"allow_self_signed_cert,omitempty"`
 			Buffer                 *struct {
@@ -9676,15 +9701,6 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 						Computed: false,
 					},
 
-					"enabled_namespaces": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"file": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -12263,6 +12279,14 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"udp_transport_type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -12757,6 +12781,14 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 								Computed: false,
 							},
 
+							"compress": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"content_type": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -12826,6 +12858,15 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"headers_from_placeholders": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"http_method": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -12870,6 +12911,14 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"reuse_connections": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -14015,6 +14064,751 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"rdkafka_options": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allow_auto_create_topics": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"api_version_fallback_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"api_version_request": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"api_version_request_timeout_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"background_event_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"bootstrap_servers": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"broker_address_family": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"broker_address_ttl": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"broker_version_fallback": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"builtin_features": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"client_id": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"closesocket_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connect_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"connections_max_idle_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"debug": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"default_topic_conf": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enable_random_seed": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enable_sasl_oauthbearer_unsecure_jwt": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enable_ssl_certificate_verification": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled_events": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"error_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"interceptors": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"internal_termination_signal": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"log_connection_close": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"log_queue": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"log_thread_name": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"log_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"log_level": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_in_flight": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_in_flight_requests_per_connection": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"message_copy_max_bytes": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"message_max_bytes": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"metadata_broker_list": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"metadata_max_age_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"oauthbearer_token_refresh_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"opaque": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"open_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"plugin_library_paths": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"receive_message_max_bytes": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"reconnect_backoff_max_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"reconnect_backoff_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resolve_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_kerberos_keytab": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_kerberos_kinit_cmd": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_kerberos_min_time_before_relogin": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_kerberos_principal": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_kerberos_service_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_mechanisms": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_client_id": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_client_secret": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_config": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_extensions": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_method": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_scope": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_oauthbearer_token_endpoint_url": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_password": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sasl_username": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"security_protocol": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_blocking_max_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_connection_setup_timeout_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_keepalive_enable": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_max_fails": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_nagle_disable": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_receive_buffer_bytes": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_send_buffer_bytes": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_timeout_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"socket_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_ca_location": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_ca_pem": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_certificate_location": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_certificate_pem": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_cipher_suites": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_crl_location": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_curves_list": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_endpoint_identification_algorithm": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_engine_id": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_engine_location": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_key_location": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_key_password": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_key_pem": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_keystore_location": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_keystore_password": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_providers": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_sigalgs_list": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"statistics_interval_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"stats_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"throttle_cb": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"topic_blacklist": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"topic_metadata_propagation_max_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"topic_metadata_refresh_fast_interval_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"topic_metadata_refresh_interval_ms": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"topic_metadata_refresh_sparse": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"required_acks": schema.Int64Attribute{
@@ -18616,13 +19410,21 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 						Computed: false,
 					},
 
-					"nullout": schema.MapAttribute{
+					"nullout": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+						Attributes: map[string]schema.Attribute{
+							"never_flush": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"opensearch": schema.SingleNestedAttribute{
@@ -20492,6 +21294,14 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"reload_on_failure": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"remove_keys": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -24621,558 +25431,6 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"tag_property_name": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"sumologic": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Attributes: map[string]schema.Attribute{
-							"add_timestamp": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"buffer": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"chunk_full_threshold": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"chunk_limit_records": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"chunk_limit_size": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"compress": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"delayed_commit_timeout": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"disable_chunk_backup": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"disabled": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"flush_at_shutdown": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"flush_interval": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"flush_mode": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"flush_thread_burst_interval": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"flush_thread_count": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"flush_thread_interval": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"overflow_action": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"path": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"queue_limit_length": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"queued_chunks_limit_size": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_exponential_backoff_base": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_forever": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_max_interval": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_max_times": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_randomize": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_secondary_threshold": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_timeout": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_type": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"retry_wait": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"tags": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"timekey": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"timekey_use_utc": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"timekey_wait": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"timekey_zone": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"total_limit_size": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"type": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"compress": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"compress_encoding": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"custom_dimensions": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"custom_fields": schema.ListAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"data_type": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"delimiter": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"disable_cookies": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"endpoint": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"mount_from": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"secret_key_ref": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"value_from": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"secret_key_ref": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"log_format": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"log_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"metric_data_format": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"open_timeout": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"proxy_uri": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"slow_flush_log_threshold": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"source_category": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"source_host": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"source_name": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
-							"source_name_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"sumo_client": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"timestamp_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"verify_ssl": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

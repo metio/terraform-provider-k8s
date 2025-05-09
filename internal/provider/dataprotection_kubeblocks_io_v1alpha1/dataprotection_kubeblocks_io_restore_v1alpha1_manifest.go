@@ -58,7 +58,11 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"container_resources" json:"containerResources,omitempty"`
-		Env               *map[string]string `tfsdk:"env" json:"env,omitempty"`
+		Env        *map[string]string `tfsdk:"env" json:"env,omitempty"`
+		Parameters *[]struct {
+			Name  *string `tfsdk:"name" json:"name,omitempty"`
+			Value *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"parameters" json:"parameters,omitempty"`
 		PrepareDataConfig *struct {
 			DataSourceRef *struct {
 				MountPath    *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
@@ -576,6 +580,33 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"parameters": schema.ListNestedAttribute{
+						Description:         "Specifies a list of name-value pairs representing parameters and their corresponding values. Parameters match the schema specified in the 'actionset.spec.parametersSchema'",
+						MarkdownDescription: "Specifies a list of name-value pairs representing parameters and their corresponding values. Parameters match the schema specified in the 'actionset.spec.parametersSchema'",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Represents the name of the parameter.",
+									MarkdownDescription: "Represents the name of the parameter.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "Represents the parameter values.",
+									MarkdownDescription: "Represents the parameter values.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"prepare_data_config": schema.SingleNestedAttribute{

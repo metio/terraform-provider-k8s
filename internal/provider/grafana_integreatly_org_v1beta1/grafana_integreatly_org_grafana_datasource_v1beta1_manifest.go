@@ -74,6 +74,7 @@ type GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1ManifestData struct {
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"plugins" json:"plugins,omitempty"`
 		ResyncPeriod *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
+		Uid          *string `tfsdk:"uid" json:"uid,omitempty"`
 		ValuesFrom   *[]struct {
 			TargetPath *string `tfsdk:"target_path" json:"targetPath,omitempty"`
 			ValueFrom  *struct {
@@ -170,8 +171,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 				MarkdownDescription: "GrafanaDatasourceSpec defines the desired state of GrafanaDatasource",
 				Attributes: map[string]schema.Attribute{
 					"allow_cross_namespace_import": schema.BoolAttribute{
-						Description:         "allow to import this resources from an operator in a different namespace",
-						MarkdownDescription: "allow to import this resources from an operator in a different namespace",
+						Description:         "Allow the Operator to match this resource with Grafanas outside the current namespace",
+						MarkdownDescription: "Allow the Operator to match this resource with Grafanas outside the current namespace",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -214,8 +215,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							},
 
 							"editable": schema.BoolAttribute{
-								Description:         "Deprecated field, it has no effect",
-								MarkdownDescription: "Deprecated field, it has no effect",
+								Description:         "Whether to enable/disable editing of the datasource in Grafana UI",
+								MarkdownDescription: "Whether to enable/disable editing of the datasource in Grafana UI",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -272,8 +273,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Deprecated field, use spec.uid instead",
+								MarkdownDescription: "Deprecated field, use spec.uid instead",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -301,8 +302,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 					},
 
 					"instance_selector": schema.SingleNestedAttribute{
-						Description:         "selects Grafana instances for import",
-						MarkdownDescription: "selects Grafana instances for import",
+						Description:         "Selects Grafana instances for import",
+						MarkdownDescription: "Selects Grafana instances for import",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -382,13 +383,25 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 					},
 
 					"resync_period": schema.StringAttribute{
-						Description:         "how often the datasource is refreshed, defaults to 5m if not set",
-						MarkdownDescription: "how often the datasource is refreshed, defaults to 5m if not set",
+						Description:         "How often the resource is synced, defaults to 10m0s if not set",
+						MarkdownDescription: "How often the resource is synced, defaults to 10m0s if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
+						},
+					},
+
+					"uid": schema.StringAttribute{
+						Description:         "The UID, for the datasource, fallback to the deprecated spec.datasource.uid and metadata.uid. Can be any string consisting of alphanumeric characters, - and _ with a maximum length of 40 +optional",
+						MarkdownDescription: "The UID, for the datasource, fallback to the deprecated spec.datasource.uid and metadata.uid. Can be any string consisting of alphanumeric characters, - and _ with a maximum length of 40 +optional",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(40),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9-_]+$`), ""),
 						},
 					},
 
@@ -486,8 +499,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 						Computed: false,
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

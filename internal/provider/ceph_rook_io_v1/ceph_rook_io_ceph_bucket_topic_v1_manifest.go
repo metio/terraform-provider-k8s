@@ -56,10 +56,21 @@ type CephRookIoCephBucketTopicV1ManifestData struct {
 				Uri              *string `tfsdk:"uri" json:"uri,omitempty"`
 			} `tfsdk:"http" json:"http,omitempty"`
 			Kafka *struct {
-				AckLevel         *string `tfsdk:"ack_level" json:"ackLevel,omitempty"`
-				DisableVerifySSL *bool   `tfsdk:"disable_verify_ssl" json:"disableVerifySSL,omitempty"`
-				Uri              *string `tfsdk:"uri" json:"uri,omitempty"`
-				UseSSL           *bool   `tfsdk:"use_ssl" json:"useSSL,omitempty"`
+				AckLevel          *string `tfsdk:"ack_level" json:"ackLevel,omitempty"`
+				DisableVerifySSL  *bool   `tfsdk:"disable_verify_ssl" json:"disableVerifySSL,omitempty"`
+				Mechanism         *string `tfsdk:"mechanism" json:"mechanism,omitempty"`
+				PasswordSecretRef *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password_secret_ref" json:"passwordSecretRef,omitempty"`
+				Uri           *string `tfsdk:"uri" json:"uri,omitempty"`
+				UseSSL        *bool   `tfsdk:"use_ssl" json:"useSSL,omitempty"`
+				UserSecretRef *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"user_secret_ref" json:"userSecretRef,omitempty"`
 			} `tfsdk:"kafka" json:"kafka,omitempty"`
 		} `tfsdk:"endpoint" json:"endpoint,omitempty"`
 		ObjectStoreName      *string `tfsdk:"object_store_name" json:"objectStoreName,omitempty"`
@@ -259,6 +270,50 @@ func (r *CephRookIoCephBucketTopicV1Manifest) Schema(_ context.Context, _ dataso
 										Computed:            false,
 									},
 
+									"mechanism": schema.StringAttribute{
+										Description:         "The authentication mechanism for this topic (PLAIN/SCRAM-SHA-512/SCRAM-SHA-256/GSSAPI/OAUTHBEARER)",
+										MarkdownDescription: "The authentication mechanism for this topic (PLAIN/SCRAM-SHA-512/SCRAM-SHA-256/GSSAPI/OAUTHBEARER)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("PLAIN", "SCRAM-SHA-512", "SCRAM-SHA-256", "GSSAPI", "OAUTHBEARER"),
+										},
+									},
+
+									"password_secret_ref": schema.SingleNestedAttribute{
+										Description:         "The kafka password to use for authentication",
+										MarkdownDescription: "The kafka password to use for authentication",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"uri": schema.StringAttribute{
 										Description:         "The URI of the Kafka endpoint to push notification to",
 										MarkdownDescription: "The URI of the Kafka endpoint to push notification to",
@@ -276,6 +331,39 @@ func (r *CephRookIoCephBucketTopicV1Manifest) Schema(_ context.Context, _ dataso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"user_secret_ref": schema.SingleNestedAttribute{
+										Description:         "The kafka user name to use for authentication",
+										MarkdownDescription: "The kafka user name to use for authentication",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,

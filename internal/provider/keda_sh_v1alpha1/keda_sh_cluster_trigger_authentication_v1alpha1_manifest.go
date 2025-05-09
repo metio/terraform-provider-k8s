@@ -81,6 +81,7 @@ type KedaShClusterTriggerAuthenticationV1Alpha1ManifestData struct {
 			Secrets *[]struct {
 				Name         *string `tfsdk:"name" json:"name,omitempty"`
 				Parameter    *string `tfsdk:"parameter" json:"parameter,omitempty"`
+				SecretKey    *string `tfsdk:"secret_key" json:"secretKey,omitempty"`
 				VersionId    *string `tfsdk:"version_id" json:"versionId,omitempty"`
 				VersionStage *string `tfsdk:"version_stage" json:"versionStage,omitempty"`
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
@@ -118,6 +119,10 @@ type KedaShClusterTriggerAuthenticationV1Alpha1ManifestData struct {
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 			VaultUri *string `tfsdk:"vault_uri" json:"vaultUri,omitempty"`
 		} `tfsdk:"azure_key_vault" json:"azureKeyVault,omitempty"`
+		BoundServiceAccountToken *[]struct {
+			Parameter          *string `tfsdk:"parameter" json:"parameter,omitempty"`
+			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		} `tfsdk:"bound_service_account_token" json:"boundServiceAccountToken,omitempty"`
 		ConfigMapTargetRef *[]struct {
 			Key       *string `tfsdk:"key" json:"key,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -494,6 +499,14 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 											Computed:            false,
 										},
 
+										"secret_key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"version_id": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -730,6 +743,33 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"bound_service_account_token": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"parameter": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"service_account_name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

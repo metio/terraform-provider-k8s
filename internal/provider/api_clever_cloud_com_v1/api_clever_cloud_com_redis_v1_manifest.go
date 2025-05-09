@@ -177,7 +177,7 @@ func (r *ApiCleverCloudComRedisV1Manifest) Schema(_ context.Context, _ datasourc
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.Int64{
-									int64validator.OneOf(626, 704),
+									int64validator.OneOf(724),
 								},
 							},
 						},
