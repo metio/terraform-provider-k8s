@@ -62,13 +62,15 @@ type CertManagerIoCertificateV1ManifestData struct {
 			Jks *struct {
 				Alias             *string `tfsdk:"alias" json:"alias,omitempty"`
 				Create            *bool   `tfsdk:"create" json:"create,omitempty"`
+				Password          *string `tfsdk:"password" json:"password,omitempty"`
 				PasswordSecretRef *struct {
 					Key  *string `tfsdk:"key" json:"key,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"password_secret_ref" json:"passwordSecretRef,omitempty"`
 			} `tfsdk:"jks" json:"jks,omitempty"`
 			Pkcs12 *struct {
-				Create            *bool `tfsdk:"create" json:"create,omitempty"`
+				Create            *bool   `tfsdk:"create" json:"create,omitempty"`
+				Password          *string `tfsdk:"password" json:"password,omitempty"`
 				PasswordSecretRef *struct {
 					Key  *string `tfsdk:"key" json:"key,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -110,7 +112,8 @@ type CertManagerIoCertificateV1ManifestData struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"secret_template" json:"secretTemplate,omitempty"`
-		Subject *struct {
+		SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
+		Subject            *struct {
 			Countries           *[]string `tfsdk:"countries" json:"countries,omitempty"`
 			Localities          *[]string `tfsdk:"localities" json:"localities,omitempty"`
 			OrganizationalUnits *[]string `tfsdk:"organizational_units" json:"organizationalUnits,omitempty"`
@@ -333,16 +336,24 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"create": schema.BoolAttribute{
-										Description:         "Create enables JKS keystore creation for the Certificate. If true, a file named 'keystore.jks' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.jks' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
-										MarkdownDescription: "Create enables JKS keystore creation for the Certificate. If true, a file named 'keystore.jks' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.jks' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
+										Description:         "Create enables JKS keystore creation for the Certificate. If true, a file named 'keystore.jks' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' or 'password'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.jks' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
+										MarkdownDescription: "Create enables JKS keystore creation for the Certificate. If true, a file named 'keystore.jks' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' or 'password'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.jks' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
+									"password": schema.StringAttribute{
+										Description:         "Password provides a literal password used to encrypt the JKS keystore. Mutually exclusive with passwordSecretRef. One of password or passwordSecretRef must provide a password with a non-zero length.",
+										MarkdownDescription: "Password provides a literal password used to encrypt the JKS keystore. Mutually exclusive with passwordSecretRef. One of password or passwordSecretRef must provide a password with a non-zero length.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"password_secret_ref": schema.SingleNestedAttribute{
-										Description:         "PasswordSecretRef is a reference to a key in a Secret resource containing the password used to encrypt the JKS keystore.",
-										MarkdownDescription: "PasswordSecretRef is a reference to a key in a Secret resource containing the password used to encrypt the JKS keystore.",
+										Description:         "PasswordSecretRef is a reference to a non-empty key in a Secret resource containing the password used to encrypt the JKS keystore. Mutually exclusive with password. One of password or passwordSecretRef must provide a password with a non-zero length.",
+										MarkdownDescription: "PasswordSecretRef is a reference to a non-empty key in a Secret resource containing the password used to encrypt the JKS keystore. Mutually exclusive with password. One of password or passwordSecretRef must provide a password with a non-zero length.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
@@ -360,8 +371,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								},
@@ -375,16 +386,24 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "PKCS12 configures options for storing a PKCS12 keystore in the 'spec.secretName' Secret resource.",
 								Attributes: map[string]schema.Attribute{
 									"create": schema.BoolAttribute{
-										Description:         "Create enables PKCS12 keystore creation for the Certificate. If true, a file named 'keystore.p12' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.p12' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
-										MarkdownDescription: "Create enables PKCS12 keystore creation for the Certificate. If true, a file named 'keystore.p12' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.p12' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
+										Description:         "Create enables PKCS12 keystore creation for the Certificate. If true, a file named 'keystore.p12' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' or in 'password'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.p12' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
+										MarkdownDescription: "Create enables PKCS12 keystore creation for the Certificate. If true, a file named 'keystore.p12' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' or in 'password'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.p12' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
+									"password": schema.StringAttribute{
+										Description:         "Password provides a literal password used to encrypt the PKCS#12 keystore. Mutually exclusive with passwordSecretRef. One of password or passwordSecretRef must provide a password with a non-zero length.",
+										MarkdownDescription: "Password provides a literal password used to encrypt the PKCS#12 keystore. Mutually exclusive with passwordSecretRef. One of password or passwordSecretRef must provide a password with a non-zero length.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"password_secret_ref": schema.SingleNestedAttribute{
-										Description:         "PasswordSecretRef is a reference to a key in a Secret resource containing the password used to encrypt the PKCS12 keystore.",
-										MarkdownDescription: "PasswordSecretRef is a reference to a key in a Secret resource containing the password used to encrypt the PKCS12 keystore.",
+										Description:         "PasswordSecretRef is a reference to a non-empty key in a Secret resource containing the password used to encrypt the PKCS#12 keystore. Mutually exclusive with password. One of password or passwordSecretRef must provide a password with a non-zero length.",
+										MarkdownDescription: "PasswordSecretRef is a reference to a non-empty key in a Secret resource containing the password used to encrypt the PKCS#12 keystore. Mutually exclusive with password. One of password or passwordSecretRef must provide a password with a non-zero length.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
@@ -402,14 +421,14 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
 									"profile": schema.StringAttribute{
-										Description:         "Profile specifies the key and certificate encryption algorithms and the HMAC algorithm used to create the PKCS12 keystore. Default value is 'LegacyRC2' for backward compatibility. If provided, allowed values are: 'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20. 'LegacyDES': Less secure algorithm. Use this option for maximal compatibility. 'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms (eg. because of company policy). Please note that the security of the algorithm is not that important in reality, because the unencrypted certificate and private key are also stored in the Secret.",
-										MarkdownDescription: "Profile specifies the key and certificate encryption algorithms and the HMAC algorithm used to create the PKCS12 keystore. Default value is 'LegacyRC2' for backward compatibility. If provided, allowed values are: 'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20. 'LegacyDES': Less secure algorithm. Use this option for maximal compatibility. 'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms (eg. because of company policy). Please note that the security of the algorithm is not that important in reality, because the unencrypted certificate and private key are also stored in the Secret.",
+										Description:         "Profile specifies the key and certificate encryption algorithms and the HMAC algorithm used to create the PKCS12 keystore. Default value is 'LegacyRC2' for backward compatibility. If provided, allowed values are: 'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20. 'LegacyDES': Less secure algorithm. Use this option for maximal compatibility. 'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms (e.g., because of company policy). Please note that the security of the algorithm is not that important in reality, because the unencrypted certificate and private key are also stored in the Secret.",
+										MarkdownDescription: "Profile specifies the key and certificate encryption algorithms and the HMAC algorithm used to create the PKCS12 keystore. Default value is 'LegacyRC2' for backward compatibility. If provided, allowed values are: 'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20. 'LegacyDES': Less secure algorithm. Use this option for maximal compatibility. 'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms (e.g., because of company policy). Please note that the security of the algorithm is not that important in reality, because the unencrypted certificate and private key are also stored in the Secret.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -597,8 +616,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"rotation_policy": schema.StringAttribute{
-								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exist but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
-								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exist but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
+								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exist but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Always'. The default was changed from 'Never' to 'Always' in cert-manager >=v1.18.0. The new default can be disabled by setting the '--feature-gates=DefaultPrivateKeyRotationPolicyAlways=false' option on the controller component.",
+								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exist but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Always'. The default was changed from 'Never' to 'Always' in cert-manager >=v1.18.0. The new default can be disabled by setting the '--feature-gates=DefaultPrivateKeyRotationPolicyAlways=false' option on the controller component.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -677,6 +696,17 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"signature_algorithm": schema.StringAttribute{
+						Description:         "Signature algorith to use. Allowed values for RSA keys: SHA256WithRSA, SHA384WithRSA, SHA512WithRSA. Allowed values for ECDSA keys: ECDSAWithSHA256, ECDSAWithSHA384, ECDSAWithSHA512. Allowed values for Ed25519 keys: PureEd25519.",
+						MarkdownDescription: "Signature algorith to use. Allowed values for RSA keys: SHA256WithRSA, SHA384WithRSA, SHA512WithRSA. Allowed values for ECDSA keys: ECDSAWithSHA256, ECDSAWithSHA384, ECDSAWithSHA512. Allowed values for Ed25519 keys: PureEd25519.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("SHA256WithRSA", "SHA384WithRSA", "SHA512WithRSA", "ECDSAWithSHA256", "ECDSAWithSHA384", "ECDSAWithSHA512", "PureEd25519"),
+						},
 					},
 
 					"subject": schema.SingleNestedAttribute{

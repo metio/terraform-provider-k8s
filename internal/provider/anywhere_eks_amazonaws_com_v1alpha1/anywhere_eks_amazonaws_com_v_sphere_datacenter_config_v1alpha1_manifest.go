@@ -43,7 +43,15 @@ type AnywhereEksAmazonawsComVsphereDatacenterConfigV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Datacenter *string `tfsdk:"datacenter" json:"datacenter,omitempty"`
+		Datacenter     *string `tfsdk:"datacenter" json:"datacenter,omitempty"`
+		FailureDomains *[]struct {
+			ComputeCluster *string `tfsdk:"compute_cluster" json:"computeCluster,omitempty"`
+			Datastore      *string `tfsdk:"datastore" json:"datastore,omitempty"`
+			Folder         *string `tfsdk:"folder" json:"folder,omitempty"`
+			Name           *string `tfsdk:"name" json:"name,omitempty"`
+			Network        *string `tfsdk:"network" json:"network,omitempty"`
+			ResourcePool   *string `tfsdk:"resource_pool" json:"resourcePool,omitempty"`
+		} `tfsdk:"failure_domains" json:"failureDomains,omitempty"`
 		Insecure   *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
 		Network    *string `tfsdk:"network" json:"network,omitempty"`
 		Server     *string `tfsdk:"server" json:"server,omitempty"`
@@ -134,6 +142,65 @@ func (r *AnywhereEksAmazonawsComVsphereDatacenterConfigV1Alpha1Manifest) Schema(
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"failure_domains": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"compute_cluster": schema.StringAttribute{
+									Description:         "ComputeCluster is the name or inventory path of the computecluster in which the VM is created/located",
+									MarkdownDescription: "ComputeCluster is the name or inventory path of the computecluster in which the VM is created/located",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"datastore": schema.StringAttribute{
+									Description:         "Datastore is the name or inventory path of the datastore in which the VM is created/located",
+									MarkdownDescription: "Datastore is the name or inventory path of the datastore in which the VM is created/located",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"folder": schema.StringAttribute{
+									Description:         "Folder is the name or inventory path of the folder in which the the VM is created/located",
+									MarkdownDescription: "Folder is the name or inventory path of the folder in which the the VM is created/located",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name is used as a unique identifier for each failure domain.",
+									MarkdownDescription: "Name is used as a unique identifier for each failure domain.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"network": schema.StringAttribute{
+									Description:         "Network is the name or inventory path of the network which will be added to the VM",
+									MarkdownDescription: "Network is the name or inventory path of the network which will be added to the VM",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"resource_pool": schema.StringAttribute{
+									Description:         "ResourcePool is the name or inventory path of the resource pool in which the VM is created/located",
+									MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in which the VM is created/located",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"insecure": schema.BoolAttribute{

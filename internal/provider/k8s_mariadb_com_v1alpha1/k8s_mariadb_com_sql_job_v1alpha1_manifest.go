@@ -185,7 +185,13 @@ type K8SMariadbComSqlJobV1Alpha1ManifestData struct {
 		} `tfsdk:"sql_config_map_key_ref" json:"sqlConfigMapKeyRef,omitempty"`
 		SuccessfulJobsHistoryLimit *int64  `tfsdk:"successful_jobs_history_limit" json:"successfulJobsHistoryLimit,omitempty"`
 		TimeZone                   *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
-		Tolerations                *[]struct {
+		TlsCASecretRef             *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"tls_ca_secret_ref" json:"tlsCASecretRef,omitempty"`
+		TlsClientCertSecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"tls_client_cert_secret_ref" json:"tlsClientCertSecretRef,omitempty"`
+		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -1220,6 +1226,40 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tls_ca_secret_ref": schema.SingleNestedAttribute{
+						Description:         "TLSCACertSecretRef is a reference toa CA Secret used to establish trust when executing the SqlJob. If not provided, the CA bundle provided by the referred MariaDB is used.",
+						MarkdownDescription: "TLSCACertSecretRef is a reference toa CA Secret used to establish trust when executing the SqlJob. If not provided, the CA bundle provided by the referred MariaDB is used.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tls_client_cert_secret_ref": schema.SingleNestedAttribute{
+						Description:         "TLSClientCertSecretRef is a reference to a Kubernetes TLS Secret used as authentication when executing the SqlJob. If not provided, the client certificate provided by the referred MariaDB is used.",
+						MarkdownDescription: "TLSClientCertSecretRef is a reference to a Kubernetes TLS Secret used as authentication when executing the SqlJob. If not provided, the client certificate provided by the referred MariaDB is used.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{

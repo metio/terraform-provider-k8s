@@ -153,8 +153,8 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Manifest) Schema(_ context.Con
 					"execution_role_arn": schema.StringAttribute{
 						Description:         "The execution role ARN for the job run.",
 						MarkdownDescription: "The execution role ARN for the job run.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -196,8 +196,8 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Manifest) Schema(_ context.Con
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -212,8 +212,8 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Manifest) Schema(_ context.Con
 					"release_label": schema.StringAttribute{
 						Description:         "The Amazon EMR release version to use for the job run.",
 						MarkdownDescription: "The Amazon EMR release version to use for the job run.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

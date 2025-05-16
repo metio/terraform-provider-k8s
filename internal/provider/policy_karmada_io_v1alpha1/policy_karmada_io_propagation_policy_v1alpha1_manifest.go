@@ -55,6 +55,12 @@ type PolicyKarmadaIoPropagationPolicyV1Alpha1ManifestData struct {
 				} `tfsdk:"decision_conditions" json:"decisionConditions,omitempty"`
 				GracePeriodSeconds *int64  `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
 				PurgeMode          *string `tfsdk:"purge_mode" json:"purgeMode,omitempty"`
+				StatePreservation  *struct {
+					Rules *[]struct {
+						AliasLabelName *string `tfsdk:"alias_label_name" json:"aliasLabelName,omitempty"`
+						JsonPath       *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
+					} `tfsdk:"rules" json:"rules,omitempty"`
+				} `tfsdk:"state_preservation" json:"statePreservation,omitempty"`
 			} `tfsdk:"application" json:"application,omitempty"`
 		} `tfsdk:"failover" json:"failover,omitempty"`
 		Placement *struct {
@@ -158,6 +164,10 @@ type PolicyKarmadaIoPropagationPolicyV1Alpha1ManifestData struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"resource_selectors" json:"resourceSelectors,omitempty"`
+		SchedulePriority *struct {
+			PriorityClassName   *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+			PriorityClassSource *string `tfsdk:"priority_class_source" json:"priorityClassSource,omitempty"`
+		} `tfsdk:"schedule_priority" json:"schedulePriority,omitempty"`
 		SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 		Suspension    *struct {
 			Dispatching           *bool `tfsdk:"dispatching" json:"dispatching,omitempty"`
@@ -326,6 +336,42 @@ func (r *PolicyKarmadaIoPropagationPolicyV1Alpha1Manifest) Schema(_ context.Cont
 										Validators: []validator.String{
 											stringvalidator.OneOf("Immediately", "Graciously", "Never"),
 										},
+									},
+
+									"state_preservation": schema.SingleNestedAttribute{
+										Description:         "StatePreservation defines the policy for preserving and restoring state data during failover events for stateful applications. When an application fails over from one cluster to another, this policy enables the extraction of critical data from the original resource configuration. Upon successful migration, the extracted data is then re-injected into the new resource, ensuring that the application can resume operation with its previous state intact. This is particularly useful for stateful applications where maintaining data consistency across failover events is crucial. If not specified, means no state data will be preserved. Note: This requires the StatefulFailoverInjection feature gate to be enabled, which is alpha.",
+										MarkdownDescription: "StatePreservation defines the policy for preserving and restoring state data during failover events for stateful applications. When an application fails over from one cluster to another, this policy enables the extraction of critical data from the original resource configuration. Upon successful migration, the extracted data is then re-injected into the new resource, ensuring that the application can resume operation with its previous state intact. This is particularly useful for stateful applications where maintaining data consistency across failover events is crucial. If not specified, means no state data will be preserved. Note: This requires the StatefulFailoverInjection feature gate to be enabled, which is alpha.",
+										Attributes: map[string]schema.Attribute{
+											"rules": schema.ListNestedAttribute{
+												Description:         "Rules contains a list of StatePreservationRule configurations. Each rule specifies a JSONPath expression targeting specific pieces of state data to be preserved during failover events. An AliasLabelName is associated with each rule, serving as a label key when the preserved data is passed to the new cluster.",
+												MarkdownDescription: "Rules contains a list of StatePreservationRule configurations. Each rule specifies a JSONPath expression targeting specific pieces of state data to be preserved during failover events. An AliasLabelName is associated with each rule, serving as a label key when the preserved data is passed to the new cluster.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"alias_label_name": schema.StringAttribute{
+															Description:         "AliasLabelName is the name that will be used as a label key when the preserved data is passed to the new cluster. This facilitates the injection of the preserved state back into the application resources during recovery.",
+															MarkdownDescription: "AliasLabelName is the name that will be used as a label key when the preserved data is passed to the new cluster. This facilitates the injection of the preserved state back into the application resources during recovery.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"json_path": schema.StringAttribute{
+															Description:         "JSONPath is the JSONPath template used to identify the state data to be preserved from the original resource configuration. The JSONPath syntax follows the Kubernetes specification: https://kubernetes.io/docs/reference/kubectl/jsonpath/ Note: The JSONPath expression will start searching from the 'status' field of the API resource object by default. For example, to extract the 'availableReplicas' from a Deployment, the JSONPath expression should be '{.availableReplicas}', not '{.status.availableReplicas}'.",
+															MarkdownDescription: "JSONPath is the JSONPath template used to identify the state data to be preserved from the original resource configuration. The JSONPath syntax follows the Kubernetes specification: https://kubernetes.io/docs/reference/kubectl/jsonpath/ Note: The JSONPath expression will start searching from the 'status' field of the API resource object by default. For example, to extract the 'availableReplicas' from a Deployment, the JSONPath expression should be '{.availableReplicas}', not '{.status.availableReplicas}'.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -1038,6 +1084,34 @@ func (r *PolicyKarmadaIoPropagationPolicyV1Alpha1Manifest) Schema(_ context.Cont
 						},
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"schedule_priority": schema.SingleNestedAttribute{
+						Description:         "SchedulePriority defines how Karmada should resolve the priority and preemption policy for workload scheduling. This setting is useful for controlling the scheduling behavior of offline workloads. By setting a higher or lower priority, users can control which workloads are scheduled first. Additionally, it allows specifying a preemption policy where higher-priority workloads can preempt lower-priority ones in scenarios of resource contention. Note: This feature is currently in the alpha stage. The priority-based scheduling functionality is controlled by the PriorityBasedScheduling feature gate, and preemption is controlled by the PriorityBasedPreemptiveScheduling feature gate. Currently, only priority-based scheduling is supported. Preemption functionality is not yet available and will be introduced in future releases as the feature matures.",
+						MarkdownDescription: "SchedulePriority defines how Karmada should resolve the priority and preemption policy for workload scheduling. This setting is useful for controlling the scheduling behavior of offline workloads. By setting a higher or lower priority, users can control which workloads are scheduled first. Additionally, it allows specifying a preemption policy where higher-priority workloads can preempt lower-priority ones in scenarios of resource contention. Note: This feature is currently in the alpha stage. The priority-based scheduling functionality is controlled by the PriorityBasedScheduling feature gate, and preemption is controlled by the PriorityBasedPreemptiveScheduling feature gate. Currently, only priority-based scheduling is supported. Preemption functionality is not yet available and will be introduced in future releases as the feature matures.",
+						Attributes: map[string]schema.Attribute{
+							"priority_class_name": schema.StringAttribute{
+								Description:         "PriorityClassName specifies which PriorityClass to use. Its behavior depends on PriorityClassSource: Behavior of PriorityClassName: For KubePriorityClass: - When specified: Uses the named Kubernetes PriorityClass. For PodPriorityClass: - Uses PriorityClassName from the PodTemplate. - Not yet implemented. For FederatedPriorityClass: - Not yet implemented.",
+								MarkdownDescription: "PriorityClassName specifies which PriorityClass to use. Its behavior depends on PriorityClassSource: Behavior of PriorityClassName: For KubePriorityClass: - When specified: Uses the named Kubernetes PriorityClass. For PodPriorityClass: - Uses PriorityClassName from the PodTemplate. - Not yet implemented. For FederatedPriorityClass: - Not yet implemented.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"priority_class_source": schema.StringAttribute{
+								Description:         "PriorityClassSource specifies where Karmada should look for the PriorityClass definition. Available options: - KubePriorityClass: Uses Kubernetes PriorityClass (scheduling.k8s.io/v1) - PodPriorityClass: Uses PriorityClassName from PodTemplate: PodSpec.PriorityClassName (not yet implemented) - FederatedPriorityClass: Uses Karmada FederatedPriorityClass (not yet implemented)",
+								MarkdownDescription: "PriorityClassSource specifies where Karmada should look for the PriorityClass definition. Available options: - KubePriorityClass: Uses Kubernetes PriorityClass (scheduling.k8s.io/v1) - PodPriorityClass: Uses PriorityClassName from PodTemplate: PodSpec.PriorityClassName (not yet implemented) - FederatedPriorityClass: Uses Karmada FederatedPriorityClass (not yet implemented)",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("KubePriorityClass"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

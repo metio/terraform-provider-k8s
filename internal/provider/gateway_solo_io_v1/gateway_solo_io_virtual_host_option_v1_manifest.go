@@ -200,8 +200,9 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 			Jwt                           *struct {
 				AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
 				Providers               *struct {
-					Audiences       *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
-					ClaimsToHeaders *[]struct {
+					AttachFailedStatusToMetadata *string   `tfsdk:"attach_failed_status_to_metadata" json:"attachFailedStatusToMetadata,omitempty"`
+					Audiences                    *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
+					ClaimsToHeaders              *[]struct {
 						Append *bool   `tfsdk:"append" json:"append,omitempty"`
 						Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
 						Header *string `tfsdk:"header" json:"header,omitempty"`
@@ -239,8 +240,9 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				AfterExtAuth *struct {
 					AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
 					Providers               *struct {
-						Audiences       *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
-						ClaimsToHeaders *[]struct {
+						AttachFailedStatusToMetadata *string   `tfsdk:"attach_failed_status_to_metadata" json:"attachFailedStatusToMetadata,omitempty"`
+						Audiences                    *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
+						ClaimsToHeaders              *[]struct {
 							Append *bool   `tfsdk:"append" json:"append,omitempty"`
 							Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
 							Header *string `tfsdk:"header" json:"header,omitempty"`
@@ -277,8 +279,9 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				BeforeExtAuth *struct {
 					AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
 					Providers               *struct {
-						Audiences       *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
-						ClaimsToHeaders *[]struct {
+						AttachFailedStatusToMetadata *string   `tfsdk:"attach_failed_status_to_metadata" json:"attachFailedStatusToMetadata,omitempty"`
+						Audiences                    *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
+						ClaimsToHeaders              *[]struct {
 							Append *bool   `tfsdk:"append" json:"append,omitempty"`
 							Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
 							Header *string `tfsdk:"header" json:"header,omitempty"`
@@ -740,6 +743,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -796,6 +804,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -861,6 +874,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -944,6 +962,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1000,6 +1023,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1065,6 +1093,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1145,6 +1178,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1201,6 +1239,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1266,6 +1309,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 							XsltTransformation *struct {
 								NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1334,6 +1382,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 						} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 						ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 						Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+						SpanTransformer   *struct {
+							Name *struct {
+								Text *string `tfsdk:"text" json:"text,omitempty"`
+							} `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 					} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 					XsltTransformation *struct {
 						NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1390,6 +1443,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 						} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 						ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 						Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+						SpanTransformer   *struct {
+							Name *struct {
+								Text *string `tfsdk:"text" json:"text,omitempty"`
+							} `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 					} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 					XsltTransformation *struct {
 						NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2533,6 +2591,14 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"attach_failed_status_to_metadata": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"audiences": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -2781,6 +2847,14 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
+													"attach_failed_status_to_metadata": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"audiences": schema.ListAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -3025,6 +3099,14 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
+													"attach_failed_status_to_metadata": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"audiences": schema.ListAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -6047,6 +6129,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Optional:            true,
 																			Computed:            false,
 																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -6408,6 +6516,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -6832,6 +6966,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -7384,6 +7544,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Optional:            true,
 																			Computed:            false,
 																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -7745,6 +7931,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -8169,6 +8381,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -8697,6 +8935,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Optional:            true,
 																			Computed:            false,
 																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -9058,6 +9322,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -9482,6 +9772,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -9917,6 +10233,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 														Optional:            true,
 														Computed:            false,
 													},
+
+													"span_transformer": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"text": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -10278,6 +10620,32 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"span_transformer": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"text": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: false,

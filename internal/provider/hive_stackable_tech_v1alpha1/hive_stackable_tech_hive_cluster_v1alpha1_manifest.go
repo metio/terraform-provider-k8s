@@ -71,9 +71,12 @@ type HiveStackableTechHiveClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"scope" json:"scope,omitempty"`
 						SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 					} `tfsdk:"credentials" json:"credentials,omitempty"`
-					Host *string `tfsdk:"host" json:"host,omitempty"`
-					Port *int64  `tfsdk:"port" json:"port,omitempty"`
-					Tls  *struct {
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+					Region *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"region" json:"region,omitempty"`
+					Tls *struct {
 						Verification *struct {
 							None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
 							Server *struct {
@@ -156,10 +159,15 @@ type HiveStackableTechHiveClusterV1Alpha1ManifestData struct {
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				WarehouseDir *string `tfsdk:"warehouse_dir" json:"warehouseDir,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -218,10 +226,15 @@ type HiveStackableTechHiveClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"resources" json:"resources,omitempty"`
 					WarehouseDir *string `tfsdk:"warehouse_dir" json:"warehouseDir,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"metastore" json:"metastore,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -496,6 +509,23 @@ func (r *HiveStackableTechHiveClusterV1Alpha1Manifest) Schema(_ context.Context,
 												},
 											},
 
+											"region": schema.SingleNestedAttribute{
+												Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+												MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"tls": schema.SingleNestedAttribute{
 												Description:         "Use a TLS connection. If not specified no TLS will be used.",
 												MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
@@ -619,8 +649,8 @@ func (r *HiveStackableTechHiveClusterV1Alpha1Manifest) Schema(_ context.Context,
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -665,8 +695,8 @@ func (r *HiveStackableTechHiveClusterV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1035,6 +1065,42 @@ func (r *HiveStackableTechHiveClusterV1Alpha1Manifest) Schema(_ context.Context,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -1433,6 +1499,42 @@ func (r *HiveStackableTechHiveClusterV1Alpha1Manifest) Schema(_ context.Context,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

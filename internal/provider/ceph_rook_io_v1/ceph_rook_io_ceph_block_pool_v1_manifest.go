@@ -285,11 +285,14 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "Mode is the mirroring mode: either pool or image",
-								MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+								Description:         "Mode is the mirroring mode: pool, image or init-only.",
+								MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("pool", "image", "init-only"),
+								},
 							},
 
 							"peers": schema.SingleNestedAttribute{

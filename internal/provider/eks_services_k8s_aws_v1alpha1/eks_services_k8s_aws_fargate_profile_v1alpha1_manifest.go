@@ -152,8 +152,8 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "FargateProfileSpec defines the desired state of FargateProfile. An object representing an Fargate profile.",
 				Attributes: map[string]schema.Attribute{
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

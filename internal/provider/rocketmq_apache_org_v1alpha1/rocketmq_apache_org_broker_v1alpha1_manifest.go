@@ -231,6 +231,7 @@ type RocketmqApacheOrgBrokerV1Alpha1ManifestData struct {
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		NameServers       *string            `tfsdk:"name_servers" json:"nameServers,omitempty"`
 		NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		PodAnnotations    *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 		ReplicaPerGroup   *int64             `tfsdk:"replica_per_group" json:"replicaPerGroup,omitempty"`
 		Resources         *struct {
@@ -1944,6 +1945,15 @@ func (r *RocketmqApacheOrgBrokerV1Alpha1Manifest) Schema(_ context.Context, _ da
 					"node_selector": schema.MapAttribute{
 						Description:         "NodeSelector is a selector which must be true for the pod to fit on a node",
 						MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pod_annotations": schema.MapAttribute{
+						Description:         "Pod Annotations",
+						MarkdownDescription: "Pod Annotations",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

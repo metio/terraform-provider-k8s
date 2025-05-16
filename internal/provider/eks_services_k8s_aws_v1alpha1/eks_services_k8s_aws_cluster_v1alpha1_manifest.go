@@ -49,7 +49,12 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 		} `tfsdk:"access_config" json:"accessConfig,omitempty"`
 		BootstrapSelfManagedAddons *bool   `tfsdk:"bootstrap_self_managed_addons" json:"bootstrapSelfManagedAddons,omitempty"`
 		ClientRequestToken         *string `tfsdk:"client_request_token" json:"clientRequestToken,omitempty"`
-		EncryptionConfig           *[]struct {
+		ComputeConfig              *struct {
+			Enabled     *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+			NodePools   *[]string `tfsdk:"node_pools" json:"nodePools,omitempty"`
+			NodeRoleARN *string   `tfsdk:"node_role_arn" json:"nodeRoleARN,omitempty"`
+		} `tfsdk:"compute_config" json:"computeConfig,omitempty"`
+		EncryptionConfig *[]struct {
 			Provider *struct {
 				KeyARN *string `tfsdk:"key_arn" json:"keyARN,omitempty"`
 				KeyRef *struct {
@@ -62,6 +67,9 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 			Resources *[]string `tfsdk:"resources" json:"resources,omitempty"`
 		} `tfsdk:"encryption_config" json:"encryptionConfig,omitempty"`
 		KubernetesNetworkConfig *struct {
+			ElasticLoadBalancing *struct {
+				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			} `tfsdk:"elastic_load_balancing" json:"elasticLoadBalancing,omitempty"`
 			IpFamily        *string `tfsdk:"ip_family" json:"ipFamily,omitempty"`
 			ServiceIPv4CIDR *string `tfsdk:"service_i_pv4_cidr" json:"serviceIPv4CIDR,omitempty"`
 		} `tfsdk:"kubernetes_network_config" json:"kubernetesNetworkConfig,omitempty"`
@@ -79,6 +87,14 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 			} `tfsdk:"control_plane_placement" json:"controlPlanePlacement,omitempty"`
 			OutpostARNs *[]string `tfsdk:"outpost_ar_ns" json:"outpostARNs,omitempty"`
 		} `tfsdk:"outpost_config" json:"outpostConfig,omitempty"`
+		RemoteNetworkConfig *struct {
+			RemoteNodeNetworks *[]struct {
+				Cidrs *[]string `tfsdk:"cidrs" json:"cidrs,omitempty"`
+			} `tfsdk:"remote_node_networks" json:"remoteNodeNetworks,omitempty"`
+			RemotePodNetworks *[]struct {
+				Cidrs *[]string `tfsdk:"cidrs" json:"cidrs,omitempty"`
+			} `tfsdk:"remote_pod_networks" json:"remotePodNetworks,omitempty"`
+		} `tfsdk:"remote_network_config" json:"remoteNetworkConfig,omitempty"`
 		ResourcesVPCConfig *struct {
 			EndpointPrivateAccess *bool     `tfsdk:"endpoint_private_access" json:"endpointPrivateAccess,omitempty"`
 			EndpointPublicAccess  *bool     `tfsdk:"endpoint_public_access" json:"endpointPublicAccess,omitempty"`
@@ -105,11 +121,19 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"role_ref" json:"roleRef,omitempty"`
+		StorageConfig *struct {
+			BlockStorage *struct {
+				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			} `tfsdk:"block_storage" json:"blockStorage,omitempty"`
+		} `tfsdk:"storage_config" json:"storageConfig,omitempty"`
 		Tags          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		UpgradePolicy *struct {
 			SupportType *string `tfsdk:"support_type" json:"supportType,omitempty"`
 		} `tfsdk:"upgrade_policy" json:"upgradePolicy,omitempty"`
-		Version *string `tfsdk:"version" json:"version,omitempty"`
+		Version          *string `tfsdk:"version" json:"version,omitempty"`
+		ZonalShiftConfig *struct {
+			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+		} `tfsdk:"zonal_shift_config" json:"zonalShiftConfig,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -224,11 +248,45 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"compute_config": schema.SingleNestedAttribute{
+						Description:         "Enable or disable the compute capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the compute capability is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your Amazon Web Services account",
+						MarkdownDescription: "Enable or disable the compute capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the compute capability is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your Amazon Web Services account",
+						Attributes: map[string]schema.Attribute{
+							"enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"node_pools": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"node_role_arn": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"encryption_config": schema.ListNestedAttribute{
@@ -306,6 +364,23 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Description:         "The Kubernetes network configuration for the cluster.",
 						MarkdownDescription: "The Kubernetes network configuration for the cluster.",
 						Attributes: map[string]schema.Attribute{
+							"elastic_load_balancing": schema.SingleNestedAttribute{
+								Description:         "Indicates the current configuration of the load balancing capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled. For more information, see EKS Auto Mode load balancing capability in the Amazon EKS User Guide.",
+								MarkdownDescription: "Indicates the current configuration of the load balancing capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled. For more information, see EKS Auto Mode load balancing capability in the Amazon EKS User Guide.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"ip_family": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -328,8 +403,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"logging": schema.SingleNestedAttribute{
-						Description:         "Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide . CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/).",
-						MarkdownDescription: "Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide . CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/).",
+						Description:         "Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs . By default, cluster control plane logs aren't exported to CloudWatch Logs . For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide . CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/).",
+						MarkdownDescription: "Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs . By default, cluster control plane logs aren't exported to CloudWatch Logs . For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide . CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/).",
 						Attributes: map[string]schema.Attribute{
 							"cluster_logging": schema.ListNestedAttribute{
 								Description:         "",
@@ -365,8 +440,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The unique name to give to your cluster.",
-						MarkdownDescription: "The unique name to give to your cluster.",
+						Description:         "The unique name to give to your cluster. The name can contain only alphanumeric characters (case-sensitive),hyphens, and underscores. It must start with an alphanumeric character and can't be longer than100 characters. The name must be unique within the Amazon Web Services Region and Amazon Web Services account that you're creating the cluster in.",
+						MarkdownDescription: "The unique name to give to your cluster. The name can contain only alphanumeric characters (case-sensitive),hyphens, and underscores. It must start with an alphanumeric character and can't be longer than100 characters. The name must be unique within the Amazon Web Services Region and Amazon Web Services account that you're creating the cluster in.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -408,6 +483,55 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"remote_network_config": schema.SingleNestedAttribute{
+						Description:         "The configuration in the cluster for EKS Hybrid Nodes. You can't change or update this configuration after the cluster is created.",
+						MarkdownDescription: "The configuration in the cluster for EKS Hybrid Nodes. You can't change or update this configuration after the cluster is created.",
+						Attributes: map[string]schema.Attribute{
+							"remote_node_networks": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"cidrs": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"remote_pod_networks": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"cidrs": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -581,6 +705,32 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
+					"storage_config": schema.SingleNestedAttribute{
+						Description:         "Enable or disable the block storage capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your Amazon Web Services account.",
+						MarkdownDescription: "Enable or disable the block storage capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your Amazon Web Services account.",
+						Attributes: map[string]schema.Attribute{
+							"block_storage": schema.SingleNestedAttribute{
+								Description:         "Indicates the current configuration of the block storage capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your Amazon Web Services account. For more information, see EKS Auto Mode block storage capability in the Amazon EKS User Guide.",
+								MarkdownDescription: "Indicates the current configuration of the block storage capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your Amazon Web Services account. For more information, see EKS Auto Mode block storage capability in the Amazon EKS User Guide.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"tags": schema.MapAttribute{
 						Description:         "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
 						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
@@ -613,6 +763,23 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"zonal_shift_config": schema.SingleNestedAttribute{
+						Description:         "Enable or disable ARC zonal shift for the cluster. If zonal shift is enabled, Amazon Web Services configures zonal autoshift for the cluster. Zonal shift is a feature of Amazon Application Recovery Controller (ARC). ARC zonal shift is designed to be a temporary measure that allows you to move traffic for a resource away from an impaired AZ until the zonal shift expires or you cancel it. You can extend the zonal shift if necessary. You can start a zonal shift for an Amazon EKS cluster, or you can allow Amazon Web Services to do it for you by enabling zonal autoshift. This shift updates the flow of east-to-west network traffic in your cluster to only consider network endpoints for Pods running on worker nodes in healthy AZs. Additionally, any ALB or NLB handling ingress traffic for applications in your Amazon EKS cluster will automatically route traffic to targets in the healthy AZs. For more information about zonal shift in EKS, see Learn about Amazon Application Recovery Controller (ARC) Zonal Shift in Amazon EKS (https://docs.aws.amazon.com/eks/latest/userguide/zone-shift.html) in the Amazon EKS User Guide .",
+						MarkdownDescription: "Enable or disable ARC zonal shift for the cluster. If zonal shift is enabled, Amazon Web Services configures zonal autoshift for the cluster. Zonal shift is a feature of Amazon Application Recovery Controller (ARC). ARC zonal shift is designed to be a temporary measure that allows you to move traffic for a resource away from an impaired AZ until the zonal shift expires or you cancel it. You can extend the zonal shift if necessary. You can start a zonal shift for an Amazon EKS cluster, or you can allow Amazon Web Services to do it for you by enabling zonal autoshift. This shift updates the flow of east-to-west network traffic in your cluster to only consider network endpoints for Pods running on worker nodes in healthy AZs. Additionally, any ALB or NLB handling ingress traffic for applications in your Amazon EKS cluster will automatically route traffic to targets in the healthy AZs. For more information about zonal shift in EKS, see Learn about Amazon Application Recovery Controller (ARC) Zonal Shift in Amazon EKS (https://docs.aws.amazon.com/eks/latest/userguide/zone-shift.html) in the Amazon EKS User Guide .",
+						Attributes: map[string]schema.Attribute{
+							"enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

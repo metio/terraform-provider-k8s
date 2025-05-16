@@ -145,6 +145,7 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 			BindCredentialsSecretName *string `tfsdk:"bind_credentials_secret_name" json:"bindCredentialsSecretName,omitempty"`
 			CaCertificateSecretName   *string `tfsdk:"ca_certificate_secret_name" json:"caCertificateSecretName,omitempty"`
 			CacheTTLSeconds           *int64  `tfsdk:"cache_ttl_seconds" json:"cacheTTLSeconds,omitempty"`
+			DirectoryTimeoutSeconds   *int64  `tfsdk:"directory_timeout_seconds" json:"directoryTimeoutSeconds,omitempty"`
 			EnabledForControlPlane    *bool   `tfsdk:"enabled_for_control_plane" json:"enabledForControlPlane,omitempty"`
 			EnabledForDataPlane       *bool   `tfsdk:"enabled_for_data_plane" json:"enabledForDataPlane,omitempty"`
 			Protocol                  *string `tfsdk:"protocol" json:"protocol,omitempty"`
@@ -216,8 +217,7 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 				TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 			} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 		} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
-		PodSecurityPolicyName *string `tfsdk:"pod_security_policy_name" json:"podSecurityPolicyName,omitempty"`
-		PodStartingPolicy     *struct {
+		PodStartingPolicy *struct {
 			Enabled                  *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 			StartingThresholdSeconds *int64 `tfsdk:"starting_threshold_seconds" json:"startingThresholdSeconds,omitempty"`
 		} `tfsdk:"pod_starting_policy" json:"podStartingPolicy,omitempty"`
@@ -1288,6 +1288,14 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 		} `tfsdk:"redis_on_flash_spec" json:"redisOnFlashSpec,omitempty"`
 		RedisUpgradePolicy *string `tfsdk:"redis_upgrade_policy" json:"redisUpgradePolicy,omitempty"`
 		Resp3Default       *bool   `tfsdk:"resp3_default" json:"resp3Default,omitempty"`
+		SecurityContext    *struct {
+			ReadOnlyRootFilesystemPolicy *struct {
+				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			} `tfsdk:"read_only_root_filesystem_policy" json:"readOnlyRootFilesystemPolicy,omitempty"`
+			ResourceLimits *struct {
+				AllowAutoAdjustment *bool `tfsdk:"allow_auto_adjustment" json:"allowAutoAdjustment,omitempty"`
+			} `tfsdk:"resource_limits" json:"resourceLimits,omitempty"`
+		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		Services           *struct {
 			ApiService *struct {
@@ -1296,8 +1304,9 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 			ServicesAnnotations *map[string]string `tfsdk:"services_annotations" json:"servicesAnnotations,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
 		ServicesRiggerSpec *struct {
-			DatabaseServiceType *string `tfsdk:"database_service_type" json:"databaseServiceType,omitempty"`
-			ExtraEnvVars        *[]struct {
+			DatabaseServicePortPolicy *string `tfsdk:"database_service_port_policy" json:"databaseServicePortPolicy,omitempty"`
+			DatabaseServiceType       *string `tfsdk:"database_service_type" json:"databaseServiceType,omitempty"`
+			ExtraEnvVars              *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2550,6 +2559,24 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 		UpgradeSpec   *struct {
 			AutoUpgradeRedisEnterprise *bool `tfsdk:"auto_upgrade_redis_enterprise" json:"autoUpgradeRedisEnterprise,omitempty"`
 		} `tfsdk:"upgrade_spec" json:"upgradeSpec,omitempty"`
+		UsageMeter *struct {
+			CallHomeClient *struct {
+				Disabled  *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+				ImageSpec *struct {
+					DigestHash      *string `tfsdk:"digest_hash" json:"digestHash,omitempty"`
+					ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+					Repository      *string `tfsdk:"repository" json:"repository,omitempty"`
+					VersionTag      *string `tfsdk:"version_tag" json:"versionTag,omitempty"`
+				} `tfsdk:"image_spec" json:"imageSpec,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"call_home_client" json:"callHomeClient,omitempty"`
+		} `tfsdk:"usage_meter" json:"usageMeter,omitempty"`
 		Username      *string `tfsdk:"username" json:"username,omitempty"`
 		VaultCASecret *string `tfsdk:"vault_ca_secret" json:"vaultCASecret,omitempty"`
 		Volumes       *[]struct {
@@ -3587,6 +3614,14 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 								Computed:            false,
 							},
 
+							"directory_timeout_seconds": schema.Int64Attribute{
+								Description:         "The connection timeout to the LDAP server when authenticating a user, in seconds",
+								MarkdownDescription: "The connection timeout to the LDAP server when authenticating a user, in seconds",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled_for_control_plane": schema.BoolAttribute{
 								Description:         "Whether to enable LDAP for control plane access. Disabled by default.",
 								MarkdownDescription: "Whether to enable LDAP for control plane access. Disabled by default.",
@@ -4074,14 +4109,6 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/ Name of pod security policy to use on pods",
-						MarkdownDescription: "DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/ Name of pod security policy to use on pods",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
 					},
 
 					"pod_starting_policy": schema.SingleNestedAttribute{
@@ -10987,8 +11014,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"operating_mode": schema.StringAttribute{
-										Description:         "Whether to enable/disable the pdns server",
-										MarkdownDescription: "Whether to enable/disable the pdns server",
+										Description:         "Deprecated: The PDNS Server is now disabled by the operator. This field will be ignored.",
+										MarkdownDescription: "Deprecated: The PDNS Server is now disabled by the operator. This field will be ignored.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -11275,6 +11302,49 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"security_context": schema.SingleNestedAttribute{
+						Description:         "The security configuration that will be applied to RS pods.",
+						MarkdownDescription: "The security configuration that will be applied to RS pods.",
+						Attributes: map[string]schema.Attribute{
+							"read_only_root_filesystem_policy": schema.SingleNestedAttribute{
+								Description:         "Policy controlling whether to enable read-only root filesystem for the Redis Enterprise software containers. Note that certain filesystem paths remain writable through mounted volumes to ensure proper functionality.",
+								MarkdownDescription: "Policy controlling whether to enable read-only root filesystem for the Redis Enterprise software containers. Note that certain filesystem paths remain writable through mounted volumes to ensure proper functionality.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Whether to enable read-only root filesystem for the Redis Enterprise software containers. Default is false.",
+										MarkdownDescription: "Whether to enable read-only root filesystem for the Redis Enterprise software containers. Default is false.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"resource_limits": schema.SingleNestedAttribute{
+								Description:         "Settings pertaining to resource limits management by the Redis Enterprise Node container.",
+								MarkdownDescription: "Settings pertaining to resource limits management by the Redis Enterprise Node container.",
+								Attributes: map[string]schema.Attribute{
+									"allow_auto_adjustment": schema.BoolAttribute{
+										Description:         "Allow Redis Enterprise to adjust resource limits, like max open file descriptors, of its data plane processes. When this option is enabled, the SYS_RESOURCE capability is added to the Redis Enterprise pods, and their allowPrivilegeEscalation field is set. Turned off by default.",
+										MarkdownDescription: "Allow Redis Enterprise to adjust resource limits, like max open file descriptors, of its data plane processes. When this option is enabled, the SYS_RESOURCE capability is added to the Redis Enterprise pods, and their allowPrivilegeEscalation field is set. Turned off by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_account_name": schema.StringAttribute{
 						Description:         "Name of the service account to use",
 						MarkdownDescription: "Name of the service account to use",
@@ -11325,6 +11395,17 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Description:         "Specification for service rigger",
 						MarkdownDescription: "Specification for service rigger",
 						Attributes: map[string]schema.Attribute{
+							"database_service_port_policy": schema.StringAttribute{
+								Description:         "databaseServicePortPolicy instructs how to determine the service ports for REDB services. Defaults to DatabasePortForward, if not specified otherwise. DatabasePortForward - The service port will be the same as the database port. RedisDefaultPort - The service port will be the default Redis port (6379).",
+								MarkdownDescription: "databaseServicePortPolicy instructs how to determine the service ports for REDB services. Defaults to DatabasePortForward, if not specified otherwise. DatabasePortForward - The service port will be the same as the database port. RedisDefaultPort - The service port will be the default Redis port (6379).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("DatabasePortForward", "RedisDefaultPort"),
+								},
+							},
+
 							"database_service_type": schema.StringAttribute{
 								Description:         "Service types for access to databases. should be a comma separated list. The possible values are cluster_ip, headless and load_balancer.",
 								MarkdownDescription: "Service types for access to databases. should be a comma separated list. The possible values are cluster_ip, headless and load_balancer.",
@@ -19701,6 +19782,119 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"usage_meter": schema.SingleNestedAttribute{
+						Description:         "The configuration of the usage meter.",
+						MarkdownDescription: "The configuration of the usage meter.",
+						Attributes: map[string]schema.Attribute{
+							"call_home_client": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"disabled": schema.BoolAttribute{
+										Description:         "Whether to disable the call home client. Enabled by default.",
+										MarkdownDescription: "Whether to disable the call home client. Enabled by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"image_spec": schema.SingleNestedAttribute{
+										Description:         "Image specification",
+										MarkdownDescription: "Image specification",
+										Attributes: map[string]schema.Attribute{
+											"digest_hash": schema.StringAttribute{
+												Description:         "The digest hash of the container image to pull. When specified, the container image is pulled according to the digest hash instead of the image tag. The versionTag field must also be specified with the image tag matching this digest hash. Note: This field is only supported for OLM deployments.",
+												MarkdownDescription: "The digest hash of the container image to pull. When specified, the container image is pulled according to the digest hash instead of the image tag. The versionTag field must also be specified with the image tag matching this digest hash. Note: This field is only supported for OLM deployments.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"image_pull_policy": schema.StringAttribute{
+												Description:         "The image pull policy to be applied to the container image. One of Always, Never, IfNotPresent.",
+												MarkdownDescription: "The image pull policy to be applied to the container image. One of Always, Never, IfNotPresent.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"repository": schema.StringAttribute{
+												Description:         "The repository (name) of the container image to be deployed.",
+												MarkdownDescription: "The repository (name) of the container image to be deployed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"version_tag": schema.StringAttribute{
+												Description:         "The tag of the container image to be deployed.",
+												MarkdownDescription: "The tag of the container image to be deployed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "Compute resource requirements for Call Home Client pod",
+										MarkdownDescription: "Compute resource requirements for Call Home Client pod",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

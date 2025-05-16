@@ -88,6 +88,7 @@ type KyvernoIoUpdateRequestV2ManifestData struct {
 			UserInfo *struct {
 				ClusterRoles *[]string `tfsdk:"cluster_roles" json:"clusterRoles,omitempty"`
 				Roles        *[]string `tfsdk:"roles" json:"roles,omitempty"`
+				Synchronize  *bool     `tfsdk:"synchronize" json:"synchronize,omitempty"`
 				UserInfo     *struct {
 					Extra    *map[string][]string `tfsdk:"extra" json:"extra,omitempty"`
 					Groups   *[]string            `tfsdk:"groups" json:"groups,omitempty"`
@@ -505,6 +506,14 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 										Description:         "Roles is a list of possible role send the request.",
 										MarkdownDescription: "Roles is a list of possible role send the request.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"synchronize": schema.BoolAttribute{
+										Description:         "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
+										MarkdownDescription: "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

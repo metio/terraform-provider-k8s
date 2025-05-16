@@ -279,7 +279,11 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			TcpSocket           *struct {
+				Host *string `tfsdk:"host" json:"host,omitempty"`
+				Port *string `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 		MariaDbRef *struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -350,8 +354,9 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				Image            *string `tfsdk:"image" json:"image,omitempty"`
-				ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+				Args             *[]string `tfsdk:"args" json:"args,omitempty"`
+				Image            *string   `tfsdk:"image" json:"image,omitempty"`
+				ImagePullPolicy  *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 				ImagePullSecrets *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
@@ -469,7 +474,11 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			TcpSocket           *struct {
+				Host *string `tfsdk:"host" json:"host,omitempty"`
+				Port *string `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 		Replicas        *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 		RequeueInterval *string `tfsdk:"requeue_interval" json:"requeueInterval,omitempty"`
@@ -511,7 +520,61 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 			Router  *string            `tfsdk:"router" json:"router,omitempty"`
 			Suspend *bool              `tfsdk:"suspend" json:"suspend,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
-		Suspend     *bool `tfsdk:"suspend" json:"suspend,omitempty"`
+		StartupProbe *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" json:"command,omitempty"`
+			} `tfsdk:"exec" json:"exec,omitempty"`
+			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			HttpGet          *struct {
+				Host   *string `tfsdk:"host" json:"host,omitempty"`
+				Path   *string `tfsdk:"path" json:"path,omitempty"`
+				Port   *string `tfsdk:"port" json:"port,omitempty"`
+				Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+			} `tfsdk:"http_get" json:"httpGet,omitempty"`
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+			TcpSocket           *struct {
+				Host *string `tfsdk:"host" json:"host,omitempty"`
+				Port *string `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
+		Suspend *bool `tfsdk:"suspend" json:"suspend,omitempty"`
+		Tls     *struct {
+			AdminCASecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"admin_ca_secret_ref" json:"adminCASecretRef,omitempty"`
+			AdminCertIssuerRef *struct {
+				Group *string `tfsdk:"group" json:"group,omitempty"`
+				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"admin_cert_issuer_ref" json:"adminCertIssuerRef,omitempty"`
+			AdminCertSecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"admin_cert_secret_ref" json:"adminCertSecretRef,omitempty"`
+			Enabled             *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			ListenerCASecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"listener_ca_secret_ref" json:"listenerCASecretRef,omitempty"`
+			ListenerCertIssuerRef *struct {
+				Group *string `tfsdk:"group" json:"group,omitempty"`
+				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"listener_cert_issuer_ref" json:"listenerCertIssuerRef,omitempty"`
+			ListenerCertSecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"listener_cert_secret_ref" json:"listenerCertSecretRef,omitempty"`
+			ReplicationSSLEnabled *bool `tfsdk:"replication_ssl_enabled" json:"replicationSSLEnabled,omitempty"`
+			ServerCASecretRef     *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"server_ca_secret_ref" json:"serverCASecretRef,omitempty"`
+			ServerCertSecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"server_cert_secret_ref" json:"serverCertSecretRef,omitempty"`
+			VerifyPeerCertificate *bool `tfsdk:"verify_peer_certificate" json:"verifyPeerCertificate,omitempty"`
+			VerifyPeerHost        *bool `tfsdk:"verify_peer_host" json:"verifyPeerHost,omitempty"`
+		} `tfsdk:"tls" json:"tls,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -2209,6 +2272,31 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Computed:            false,
 							},
 
+							"tcp_socket": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#tcpsocketaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#tcpsocketaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"timeout_seconds": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -2659,6 +2747,15 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"args": schema.ListAttribute{
+										Description:         "Args to be used in the Container.",
+										MarkdownDescription: "Args to be used in the Container.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"image": schema.StringAttribute{
@@ -3487,6 +3584,31 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Computed:            false,
 							},
 
+							"tcp_socket": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#tcpsocketaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#tcpsocketaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"timeout_seconds": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -3792,12 +3914,354 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"startup_probe": schema.SingleNestedAttribute{
+						Description:         "StartupProbe to be used in the Container.",
+						MarkdownDescription: "StartupProbe to be used in the Container.",
+						Attributes: map[string]schema.Attribute{
+							"exec": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"command": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"http_get": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"scheme": schema.StringAttribute{
+										Description:         "URIScheme identifies the scheme used for connection to a host for Get actions",
+										MarkdownDescription: "URIScheme identifies the scheme used for connection to a host for Get actions",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"period_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"success_threshold": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tcp_socket": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#tcpsocketaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#tcpsocketaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"suspend": schema.BoolAttribute{
 						Description:         "Suspend indicates whether the current resource should be suspended or not. This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
 						MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not. This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tls": schema.SingleNestedAttribute{
+						Description:         "TLS defines the PKI to be used with MaxScale.",
+						MarkdownDescription: "TLS defines the PKI to be used with MaxScale.",
+						Attributes: map[string]schema.Attribute{
+							"admin_ca_secret_ref": schema.SingleNestedAttribute{
+								Description:         "AdminCASecretRef is a reference to a Secret containing the admin certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's administrative REST API and GUI. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either adminCertSecretRef or adminCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the server certificate.",
+								MarkdownDescription: "AdminCASecretRef is a reference to a Secret containing the admin certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's administrative REST API and GUI. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either adminCertSecretRef or adminCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the server certificate.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"admin_cert_issuer_ref": schema.SingleNestedAttribute{
+								Description:         "AdminCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's administrative REST API and GUI certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with adminCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via adminCASecretRef.",
+								MarkdownDescription: "AdminCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's administrative REST API and GUI certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with adminCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via adminCASecretRef.",
+								Attributes: map[string]schema.Attribute{
+									"group": schema.StringAttribute{
+										Description:         "Group of the resource being referred to.",
+										MarkdownDescription: "Group of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "Kind of the resource being referred to.",
+										MarkdownDescription: "Kind of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the resource being referred to.",
+										MarkdownDescription: "Name of the resource being referred to.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"admin_cert_secret_ref": schema.SingleNestedAttribute{
+								Description:         "AdminCertSecretRef is a reference to a TLS Secret used by the MaxScale's administrative REST API and GUI.",
+								MarkdownDescription: "AdminCertSecretRef is a reference to a TLS Secret used by the MaxScale's administrative REST API and GUI.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"enabled": schema.BoolAttribute{
+								Description:         "Enabled indicates whether TLS is enabled, determining if certificates should be issued and mounted to the MaxScale instance. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has TLS enabled and enforced.",
+								MarkdownDescription: "Enabled indicates whether TLS is enabled, determining if certificates should be issued and mounted to the MaxScale instance. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has TLS enabled and enforced.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"listener_ca_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ListenerCASecretRef is a reference to a Secret containing the listener certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's listeners. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either listenerCertSecretRef or listenerCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the listener certificate.",
+								MarkdownDescription: "ListenerCASecretRef is a reference to a Secret containing the listener certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's listeners. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either listenerCertSecretRef or listenerCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the listener certificate.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"listener_cert_issuer_ref": schema.SingleNestedAttribute{
+								Description:         "ListenerCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's listeners certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with listenerCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via listenerCASecretRef.",
+								MarkdownDescription: "ListenerCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's listeners certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with listenerCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via listenerCASecretRef.",
+								Attributes: map[string]schema.Attribute{
+									"group": schema.StringAttribute{
+										Description:         "Group of the resource being referred to.",
+										MarkdownDescription: "Group of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "Kind of the resource being referred to.",
+										MarkdownDescription: "Kind of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the resource being referred to.",
+										MarkdownDescription: "Name of the resource being referred to.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"listener_cert_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ListenerCertSecretRef is a reference to a TLS Secret used by the MaxScale's listeners.",
+								MarkdownDescription: "ListenerCertSecretRef is a reference to a TLS Secret used by the MaxScale's listeners.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"replication_ssl_enabled": schema.BoolAttribute{
+								Description:         "ReplicationSSLEnabled specifies whether the replication SSL is enabled. If enabled, the SSL options will be added to the server configuration. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has replication enabled. If the MariaDB servers are manually provided by the user via the 'servers' field, this must be set by the user as well.",
+								MarkdownDescription: "ReplicationSSLEnabled specifies whether the replication SSL is enabled. If enabled, the SSL options will be added to the server configuration. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has replication enabled. If the MariaDB servers are manually provided by the user via the 'servers' field, this must be set by the user as well.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"server_ca_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ServerCASecretRef is a reference to a Secret containing the MariaDB server CA certificates. It is used to establish trust with MariaDB servers. The Secret should contain a 'ca.crt' key in order to establish trust. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB CA bundle.",
+								MarkdownDescription: "ServerCASecretRef is a reference to a Secret containing the MariaDB server CA certificates. It is used to establish trust with MariaDB servers. The Secret should contain a 'ca.crt' key in order to establish trust. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB CA bundle.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"server_cert_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ServerCertSecretRef is a reference to a TLS Secret used by MaxScale to connect to the MariaDB servers. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB client certificate (clientCertSecretRef).",
+								MarkdownDescription: "ServerCertSecretRef is a reference to a TLS Secret used by MaxScale to connect to the MariaDB servers. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB client certificate (clientCertSecretRef).",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"verify_peer_certificate": schema.BoolAttribute{
+								Description:         "VerifyPeerCertificate specifies whether the peer certificate's signature should be validated against the CA. It is disabled by default.",
+								MarkdownDescription: "VerifyPeerCertificate specifies whether the peer certificate's signature should be validated against the CA. It is disabled by default.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"verify_peer_host": schema.BoolAttribute{
+								Description:         "VerifyPeerHost specifies whether the peer certificate's SANs should match the peer host. It is disabled by default.",
+								MarkdownDescription: "VerifyPeerHost specifies whether the peer certificate's SANs should match the peer host. It is disabled by default.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{

@@ -722,7 +722,8 @@ type WorkloadsKubeblocksIoInstanceSetV1Alpha1ManifestData struct {
 		PodUpdatePolicy                  *string   `tfsdk:"pod_update_policy" json:"podUpdatePolicy,omitempty"`
 		Replicas                         *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
 		RoleProbe                        *struct {
-			CustomHandler *[]struct {
+			BuiltinHandlerName *string `tfsdk:"builtin_handler_name" json:"builtinHandlerName,omitempty"`
+			CustomHandler      *[]struct {
 				Args    *[]string `tfsdk:"args" json:"args,omitempty"`
 				Command *[]string `tfsdk:"command" json:"command,omitempty"`
 				Image   *string   `tfsdk:"image" json:"image,omitempty"`
@@ -2099,11 +2100,9 @@ type WorkloadsKubeblocksIoInstanceSetV1Alpha1ManifestData struct {
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"template" json:"template,omitempty"`
 		UpdateStrategy *struct {
-			RollingUpdate *struct {
-				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
-				Partition      *int64  `tfsdk:"partition" json:"partition,omitempty"`
-			} `tfsdk:"rolling_update" json:"rollingUpdate,omitempty"`
-			Type *string `tfsdk:"type" json:"type,omitempty"`
+			MaxUnavailable       *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+			MemberUpdateStrategy *string `tfsdk:"member_update_strategy" json:"memberUpdateStrategy,omitempty"`
+			Partition            *int64  `tfsdk:"partition" json:"partition,omitempty"`
 		} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		VolumeClaimTemplates *[]struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -6813,6 +6812,14 @@ func (r *WorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest) Schema(_ context.Cont
 						Description:         "Provides method to probe role.",
 						MarkdownDescription: "Provides method to probe role.",
 						Attributes: map[string]schema.Attribute{
+							"builtin_handler_name": schema.StringAttribute{
+								Description:         "Specifies the builtin handler name to use to probe the role of the main container. Available handlers include: mysql, postgres, mongodb, redis, etcd, kafka. Use CustomHandler to define a custom role probe function if none of the built-in handlers meet the requirement.",
+								MarkdownDescription: "Specifies the builtin handler name to use to probe the role of the main container. Available handlers include: mysql, postgres, mongodb, redis, etcd, kafka. Use CustomHandler to define a custom role probe function if none of the built-in handlers meet the requirement.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"custom_handler": schema.ListNestedAttribute{
 								Description:         "Defines a custom method for role probing. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential",
 								MarkdownDescription: "Defines a custom method for role probing. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential",
@@ -16109,37 +16116,31 @@ func (r *WorkloadsKubeblocksIoInstanceSetV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"update_strategy": schema.SingleNestedAttribute{
-						Description:         "Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template. UpdateStrategy.Type will be set to appsv1.OnDeleteStatefulSetStrategyType if MemberUpdateStrategy is not nil Note: This field will be removed in future version.",
-						MarkdownDescription: "Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template. UpdateStrategy.Type will be set to appsv1.OnDeleteStatefulSetStrategyType if MemberUpdateStrategy is not nil Note: This field will be removed in future version.",
+						Description:         "Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template. Note: This field will be removed in future version.",
+						MarkdownDescription: "Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the InstanceSet when a revision is made to Template. Note: This field will be removed in future version.",
 						Attributes: map[string]schema.Attribute{
-							"rolling_update": schema.SingleNestedAttribute{
-								Description:         "RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.",
-								MarkdownDescription: "RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.",
-								Attributes: map[string]schema.Attribute{
-									"max_unavailable": schema.StringAttribute{
-										Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. This field is alpha-level and is only honored by servers that enable the MaxUnavailableStatefulSet feature. The field applies to all pods in the range 0 to Replicas-1. That means if there is any unavailable pod in the range 0 to Replicas-1, it will be counted towards MaxUnavailable.",
-										MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. This field is alpha-level and is only honored by servers that enable the MaxUnavailableStatefulSet feature. The field applies to all pods in the range 0 to Replicas-1. That means if there is any unavailable pod in the range 0 to Replicas-1, it will be counted towards MaxUnavailable.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"partition": schema.Int64Attribute{
-										Description:         "Partition indicates the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary based deployment. The default value is 0.",
-										MarkdownDescription: "Partition indicates the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary based deployment. The default value is 0.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+							"max_unavailable": schema.StringAttribute{
+								Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.",
+								MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. The field applies to all pods. That means if there is any unavailable pod, it will be counted towards MaxUnavailable.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
-							"type": schema.StringAttribute{
-								Description:         "Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.",
-								MarkdownDescription: "Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.",
+							"member_update_strategy": schema.StringAttribute{
+								Description:         "Members(Pods) update strategy. - serial: update Members one by one that guarantee minimum component unavailable time. - bestEffortParallel: update Members in parallel that guarantee minimum component un-writable time. - parallel: force parallel",
+								MarkdownDescription: "Members(Pods) update strategy. - serial: update Members one by one that guarantee minimum component unavailable time. - bestEffortParallel: update Members in parallel that guarantee minimum component un-writable time. - parallel: force parallel",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Serial", "BestEffortParallel", "Parallel"),
+								},
+							},
+
+							"partition": schema.Int64Attribute{
+								Description:         "Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is Replicas (i.e., update all pods).",
+								MarkdownDescription: "Partition indicates the number of pods that should be updated during a rolling update. The remaining pods will remain untouched. This is helpful in defining how many pods should participate in the update process. The update process will follow the order of pod names in descending lexicographical (dictionary) order. The default value is Replicas (i.e., update all pods).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

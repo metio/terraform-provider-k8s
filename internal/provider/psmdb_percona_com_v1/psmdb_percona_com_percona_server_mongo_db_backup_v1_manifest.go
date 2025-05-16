@@ -176,7 +176,7 @@ func (r *PsmdbPerconaComPerconaServerMongoDbbackupV1Manifest) Schema(_ context.C
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("logical", "physical"),
+							stringvalidator.OneOf("logical", "physical", "incremental", "incremental-base"),
 						},
 					},
 				},

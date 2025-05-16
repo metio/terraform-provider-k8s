@@ -42,7 +42,29 @@ type ClusterClusterpediaIoPediaClusterV1Alpha2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Apiserver              *string `tfsdk:"apiserver" json:"apiserver,omitempty"`
+		Apiserver          *string `tfsdk:"apiserver" json:"apiserver,omitempty"`
+		AuthenticationFrom *struct {
+			Ca *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"ca" json:"ca,omitempty"`
+			Cert *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"cert" json:"cert,omitempty"`
+			Key *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"key" json:"key,omitempty"`
+			Kubeconfig *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+			Token *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"token" json:"token,omitempty"`
+		} `tfsdk:"authentication_from" json:"authenticationFrom,omitempty"`
 		CaData                 *string `tfsdk:"ca_data" json:"caData,omitempty"`
 		CertData               *string `tfsdk:"cert_data" json:"certData,omitempty"`
 		KeyData                *string `tfsdk:"key_data" json:"keyData,omitempty"`
@@ -130,6 +152,140 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Manifest) Schema(_ context.Con
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"authentication_from": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"ca": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cert": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"key": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kubeconfig": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"token": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"ca_data": schema.StringAttribute{

@@ -139,11 +139,25 @@ type AirflowStackableTechAirflowClusterV1Alpha1ManifestData struct {
 		} `tfsdk:"celery_executors" json:"celeryExecutors,omitempty"`
 		ClusterConfig *struct {
 			Authentication *[]struct {
-				AuthenticationClass  *string `tfsdk:"authentication_class" json:"authenticationClass,omitempty"`
+				AuthenticationClass *string `tfsdk:"authentication_class" json:"authenticationClass,omitempty"`
+				Oidc                *struct {
+					ClientCredentialsSecret *string   `tfsdk:"client_credentials_secret" json:"clientCredentialsSecret,omitempty"`
+					ExtraScopes             *[]string `tfsdk:"extra_scopes" json:"extraScopes,omitempty"`
+				} `tfsdk:"oidc" json:"oidc,omitempty"`
 				SyncRolesAt          *string `tfsdk:"sync_roles_at" json:"syncRolesAt,omitempty"`
 				UserRegistration     *bool   `tfsdk:"user_registration" json:"userRegistration,omitempty"`
 				UserRegistrationRole *string `tfsdk:"user_registration_role" json:"userRegistrationRole,omitempty"`
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
+			Authorization *struct {
+				Opa *struct {
+					Cache *struct {
+						EntryTimeToLive *string `tfsdk:"entry_time_to_live" json:"entryTimeToLive,omitempty"`
+						MaxEntries      *int64  `tfsdk:"max_entries" json:"maxEntries,omitempty"`
+					} `tfsdk:"cache" json:"cache,omitempty"`
+					ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+					Package       *string `tfsdk:"package" json:"package,omitempty"`
+				} `tfsdk:"opa" json:"opa,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
 			CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 			DagsGitSync       *[]struct {
 				Branch            *string            `tfsdk:"branch" json:"branch,omitempty"`
@@ -152,10 +166,9 @@ type AirflowStackableTechAirflowClusterV1Alpha1ManifestData struct {
 				GitFolder         *string            `tfsdk:"git_folder" json:"gitFolder,omitempty"`
 				GitSyncConf       *map[string]string `tfsdk:"git_sync_conf" json:"gitSyncConf,omitempty"`
 				Repo              *string            `tfsdk:"repo" json:"repo,omitempty"`
-				Wait              *int64             `tfsdk:"wait" json:"wait,omitempty"`
+				Wait              *string            `tfsdk:"wait" json:"wait,omitempty"`
 			} `tfsdk:"dags_git_sync" json:"dagsGitSync,omitempty"`
 			ExposeConfig                  *bool                `tfsdk:"expose_config" json:"exposeConfig,omitempty"`
-			ListenerClass                 *string              `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 			LoadExamples                  *bool                `tfsdk:"load_examples" json:"loadExamples,omitempty"`
 			VectorAggregatorConfigMapName *string              `tfsdk:"vector_aggregator_config_map_name" json:"vectorAggregatorConfigMapName,omitempty"`
 			VolumeMounts                  *[]map[string]string `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
@@ -321,6 +334,7 @@ type AirflowStackableTechAirflowClusterV1Alpha1ManifestData struct {
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
+				ListenerClass           *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 				Logging                 *struct {
 					Containers *struct {
 						Console *struct {
@@ -369,6 +383,7 @@ type AirflowStackableTechAirflowClusterV1Alpha1ManifestData struct {
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
 					GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
+					ListenerClass           *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 					Logging                 *struct {
 						Containers *struct {
 							Console *struct {
@@ -1095,16 +1110,42 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Configuration that applies to all roles and role groups. This includes settings for authentication, git sync, service exposition and volumes, among other things.",
 						Attributes: map[string]schema.Attribute{
 							"authentication": schema.ListNestedAttribute{
-								Description:         "The Airflow [authentication](https://docs.stackable.tech/home/nightly/airflow/usage-guide/security.html) settings. Currently the underlying Flask App Builder only supports one authentication mechanism at a time. This means the operator will error out if multiple references to an AuthenticationClass are provided.",
-								MarkdownDescription: "The Airflow [authentication](https://docs.stackable.tech/home/nightly/airflow/usage-guide/security.html) settings. Currently the underlying Flask App Builder only supports one authentication mechanism at a time. This means the operator will error out if multiple references to an AuthenticationClass are provided.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication_class": schema.StringAttribute{
-											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication.html#authenticationclass) used to authenticate the users. At the moment only LDAP is supported. If not specified the default authentication (AUTH_DB) will be used.",
-											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication.html#authenticationclass) used to authenticate the users. At the moment only LDAP is supported. If not specified the default authentication (AUTH_DB) will be used.",
-											Required:            false,
-											Optional:            true,
+											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
+											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
+										},
+
+										"oidc": schema.SingleNestedAttribute{
+											Description:         "This field contains OIDC-specific configuration. It is only required in case OIDC is used.",
+											MarkdownDescription: "This field contains OIDC-specific configuration. It is only required in case OIDC is used.",
+											Attributes: map[string]schema.Attribute{
+												"client_credentials_secret": schema.StringAttribute{
+													Description:         "A reference to the OIDC client credentials secret. The secret contains the client id and secret.",
+													MarkdownDescription: "A reference to the OIDC client credentials secret. The secret contains the client id and secret.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"extra_scopes": schema.ListAttribute{
+													Description:         "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
+													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"sync_roles_at": schema.StringAttribute{
@@ -1133,6 +1174,68 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"authorization": schema.SingleNestedAttribute{
+								Description:         "Authorization options. Learn more in the [Airflow authorization usage guide](https://docs.stackable.tech/home/nightly/airflow/usage-guide/security#_authorization).",
+								MarkdownDescription: "Authorization options. Learn more in the [Airflow authorization usage guide](https://docs.stackable.tech/home/nightly/airflow/usage-guide/security#_authorization).",
+								Attributes: map[string]schema.Attribute{
+									"opa": schema.SingleNestedAttribute{
+										Description:         "Configure the OPA stacklet [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) and the name of the Rego package containing your authorization rules. Consult the [OPA authorization documentation](https://docs.stackable.tech/home/nightly/concepts/opa) to learn how to deploy Rego authorization rules with OPA.",
+										MarkdownDescription: "Configure the OPA stacklet [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) and the name of the Rego package containing your authorization rules. Consult the [OPA authorization documentation](https://docs.stackable.tech/home/nightly/concepts/opa) to learn how to deploy Rego authorization rules with OPA.",
+										Attributes: map[string]schema.Attribute{
+											"cache": schema.SingleNestedAttribute{
+												Description:         "Least Recently Used (LRU) cache with per-entry time-to-live (TTL) value.",
+												MarkdownDescription: "Least Recently Used (LRU) cache with per-entry time-to-live (TTL) value.",
+												Attributes: map[string]schema.Attribute{
+													"entry_time_to_live": schema.StringAttribute{
+														Description:         "Time to live per entry",
+														MarkdownDescription: "Time to live per entry",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"max_entries": schema.Int64Attribute{
+														Description:         "Maximum number of entries in the cache; If this threshold is reached then the least recently used item is removed.",
+														MarkdownDescription: "Maximum number of entries in the cache; If this threshold is reached then the least recently used item is removed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"config_map_name": schema.StringAttribute{
+												Description:         "The [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) for the OPA stacklet that should be used for authorization requests.",
+												MarkdownDescription: "The [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) for the OPA stacklet that should be used for authorization requests.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"package": schema.StringAttribute{
+												Description:         "The name of the Rego package containing the Rego rules for the product.",
+												MarkdownDescription: "The name of the Rego package containing the Rego rules for the product.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -1181,8 +1284,8 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"git_folder": schema.StringAttribute{
-											Description:         "The location of the DAG folder, relative to the synced repository root.",
-											MarkdownDescription: "The location of the DAG folder, relative to the synced repository root.",
+											Description:         "The location of the DAG folder, relative to the synced repository root. It can optionally start with '/', however, no trailing slash is recommended. An empty string ('') or slash ('/') corresponds to the root folder in Git.",
+											MarkdownDescription: "The location of the DAG folder, relative to the synced repository root. It can optionally start with '/', however, no trailing slash is recommended. An empty string ('') or slash ('/') corresponds to the root folder in Git.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1205,15 +1308,12 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 											Computed:            false,
 										},
 
-										"wait": schema.Int64Attribute{
-											Description:         "The synchronization interval in seconds; defaults to 20 seconds. Since git-sync v4.x.x this field is mapped to the flag '--period'.",
-											MarkdownDescription: "The synchronization interval in seconds; defaults to 20 seconds. Since git-sync v4.x.x this field is mapped to the flag '--period'.",
+										"wait": schema.StringAttribute{
+											Description:         "The synchronization interval, e.g. '20s' or '5m', defaults to '20s'. Since git-sync v4.x.x this field is mapped to the flag '--period'.",
+											MarkdownDescription: "The synchronization interval, e.g. '20s' or '5m', defaults to '20s'. Since git-sync v4.x.x this field is mapped to the flag '--period'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
-											Validators: []validator.Int64{
-												int64validator.AtLeast(0),
-											},
 										},
 									},
 								},
@@ -1228,17 +1328,6 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-
-							"listener_class": schema.StringAttribute{
-								Description:         "This field controls which type of Service the Operator creates for this AirflowCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								MarkdownDescription: "This field controls which type of Service the Operator creates for this AirflowCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("cluster-internal", "external-unstable", "external-stable"),
-								},
 							},
 
 							"load_examples": schema.BoolAttribute{
@@ -1310,8 +1399,8 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1356,8 +1445,8 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2331,6 +2420,14 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 										Computed:            false,
 									},
 
+									"listener_class": schema.StringAttribute{
+										Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
+										MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"logging": schema.SingleNestedAttribute{
 										Description:         "Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging).",
 										MarkdownDescription: "Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging).",
@@ -2637,6 +2734,14 @@ func (r *AirflowStackableTechAirflowClusterV1Alpha1Manifest) Schema(_ context.Co
 											"graceful_shutdown_timeout": schema.StringAttribute{
 												Description:         "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
 												MarkdownDescription: "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"listener_class": schema.StringAttribute{
+												Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
+												MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

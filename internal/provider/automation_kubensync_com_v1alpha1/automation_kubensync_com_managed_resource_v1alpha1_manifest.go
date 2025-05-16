@@ -74,8 +74,8 @@ func (r *AutomationKubensyncComManagedResourceV1Alpha1Manifest) Metadata(_ conte
 
 func (r *AutomationKubensyncComManagedResourceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ManagedResource is the Schema for the managedresources API",
-		MarkdownDescription: "ManagedResource is the Schema for the managedresources API",
+		Description:         "ManagedResource is the Schema for the managedresources API.",
+		MarkdownDescription: "ManagedResource is the Schema for the managedresources API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
