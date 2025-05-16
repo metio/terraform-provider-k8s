@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -265,6 +266,7 @@ type ChaosMeshOrgWorkflowV1Alpha1ManifestData struct {
 				Pid                   *int64    `tfsdk:"pid" json:"pid,omitempty"`
 				Port                  *int64    `tfsdk:"port" json:"port,omitempty"`
 				RemoteCluster         *string   `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
+				ReturnValue           *string   `tfsdk:"return_value" json:"returnValue,omitempty"`
 				RuleData              *string   `tfsdk:"rule_data" json:"ruleData,omitempty"`
 				Selector              *struct {
 					AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -928,6 +930,7 @@ type ChaosMeshOrgWorkflowV1Alpha1ManifestData struct {
 					Pid                   *int64    `tfsdk:"pid" json:"pid,omitempty"`
 					Port                  *int64    `tfsdk:"port" json:"port,omitempty"`
 					RemoteCluster         *string   `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
+					ReturnValue           *string   `tfsdk:"return_value" json:"returnValue,omitempty"`
 					RuleData              *string   `tfsdk:"rule_data" json:"ruleData,omitempty"`
 					Selector              *struct {
 						AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -3819,6 +3822,14 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											Computed:            false,
 										},
 
+										"return_value": schema.StringAttribute{
+											Description:         "the return value for action 'return'",
+											MarkdownDescription: "the return value for action 'return'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"rule_data": schema.StringAttribute{
 											Description:         "the byteman rule's data for action 'ruleData'",
 											MarkdownDescription: "the byteman rule's data for action 'ruleData'",
@@ -4358,6 +4369,9 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(\.[0-9]+)?(ns|us|ms|s|m|h)$`), ""),
+													},
 												},
 
 												"latency": schema.StringAttribute{
@@ -4366,6 +4380,9 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(\.[0-9]+)?(ns|us|ms|s|m|h)$`), ""),
+													},
 												},
 
 												"reorder": schema.SingleNestedAttribute{
@@ -8701,6 +8718,14 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													Computed:            false,
 												},
 
+												"return_value": schema.StringAttribute{
+													Description:         "the return value for action 'return'",
+													MarkdownDescription: "the return value for action 'return'",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"rule_data": schema.StringAttribute{
 													Description:         "the byteman rule's data for action 'ruleData'",
 													MarkdownDescription: "the byteman rule's data for action 'ruleData'",
@@ -9232,6 +9257,9 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(\.[0-9]+)?(ns|us|ms|s|m|h)$`), ""),
+															},
 														},
 
 														"latency": schema.StringAttribute{
@@ -9240,6 +9268,9 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(\.[0-9]+)?(ns|us|ms|s|m|h)$`), ""),
+															},
 														},
 
 														"reorder": schema.SingleNestedAttribute{
@@ -12473,8 +12504,8 @@ func (r *ChaosMeshOrgWorkflowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"headers": schema.MapAttribute{
-													Description:         "A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by CanonicalHeaderKey.",
-													MarkdownDescription: "A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by CanonicalHeaderKey.",
+													Description:         "A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by [CanonicalHeaderKey].",
+													MarkdownDescription: "A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by [CanonicalHeaderKey].",
 													ElementType:         types.ListType{ElemType: types.StringType},
 													Required:            false,
 													Optional:            true,

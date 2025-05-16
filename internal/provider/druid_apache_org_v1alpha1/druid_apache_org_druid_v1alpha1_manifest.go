@@ -256,6 +256,13 @@ type DruidApacheOrgDruidV1Alpha1ManifestData struct {
 				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 			} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
+		Auth *struct {
+			SecretRef *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"auth" json:"auth,omitempty"`
 		Common_runtime_properties *string `tfsdk:"common_runtime_properties" json:"common.runtime.properties,omitempty"`
 		CommonConfigMountPath     *string `tfsdk:"common_config_mount_path" json:"commonConfigMountPath,omitempty"`
 		ContainerSecurityContext  *struct {
@@ -295,7 +302,17 @@ type DruidApacheOrgDruidV1Alpha1ManifestData struct {
 		DefaultProbes               *bool `tfsdk:"default_probes" json:"defaultProbes,omitempty"`
 		DeleteOrphanPvc             *bool `tfsdk:"delete_orphan_pvc" json:"deleteOrphanPvc,omitempty"`
 		DisablePVCDeletionFinalizer *bool `tfsdk:"disable_pvc_deletion_finalizer" json:"disablePVCDeletionFinalizer,omitempty"`
-		Env                         *[]struct {
+		DnsConfig                   *struct {
+			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+			Options     *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"options" json:"options,omitempty"`
+			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+		DnsPolicy     *string            `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+		DynamicConfig *map[string]string `tfsdk:"dynamic_config" json:"dynamicConfig,omitempty"`
+		Env           *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -626,8 +643,18 @@ type DruidApacheOrgDruidV1Alpha1ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
-			Druid_port *int64 `tfsdk:"druid_port" json:"druid.port,omitempty"`
-			Env        *[]struct {
+			DnsConfig *struct {
+				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+				Options     *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"options" json:"options,omitempty"`
+				Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+			DnsPolicy     *string            `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			Druid_port    *int64             `tfsdk:"druid_port" json:"druid.port,omitempty"`
+			DynamicConfig *map[string]string `tfsdk:"dynamic_config" json:"dynamicConfig,omitempty"`
+			Env           *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -3563,6 +3590,48 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Computed: false,
 					},
 
+					"auth": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"secret_ref": schema.SingleNestedAttribute{
+								Description:         "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
+								MarkdownDescription: "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "name is unique within a namespace to reference a secret resource.",
+										MarkdownDescription: "name is unique within a namespace to reference a secret resource.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "namespace defines the space within which the secret name must be unique.",
+										MarkdownDescription: "namespace defines the space within which the secret name must be unique.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"common_runtime_properties": schema.StringAttribute{
 						Description:         "CommonRuntimeProperties Content fo the 'common.runtime.properties' configuration file.",
 						MarkdownDescription: "CommonRuntimeProperties Content fo the 'common.runtime.properties' configuration file.",
@@ -3791,8 +3860,8 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "DeepStorage IGNORED (Future API): In order to make Druid dependency setup extensible from within Druid operator.",
 						Attributes: map[string]schema.Attribute{
 							"spec": schema.StringAttribute{
-								Description:         "RawMessage is a raw encoded JSON value. It implements Marshaler and Unmarshaler and can be used to delay JSON decoding or precompute a JSON encoding.",
-								MarkdownDescription: "RawMessage is a raw encoded JSON value. It implements Marshaler and Unmarshaler and can be used to delay JSON decoding or precompute a JSON encoding.",
+								Description:         "RawMessage is a raw encoded JSON value. It implements [Marshaler] and [Unmarshaler] and can be used to delay JSON decoding or precompute a JSON encoding.",
+								MarkdownDescription: "RawMessage is a raw encoded JSON value. It implements [Marshaler] and [Unmarshaler] and can be used to delay JSON decoding or precompute a JSON encoding.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -3833,6 +3902,77 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					"disable_pvc_deletion_finalizer": schema.BoolAttribute{
 						Description:         "DisablePVCDeletionFinalizer Whether PVCs shall be deleted on the deletion of the Druid cluster.",
 						MarkdownDescription: "DisablePVCDeletionFinalizer Whether PVCs shall be deleted on the deletion of the Druid cluster.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"dns_config": schema.SingleNestedAttribute{
+						Description:         "See v1.PodDNSConfig for more details.",
+						MarkdownDescription: "See v1.PodDNSConfig for more details.",
+						Attributes: map[string]schema.Attribute{
+							"nameservers": schema.ListAttribute{
+								Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+								MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"options": schema.ListNestedAttribute{
+								Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+								MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Required.",
+											MarkdownDescription: "Required.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"searches": schema.ListAttribute{
+								Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+								MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"dns_policy": schema.StringAttribute{
+						Description:         "See v1.DNSPolicy for more details.",
+						MarkdownDescription: "See v1.DNSPolicy for more details.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"dynamic_config": schema.MapAttribute{
+						Description:         "Dynamic Configurations for Druid. Applied through the dynamic configuration API.",
+						MarkdownDescription: "Dynamic Configurations for Druid. Applied through the dynamic configuration API.",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4407,8 +4547,8 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "MetadataStore IGNORED (Future API): In order to make Druid dependency setup extensible from within Druid operator.",
 						Attributes: map[string]schema.Attribute{
 							"spec": schema.StringAttribute{
-								Description:         "RawMessage is a raw encoded JSON value. It implements Marshaler and Unmarshaler and can be used to delay JSON decoding or precompute a JSON encoding.",
-								MarkdownDescription: "RawMessage is a raw encoded JSON value. It implements Marshaler and Unmarshaler and can be used to delay JSON decoding or precompute a JSON encoding.",
+								Description:         "RawMessage is a raw encoded JSON value. It implements [Marshaler] and [Unmarshaler] and can be used to delay JSON decoding or precompute a JSON encoding.",
+								MarkdownDescription: "RawMessage is a raw encoded JSON value. It implements [Marshaler] and [Unmarshaler] and can be used to delay JSON decoding or precompute a JSON encoding.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -6050,11 +6190,82 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Computed: false,
 							},
 
+							"dns_config": schema.SingleNestedAttribute{
+								Description:         "See v1.PodDNSConfig for more details.",
+								MarkdownDescription: "See v1.PodDNSConfig for more details.",
+								Attributes: map[string]schema.Attribute{
+									"nameservers": schema.ListAttribute{
+										Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+										MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"options": schema.ListNestedAttribute{
+										Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+										MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Required.",
+													MarkdownDescription: "Required.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"searches": schema.ListAttribute{
+										Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+										MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"dns_policy": schema.StringAttribute{
+								Description:         "See v1.DNSPolicy for more details.",
+								MarkdownDescription: "See v1.DNSPolicy for more details.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"druid_port": schema.Int64Attribute{
 								Description:         "DruidPort Used by the 'Druid' process.",
 								MarkdownDescription: "DruidPort Used by the 'Druid' process.",
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+							},
+
+							"dynamic_config": schema.MapAttribute{
+								Description:         "Dynamic Configurations for Druid. Applied through the dynamic configuration API.",
+								MarkdownDescription: "Dynamic Configurations for Druid. Applied through the dynamic configuration API.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -15918,8 +16129,8 @@ func (r *DruidApacheOrgDruidV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "Zookeeper IGNORED (Future API): In order to make Druid dependency setup extensible from within Druid operator.",
 						Attributes: map[string]schema.Attribute{
 							"spec": schema.StringAttribute{
-								Description:         "RawMessage is a raw encoded JSON value. It implements Marshaler and Unmarshaler and can be used to delay JSON decoding or precompute a JSON encoding.",
-								MarkdownDescription: "RawMessage is a raw encoded JSON value. It implements Marshaler and Unmarshaler and can be used to delay JSON decoding or precompute a JSON encoding.",
+								Description:         "RawMessage is a raw encoded JSON value. It implements [Marshaler] and [Unmarshaler] and can be used to delay JSON decoding or precompute a JSON encoding.",
+								MarkdownDescription: "RawMessage is a raw encoded JSON value. It implements [Marshaler] and [Unmarshaler] and can be used to delay JSON decoding or precompute a JSON encoding.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

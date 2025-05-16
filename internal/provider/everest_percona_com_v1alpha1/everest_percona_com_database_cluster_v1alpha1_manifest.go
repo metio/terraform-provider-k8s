@@ -200,8 +200,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "DatabaseClusterSpec defines the desired state of DatabaseCluster.",
 				Attributes: map[string]schema.Attribute{
 					"allow_unsafe_configuration": schema.BoolAttribute{
-						Description:         "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use.",
-						MarkdownDescription: "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use.",
+						Description:         "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use. Deprecated: AllowUnsafeConfiguration will not be supported in the future releases.",
+						MarkdownDescription: "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use. Deprecated: AllowUnsafeConfiguration will not be supported in the future releases.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -212,10 +212,10 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Backup is the backup specification",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
-								Description:         "Enabled is a flag to enable backups",
-								MarkdownDescription: "Enabled is a flag to enable backups",
-								Required:            true,
-								Optional:            false,
+								Description:         "Enabled is a flag to enable backups Deprecated. Please use db.spec.backup.schedules[].enabled to control each schedule separately and db.spec.backup.pitr.enabled to control PITR.",
+								MarkdownDescription: "Enabled is a flag to enable backups Deprecated. Please use db.spec.backup.schedules[].enabled to control each schedule separately and db.spec.backup.pitr.enabled to control PITR.",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 

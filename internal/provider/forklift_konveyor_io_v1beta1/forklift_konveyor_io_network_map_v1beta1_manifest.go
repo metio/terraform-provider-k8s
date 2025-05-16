@@ -182,13 +182,13 @@ func (r *ForkliftKonveyorIoNetworkMapV1Beta1Manifest) Schema(_ context.Context, 
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "The network type.",
-											MarkdownDescription: "The network type.",
+											Description:         "Type of network to use for the destination. Valid values: - pod: Use the Kubernetes pod network - multus: Use a Multus additional network - ignored: Network is excluded from mapping",
+											MarkdownDescription: "Type of network to use for the destination. Valid values: - pod: Use the Kubernetes pod network - multus: Use a Multus additional network - ignored: Network is excluded from mapping",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("pod", "multus"),
+												stringvalidator.OneOf("pod", "multus", "ignored"),
 											},
 										},
 									},

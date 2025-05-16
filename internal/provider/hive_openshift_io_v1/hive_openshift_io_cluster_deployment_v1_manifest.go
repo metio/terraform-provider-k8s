@@ -174,7 +174,8 @@ type HiveOpenshiftIoClusterDeploymentV1ManifestData struct {
 				CredentialsSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
-				PrivateServiceConnect *struct {
+				DiscardLocalSsdOnHibernate *bool `tfsdk:"discard_local_ssd_on_hibernate" json:"discardLocalSsdOnHibernate,omitempty"`
+				PrivateServiceConnect      *struct {
 					Enabled           *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 					ServiceAttachment *struct {
 						Subnet *struct {
@@ -196,7 +197,41 @@ type HiveOpenshiftIoClusterDeploymentV1ManifestData struct {
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
 				Region *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"ibmcloud" json:"ibmcloud,omitempty"`
-			None      *map[string]string `tfsdk:"none" json:"none,omitempty"`
+			None    *map[string]string `tfsdk:"none" json:"none,omitempty"`
+			Nutanix *struct {
+				CertificatesSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"certificates_secret_ref" json:"certificatesSecretRef,omitempty"`
+				CredentialsSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
+				FailureDomains *[]struct {
+					DataSourceImages *[]struct {
+						Name          *string `tfsdk:"name" json:"name,omitempty"`
+						ReferenceName *string `tfsdk:"reference_name" json:"referenceName,omitempty"`
+						Uuid          *string `tfsdk:"uuid" json:"uuid,omitempty"`
+					} `tfsdk:"data_source_images" json:"dataSourceImages,omitempty"`
+					Name         *string `tfsdk:"name" json:"name,omitempty"`
+					PrismElement *struct {
+						Endpoint *struct {
+							Address *string `tfsdk:"address" json:"address,omitempty"`
+							Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+						} `tfsdk:"endpoint" json:"endpoint,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
+					} `tfsdk:"prism_element" json:"prismElement,omitempty"`
+					StorageContainers *[]struct {
+						Name          *string `tfsdk:"name" json:"name,omitempty"`
+						ReferenceName *string `tfsdk:"reference_name" json:"referenceName,omitempty"`
+						Uuid          *string `tfsdk:"uuid" json:"uuid,omitempty"`
+					} `tfsdk:"storage_containers" json:"storageContainers,omitempty"`
+					SubnetUUIDs *[]string `tfsdk:"subnet_uui_ds" json:"subnetUUIDs,omitempty"`
+				} `tfsdk:"failure_domains" json:"failureDomains,omitempty"`
+				PrismCentral *struct {
+					Address *string `tfsdk:"address" json:"address,omitempty"`
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"prism_central" json:"prismCentral,omitempty"`
+			} `tfsdk:"nutanix" json:"nutanix,omitempty"`
 			Openstack *struct {
 				CertificatesSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -236,6 +271,9 @@ type HiveOpenshiftIoClusterDeploymentV1ManifestData struct {
 		PowerState       *string `tfsdk:"power_state" json:"powerState,omitempty"`
 		PreserveOnDelete *bool   `tfsdk:"preserve_on_delete" json:"preserveOnDelete,omitempty"`
 		Provisioning     *struct {
+			CustomizationRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"customization_ref" json:"customizationRef,omitempty"`
 			ImageSetRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_set_ref" json:"imageSetRef,omitempty"`
@@ -1186,6 +1224,14 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 										Computed: false,
 									},
 
+									"discard_local_ssd_on_hibernate": schema.BoolAttribute{
+										Description:         "DiscardLocalSsdOnHibernate passes the specified value through to the GCP API to indicate whether the content of any local SSDs should be preserved or discarded. See https://cloud.google.com/compute/docs/disks/local-ssd#stop_instance This field is required when attempting to hibernate clusters with instances possessing SSDs -- e.g. those with GPUs.",
+										MarkdownDescription: "DiscardLocalSsdOnHibernate passes the specified value through to the GCP API to indicate whether the content of any local SSDs should be preserved or discarded. See https://cloud.google.com/compute/docs/disks/local-ssd#stop_instance This field is required when attempting to hibernate clusters with instances possessing SSDs -- e.g. those with GPUs.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"private_service_connect": schema.SingleNestedAttribute{
 										Description:         "PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers.",
 										MarkdownDescription: "PrivateSericeConnect allows users to enable access to the cluster's API server using GCP Private Service Connect. It includes a forwarding rule paired with a Service Attachment across GCP accounts and allows clients to connect to services using GCP internal networking of using public load balancers.",
@@ -1324,6 +1370,227 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"nutanix": schema.SingleNestedAttribute{
+								Description:         "Nutanix is the configuration used when installing on Nutanix Prism Central.",
+								MarkdownDescription: "Nutanix is the configuration used when installing on Nutanix Prism Central.",
+								Attributes: map[string]schema.Attribute{
+									"certificates_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CertificatesSecretRef refers to a secret that contains the Prism Central CA certificates necessary for communicating with the Prism Central.",
+										MarkdownDescription: "CertificatesSecretRef refers to a secret that contains the Prism Central CA certificates necessary for communicating with the Prism Central.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credentials_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CredentialsSecretRef refers to a secret that contains the Nutanix account access credentials.",
+										MarkdownDescription: "CredentialsSecretRef refers to a secret that contains the Nutanix account access credentials.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"failure_domains": schema.ListNestedAttribute{
+										Description:         "FailureDomains configures failure domains for the Nutanix platform. Required for using MachinePools",
+										MarkdownDescription: "FailureDomains configures failure domains for the Nutanix platform. Required for using MachinePools",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"data_source_images": schema.ListNestedAttribute{
+													Description:         "DataSourceImages identifies the datasource images in the Prism Element.",
+													MarkdownDescription: "DataSourceImages identifies the datasource images in the Prism Element.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name is the name of the storage container resource in the Prism Element.",
+																MarkdownDescription: "Name is the name of the storage container resource in the Prism Element.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"reference_name": schema.StringAttribute{
+																Description:         "ReferenceName is the identifier of the storage resource configured in the FailureDomain.",
+																MarkdownDescription: "ReferenceName is the identifier of the storage resource configured in the FailureDomain.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"uuid": schema.StringAttribute{
+																Description:         "UUID is the UUID of the storage container resource in the Prism Element.",
+																MarkdownDescription: "UUID is the UUID of the storage container resource in the Prism Element.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name defines the unique name of a failure domain.",
+													MarkdownDescription: "Name defines the unique name of a failure domain.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(64),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9A-Za-z_.-@/]+$`), ""),
+													},
+												},
+
+												"prism_element": schema.SingleNestedAttribute{
+													Description:         "PrismElement holds the identification (name, UUID) and the optional endpoint address and port of the Nutanix Prism Element. When a cluster-wide proxy is installed, this endpoint will, by default, be accessed through the cluster-wide proxy configured for the platform. If communication with this endpoint should bypass the proxy, add the endpoint to the install-config 'spec.noProxy' list in the proxy configuration.",
+													MarkdownDescription: "PrismElement holds the identification (name, UUID) and the optional endpoint address and port of the Nutanix Prism Element. When a cluster-wide proxy is installed, this endpoint will, by default, be accessed through the cluster-wide proxy configured for the platform. If communication with this endpoint should bypass the proxy, add the endpoint to the install-config 'spec.noProxy' list in the proxy configuration.",
+													Attributes: map[string]schema.Attribute{
+														"endpoint": schema.SingleNestedAttribute{
+															Description:         "Endpoint holds the address and port of the Prism Element",
+															MarkdownDescription: "Endpoint holds the address and port of the Prism Element",
+															Attributes: map[string]schema.Attribute{
+																"address": schema.StringAttribute{
+																	Description:         "address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster)",
+																	MarkdownDescription: "address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster)",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"port": schema.Int64Attribute{
+																	Description:         "port is the port number to access the Nutanix Prism Central or Element (cluster)",
+																	MarkdownDescription: "port is the port number to access the Nutanix Prism Central or Element (cluster)",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name is the Prism Element (cluster) name.",
+															MarkdownDescription: "Name is the Prism Element (cluster) name.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"uuid": schema.StringAttribute{
+															Description:         "UUID is the UUID of the Prism Element (cluster)",
+															MarkdownDescription: "UUID is the UUID of the Prism Element (cluster)",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+
+												"storage_containers": schema.ListNestedAttribute{
+													Description:         "StorageContainers identifies the storage containers in the Prism Element.",
+													MarkdownDescription: "StorageContainers identifies the storage containers in the Prism Element.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name is the name of the storage container resource in the Prism Element.",
+																MarkdownDescription: "Name is the name of the storage container resource in the Prism Element.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"reference_name": schema.StringAttribute{
+																Description:         "ReferenceName is the identifier of the storage resource configured in the FailureDomain.",
+																MarkdownDescription: "ReferenceName is the identifier of the storage resource configured in the FailureDomain.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"uuid": schema.StringAttribute{
+																Description:         "UUID is the UUID of the storage container resource in the Prism Element.",
+																MarkdownDescription: "UUID is the UUID of the storage container resource in the Prism Element.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"subnet_uui_ds": schema.ListAttribute{
+													Description:         "SubnetUUIDs identifies the network subnets of the Prism Element. Currently we only support one subnet for a failure domain.",
+													MarkdownDescription: "SubnetUUIDs identifies the network subnets of the Prism Element. Currently we only support one subnet for a failure domain.",
+													ElementType:         types.StringType,
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"prism_central": schema.SingleNestedAttribute{
+										Description:         "PrismCentral is the endpoint (address and port) to connect to the Prism Central. This serves as the default Prism-Central.",
+										MarkdownDescription: "PrismCentral is the endpoint (address and port) to connect to the Prism Central. This serves as the default Prism-Central.",
+										Attributes: map[string]schema.Attribute{
+											"address": schema.StringAttribute{
+												Description:         "address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster)",
+												MarkdownDescription: "address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster)",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "port is the port number to access the Nutanix Prism Central or Element (cluster)",
+												MarkdownDescription: "port is the port number to access the Nutanix Prism Central or Element (cluster)",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"openstack": schema.SingleNestedAttribute{
@@ -1571,6 +1838,23 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 						Description:         "Provisioning contains settings used only for initial cluster provisioning. May be unset in the case of adopted clusters.",
 						MarkdownDescription: "Provisioning contains settings used only for initial cluster provisioning. May be unset in the case of adopted clusters.",
 						Attributes: map[string]schema.Attribute{
+							"customization_ref": schema.SingleNestedAttribute{
+								Description:         "CustomizationRef is a reference to a ClusterDeploymentCustomization containing InstallerManifestPatches to be applied to the manifests generated by openshift-install prior to starting the installation. (InstallConfigPatches will be ignored -- those changes should be made directly to the install-config.yaml referenced by InstallConfigSecretRef.)",
+								MarkdownDescription: "CustomizationRef is a reference to a ClusterDeploymentCustomization containing InstallerManifestPatches to be applied to the manifests generated by openshift-install prior to starting the installation. (InstallConfigPatches will be ignored -- those changes should be made directly to the install-config.yaml referenced by InstallConfigSecretRef.)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"image_set_ref": schema.SingleNestedAttribute{
 								Description:         "ImageSetRef is a reference to a ClusterImageSet. If a value is specified for ReleaseImage, that will take precedence over the one from the ClusterImageSet.",
 								MarkdownDescription: "ImageSetRef is a reference to a ClusterImageSet. If a value is specified for ReleaseImage, that will take precedence over the one from the ClusterImageSet.",

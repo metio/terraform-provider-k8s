@@ -54,12 +54,21 @@ type KustomizeToolkitFluxcdIoKustomizationV1ManifestData struct {
 			SecretRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		} `tfsdk:"decryption" json:"decryption,omitempty"`
-		DependsOn *[]struct {
+		DeletionPolicy *string `tfsdk:"deletion_policy" json:"deletionPolicy,omitempty"`
+		DependsOn      *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"depends_on" json:"dependsOn,omitempty"`
-		Force        *bool `tfsdk:"force" json:"force,omitempty"`
+		Force            *bool `tfsdk:"force" json:"force,omitempty"`
+		HealthCheckExprs *[]struct {
+			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Current    *string `tfsdk:"current" json:"current,omitempty"`
+			Failed     *string `tfsdk:"failed" json:"failed,omitempty"`
+			InProgress *string `tfsdk:"in_progress" json:"inProgress,omitempty"`
+			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+		} `tfsdk:"health_check_exprs" json:"healthCheckExprs,omitempty"`
 		HealthChecks *[]struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -247,8 +256,8 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Schema(_ context.Conte
 							},
 
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "The secret name containing the private OpenPGP keys used for decryption.",
-								MarkdownDescription: "The secret name containing the private OpenPGP keys used for decryption.",
+								Description:         "The secret name containing the private OpenPGP keys used for decryption. A static credential for a cloud provider defined inside the Secret takes priority to secret-less authentication with the ServiceAccountName field.",
+								MarkdownDescription: "The secret name containing the private OpenPGP keys used for decryption. A static credential for a cloud provider defined inside the Secret takes priority to secret-less authentication with the ServiceAccountName field.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",
@@ -262,10 +271,29 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Schema(_ context.Conte
 								Optional: true,
 								Computed: false,
 							},
+
+							"service_account_name": schema.StringAttribute{
+								Description:         "ServiceAccountName is the name of the service account used to authenticate with KMS services from cloud providers. If a static credential for a given cloud provider is defined inside the Secret referenced by SecretRef, that static credential takes priority.",
+								MarkdownDescription: "ServiceAccountName is the name of the service account used to authenticate with KMS services from cloud providers. If a static credential for a given cloud provider is defined inside the Secret referenced by SecretRef, that static credential takes priority.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"deletion_policy": schema.StringAttribute{
+						Description:         "DeletionPolicy can be used to control garbage collection when this Kustomization is deleted. Valid values are ('MirrorPrune', 'Delete', 'Orphan'). 'MirrorPrune' mirrors the Prune field (orphan if false, delete if true). Defaults to 'MirrorPrune'.",
+						MarkdownDescription: "DeletionPolicy can be used to control garbage collection when this Kustomization is deleted. Valid values are ('MirrorPrune', 'Delete', 'Orphan'). 'MirrorPrune' mirrors the Prune field (orphan if false, delete if true). Defaults to 'MirrorPrune'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("MirrorPrune", "Delete", "Orphan"),
+						},
 					},
 
 					"depends_on": schema.ListNestedAttribute{
@@ -301,6 +329,57 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"health_check_exprs": schema.ListNestedAttribute{
+						Description:         "HealthCheckExprs is a list of healthcheck expressions for evaluating the health of custom resources using Common Expression Language (CEL). The expressions are evaluated only when Wait or HealthChecks are specified.",
+						MarkdownDescription: "HealthCheckExprs is a list of healthcheck expressions for evaluating the health of custom resources using Common Expression Language (CEL). The expressions are evaluated only when Wait or HealthChecks are specified.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"api_version": schema.StringAttribute{
+									Description:         "APIVersion of the custom resource under evaluation.",
+									MarkdownDescription: "APIVersion of the custom resource under evaluation.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"current": schema.StringAttribute{
+									Description:         "Current is the CEL expression that determines if the status of the custom resource has reached the desired state.",
+									MarkdownDescription: "Current is the CEL expression that determines if the status of the custom resource has reached the desired state.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"failed": schema.StringAttribute{
+									Description:         "Failed is the CEL expression that determines if the status of the custom resource has failed to reach the desired state.",
+									MarkdownDescription: "Failed is the CEL expression that determines if the status of the custom resource has failed to reach the desired state.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"in_progress": schema.StringAttribute{
+									Description:         "InProgress is the CEL expression that determines if the status of the custom resource has not yet reached the desired state.",
+									MarkdownDescription: "InProgress is the CEL expression that determines if the status of the custom resource has not yet reached the desired state.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kind": schema.StringAttribute{
+									Description:         "Kind of the custom resource under evaluation.",
+									MarkdownDescription: "Kind of the custom resource under evaluation.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"health_checks": schema.ListNestedAttribute{

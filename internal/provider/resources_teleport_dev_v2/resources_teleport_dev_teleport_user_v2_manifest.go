@@ -46,17 +46,20 @@ type ResourcesTeleportDevTeleportUserV2ManifestData struct {
 		Github_identities *[]struct {
 			Connector_id        *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
 			SamlSingleLogoutUrl *string `tfsdk:"saml_single_logout_url" json:"samlSingleLogoutUrl,omitempty"`
+			User_id             *string `tfsdk:"user_id" json:"user_id,omitempty"`
 			Username            *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"github_identities" json:"github_identities,omitempty"`
 		Oidc_identities *[]struct {
 			Connector_id        *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
 			SamlSingleLogoutUrl *string `tfsdk:"saml_single_logout_url" json:"samlSingleLogoutUrl,omitempty"`
+			User_id             *string `tfsdk:"user_id" json:"user_id,omitempty"`
 			Username            *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"oidc_identities" json:"oidc_identities,omitempty"`
 		Roles           *[]string `tfsdk:"roles" json:"roles,omitempty"`
 		Saml_identities *[]struct {
 			Connector_id        *string `tfsdk:"connector_id" json:"connector_id,omitempty"`
 			SamlSingleLogoutUrl *string `tfsdk:"saml_single_logout_url" json:"samlSingleLogoutUrl,omitempty"`
+			User_id             *string `tfsdk:"user_id" json:"user_id,omitempty"`
 			Username            *string `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"saml_identities" json:"saml_identities,omitempty"`
 		Traits             *map[string][]string `tfsdk:"traits" json:"traits,omitempty"`
@@ -162,6 +165,14 @@ func (r *ResourcesTeleportDevTeleportUserV2Manifest) Schema(_ context.Context, _
 									Computed:            false,
 								},
 
+								"user_id": schema.StringAttribute{
+									Description:         "UserID is the ID of the identity. Some connectors like GitHub have an unique ID apart from the username.",
+									MarkdownDescription: "UserID is the ID of the identity. Some connectors like GitHub have an unique ID apart from the username.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"username": schema.StringAttribute{
 									Description:         "Username is username supplied by external identity provider",
 									MarkdownDescription: "Username is username supplied by external identity provider",
@@ -192,6 +203,14 @@ func (r *ResourcesTeleportDevTeleportUserV2Manifest) Schema(_ context.Context, _
 								"saml_single_logout_url": schema.StringAttribute{
 									Description:         "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
 									MarkdownDescription: "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"user_id": schema.StringAttribute{
+									Description:         "UserID is the ID of the identity. Some connectors like GitHub have an unique ID apart from the username.",
+									MarkdownDescription: "UserID is the ID of the identity. Some connectors like GitHub have an unique ID apart from the username.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -236,6 +255,14 @@ func (r *ResourcesTeleportDevTeleportUserV2Manifest) Schema(_ context.Context, _
 								"saml_single_logout_url": schema.StringAttribute{
 									Description:         "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
 									MarkdownDescription: "SAMLSingleLogoutURL is the SAML Single log-out URL to initiate SAML SLO (single log-out), if applicable.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"user_id": schema.StringAttribute{
+									Description:         "UserID is the ID of the identity. Some connectors like GitHub have an unique ID apart from the username.",
+									MarkdownDescription: "UserID is the ID of the identity. Some connectors like GitHub have an unique ID apart from the username.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

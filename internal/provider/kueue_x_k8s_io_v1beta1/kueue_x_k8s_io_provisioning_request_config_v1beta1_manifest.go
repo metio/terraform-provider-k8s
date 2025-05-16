@@ -46,6 +46,11 @@ type KueueXK8SIoProvisioningRequestConfigV1Beta1ManifestData struct {
 		ManagedResources      *[]string          `tfsdk:"managed_resources" json:"managedResources,omitempty"`
 		Parameters            *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
 		ProvisioningClassName *string            `tfsdk:"provisioning_class_name" json:"provisioningClassName,omitempty"`
+		RetryStrategy         *struct {
+			BackoffBaseSeconds *int64 `tfsdk:"backoff_base_seconds" json:"backoffBaseSeconds,omitempty"`
+			BackoffLimitCount  *int64 `tfsdk:"backoff_limit_count" json:"backoffLimitCount,omitempty"`
+			BackoffMaxSeconds  *int64 `tfsdk:"backoff_max_seconds" json:"backoffMaxSeconds,omitempty"`
+		} `tfsdk:"retry_strategy" json:"retryStrategy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -142,6 +147,39 @@ func (r *KueueXK8SIoProvisioningRequestConfigV1Beta1Manifest) Schema(_ context.C
 							stringvalidator.LengthAtMost(253),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 						},
+					},
+
+					"retry_strategy": schema.SingleNestedAttribute{
+						Description:         "retryStrategy defines strategy for retrying ProvisioningRequest. If null, then the default configuration is applied with the following parameter values: backoffLimitCount: 3 backoffBaseSeconds: 60 - 1 min backoffMaxSeconds: 1800 - 30 mins To switch off retry mechanism set retryStrategy.backoffLimitCount to 0.",
+						MarkdownDescription: "retryStrategy defines strategy for retrying ProvisioningRequest. If null, then the default configuration is applied with the following parameter values: backoffLimitCount: 3 backoffBaseSeconds: 60 - 1 min backoffMaxSeconds: 1800 - 30 mins To switch off retry mechanism set retryStrategy.backoffLimitCount to 0.",
+						Attributes: map[string]schema.Attribute{
+							"backoff_base_seconds": schema.Int64Attribute{
+								Description:         "BackoffBaseSeconds defines the base for the exponential backoff for re-queuing an evicted workload. Defaults to 60.",
+								MarkdownDescription: "BackoffBaseSeconds defines the base for the exponential backoff for re-queuing an evicted workload. Defaults to 60.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"backoff_limit_count": schema.Int64Attribute{
+								Description:         "BackoffLimitCount defines the maximum number of re-queuing retries. Once the number is reached, the workload is deactivated ('.spec.activate'='false'). Every backoff duration is about 'b*2^(n-1)+Rand' where: - 'b' represents the base set by 'BackoffBaseSeconds' parameter, - 'n' represents the 'workloadStatus.requeueState.count', - 'Rand' represents the random jitter. During this time, the workload is taken as an inadmissible and other workloads will have a chance to be admitted. By default, the consecutive requeue delays are around: (60s, 120s, 240s, ...). Defaults to 3.",
+								MarkdownDescription: "BackoffLimitCount defines the maximum number of re-queuing retries. Once the number is reached, the workload is deactivated ('.spec.activate'='false'). Every backoff duration is about 'b*2^(n-1)+Rand' where: - 'b' represents the base set by 'BackoffBaseSeconds' parameter, - 'n' represents the 'workloadStatus.requeueState.count', - 'Rand' represents the random jitter. During this time, the workload is taken as an inadmissible and other workloads will have a chance to be admitted. By default, the consecutive requeue delays are around: (60s, 120s, 240s, ...). Defaults to 3.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"backoff_max_seconds": schema.Int64Attribute{
+								Description:         "BackoffMaxSeconds defines the maximum backoff time to re-queue an evicted workload. Defaults to 1800.",
+								MarkdownDescription: "BackoffMaxSeconds defines the maximum backoff time to re-queue an evicted workload. Defaults to 1800.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

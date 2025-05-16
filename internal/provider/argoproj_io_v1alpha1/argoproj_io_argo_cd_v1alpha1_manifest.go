@@ -74,6 +74,7 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 			} `tfsdk:"env" json:"env,omitempty"`
 			ExtraCommandArgs *[]string `tfsdk:"extra_command_args" json:"extraCommandArgs,omitempty"`
 			Image            *string   `tfsdk:"image" json:"image,omitempty"`
+			LogFormat        *string   `tfsdk:"log_format" json:"logFormat,omitempty"`
 			LogLevel         *string   `tfsdk:"log_level" json:"logLevel,omitempty"`
 			Resources        *struct {
 				Claims *[]struct {
@@ -255,6 +256,7 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 			Excludedefaulthosts *bool   `tfsdk:"excludedefaulthosts" json:"excludedefaulthosts,omitempty"`
 			Keys                *string `tfsdk:"keys" json:"keys,omitempty"`
 		} `tfsdk:"initial_ssh_known_hosts" json:"initialSSHKnownHosts,omitempty"`
+		InstallationID        *string `tfsdk:"installation_id" json:"installationID,omitempty"`
 		KustomizeBuildOptions *string `tfsdk:"kustomize_build_options" json:"kustomizeBuildOptions,omitempty"`
 		KustomizeVersions     *[]struct {
 			Path    *string `tfsdk:"path" json:"path,omitempty"`
@@ -303,6 +305,7 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 			} `tfsdk:"env" json:"env,omitempty"`
 			Image     *string `tfsdk:"image" json:"image,omitempty"`
 			LogLevel  *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+			Logformat *string `tfsdk:"logformat" json:"logformat,omitempty"`
 			Replicas  *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
@@ -452,6 +455,9 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 							Port   *string `tfsdk:"port" json:"port,omitempty"`
 							Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 						} `tfsdk:"http_get" json:"httpGet,omitempty"`
+						Sleep *struct {
+							Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+						} `tfsdk:"sleep" json:"sleep,omitempty"`
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" json:"host,omitempty"`
 							Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -471,6 +477,9 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 							Port   *string `tfsdk:"port" json:"port,omitempty"`
 							Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 						} `tfsdk:"http_get" json:"httpGet,omitempty"`
+						Sleep *struct {
+							Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+						} `tfsdk:"sleep" json:"sleep,omitempty"`
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" json:"host,omitempty"`
 							Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -700,6 +709,9 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 							Port   *string `tfsdk:"port" json:"port,omitempty"`
 							Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 						} `tfsdk:"http_get" json:"httpGet,omitempty"`
+						Sleep *struct {
+							Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+						} `tfsdk:"sleep" json:"sleep,omitempty"`
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" json:"host,omitempty"`
 							Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -719,6 +731,9 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 							Port   *string `tfsdk:"port" json:"port,omitempty"`
 							Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 						} `tfsdk:"http_get" json:"httpGet,omitempty"`
+						Sleep *struct {
+							Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+						} `tfsdk:"sleep" json:"sleep,omitempty"`
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" json:"host,omitempty"`
 							Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -984,9 +999,6 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
-								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
-								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -998,9 +1010,10 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"selector" json:"selector,omitempty"`
-							StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-							VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-							VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+							VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+							VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+							VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 						} `tfsdk:"spec" json:"spec,omitempty"`
 					} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 				} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1081,6 +1094,20 @@ type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 				Projected *struct {
 					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 					Sources     *[]struct {
+						ClusterTrustBundle *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							Name       *string `tfsdk:"name" json:"name,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							Path       *string `tfsdk:"path" json:"path,omitempty"`
+							SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+						} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 						ConfigMap *struct {
 							Items *[]struct {
 								Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1638,6 +1665,17 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"log_format": schema.StringAttribute{
+								Description:         "LogFormat refers to the log format used by the ApplicationSet component. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.",
+								MarkdownDescription: "LogFormat refers to the log format used by the ApplicationSet component. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("text", "json"),
+								},
 							},
 
 							"log_level": schema.StringAttribute{
@@ -2887,6 +2925,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 						Computed: false,
 					},
 
+					"installation_id": schema.StringAttribute{
+						Description:         "InstallationID uniquely identifies an Argo CD instance in multi-instance clusters.",
+						MarkdownDescription: "InstallationID uniquely identifies an Argo CD instance in multi-instance clusters.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"kustomize_build_options": schema.StringAttribute{
 						Description:         "KustomizeBuildOptions is used to specify build options/parameters to use with 'kustomize build'.",
 						MarkdownDescription: "KustomizeBuildOptions is used to specify build options/parameters to use with 'kustomize build'.",
@@ -3202,6 +3248,17 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"logformat": schema.StringAttribute{
+								Description:         "LogFormat refers to the log format used by the argocd-notifications. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.",
+								MarkdownDescription: "LogFormat refers to the log format used by the argocd-notifications. Defaults to ArgoCDDefaultLogFormat if not configured. Valid options are text or json.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("text", "json"),
+								},
 							},
 
 							"replicas": schema.Int64Attribute{
@@ -4200,6 +4257,23 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 															Computed: false,
 														},
 
+														"sleep": schema.SingleNestedAttribute{
+															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Attributes: map[string]schema.Attribute{
+																"seconds": schema.Int64Attribute{
+																	Description:         "Seconds is the number of seconds to sleep.",
+																	MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"tcp_socket": schema.SingleNestedAttribute{
 															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -4312,6 +4386,23 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 																	MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																	Required:            false,
 																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"sleep": schema.SingleNestedAttribute{
+															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Attributes: map[string]schema.Attribute{
+																"seconds": schema.Int64Attribute{
+																	Description:         "Seconds is the number of seconds to sleep.",
+																	MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 															},
@@ -5500,8 +5591,8 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 							},
 
 							"sidecar_containers": schema.ListNestedAttribute{
-								Description:         "SidecarContainers defines the list of sidecar containers for the repo server deployment",
-								MarkdownDescription: "SidecarContainers defines the list of sidecar containers for the repo server deployment",
+								Description:         "SidecarContainers defines the list of sidecar containers for the repo server deployment. If the image field is omitted from a SidecarContainer, the image for the repo server will be used.",
+								MarkdownDescription: "SidecarContainers defines the list of sidecar containers for the repo server deployment. If the image field is omitted from a SidecarContainer, the image for the repo server will be used.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"args": schema.ListAttribute{
@@ -5861,6 +5952,23 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 															Computed: false,
 														},
 
+														"sleep": schema.SingleNestedAttribute{
+															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Attributes: map[string]schema.Attribute{
+																"seconds": schema.Int64Attribute{
+																	Description:         "Seconds is the number of seconds to sleep.",
+																	MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"tcp_socket": schema.SingleNestedAttribute{
 															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -5973,6 +6081,23 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 																	MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																	Required:            false,
 																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"sleep": schema.SingleNestedAttribute{
+															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Attributes: map[string]schema.Attribute{
+																"seconds": schema.Int64Attribute{
+																	Description:         "Seconds is the number of seconds to sleep.",
+																	MarkdownDescription: "Seconds is the number of seconds to sleep.",
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 															},
@@ -7764,25 +7889,6 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 																	Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	Attributes: map[string]schema.Attribute{
-																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																			NestedObject: schema.NestedAttributeObject{
-																				Attributes: map[string]schema.Attribute{
-																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						Required:            true,
-																						Optional:            false,
-																						Computed:            false,
-																					},
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
 																		"limits": schema.MapAttribute{
 																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -7863,6 +7969,14 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 																"storage_class_name": schema.StringAttribute{
 																	Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																	MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"volume_attributes_class_name": schema.StringAttribute{
+																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -8414,6 +8528,101 @@ func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "sources is the list of volume projections",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"cluster_trust_bundle": schema.SingleNestedAttribute{
+																Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																Attributes: map[string]schema.Attribute{
+																	"label_selector": schema.SingleNestedAttribute{
+																		Description:         "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																		MarkdownDescription: "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																		Attributes: map[string]schema.Attribute{
+																			"match_expressions": schema.ListNestedAttribute{
+																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "key is the label key that the selector applies to.",
+																							MarkdownDescription: "key is the label key that the selector applies to.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"operator": schema.StringAttribute{
+																							Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																							MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"values": schema.ListAttribute{
+																							Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																							MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": schema.MapAttribute{
+																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																		MarkdownDescription: "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																		MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "Relative path from the volume root to write the bundle.",
+																		MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"signer_name": schema.StringAttribute{
+																		Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																		MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"config_map": schema.SingleNestedAttribute{
 																Description:         "configMap information about the configMap data to project",
 																MarkdownDescription: "configMap information about the configMap data to project",

@@ -107,25 +107,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -133,6 +139,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -157,6 +164,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -175,6 +183,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -196,25 +218,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -222,6 +250,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -246,6 +275,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -289,6 +319,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 				Values *map[string]string `tfsdk:"values" json:"values,omitempty"`
 			} `tfsdk:"cluster_decision_resource" json:"clusterDecisionResource,omitempty"`
 			Clusters *struct {
+				FlatList *bool `tfsdk:"flat_list" json:"flatList,omitempty"`
 				Selector *struct {
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -347,25 +378,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -373,6 +410,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -397,6 +435,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -415,6 +454,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -436,25 +489,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -462,6 +521,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -486,6 +546,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -590,25 +651,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -616,6 +683,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -640,6 +708,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -658,6 +727,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -679,25 +762,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -705,6 +794,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -729,6 +819,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -824,25 +915,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -850,6 +947,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -874,6 +972,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -892,6 +991,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -913,25 +1026,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -939,6 +1058,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -963,6 +1083,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -1068,25 +1189,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1094,6 +1221,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1118,6 +1246,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1136,6 +1265,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -1157,25 +1300,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1183,6 +1332,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1207,6 +1357,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1250,6 +1401,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						Values *map[string]string `tfsdk:"values" json:"values,omitempty"`
 					} `tfsdk:"cluster_decision_resource" json:"clusterDecisionResource,omitempty"`
 					Clusters *struct {
+						FlatList *bool `tfsdk:"flat_list" json:"flatList,omitempty"`
 						Selector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1308,25 +1460,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1334,6 +1492,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1358,6 +1517,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1376,6 +1536,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -1397,25 +1571,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1423,6 +1603,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1447,6 +1628,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1551,25 +1733,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1577,6 +1765,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1601,6 +1790,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1619,6 +1809,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -1640,25 +1844,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1666,6 +1876,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1690,6 +1901,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1785,25 +1997,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1811,6 +2029,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1835,6 +2054,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -1853,6 +2073,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -1874,25 +2108,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -1900,6 +2140,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -1924,6 +2165,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2025,25 +2267,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2051,6 +2299,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2075,6 +2324,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2093,6 +2343,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -2114,25 +2378,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2140,6 +2410,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2164,6 +2435,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2245,8 +2517,19 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 								Username *string `tfsdk:"username" json:"username,omitempty"`
 							} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-							Project *string `tfsdk:"project" json:"project,omitempty"`
-							Repo    *string `tfsdk:"repo" json:"repo,omitempty"`
+							BearerToken *struct {
+								TokenRef *struct {
+									Key        *string `tfsdk:"key" json:"key,omitempty"`
+									SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+								} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
+							} `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+							CaRef *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
+							Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+							Project  *string `tfsdk:"project" json:"project,omitempty"`
+							Repo     *string `tfsdk:"repo" json:"repo,omitempty"`
 						} `tfsdk:"bitbucket_server" json:"bitbucketServer,omitempty"`
 						Filters *[]struct {
 							BranchMatch       *string `tfsdk:"branch_match" json:"branchMatch,omitempty"`
@@ -2274,7 +2557,11 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 						} `tfsdk:"github" json:"github,omitempty"`
 						Gitlab *struct {
-							Api              *string   `tfsdk:"api" json:"api,omitempty"`
+							Api   *string `tfsdk:"api" json:"api,omitempty"`
+							CaRef *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
 							Insecure         *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
 							Labels           *[]string `tfsdk:"labels" json:"labels,omitempty"`
 							Project          *string   `tfsdk:"project" json:"project,omitempty"`
@@ -2335,25 +2622,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2361,6 +2654,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2385,6 +2679,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2403,6 +2698,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -2424,25 +2733,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2450,6 +2765,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2474,6 +2790,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2554,7 +2871,18 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 								Username *string `tfsdk:"username" json:"username,omitempty"`
 							} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-							Project *string `tfsdk:"project" json:"project,omitempty"`
+							BearerToken *struct {
+								TokenRef *struct {
+									Key        *string `tfsdk:"key" json:"key,omitempty"`
+									SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+								} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
+							} `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+							CaRef *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
+							Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+							Project  *string `tfsdk:"project" json:"project,omitempty"`
 						} `tfsdk:"bitbucket_server" json:"bitbucketServer,omitempty"`
 						CloneProtocol *string `tfsdk:"clone_protocol" json:"cloneProtocol,omitempty"`
 						Filters       *[]struct {
@@ -2585,8 +2913,12 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 						} `tfsdk:"github" json:"github,omitempty"`
 						Gitlab *struct {
-							AllBranches           *bool   `tfsdk:"all_branches" json:"allBranches,omitempty"`
-							Api                   *string `tfsdk:"api" json:"api,omitempty"`
+							AllBranches *bool   `tfsdk:"all_branches" json:"allBranches,omitempty"`
+							Api         *string `tfsdk:"api" json:"api,omitempty"`
+							CaRef       *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
 							Group                 *string `tfsdk:"group" json:"group,omitempty"`
 							IncludeSharedProjects *bool   `tfsdk:"include_shared_projects" json:"includeSharedProjects,omitempty"`
 							IncludeSubgroups      *bool   `tfsdk:"include_subgroups" json:"includeSubgroups,omitempty"`
@@ -2648,25 +2980,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2674,6 +3012,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2698,6 +3037,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2716,6 +3056,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -2737,25 +3091,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2763,6 +3123,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2787,6 +3148,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -2888,25 +3250,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -2914,6 +3282,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -2938,6 +3307,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -2956,6 +3326,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -2977,25 +3361,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3003,6 +3393,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3027,6 +3418,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -3132,25 +3524,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3158,6 +3556,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3182,6 +3581,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3200,6 +3600,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -3221,25 +3635,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3247,6 +3667,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3271,6 +3692,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3314,6 +3736,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						Values *map[string]string `tfsdk:"values" json:"values,omitempty"`
 					} `tfsdk:"cluster_decision_resource" json:"clusterDecisionResource,omitempty"`
 					Clusters *struct {
+						FlatList *bool `tfsdk:"flat_list" json:"flatList,omitempty"`
 						Selector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -3372,25 +3795,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3398,6 +3827,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3422,6 +3852,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3440,6 +3871,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -3461,25 +3906,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3487,6 +3938,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3511,6 +3963,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3615,25 +4068,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3641,6 +4100,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3665,6 +4125,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3683,6 +4144,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -3704,25 +4179,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3730,6 +4211,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3754,6 +4236,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3849,25 +4332,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3875,6 +4364,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3899,6 +4389,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -3917,6 +4408,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -3938,25 +4443,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -3964,6 +4475,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -3988,6 +4500,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4089,25 +4602,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4115,6 +4634,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -4139,6 +4659,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4157,6 +4678,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -4178,25 +4713,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4204,6 +4745,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -4228,6 +4770,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4309,8 +4852,19 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 								Username *string `tfsdk:"username" json:"username,omitempty"`
 							} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-							Project *string `tfsdk:"project" json:"project,omitempty"`
-							Repo    *string `tfsdk:"repo" json:"repo,omitempty"`
+							BearerToken *struct {
+								TokenRef *struct {
+									Key        *string `tfsdk:"key" json:"key,omitempty"`
+									SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+								} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
+							} `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+							CaRef *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
+							Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+							Project  *string `tfsdk:"project" json:"project,omitempty"`
+							Repo     *string `tfsdk:"repo" json:"repo,omitempty"`
 						} `tfsdk:"bitbucket_server" json:"bitbucketServer,omitempty"`
 						Filters *[]struct {
 							BranchMatch       *string `tfsdk:"branch_match" json:"branchMatch,omitempty"`
@@ -4338,7 +4892,11 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 						} `tfsdk:"github" json:"github,omitempty"`
 						Gitlab *struct {
-							Api              *string   `tfsdk:"api" json:"api,omitempty"`
+							Api   *string `tfsdk:"api" json:"api,omitempty"`
+							CaRef *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
 							Insecure         *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
 							Labels           *[]string `tfsdk:"labels" json:"labels,omitempty"`
 							Project          *string   `tfsdk:"project" json:"project,omitempty"`
@@ -4399,25 +4957,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4425,6 +4989,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -4449,6 +5014,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4467,6 +5033,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -4488,25 +5068,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4514,6 +5100,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -4538,6 +5125,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4618,7 +5206,18 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 								Username *string `tfsdk:"username" json:"username,omitempty"`
 							} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-							Project *string `tfsdk:"project" json:"project,omitempty"`
+							BearerToken *struct {
+								TokenRef *struct {
+									Key        *string `tfsdk:"key" json:"key,omitempty"`
+									SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+								} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
+							} `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+							CaRef *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
+							Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+							Project  *string `tfsdk:"project" json:"project,omitempty"`
 						} `tfsdk:"bitbucket_server" json:"bitbucketServer,omitempty"`
 						CloneProtocol *string `tfsdk:"clone_protocol" json:"cloneProtocol,omitempty"`
 						Filters       *[]struct {
@@ -4649,8 +5248,12 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 						} `tfsdk:"github" json:"github,omitempty"`
 						Gitlab *struct {
-							AllBranches           *bool   `tfsdk:"all_branches" json:"allBranches,omitempty"`
-							Api                   *string `tfsdk:"api" json:"api,omitempty"`
+							AllBranches *bool   `tfsdk:"all_branches" json:"allBranches,omitempty"`
+							Api         *string `tfsdk:"api" json:"api,omitempty"`
+							CaRef       *struct {
+								ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+								Key           *string `tfsdk:"key" json:"key,omitempty"`
+							} `tfsdk:"ca_ref" json:"caRef,omitempty"`
 							Group                 *string `tfsdk:"group" json:"group,omitempty"`
 							IncludeSharedProjects *bool   `tfsdk:"include_shared_projects" json:"includeSharedProjects,omitempty"`
 							IncludeSubgroups      *bool   `tfsdk:"include_subgroups" json:"includeSubgroups,omitempty"`
@@ -4712,25 +5315,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4738,6 +5347,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -4762,6 +5372,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4780,6 +5391,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 									RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 									TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 								} `tfsdk:"source" json:"source,omitempty"`
+								SourceHydrator *struct {
+									DrySource *struct {
+										Path           *string `tfsdk:"path" json:"path,omitempty"`
+										RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+										TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+									} `tfsdk:"dry_source" json:"drySource,omitempty"`
+									HydrateTo *struct {
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+									SyncSource *struct {
+										Path         *string `tfsdk:"path" json:"path,omitempty"`
+										TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+									} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+								} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 								Sources *[]struct {
 									Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 									Directory *struct {
@@ -4801,25 +5426,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 									} `tfsdk:"directory" json:"directory,omitempty"`
 									Helm *struct {
+										ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										FileParameters *[]struct {
 											Name *string `tfsdk:"name" json:"name,omitempty"`
 											Path *string `tfsdk:"path" json:"path,omitempty"`
 										} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-										IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+										KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+										Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										Parameters              *[]struct {
 											ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 											Name        *string `tfsdk:"name" json:"name,omitempty"`
 											Value       *string `tfsdk:"value" json:"value,omitempty"`
 										} `tfsdk:"parameters" json:"parameters,omitempty"`
-										PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-										ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-										SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-										ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-										Values          *string            `tfsdk:"values" json:"values,omitempty"`
-										ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-										Version         *string            `tfsdk:"version" json:"version,omitempty"`
+										PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+										ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+										SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+										SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+										SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+										ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+										Values               *string            `tfsdk:"values" json:"values,omitempty"`
+										ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+										Version              *string            `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"helm" json:"helm,omitempty"`
 									Kustomize *struct {
+										ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 										CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 										CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 										CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4827,6 +5458,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 										ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 										Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+										KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 										LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 										NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 										NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -4851,6 +5483,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 										} `tfsdk:"replicas" json:"replicas,omitempty"`
 										Version *string `tfsdk:"version" json:"version,omitempty"`
 									} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+									Name   *string `tfsdk:"name" json:"name,omitempty"`
 									Path   *string `tfsdk:"path" json:"path,omitempty"`
 									Plugin *struct {
 										Env *[]struct {
@@ -4953,25 +5586,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -4979,6 +5618,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5003,6 +5643,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5021,6 +5662,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -5042,25 +5697,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5068,6 +5729,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5092,6 +5754,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5191,25 +5854,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5217,6 +5886,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5241,6 +5911,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5259,6 +5930,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -5280,25 +5965,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5306,6 +5997,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5330,6 +6022,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5411,8 +6104,19 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 						Username *string `tfsdk:"username" json:"username,omitempty"`
 					} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-					Project *string `tfsdk:"project" json:"project,omitempty"`
-					Repo    *string `tfsdk:"repo" json:"repo,omitempty"`
+					BearerToken *struct {
+						TokenRef *struct {
+							Key        *string `tfsdk:"key" json:"key,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
+					} `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+					CaRef *struct {
+						ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+						Key           *string `tfsdk:"key" json:"key,omitempty"`
+					} `tfsdk:"ca_ref" json:"caRef,omitempty"`
+					Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+					Project  *string `tfsdk:"project" json:"project,omitempty"`
+					Repo     *string `tfsdk:"repo" json:"repo,omitempty"`
 				} `tfsdk:"bitbucket_server" json:"bitbucketServer,omitempty"`
 				Filters *[]struct {
 					BranchMatch       *string `tfsdk:"branch_match" json:"branchMatch,omitempty"`
@@ -5440,7 +6144,11 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 					} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 				} `tfsdk:"github" json:"github,omitempty"`
 				Gitlab *struct {
-					Api              *string   `tfsdk:"api" json:"api,omitempty"`
+					Api   *string `tfsdk:"api" json:"api,omitempty"`
+					CaRef *struct {
+						ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+						Key           *string `tfsdk:"key" json:"key,omitempty"`
+					} `tfsdk:"ca_ref" json:"caRef,omitempty"`
 					Insecure         *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
 					Labels           *[]string `tfsdk:"labels" json:"labels,omitempty"`
 					Project          *string   `tfsdk:"project" json:"project,omitempty"`
@@ -5501,25 +6209,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5527,6 +6241,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5551,6 +6266,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5569,6 +6285,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -5590,25 +6320,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5616,6 +6352,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5640,6 +6377,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5720,7 +6458,18 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						} `tfsdk:"password_ref" json:"passwordRef,omitempty"`
 						Username *string `tfsdk:"username" json:"username,omitempty"`
 					} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-					Project *string `tfsdk:"project" json:"project,omitempty"`
+					BearerToken *struct {
+						TokenRef *struct {
+							Key        *string `tfsdk:"key" json:"key,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
+					} `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+					CaRef *struct {
+						ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+						Key           *string `tfsdk:"key" json:"key,omitempty"`
+					} `tfsdk:"ca_ref" json:"caRef,omitempty"`
+					Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
+					Project  *string `tfsdk:"project" json:"project,omitempty"`
 				} `tfsdk:"bitbucket_server" json:"bitbucketServer,omitempty"`
 				CloneProtocol *string `tfsdk:"clone_protocol" json:"cloneProtocol,omitempty"`
 				Filters       *[]struct {
@@ -5751,8 +6500,12 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 					} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 				} `tfsdk:"github" json:"github,omitempty"`
 				Gitlab *struct {
-					AllBranches           *bool   `tfsdk:"all_branches" json:"allBranches,omitempty"`
-					Api                   *string `tfsdk:"api" json:"api,omitempty"`
+					AllBranches *bool   `tfsdk:"all_branches" json:"allBranches,omitempty"`
+					Api         *string `tfsdk:"api" json:"api,omitempty"`
+					CaRef       *struct {
+						ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+						Key           *string `tfsdk:"key" json:"key,omitempty"`
+					} `tfsdk:"ca_ref" json:"caRef,omitempty"`
 					Group                 *string `tfsdk:"group" json:"group,omitempty"`
 					IncludeSharedProjects *bool   `tfsdk:"include_shared_projects" json:"includeSharedProjects,omitempty"`
 					IncludeSubgroups      *bool   `tfsdk:"include_subgroups" json:"includeSubgroups,omitempty"`
@@ -5814,25 +6567,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5840,6 +6599,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5864,6 +6624,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -5882,6 +6643,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 							RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 							TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
+						SourceHydrator *struct {
+							DrySource *struct {
+								Path           *string `tfsdk:"path" json:"path,omitempty"`
+								RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+								TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+							} `tfsdk:"dry_source" json:"drySource,omitempty"`
+							HydrateTo *struct {
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+							SyncSource *struct {
+								Path         *string `tfsdk:"path" json:"path,omitempty"`
+								TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+							} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+						} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 						Sources *[]struct {
 							Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 							Directory *struct {
@@ -5903,25 +6678,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 							} `tfsdk:"directory" json:"directory,omitempty"`
 							Helm *struct {
+								ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								FileParameters *[]struct {
 									Name *string `tfsdk:"name" json:"name,omitempty"`
 									Path *string `tfsdk:"path" json:"path,omitempty"`
 								} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-								IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+								KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+								Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								Parameters              *[]struct {
 									ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 									Name        *string `tfsdk:"name" json:"name,omitempty"`
 									Value       *string `tfsdk:"value" json:"value,omitempty"`
 								} `tfsdk:"parameters" json:"parameters,omitempty"`
-								PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-								ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-								SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-								ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-								Values          *string            `tfsdk:"values" json:"values,omitempty"`
-								ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-								Version         *string            `tfsdk:"version" json:"version,omitempty"`
+								PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+								ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+								SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+								SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+								SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+								ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+								Values               *string            `tfsdk:"values" json:"values,omitempty"`
+								ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+								Version              *string            `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"helm" json:"helm,omitempty"`
 							Kustomize *struct {
+								ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 								CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 								CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 								CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -5929,6 +6710,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 								ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 								Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+								KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 								LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 								NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 								NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -5953,6 +6735,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 								} `tfsdk:"replicas" json:"replicas,omitempty"`
 								Version *string `tfsdk:"version" json:"version,omitempty"`
 							} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
 							Path   *string `tfsdk:"path" json:"path,omitempty"`
 							Plugin *struct {
 								Env *[]struct {
@@ -6082,25 +6865,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 					} `tfsdk:"directory" json:"directory,omitempty"`
 					Helm *struct {
+						ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 						FileParameters *[]struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 							Path *string `tfsdk:"path" json:"path,omitempty"`
 						} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-						IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+						IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+						KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+						Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						Parameters              *[]struct {
 							ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 							Name        *string `tfsdk:"name" json:"name,omitempty"`
 							Value       *string `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"parameters" json:"parameters,omitempty"`
-						PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-						ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-						SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-						ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-						Values          *string            `tfsdk:"values" json:"values,omitempty"`
-						ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-						Version         *string            `tfsdk:"version" json:"version,omitempty"`
+						PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+						ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+						SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+						SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+						SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+						ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+						Values               *string            `tfsdk:"values" json:"values,omitempty"`
+						ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+						Version              *string            `tfsdk:"version" json:"version,omitempty"`
 					} `tfsdk:"helm" json:"helm,omitempty"`
 					Kustomize *struct {
+						ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 						CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 						CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 						CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -6108,6 +6897,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 						ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 						Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+						KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 						LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 						NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 						NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -6132,6 +6922,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						} `tfsdk:"replicas" json:"replicas,omitempty"`
 						Version *string `tfsdk:"version" json:"version,omitempty"`
 					} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+					Name   *string `tfsdk:"name" json:"name,omitempty"`
 					Path   *string `tfsdk:"path" json:"path,omitempty"`
 					Plugin *struct {
 						Env *[]struct {
@@ -6150,6 +6941,20 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 					RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 					TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 				} `tfsdk:"source" json:"source,omitempty"`
+				SourceHydrator *struct {
+					DrySource *struct {
+						Path           *string `tfsdk:"path" json:"path,omitempty"`
+						RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+						TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+					} `tfsdk:"dry_source" json:"drySource,omitempty"`
+					HydrateTo *struct {
+						TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+					} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+					SyncSource *struct {
+						Path         *string `tfsdk:"path" json:"path,omitempty"`
+						TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+					} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+				} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 				Sources *[]struct {
 					Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 					Directory *struct {
@@ -6171,25 +6976,31 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 					} `tfsdk:"directory" json:"directory,omitempty"`
 					Helm *struct {
+						ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 						FileParameters *[]struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 							Path *string `tfsdk:"path" json:"path,omitempty"`
 						} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-						IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+						IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+						KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+						Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						Parameters              *[]struct {
 							ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 							Name        *string `tfsdk:"name" json:"name,omitempty"`
 							Value       *string `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"parameters" json:"parameters,omitempty"`
-						PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-						ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-						SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-						ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-						Values          *string            `tfsdk:"values" json:"values,omitempty"`
-						ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-						Version         *string            `tfsdk:"version" json:"version,omitempty"`
+						PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+						ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+						SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+						SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+						SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+						ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+						Values               *string            `tfsdk:"values" json:"values,omitempty"`
+						ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+						Version              *string            `tfsdk:"version" json:"version,omitempty"`
 					} `tfsdk:"helm" json:"helm,omitempty"`
 					Kustomize *struct {
+						ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 						CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 						CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 						CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
@@ -6197,6 +7008,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 						ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 						Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+						KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
 						LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 						NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 						NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -6221,6 +7033,7 @@ type ArgoprojIoApplicationSetV1Alpha1ManifestData struct {
 						} `tfsdk:"replicas" json:"replicas,omitempty"`
 						Version *string `tfsdk:"version" json:"version,omitempty"`
 					} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+					Name   *string `tfsdk:"name" json:"name,omitempty"`
 					Path   *string `tfsdk:"path" json:"path,omitempty"`
 					Plugin *struct {
 						Env *[]struct {
@@ -6780,6 +7593,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -6808,6 +7630,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -6874,6 +7712,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -6917,6 +7771,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -6972,6 +7835,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -7150,6 +8021,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -7269,6 +8148,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -7414,6 +8377,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -7442,6 +8414,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -7508,6 +8496,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -7551,6 +8555,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -7606,6 +8619,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7782,6 +8803,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -8067,6 +9096,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 									Description:         "",
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
+										"flat_list": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"selector": schema.SingleNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -8464,6 +9501,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -8492,6 +9538,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -8558,6 +9620,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -8601,6 +9679,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -8656,6 +9743,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -8834,6 +9929,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -8953,6 +10056,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -9098,6 +10285,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -9126,6 +10322,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -9192,6 +10404,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -9235,6 +10463,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -9290,6 +10527,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -9466,6 +10711,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -10172,6 +11425,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -10200,6 +11462,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -10266,6 +11544,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -10309,6 +11603,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -10364,6 +11667,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -10542,6 +11853,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -10661,6 +11980,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -10806,6 +12209,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -10834,6 +12246,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -10900,6 +12328,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -10943,6 +12387,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -10998,6 +12451,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -11174,6 +12635,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -11819,6 +13288,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -11847,6 +13325,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -11913,6 +13407,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -11956,6 +13466,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -12011,6 +13530,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -12189,6 +13716,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -12308,6 +13843,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -12453,6 +14072,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -12481,6 +14109,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -12547,6 +14191,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -12590,6 +14250,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -12645,6 +14314,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -12821,6 +14498,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -13527,6 +15212,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -13555,6 +15249,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -13621,6 +15331,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -13664,6 +15390,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -13719,6 +15454,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -13897,6 +15640,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -14016,6 +15767,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -14161,6 +15996,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -14189,6 +16033,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -14255,6 +16115,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -14298,6 +16174,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -14353,6 +16238,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -14529,6 +16422,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -14814,6 +16715,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 														Description:         "",
 														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
+															"flat_list": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"selector": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -15211,6 +17120,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -15239,6 +17157,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -15305,6 +17239,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -15348,6 +17298,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -15403,6 +17362,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -15581,6 +17548,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -15700,6 +17675,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -15845,6 +17904,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -15873,6 +17941,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -15939,6 +18023,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -15982,6 +18082,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -16037,6 +18146,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -16213,6 +18330,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -16919,6 +19044,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -16947,6 +19081,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -17013,6 +19163,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -17056,6 +19222,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -17111,6 +19286,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -17289,6 +19472,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -17408,6 +19599,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -17553,6 +19828,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -17581,6 +19865,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -17647,6 +19947,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -17690,6 +20006,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -17745,6 +20070,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -17921,6 +20254,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -18566,6 +20907,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -18594,6 +20944,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -18660,6 +21026,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -18703,6 +21085,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -18758,6 +21149,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -18936,6 +21335,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -19055,6 +21462,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -19200,6 +21691,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -19228,6 +21728,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -19294,6 +21810,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -19337,6 +21869,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -19392,6 +21933,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -19568,6 +22117,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -20248,6 +22805,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -20276,6 +22842,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -20342,6 +22924,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -20385,6 +22983,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -20440,6 +23047,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -20618,6 +23233,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -20737,6 +23360,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -20882,6 +23589,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -20910,6 +23626,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -20976,6 +23708,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -21019,6 +23767,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -21074,6 +23831,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -21250,6 +24015,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -21773,6 +24546,73 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Computed: false,
 																	},
 
+																	"bearer_token": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"token_ref": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"secret_name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"insecure": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"project": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -21972,6 +24812,31 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"insecure": schema.BoolAttribute{
@@ -22388,6 +25253,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -22416,6 +25290,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -22482,6 +25372,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -22525,6 +25431,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -22580,6 +25495,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -22758,6 +25681,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -22877,6 +25808,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -23022,6 +26037,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -23050,6 +26074,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -23116,6 +26156,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -23159,6 +26215,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -23214,6 +26279,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -23390,6 +26463,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -23912,6 +26993,73 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Computed: false,
 																	},
 
+																	"bearer_token": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"token_ref": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"secret_name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"insecure": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"project": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -24136,6 +27284,31 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"group": schema.StringAttribute{
@@ -24559,6 +27732,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -24587,6 +27769,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -24653,6 +27851,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -24696,6 +27910,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -24751,6 +27974,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -24929,6 +28160,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -25048,6 +28287,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -25193,6 +28516,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -25221,6 +28553,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -25287,6 +28635,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -25330,6 +28694,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -25385,6 +28758,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -25561,6 +28942,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -26245,6 +29634,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -26273,6 +29671,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -26339,6 +29753,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -26382,6 +29812,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -26437,6 +29876,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -26615,6 +30062,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -26734,6 +30189,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -26879,6 +30418,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -26907,6 +30455,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -26973,6 +30537,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -27016,6 +30596,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -27071,6 +30660,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -27247,6 +30844,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -27953,6 +31558,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -27981,6 +31595,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -28047,6 +31677,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -28090,6 +31736,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -28145,6 +31800,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -28323,6 +31986,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -28442,6 +32113,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -28587,6 +32342,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -28615,6 +32379,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -28681,6 +32461,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -28724,6 +32520,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -28779,6 +32584,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -28955,6 +32768,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -29240,6 +33061,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 														Description:         "",
 														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
+															"flat_list": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"selector": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -29637,6 +33466,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -29665,6 +33503,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -29731,6 +33585,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -29774,6 +33644,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -29829,6 +33708,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -30007,6 +33894,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -30126,6 +34021,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -30271,6 +34250,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -30299,6 +34287,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -30365,6 +34369,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -30408,6 +34428,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -30463,6 +34492,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -30639,6 +34676,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -31345,6 +35390,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -31373,6 +35427,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -31439,6 +35509,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -31482,6 +35568,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -31537,6 +35632,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -31715,6 +35818,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -31834,6 +35945,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -31979,6 +36174,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -32007,6 +36211,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -32073,6 +36293,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -32116,6 +36352,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -32171,6 +36416,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -32347,6 +36600,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -32992,6 +37253,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -33020,6 +37290,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -33086,6 +37372,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -33129,6 +37431,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -33184,6 +37495,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -33362,6 +37681,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -33481,6 +37808,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -33626,6 +38037,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -33654,6 +38074,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -33720,6 +38156,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -33763,6 +38215,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -33818,6 +38279,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -33994,6 +38463,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -34674,6 +39151,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -34702,6 +39188,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -34768,6 +39270,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -34811,6 +39329,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -34866,6 +39393,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -35044,6 +39579,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -35163,6 +39706,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -35308,6 +39935,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -35336,6 +39972,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -35402,6 +40054,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -35445,6 +40113,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -35500,6 +40177,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -35676,6 +40361,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -36199,6 +40892,73 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Computed: false,
 																	},
 
+																	"bearer_token": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"token_ref": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"secret_name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"insecure": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"project": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -36398,6 +41158,31 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"insecure": schema.BoolAttribute{
@@ -36814,6 +41599,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -36842,6 +41636,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -36908,6 +41718,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -36951,6 +41777,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -37006,6 +41841,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -37184,6 +42027,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -37303,6 +42154,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -37448,6 +42383,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -37476,6 +42420,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -37542,6 +42502,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -37585,6 +42561,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -37640,6 +42625,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -37816,6 +42809,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -38338,6 +43339,73 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Computed: false,
 																	},
 
+																	"bearer_token": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"token_ref": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"secret_name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"insecure": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"project": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -38562,6 +43630,31 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																	},
+
+																	"ca_ref": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"group": schema.StringAttribute{
@@ -38985,6 +44078,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"file_parameters": schema.ListNestedAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -39013,6 +44115,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							},
 
 																							"ignore_missing_value_files": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -39079,6 +44197,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Computed:            false,
 																							},
 
+																							"skip_schema_validation": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"skip_tests": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"value_files": schema.ListAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -39122,6 +44256,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Description:         "",
 																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
+																							"api_versions": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"common_annotations": schema.MapAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
@@ -39177,6 +44320,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								Description:         "",
 																								MarkdownDescription: "",
 																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"kube_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -39355,6 +44506,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Computed: false,
 																					},
 
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
 																					"path": schema.StringAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -39474,6 +44633,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"source_hydrator": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"dry_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"repo_url": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_revision": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"hydrate_to": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sync_source": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"target_branch": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -39619,6 +44862,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"file_parameters": schema.ListNestedAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -39647,6 +44899,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"ignore_missing_value_files": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
 																									Required:            false,
@@ -39713,6 +44981,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Computed:            false,
 																								},
 
+																								"skip_schema_validation": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"skip_tests": schema.BoolAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"value_files": schema.ListAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -39756,6 +45040,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
+																								"api_versions": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
 																								"common_annotations": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -39811,6 +45104,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									Description:         "",
 																									MarkdownDescription: "",
 																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"kube_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -39987,6 +45288,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							Required: false,
 																							Optional: true,
 																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
@@ -40680,6 +45989,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -40708,6 +46026,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -40774,6 +46108,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -40817,6 +46167,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -40872,6 +46231,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -41050,6 +46417,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -41169,6 +46544,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -41314,6 +46773,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -41342,6 +46810,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -41408,6 +46892,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -41451,6 +46951,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -41506,6 +47015,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -41682,6 +47199,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -42344,6 +47869,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -42372,6 +47906,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -42438,6 +47988,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -42481,6 +48047,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -42536,6 +48111,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -42714,6 +48297,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -42833,6 +48424,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -42978,6 +48653,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -43006,6 +48690,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -43072,6 +48772,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -43115,6 +48831,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -43170,6 +48895,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -43346,6 +49079,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -43869,6 +49610,73 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Computed: false,
 												},
 
+												"bearer_token": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"token_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"ca_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"project": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -44068,6 +49876,31 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"ca_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"insecure": schema.BoolAttribute{
@@ -44484,6 +50317,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -44512,6 +50354,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -44578,6 +50436,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -44621,6 +50495,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -44676,6 +50559,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -44854,6 +50745,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -44973,6 +50872,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -45118,6 +51101,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -45146,6 +51138,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -45212,6 +51220,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -45255,6 +51279,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -45310,6 +51343,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -45486,6 +51527,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -46008,6 +52057,73 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Computed: false,
 												},
 
+												"bearer_token": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"token_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"ca_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"project": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -46232,6 +52348,31 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"ca_ref": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"config_map_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"group": schema.StringAttribute{
@@ -46655,6 +52796,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"file_parameters": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -46683,6 +52833,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"ignore_missing_value_files": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -46749,6 +52915,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Computed:            false,
 																		},
 
+																		"skip_schema_validation": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"skip_tests": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"value_files": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -46792,6 +52974,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"api_versions": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"common_annotations": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -46847,6 +53038,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			Description:         "",
 																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kube_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -47025,6 +53224,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed: false,
 																},
 
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"path": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -47144,6 +53351,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"source_hydrator": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"dry_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"repo_url": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_revision": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"hydrate_to": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"sync_source": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"target_branch": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -47289,6 +53580,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"file_parameters": schema.ListNestedAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -47317,6 +53617,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"ignore_missing_value_files": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"namespace": schema.StringAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -47383,6 +53699,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Computed:            false,
 																			},
 
+																			"skip_schema_validation": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"skip_tests": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"value_files": schema.ListAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -47426,6 +53758,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
+																			"api_versions": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"common_annotations": schema.MapAttribute{
 																				Description:         "",
 																				MarkdownDescription: "",
@@ -47481,6 +53822,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																				Description:         "",
 																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"kube_version": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -47657,6 +54006,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"path": schema.StringAttribute{
@@ -48531,6 +54888,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
+													"api_versions": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"file_parameters": schema.ListNestedAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -48559,6 +54925,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"ignore_missing_value_files": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kube_version": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,
@@ -48625,6 +55007,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 														Computed:            false,
 													},
 
+													"skip_schema_validation": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"skip_tests": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"value_files": schema.ListAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -48668,6 +55066,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
+													"api_versions": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"common_annotations": schema.MapAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -48723,6 +55130,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 														Description:         "",
 														MarkdownDescription: "",
 														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kube_version": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -48901,6 +55316,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Computed: false,
 											},
 
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"path": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -49020,6 +55443,90 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_hydrator": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"dry_source": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"repo_url": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"target_revision": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"hydrate_to": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"target_branch": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sync_source": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"target_branch": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -49165,6 +55672,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
+														"api_versions": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"file_parameters": schema.ListNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -49193,6 +55709,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"ignore_missing_value_files": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kube_version": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -49259,6 +55791,22 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 															Computed:            false,
 														},
 
+														"skip_schema_validation": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"skip_tests": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"value_files": schema.ListAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -49302,6 +55850,15 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
+														"api_versions": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"common_annotations": schema.MapAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -49357,6 +55914,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 															Description:         "",
 															MarkdownDescription: "",
 															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kube_version": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -49533,6 +56098,14 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"path": schema.StringAttribute{

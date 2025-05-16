@@ -56,8 +56,8 @@ func (r *CrdProjectcalicoOrgClusterInformationV1Manifest) Metadata(_ context.Con
 
 func (r *CrdProjectcalicoOrgClusterInformationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterInformation contains the cluster specific information.",
-		MarkdownDescription: "ClusterInformation contains the cluster specific information.",
+		Description:         "",
+		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -112,44 +112,44 @@ func (r *CrdProjectcalicoOrgClusterInformationV1Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterInformationSpec contains the values of describing the cluster.",
-				MarkdownDescription: "ClusterInformationSpec contains the values of describing the cluster.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"calico_version": schema.StringAttribute{
-						Description:         "CalicoVersion is the version of Calico that the cluster is running",
-						MarkdownDescription: "CalicoVersion is the version of Calico that the cluster is running",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cluster_guid": schema.StringAttribute{
-						Description:         "ClusterGUID is the GUID of the cluster",
-						MarkdownDescription: "ClusterGUID is the GUID of the cluster",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cluster_type": schema.StringAttribute{
-						Description:         "ClusterType describes the type of the cluster",
-						MarkdownDescription: "ClusterType describes the type of the cluster",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"datastore_ready": schema.BoolAttribute{
-						Description:         "DatastoreReady is used during significant datastore migrations to signal to components such as Felix that it should wait before accessing the datastore.",
-						MarkdownDescription: "DatastoreReady is used during significant datastore migrations to signal to components such as Felix that it should wait before accessing the datastore.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"variant": schema.StringAttribute{
-						Description:         "Variant declares which variant of Calico should be active.",
-						MarkdownDescription: "Variant declares which variant of Calico should be active.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

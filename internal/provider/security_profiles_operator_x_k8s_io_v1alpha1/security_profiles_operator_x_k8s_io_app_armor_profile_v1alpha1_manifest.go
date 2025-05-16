@@ -37,7 +37,6 @@ type SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1ManifestData struct {
 
 	Metadata struct {
 		Name        string            `tfsdk:"name" json:"name"`
-		Namespace   string            `tfsdk:"namespace" json:"namespace"`
 		Labels      map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		Annotations map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 	} `tfsdk:"metadata" json:"metadata"`
@@ -64,7 +63,8 @@ type SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1ManifestData struct {
 				} `tfsdk:"allowed_protocols" json:"allowedProtocols,omitempty"`
 			} `tfsdk:"network" json:"network,omitempty"`
 		} `tfsdk:"abstract" json:"abstract,omitempty"`
-		Policy *string `tfsdk:"policy" json:"policy,omitempty"`
+		ComplainMode *bool `tfsdk:"complain_mode" json:"complainMode,omitempty"`
+		Disabled     *bool `tfsdk:"disabled" json:"disabled,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -74,8 +74,8 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Metadata
 
 func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "AppArmorProfile is the Schema for the apparmorprofiles API",
-		MarkdownDescription: "AppArmorProfile is the Schema for the apparmorprofiles API",
+		Description:         "AppArmorProfile is a cluster level specification for an AppArmor profile.",
+		MarkdownDescription: "AppArmorProfile is a cluster level specification for an AppArmor profile.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -95,18 +95,6 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 					"name": schema.StringAttribute{
 						Description:         "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
 						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
-						Required:            true,
-						Optional:            false,
-						Computed:            false,
-						Validators: []validator.String{
-							validators.NameValidator(),
-							stringvalidator.LengthAtLeast(1),
-						},
-					},
-
-					"namespace": schema.StringAttribute{
-						Description:         "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
-						MarkdownDescription: "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -142,20 +130,20 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "AppArmorProfileSpec defines the desired state of AppArmorProfile",
-				MarkdownDescription: "AppArmorProfileSpec defines the desired state of AppArmorProfile",
+				Description:         "AppArmorProfileSpec defines the desired state of AppArmorProfile.",
+				MarkdownDescription: "AppArmorProfileSpec defines the desired state of AppArmorProfile.",
 				Attributes: map[string]schema.Attribute{
 					"abstract": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Abstract stores the apparmor profile allow lists for executable, file, network and capabilities access.",
+						MarkdownDescription: "Abstract stores the apparmor profile allow lists for executable, file, network and capabilities access.",
 						Attributes: map[string]schema.Attribute{
 							"capability": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Capability rules for Linux capabilities.",
+								MarkdownDescription: "Capability rules for Linux capabilities.",
 								Attributes: map[string]schema.Attribute{
 									"allowed_capabilities": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "AllowedCapabilities lost of allowed capabilities.",
+										MarkdownDescription: "AllowedCapabilities lost of allowed capabilities.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -168,12 +156,12 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 							},
 
 							"executable": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Executable rules for allowed executables.",
+								MarkdownDescription: "Executable rules for allowed executables.",
 								Attributes: map[string]schema.Attribute{
 									"allowed_executables": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "AllowedExecutables list of allowed executables.",
+										MarkdownDescription: "AllowedExecutables list of allowed executables.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -181,8 +169,8 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 									},
 
 									"allowed_libraries": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "AllowedLibraries list of allowed libraries.",
+										MarkdownDescription: "AllowedLibraries list of allowed libraries.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -195,12 +183,12 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 							},
 
 							"filesystem": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Filesystem rules for filesystem access.",
+								MarkdownDescription: "Filesystem rules for filesystem access.",
 								Attributes: map[string]schema.Attribute{
 									"read_only_paths": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "ReadOnlyPaths list of allowed read only file paths.",
+										MarkdownDescription: "ReadOnlyPaths list of allowed read only file paths.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -208,8 +196,8 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 									},
 
 									"read_write_paths": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "ReadWritePaths list of allowed read write file paths.",
+										MarkdownDescription: "ReadWritePaths list of allowed read write file paths.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -217,8 +205,8 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 									},
 
 									"write_only_paths": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "WriteOnlyPaths list of allowed write only file paths.",
+										MarkdownDescription: "WriteOnlyPaths list of allowed write only file paths.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -231,32 +219,32 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 							},
 
 							"network": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Network rules for network access.",
+								MarkdownDescription: "Network rules for network access.",
 								Attributes: map[string]schema.Attribute{
 									"allow_raw": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "AllowRaw allows raw sockets.",
+										MarkdownDescription: "AllowRaw allows raw sockets.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"allowed_protocols": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Protocols keeps the allowed networking protocols.",
+										MarkdownDescription: "Protocols keeps the allowed networking protocols.",
 										Attributes: map[string]schema.Attribute{
 											"allow_tcp": schema.BoolAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "AllowTCP allows TCP socket connections.",
+												MarkdownDescription: "AllowTCP allows TCP socket connections.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"allow_udp": schema.BoolAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "AllowUDP allows UDP sockets connections.",
+												MarkdownDescription: "AllowUDP allows UDP sockets connections.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -277,9 +265,17 @@ func (r *SecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Manifest) Schema(_
 						Computed: false,
 					},
 
-					"policy": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+					"complain_mode": schema.BoolAttribute{
+						Description:         "ComplainMode places the apparmor profile into 'complain' mode, by default is placed in 'enforce' mode. In complain mode, if a given action is not allowed, it will be allowed, but this violation will be logged with a tag of access being 'ALLOWED unconfined'.",
+						MarkdownDescription: "ComplainMode places the apparmor profile into 'complain' mode, by default is placed in 'enforce' mode. In complain mode, if a given action is not allowed, it will be allowed, but this violation will be logged with a tag of access being 'ALLOWED unconfined'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disabled": schema.BoolAttribute{
+						Description:         "Whether the profile is disabled and should be skipped during reconciliation.",
+						MarkdownDescription: "Whether the profile is disabled and should be skipped during reconciliation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

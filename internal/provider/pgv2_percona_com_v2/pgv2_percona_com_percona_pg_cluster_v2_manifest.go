@@ -45,7 +45,9 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Backups *struct {
+		AutoCreateUserSchema *bool `tfsdk:"auto_create_user_schema" json:"autoCreateUserSchema,omitempty"`
+		Backups              *struct {
+			Enabled    *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			Pgbackrest *struct {
 				Configuration *[]struct {
 					ClusterTrustBundle *struct {
@@ -123,9 +125,53 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 						} `tfsdk:"resources" json:"resources,omitempty"`
 					} `tfsdk:"pgbackrest_config" json:"pgbackrestConfig,omitempty"`
 				} `tfsdk:"containers" json:"containers,omitempty"`
-				Global *map[string]string `tfsdk:"global" json:"global,omitempty"`
-				Image  *string            `tfsdk:"image" json:"image,omitempty"`
-				Jobs   *struct {
+				Global        *map[string]string `tfsdk:"global" json:"global,omitempty"`
+				Image         *string            `tfsdk:"image" json:"image,omitempty"`
+				InitContainer *struct {
+					ContainerSecurityContext *struct {
+						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
+							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+						Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+						ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+						ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+						RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+						RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+						RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxOptions         *struct {
+							Level *string `tfsdk:"level" json:"level,omitempty"`
+							Role  *string `tfsdk:"role" json:"role,omitempty"`
+							Type  *string `tfsdk:"type" json:"type,omitempty"`
+							User  *string `tfsdk:"user" json:"user,omitempty"`
+						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+						WindowsOptions *struct {
+							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+							HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+					} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+					Image     *string `tfsdk:"image" json:"image,omitempty"`
+					Resources *struct {
+						Claims *[]struct {
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
+						} `tfsdk:"claims" json:"claims,omitempty"`
+						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+					} `tfsdk:"resources" json:"resources,omitempty"`
+				} `tfsdk:"init_container" json:"initContainer,omitempty"`
+				Jobs *struct {
 					Affinity *struct {
 						NodeAffinity *struct {
 							PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
@@ -257,6 +303,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 						} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
+					BackoffLimit      *int64  `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
 					PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 					Resources         *struct {
 						Claims *[]struct {
@@ -266,6 +313,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
+					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AppArmorProfile *struct {
 							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -276,6 +324,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -309,8 +358,9 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 					TtlSecondsAfterFinished *int64 `tfsdk:"ttl_seconds_after_finished" json:"ttlSecondsAfterFinished,omitempty"`
 				} `tfsdk:"jobs" json:"jobs,omitempty"`
 				Manual *struct {
-					Options  *[]string `tfsdk:"options" json:"options,omitempty"`
-					RepoName *string   `tfsdk:"repo_name" json:"repoName,omitempty"`
+					InitialDelaySeconds *int64    `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					Options             *[]string `tfsdk:"options" json:"options,omitempty"`
+					RepoName            *string   `tfsdk:"repo_name" json:"repoName,omitempty"`
 				} `tfsdk:"manual" json:"manual,omitempty"`
 				Metadata *struct {
 					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -467,6 +517,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1237,8 +1288,11 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 		} `tfsdk:"expose_replicas" json:"exposeReplicas,omitempty"`
 		Extensions *struct {
 			Builtin *struct {
-				Pg_audit        *bool `tfsdk:"pg_audit" json:"pg_audit,omitempty"`
-				Pg_stat_monitor *bool `tfsdk:"pg_stat_monitor" json:"pg_stat_monitor,omitempty"`
+				Pg_audit           *bool `tfsdk:"pg_audit" json:"pg_audit,omitempty"`
+				Pg_repack          *bool `tfsdk:"pg_repack" json:"pg_repack,omitempty"`
+				Pg_stat_monitor    *bool `tfsdk:"pg_stat_monitor" json:"pg_stat_monitor,omitempty"`
+				Pg_stat_statements *bool `tfsdk:"pg_stat_statements" json:"pg_stat_statements,omitempty"`
+				Pgvector           *bool `tfsdk:"pgvector" json:"pgvector,omitempty"`
 			} `tfsdk:"builtin" json:"builtin,omitempty"`
 			Custom *[]struct {
 				Checksum *string `tfsdk:"checksum" json:"checksum,omitempty"`
@@ -1268,6 +1322,50 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+		InitContainer *struct {
+			ContainerSecurityContext *struct {
+				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
+					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+				Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+				ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+				ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+				RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+				RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxOptions         *struct {
+					Level *string `tfsdk:"level" json:"level,omitempty"`
+					Role  *string `tfsdk:"role" json:"role,omitempty"`
+					Type  *string `tfsdk:"type" json:"type,omitempty"`
+					User  *string `tfsdk:"user" json:"user,omitempty"`
+				} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+				SeccompProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+				WindowsOptions *struct {
+					GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+					HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+			Image     *string `tfsdk:"image" json:"image,omitempty"`
+			Resources *struct {
+				Claims *[]struct {
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
+				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+			} `tfsdk:"resources" json:"resources,omitempty"`
+		} `tfsdk:"init_container" json:"initContainer,omitempty"`
 		Instances *[]struct {
 			Affinity *struct {
 				NodeAffinity *struct {
@@ -1442,6 +1540,50 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 				VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
 				VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"data_volume_claim_spec" json:"dataVolumeClaimSpec,omitempty"`
+			InitContainer *struct {
+				ContainerSecurityContext *struct {
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
+						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+					Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+					ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+					ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+					RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions         *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+				Image     *string `tfsdk:"image" json:"image,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			InitContainers *[]struct {
 				Args    *[]string `tfsdk:"args" json:"args,omitempty"`
 				Command *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -1716,6 +1858,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2090,6 +2233,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 		} `tfsdk:"metadata" json:"metadata,omitempty"`
 		Openshift *bool `tfsdk:"openshift" json:"openshift,omitempty"`
 		Patroni   *struct {
+			CreateReplicaMethods       *[]string          `tfsdk:"create_replica_methods" json:"createReplicaMethods,omitempty"`
 			DynamicConfiguration       *map[string]string `tfsdk:"dynamic_configuration" json:"dynamicConfiguration,omitempty"`
 			LeaderLeaseDurationSeconds *int64             `tfsdk:"leader_lease_duration_seconds" json:"leaderLeaseDurationSeconds,omitempty"`
 			Port                       *int64             `tfsdk:"port" json:"port,omitempty"`
@@ -2135,11 +2279,13 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
-			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Image           *string `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			QuerySource     *string `tfsdk:"query_source" json:"querySource,omitempty"`
-			Resources       *struct {
+			CustomClusterName *string `tfsdk:"custom_cluster_name" json:"customClusterName,omitempty"`
+			Enabled           *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Image             *string `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy   *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			PostgresParams    *string `tfsdk:"postgres_params" json:"postgresParams,omitempty"`
+			QuerySource       *string `tfsdk:"query_source" json:"querySource,omitempty"`
+			Resources         *struct {
 				Claims *[]struct {
 					Name    *string `tfsdk:"name" json:"name,omitempty"`
 					Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -2401,6 +2547,7 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2733,12 +2880,14 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 			Port     *int64  `tfsdk:"port" json:"port,omitempty"`
 			RepoName *string `tfsdk:"repo_name" json:"repoName,omitempty"`
 		} `tfsdk:"standby" json:"standby,omitempty"`
+		TlsOnly   *bool `tfsdk:"tls_only" json:"tlsOnly,omitempty"`
 		Unmanaged *bool `tfsdk:"unmanaged" json:"unmanaged,omitempty"`
 		Users     *[]struct {
-			Databases *[]string `tfsdk:"databases" json:"databases,omitempty"`
-			Name      *string   `tfsdk:"name" json:"name,omitempty"`
-			Options   *string   `tfsdk:"options" json:"options,omitempty"`
-			Password  *struct {
+			Databases               *[]string `tfsdk:"databases" json:"databases,omitempty"`
+			GrantPublicSchemaAccess *bool     `tfsdk:"grant_public_schema_access" json:"grantPublicSchemaAccess,omitempty"`
+			Name                    *string   `tfsdk:"name" json:"name,omitempty"`
+			Options                 *string   `tfsdk:"options" json:"options,omitempty"`
+			Password                *struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"password" json:"password,omitempty"`
 			SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
@@ -2823,10 +2972,26 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 				Description:         "",
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
+					"auto_create_user_schema": schema.BoolAttribute{
+						Description:         "Indicates whether schemas are automatically created for the user specified in 'spec.users' across all databases associated with that user.",
+						MarkdownDescription: "Indicates whether schemas are automatically created for the user specified in 'spec.users' across all databases associated with that user.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"backups": schema.SingleNestedAttribute{
 						Description:         "PostgreSQL backup configuration",
 						MarkdownDescription: "PostgreSQL backup configuration",
 						Attributes: map[string]schema.Attribute{
+							"enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"pgbackrest": schema.SingleNestedAttribute{
 								Description:         "pgBackRest archive configuration",
 								MarkdownDescription: "pgBackRest archive configuration",
@@ -3334,6 +3499,301 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"init_container": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"container_security_context": schema.SingleNestedAttribute{
+												Description:         "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence.",
+												MarkdownDescription: "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence.",
+												Attributes: map[string]schema.Attribute{
+													"allow_privilege_escalation": schema.BoolAttribute{
+														Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"capabilities": schema.SingleNestedAttribute{
+														Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"add": schema.ListAttribute{
+																Description:         "Added capabilities",
+																MarkdownDescription: "Added capabilities",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"drop": schema.ListAttribute{
+																Description:         "Removed capabilities",
+																MarkdownDescription: "Removed capabilities",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"privileged": schema.BoolAttribute{
+														Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proc_mount": schema.StringAttribute{
+														Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"read_only_root_filesystem": schema.BoolAttribute{
+														Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_group": schema.Int64Attribute{
+														Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_non_root": schema.BoolAttribute{
+														Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user": schema.Int64Attribute{
+														Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_options": schema.SingleNestedAttribute{
+														Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"level": schema.StringAttribute{
+																Description:         "Level is SELinux level label that applies to the container.",
+																MarkdownDescription: "Level is SELinux level label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"role": schema.StringAttribute{
+																Description:         "Role is a SELinux role label that applies to the container.",
+																MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type is a SELinux type label that applies to the container.",
+																MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"user": schema.StringAttribute{
+																Description:         "User is a SELinux user label that applies to the container.",
+																MarkdownDescription: "User is a SELinux user label that applies to the container.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"seccomp_profile": schema.SingleNestedAttribute{
+														Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"windows_options": schema.SingleNestedAttribute{
+														Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+														Attributes: map[string]schema.Attribute{
+															"gmsa_credential_spec": schema.StringAttribute{
+																Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"gmsa_credential_spec_name": schema.StringAttribute{
+																Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"host_process": schema.BoolAttribute{
+																Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user_name": schema.StringAttribute{
+																Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"image": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"resources": schema.SingleNestedAttribute{
+												Description:         "ResourceRequirements describes the compute resource requirements.",
+												MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+												Attributes: map[string]schema.Attribute{
+													"claims": schema.ListNestedAttribute{
+														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"request": schema.StringAttribute{
+																	Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																	MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"limits": schema.MapAttribute{
+														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"requests": schema.MapAttribute{
+														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"jobs": schema.SingleNestedAttribute{
@@ -4218,6 +4678,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												Computed: false,
 											},
 
+											"backoff_limit": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"priority_class_name": schema.StringAttribute{
 												Description:         "Priority class name for the pgBackRest backup Job pods. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/",
 												MarkdownDescription: "Priority class name for the pgBackRest backup Job pods. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/",
@@ -4278,6 +4746,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "RestartPolicy describes how the container should be restarted. Only one of the following restart policies may be specified. If none of the following policies is specified, the default one is RestartPolicyAlways.",
+												MarkdownDescription: "RestartPolicy describes how the container should be restarted. Only one of the following restart policies may be specified. If none of the following policies is specified, the default one is RestartPolicyAlways.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"security_context": schema.SingleNestedAttribute{
@@ -4344,6 +4820,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													"run_as_user": schema.Int64Attribute{
 														Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 														MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_change_policy": schema.StringAttribute{
+														Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4576,6 +5060,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 										Description:         "Defines details for manual pgBackRest backup Jobs",
 										MarkdownDescription: "Defines details for manual pgBackRest backup Jobs",
 										Attributes: map[string]schema.Attribute{
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "InitialDelaySeconds defines the number of seconds to wait before starting the backup. After the backup pod is scheduled, its entrypoint will wait for this number of seconds before initiating the backup process.",
+												MarkdownDescription: "InitialDelaySeconds defines the number of seconds to wait before starting the backup. After the backup pod is scheduled, its entrypoint will wait for this number of seconds before initiating the backup process.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"options": schema.ListAttribute{
 												Description:         "Command line options to include when running the pgBackRest backup command. https://pgbackrest.org/command.html#command-backup",
 												MarkdownDescription: "Command line options to include when running the pgBackRest backup command. https://pgbackrest.org/command.html#command-backup",
@@ -5636,6 +6128,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													"run_as_user": schema.Int64Attribute{
 														Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 														MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_change_policy": schema.StringAttribute{
+														Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7619,8 +8119,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 										Computed: false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 
@@ -9308,8 +9808,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"stanza": schema.StringAttribute{
-										Description:         "The name of an existing pgBackRest stanza to use as the data source for the new PostgresCluster. Defaults to 'db' if not provided.",
-										MarkdownDescription: "The name of an existing pgBackRest stanza to use as the data source for the new PostgresCluster. Defaults to 'db' if not provided.",
+										Description:         "The name of an existing pgBackRest stanza to use as the data source for the new PostgresCluster.",
+										MarkdownDescription: "The name of an existing pgBackRest stanza to use as the data source for the new PostgresCluster.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -10854,7 +11354,31 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"pg_repack": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pg_stat_monitor": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pg_stat_statements": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pgvector": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -10905,8 +11429,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 							"image": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -11058,6 +11582,301 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 									Optional:            true,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"init_container": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"container_security_context": schema.SingleNestedAttribute{
+								Description:         "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence.",
+								MarkdownDescription: "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence.",
+								Attributes: map[string]schema.Attribute{
+									"allow_privilege_escalation": schema.BoolAttribute{
+										Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"capabilities": schema.SingleNestedAttribute{
+										Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "Added capabilities",
+												MarkdownDescription: "Added capabilities",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"drop": schema.ListAttribute{
+												Description:         "Removed capabilities",
+												MarkdownDescription: "Removed capabilities",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"privileged": schema.BoolAttribute{
+										Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"proc_mount": schema.StringAttribute{
+										Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"read_only_root_filesystem": schema.BoolAttribute{
+										Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_group": schema.Int64Attribute{
+										Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_options": schema.SingleNestedAttribute{
+										Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"level": schema.StringAttribute{
+												Description:         "Level is SELinux level label that applies to the container.",
+												MarkdownDescription: "Level is SELinux level label that applies to the container.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"role": schema.StringAttribute{
+												Description:         "Role is a SELinux role label that applies to the container.",
+												MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "Type is a SELinux type label that applies to the container.",
+												MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"user": schema.StringAttribute{
+												Description:         "User is a SELinux user label that applies to the container.",
+												MarkdownDescription: "User is a SELinux user label that applies to the container.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"seccomp_profile": schema.SingleNestedAttribute{
+										Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+												MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": schema.SingleNestedAttribute{
+										Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+										MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+										Attributes: map[string]schema.Attribute{
+											"gmsa_credential_spec": schema.StringAttribute{
+												Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+												MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"gmsa_credential_spec_name": schema.StringAttribute{
+												Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+												MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"host_process": schema.BoolAttribute{
+												Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user_name": schema.StringAttribute{
+												Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"image": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"resources": schema.SingleNestedAttribute{
+								Description:         "ResourceRequirements describes the compute resource requirements.",
+								MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"limits": schema.MapAttribute{
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"requests": schema.MapAttribute{
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -12225,6 +13044,301 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 									Computed: false,
 								},
 
+								"init_container": schema.SingleNestedAttribute{
+									Description:         "K8SPG-708 InitContainer defines the init container for the instance container of a PostgreSQL pod.",
+									MarkdownDescription: "K8SPG-708 InitContainer defines the init container for the instance container of a PostgreSQL pod.",
+									Attributes: map[string]schema.Attribute{
+										"container_security_context": schema.SingleNestedAttribute{
+											Description:         "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence.",
+											MarkdownDescription: "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence.",
+											Attributes: map[string]schema.Attribute{
+												"allow_privilege_escalation": schema.BoolAttribute{
+													Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"capabilities": schema.SingleNestedAttribute{
+													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"add": schema.ListAttribute{
+															Description:         "Added capabilities",
+															MarkdownDescription: "Added capabilities",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"drop": schema.ListAttribute{
+															Description:         "Removed capabilities",
+															MarkdownDescription: "Removed capabilities",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"privileged": schema.BoolAttribute{
+													Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"proc_mount": schema.StringAttribute{
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"read_only_root_filesystem": schema.BoolAttribute{
+													Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"run_as_group": schema.Int64Attribute{
+													Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"run_as_non_root": schema.BoolAttribute{
+													Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+													MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"run_as_user": schema.Int64Attribute{
+													Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"se_linux_options": schema.SingleNestedAttribute{
+													Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"level": schema.StringAttribute{
+															Description:         "Level is SELinux level label that applies to the container.",
+															MarkdownDescription: "Level is SELinux level label that applies to the container.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"role": schema.StringAttribute{
+															Description:         "Role is a SELinux role label that applies to the container.",
+															MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "Type is a SELinux type label that applies to the container.",
+															MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"user": schema.StringAttribute{
+															Description:         "User is a SELinux user label that applies to the container.",
+															MarkdownDescription: "User is a SELinux user label that applies to the container.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"seccomp_profile": schema.SingleNestedAttribute{
+													Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+															MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+															MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"windows_options": schema.SingleNestedAttribute{
+													Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+													MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+													Attributes: map[string]schema.Attribute{
+														"gmsa_credential_spec": schema.StringAttribute{
+															Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+															MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"gmsa_credential_spec_name": schema.StringAttribute{
+															Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+															MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"host_process": schema.BoolAttribute{
+															Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+															MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"run_as_user_name": schema.StringAttribute{
+															Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+															MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"image": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"resources": schema.SingleNestedAttribute{
+											Description:         "ResourceRequirements describes the compute resource requirements.",
+											MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+											Attributes: map[string]schema.Attribute{
+												"claims": schema.ListNestedAttribute{
+													Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"limits": schema.MapAttribute{
+													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"requests": schema.MapAttribute{
+													Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"init_containers": schema.ListNestedAttribute{
 									Description:         "Additional init containers for PostgreSQL instance pods. Changing this value causes PostgreSQL to restart.",
 									MarkdownDescription: "Additional init containers for PostgreSQL instance pods. Changing this value causes PostgreSQL to restart.",
@@ -12502,8 +13616,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 														Attributes: map[string]schema.Attribute{
 															"exec": schema.SingleNestedAttribute{
-																Description:         "Exec specifies the action to take.",
-																MarkdownDescription: "Exec specifies the action to take.",
+																Description:         "Exec specifies a command to execute in the container.",
+																MarkdownDescription: "Exec specifies a command to execute in the container.",
 																Attributes: map[string]schema.Attribute{
 																	"command": schema.ListAttribute{
 																		Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12520,8 +13634,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"http_get": schema.SingleNestedAttribute{
-																Description:         "HTTPGet specifies the http request to perform.",
-																MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12588,8 +13702,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"sleep": schema.SingleNestedAttribute{
-																Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																Description:         "Sleep represents a duration that the container should sleep.",
+																MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																Attributes: map[string]schema.Attribute{
 																	"seconds": schema.Int64Attribute{
 																		Description:         "Seconds is the number of seconds to sleep.",
@@ -12605,8 +13719,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"tcp_socket": schema.SingleNestedAttribute{
-																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -12639,8 +13753,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 														Attributes: map[string]schema.Attribute{
 															"exec": schema.SingleNestedAttribute{
-																Description:         "Exec specifies the action to take.",
-																MarkdownDescription: "Exec specifies the action to take.",
+																Description:         "Exec specifies a command to execute in the container.",
+																MarkdownDescription: "Exec specifies a command to execute in the container.",
 																Attributes: map[string]schema.Attribute{
 																	"command": schema.ListAttribute{
 																		Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12657,8 +13771,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"http_get": schema.SingleNestedAttribute{
-																Description:         "HTTPGet specifies the http request to perform.",
-																MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12725,8 +13839,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"sleep": schema.SingleNestedAttribute{
-																Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																Description:         "Sleep represents a duration that the container should sleep.",
+																MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																Attributes: map[string]schema.Attribute{
 																	"seconds": schema.Int64Attribute{
 																		Description:         "Seconds is the number of seconds to sleep.",
@@ -12742,8 +13856,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"tcp_socket": schema.SingleNestedAttribute{
-																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -12781,8 +13895,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Attributes: map[string]schema.Attribute{
 													"exec": schema.SingleNestedAttribute{
-														Description:         "Exec specifies the action to take.",
-														MarkdownDescription: "Exec specifies the action to take.",
+														Description:         "Exec specifies a command to execute in the container.",
+														MarkdownDescription: "Exec specifies a command to execute in the container.",
 														Attributes: map[string]schema.Attribute{
 															"command": schema.ListAttribute{
 																Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12807,8 +13921,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"grpc": schema.SingleNestedAttribute{
-														Description:         "GRPC specifies an action involving a GRPC port.",
-														MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+														Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+														MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 														Attributes: map[string]schema.Attribute{
 															"port": schema.Int64Attribute{
 																Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -12832,8 +13946,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"http_get": schema.SingleNestedAttribute{
-														Description:         "HTTPGet specifies the http request to perform.",
-														MarkdownDescription: "HTTPGet specifies the http request to perform.",
+														Description:         "HTTPGet specifies an HTTP GET request to perform.",
+														MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12924,8 +14038,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tcp_socket": schema.SingleNestedAttribute{
-														Description:         "TCPSocket specifies an action involving a TCP port.",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+														Description:         "TCPSocket specifies a connection to a TCP port.",
+														MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -13033,8 +14147,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Attributes: map[string]schema.Attribute{
 													"exec": schema.SingleNestedAttribute{
-														Description:         "Exec specifies the action to take.",
-														MarkdownDescription: "Exec specifies the action to take.",
+														Description:         "Exec specifies a command to execute in the container.",
+														MarkdownDescription: "Exec specifies a command to execute in the container.",
 														Attributes: map[string]schema.Attribute{
 															"command": schema.ListAttribute{
 																Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -13059,8 +14173,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"grpc": schema.SingleNestedAttribute{
-														Description:         "GRPC specifies an action involving a GRPC port.",
-														MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+														Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+														MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 														Attributes: map[string]schema.Attribute{
 															"port": schema.Int64Attribute{
 																Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -13084,8 +14198,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"http_get": schema.SingleNestedAttribute{
-														Description:         "HTTPGet specifies the http request to perform.",
-														MarkdownDescription: "HTTPGet specifies the http request to perform.",
+														Description:         "HTTPGet specifies an HTTP GET request to perform.",
+														MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -13176,8 +14290,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tcp_socket": schema.SingleNestedAttribute{
-														Description:         "TCPSocket specifies an action involving a TCP port.",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+														Description:         "TCPSocket specifies a connection to a TCP port.",
+														MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -13539,8 +14653,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Attributes: map[string]schema.Attribute{
 													"exec": schema.SingleNestedAttribute{
-														Description:         "Exec specifies the action to take.",
-														MarkdownDescription: "Exec specifies the action to take.",
+														Description:         "Exec specifies a command to execute in the container.",
+														MarkdownDescription: "Exec specifies a command to execute in the container.",
 														Attributes: map[string]schema.Attribute{
 															"command": schema.ListAttribute{
 																Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -13565,8 +14679,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"grpc": schema.SingleNestedAttribute{
-														Description:         "GRPC specifies an action involving a GRPC port.",
-														MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+														Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+														MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 														Attributes: map[string]schema.Attribute{
 															"port": schema.Int64Attribute{
 																Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -13590,8 +14704,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"http_get": schema.SingleNestedAttribute{
-														Description:         "HTTPGet specifies the http request to perform.",
-														MarkdownDescription: "HTTPGet specifies the http request to perform.",
+														Description:         "HTTPGet specifies an HTTP GET request to perform.",
+														MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -13682,8 +14796,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tcp_socket": schema.SingleNestedAttribute{
-														Description:         "TCPSocket specifies an action involving a TCP port.",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+														Description:         "TCPSocket specifies a connection to a TCP port.",
+														MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -14058,6 +15172,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 										"run_as_user": schema.Int64Attribute{
 											Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 											MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"se_linux_change_policy": schema.StringAttribute{
+											Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -14496,8 +15618,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 														Attributes: map[string]schema.Attribute{
 															"exec": schema.SingleNestedAttribute{
-																Description:         "Exec specifies the action to take.",
-																MarkdownDescription: "Exec specifies the action to take.",
+																Description:         "Exec specifies a command to execute in the container.",
+																MarkdownDescription: "Exec specifies a command to execute in the container.",
 																Attributes: map[string]schema.Attribute{
 																	"command": schema.ListAttribute{
 																		Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -14514,8 +15636,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"http_get": schema.SingleNestedAttribute{
-																Description:         "HTTPGet specifies the http request to perform.",
-																MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -14582,8 +15704,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"sleep": schema.SingleNestedAttribute{
-																Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																Description:         "Sleep represents a duration that the container should sleep.",
+																MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																Attributes: map[string]schema.Attribute{
 																	"seconds": schema.Int64Attribute{
 																		Description:         "Seconds is the number of seconds to sleep.",
@@ -14599,8 +15721,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"tcp_socket": schema.SingleNestedAttribute{
-																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -14633,8 +15755,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 														Attributes: map[string]schema.Attribute{
 															"exec": schema.SingleNestedAttribute{
-																Description:         "Exec specifies the action to take.",
-																MarkdownDescription: "Exec specifies the action to take.",
+																Description:         "Exec specifies a command to execute in the container.",
+																MarkdownDescription: "Exec specifies a command to execute in the container.",
 																Attributes: map[string]schema.Attribute{
 																	"command": schema.ListAttribute{
 																		Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -14651,8 +15773,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"http_get": schema.SingleNestedAttribute{
-																Description:         "HTTPGet specifies the http request to perform.",
-																MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -14719,8 +15841,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"sleep": schema.SingleNestedAttribute{
-																Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																Description:         "Sleep represents a duration that the container should sleep.",
+																MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																Attributes: map[string]schema.Attribute{
 																	"seconds": schema.Int64Attribute{
 																		Description:         "Seconds is the number of seconds to sleep.",
@@ -14736,8 +15858,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"tcp_socket": schema.SingleNestedAttribute{
-																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -14775,8 +15897,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Attributes: map[string]schema.Attribute{
 													"exec": schema.SingleNestedAttribute{
-														Description:         "Exec specifies the action to take.",
-														MarkdownDescription: "Exec specifies the action to take.",
+														Description:         "Exec specifies a command to execute in the container.",
+														MarkdownDescription: "Exec specifies a command to execute in the container.",
 														Attributes: map[string]schema.Attribute{
 															"command": schema.ListAttribute{
 																Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -14801,8 +15923,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"grpc": schema.SingleNestedAttribute{
-														Description:         "GRPC specifies an action involving a GRPC port.",
-														MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+														Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+														MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 														Attributes: map[string]schema.Attribute{
 															"port": schema.Int64Attribute{
 																Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -14826,8 +15948,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"http_get": schema.SingleNestedAttribute{
-														Description:         "HTTPGet specifies the http request to perform.",
-														MarkdownDescription: "HTTPGet specifies the http request to perform.",
+														Description:         "HTTPGet specifies an HTTP GET request to perform.",
+														MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -14918,8 +16040,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tcp_socket": schema.SingleNestedAttribute{
-														Description:         "TCPSocket specifies an action involving a TCP port.",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+														Description:         "TCPSocket specifies a connection to a TCP port.",
+														MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -15027,8 +16149,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Attributes: map[string]schema.Attribute{
 													"exec": schema.SingleNestedAttribute{
-														Description:         "Exec specifies the action to take.",
-														MarkdownDescription: "Exec specifies the action to take.",
+														Description:         "Exec specifies a command to execute in the container.",
+														MarkdownDescription: "Exec specifies a command to execute in the container.",
 														Attributes: map[string]schema.Attribute{
 															"command": schema.ListAttribute{
 																Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -15053,8 +16175,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"grpc": schema.SingleNestedAttribute{
-														Description:         "GRPC specifies an action involving a GRPC port.",
-														MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+														Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+														MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 														Attributes: map[string]schema.Attribute{
 															"port": schema.Int64Attribute{
 																Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -15078,8 +16200,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"http_get": schema.SingleNestedAttribute{
-														Description:         "HTTPGet specifies the http request to perform.",
-														MarkdownDescription: "HTTPGet specifies the http request to perform.",
+														Description:         "HTTPGet specifies an HTTP GET request to perform.",
+														MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -15170,8 +16292,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tcp_socket": schema.SingleNestedAttribute{
-														Description:         "TCPSocket specifies an action involving a TCP port.",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+														Description:         "TCPSocket specifies a connection to a TCP port.",
+														MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -15533,8 +16655,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 												Attributes: map[string]schema.Attribute{
 													"exec": schema.SingleNestedAttribute{
-														Description:         "Exec specifies the action to take.",
-														MarkdownDescription: "Exec specifies the action to take.",
+														Description:         "Exec specifies a command to execute in the container.",
+														MarkdownDescription: "Exec specifies a command to execute in the container.",
 														Attributes: map[string]schema.Attribute{
 															"command": schema.ListAttribute{
 																Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -15559,8 +16681,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"grpc": schema.SingleNestedAttribute{
-														Description:         "GRPC specifies an action involving a GRPC port.",
-														MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+														Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+														MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 														Attributes: map[string]schema.Attribute{
 															"port": schema.Int64Attribute{
 																Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -15584,8 +16706,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"http_get": schema.SingleNestedAttribute{
-														Description:         "HTTPGet specifies the http request to perform.",
-														MarkdownDescription: "HTTPGet specifies the http request to perform.",
+														Description:         "HTTPGet specifies an HTTP GET request to perform.",
+														MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -15676,8 +16798,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tcp_socket": schema.SingleNestedAttribute{
-														Description:         "TCPSocket specifies an action involving a TCP port.",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+														Description:         "TCPSocket specifies a connection to a TCP port.",
+														MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
 																Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -16587,6 +17709,15 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"create_replica_methods": schema.ListAttribute{
+								Description:         "CreateReplicaMethods allows overriding create_replica_methods for all instances.",
+								MarkdownDescription: "CreateReplicaMethods allows overriding create_replica_methods for all instances.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"dynamic_configuration": schema.MapAttribute{
 								Description:         "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html",
 								MarkdownDescription: "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html",
@@ -16906,6 +18037,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 								Computed: false,
 							},
 
+							"custom_cluster_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -16931,6 +18070,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 								Validators: []validator.String{
 									stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
 								},
+							},
+
+							"postgres_params": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"query_source": schema.StringAttribute{
@@ -17046,7 +18193,7 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 						Computed:            false,
 						Validators: []validator.Int64{
 							int64validator.AtLeast(12),
-							int64validator.AtMost(16),
+							int64validator.AtMost(17),
 						},
 					},
 
@@ -18716,6 +19863,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"se_linux_options": schema.SingleNestedAttribute{
 												Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
@@ -19149,8 +20304,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -19167,8 +20322,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -19235,8 +20390,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -19252,8 +20407,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -19286,8 +20441,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -19304,8 +20459,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -19372,8 +20527,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -19389,8 +20544,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -19428,8 +20583,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -19454,8 +20609,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -19479,8 +20634,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -19571,8 +20726,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -19680,8 +20835,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -19706,8 +20861,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -19731,8 +20886,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -19823,8 +20978,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -20186,8 +21341,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -20212,8 +21367,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -20237,8 +21392,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -20329,8 +21484,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -20941,6 +22096,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
+					"tls_only": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"unmanaged": schema.BoolAttribute{
 						Description:         "Suspends the rollout and reconciliation of changes made to the PostgresCluster spec.",
 						MarkdownDescription: "Suspends the rollout and reconciliation of changes made to the PostgresCluster spec.",
@@ -20958,6 +22121,14 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 									Description:         "Databases to which this user can connect and create objects. Removing a database from this list does NOT revoke access. This field is ignored for the 'postgres' user.",
 									MarkdownDescription: "Databases to which this user can connect and create objects. Removing a database from this list does NOT revoke access. This field is ignored for the 'postgres' user.",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"grant_public_schema_access": schema.BoolAttribute{
+									Description:         "Grant the user access to the public schema in each database listed under 'databases'.",
+									MarkdownDescription: "Grant the user access to the public schema in each database listed under 'databases'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

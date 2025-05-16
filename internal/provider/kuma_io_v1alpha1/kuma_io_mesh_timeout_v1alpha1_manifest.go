@@ -66,6 +66,19 @@ type KumaIoMeshTimeoutV1Alpha1ManifestData struct {
 				Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
+		Rules *[]struct {
+			Default *struct {
+				ConnectionTimeout *string `tfsdk:"connection_timeout" json:"connectionTimeout,omitempty"`
+				Http              *struct {
+					MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
+					MaxStreamDuration     *string `tfsdk:"max_stream_duration" json:"maxStreamDuration,omitempty"`
+					RequestHeadersTimeout *string `tfsdk:"request_headers_timeout" json:"requestHeadersTimeout,omitempty"`
+					RequestTimeout        *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
+					StreamIdleTimeout     *string `tfsdk:"stream_idle_timeout" json:"streamIdleTimeout,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				IdleTimeout *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+			} `tfsdk:"default" json:"default,omitempty"`
+		} `tfsdk:"rules" json:"rules,omitempty"`
 		TargetRef *struct {
 			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -265,11 +278,11 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 
@@ -343,6 +356,91 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 						Computed: false,
 					},
 
+					"rules": schema.ListNestedAttribute{
+						Description:         "Rules defines inbound timeout configurations. Currently limited to exactly one rule containing default timeouts that apply to all inbound traffic, as L7 matching is not yet implemented.",
+						MarkdownDescription: "Rules defines inbound timeout configurations. Currently limited to exactly one rule containing default timeouts that apply to all inbound traffic, as L7 matching is not yet implemented.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default": schema.SingleNestedAttribute{
+									Description:         "Default contains configuration of the inbound timeouts",
+									MarkdownDescription: "Default contains configuration of the inbound timeouts",
+									Attributes: map[string]schema.Attribute{
+										"connection_timeout": schema.StringAttribute{
+											Description:         "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.",
+											MarkdownDescription: "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"http": schema.SingleNestedAttribute{
+											Description:         "Http provides configuration for HTTP specific timeouts",
+											MarkdownDescription: "Http provides configuration for HTTP specific timeouts",
+											Attributes: map[string]schema.Attribute{
+												"max_connection_duration": schema.StringAttribute{
+													Description:         "MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.",
+													MarkdownDescription: "MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_stream_duration": schema.StringAttribute{
+													Description:         "MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.",
+													MarkdownDescription: "MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"request_headers_timeout": schema.StringAttribute{
+													Description:         "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is activated when the first byte of the headers is received, and is disarmed when the last byte of the headers has been received. If not specified or set to 0, this timeout is disabled. Disabled by default.",
+													MarkdownDescription: "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is activated when the first byte of the headers is received, and is disarmed when the last byte of the headers has been received. If not specified or set to 0, this timeout is disabled. Disabled by default.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"request_timeout": schema.StringAttribute{
+													Description:         "RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.",
+													MarkdownDescription: "RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"stream_idle_timeout": schema.StringAttribute{
+													Description:         "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m",
+													MarkdownDescription: "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"idle_timeout": schema.StringAttribute{
+											Description:         "IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.",
+											MarkdownDescription: "IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"target_ref": schema.SingleNestedAttribute{
 						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
@@ -350,11 +448,11 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -508,11 +606,11 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

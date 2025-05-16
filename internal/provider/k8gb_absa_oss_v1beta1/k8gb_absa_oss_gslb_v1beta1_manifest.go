@@ -543,8 +543,8 @@ func (r *K8GbAbsaOssGslbV1Beta1Manifest) Schema(_ context.Context, _ datasource.
 							},
 
 							"split_brain_threshold_seconds": schema.Int64Attribute{
-								Description:         "Split brain TXT record expiration in seconds",
-								MarkdownDescription: "Split brain TXT record expiration in seconds",
+								Description:         "Split brain TXT record expiration in seconds. The field is deprecated and not used.",
+								MarkdownDescription: "Split brain TXT record expiration in seconds. The field is deprecated and not used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

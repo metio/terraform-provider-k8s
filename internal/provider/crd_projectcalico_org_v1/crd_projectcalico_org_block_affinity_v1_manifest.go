@@ -46,6 +46,7 @@ type CrdProjectcalicoOrgBlockAffinityV1ManifestData struct {
 		Deleted *string `tfsdk:"deleted" json:"deleted,omitempty"`
 		Node    *string `tfsdk:"node" json:"node,omitempty"`
 		State   *string `tfsdk:"state" json:"state,omitempty"`
+		Type    *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -111,8 +112,8 @@ func (r *CrdProjectcalicoOrgBlockAffinityV1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BlockAffinitySpec contains the specification for a BlockAffinity resource.",
-				MarkdownDescription: "BlockAffinitySpec contains the specification for a BlockAffinity resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"cidr": schema.StringAttribute{
 						Description:         "",
@@ -123,8 +124,8 @@ func (r *CrdProjectcalicoOrgBlockAffinityV1Manifest) Schema(_ context.Context, _
 					},
 
 					"deleted": schema.StringAttribute{
-						Description:         "Deleted indicates that this block affinity is being deleted. This field is a string for compatibility with older releases that mistakenly treat this field as a string.",
-						MarkdownDescription: "Deleted indicates that this block affinity is being deleted. This field is a string for compatibility with older releases that mistakenly treat this field as a string.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -143,6 +144,14 @@ func (r *CrdProjectcalicoOrgBlockAffinityV1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"type": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 				},

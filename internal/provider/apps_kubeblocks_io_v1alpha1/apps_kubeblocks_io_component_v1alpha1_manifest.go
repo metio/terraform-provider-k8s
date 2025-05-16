@@ -296,8 +296,10 @@ type AppsKubeblocksIoComponentV1Alpha1ManifestData struct {
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 			} `tfsdk:"scheduling_policy" json:"schedulingPolicy,omitempty"`
 			VolumeClaimTemplates *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
-				Spec *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Name        *string            `tfsdk:"name" json:"name,omitempty"`
+				Spec        *struct {
 					AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 					Resources   *struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -893,8 +895,10 @@ type AppsKubeblocksIoComponentV1Alpha1ManifestData struct {
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		VolumeClaimTemplates *[]struct {
-			Name *string `tfsdk:"name" json:"name,omitempty"`
-			Spec *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+			Spec        *struct {
 				AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 				Resources   *struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -3001,6 +3005,24 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ 
 									MarkdownDescription: "Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "Specifies the annotations for the PVC of the volume.",
+												MarkdownDescription: "Specifies the annotations for the PVC of the volume.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "Specifies the labels for the PVC of the volume.",
+												MarkdownDescription: "Specifies the labels for the PVC of the volume.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
 												MarkdownDescription: "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
@@ -7072,6 +7094,24 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that define the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"annotations": schema.MapAttribute{
+									Description:         "Specifies the annotations for the PVC of the volume.",
+									MarkdownDescription: "Specifies the annotations for the PVC of the volume.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"labels": schema.MapAttribute{
+									Description:         "Specifies the labels for the PVC of the volume.",
+									MarkdownDescription: "Specifies the labels for the PVC of the volume.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
 									MarkdownDescription: "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",

@@ -196,17 +196,35 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 				ExcludeInterfaces  *[]string `tfsdk:"exclude_interfaces" json:"excludeInterfaces,omitempty"`
 				Features           *[]string `tfsdk:"features" json:"features,omitempty"`
 				FlowFilter         *struct {
-					Action      *string `tfsdk:"action" json:"action,omitempty"`
-					Cidr        *string `tfsdk:"cidr" json:"cidr,omitempty"`
-					DestPorts   *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
-					Direction   *string `tfsdk:"direction" json:"direction,omitempty"`
-					Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
-					IcmpCode    *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
-					IcmpType    *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
-					PeerIP      *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
-					PktDrops    *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
-					Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
-					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					Action    *string `tfsdk:"action" json:"action,omitempty"`
+					Cidr      *string `tfsdk:"cidr" json:"cidr,omitempty"`
+					DestPorts *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
+					Direction *string `tfsdk:"direction" json:"direction,omitempty"`
+					Enable    *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IcmpCode  *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+					IcmpType  *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+					PeerCIDR  *string `tfsdk:"peer_cidr" json:"peerCIDR,omitempty"`
+					PeerIP    *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
+					PktDrops  *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
+					Ports     *string `tfsdk:"ports" json:"ports,omitempty"`
+					Protocol  *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					Rules     *[]struct {
+						Action      *string `tfsdk:"action" json:"action,omitempty"`
+						Cidr        *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						DestPorts   *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
+						Direction   *string `tfsdk:"direction" json:"direction,omitempty"`
+						IcmpCode    *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+						IcmpType    *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+						PeerCIDR    *string `tfsdk:"peer_cidr" json:"peerCIDR,omitempty"`
+						PeerIP      *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
+						PktDrops    *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
+						Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
+						Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+						Sampling    *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
+						SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
+						TcpFlags    *string `tfsdk:"tcp_flags" json:"tcpFlags,omitempty"`
+					} `tfsdk:"rules" json:"rules,omitempty"`
+					Sampling    *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
 					SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
 					TcpFlags    *string `tfsdk:"tcp_flags" json:"tcpFlags,omitempty"`
 				} `tfsdk:"flow_filter" json:"flowFilter,omitempty"`
@@ -914,7 +932,16 @@ type FlowsNetobservIoFlowCollectorV1Beta2ManifestData struct {
 					Name  *string   `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"secondary_networks" json:"secondaryNetworks,omitempty"`
 			} `tfsdk:"advanced" json:"advanced,omitempty"`
-			ClusterName             *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+			ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+			Deduper     *struct {
+				Mode     *string `tfsdk:"mode" json:"mode,omitempty"`
+				Sampling *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
+			} `tfsdk:"deduper" json:"deduper,omitempty"`
+			Filters *[]struct {
+				OutputTarget *string `tfsdk:"output_target" json:"outputTarget,omitempty"`
+				Query        *string `tfsdk:"query" json:"query,omitempty"`
+				Sampling     *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
+			} `tfsdk:"filters" json:"filters,omitempty"`
 			ImagePullPolicy         *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			KafkaConsumerAutoscaler *struct {
 				MaxReplicas *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
@@ -2161,8 +2188,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"features": schema.ListAttribute{
-										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': enable the Network events monitoring feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. IMPORTANT: this feature is available as a Developer Preview.<br>",
-										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': enable the Network events monitoring feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. IMPORTANT: this feature is available as a Developer Preview.<br>",
+										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': Enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': Enable the DNS tracking feature.<br> - 'FlowRTT': Enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': Enable the network events monitoring feature, such as correlating flows and network policies. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. IMPORTANT: This feature is available as a Technology Preview.<br> - 'PacketTranslation': Enable enriching flows with packet translation information, such as Service NAT.<br> - 'EbpfManager': [Unsupported (*)]. Use eBPF Manager to manage NetObserv eBPF programs. Pre-requisite: the eBPF Manager operator (or upstream bpfman operator) must be installed.<br> - 'UDNMapping': Enable interfaces mapping to User Defined Networks (UDN). <br> This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. - 'IPSec', to track flows between nodes with IPsec encryption. <br>",
+										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': Enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': Enable the DNS tracking feature.<br> - 'FlowRTT': Enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': Enable the network events monitoring feature, such as correlating flows and network policies. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. IMPORTANT: This feature is available as a Technology Preview.<br> - 'PacketTranslation': Enable enriching flows with packet translation information, such as Service NAT.<br> - 'EbpfManager': [Unsupported (*)]. Use eBPF Manager to manage NetObserv eBPF programs. Pre-requisite: the eBPF Manager operator (or upstream bpfman operator) must be installed.<br> - 'UDNMapping': Enable interfaces mapping to User Defined Networks (UDN). <br> This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. - 'IPSec', to track flows between nodes with IPsec encryption. <br>",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2174,8 +2201,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'flowFilter' defines the eBPF agent configuration regarding flow filtering.",
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
-												Description:         "'action' defines the action to perform on the flows that match the filter.",
-												MarkdownDescription: "'action' defines the action to perform on the flows that match the filter.",
+												Description:         "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
+												MarkdownDescription: "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2193,16 +2220,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"dest_ports": schema.StringAttribute{
-												Description:         "'destPorts' defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "'destPorts' defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"direction": schema.StringAttribute{
-												Description:         "'direction' defines the direction to filter flows by.",
-												MarkdownDescription: "'direction' defines the direction to filter flows by.",
+												Description:         "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
+												MarkdownDescription: "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2220,48 +2247,56 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"icmp_code": schema.Int64Attribute{
-												Description:         "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, defines the ICMP code to filter flows by.",
-												MarkdownDescription: "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, defines the ICMP code to filter flows by.",
+												Description:         "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
+												MarkdownDescription: "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"icmp_type": schema.Int64Attribute{
-												Description:         "'icmpType', for ICMP traffic, defines the ICMP type to filter flows by.",
-												MarkdownDescription: "'icmpType', for ICMP traffic, defines the ICMP type to filter flows by.",
+												Description:         "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+												MarkdownDescription: "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"peer_cidr": schema.StringAttribute{
+												Description:         "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+												MarkdownDescription: "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"peer_ip": schema.StringAttribute{
-												Description:         "'peerIP' defines the IP address to filter flows by. Example: '10.10.10.10'.",
-												MarkdownDescription: "'peerIP' defines the IP address to filter flows by. Example: '10.10.10.10'.",
+												Description:         "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
+												MarkdownDescription: "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"pkt_drops": schema.BoolAttribute{
-												Description:         "'pktDrops', to filter flows with packet drops",
-												MarkdownDescription: "'pktDrops', to filter flows with packet drops",
+												Description:         "'pktDrops' optionally filters only flows containing packet drops.",
+												MarkdownDescription: "'pktDrops' optionally filters only flows containing packet drops.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ports": schema.StringAttribute{
-												Description:         "'ports' defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "'ports' defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"protocol": schema.StringAttribute{
-												Description:         "'protocol' defines the protocol to filter flows by.",
-												MarkdownDescription: "'protocol' defines the protocol to filter flows by.",
+												Description:         "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
+												MarkdownDescription: "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2270,17 +2305,160 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 											},
 
+											"rules": schema.ListNestedAttribute{
+												Description:         "'rules' defines a list of filtering rules on the eBPF Agents. When filtering is enabled, by default, flows that don't match any rule are rejected. To change the default, you can define a rule that accepts everything: '{ action: 'Accept', cidr: '0.0.0.0/0' }', and then refine with rejecting rules.",
+												MarkdownDescription: "'rules' defines a list of filtering rules on the eBPF Agents. When filtering is enabled, by default, flows that don't match any rule are rejected. To change the default, you can define a rule that accepts everything: '{ action: 'Accept', cidr: '0.0.0.0/0' }', and then refine with rejecting rules.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"action": schema.StringAttribute{
+															Description:         "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
+															MarkdownDescription: "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Accept", "Reject"),
+															},
+														},
+
+														"cidr": schema.StringAttribute{
+															Description:         "'cidr' defines the IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															MarkdownDescription: "'cidr' defines the IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"dest_ports": schema.StringAttribute{
+															Description:         "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															MarkdownDescription: "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"direction": schema.StringAttribute{
+															Description:         "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
+															MarkdownDescription: "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Ingress", "Egress"),
+															},
+														},
+
+														"icmp_code": schema.Int64Attribute{
+															Description:         "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
+															MarkdownDescription: "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"icmp_type": schema.Int64Attribute{
+															Description:         "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+															MarkdownDescription: "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"peer_cidr": schema.StringAttribute{
+															Description:         "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															MarkdownDescription: "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"peer_ip": schema.StringAttribute{
+															Description:         "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
+															MarkdownDescription: "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"pkt_drops": schema.BoolAttribute{
+															Description:         "'pktDrops' optionally filters only flows containing packet drops.",
+															MarkdownDescription: "'pktDrops' optionally filters only flows containing packet drops.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"ports": schema.StringAttribute{
+															Description:         "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															MarkdownDescription: "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"protocol": schema.StringAttribute{
+															Description:         "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
+															MarkdownDescription: "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("TCP", "UDP", "ICMP", "ICMPv6", "SCTP"),
+															},
+														},
+
+														"sampling": schema.Int64Attribute{
+															Description:         "'sampling' is the sampling ratio for the matched packets, overriding the global sampling defined at 'spec.agent.ebpf.sampling'.",
+															MarkdownDescription: "'sampling' is the sampling ratio for the matched packets, overriding the global sampling defined at 'spec.agent.ebpf.sampling'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"source_ports": schema.StringAttribute{
+															Description:         "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															MarkdownDescription: "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"tcp_flags": schema.StringAttribute{
+															Description:         "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
+															MarkdownDescription: "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("SYN", "SYN-ACK", "ACK", "FIN", "RST", "URG", "ECE", "CWR", "FIN-ACK", "RST-ACK"),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sampling": schema.Int64Attribute{
+												Description:         "'sampling' is the sampling ratio for the matched packets, overriding the global sampling defined at 'spec.agent.ebpf.sampling'.",
+												MarkdownDescription: "'sampling' is the sampling ratio for the matched packets, overriding the global sampling defined at 'spec.agent.ebpf.sampling'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"source_ports": schema.StringAttribute{
-												Description:         "'sourcePorts' defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "'sourcePorts' defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"tcp_flags": schema.StringAttribute{
-												Description:         "'tcpFlags' defines the TCP flags to filter flows by.",
-												MarkdownDescription: "'tcpFlags' defines the TCP flags to filter flows by.",
+												Description:         "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
+												MarkdownDescription: "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2567,8 +2745,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"sampling": schema.Int64Attribute{
-										Description:         "Sampling rate of the flow reporter. 100 means one flow on 100 is sent. 0 or 1 means all flows are sampled.",
-										MarkdownDescription: "Sampling rate of the flow reporter. 100 means one flow on 100 is sent. 0 or 1 means all flows are sampled.",
+										Description:         "Sampling ratio of the eBPF probe. 100 means one packet on 100 is sent. 0 or 1 means all packets are sampled.",
+										MarkdownDescription: "Sampling ratio of the eBPF probe. 100 means one packet on 100 is sent. 0 or 1 means all packets are sampled.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4453,8 +4631,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 					},
 
 					"exporters": schema.ListNestedAttribute{
-						Description:         "'exporters' define additional optional exporters for custom consumption or storage.",
-						MarkdownDescription: "'exporters' define additional optional exporters for custom consumption or storage.",
+						Description:         "'exporters' defines additional optional exporters for custom consumption or storage.",
+						MarkdownDescription: "'exporters' defines additional optional exporters for custom consumption or storage.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ipfix": schema.SingleNestedAttribute{
@@ -4462,16 +4640,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									MarkdownDescription: "IPFIX configuration, such as the IP address and port to send enriched IPFIX flows to.",
 									Attributes: map[string]schema.Attribute{
 										"target_host": schema.StringAttribute{
-											Description:         "Address of the IPFIX external receiver",
-											MarkdownDescription: "Address of the IPFIX external receiver",
+											Description:         "Address of the IPFIX external receiver.",
+											MarkdownDescription: "Address of the IPFIX external receiver.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"target_port": schema.Int64Attribute{
-											Description:         "Port for the IPFIX external receiver",
-											MarkdownDescription: "Port for the IPFIX external receiver",
+											Description:         "Port for the IPFIX external receiver.",
+											MarkdownDescription: "Port for the IPFIX external receiver.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -4618,8 +4796,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											MarkdownDescription: "TLS client configuration. When using TLS, verify that the address matches the Kafka port used for TLS, generally 9093.",
 											Attributes: map[string]schema.Attribute{
 												"ca_cert": schema.SingleNestedAttribute{
-													Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-													MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+													Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+													MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 													Attributes: map[string]schema.Attribute{
 														"cert_file": schema.StringAttribute{
 															Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -4686,8 +4864,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"user_cert": schema.SingleNestedAttribute{
-													Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-													MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+													Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+													MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 													Attributes: map[string]schema.Attribute{
 														"cert_file": schema.StringAttribute{
 															Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -4756,12 +4934,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 								},
 
 								"open_telemetry": schema.SingleNestedAttribute{
-									Description:         "Open telemetry configuration, such as the IP address and port to send enriched logs, metrics and or traces to.",
-									MarkdownDescription: "Open telemetry configuration, such as the IP address and port to send enriched logs, metrics and or traces to.",
+									Description:         "OpenTelemetry configuration, such as the IP address and port to send enriched logs or metrics to.",
+									MarkdownDescription: "OpenTelemetry configuration, such as the IP address and port to send enriched logs or metrics to.",
 									Attributes: map[string]schema.Attribute{
 										"fields_mapping": schema.ListNestedAttribute{
-											Description:         "Custom fields mapping to an OpenTelemetry conformant format. By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal . As there is currently no accepted otlp standard for L3/4 network logs, you can freely override it with your own.",
-											MarkdownDescription: "Custom fields mapping to an OpenTelemetry conformant format. By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal . As there is currently no accepted otlp standard for L3/4 network logs, you can freely override it with your own.",
+											Description:         "Custom fields mapping to an OpenTelemetry conformant format. By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal . As there is currently no accepted standard for L3 or L4 enriched network logs, you can freely override it with your own.",
+											MarkdownDescription: "Custom fields mapping to an OpenTelemetry conformant format. By default, NetObserv format proposal is used: https://github.com/rhobs/observability-data-model/blob/main/network-observability.md#format-proposal . As there is currently no accepted standard for L3 or L4 enriched network logs, you can freely override it with your own.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"input": schema.StringAttribute{
@@ -4804,12 +4982,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										},
 
 										"logs": schema.SingleNestedAttribute{
-											Description:         "Open telemetry configuration for logs.",
-											MarkdownDescription: "Open telemetry configuration for logs.",
+											Description:         "OpenTelemetry configuration for logs.",
+											MarkdownDescription: "OpenTelemetry configuration for logs.",
 											Attributes: map[string]schema.Attribute{
 												"enable": schema.BoolAttribute{
-													Description:         "Set 'enable' to 'true' to send logs to Open Telemetry receiver.",
-													MarkdownDescription: "Set 'enable' to 'true' to send logs to Open Telemetry receiver.",
+													Description:         "Set 'enable' to 'true' to send logs to an OpenTelemetry receiver.",
+													MarkdownDescription: "Set 'enable' to 'true' to send logs to an OpenTelemetry receiver.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4821,20 +4999,20 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										},
 
 										"metrics": schema.SingleNestedAttribute{
-											Description:         "Open telemetry configuration for metrics.",
-											MarkdownDescription: "Open telemetry configuration for metrics.",
+											Description:         "OpenTelemetry configuration for metrics.",
+											MarkdownDescription: "OpenTelemetry configuration for metrics.",
 											Attributes: map[string]schema.Attribute{
 												"enable": schema.BoolAttribute{
-													Description:         "Set 'enable' to 'true' to send metrics to Open Telemetry receiver.",
-													MarkdownDescription: "Set 'enable' to 'true' to send metrics to Open Telemetry receiver.",
+													Description:         "Set 'enable' to 'true' to send metrics to an OpenTelemetry receiver.",
+													MarkdownDescription: "Set 'enable' to 'true' to send metrics to an OpenTelemetry receiver.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"push_time_interval": schema.StringAttribute{
-													Description:         "How often should metrics be sent to collector",
-													MarkdownDescription: "How often should metrics be sent to collector",
+													Description:         "Specify how often metrics are sent to a collector.",
+													MarkdownDescription: "Specify how often metrics are sent to a collector.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4846,8 +5024,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										},
 
 										"protocol": schema.StringAttribute{
-											Description:         "Protocol of Open Telemetry connection. The available options are 'http' and 'grpc'.",
-											MarkdownDescription: "Protocol of Open Telemetry connection. The available options are 'http' and 'grpc'.",
+											Description:         "Protocol of the OpenTelemetry connection. The available options are 'http' and 'grpc'.",
+											MarkdownDescription: "Protocol of the OpenTelemetry connection. The available options are 'http' and 'grpc'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4857,16 +5035,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										},
 
 										"target_host": schema.StringAttribute{
-											Description:         "Address of the Open Telemetry receiver",
-											MarkdownDescription: "Address of the Open Telemetry receiver",
+											Description:         "Address of the OpenTelemetry receiver.",
+											MarkdownDescription: "Address of the OpenTelemetry receiver.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"target_port": schema.Int64Attribute{
-											Description:         "Port for the Open Telemetry receiver",
-											MarkdownDescription: "Port for the Open Telemetry receiver",
+											Description:         "Port for the OpenTelemetry receiver.",
+											MarkdownDescription: "Port for the OpenTelemetry receiver.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -4877,8 +5055,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											MarkdownDescription: "TLS client configuration.",
 											Attributes: map[string]schema.Attribute{
 												"ca_cert": schema.SingleNestedAttribute{
-													Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-													MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+													Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+													MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 													Attributes: map[string]schema.Attribute{
 														"cert_file": schema.StringAttribute{
 															Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -4945,8 +5123,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												},
 
 												"user_cert": schema.SingleNestedAttribute{
-													Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-													MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+													Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+													MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 													Attributes: map[string]schema.Attribute{
 														"cert_file": schema.StringAttribute{
 															Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5007,8 +5185,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "'type' selects the type of exporters. The available options are 'Kafka' and 'IPFIX'.",
-									MarkdownDescription: "'type' selects the type of exporters. The available options are 'Kafka' and 'IPFIX'.",
+									Description:         "'type' selects the type of exporters. The available options are 'Kafka', 'IPFIX', and 'OpenTelemetry'.",
+									MarkdownDescription: "'type' selects the type of exporters. The available options are 'Kafka', 'IPFIX', and 'OpenTelemetry'.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -5148,8 +5326,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 								MarkdownDescription: "TLS client configuration. When using TLS, verify that the address matches the Kafka port used for TLS, generally 9093.",
 								Attributes: map[string]schema.Attribute{
 									"ca_cert": schema.SingleNestedAttribute{
-										Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-										MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+										Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+										MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 										Attributes: map[string]schema.Attribute{
 											"cert_file": schema.StringAttribute{
 												Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5216,8 +5394,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"user_cert": schema.SingleNestedAttribute{
-										Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-										MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+										Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+										MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 										Attributes: map[string]schema.Attribute{
 											"cert_file": schema.StringAttribute{
 												Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5403,8 +5581,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "TLS client configuration for Loki status URL.",
 										Attributes: map[string]schema.Attribute{
 											"ca_cert": schema.SingleNestedAttribute{
-												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5471,8 +5649,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"user_cert": schema.SingleNestedAttribute{
-												Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+												Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5548,8 +5726,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "TLS client configuration for Loki URL.",
 										Attributes: map[string]schema.Attribute{
 											"ca_cert": schema.SingleNestedAttribute{
-												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5616,8 +5794,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"user_cert": schema.SingleNestedAttribute{
-												Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+												Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5710,8 +5888,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "TLS client configuration for Loki URL.",
 										Attributes: map[string]schema.Attribute{
 											"ca_cert": schema.SingleNestedAttribute{
-												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5778,8 +5956,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"user_cert": schema.SingleNestedAttribute{
-												Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+												Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5867,8 +6045,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 										MarkdownDescription: "TLS client configuration for Loki URL.",
 										Attributes: map[string]schema.Attribute{
 											"ca_cert": schema.SingleNestedAttribute{
-												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+												Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+												MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -5935,8 +6113,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 											},
 
 											"user_cert": schema.SingleNestedAttribute{
-												Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+												Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+												MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 												Attributes: map[string]schema.Attribute{
 													"cert_file": schema.StringAttribute{
 														Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -6057,8 +6235,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 						MarkdownDescription: "'networkPolicy' defines ingress network policy settings for NetObserv components isolation.",
 						Attributes: map[string]schema.Attribute{
 							"additional_namespaces": schema.ListAttribute{
-								Description:         "'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace. It gives some flexibility in the network policy configuration, however should you need a more specific configuration, you can disable it and install your own instead.",
-								MarkdownDescription: "'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace. It gives some flexibility in the network policy configuration, however should you need a more specific configuration, you can disable it and install your own instead.",
+								Description:         "'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace. It provides flexibility in the network policy configuration, but if you need a more specific configuration, you can disable it and install your own instead.",
+								MarkdownDescription: "'additionalNamespaces' contains additional namespaces allowed to connect to the NetObserv namespace. It provides flexibility in the network policy configuration, but if you need a more specific configuration, you can disable it and install your own instead.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -6066,8 +6244,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default. These network policies better isolate the NetObserv components to prevent undesired connections to them. We recommend you either enable it, or create your own network policy for NetObserv.",
-								MarkdownDescription: "Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default. These network policies better isolate the NetObserv components to prevent undesired connections to them. We recommend you either enable it, or create your own network policy for NetObserv.",
+								Description:         "Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default. These network policies better isolate the NetObserv components to prevent undesired connections to them. To increase the security of connections, enable this option or create your own network policy.",
+								MarkdownDescription: "Set 'enable' to 'true' to deploy network policies on the namespaces used by NetObserv (main and privileged). It is disabled by default. These network policies better isolate the NetObserv components to prevent undesired connections to them. To increase the security of connections, enable this option or create your own network policy.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -7135,13 +7313,13 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"secondary_networks": schema.ListNestedAttribute{
-										Description:         "Define secondary networks to be checked for resources identification. In order to guarantee a correct identification, it is important that the indexed values form an unique identifier across the cluster. If there are collisions in the indexes (same index used by several resources), those resources might be wrongly labelled.",
-										MarkdownDescription: "Define secondary networks to be checked for resources identification. In order to guarantee a correct identification, it is important that the indexed values form an unique identifier across the cluster. If there are collisions in the indexes (same index used by several resources), those resources might be wrongly labelled.",
+										Description:         "Defines secondary networks to be checked for resources identification. To guarantee a correct identification, indexed values must form an unique identifier across the cluster. If the same index is used by several resources, those resources might be incorrectly labeled.",
+										MarkdownDescription: "Defines secondary networks to be checked for resources identification. To guarantee a correct identification, indexed values must form an unique identifier across the cluster. If the same index is used by several resources, those resources might be incorrectly labeled.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"index": schema.ListAttribute{
-													Description:         "'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: MAC, IP, Interface",
-													MarkdownDescription: "'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: MAC, IP, Interface",
+													Description:         "'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: 'MAC', 'IP', 'Interface'. Fields absent from the 'k8s.v1.cni.cncf.io/network-status' annotation must not be added to the index.",
+													MarkdownDescription: "'index' is a list of fields to use for indexing the pods. They should form a unique Pod identifier across the cluster. Can be any of: 'MAC', 'IP', 'Interface'. Fields absent from the 'k8s.v1.cni.cncf.io/network-status' annotation must not be added to the index.",
 													ElementType:         types.StringType,
 													Required:            true,
 													Optional:            false,
@@ -7173,6 +7351,78 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"deduper": schema.SingleNestedAttribute{
+								Description:         "'deduper' allows you to sample or drop flows identified as duplicates, in order to save on resource usage.",
+								MarkdownDescription: "'deduper' allows you to sample or drop flows identified as duplicates, in order to save on resource usage.",
+								Attributes: map[string]schema.Attribute{
+									"mode": schema.StringAttribute{
+										Description:         "Set the Processor de-duplication mode. It comes in addition to the Agent-based deduplication, since the Agent cannot de-duplicate same flows reported from different nodes.<br> - Use 'Drop' to drop every flow considered as duplicates, allowing saving more on resource usage but potentially losing some information such as the network interfaces used from peer, or network events.<br> - Use 'Sample' to randomly keep only one flow on 50, which is the default, among the ones considered as duplicates. This is a compromise between dropping every duplicate or keeping every duplicate. This sampling action comes in addition to the Agent-based sampling. If both Agent and Processor sampling values are '50', the combined sampling is 1:2500.<br> - Use 'Disabled' to turn off Processor-based de-duplication.<br>",
+										MarkdownDescription: "Set the Processor de-duplication mode. It comes in addition to the Agent-based deduplication, since the Agent cannot de-duplicate same flows reported from different nodes.<br> - Use 'Drop' to drop every flow considered as duplicates, allowing saving more on resource usage but potentially losing some information such as the network interfaces used from peer, or network events.<br> - Use 'Sample' to randomly keep only one flow on 50, which is the default, among the ones considered as duplicates. This is a compromise between dropping every duplicate or keeping every duplicate. This sampling action comes in addition to the Agent-based sampling. If both Agent and Processor sampling values are '50', the combined sampling is 1:2500.<br> - Use 'Disabled' to turn off Processor-based de-duplication.<br>",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Disabled", "Drop", "Sample"),
+										},
+									},
+
+									"sampling": schema.Int64Attribute{
+										Description:         "'sampling' is the sampling ratio when deduper 'mode' is 'Sample'. For example, a value of '50' means that 1 flow in 50 is sampled.",
+										MarkdownDescription: "'sampling' is the sampling ratio when deduper 'mode' is 'Sample'. For example, a value of '50' means that 1 flow in 50 is sampled.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"filters": schema.ListNestedAttribute{
+								Description:         "'filters' lets you define custom filters to limit the amount of generated flows. These filters provide more flexibility than the eBPF Agent filters (in 'spec.agent.ebpf.flowFilter'), such as allowing to filter by Kubernetes namespace, but with a lesser improvement in performance.",
+								MarkdownDescription: "'filters' lets you define custom filters to limit the amount of generated flows. These filters provide more flexibility than the eBPF Agent filters (in 'spec.agent.ebpf.flowFilter'), such as allowing to filter by Kubernetes namespace, but with a lesser improvement in performance.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"output_target": schema.StringAttribute{
+											Description:         "If specified, these filters target a single output: 'Loki', 'Metrics' or 'Exporters'. By default, all outputs are targeted.",
+											MarkdownDescription: "If specified, these filters target a single output: 'Loki', 'Metrics' or 'Exporters'. By default, all outputs are targeted.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("", "Loki", "Metrics", "Exporters"),
+											},
+										},
+
+										"query": schema.StringAttribute{
+											Description:         "A query that selects the network flows to keep. More information about this query language in https://github.com/netobserv/flowlogs-pipeline/blob/main/docs/filtering.md.",
+											MarkdownDescription: "A query that selects the network flows to keep. More information about this query language in https://github.com/netobserv/flowlogs-pipeline/blob/main/docs/filtering.md.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sampling": schema.Int64Attribute{
+											Description:         "'sampling' is an optional sampling ratio to apply to this filter. For example, a value of '50' means that 1 matching flow in 50 is sampled.",
+											MarkdownDescription: "'sampling' is an optional sampling ratio to apply to this filter. For example, a value of '50' means that 1 matching flow in 50 is sampled.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"image_pull_policy": schema.StringAttribute{
@@ -7800,8 +8050,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 							},
 
 							"log_types": schema.StringAttribute{
-								Description:         "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' (default) to export regular network flows<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'EndedConversations' to generate only ended conversations events<br> - 'All' to generate both network flows and all conversations events<br>",
-								MarkdownDescription: "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' (default) to export regular network flows<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'EndedConversations' to generate only ended conversations events<br> - 'All' to generate both network flows and all conversations events<br>",
+								Description:         "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' to export regular network flows. This is the default.<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates. Note that in this mode, Prometheus metrics are not accurate on long-standing conversations.<br> - 'EndedConversations' to generate only ended conversations events. Note that in this mode, Prometheus metrics are not accurate on long-standing conversations.<br> - 'All' to generate both network flows and all conversations events. It is not recommended due to the impact on resources footprint.<br>",
+								MarkdownDescription: "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'Flows' to export regular network flows. This is the default.<br> - 'Conversations' to generate events for started conversations, ended conversations as well as periodic 'tick' updates. Note that in this mode, Prometheus metrics are not accurate on long-standing conversations.<br> - 'EndedConversations' to generate only ended conversations events. Note that in this mode, Prometheus metrics are not accurate on long-standing conversations.<br> - 'All' to generate both network flows and all conversations events. It is not recommended due to the impact on resources footprint.<br>",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -7824,8 +8074,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 									},
 
 									"include_list": schema.ListAttribute{
-										Description:         "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
-										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										Description:         "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled), 'namespace_network_policy_events_total' (when 'NetworkEvents' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' shows up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'node_egress_bytes_total', 'workload_ingress_bytes_total', 'workload_egress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled), 'namespace_network_policy_events_total' (when 'NetworkEvents' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -8127,8 +8377,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 												MarkdownDescription: "TLS client configuration for Prometheus URL.",
 												Attributes: map[string]schema.Attribute{
 													"ca_cert": schema.SingleNestedAttribute{
-														Description:         "'caCert' defines the reference of the certificate for the Certificate Authority",
-														MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority",
+														Description:         "'caCert' defines the reference of the certificate for the Certificate Authority.",
+														MarkdownDescription: "'caCert' defines the reference of the certificate for the Certificate Authority.",
 														Attributes: map[string]schema.Attribute{
 															"cert_file": schema.StringAttribute{
 																Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
@@ -8195,8 +8445,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta2Manifest) Schema(_ context.Context,
 													},
 
 													"user_cert": schema.SingleNestedAttribute{
-														Description:         "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
-														MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS (you can ignore it when using one-way TLS)",
+														Description:         "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
+														MarkdownDescription: "'userCert' defines the user certificate reference and is used for mTLS. When you use one-way TLS, you can ignore this property.",
 														Attributes: map[string]schema.Attribute{
 															"cert_file": schema.StringAttribute{
 																Description:         "'certFile' defines the path to the certificate file name within the config map or secret.",
