@@ -226,6 +226,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
 		Hostname            *string   `tfsdk:"hostname" json:"hostname,omitempty"`
+		Idle_deployment     *bool     `tfsdk:"idle_deployment" json:"idle_deployment,omitempty"`
 		Image               *string   `tfsdk:"image" json:"image,omitempty"`
 		Image_pull_policy   *string   `tfsdk:"image_pull_policy" json:"image_pull_policy,omitempty"`
 		Image_pull_secret   *string   `tfsdk:"image_pull_secret" json:"image_pull_secret,omitempty"`
@@ -283,6 +284,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Metrics_utility_pvc_claim_storage_class       *string   `tfsdk:"metrics_utility_pvc_claim_storage_class" json:"metrics_utility_pvc_claim_storage_class,omitempty"`
 		Metrics_utility_secret                        *string   `tfsdk:"metrics_utility_secret" json:"metrics_utility_secret,omitempty"`
 		Metrics_utility_ship_target                   *string   `tfsdk:"metrics_utility_ship_target" json:"metrics_utility_ship_target,omitempty"`
+		Nginx_client_max_body_size                    *int64    `tfsdk:"nginx_client_max_body_size" json:"nginx_client_max_body_size,omitempty"`
 		Nginx_listen_queue_size                       *int64    `tfsdk:"nginx_listen_queue_size" json:"nginx_listen_queue_size,omitempty"`
 		Nginx_worker_connections                      *int64    `tfsdk:"nginx_worker_connections" json:"nginx_worker_connections,omitempty"`
 		Nginx_worker_cpu_affinity                     *string   `tfsdk:"nginx_worker_cpu_affinity" json:"nginx_worker_cpu_affinity,omitempty"`
@@ -348,6 +350,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Projects_storage_class       *string   `tfsdk:"projects_storage_class" json:"projects_storage_class,omitempty"`
 		Projects_storage_size        *string   `tfsdk:"projects_storage_size" json:"projects_storage_size,omitempty"`
 		Projects_use_existing_claim  *string   `tfsdk:"projects_use_existing_claim" json:"projects_use_existing_claim,omitempty"`
+		Public_base_url              *string   `tfsdk:"public_base_url" json:"public_base_url,omitempty"`
 		Receptor_log_level           *string   `tfsdk:"receptor_log_level" json:"receptor_log_level,omitempty"`
 		Redis_capabilities           *[]string `tfsdk:"redis_capabilities" json:"redis_capabilities,omitempty"`
 		Redis_image                  *string   `tfsdk:"redis_image" json:"redis_image,omitempty"`
@@ -2029,6 +2032,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"idle_deployment": schema.BoolAttribute{
+						Description:         "Scale down deployments to put AWX into an idle state",
+						MarkdownDescription: "Scale down deployments to put AWX into an idle state",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"image": schema.StringAttribute{
 						Description:         "Registry path to the application container to use",
 						MarkdownDescription: "Registry path to the application container to use",
@@ -2464,6 +2475,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 					"metrics_utility_ship_target": schema.StringAttribute{
 						Description:         "Metrics-Utility Ship Target",
 						MarkdownDescription: "Metrics-Utility Ship Target",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"nginx_client_max_body_size": schema.Int64Attribute{
+						Description:         "Sets the maximum allowed size of the client request body in megabytes (defaults to 5M)",
+						MarkdownDescription: "Sets the maximum allowed size of the client request body in megabytes (defaults to 5M)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2933,6 +2952,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("_Yes_", "_No_"),
 						},
+					},
+
+					"public_base_url": schema.StringAttribute{
+						Description:         "Public base URL",
+						MarkdownDescription: "Public base URL",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"receptor_log_level": schema.StringAttribute{

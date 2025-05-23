@@ -213,8 +213,8 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "SecurityGroupSpec defines the desired state of SecurityGroup. Describes a security group.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
-						Description:         "A description for the security group. This is informational only. Constraints: Up to 255 characters in length Constraints for EC2-Classic: ASCII characters Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
-						MarkdownDescription: "A description for the security group. This is informational only. Constraints: Up to 255 characters in length Constraints for EC2-Classic: ASCII characters Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
+						Description:         "A description for the security group. Constraints: Up to 255 characters in length Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
+						MarkdownDescription: "A description for the security group. Constraints: Up to 255 characters in length Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -723,8 +723,8 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the security group. Constraints: Up to 255 characters in length. Cannot start with sg-. Constraints for EC2-Classic: ASCII characters Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
-						MarkdownDescription: "The name of the security group. Constraints: Up to 255 characters in length. Cannot start with sg-. Constraints for EC2-Classic: ASCII characters Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
+						Description:         "The name of the security group. Constraints: Up to 255 characters in length. Cannot start with sg-. Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
+						MarkdownDescription: "The name of the security group. Constraints: Up to 255 characters in length. Cannot start with sg-. Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -758,8 +758,8 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"vpc_id": schema.StringAttribute{
-						Description:         "[EC2-VPC] The ID of the VPC. Required for EC2-VPC.",
-						MarkdownDescription: "[EC2-VPC] The ID of the VPC. Required for EC2-VPC.",
+						Description:         "The ID of the VPC. Required for a nondefault VPC.",
+						MarkdownDescription: "The ID of the VPC. Required for a nondefault VPC.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

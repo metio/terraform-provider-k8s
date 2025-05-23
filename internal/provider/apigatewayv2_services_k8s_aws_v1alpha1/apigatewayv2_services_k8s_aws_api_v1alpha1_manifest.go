@@ -147,32 +147,32 @@ func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Schema(_ context.Context
 				MarkdownDescription: "ApiSpec defines the desired state of Api. Represents an API.",
 				Attributes: map[string]schema.Attribute{
 					"api_key_selection_expression": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "An API key selection expression. Supported only for WebSocket APIs. See API Key Selection Expressions (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions).",
+						MarkdownDescription: "An API key selection expression. Supported only for WebSocket APIs. See API Key Selection Expressions (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"basepath": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Specifies how to interpret the base path of the API during import. Valid values are ignore, prepend, and split. The default value is ignore. To learn more, see Set the OpenAPI basePath Property (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api-basePath.html). Supported only for HTTP APIs.",
+						MarkdownDescription: "Specifies how to interpret the base path of the API during import. Valid values are ignore, prepend, and split. The default value is ignore. To learn more, see Set the OpenAPI basePath Property (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api-basePath.html). Supported only for HTTP APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"body": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The OpenAPI definition. Supported only for HTTP APIs.",
+						MarkdownDescription: "The OpenAPI definition. Supported only for HTTP APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cors_configuration": schema.SingleNestedAttribute{
-						Description:         "Represents a CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information.",
-						MarkdownDescription: "Represents a CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information.",
+						Description:         "A CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information.",
+						MarkdownDescription: "A CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information.",
 						Attributes: map[string]schema.Attribute{
 							"allow_credentials": schema.BoolAttribute{
 								Description:         "",
@@ -232,80 +232,80 @@ func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"credentials_arn": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "This property is part of quick create. It specifies the credentials required for the integration, if any. For a Lambda integration, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, specify null. Currently, this property is not used for HTTP integrations. Supported only for HTTP APIs.",
+						MarkdownDescription: "This property is part of quick create. It specifies the credentials required for the integration, if any. For a Lambda integration, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, specify null. Currently, this property is not used for HTTP integrations. Supported only for HTTP APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The description of the API.",
+						MarkdownDescription: "The description of the API.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"disable_execute_api_endpoint": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Specifies whether clients can invoke your API by using the default execute-api endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.",
+						MarkdownDescription: "Specifies whether clients can invoke your API by using the default execute-api endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"disable_schema_validation": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Avoid validating models when creating a deployment. Supported only for WebSocket APIs.",
+						MarkdownDescription: "Avoid validating models when creating a deployment. Supported only for WebSocket APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"fail_on_warnings": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Specifies whether to rollback the API creation when a warning is encountered. By default, API creation continues if a warning is encountered.",
+						MarkdownDescription: "Specifies whether to rollback the API creation when a warning is encountered. By default, API creation continues if a warning is encountered.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The name of the API.",
+						MarkdownDescription: "The name of the API.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"protocol_type": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The API protocol.",
+						MarkdownDescription: "The API protocol.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"route_key": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "This property is part of quick create. If you don't specify a routeKey, a default route of $default is created. The $default route acts as a catch-all for any request made to your API, for a particular stage. The $default route key can't be modified. You can add routes after creating the API, and you can update the route keys of additional routes. Supported only for HTTP APIs.",
+						MarkdownDescription: "This property is part of quick create. If you don't specify a routeKey, a default route of $default is created. The $default route acts as a catch-all for any request made to your API, for a particular stage. The $default route key can't be modified. You can add routes after creating the API, and you can update the route keys of additional routes. Supported only for HTTP APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"route_selection_expression": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The route selection expression for the API. For HTTP APIs, the routeSelectionExpression must be ${request.method} ${request.path}. If not provided, this will be the default for HTTP APIs. This property is required for WebSocket APIs.",
+						MarkdownDescription: "The route selection expression for the API. For HTTP APIs, the routeSelectionExpression must be ${request.method} ${request.path}. If not provided, this will be the default for HTTP APIs. This property is required for WebSocket APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The collection of tags. Each tag element is associated with a given resource.",
+						MarkdownDescription: "The collection of tags. Each tag element is associated with a given resource.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -313,16 +313,16 @@ func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"target": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "This property is part of quick create. Quick create produces an API with an integration, a default catch-all route, and a default stage which is configured to automatically deploy changes. For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN. The type of the integration will be HTTP_PROXY or AWS_PROXY, respectively. Supported only for HTTP APIs.",
+						MarkdownDescription: "This property is part of quick create. Quick create produces an API with an integration, a default catch-all route, and a default stage which is configured to automatically deploy changes. For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN. The type of the integration will be HTTP_PROXY or AWS_PROXY, respectively. Supported only for HTTP APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "A version identifier for the API.",
+						MarkdownDescription: "A version identifier for the API.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

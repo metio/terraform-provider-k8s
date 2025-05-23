@@ -92,6 +92,45 @@ type KumaIoMeshAccessLogV1Alpha1ManifestData struct {
 				Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
+		Rules *[]struct {
+			Default *struct {
+				Backends *[]struct {
+					File *struct {
+						Format *struct {
+							Json *[]struct {
+								Key   *string `tfsdk:"key" json:"key,omitempty"`
+								Value *string `tfsdk:"value" json:"value,omitempty"`
+							} `tfsdk:"json" json:"json,omitempty"`
+							OmitEmptyValues *bool   `tfsdk:"omit_empty_values" json:"omitEmptyValues,omitempty"`
+							Plain           *string `tfsdk:"plain" json:"plain,omitempty"`
+							Type            *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"format" json:"format,omitempty"`
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+					} `tfsdk:"file" json:"file,omitempty"`
+					OpenTelemetry *struct {
+						Attributes *[]struct {
+							Key   *string `tfsdk:"key" json:"key,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"attributes" json:"attributes,omitempty"`
+						Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
+						Endpoint *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+					} `tfsdk:"open_telemetry" json:"openTelemetry,omitempty"`
+					Tcp *struct {
+						Address *string `tfsdk:"address" json:"address,omitempty"`
+						Format  *struct {
+							Json *[]struct {
+								Key   *string `tfsdk:"key" json:"key,omitempty"`
+								Value *string `tfsdk:"value" json:"value,omitempty"`
+							} `tfsdk:"json" json:"json,omitempty"`
+							OmitEmptyValues *bool   `tfsdk:"omit_empty_values" json:"omitEmptyValues,omitempty"`
+							Plain           *string `tfsdk:"plain" json:"plain,omitempty"`
+							Type            *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"format" json:"format,omitempty"`
+					} `tfsdk:"tcp" json:"tcp,omitempty"`
+					Type *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"backends" json:"backends,omitempty"`
+			} `tfsdk:"default" json:"default,omitempty"`
+		} `tfsdk:"rules" json:"rules,omitempty"`
 		TargetRef *struct {
 			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -261,16 +300,16 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				"key": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"value": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -340,16 +379,16 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																		"key": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"value": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -411,16 +450,16 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				"key": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"value": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -484,8 +523,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											Computed: false,
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -496,11 +535,11 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 
@@ -574,6 +613,270 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Computed: false,
 					},
 
+					"rules": schema.ListNestedAttribute{
+						Description:         "Rules defines inbound access log configurations. Currently limited to selecting all inbound traffic, as L7 matching is not yet implemented.",
+						MarkdownDescription: "Rules defines inbound access log configurations. Currently limited to selecting all inbound traffic, as L7 matching is not yet implemented.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default": schema.SingleNestedAttribute{
+									Description:         "Default contains configuration of the inbound access logging",
+									MarkdownDescription: "Default contains configuration of the inbound access logging",
+									Attributes: map[string]schema.Attribute{
+										"backends": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"file": schema.SingleNestedAttribute{
+														Description:         "FileBackend defines configuration for file based access logs",
+														MarkdownDescription: "FileBackend defines configuration for file based access logs",
+														Attributes: map[string]schema.Attribute{
+															"format": schema.SingleNestedAttribute{
+																Description:         "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Attributes: map[string]schema.Attribute{
+																	"json": schema.ListNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"value": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"omit_empty_values": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"plain": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("Plain", "Json"),
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "Path to a file that logs will be written to",
+																MarkdownDescription: "Path to a file that logs will be written to",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"open_telemetry": schema.SingleNestedAttribute{
+														Description:         "Defines an OpenTelemetry logging backend.",
+														MarkdownDescription: "Defines an OpenTelemetry logging backend.",
+														Attributes: map[string]schema.Attribute{
+															"attributes": schema.ListNestedAttribute{
+																Description:         "Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"value": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"body": schema.MapAttribute{
+																Description:         "Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"endpoint": schema.StringAttribute{
+																Description:         "Endpoint of OpenTelemetry collector. An empty port defaults to 4317.",
+																MarkdownDescription: "Endpoint of OpenTelemetry collector. An empty port defaults to 4317.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp": schema.SingleNestedAttribute{
+														Description:         "TCPBackend defines a TCP logging backend.",
+														MarkdownDescription: "TCPBackend defines a TCP logging backend.",
+														Attributes: map[string]schema.Attribute{
+															"address": schema.StringAttribute{
+																Description:         "Address of the TCP logging backend",
+																MarkdownDescription: "Address of the TCP logging backend",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+
+															"format": schema.SingleNestedAttribute{
+																Description:         "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Attributes: map[string]schema.Attribute{
+																	"json": schema.ListNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"value": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"omit_empty_values": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"plain": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("Plain", "Json"),
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Tcp", "File", "OpenTelemetry"),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"target_ref": schema.SingleNestedAttribute{
 						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in-place.",
 						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in-place.",
@@ -581,11 +884,11 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -683,16 +986,16 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				"key": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"value": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -762,16 +1065,16 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																		"key": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"value": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -833,16 +1136,16 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				"key": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"value": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																				},
 																			},
@@ -906,8 +1209,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											Computed: false,
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -918,11 +1221,11 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

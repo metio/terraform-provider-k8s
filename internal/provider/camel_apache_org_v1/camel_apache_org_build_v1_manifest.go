@@ -105,7 +105,11 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					ToolImage         *string            `tfsdk:"tool_image" json:"toolImage,omitempty"`
 				} `tfsdk:"configuration" json:"configuration,omitempty"`
 				Dependencies *[]string `tfsdk:"dependencies" json:"dependencies,omitempty"`
-				Maven        *struct {
+				Git          *struct {
+					Secret *string `tfsdk:"secret" json:"secret,omitempty"`
+					Url    *string `tfsdk:"url" json:"url,omitempty"`
+				} `tfsdk:"git" json:"git,omitempty"`
+				Maven *struct {
 					CaSecrets *[]struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -325,7 +329,11 @@ type CamelApacheOrgBuildV1ManifestData struct {
 					ToolImage         *string            `tfsdk:"tool_image" json:"toolImage,omitempty"`
 				} `tfsdk:"configuration" json:"configuration,omitempty"`
 				Dependencies *[]string `tfsdk:"dependencies" json:"dependencies,omitempty"`
-				Maven        *struct {
+				Git          *struct {
+					Secret *string `tfsdk:"secret" json:"secret,omitempty"`
+					Url    *string `tfsdk:"url" json:"url,omitempty"`
+				} `tfsdk:"git" json:"git,omitempty"`
+				Maven *struct {
 					CaSecrets *[]struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -713,8 +721,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"buildah": schema.SingleNestedAttribute{
-									Description:         "a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									Description:         "a BuildahTask, for Buildah strategy Deprecated: use jib or a custom publishing strategy instead",
+									MarkdownDescription: "a BuildahTask, for Buildah strategy Deprecated: use jib or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -1067,6 +1075,31 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 											Computed:            false,
 										},
 
+										"git": schema.SingleNestedAttribute{
+											Description:         "the configuration of the project to build on Git",
+											MarkdownDescription: "the configuration of the project to build on Git",
+											Attributes: map[string]schema.Attribute{
+												"secret": schema.StringAttribute{
+													Description:         "the Kubernetes secret where token is stored",
+													MarkdownDescription: "the Kubernetes secret where token is stored",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"url": schema.StringAttribute{
+													Description:         "the URL of the project",
+													MarkdownDescription: "the URL of the project",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"maven": schema.SingleNestedAttribute{
 											Description:         "the configuration required by Maven for the application build phase",
 											MarkdownDescription: "the configuration required by Maven for the application build phase",
@@ -1085,8 +1118,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1192,8 +1225,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1225,8 +1258,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1422,8 +1455,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1455,8 +1488,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1497,8 +1530,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1530,8 +1563,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2287,8 +2320,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"kaniko": schema.SingleNestedAttribute{
-									Description:         "a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									Description:         "a KanikoTask, for Kaniko strategy Deprecated: use jib or a custom publishing strategy instead",
+									MarkdownDescription: "a KanikoTask, for Kaniko strategy Deprecated: use jib or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -2658,6 +2691,31 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 											Computed:            false,
 										},
 
+										"git": schema.SingleNestedAttribute{
+											Description:         "the configuration of the project to build on Git",
+											MarkdownDescription: "the configuration of the project to build on Git",
+											Attributes: map[string]schema.Attribute{
+												"secret": schema.StringAttribute{
+													Description:         "the Kubernetes secret where token is stored",
+													MarkdownDescription: "the Kubernetes secret where token is stored",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"url": schema.StringAttribute{
+													Description:         "the URL of the project",
+													MarkdownDescription: "the URL of the project",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"maven": schema.SingleNestedAttribute{
 											Description:         "the configuration required by Maven for the application build phase",
 											MarkdownDescription: "the configuration required by Maven for the application build phase",
@@ -2676,8 +2734,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2783,8 +2841,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2816,8 +2874,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3013,8 +3071,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3046,8 +3104,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3088,8 +3146,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3121,8 +3179,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3518,8 +3576,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"s2i": schema.SingleNestedAttribute{
-									Description:         "a S2iTask, for S2I strategy",
-									MarkdownDescription: "a S2iTask, for S2I strategy",
+									Description:         "a S2iTask, for S2I strategy Deprecated: use jib or a custom publishing strategy instead",
+									MarkdownDescription: "a S2iTask, for S2I strategy Deprecated: use jib or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -3722,8 +3780,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"spectrum": schema.SingleNestedAttribute{
-									Description:         "a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									Description:         "a SpectrumTask, for Spectrum strategy Deprecated: use jib or a custom publishing strategy instead",
+									MarkdownDescription: "a SpectrumTask, for Spectrum strategy Deprecated: use jib or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",

@@ -142,6 +142,7 @@ type CouchbaseComCouchbaseClusterV2ManifestData struct {
 			IndexServiceMemoryQuota    *string `tfsdk:"index_service_memory_quota" json:"indexServiceMemoryQuota,omitempty"`
 			IndexStorageSetting        *string `tfsdk:"index_storage_setting" json:"indexStorageSetting,omitempty"`
 			Indexer                    *struct {
+				EnablePageBloomFilter  *bool   `tfsdk:"enable_page_bloom_filter" json:"enablePageBloomFilter,omitempty"`
 				EnableShardAffinity    *bool   `tfsdk:"enable_shard_affinity" json:"enableShardAffinity,omitempty"`
 				LogLevel               *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 				MaxRollbackPoints      *int64  `tfsdk:"max_rollback_points" json:"maxRollbackPoints,omitempty"`
@@ -233,6 +234,12 @@ type CouchbaseComCouchbaseClusterV2ManifestData struct {
 				} `tfsdk:"sidecar" json:"sidecar,omitempty"`
 			} `tfsdk:"server" json:"server,omitempty"`
 		} `tfsdk:"logging" json:"logging,omitempty"`
+		Migration *struct {
+			MaxConcurrentMigrations *int64  `tfsdk:"max_concurrent_migrations" json:"maxConcurrentMigrations,omitempty"`
+			NumUnmanagedNodes       *int64  `tfsdk:"num_unmanaged_nodes" json:"numUnmanagedNodes,omitempty"`
+			StabilizationPeriod     *string `tfsdk:"stabilization_period" json:"stabilizationPeriod,omitempty"`
+			UnmanagedClusterHost    *string `tfsdk:"unmanaged_cluster_host" json:"unmanagedClusterHost,omitempty"`
+		} `tfsdk:"migration" json:"migration,omitempty"`
 		Monitoring *struct {
 			Prometheus *struct {
 				AuthorizationSecret *string `tfsdk:"authorization_secret" json:"authorizationSecret,omitempty"`
@@ -366,6 +373,7 @@ type CouchbaseComCouchbaseClusterV2ManifestData struct {
 		} `tfsdk:"networking" json:"networking,omitempty"`
 		OnlineVolumeExpansionTimeoutInMins *int64  `tfsdk:"online_volume_expansion_timeout_in_mins" json:"onlineVolumeExpansionTimeoutInMins,omitempty"`
 		Paused                             *bool   `tfsdk:"paused" json:"paused,omitempty"`
+		PerServiceClassPDB                 *bool   `tfsdk:"per_service_class_pdb" json:"perServiceClassPDB,omitempty"`
 		Platform                           *string `tfsdk:"platform" json:"platform,omitempty"`
 		RecoveryPolicy                     *string `tfsdk:"recovery_policy" json:"recoveryPolicy,omitempty"`
 		RollingUpgrade                     *struct {
@@ -1241,8 +1249,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "Buckets defines whether the Operator should manage buckets, and how to lookup bucket resources.",
 						Attributes: map[string]schema.Attribute{
 							"managed": schema.BoolAttribute{
-								Description:         "Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket, CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources. Manual addition of buckets will be reverted by the Operator. When user managed, the Operator will not interrogate buckets at all. This field defaults to false.",
-								MarkdownDescription: "Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket, CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources. Manual addition of buckets will be reverted by the Operator. When user managed, the Operator will not interrogate buckets at all. This field defaults to false.",
+								Description:         "Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket or CouchbaseEphemeralBucket resources. Manual addition of buckets will be reverted by the Operator. When user managed, the Operator will not interrogate buckets at all. This field defaults to false.",
+								MarkdownDescription: "Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket or CouchbaseEphemeralBucket resources. Manual addition of buckets will be reverted by the Operator. When user managed, the Operator will not interrogate buckets at all. This field defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1331,8 +1339,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"auto_compaction": schema.SingleNestedAttribute{
-								Description:         "AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run.",
-								MarkdownDescription: "AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run.",
+								Description:         "AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run. Cluster level settings will be used as the default when creating new buckets and any changes to the settings will be applied to all existing buckets that have not had their auto-compaction settings individually modified.",
+								MarkdownDescription: "AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run. Cluster level settings will be used as the default when creating new buckets and any changes to the settings will be applied to all existing buckets that have not had their auto-compaction settings individually modified.",
 								Attributes: map[string]schema.Attribute{
 									"database_fragmentation_threshold": schema.SingleNestedAttribute{
 										Description:         "DatabaseFragmentationThreshold defines triggers for when database compaction should start.",
@@ -1379,8 +1387,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "TimeWindow allows restriction of when compaction can occur.",
 										Attributes: map[string]schema.Attribute{
 											"abort_compaction_outside_window": schema.BoolAttribute{
-												Description:         "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window.",
-												MarkdownDescription: "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window.",
+												Description:         "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window, defaulting to false.",
+												MarkdownDescription: "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window, defaulting to false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1526,11 +1534,15 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"min_replicas_count": schema.Int64Attribute{
-										Description:         "MinReplicasCount allows the minimum number of replicas required for buckets to be set. New buckets cannot be created with less than this minimum. Defaults to 0.",
-										MarkdownDescription: "MinReplicasCount allows the minimum number of replicas required for buckets to be set. New buckets cannot be created with less than this minimum. Defaults to 0.",
+										Description:         "MinReplicasCount allows the minimum number of replicas required for buckets to be set. New buckets cannot be created with less than this minimum. This field must be between 0 and 3, defaulting to 0.",
+										MarkdownDescription: "MinReplicasCount allows the minimum number of replicas required for buckets to be set. New buckets cannot be created with less than this minimum. This field must be between 0 and 3, defaulting to 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(3),
+										},
 									},
 
 									"non_io_threads": schema.Int64Attribute{
@@ -1622,6 +1634,14 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								Description:         "Indexer allows the indexer to be configured.",
 								MarkdownDescription: "Indexer allows the indexer to be configured.",
 								Attributes: map[string]schema.Attribute{
+									"enable_page_bloom_filter": schema.BoolAttribute{
+										Description:         "EnablePageBloomFilter gives Couchbase Server guidance whether bloom filters should be used when item lookups occur. These help to indicate during a lookup that an item is not on disk, and therefore prevent unnecessary on-disk searches. This field is only supported on CB versions 7.1.0+.",
+										MarkdownDescription: "EnablePageBloomFilter gives Couchbase Server guidance whether bloom filters should be used when item lookups occur. These help to indicate during a lookup that an item is not on disk, and therefore prevent unnecessary on-disk searches. This field is only supported on CB versions 7.1.0+.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enable_shard_affinity": schema.BoolAttribute{
 										Description:         "EnableShardAffinity when false Index Servers rebuild any index that are newly assigned to them during a rebalance. When set to true, Couchbase Server moves a reassigned index’s files between Index Servers. This field is only supported on CB versions 7.6.0+.",
 										MarkdownDescription: "EnableShardAffinity when false Index Servers rebuild any index that are newly assigned to them during a rebalance. When set to true, Couchbase Server moves a reassigned index’s files between Index Servers. This field is only supported on CB versions 7.6.0+.",
@@ -1661,13 +1681,14 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"num_replica": schema.Int64Attribute{
-										Description:         "NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This defaults to 0, which means no index replicas to be created by default. Minimum must be 0.",
-										MarkdownDescription: "NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This defaults to 0, which means no index replicas to be created by default. Minimum must be 0.",
+										Description:         "NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This field must be between 0 and 16, defaulting to 0, which means no index replicas to be created by default.",
+										MarkdownDescription: "NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This field must be between 0 and 16, defaulting to 0, which means no index replicas to be created by default.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.Int64{
 											int64validator.AtLeast(0),
+											int64validator.AtMost(16),
 										},
 									},
 
@@ -2065,8 +2086,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "Handle all optional garbage collection (GC) configuration for the audit functionality. This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs. By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs. This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
 										Attributes: map[string]schema.Attribute{
 											"sidecar": schema.SingleNestedAttribute{
-												Description:         "DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+ Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
-												MarkdownDescription: "DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+ Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
+												Description:         "DEPRECATED - by spec.logging.audit.rotation for Couchbase Server 7.2.4+ Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
+												MarkdownDescription: "DEPRECATED - by spec.logging.audit.rotation for Couchbase Server 7.2.4+ Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
 												Attributes: map[string]schema.Attribute{
 													"age": schema.StringAttribute{
 														Description:         "The minimum age of rotated log files to remove, defaults to one hour.",
@@ -2321,6 +2342,53 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"migration": schema.SingleNestedAttribute{
+						Description:         "Migration defines the specification for a CouchbaseCluster assimilation of an unmanaged cluster to a managed Kubernetes cluster",
+						MarkdownDescription: "Migration defines the specification for a CouchbaseCluster assimilation of an unmanaged cluster to a managed Kubernetes cluster",
+						Attributes: map[string]schema.Attribute{
+							"max_concurrent_migrations": schema.Int64Attribute{
+								Description:         "MaxConcurrentMigrations is the maximum number of nodes migrations the operator will run concurrently.",
+								MarkdownDescription: "MaxConcurrentMigrations is the maximum number of nodes migrations the operator will run concurrently.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"num_unmanaged_nodes": schema.Int64Attribute{
+								Description:         "NumUnmanagedNodes is the number of nodes the operator will leave in the cluster unmigrated. This is useful for controlling how much of the cluster to migrate over at a time. If not specified the operator will migrate all nodes. e.g. if the unmanaged cluster has 10 nodes and NumUnmanagedNodes is set to 2, then the operator will migrate 8 nodes to Kubernetes and leave 2 nodes.",
+								MarkdownDescription: "NumUnmanagedNodes is the number of nodes the operator will leave in the cluster unmigrated. This is useful for controlling how much of the cluster to migrate over at a time. If not specified the operator will migrate all nodes. e.g. if the unmanaged cluster has 10 nodes and NumUnmanagedNodes is set to 2, then the operator will migrate 8 nodes to Kubernetes and leave 2 nodes.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"stabilization_period": schema.StringAttribute{
+								Description:         "StabilizationPeriod is the time the operator will wait after a migration before starting the next migration. If not specified the operator will start the next migration immediately.",
+								MarkdownDescription: "StabilizationPeriod is the time the operator will wait after a migration before starting the next migration. If not specified the operator will start the next migration immediately.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"unmanaged_cluster_host": schema.StringAttribute{
+								Description:         "UnmanagedClusterHost is a host of the unmanaged Couchbase cluster to be migrated. This is the host that the operator will connect to to start the migration process.",
+								MarkdownDescription: "UnmanagedClusterHost is a host of the unmanaged Couchbase cluster to be migrated. This is the host that the operator will connect to to start the migration process.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^((([a-zA-Z0-9](-?[a-zA-Z0-9])*)\.)+[a-zA-Z]{2,})|((25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})|(([0-9A-Fa-f]{1,4}:){1,7}[0-9A-Fa-f]{1,4})$`), ""),
+								},
 							},
 						},
 						Required: false,
@@ -2663,8 +2731,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbase cluster.",
 								Attributes: map[string]schema.Attribute{
 									"image": schema.StringAttribute{
-										Description:         "Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag. TODO: provide a default kubebuilder default image tag as field is mandatory.",
-										MarkdownDescription: "Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag. TODO: provide a default kubebuilder default image tag as field is mandatory.",
+										Description:         "Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag.",
+										MarkdownDescription: "Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -3278,6 +3346,14 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					"paused": schema.BoolAttribute{
 						Description:         "Paused is to pause the control of the operator for the Couchbase cluster. This does not pause the cluster itself, instead stopping the operator from taking any action.",
 						MarkdownDescription: "Paused is to pause the control of the operator for the Couchbase cluster. This does not pause the cluster itself, instead stopping the operator from taking any action.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"per_service_class_pdb": schema.BoolAttribute{
+						Description:         "PerServiceClassPDB allows pod disruption budgets to be created on a per-serviceClass basis.",
+						MarkdownDescription: "PerServiceClassPDB allows pod disruption budgets to be created on a per-serviceClass basis.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5854,8 +5930,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"services": schema.ListAttribute{
-									Description:         "Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once.",
-									MarkdownDescription: "Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once.",
+									Description:         "Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once. An empty list can also be specified for a serviceless class ('[]').",
+									MarkdownDescription: "Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once. An empty list can also be specified for a serviceless class ('[]').",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,

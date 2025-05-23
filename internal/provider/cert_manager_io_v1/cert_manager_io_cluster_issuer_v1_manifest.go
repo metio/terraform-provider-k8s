@@ -99,6 +99,7 @@ type CertManagerIoClusterIssuerV1ManifestData struct {
 						ManagedIdentity *struct {
 							ClientID   *string `tfsdk:"client_id" json:"clientID,omitempty"`
 							ResourceID *string `tfsdk:"resource_id" json:"resourceID,omitempty"`
+							TenantID   *string `tfsdk:"tenant_id" json:"tenantID,omitempty"`
 						} `tfsdk:"managed_identity" json:"managedIdentity,omitempty"`
 						ResourceGroupName *string `tfsdk:"resource_group_name" json:"resourceGroupName,omitempty"`
 						SubscriptionID    *string `tfsdk:"subscription_id" json:"subscriptionID,omitempty"`
@@ -602,9 +603,10 @@ type CertManagerIoClusterIssuerV1ManifestData struct {
 				Key  *string `tfsdk:"key" json:"key,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"client_key_secret_ref" json:"clientKeySecretRef,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Path      *string `tfsdk:"path" json:"path,omitempty"`
-			Server    *string `tfsdk:"server" json:"server,omitempty"`
+			Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Path       *string `tfsdk:"path" json:"path,omitempty"`
+			Server     *string `tfsdk:"server" json:"server,omitempty"`
+			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 		} `tfsdk:"vault" json:"vault,omitempty"`
 		Venafi *struct {
 			Cloud *struct {
@@ -788,8 +790,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"preferred_chain": schema.StringAttribute{
-								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the combined set of ACME default and alternative chains that has a root-most certificate with this value as its issuer's commonname.",
-								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the combined set of ACME default and alternative chains that has a root-most certificate with this value as its issuer's commonname.",
+								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST cross-sign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the combined set of ACME default and alternative chains that has a root-most certificate with this value as its issuer's commonname.",
+								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST cross-sign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the combined set of ACME default and alternative chains that has a root-most certificate with this value as its issuer's commonname.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1043,16 +1045,24 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 															MarkdownDescription: "Auth: Azure Workload Identity or Azure Managed Service Identity: Settings to enable Azure Workload Identity or Azure Managed Service Identity If set, ClientID, ClientSecret and TenantID must not be set.",
 															Attributes: map[string]schema.Attribute{
 																"client_id": schema.StringAttribute{
-																	Description:         "client ID of the managed identity, can not be used at the same time as resourceID",
-																	MarkdownDescription: "client ID of the managed identity, can not be used at the same time as resourceID",
+																	Description:         "client ID of the managed identity, cannot be used at the same time as resourceID",
+																	MarkdownDescription: "client ID of the managed identity, cannot be used at the same time as resourceID",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"resource_id": schema.StringAttribute{
-																	Description:         "resource ID of the managed identity, can not be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
-																	MarkdownDescription: "resource ID of the managed identity, can not be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+																	Description:         "resource ID of the managed identity, cannot be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+																	MarkdownDescription: "resource ID of the managed identity, cannot be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"tenant_id": schema.StringAttribute{
+																	Description:         "tenant ID of the managed identity, cannot be used at the same time as resourceID",
+																	MarkdownDescription: "tenant ID of the managed identity, cannot be used at the same time as resourceID",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1452,8 +1462,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"config": schema.MapAttribute{
-															Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
-															MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+															Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g., credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+															MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g., credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1469,8 +1479,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"solver_name": schema.StringAttribute{
-															Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
-															MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+															Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g., 'cloudflare'.",
+															MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g., 'cloudflare'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1487,8 +1497,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"http01": schema.SingleNestedAttribute{
-											Description:         "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g. '*.example.com') using the HTTP01 challenge mechanism.",
-											MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g. '*.example.com') using the HTTP01 challenge mechanism.",
+											Description:         "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g., '*.example.com') using the HTTP01 challenge mechanism.",
+											MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g., '*.example.com') using the HTTP01 challenge mechanism.",
 											Attributes: map[string]schema.Attribute{
 												"gateway_http_route": schema.SingleNestedAttribute{
 													Description:         "The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.",
@@ -4437,6 +4447,14 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 								Optional:            false,
 								Computed:            false,
 							},
+
+							"server_name": schema.StringAttribute{
+								Description:         "ServerName is used to verify the hostname on the returned certificates by the Vault server.",
+								MarkdownDescription: "ServerName is used to verify the hostname on the returned certificates by the Vault server.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -4477,8 +4495,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"url": schema.StringAttribute{
-										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
-										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
+										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/'.",
+										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

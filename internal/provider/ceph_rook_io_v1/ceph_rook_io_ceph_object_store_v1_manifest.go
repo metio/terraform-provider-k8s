@@ -209,10 +209,20 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 				Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
 				Ip       *string `tfsdk:"ip" json:"ip,omitempty"`
 			} `tfsdk:"external_rgw_endpoints" json:"externalRgwEndpoints,omitempty"`
-			HostNetwork *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-			Instances   *int64             `tfsdk:"instances" json:"instances,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Placement   *struct {
+			HostNetwork   *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+			Instances     *int64             `tfsdk:"instances" json:"instances,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			OpsLogSidecar *struct {
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"ops_log_sidecar" json:"opsLogSidecar,omitempty"`
+			Placement *struct {
 				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						Preference *struct {
@@ -369,7 +379,10 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 			} `tfsdk:"placement" json:"placement,omitempty"`
 			Port              *int64  `tfsdk:"port" json:"port,omitempty"`
 			PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-			Resources         *struct {
+			ReadAffinity      *struct {
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"read_affinity" json:"readAffinity,omitempty"`
+			Resources *struct {
 				Claims *[]struct {
 					Name    *string `tfsdk:"name" json:"name,omitempty"`
 					Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -377,6 +390,13 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RgwCommandFlags     *map[string]string `tfsdk:"rgw_command_flags" json:"rgwCommandFlags,omitempty"`
+			RgwConfig           *map[string]string `tfsdk:"rgw_config" json:"rgwConfig,omitempty"`
+			RgwConfigFromSecret *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"rgw_config_from_secret" json:"rgwConfigFromSecret,omitempty"`
 			SecurePort *int64 `tfsdk:"secure_port" json:"securePort,omitempty"`
 			Service    *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -509,7 +529,8 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 		} `tfsdk:"metadata_pool" json:"metadataPool,omitempty"`
 		PreservePoolsOnDelete *bool `tfsdk:"preserve_pools_on_delete" json:"preservePoolsOnDelete,omitempty"`
 		Protocols             *struct {
-			S3 *struct {
+			EnableAPIs *[]string `tfsdk:"enable_ap_is" json:"enableAPIs,omitempty"`
+			S3         *struct {
 				AuthUseKeystone *bool `tfsdk:"auth_use_keystone" json:"authUseKeystone,omitempty"`
 				Enabled         *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"s3" json:"s3,omitempty"`
@@ -539,6 +560,7 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 			PoolPlacements   *[]struct {
 				DataNonECPoolName *string `tfsdk:"data_non_ec_pool_name" json:"dataNonECPoolName,omitempty"`
 				DataPoolName      *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
+				Default           *bool   `tfsdk:"default" json:"default,omitempty"`
 				MetadataPoolName  *string `tfsdk:"metadata_pool_name" json:"metadataPoolName,omitempty"`
 				Name              *string `tfsdk:"name" json:"name,omitempty"`
 				StorageClasses    *[]struct {
@@ -822,11 +844,14 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "Mode is the mirroring mode: either pool or image",
-										MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+										Description:         "Mode is the mirroring mode: pool, image or init-only.",
+										MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pool", "image", "init-only"),
+										},
 									},
 
 									"peers": schema.SingleNestedAttribute{
@@ -1765,6 +1790,69 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"ops_log_sidecar": schema.SingleNestedAttribute{
+								Description:         "Enable enhanced operation Logs for S3 in a sidecar named ops-log",
+								MarkdownDescription: "Enable enhanced operation Logs for S3 in a sidecar named ops-log",
+								Attributes: map[string]schema.Attribute{
+									"resources": schema.SingleNestedAttribute{
+										Description:         "Resources represents the way to specify resource requirements for the ops-log sidecar",
+										MarkdownDescription: "Resources represents the way to specify resource requirements for the ops-log sidecar",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"placement": schema.SingleNestedAttribute{
@@ -2834,6 +2922,26 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 								Computed:            false,
 							},
 
+							"read_affinity": schema.SingleNestedAttribute{
+								Description:         "ReadAffinity defines the RGW read affinity policy to optimize the read requests for the RGW clients Note: Only supported from Ceph Tentacle (v20)",
+								MarkdownDescription: "ReadAffinity defines the RGW read affinity policy to optimize the read requests for the RGW clients Note: Only supported from Ceph Tentacle (v20)",
+								Attributes: map[string]schema.Attribute{
+									"type": schema.StringAttribute{
+										Description:         "Type defines the RGW ReadAffinity type localize: read from the nearest OSD based on crush location of the RGW client balance: picks a random OSD from the PG's active set default: read from the primary OSD",
+										MarkdownDescription: "Type defines the RGW ReadAffinity type localize: read from the nearest OSD based on crush location of the RGW client balance: picks a random OSD from the PG's active set default: read from the primary OSD",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("localize", "balance", "default"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"resources": schema.SingleNestedAttribute{
 								Description:         "The resource requirements for the rgw pods",
 								MarkdownDescription: "The resource requirements for the rgw pods",
@@ -2878,6 +2986,57 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"rgw_command_flags": schema.MapAttribute{
+								Description:         "RgwCommandFlags sets Ceph RGW config values for the gateway clients that serve this object store. Values are modified at RGW startup, resulting in RGW pod restarts. This feature is intended for advanced users. It allows breaking configurations to be easily applied. Use with caution.",
+								MarkdownDescription: "RgwCommandFlags sets Ceph RGW config values for the gateway clients that serve this object store. Values are modified at RGW startup, resulting in RGW pod restarts. This feature is intended for advanced users. It allows breaking configurations to be easily applied. Use with caution.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"rgw_config": schema.MapAttribute{
+								Description:         "RgwConfig sets Ceph RGW config values for the gateway clients that serve this object store. Values are modified at runtime without RGW restart. This feature is intended for advanced users. It allows breaking configurations to be easily applied. Use with caution.",
+								MarkdownDescription: "RgwConfig sets Ceph RGW config values for the gateway clients that serve this object store. Values are modified at runtime without RGW restart. This feature is intended for advanced users. It allows breaking configurations to be easily applied. Use with caution.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"rgw_config_from_secret": schema.SingleNestedAttribute{
+								Description:         "RgwConfigFromSecret works exactly like RgwConfig but takes config value from Secret Key reference. Values are modified at runtime without RGW restart. This feature is intended for advanced users. It allows breaking configurations to be easily applied. Use with caution.",
+								MarkdownDescription: "RgwConfigFromSecret works exactly like RgwConfig but takes config value from Secret Key reference. Values are modified at runtime without RGW restart. This feature is intended for advanced users. It allows breaking configurations to be easily applied. Use with caution.",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2952,8 +3111,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2978,8 +3137,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3003,8 +3162,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3095,8 +3254,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3162,8 +3321,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3188,8 +3347,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3213,8 +3372,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3305,8 +3464,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3533,11 +3692,14 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "Mode is the mirroring mode: either pool or image",
-										MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+										Description:         "Mode is the mirroring mode: pool, image or init-only.",
+										MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pool", "image", "init-only"),
+										},
 									},
 
 									"peers": schema.SingleNestedAttribute{
@@ -3788,6 +3950,15 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "The protocol specification",
 						MarkdownDescription: "The protocol specification",
 						Attributes: map[string]schema.Attribute{
+							"enable_ap_is": schema.ListAttribute{
+								Description:         "Represents RGW 'rgw_enable_apis' config option. See: https://docs.ceph.com/en/reef/radosgw/config-ref/#confval-rgw_enable_apis If no value provided then all APIs will be enabled: s3, s3website, swift, swift_auth, admin, sts, iam, notifications If enabled APIs are set, all remaining APIs will be disabled. This option overrides S3.Enabled value.",
+								MarkdownDescription: "Represents RGW 'rgw_enable_apis' config option. See: https://docs.ceph.com/en/reef/radosgw/config-ref/#confval-rgw_enable_apis If no value provided then all APIs will be enabled: s3, s3website, swift, swift_auth, admin, sts, iam, notifications If enabled APIs are set, all remaining APIs will be disabled. This option overrides S3.Enabled value.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"s3": schema.SingleNestedAttribute{
 								Description:         "The spec for S3",
 								MarkdownDescription: "The spec for S3",
@@ -3801,8 +3972,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.",
-										MarkdownDescription: "Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.",
+										Description:         "Deprecated: use protocol.enableAPIs instead. Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.",
+										MarkdownDescription: "Deprecated: use protocol.enableAPIs instead. Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3981,6 +4152,14 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 											},
 										},
 
+										"default": schema.BoolAttribute{
+											Description:         "Sets given placement as default. Only one placement in the list can be marked as default. Default is false.",
+											MarkdownDescription: "Sets given placement as default. Only one placement in the list can be marked as default. Default is false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"metadata_pool_name": schema.StringAttribute{
 											Description:         "The metadata pool used to store ObjectStore bucket index.",
 											MarkdownDescription: "The metadata pool used to store ObjectStore bucket index.",
@@ -4062,8 +4241,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "The multisite info",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "RGW Zone the Object Store is in",
-								MarkdownDescription: "RGW Zone the Object Store is in",
+								Description:         "CephObjectStoreZone name this CephObjectStore is part of",
+								MarkdownDescription: "CephObjectStoreZone name this CephObjectStore is part of",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

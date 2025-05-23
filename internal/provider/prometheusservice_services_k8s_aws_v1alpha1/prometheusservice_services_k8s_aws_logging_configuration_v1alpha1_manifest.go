@@ -132,16 +132,16 @@ func (r *PrometheusserviceServicesK8SAwsLoggingConfigurationV1Alpha1Manifest) Sc
 				MarkdownDescription: "LoggingConfigurationSpec defines the desired state of LoggingConfiguration.",
 				Attributes: map[string]schema.Attribute{
 					"log_group_arn": schema.StringAttribute{
-						Description:         "The ARN of the CW log group to which the vended log data will be published.",
-						MarkdownDescription: "The ARN of the CW log group to which the vended log data will be published.",
+						Description:         "The ARN of the CloudWatch log group to which the vended log data will be published. This log group must exist prior to calling this operation.",
+						MarkdownDescription: "The ARN of the CloudWatch log group to which the vended log data will be published. This log group must exist prior to calling this operation.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"workspace_id": schema.StringAttribute{
-						Description:         "The ID of the workspace to vend logs to.",
-						MarkdownDescription: "The ID of the workspace to vend logs to.",
+						Description:         "The ID of the workspace to create the logging configuration for.",
+						MarkdownDescription: "The ID of the workspace to create the logging configuration for.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

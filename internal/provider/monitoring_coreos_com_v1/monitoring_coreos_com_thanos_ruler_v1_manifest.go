@@ -7,6 +7,7 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -279,6 +280,7 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessProbe *struct {
 				Exec *struct {
@@ -450,6 +452,7 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
 		DnsPolicy               *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+		EnableServiceLinks      *bool   `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
 		EnforcedNamespaceLabel  *string `tfsdk:"enforced_namespace_label" json:"enforcedNamespaceLabel,omitempty"`
 		EvaluationInterval      *string `tfsdk:"evaluation_interval" json:"evaluationInterval,omitempty"`
 		ExcludedFromEnforcement *[]struct {
@@ -592,6 +595,7 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessProbe *struct {
 				Exec *struct {
@@ -784,8 +788,205 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"query_config" json:"queryConfig,omitempty"`
 		QueryEndpoints *[]string `tfsdk:"query_endpoints" json:"queryEndpoints,omitempty"`
-		Replicas       *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
-		Resources      *struct {
+		RemoteWrite    *[]struct {
+			Authorization *struct {
+				Credentials *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"credentials" json:"credentials,omitempty"`
+				CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+				Type            *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			AzureAd *struct {
+				Cloud           *string `tfsdk:"cloud" json:"cloud,omitempty"`
+				ManagedIdentity *struct {
+					ClientId *string `tfsdk:"client_id" json:"clientId,omitempty"`
+				} `tfsdk:"managed_identity" json:"managedIdentity,omitempty"`
+				Oauth *struct {
+					ClientId     *string `tfsdk:"client_id" json:"clientId,omitempty"`
+					ClientSecret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+				} `tfsdk:"oauth" json:"oauth,omitempty"`
+				Sdk *struct {
+					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+				} `tfsdk:"sdk" json:"sdk,omitempty"`
+			} `tfsdk:"azure_ad" json:"azureAd,omitempty"`
+			BasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+			BearerToken     *string            `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+			BearerTokenFile *string            `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
+			EnableHTTP2     *bool              `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
+			FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+			Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+			MessageVersion  *string            `tfsdk:"message_version" json:"messageVersion,omitempty"`
+			MetadataConfig  *struct {
+				MaxSamplesPerSend *int64  `tfsdk:"max_samples_per_send" json:"maxSamplesPerSend,omitempty"`
+				Send              *bool   `tfsdk:"send" json:"send,omitempty"`
+				SendInterval      *string `tfsdk:"send_interval" json:"sendInterval,omitempty"`
+			} `tfsdk:"metadata_config" json:"metadataConfig,omitempty"`
+			Name    *string `tfsdk:"name" json:"name,omitempty"`
+			NoProxy *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2  *struct {
+				ClientId *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientSecret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			QueueConfig          *struct {
+				BatchSendDeadline *string `tfsdk:"batch_send_deadline" json:"batchSendDeadline,omitempty"`
+				Capacity          *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
+				MaxBackoff        *string `tfsdk:"max_backoff" json:"maxBackoff,omitempty"`
+				MaxRetries        *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+				MaxSamplesPerSend *int64  `tfsdk:"max_samples_per_send" json:"maxSamplesPerSend,omitempty"`
+				MaxShards         *int64  `tfsdk:"max_shards" json:"maxShards,omitempty"`
+				MinBackoff        *string `tfsdk:"min_backoff" json:"minBackoff,omitempty"`
+				MinShards         *int64  `tfsdk:"min_shards" json:"minShards,omitempty"`
+				RetryOnRateLimit  *bool   `tfsdk:"retry_on_rate_limit" json:"retryOnRateLimit,omitempty"`
+				SampleAgeLimit    *string `tfsdk:"sample_age_limit" json:"sampleAgeLimit,omitempty"`
+			} `tfsdk:"queue_config" json:"queueConfig,omitempty"`
+			RemoteTimeout        *string `tfsdk:"remote_timeout" json:"remoteTimeout,omitempty"`
+			RoundRobinDNS        *bool   `tfsdk:"round_robin_dns" json:"roundRobinDNS,omitempty"`
+			SendExemplars        *bool   `tfsdk:"send_exemplars" json:"sendExemplars,omitempty"`
+			SendNativeHistograms *bool   `tfsdk:"send_native_histograms" json:"sendNativeHistograms,omitempty"`
+			Sigv4                *struct {
+				AccessKey *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"access_key" json:"accessKey,omitempty"`
+				Profile   *string `tfsdk:"profile" json:"profile,omitempty"`
+				Region    *string `tfsdk:"region" json:"region,omitempty"`
+				RoleArn   *string `tfsdk:"role_arn" json:"roleArn,omitempty"`
+				SecretKey *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_key" json:"secretKey,omitempty"`
+			} `tfsdk:"sigv4" json:"sigv4,omitempty"`
+			TlsConfig *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				CaFile *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+				Cert   *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				CertFile           *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+				InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeyFile            *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+			Url                 *string `tfsdk:"url" json:"url,omitempty"`
+			WriteRelabelConfigs *[]struct {
+				Action       *string   `tfsdk:"action" json:"action,omitempty"`
+				Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
+				Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
+				Replacement  *string   `tfsdk:"replacement" json:"replacement,omitempty"`
+				Separator    *string   `tfsdk:"separator" json:"separator,omitempty"`
+				SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+				TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
+			} `tfsdk:"write_relabel_configs" json:"writeRelabelConfigs,omitempty"`
+		} `tfsdk:"remote_write" json:"remoteWrite,omitempty"`
+		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+		Resources *struct {
 			Claims *[]struct {
 				Name    *string `tfsdk:"name" json:"name,omitempty"`
 				Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -821,6 +1022,7 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 			SeLinuxOptions      *struct {
 				Level *string `tfsdk:"level" json:"level,omitempty"`
 				Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -845,6 +1047,7 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		ServiceName        *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		Storage            *struct {
 			DisableMountSubPath *bool `tfsdk:"disable_mount_sub_path" json:"disableMountSubPath,omitempty"`
 			EmptyDir            *struct {
@@ -946,7 +1149,8 @@ type MonitoringCoreosComThanosRulerV1ManifestData struct {
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
-		Tolerations *[]struct {
+		TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+		Tolerations                   *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -1728,8 +1932,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1737,8 +1941,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1895,8 +2099,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1904,8 +2108,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2062,8 +2266,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2071,8 +2275,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2229,8 +2433,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2238,8 +2442,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2334,8 +2538,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"alert_drop_labels": schema.ListAttribute{
-						Description:         "AlertDropLabels configure the label names which should be dropped in ThanosRuler alerts. The replica label 'thanos_ruler_replica' will always be dropped in alerts.",
-						MarkdownDescription: "AlertDropLabels configure the label names which should be dropped in ThanosRuler alerts. The replica label 'thanos_ruler_replica' will always be dropped in alerts.",
+						Description:         "Configures the label names which should be dropped in Thanos Ruler alerts. The replica label 'thanos_ruler_replica' will always be dropped from the alerts.",
+						MarkdownDescription: "Configures the label names which should be dropped in Thanos Ruler alerts. The replica label 'thanos_ruler_replica' will always be dropped from the alerts.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -2351,16 +2555,16 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"alert_relabel_config_file": schema.StringAttribute{
-						Description:         "AlertRelabelConfigFile specifies the path of the alert relabeling configuration file. When used alongside with AlertRelabelConfigs, alertRelabelConfigFile takes precedence.",
-						MarkdownDescription: "AlertRelabelConfigFile specifies the path of the alert relabeling configuration file. When used alongside with AlertRelabelConfigs, alertRelabelConfigFile takes precedence.",
+						Description:         "Configures the path to the alert relabeling configuration file. Alert relabel configuration must have the form as specified in the official Prometheus documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs The operator performs no validation of the configuration file. This field takes precedence over 'alertRelabelConfig'.",
+						MarkdownDescription: "Configures the path to the alert relabeling configuration file. Alert relabel configuration must have the form as specified in the official Prometheus documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs The operator performs no validation of the configuration file. This field takes precedence over 'alertRelabelConfig'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"alert_relabel_configs": schema.SingleNestedAttribute{
-						Description:         "AlertRelabelConfigs configures alert relabeling in ThanosRuler. Alert relabel configurations must have the form as specified in the official Prometheus documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs Alternative to AlertRelabelConfigFile, and lower order priority.",
-						MarkdownDescription: "AlertRelabelConfigs configures alert relabeling in ThanosRuler. Alert relabel configurations must have the form as specified in the official Prometheus documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs Alternative to AlertRelabelConfigFile, and lower order priority.",
+						Description:         "Configures alert relabeling in Thanos Ruler. Alert relabel configuration must have the form as specified in the official Prometheus documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs The operator performs no validation of the configuration. 'alertRelabelConfigFile' takes precedence over this field.",
+						MarkdownDescription: "Configures alert relabeling in Thanos Ruler. Alert relabel configuration must have the form as specified in the official Prometheus documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs The operator performs no validation of the configuration. 'alertRelabelConfigFile' takes precedence over this field.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2392,8 +2596,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"alertmanagers_config": schema.SingleNestedAttribute{
-						Description:         "Define configuration for connecting to alertmanager. Only available with thanos v0.10.0 and higher. Maps to the 'alertmanagers.config' arg.",
-						MarkdownDescription: "Define configuration for connecting to alertmanager. Only available with thanos v0.10.0 and higher. Maps to the 'alertmanagers.config' arg.",
+						Description:         "Configures the list of Alertmanager endpoints to send alerts to. The configuration format is defined at https://thanos.io/tip/components/rule.md/#alertmanager. It requires Thanos >= v0.10.0. The operator performs no validation of the configuration. This field takes precedence over 'alertmanagersUrl'.",
+						MarkdownDescription: "Configures the list of Alertmanager endpoints to send alerts to. The configuration format is defined at https://thanos.io/tip/components/rule.md/#alertmanager. It requires Thanos >= v0.10.0. The operator performs no validation of the configuration. This field takes precedence over 'alertmanagersUrl'.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -2425,8 +2629,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"alertmanagers_url": schema.ListAttribute{
-						Description:         "Define URLs to send alerts to Alertmanager. For Thanos v0.10.0 and higher, AlertManagersConfig should be used instead. Note: this field will be ignored if AlertManagersConfig is specified. Maps to the 'alertmanagers.url' arg.",
-						MarkdownDescription: "Define URLs to send alerts to Alertmanager. For Thanos v0.10.0 and higher, AlertManagersConfig should be used instead. Note: this field will be ignored if AlertManagersConfig is specified. Maps to the 'alertmanagers.url' arg.",
+						Description:         "Configures the list of Alertmanager endpoints to send alerts to. For Thanos >= v0.10.0, it is recommended to use 'alertmanagersConfig' instead. 'alertmanagersConfig' takes precedence over this field.",
+						MarkdownDescription: "Configures the list of Alertmanager endpoints to send alerts to. For Thanos >= v0.10.0, it is recommended to use 'alertmanagersConfig' instead. 'alertmanagersConfig' takes precedence over this field.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -2647,8 +2851,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
+												MarkdownDescription: "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2710,8 +2914,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2728,8 +2932,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -2796,8 +3000,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -2813,8 +3017,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2847,8 +3051,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2865,8 +3069,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -2933,8 +3137,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -2950,8 +3154,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2978,6 +3182,14 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											Optional: true,
 											Computed: false,
 										},
+
+										"stop_signal": schema.StringAttribute{
+											Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -2989,8 +3201,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3015,8 +3227,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3040,8 +3252,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3132,8 +3344,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3241,8 +3453,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3267,8 +3479,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3292,8 +3504,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3384,8 +3596,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3747,8 +3959,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3773,8 +3985,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3798,8 +4010,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3890,8 +4102,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4149,6 +4361,14 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 						Validators: []validator.String{
 							stringvalidator.OneOf("ClusterFirstWithHostNet", "ClusterFirst", "Default", "None"),
 						},
+					},
+
+					"enable_service_links": schema.BoolAttribute{
+						Description:         "Indicates whether information about services should be injected into pod's environment variables",
+						MarkdownDescription: "Indicates whether information about services should be injected into pod's environment variables",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"enforced_namespace_label": schema.StringAttribute{
@@ -4450,8 +4670,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"max_version": schema.StringAttribute{
-								Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-								MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+								Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+								MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4461,8 +4681,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"min_version": schema.StringAttribute{
-								Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-								MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+								Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+								MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4764,8 +4984,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
+												MarkdownDescription: "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4827,8 +5047,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4845,8 +5065,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4913,8 +5133,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -4930,8 +5150,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4964,8 +5184,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4982,8 +5202,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5050,8 +5270,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -5067,8 +5287,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5095,6 +5315,14 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 											Optional: true,
 											Computed: false,
 										},
+
+										"stop_signal": schema.StringAttribute{
+											Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -5106,8 +5334,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5132,8 +5360,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5157,8 +5385,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5249,8 +5477,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5358,8 +5586,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5384,8 +5612,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5409,8 +5637,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5501,8 +5729,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5864,8 +6092,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5890,8 +6118,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5915,8 +6143,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6007,8 +6235,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6201,8 +6429,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"labels": schema.MapAttribute{
-						Description:         "Labels configure the external label pairs to ThanosRuler. A default replica label 'thanos_ruler_replica' will be always added as a label with the value of the pod's name and it will be dropped in the alerts.",
-						MarkdownDescription: "Labels configure the external label pairs to ThanosRuler. A default replica label 'thanos_ruler_replica' will be always added as a label with the value of the pod's name and it will be dropped in the alerts.",
+						Description:         "Configures the external label pairs of the ThanosRuler resource. A default replica label 'thanos_ruler_replica' will be always added as a label with the value of the pod's name.",
+						MarkdownDescription: "Configures the external label pairs of the ThanosRuler resource. A default replica label 'thanos_ruler_replica' will be always added as a label with the value of the pod's name.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -6257,8 +6485,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"object_storage_config": schema.SingleNestedAttribute{
-						Description:         "ObjectStorageConfig configures object storage in Thanos. Alternative to ObjectStorageConfigFile, and lower order priority.",
-						MarkdownDescription: "ObjectStorageConfig configures object storage in Thanos. Alternative to ObjectStorageConfigFile, and lower order priority.",
+						Description:         "Configures object storage. The configuration format is defined at https://thanos.io/tip/thanos/storage.md/#configuring-access-to-object-storage The operator performs no validation of the configuration. 'objectStorageConfigFile' takes precedence over this field.",
+						MarkdownDescription: "Configures object storage. The configuration format is defined at https://thanos.io/tip/thanos/storage.md/#configuring-access-to-object-storage The operator performs no validation of the configuration. 'objectStorageConfigFile' takes precedence over this field.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -6290,8 +6518,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"object_storage_config_file": schema.StringAttribute{
-						Description:         "ObjectStorageConfigFile specifies the path of the object storage configuration file. When used alongside with ObjectStorageConfig, ObjectStorageConfigFile takes precedence.",
-						MarkdownDescription: "ObjectStorageConfigFile specifies the path of the object storage configuration file. When used alongside with ObjectStorageConfig, ObjectStorageConfigFile takes precedence.",
+						Description:         "Configures the path of the object storage configuration file. The configuration format is defined at https://thanos.io/tip/thanos/storage.md/#configuring-access-to-object-storage The operator performs no validation of the configuration file. This field takes precedence over 'objectStorageConfig'.",
+						MarkdownDescription: "Configures the path of the object storage configuration file. The configuration format is defined at https://thanos.io/tip/thanos/storage.md/#configuring-access-to-object-storage The operator performs no validation of the configuration file. This field takes precedence over 'objectStorageConfig'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6384,8 +6612,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"query_config": schema.SingleNestedAttribute{
-						Description:         "Define configuration for connecting to thanos query instances. If this is defined, the QueryEndpoints field will be ignored. Maps to the 'query.config' CLI argument. Only available with thanos v0.11.0 and higher.",
-						MarkdownDescription: "Define configuration for connecting to thanos query instances. If this is defined, the QueryEndpoints field will be ignored. Maps to the 'query.config' CLI argument. Only available with thanos v0.11.0 and higher.",
+						Description:         "Configures the list of Thanos Query endpoints from which to query metrics. The configuration format is defined at https://thanos.io/tip/components/rule.md/#query-api It requires Thanos >= v0.11.0. The operator performs no validation of the configuration. This field takes precedence over 'queryEndpoints'.",
+						MarkdownDescription: "Configures the list of Thanos Query endpoints from which to query metrics. The configuration format is defined at https://thanos.io/tip/components/rule.md/#query-api It requires Thanos >= v0.11.0. The operator performs no validation of the configuration. This field takes precedence over 'queryEndpoints'.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -6417,12 +6645,1396 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"query_endpoints": schema.ListAttribute{
-						Description:         "QueryEndpoints defines Thanos querier endpoints from which to query metrics. Maps to the --query flag of thanos ruler.",
-						MarkdownDescription: "QueryEndpoints defines Thanos querier endpoints from which to query metrics. Maps to the --query flag of thanos ruler.",
+						Description:         "Configures the list of Thanos Query endpoints from which to query metrics. For Thanos >= v0.11.0, it is recommended to use 'queryConfig' instead. 'queryConfig' takes precedence over this field.",
+						MarkdownDescription: "Configures the list of Thanos Query endpoints from which to query metrics. For Thanos >= v0.11.0, it is recommended to use 'queryConfig' instead. 'queryConfig' takes precedence over this field.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"remote_write": schema.ListNestedAttribute{
+						Description:         "Defines the list of remote write configurations. When the list isn't empty, the ruler is configured with stateless mode. It requires Thanos >= 0.24.0.",
+						MarkdownDescription: "Defines the list of remote write configurations. When the list isn't empty, the ruler is configured with stateless mode. It requires Thanos >= 0.24.0.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"authorization": schema.SingleNestedAttribute{
+									Description:         "Authorization section for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "Authorization section for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
+									Attributes: map[string]schema.Attribute{
+										"credentials": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"credentials_file": schema.StringAttribute{
+											Description:         "File to read a secret from, mutually exclusive with 'credentials'.",
+											MarkdownDescription: "File to read a secret from, mutually exclusive with 'credentials'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"azure_ad": schema.SingleNestedAttribute{
+									Description:         "AzureAD for the URL. It requires Prometheus >= v2.45.0 or Thanos >= v0.31.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
+									MarkdownDescription: "AzureAD for the URL. It requires Prometheus >= v2.45.0 or Thanos >= v0.31.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
+									Attributes: map[string]schema.Attribute{
+										"cloud": schema.StringAttribute{
+											Description:         "The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.",
+											MarkdownDescription: "The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("AzureChina", "AzureGovernment", "AzurePublic"),
+											},
+										},
+
+										"managed_identity": schema.SingleNestedAttribute{
+											Description:         "ManagedIdentity defines the Azure User-assigned Managed identity. Cannot be set at the same time as 'oauth' or 'sdk'.",
+											MarkdownDescription: "ManagedIdentity defines the Azure User-assigned Managed identity. Cannot be set at the same time as 'oauth' or 'sdk'.",
+											Attributes: map[string]schema.Attribute{
+												"client_id": schema.StringAttribute{
+													Description:         "The client id",
+													MarkdownDescription: "The client id",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"oauth": schema.SingleNestedAttribute{
+											Description:         "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity' or 'sdk'. It requires Prometheus >= v2.48.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity' or 'sdk'. It requires Prometheus >= v2.48.0 or Thanos >= v0.31.0.",
+											Attributes: map[string]schema.Attribute{
+												"client_id": schema.StringAttribute{
+													Description:         "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
+												},
+
+												"client_secret": schema.SingleNestedAttribute{
+													Description:         "'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+
+												"tenant_id": schema.StringAttribute{
+													Description:         "'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantId' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"sdk": schema.SingleNestedAttribute{
+											Description:         "SDK defines the Azure SDK config that is being used to authenticate. See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication Cannot be set at the same time as 'oauth' or 'managedIdentity'. It requires Prometheus >= v2.52.0 or Thanos >= v0.36.0.",
+											MarkdownDescription: "SDK defines the Azure SDK config that is being used to authenticate. See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication Cannot be set at the same time as 'oauth' or 'managedIdentity'. It requires Prometheus >= v2.52.0 or Thanos >= v0.36.0.",
+											Attributes: map[string]schema.Attribute{
+												"tenant_id": schema.StringAttribute{
+													Description:         "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"basic_auth": schema.SingleNestedAttribute{
+									Description:         "BasicAuth configuration for the URL. Cannot be set at the same time as 'sigv4', 'authorization', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "BasicAuth configuration for the URL. Cannot be set at the same time as 'sigv4', 'authorization', 'oauth2', or 'azureAd'.",
+									Attributes: map[string]schema.Attribute{
+										"password": schema.SingleNestedAttribute{
+											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"username": schema.SingleNestedAttribute{
+											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"bearer_token": schema.StringAttribute{
+									Description:         "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.* Deprecated: this will be removed in a future release.",
+									MarkdownDescription: "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.* Deprecated: this will be removed in a future release.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"bearer_token_file": schema.StringAttribute{
+									Description:         "File from which to read bearer token for the URL. Deprecated: this will be removed in a future release. Prefer using 'authorization'.",
+									MarkdownDescription: "File from which to read bearer token for the URL. Deprecated: this will be removed in a future release. Prefer using 'authorization'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"follow_redirects": schema.BoolAttribute{
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"headers": schema.MapAttribute{
+									Description:         "Custom HTTP headers to be sent along with each remote write request. Be aware that headers that are set by Prometheus itself can't be overwritten. It requires Prometheus >= v2.25.0 or Thanos >= v0.24.0.",
+									MarkdownDescription: "Custom HTTP headers to be sent along with each remote write request. Be aware that headers that are set by Prometheus itself can't be overwritten. It requires Prometheus >= v2.25.0 or Thanos >= v0.24.0.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"message_version": schema.StringAttribute{
+									Description:         "The Remote Write message's version to use when writing to the endpoint. 'Version1.0' corresponds to the 'prometheus.WriteRequest' protobuf message introduced in Remote Write 1.0. 'Version2.0' corresponds to the 'io.prometheus.write.v2.Request' protobuf message introduced in Remote Write 2.0. When 'Version2.0' is selected, Prometheus will automatically be configured to append the metadata of scraped metrics to the WAL. Before setting this field, consult with your remote storage provider what message version it supports. It requires Prometheus >= v2.54.0 or Thanos >= v0.37.0.",
+									MarkdownDescription: "The Remote Write message's version to use when writing to the endpoint. 'Version1.0' corresponds to the 'prometheus.WriteRequest' protobuf message introduced in Remote Write 1.0. 'Version2.0' corresponds to the 'io.prometheus.write.v2.Request' protobuf message introduced in Remote Write 2.0. When 'Version2.0' is selected, Prometheus will automatically be configured to append the metadata of scraped metrics to the WAL. Before setting this field, consult with your remote storage provider what message version it supports. It requires Prometheus >= v2.54.0 or Thanos >= v0.37.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("V1.0", "V2.0"),
+									},
+								},
+
+								"metadata_config": schema.SingleNestedAttribute{
+									Description:         "MetadataConfig configures the sending of series metadata to the remote storage.",
+									MarkdownDescription: "MetadataConfig configures the sending of series metadata to the remote storage.",
+									Attributes: map[string]schema.Attribute{
+										"max_samples_per_send": schema.Int64Attribute{
+											Description:         "MaxSamplesPerSend is the maximum number of metadata samples per send. It requires Prometheus >= v2.29.0.",
+											MarkdownDescription: "MaxSamplesPerSend is the maximum number of metadata samples per send. It requires Prometheus >= v2.29.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(-1),
+											},
+										},
+
+										"send": schema.BoolAttribute{
+											Description:         "Defines whether metric metadata is sent to the remote storage or not.",
+											MarkdownDescription: "Defines whether metric metadata is sent to the remote storage or not.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"send_interval": schema.StringAttribute{
+											Description:         "Defines how frequently metric metadata is sent to the remote storage.",
+											MarkdownDescription: "Defines how frequently metric metadata is sent to the remote storage.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "The name of the remote write queue, it must be unique if specified. The name is used in metrics and logging in order to differentiate queues. It requires Prometheus >= v2.15.0 or Thanos >= 0.24.0.",
+									MarkdownDescription: "The name of the remote write queue, it must be unique if specified. The name is used in metrics and logging in order to differentiate queues. It requires Prometheus >= v2.15.0 or Thanos >= 0.24.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"oauth2": schema.SingleNestedAttribute{
+									Description:         "OAuth2 configuration for the URL. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
+									MarkdownDescription: "OAuth2 configuration for the URL. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
+									Attributes: map[string]schema.Attribute{
+										"client_id": schema.SingleNestedAttribute{
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"client_secret": schema.SingleNestedAttribute{
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"endpoint_params": schema.MapAttribute{
+											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+											},
+										},
+
+										"scopes": schema.ListAttribute{
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"token_url": schema.StringAttribute{
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"proxy_connect_header": schema.MapAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_url": schema.StringAttribute{
+									Description:         "'proxyURL' defines the HTTP proxy server to use.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+									},
+								},
+
+								"queue_config": schema.SingleNestedAttribute{
+									Description:         "QueueConfig allows tuning of the remote write queue parameters.",
+									MarkdownDescription: "QueueConfig allows tuning of the remote write queue parameters.",
+									Attributes: map[string]schema.Attribute{
+										"batch_send_deadline": schema.StringAttribute{
+											Description:         "BatchSendDeadline is the maximum time a sample will wait in buffer.",
+											MarkdownDescription: "BatchSendDeadline is the maximum time a sample will wait in buffer.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
+										},
+
+										"capacity": schema.Int64Attribute{
+											Description:         "Capacity is the number of samples to buffer per shard before we start dropping them.",
+											MarkdownDescription: "Capacity is the number of samples to buffer per shard before we start dropping them.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"max_backoff": schema.StringAttribute{
+											Description:         "MaxBackoff is the maximum retry delay.",
+											MarkdownDescription: "MaxBackoff is the maximum retry delay.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
+										},
+
+										"max_retries": schema.Int64Attribute{
+											Description:         "MaxRetries is the maximum number of times to retry a batch on recoverable errors.",
+											MarkdownDescription: "MaxRetries is the maximum number of times to retry a batch on recoverable errors.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"max_samples_per_send": schema.Int64Attribute{
+											Description:         "MaxSamplesPerSend is the maximum number of samples per send.",
+											MarkdownDescription: "MaxSamplesPerSend is the maximum number of samples per send.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"max_shards": schema.Int64Attribute{
+											Description:         "MaxShards is the maximum number of shards, i.e. amount of concurrency.",
+											MarkdownDescription: "MaxShards is the maximum number of shards, i.e. amount of concurrency.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"min_backoff": schema.StringAttribute{
+											Description:         "MinBackoff is the initial retry delay. Gets doubled for every retry.",
+											MarkdownDescription: "MinBackoff is the initial retry delay. Gets doubled for every retry.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
+										},
+
+										"min_shards": schema.Int64Attribute{
+											Description:         "MinShards is the minimum number of shards, i.e. amount of concurrency.",
+											MarkdownDescription: "MinShards is the minimum number of shards, i.e. amount of concurrency.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"retry_on_rate_limit": schema.BoolAttribute{
+											Description:         "Retry upon receiving a 429 status code from the remote-write storage. This is an *experimental feature*, it may change in any upcoming release in a breaking way.",
+											MarkdownDescription: "Retry upon receiving a 429 status code from the remote-write storage. This is an *experimental feature*, it may change in any upcoming release in a breaking way.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sample_age_limit": schema.StringAttribute{
+											Description:         "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0 or Thanos >= v0.32.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"remote_timeout": schema.StringAttribute{
+									Description:         "Timeout for requests to the remote write endpoint.",
+									MarkdownDescription: "Timeout for requests to the remote write endpoint.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+									},
+								},
+
+								"round_robin_dns": schema.BoolAttribute{
+									Description:         "When enabled: - The remote-write mechanism will resolve the hostname via DNS. - It will randomly select one of the resolved IP addresses and connect to it. When disabled (default behavior): - The Go standard library will handle hostname resolution. - It will attempt connections to each resolved IP address sequentially. Note: The connection timeout applies to the entire resolution and connection process. If disabled, the timeout is distributed across all connection attempts. It requires Prometheus >= v3.1.0 or Thanos >= v0.38.0.",
+									MarkdownDescription: "When enabled: - The remote-write mechanism will resolve the hostname via DNS. - It will randomly select one of the resolved IP addresses and connect to it. When disabled (default behavior): - The Go standard library will handle hostname resolution. - It will attempt connections to each resolved IP address sequentially. Note: The connection timeout applies to the entire resolution and connection process. If disabled, the timeout is distributed across all connection attempts. It requires Prometheus >= v3.1.0 or Thanos >= v0.38.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"send_exemplars": schema.BoolAttribute{
+									Description:         "Enables sending of exemplars over remote write. Note that exemplar-storage itself must be enabled using the 'spec.enableFeatures' option for exemplars to be scraped in the first place. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0.",
+									MarkdownDescription: "Enables sending of exemplars over remote write. Note that exemplar-storage itself must be enabled using the 'spec.enableFeatures' option for exemplars to be scraped in the first place. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"send_native_histograms": schema.BoolAttribute{
+									Description:         "Enables sending of native histograms, also known as sparse histograms over remote write. It requires Prometheus >= v2.40.0 or Thanos >= v0.30.0.",
+									MarkdownDescription: "Enables sending of native histograms, also known as sparse histograms over remote write. It requires Prometheus >= v2.40.0 or Thanos >= v0.30.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"sigv4": schema.SingleNestedAttribute{
+									Description:         "Sigv4 allows to configures AWS's Signature Verification 4 for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "Sigv4 allows to configures AWS's Signature Verification 4 for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
+									Attributes: map[string]schema.Attribute{
+										"access_key": schema.SingleNestedAttribute{
+											Description:         "AccessKey is the AWS API key. If not specified, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
+											MarkdownDescription: "AccessKey is the AWS API key. If not specified, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"profile": schema.StringAttribute{
+											Description:         "Profile is the named AWS profile used to authenticate.",
+											MarkdownDescription: "Profile is the named AWS profile used to authenticate.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"region": schema.StringAttribute{
+											Description:         "Region is the AWS region. If blank, the region from the default credentials chain used.",
+											MarkdownDescription: "Region is the AWS region. If blank, the region from the default credentials chain used.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"role_arn": schema.StringAttribute{
+											Description:         "RoleArn is the named AWS profile used to authenticate.",
+											MarkdownDescription: "RoleArn is the named AWS profile used to authenticate.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_key": schema.SingleNestedAttribute{
+											Description:         "SecretKey is the AWS API secret. If not specified, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
+											MarkdownDescription: "SecretKey is the AWS API secret. If not specified, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLS Config to use for the URL.",
+									MarkdownDescription: "TLS Config to use for the URL.",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"ca_file": schema.StringAttribute{
+											Description:         "Path to the CA cert in the Prometheus container to use for the targets.",
+											MarkdownDescription: "Path to the CA cert in the Prometheus container to use for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert_file": schema.StringAttribute{
+											Description:         "Path to the client cert file in the Prometheus container for the targets.",
+											MarkdownDescription: "Path to the client cert file in the Prometheus container for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_file": schema.StringAttribute{
+											Description:         "Path to the client key file in the Prometheus container for the targets.",
+											MarkdownDescription: "Path to the client key file in the Prometheus container for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"max_version": schema.StringAttribute{
+											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"min_version": schema.StringAttribute{
+											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+											},
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"url": schema.StringAttribute{
+									Description:         "The URL of the endpoint to send samples to.",
+									MarkdownDescription: "The URL of the endpoint to send samples to.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"write_relabel_configs": schema.ListNestedAttribute{
+									Description:         "The list of remote write relabel configurations.",
+									MarkdownDescription: "The list of remote write relabel configurations.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"action": schema.StringAttribute{
+												Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+												MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase", "keepequal", "KeepEqual", "dropequal", "DropEqual"),
+												},
+											},
+
+											"modulus": schema.Int64Attribute{
+												Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+												MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"regex": schema.StringAttribute{
+												Description:         "Regular expression against which the extracted value is matched.",
+												MarkdownDescription: "Regular expression against which the extracted value is matched.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"replacement": schema.StringAttribute{
+												Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+												MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"separator": schema.StringAttribute{
+												Description:         "Separator is the string between concatenated SourceLabels.",
+												MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"source_labels": schema.ListAttribute{
+												Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"target_label": schema.StringAttribute{
+												Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"replicas": schema.Int64Attribute{
@@ -6488,8 +8100,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"retention": schema.StringAttribute{
-						Description:         "Time duration ThanosRuler shall retain data for. Default is '24h', and must match the regular expression '[0-9]+(ms|s|m|h|d|w|y)' (milliseconds seconds minutes hours days weeks years).",
-						MarkdownDescription: "Time duration ThanosRuler shall retain data for. Default is '24h', and must match the regular expression '[0-9]+(ms|s|m|h|d|w|y)' (milliseconds seconds minutes hours days weeks years).",
+						Description:         "Time duration ThanosRuler shall retain data for. Default is '24h', and must match the regular expression '[0-9]+(ms|s|m|h|d|w|y)' (milliseconds seconds minutes hours days weeks years). The field has no effect when remote-write is configured since the Ruler operates in stateless mode.",
+						MarkdownDescription: "Time duration ThanosRuler shall retain data for. Default is '24h', and must match the regular expression '[0-9]+(ms|s|m|h|d|w|y)' (milliseconds seconds minutes hours days weeks years). The field has no effect when remote-write is configured since the Ruler operates in stateless mode.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6561,8 +8173,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"rule_selector": schema.SingleNestedAttribute{
-						Description:         "A label selector to select which PrometheusRules to mount for alerting and recording.",
-						MarkdownDescription: "A label selector to select which PrometheusRules to mount for alerting and recording.",
+						Description:         "PrometheusRule objects to be selected for rule evaluation. An empty label selector matches all objects. A null label selector matches no objects.",
+						MarkdownDescription: "PrometheusRule objects to be selected for rule evaluation. An empty label selector matches all objects. A null label selector matches no objects.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -6678,6 +8290,14 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 							"run_as_user": schema.Int64Attribute{
 								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_change_policy": schema.StringAttribute{
+								Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6845,6 +8465,17 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"service_name": schema.StringAttribute{
+						Description:         "The name of the service name used by the underlying StatefulSet(s) as the governing service. If defined, the Service must be created before the ThanosRuler resource in the same namespace and it must define a selector that matches the pod labels. If empty, the operator will create and manage a headless service named 'thanos-ruler-operated' for ThanosRuler resources. When deploying multiple ThanosRuler resources in the same namespace, it is recommended to specify a different value for each. See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-network-id for more details.",
+						MarkdownDescription: "The name of the service name used by the underlying StatefulSet(s) as the governing service. If defined, the Service must be created before the ThanosRuler resource in the same namespace and it must define a selector that matches the pod labels. If empty, the operator will create and manage a headless service named 'thanos-ruler-operated' for ThanosRuler resources. When deploying multiple ThanosRuler resources in the same namespace, it is recommended to specify a different value for each. See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-network-id for more details.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"storage": schema.SingleNestedAttribute{
@@ -7460,16 +9091,16 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"status": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
+															MarkdownDescription: "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "PersistentVolumeClaimConditionType defines the condition of PV claim. Valid values are: - 'Resizing', 'FileSystemResizePending' If RecoverVolumeExpansionFailure feature gate is enabled, then following additional values can be expected: - 'ControllerResizeError', 'NodeResizeError' If VolumeAttributesClass feature gate is enabled, then following additional values can be expected: - 'ModifyVolumeError', 'ModifyingVolume'",
-															MarkdownDescription: "PersistentVolumeClaimConditionType defines the condition of PV claim. Valid values are: - 'Resizing', 'FileSystemResizePending' If RecoverVolumeExpansionFailure feature gate is enabled, then following additional values can be expected: - 'ControllerResizeError', 'NodeResizeError' If VolumeAttributesClass feature gate is enabled, then following additional values can be expected: - 'ModifyVolumeError', 'ModifyingVolume'",
+															Description:         "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
+															MarkdownDescription: "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -7535,6 +9166,17 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"termination_grace_period_seconds": schema.Int64Attribute{
+						Description:         "Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down) which may lead to data corruption. Defaults to 120 seconds.",
+						MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down) which may lead to data corruption. Defaults to 120 seconds.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"tolerations": schema.ListNestedAttribute{
@@ -7673,16 +9315,16 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"node_affinity_policy": schema.StringAttribute{
-									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
+									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_taints_policy": schema.StringAttribute{
-									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
+									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -7711,8 +9353,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"tracing_config": schema.SingleNestedAttribute{
-						Description:         "TracingConfig configures tracing in Thanos. 'tracingConfigFile' takes precedence over this field. This is an *experimental feature*, it may change in any upcoming release in a breaking way.",
-						MarkdownDescription: "TracingConfig configures tracing in Thanos. 'tracingConfigFile' takes precedence over this field. This is an *experimental feature*, it may change in any upcoming release in a breaking way.",
+						Description:         "Configures tracing. The configuration format is defined at https://thanos.io/tip/thanos/tracing.md/#configuration This is an *experimental feature*, it may change in any upcoming release in a breaking way. The operator performs no validation of the configuration. 'tracingConfigFile' takes precedence over this field.",
+						MarkdownDescription: "Configures tracing. The configuration format is defined at https://thanos.io/tip/thanos/tracing.md/#configuration This is an *experimental feature*, it may change in any upcoming release in a breaking way. The operator performs no validation of the configuration. 'tracingConfigFile' takes precedence over this field.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -7744,8 +9386,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"tracing_config_file": schema.StringAttribute{
-						Description:         "TracingConfig specifies the path of the tracing configuration file. This field takes precedence over 'tracingConfig'. This is an *experimental feature*, it may change in any upcoming release in a breaking way.",
-						MarkdownDescription: "TracingConfig specifies the path of the tracing configuration file. This field takes precedence over 'tracingConfig'. This is an *experimental feature*, it may change in any upcoming release in a breaking way.",
+						Description:         "Configures the path of the tracing configuration file. The configuration format is defined at https://thanos.io/tip/thanos/tracing.md/#configuration This is an *experimental feature*, it may change in any upcoming release in a breaking way. The operator performs no validation of the configuration file. This field takes precedence over 'tracingConfig'.",
+						MarkdownDescription: "Configures the path of the tracing configuration file. The configuration format is defined at https://thanos.io/tip/thanos/tracing.md/#configuration This is an *experimental feature*, it may change in any upcoming release in a breaking way. The operator performs no validation of the configuration file. This field takes precedence over 'tracingConfig'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -7832,8 +9474,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"aws_elastic_block_store": schema.SingleNestedAttribute{
-									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -7873,8 +9515,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"azure_disk": schema.SingleNestedAttribute{
-									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"caching_mode": schema.StringAttribute{
 											Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -7930,8 +9572,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"azure_file": schema.SingleNestedAttribute{
-									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"read_only": schema.BoolAttribute{
 											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -7963,8 +9605,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"cephfs": schema.SingleNestedAttribute{
-									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"monitors": schema.ListAttribute{
 											Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -8030,8 +9672,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"cinder": schema.SingleNestedAttribute{
-									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -8148,8 +9790,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"csi": schema.SingleNestedAttribute{
-									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -8617,8 +10259,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"flex_volume": schema.SingleNestedAttribute{
-									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "driver is the name of the driver to use for this volume.",
@@ -8676,8 +10318,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"flocker": schema.SingleNestedAttribute{
-									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"dataset_name": schema.StringAttribute{
 											Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -8701,8 +10343,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"gce_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -8742,8 +10384,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"git_repo": schema.SingleNestedAttribute{
-									Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-									MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+									Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+									MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 									Attributes: map[string]schema.Attribute{
 										"directory": schema.StringAttribute{
 											Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -8775,8 +10417,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"glusterfs": schema.SingleNestedAttribute{
-									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 									Attributes: map[string]schema.Attribute{
 										"endpoints": schema.StringAttribute{
 											Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -8833,8 +10475,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"image": schema.SingleNestedAttribute{
-									Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
-									MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
 									Attributes: map[string]schema.Attribute{
 										"pull_policy": schema.StringAttribute{
 											Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
@@ -9031,8 +10673,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"photon_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -9056,8 +10698,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"portworx_volume": schema.SingleNestedAttribute{
-									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -9459,8 +11101,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"quobyte": schema.SingleNestedAttribute{
-									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"group": schema.StringAttribute{
 											Description:         "group to map volume access to Default is no group",
@@ -9516,8 +11158,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"rbd": schema.SingleNestedAttribute{
-									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -9599,8 +11241,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"scale_io": schema.SingleNestedAttribute{
-									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -9765,8 +11407,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"storageos": schema.SingleNestedAttribute{
-									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -9823,8 +11465,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"vsphere_volume": schema.SingleNestedAttribute{
-									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -9950,8 +11592,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "Defines the TLS parameters for HTTPS.",
 								Attributes: map[string]schema.Attribute{
 									"cert": schema.SingleNestedAttribute{
-										Description:         "Contains the TLS certificate for the server.",
-										MarkdownDescription: "Contains the TLS certificate for the server.",
+										Description:         "Secret or ConfigMap containing the TLS certificate for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'certFile'.",
+										MarkdownDescription: "Secret or ConfigMap containing the TLS certificate for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'certFile'.",
 										Attributes: map[string]schema.Attribute{
 											"config_map": schema.SingleNestedAttribute{
 												Description:         "ConfigMap containing data to use for the targets.",
@@ -10025,16 +11667,16 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"cert_file": schema.StringAttribute{
-										Description:         "Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.",
-										MarkdownDescription: "Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.",
+										Description:         "Path to the TLS certificate file in the container for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'cert'.",
+										MarkdownDescription: "Path to the TLS certificate file in the container for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'cert'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"cipher_suites": schema.ListAttribute{
-										Description:         "List of supported cipher suites for TLS versions up to TLS 1.2. If empty, Go default cipher suites are used. Available cipher suites are documented in the go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
-										MarkdownDescription: "List of supported cipher suites for TLS versions up to TLS 1.2. If empty, Go default cipher suites are used. Available cipher suites are documented in the go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
+										Description:         "List of supported cipher suites for TLS versions up to TLS 1.2. If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
+										MarkdownDescription: "List of supported cipher suites for TLS versions up to TLS 1.2. If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -10042,24 +11684,24 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"client_auth_type": schema.StringAttribute{
-										Description:         "Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
-										MarkdownDescription: "Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
+										Description:         "The server policy for client TLS authentication. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
+										MarkdownDescription: "The server policy for client TLS authentication. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"client_ca_file": schema.StringAttribute{
-										Description:         "Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.",
-										MarkdownDescription: "Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.",
+										Description:         "Path to the CA certificate file for client certificate authentication to the server. It is mutually exclusive with 'client_ca'.",
+										MarkdownDescription: "Path to the CA certificate file for client certificate authentication to the server. It is mutually exclusive with 'client_ca'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"client_ca": schema.SingleNestedAttribute{
-										Description:         "Contains the CA certificate for client certificate authentication to the server.",
-										MarkdownDescription: "Contains the CA certificate for client certificate authentication to the server.",
+										Description:         "Secret or ConfigMap containing the CA certificate for client certificate authentication to the server. It is mutually exclusive with 'clientCAFile'.",
+										MarkdownDescription: "Secret or ConfigMap containing the CA certificate for client certificate authentication to the server. It is mutually exclusive with 'clientCAFile'.",
 										Attributes: map[string]schema.Attribute{
 											"config_map": schema.SingleNestedAttribute{
 												Description:         "ConfigMap containing data to use for the targets.",
@@ -10133,8 +11775,8 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"curve_preferences": schema.ListAttribute{
-										Description:         "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
-										MarkdownDescription: "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
+										Description:         "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
+										MarkdownDescription: "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -10142,16 +11784,16 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"key_file": schema.StringAttribute{
-										Description:         "Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.",
-										MarkdownDescription: "Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.",
+										Description:         "Path to the TLS private key file in the container for the web server. If defined, either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keySecret'.",
+										MarkdownDescription: "Path to the TLS private key file in the container for the web server. If defined, either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keySecret'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"key_secret": schema.SingleNestedAttribute{
-										Description:         "Secret containing the TLS key for the server.",
-										MarkdownDescription: "Secret containing the TLS key for the server.",
+										Description:         "Secret containing the TLS private key for the web server. Either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keyFile'.",
+										MarkdownDescription: "Secret containing the TLS private key for the web server. Either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keyFile'.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -10183,16 +11825,16 @@ func (r *MonitoringCoreosComThanosRulerV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"max_version": schema.StringAttribute{
-										Description:         "Maximum TLS version that is acceptable. Defaults to TLS13.",
-										MarkdownDescription: "Maximum TLS version that is acceptable. Defaults to TLS13.",
+										Description:         "Maximum TLS version that is acceptable.",
+										MarkdownDescription: "Maximum TLS version that is acceptable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"min_version": schema.StringAttribute{
-										Description:         "Minimum TLS version that is acceptable. Defaults to TLS12.",
-										MarkdownDescription: "Minimum TLS version that is acceptable. Defaults to TLS12.",
+										Description:         "Minimum TLS version that is acceptable.",
+										MarkdownDescription: "Minimum TLS version that is acceptable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

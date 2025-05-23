@@ -249,8 +249,8 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"feature_group_name": schema.StringAttribute{
-						Description:         "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start and end with an alphanumeric character. * Can only contain alphanumeric character and hyphens. Spaces are not allowed.",
-						MarkdownDescription: "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start and end with an alphanumeric character. * Can only contain alphanumeric character and hyphens. Spaces are not allowed.",
+						Description:         "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start with an alphanumeric character. * Can only include alphanumeric characters, underscores, and hyphens. Spaces are not allowed.",
+						MarkdownDescription: "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start with an alphanumeric character. * Can only include alphanumeric characters, underscores, and hyphens. Spaces are not allowed.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -302,8 +302,8 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"s3_storage_config": schema.SingleNestedAttribute{
-								Description:         "The Amazon Simple Storage (Amazon S3) location and and security configuration for OfflineStore.",
-								MarkdownDescription: "The Amazon Simple Storage (Amazon S3) location and and security configuration for OfflineStore.",
+								Description:         "The Amazon Simple Storage (Amazon S3) location and security configuration for OfflineStore.",
+								MarkdownDescription: "The Amazon Simple Storage (Amazon S3) location and security configuration for OfflineStore.",
 								Attributes: map[string]schema.Attribute{
 									"kms_key_id": schema.StringAttribute{
 										Description:         "",
@@ -407,8 +407,8 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"record_identifier_feature_name": schema.StringAttribute{
-						Description:         "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start and end with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.",
-						MarkdownDescription: "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start and end with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.",
+						Description:         "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.",
+						MarkdownDescription: "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

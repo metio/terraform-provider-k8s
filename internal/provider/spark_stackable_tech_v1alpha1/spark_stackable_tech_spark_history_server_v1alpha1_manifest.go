@@ -44,10 +44,8 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ClusterConfig *struct {
-			ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
-		} `tfsdk:"cluster_config" json:"clusterConfig,omitempty"`
-		Image *struct {
+		ClusterConfig *map[string]string `tfsdk:"cluster_config" json:"clusterConfig,omitempty"`
+		Image         *struct {
 			Custom         *string `tfsdk:"custom" json:"custom,omitempty"`
 			ProductVersion *string `tfsdk:"product_version" json:"productVersion,omitempty"`
 			PullPolicy     *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
@@ -58,7 +56,8 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 			StackableVersion *string `tfsdk:"stackable_version" json:"stackableVersion,omitempty"`
 		} `tfsdk:"image" json:"image,omitempty"`
 		LogFileDirectory *struct {
-			S3 *struct {
+			CustomLogDirectory *string `tfsdk:"custom_log_directory" json:"customLogDirectory,omitempty"`
+			S3                 *struct {
 				Bucket *struct {
 					Inline *struct {
 						BucketName *string `tfsdk:"bucket_name" json:"bucketName,omitempty"`
@@ -74,9 +73,12 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 									} `tfsdk:"scope" json:"scope,omitempty"`
 									SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 								} `tfsdk:"credentials" json:"credentials,omitempty"`
-								Host *string `tfsdk:"host" json:"host,omitempty"`
-								Port *int64  `tfsdk:"port" json:"port,omitempty"`
-								Tls  *struct {
+								Host   *string `tfsdk:"host" json:"host,omitempty"`
+								Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+								Region *struct {
+									Name *string `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"region" json:"region,omitempty"`
+								Tls *struct {
 									Verification *struct {
 										None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
 										Server *struct {
@@ -105,8 +107,9 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 					PodAffinity     *map[string]string `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				Cleaner *bool `tfsdk:"cleaner" json:"cleaner,omitempty"`
-				Logging *struct {
+				Cleaner       *bool   `tfsdk:"cleaner" json:"cleaner,omitempty"`
+				ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
+				Logging       *struct {
 					Containers *struct {
 						Console *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
@@ -123,7 +126,8 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				Resources *struct {
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -135,10 +139,15 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -153,8 +162,9 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 						PodAffinity     *map[string]string `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
-					Cleaner *bool `tfsdk:"cleaner" json:"cleaner,omitempty"`
-					Logging *struct {
+					Cleaner       *bool   `tfsdk:"cleaner" json:"cleaner,omitempty"`
+					ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
+					Logging       *struct {
 						Containers *struct {
 							Console *struct {
 								Level *string `tfsdk:"level" json:"level,omitempty"`
@@ -171,7 +181,8 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					Resources *struct {
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -183,10 +194,15 @@ type SparkStackableTechSparkHistoryServerV1Alpha1ManifestData struct {
 						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"nodes" json:"nodes,omitempty"`
 		SparkConf                     *map[string]string `tfsdk:"spark_conf" json:"sparkConf,omitempty"`
@@ -271,24 +287,13 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 				Description:         "A Spark cluster history server component. This resource is managed by the Stackable operator for Apache Spark. Find more information on how to use it in the [operator documentation](https://docs.stackable.tech/home/nightly/spark-k8s/usage-guide/history-server).",
 				MarkdownDescription: "A Spark cluster history server component. This resource is managed by the Stackable operator for Apache Spark. Find more information on how to use it in the [operator documentation](https://docs.stackable.tech/home/nightly/spark-k8s/usage-guide/history-server).",
 				Attributes: map[string]schema.Attribute{
-					"cluster_config": schema.SingleNestedAttribute{
-						Description:         "Global Spark history server configuration that applies to all roles and role groups.",
-						MarkdownDescription: "Global Spark history server configuration that applies to all roles and role groups.",
-						Attributes: map[string]schema.Attribute{
-							"listener_class": schema.StringAttribute{
-								Description:         "This field controls which type of Service the Operator creates for this HistoryServer: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which ListenerClass <https://docs.stackable.tech/home/stable/listener-operator/listenerclass.html> will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								MarkdownDescription: "This field controls which type of Service the Operator creates for this HistoryServer: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which ListenerClass <https://docs.stackable.tech/home/stable/listener-operator/listenerclass.html> will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("cluster-internal", "external-unstable", "external-stable"),
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
+					"cluster_config": schema.MapAttribute{
+						Description:         "Global Spark history server configuration that applies to all roles. This was previously used to hold the listener configuration, which has since moved to the role configuration.",
+						MarkdownDescription: "Global Spark history server configuration that applies to all roles. This was previously used to hold the listener configuration, which has since moved to the role configuration.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"image": schema.SingleNestedAttribute{
@@ -296,8 +301,8 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -342,8 +347,8 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -363,12 +368,20 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"log_file_directory": schema.SingleNestedAttribute{
-						Description:         "The log file directory definition used by the Spark history server. Currently only S3 buckets are supported.",
-						MarkdownDescription: "The log file directory definition used by the Spark history server. Currently only S3 buckets are supported.",
+						Description:         "The log file directory definition used by the Spark history server.",
+						MarkdownDescription: "The log file directory definition used by the Spark history server.",
 						Attributes: map[string]schema.Attribute{
+							"custom_log_directory": schema.StringAttribute{
+								Description:         "A custom log directory",
+								MarkdownDescription: "A custom log directory",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"s3": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "An S3 bucket storing the log events",
+								MarkdownDescription: "An S3 bucket storing the log events",
 								Attributes: map[string]schema.Attribute{
 									"bucket": schema.SingleNestedAttribute{
 										Description:         "",
@@ -482,6 +495,23 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 																		Validators: []validator.Int64{
 																			int64validator.AtLeast(0),
 																		},
+																	},
+
+																	"region": schema.SingleNestedAttribute{
+																		Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+																		MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"tls": schema.SingleNestedAttribute{
@@ -670,6 +700,14 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 										Computed:            false,
 									},
 
+									"listener_class": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"logging": schema.SingleNestedAttribute{
 										Description:         "Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging).",
 										MarkdownDescription: "Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging).",
@@ -773,6 +811,14 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 										Computed: false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -863,6 +909,42 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -981,6 +1063,14 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 												Computed:            false,
 											},
 
+											"listener_class": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"logging": schema.SingleNestedAttribute{
 												Description:         "Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging).",
 												MarkdownDescription: "Logging configuration, learn more in the [logging concept documentation](https://docs.stackable.tech/home/nightly/concepts/logging).",
@@ -1084,6 +1174,14 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 												Computed: false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1174,6 +1272,42 @@ func (r *SparkStackableTechSparkHistoryServerV1Alpha1Manifest) Schema(_ context.
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

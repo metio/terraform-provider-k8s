@@ -152,8 +152,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"logging_configuration": schema.SingleNestedAttribute{
-						Description:         "Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the AWS Step Functions User Guide.",
-						MarkdownDescription: "Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the AWS Step Functions User Guide.",
+						Description:         "Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the Step Functions User Guide.",
+						MarkdownDescription: "Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the Step Functions User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"destinations": schema.ListNestedAttribute{
 								Description:         "",
@@ -205,8 +205,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the state machine. A name must not contain: * white space * brackets < > { } [ ] * wildcard characters ? * * special characters ' # % ^ | ~ ' $ & , ; : / * control characters (U+0000-001F, U+007F-009F) To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.",
-						MarkdownDescription: "The name of the state machine. A name must not contain: * white space * brackets < > { } [ ] * wildcard characters ? * * special characters ' # % ^ | ~ ' $ & , ; : / * control characters (U+0000-001F, U+007F-009F) To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.",
+						Description:         "The name of the state machine. A name must not contain: * white space",
+						MarkdownDescription: "The name of the state machine. A name must not contain: * white space",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -221,8 +221,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the AWS Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.",
-						MarkdownDescription: "Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the AWS Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.",
+						Description:         "Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the Amazon Web Services Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.",
+						MarkdownDescription: "Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the Amazon Web Services Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -248,8 +248,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"tracing_configuration": schema.SingleNestedAttribute{
-						Description:         "Selects whether AWS X-Ray tracing is enabled.",
-						MarkdownDescription: "Selects whether AWS X-Ray tracing is enabled.",
+						Description:         "Selects whether X-Ray tracing is enabled.",
+						MarkdownDescription: "Selects whether X-Ray tracing is enabled.",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
 								Description:         "",

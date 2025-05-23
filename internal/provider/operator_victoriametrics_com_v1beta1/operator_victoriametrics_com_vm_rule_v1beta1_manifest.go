@@ -350,8 +350,8 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite",
-									MarkdownDescription: "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite",
+									Description:         "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite,vlogs",
+									MarkdownDescription: "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite,vlogs",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

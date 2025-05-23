@@ -56,6 +56,40 @@ type InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1ManifestData struct {
 				HostGroupName *string `tfsdk:"host_group_name" json:"hostGroupName,omitempty"`
 				VmGroupName   *string `tfsdk:"vm_group_name" json:"vmGroupName,omitempty"`
 			} `tfsdk:"hosts" json:"hosts,omitempty"`
+			NetworkConfigurations *[]struct {
+				AddressesFromPools *[]struct {
+					ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+					Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"addresses_from_pools" json:"addressesFromPools,omitempty"`
+				Dhcp4          *bool `tfsdk:"dhcp4" json:"dhcp4,omitempty"`
+				Dhcp4Overrides *struct {
+					Hostname     *string `tfsdk:"hostname" json:"hostname,omitempty"`
+					RouteMetric  *int64  `tfsdk:"route_metric" json:"routeMetric,omitempty"`
+					SendHostname *bool   `tfsdk:"send_hostname" json:"sendHostname,omitempty"`
+					UseDNS       *bool   `tfsdk:"use_dns" json:"useDNS,omitempty"`
+					UseDomains   *string `tfsdk:"use_domains" json:"useDomains,omitempty"`
+					UseHostname  *bool   `tfsdk:"use_hostname" json:"useHostname,omitempty"`
+					UseMTU       *bool   `tfsdk:"use_mtu" json:"useMTU,omitempty"`
+					UseNTP       *bool   `tfsdk:"use_ntp" json:"useNTP,omitempty"`
+					UseRoutes    *string `tfsdk:"use_routes" json:"useRoutes,omitempty"`
+				} `tfsdk:"dhcp4_overrides" json:"dhcp4Overrides,omitempty"`
+				Dhcp6          *bool `tfsdk:"dhcp6" json:"dhcp6,omitempty"`
+				Dhcp6Overrides *struct {
+					Hostname     *string `tfsdk:"hostname" json:"hostname,omitempty"`
+					RouteMetric  *int64  `tfsdk:"route_metric" json:"routeMetric,omitempty"`
+					SendHostname *bool   `tfsdk:"send_hostname" json:"sendHostname,omitempty"`
+					UseDNS       *bool   `tfsdk:"use_dns" json:"useDNS,omitempty"`
+					UseDomains   *string `tfsdk:"use_domains" json:"useDomains,omitempty"`
+					UseHostname  *bool   `tfsdk:"use_hostname" json:"useHostname,omitempty"`
+					UseMTU       *bool   `tfsdk:"use_mtu" json:"useMTU,omitempty"`
+					UseNTP       *bool   `tfsdk:"use_ntp" json:"useNTP,omitempty"`
+					UseRoutes    *string `tfsdk:"use_routes" json:"useRoutes,omitempty"`
+				} `tfsdk:"dhcp6_overrides" json:"dhcp6Overrides,omitempty"`
+				Nameservers   *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+				NetworkName   *string   `tfsdk:"network_name" json:"networkName,omitempty"`
+				SearchDomains *[]string `tfsdk:"search_domains" json:"searchDomains,omitempty"`
+			} `tfsdk:"network_configurations" json:"networkConfigurations,omitempty"`
 			Networks *[]string `tfsdk:"networks" json:"networks,omitempty"`
 		} `tfsdk:"topology" json:"topology,omitempty"`
 		Zone *struct {
@@ -222,6 +256,256 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"network_configurations": schema.ListNestedAttribute{
+								Description:         "NetworkConfigurations is a list of network configurations within this failure domain.",
+								MarkdownDescription: "NetworkConfigurations is a list of network configurations within this failure domain.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"addresses_from_pools": schema.ListNestedAttribute{
+											Description:         "AddressesFromPools is a list of IPAddressPools that should be assigned to IPAddressClaims. The machine's cloud-init metadata will be populated with IPAddresses fulfilled by an IPAM provider.",
+											MarkdownDescription: "AddressesFromPools is a list of IPAddressPools that should be assigned to IPAddressClaims. The machine's cloud-init metadata will be populated with IPAddresses fulfilled by an IPAM provider.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"api_group": schema.StringAttribute{
+														Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+														MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind is the type of resource being referenced",
+														MarkdownDescription: "Kind is the type of resource being referenced",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name is the name of resource being referenced",
+														MarkdownDescription: "Name is the name of resource being referenced",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"dhcp4": schema.BoolAttribute{
+											Description:         "DHCP4 is a flag that indicates whether or not to use DHCP for IPv4.",
+											MarkdownDescription: "DHCP4 is a flag that indicates whether or not to use DHCP for IPv4.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"dhcp4_overrides": schema.SingleNestedAttribute{
+											Description:         "DHCP4Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											MarkdownDescription: "DHCP4Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											Attributes: map[string]schema.Attribute{
+												"hostname": schema.StringAttribute{
+													Description:         "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
+													MarkdownDescription: "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"route_metric": schema.Int64Attribute{
+													Description:         "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
+													MarkdownDescription: "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"send_hostname": schema.BoolAttribute{
+													Description:         "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
+													MarkdownDescription: "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_dns": schema.BoolAttribute{
+													Description:         "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
+													MarkdownDescription: "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_domains": schema.StringAttribute{
+													Description:         "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
+													MarkdownDescription: "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_hostname": schema.BoolAttribute{
+													Description:         "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
+													MarkdownDescription: "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_mtu": schema.BoolAttribute{
+													Description:         "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
+													MarkdownDescription: "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_ntp": schema.BoolAttribute{
+													Description:         "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
+													MarkdownDescription: "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_routes": schema.StringAttribute{
+													Description:         "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
+													MarkdownDescription: "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"dhcp6": schema.BoolAttribute{
+											Description:         "DHCP6 is a flag that indicates whether or not to use DHCP for IPv6.",
+											MarkdownDescription: "DHCP6 is a flag that indicates whether or not to use DHCP for IPv6.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"dhcp6_overrides": schema.SingleNestedAttribute{
+											Description:         "DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											MarkdownDescription: "DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides)",
+											Attributes: map[string]schema.Attribute{
+												"hostname": schema.StringAttribute{
+													Description:         "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
+													MarkdownDescription: "Hostname is the name which will be sent to the DHCP server instead of the machine's hostname.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"route_metric": schema.Int64Attribute{
+													Description:         "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
+													MarkdownDescription: "RouteMetric is used to prioritize routes for devices. A lower metric for an interface will have a higher priority.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"send_hostname": schema.BoolAttribute{
+													Description:         "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
+													MarkdownDescription: "SendHostname when 'true', the hostname of the machine will be sent to the DHCP server.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_dns": schema.BoolAttribute{
+													Description:         "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
+													MarkdownDescription: "UseDNS when 'true', the DNS servers in the DHCP server will be used and take precedence.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_domains": schema.StringAttribute{
+													Description:         "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
+													MarkdownDescription: "UseDomains can take the values 'true', 'false', or 'route'. When 'true', the domain name from the DHCP server will be used as the DNS search domain for this device. When 'route', the domain name from the DHCP response will be used for routing DNS only, not for searching.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_hostname": schema.BoolAttribute{
+													Description:         "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
+													MarkdownDescription: "UseHostname when 'true', the hostname from the DHCP server will be set as the transient hostname of the machine.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_mtu": schema.BoolAttribute{
+													Description:         "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
+													MarkdownDescription: "UseMTU when 'true', the MTU from the DHCP server will be set as the MTU of the device.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_ntp": schema.BoolAttribute{
+													Description:         "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
+													MarkdownDescription: "UseNTP when 'true', the NTP servers from the DHCP server will be used by systemd-timesyncd and take precedence.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_routes": schema.StringAttribute{
+													Description:         "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
+													MarkdownDescription: "UseRoutes when 'true', the routes from the DHCP server will be installed in the routing table.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"nameservers": schema.ListAttribute{
+											Description:         "Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).",
+											MarkdownDescription: "Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"network_name": schema.StringAttribute{
+											Description:         "NetworkName is the network name for this machine's VM.",
+											MarkdownDescription: "NetworkName is the network name for this machine's VM.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"search_domains": schema.ListAttribute{
+											Description:         "SearchDomains is a list of search domains used when resolving IP addresses with DNS.",
+											MarkdownDescription: "SearchDomains is a list of search domains used when resolving IP addresses with DNS.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,

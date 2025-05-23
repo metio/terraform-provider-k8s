@@ -48,6 +48,7 @@ type FlinkApacheOrgFlinkSessionJobV1Beta1ManifestData struct {
 		Job                *struct {
 			AllowNonRestoredState  *bool     `tfsdk:"allow_non_restored_state" json:"allowNonRestoredState,omitempty"`
 			Args                   *[]string `tfsdk:"args" json:"args,omitempty"`
+			AutoscalerResetNonce   *int64    `tfsdk:"autoscaler_reset_nonce" json:"autoscalerResetNonce,omitempty"`
 			CheckpointTriggerNonce *int64    `tfsdk:"checkpoint_trigger_nonce" json:"checkpointTriggerNonce,omitempty"`
 			EntryClass             *string   `tfsdk:"entry_class" json:"entryClass,omitempty"`
 			InitialSavepointPath   *string   `tfsdk:"initial_savepoint_path" json:"initialSavepointPath,omitempty"`
@@ -172,6 +173,14 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Manifest) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"autoscaler_reset_nonce": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

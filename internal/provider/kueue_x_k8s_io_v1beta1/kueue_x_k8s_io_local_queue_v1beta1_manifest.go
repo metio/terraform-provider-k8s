@@ -45,7 +45,10 @@ type KueueXK8SIoLocalQueueV1Beta1ManifestData struct {
 
 	Spec *struct {
 		ClusterQueue *string `tfsdk:"cluster_queue" json:"clusterQueue,omitempty"`
-		StopPolicy   *string `tfsdk:"stop_policy" json:"stopPolicy,omitempty"`
+		FairSharing  *struct {
+			Weight *string `tfsdk:"weight" json:"weight,omitempty"`
+		} `tfsdk:"fair_sharing" json:"fairSharing,omitempty"`
+		StopPolicy *string `tfsdk:"stop_policy" json:"stopPolicy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -136,6 +139,23 @@ func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Schema(_ context.Context, _ datas
 							stringvalidator.LengthAtMost(253),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 						},
+					},
+
+					"fair_sharing": schema.SingleNestedAttribute{
+						Description:         "fairSharing defines the properties of the LocalQueue when participating in AdmissionFairSharing. The values are only relevant if AdmissionFairSharing is enabled in the Kueue configuration.",
+						MarkdownDescription: "fairSharing defines the properties of the LocalQueue when participating in AdmissionFairSharing. The values are only relevant if AdmissionFairSharing is enabled in the Kueue configuration.",
+						Attributes: map[string]schema.Attribute{
+							"weight": schema.StringAttribute{
+								Description:         "weight gives a comparative advantage to this ClusterQueue or Cohort when competing for unused resources in the Cohort. The share is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues and Cohorts with the lowest share and preempting workloads from the ClusterQueues and Cohorts with the highest share. A zero weight implies infinite share value, meaning that this Node will always be at disadvantage against other ClusterQueues and Cohorts.",
+								MarkdownDescription: "weight gives a comparative advantage to this ClusterQueue or Cohort when competing for unused resources in the Cohort. The share is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues and Cohorts with the lowest share and preempting workloads from the ClusterQueues and Cohorts with the highest share. A zero weight implies infinite share value, meaning that this Node will always be at disadvantage against other ClusterQueues and Cohorts.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"stop_policy": schema.StringAttribute{

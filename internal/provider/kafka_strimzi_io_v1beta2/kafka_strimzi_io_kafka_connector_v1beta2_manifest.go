@@ -44,15 +44,25 @@ type KafkaStrimziIoKafkaConnectorV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AlterOffsets *struct {
+			FromConfigMap *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"from_config_map" json:"fromConfigMap,omitempty"`
+		} `tfsdk:"alter_offsets" json:"alterOffsets,omitempty"`
 		AutoRestart *struct {
 			Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 			MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 		} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
-		Class    *string            `tfsdk:"class" json:"class,omitempty"`
-		Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
-		Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
-		State    *string            `tfsdk:"state" json:"state,omitempty"`
-		TasksMax *int64             `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
+		Class       *string            `tfsdk:"class" json:"class,omitempty"`
+		Config      *map[string]string `tfsdk:"config" json:"config,omitempty"`
+		ListOffsets *struct {
+			ToConfigMap *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"to_config_map" json:"toConfigMap,omitempty"`
+		} `tfsdk:"list_offsets" json:"listOffsets,omitempty"`
+		Pause    *bool   `tfsdk:"pause" json:"pause,omitempty"`
+		State    *string `tfsdk:"state" json:"state,omitempty"`
+		TasksMax *int64  `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -133,6 +143,32 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Manifest) Schema(_ context.Context, 
 				Description:         "The specification of the Kafka Connector.",
 				MarkdownDescription: "The specification of the Kafka Connector.",
 				Attributes: map[string]schema.Attribute{
+					"alter_offsets": schema.SingleNestedAttribute{
+						Description:         "Configuration for altering offsets.",
+						MarkdownDescription: "Configuration for altering offsets.",
+						Attributes: map[string]schema.Attribute{
+							"from_config_map": schema.SingleNestedAttribute{
+								Description:         "Reference to the ConfigMap where the new offsets are stored.",
+								MarkdownDescription: "Reference to the ConfigMap where the new offsets are stored.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"auto_restart": schema.SingleNestedAttribute{
 						Description:         "Automatic restart of connector and tasks configuration.",
 						MarkdownDescription: "Automatic restart of connector and tasks configuration.",
@@ -173,6 +209,32 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Manifest) Schema(_ context.Context, 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"list_offsets": schema.SingleNestedAttribute{
+						Description:         "Configuration for listing offsets.",
+						MarkdownDescription: "Configuration for listing offsets.",
+						Attributes: map[string]schema.Attribute{
+							"to_config_map": schema.SingleNestedAttribute{
+								Description:         "Reference to the ConfigMap where the list of offsets will be written to.",
+								MarkdownDescription: "Reference to the ConfigMap where the list of offsets will be written to.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"pause": schema.BoolAttribute{

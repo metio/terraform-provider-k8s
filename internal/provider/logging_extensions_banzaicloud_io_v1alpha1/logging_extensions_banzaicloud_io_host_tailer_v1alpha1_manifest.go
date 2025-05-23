@@ -174,6 +174,7 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 			Path            *string `tfsdk:"path" json:"path,omitempty"`
 			Read_from_head  *bool   `tfsdk:"read_from_head" json:"read_from_head,omitempty"`
 			Skip_long_lines *string `tfsdk:"skip_long_lines" json:"skip_long_lines,omitempty"`
+			Verbose         *bool   `tfsdk:"verbose" json:"verbose,omitempty"`
 		} `tfsdk:"file_tailers" json:"fileTailers,omitempty"`
 		Image *struct {
 			ImagePullSecrets *[]struct {
@@ -311,6 +312,7 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 			Name          *string `tfsdk:"name" json:"name,omitempty"`
 			Path          *string `tfsdk:"path" json:"path,omitempty"`
 			SystemdFilter *string `tfsdk:"systemd_filter" json:"systemdFilter,omitempty"`
+			Verbose       *bool   `tfsdk:"verbose" json:"verbose,omitempty"`
 		} `tfsdk:"systemd_tailers" json:"systemdTailers,omitempty"`
 		WorkloadMetaOverrides *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -691,6 +693,7 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2003,6 +2006,14 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 									Optional:            true,
 									Computed:            false,
 								},
+
+								"verbose": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,
@@ -2931,6 +2942,14 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 									Optional:            true,
 									Computed:            false,
 								},
+
+								"verbose": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,
@@ -2960,8 +2979,8 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -5495,6 +5514,14 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
