@@ -51,7 +51,12 @@ type ArgoprojIoAppProjectV1Alpha1ManifestData struct {
 			Group *string `tfsdk:"group" json:"group,omitempty"`
 			Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 		} `tfsdk:"cluster_resource_whitelist" json:"clusterResourceWhitelist,omitempty"`
-		Description  *string `tfsdk:"description" json:"description,omitempty"`
+		Description                *string `tfsdk:"description" json:"description,omitempty"`
+		DestinationServiceAccounts *[]struct {
+			DefaultServiceAccount *string `tfsdk:"default_service_account" json:"defaultServiceAccount,omitempty"`
+			Namespace             *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Server                *string `tfsdk:"server" json:"server,omitempty"`
+		} `tfsdk:"destination_service_accounts" json:"destinationServiceAccounts,omitempty"`
 		Destinations *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -240,6 +245,41 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"destination_service_accounts": schema.ListNestedAttribute{
+						Description:         "DestinationServiceAccounts holds information about the service accounts to be impersonated for the application sync operation for each destination.",
+						MarkdownDescription: "DestinationServiceAccounts holds information about the service accounts to be impersonated for the application sync operation for each destination.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default_service_account": schema.StringAttribute{
+									Description:         "DefaultServiceAccount to be used for impersonation during the sync operation",
+									MarkdownDescription: "DefaultServiceAccount to be used for impersonation during the sync operation",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"namespace": schema.StringAttribute{
+									Description:         "Namespace specifies the target namespace for the application's resources.",
+									MarkdownDescription: "Namespace specifies the target namespace for the application's resources.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"server": schema.StringAttribute{
+									Description:         "Server specifies the URL of the target cluster's Kubernetes control plane API.",
+									MarkdownDescription: "Server specifies the URL of the target cluster's Kubernetes control plane API.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"destinations": schema.ListNestedAttribute{

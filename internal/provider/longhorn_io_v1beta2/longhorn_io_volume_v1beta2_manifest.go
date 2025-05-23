@@ -45,16 +45,15 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 	Spec *struct {
 		Standby                     *bool     `tfsdk:"standby" json:"Standby,omitempty"`
 		AccessMode                  *string   `tfsdk:"access_mode" json:"accessMode,omitempty"`
-		BackendStoreDriver          *string   `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
 		BackingImage                *string   `tfsdk:"backing_image" json:"backingImage,omitempty"`
 		BackupCompressionMethod     *string   `tfsdk:"backup_compression_method" json:"backupCompressionMethod,omitempty"`
+		BackupTargetName            *string   `tfsdk:"backup_target_name" json:"backupTargetName,omitempty"`
 		DataEngine                  *string   `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DataLocality                *string   `tfsdk:"data_locality" json:"dataLocality,omitempty"`
 		DataSource                  *string   `tfsdk:"data_source" json:"dataSource,omitempty"`
 		DisableFrontend             *bool     `tfsdk:"disable_frontend" json:"disableFrontend,omitempty"`
 		DiskSelector                *[]string `tfsdk:"disk_selector" json:"diskSelector,omitempty"`
 		Encrypted                   *bool     `tfsdk:"encrypted" json:"encrypted,omitempty"`
-		EngineImage                 *string   `tfsdk:"engine_image" json:"engineImage,omitempty"`
 		FreezeFilesystemForSnapshot *string   `tfsdk:"freeze_filesystem_for_snapshot" json:"freezeFilesystemForSnapshot,omitempty"`
 		FromBackup                  *string   `tfsdk:"from_backup" json:"fromBackup,omitempty"`
 		Frontend                    *string   `tfsdk:"frontend" json:"frontend,omitempty"`
@@ -65,6 +64,7 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		NodeID                      *string   `tfsdk:"node_id" json:"nodeID,omitempty"`
 		NodeSelector                *[]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		NumberOfReplicas            *int64    `tfsdk:"number_of_replicas" json:"numberOfReplicas,omitempty"`
+		OfflineRebuilding           *string   `tfsdk:"offline_rebuilding" json:"offlineRebuilding,omitempty"`
 		ReplicaAutoBalance          *string   `tfsdk:"replica_auto_balance" json:"replicaAutoBalance,omitempty"`
 		ReplicaDiskSoftAntiAffinity *string   `tfsdk:"replica_disk_soft_anti_affinity" json:"replicaDiskSoftAntiAffinity,omitempty"`
 		ReplicaSoftAntiAffinity     *string   `tfsdk:"replica_soft_anti_affinity" json:"replicaSoftAntiAffinity,omitempty"`
@@ -176,14 +176,6 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						},
 					},
 
-					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated:Replaced by field 'dataEngine'.'",
-						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.'",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"backing_image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -201,6 +193,14 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("none", "lz4", "gzip"),
 						},
+					},
+
+					"backup_target_name": schema.StringAttribute{
+						Description:         "The backup target name that the volume will be backed up to or is synced.",
+						MarkdownDescription: "The backup target name that the volume will be backed up to or is synced.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"data_engine": schema.StringAttribute{
@@ -258,14 +258,6 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
-					"engine_image": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'image'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"freeze_filesystem_for_snapshot": schema.StringAttribute{
 						Description:         "Setting that freezes the filesystem on the root partition before a snapshot is created.",
 						MarkdownDescription: "Setting that freezes the filesystem on the root partition before a snapshot is created.",
@@ -292,7 +284,7 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", ""),
+							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", "ublk", ""),
 						},
 					},
 
@@ -351,6 +343,17 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"offline_rebuilding": schema.StringAttribute{
+						Description:         "Specifies whether Longhorn should rebuild replicas while the detached volume is degraded. - ignored: Use the global setting for offline replica rebuilding. - enabled: Enable offline rebuilding for this volume, regardless of the global setting. - disabled: Disable offline rebuilding for this volume, regardless of the global setting",
+						MarkdownDescription: "Specifies whether Longhorn should rebuild replicas while the detached volume is degraded. - ignored: Use the global setting for offline replica rebuilding. - enabled: Enable offline rebuilding for this volume, regardless of the global setting. - disabled: Disable offline rebuilding for this volume, regardless of the global setting",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("ignored", "disabled", "enabled"),
+						},
 					},
 
 					"replica_auto_balance": schema.StringAttribute{

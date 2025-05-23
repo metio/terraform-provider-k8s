@@ -99,73 +99,6 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Use_entire_record    *bool   `tfsdk:"use_entire_record" json:"use_entire_record,omitempty"`
 					Use_record_as_seed   *bool   `tfsdk:"use_record_as_seed" json:"use_record_as_seed,omitempty"`
 				} `tfsdk:"elasticsearch_genid" json:"elasticsearch_genid,omitempty"`
-				EnhanceK8s *struct {
-					Api_groups        *[]string `tfsdk:"api_groups" json:"api_groups,omitempty"`
-					Bearer_token_file *string   `tfsdk:"bearer_token_file" json:"bearer_token_file,omitempty"`
-					Ca_file           *struct {
-						MountFrom *struct {
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"ca_file" json:"ca_file,omitempty"`
-					Cache_refresh           *int64 `tfsdk:"cache_refresh" json:"cache_refresh,omitempty"`
-					Cache_refresh_variation *int64 `tfsdk:"cache_refresh_variation" json:"cache_refresh_variation,omitempty"`
-					Cache_size              *int64 `tfsdk:"cache_size" json:"cache_size,omitempty"`
-					Cache_ttl               *int64 `tfsdk:"cache_ttl" json:"cache_ttl,omitempty"`
-					Client_cert             *struct {
-						MountFrom *struct {
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"client_cert" json:"client_cert,omitempty"`
-					Client_key *struct {
-						MountFrom *struct {
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-						Value     *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFrom *struct {
-							SecretKeyRef *struct {
-								Key      *string `tfsdk:"key" json:"key,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
-								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-					} `tfsdk:"client_key" json:"client_key,omitempty"`
-					Core_api_versions *[]string `tfsdk:"core_api_versions" json:"core_api_versions,omitempty"`
-					Data_type         *string   `tfsdk:"data_type" json:"data_type,omitempty"`
-					In_namespace_path *[]string `tfsdk:"in_namespace_path" json:"in_namespace_path,omitempty"`
-					In_pod_path       *[]string `tfsdk:"in_pod_path" json:"in_pod_path,omitempty"`
-					Kubernetes_url    *string   `tfsdk:"kubernetes_url" json:"kubernetes_url,omitempty"`
-					Secret_dir        *string   `tfsdk:"secret_dir" json:"secret_dir,omitempty"`
-					Ssl_partial_chain *bool     `tfsdk:"ssl_partial_chain" json:"ssl_partial_chain,omitempty"`
-					Verify_ssl        *bool     `tfsdk:"verify_ssl" json:"verify_ssl,omitempty"`
-				} `tfsdk:"enhance_k8s" json:"enhanceK8s,omitempty"`
 				Geoip *struct {
 					Backend_library         *string              `tfsdk:"backend_library" json:"backend_library,omitempty"`
 					Geoip2_database         *string              `tfsdk:"geoip2_database" json:"geoip2_database,omitempty"`
@@ -237,6 +170,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 						Format                 *string `tfsdk:"format" json:"format,omitempty"`
 						Format_firstline       *string `tfsdk:"format_firstline" json:"format_firstline,omitempty"`
+						Format_key             *string `tfsdk:"format_key" json:"format_key,omitempty"`
 						Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 						Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 						Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -277,6 +211,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 							Estimate_current_event *bool   `tfsdk:"estimate_current_event" json:"estimate_current_event,omitempty"`
 							Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 							Format                 *string `tfsdk:"format" json:"format,omitempty"`
+							Format_name            *string `tfsdk:"format_name" json:"format_name,omitempty"`
 							Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 							Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 							Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -333,6 +268,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 						Format                 *string `tfsdk:"format" json:"format,omitempty"`
 						Format_firstline       *string `tfsdk:"format_firstline" json:"format_firstline,omitempty"`
+						Format_key             *string `tfsdk:"format_key" json:"format_key,omitempty"`
 						Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 						Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 						Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -373,6 +309,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 							Estimate_current_event *bool   `tfsdk:"estimate_current_event" json:"estimate_current_event,omitempty"`
 							Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 							Format                 *string `tfsdk:"format" json:"format,omitempty"`
+							Format_name            *string `tfsdk:"format_name" json:"format_name,omitempty"`
 							Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 							Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 							Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -445,34 +382,6 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Stdout *struct {
 					Output_type *string `tfsdk:"output_type" json:"output_type,omitempty"`
 				} `tfsdk:"stdout" json:"stdout,omitempty"`
-				Sumologic *struct {
-					Collector_key_name           *string `tfsdk:"collector_key_name" json:"collector_key_name,omitempty"`
-					Collector_value              *string `tfsdk:"collector_value" json:"collector_value,omitempty"`
-					Exclude_container_regex      *string `tfsdk:"exclude_container_regex" json:"exclude_container_regex,omitempty"`
-					Exclude_facility_regex       *string `tfsdk:"exclude_facility_regex" json:"exclude_facility_regex,omitempty"`
-					Exclude_host_regex           *string `tfsdk:"exclude_host_regex" json:"exclude_host_regex,omitempty"`
-					Exclude_namespace_regex      *string `tfsdk:"exclude_namespace_regex" json:"exclude_namespace_regex,omitempty"`
-					Exclude_pod_regex            *string `tfsdk:"exclude_pod_regex" json:"exclude_pod_regex,omitempty"`
-					Exclude_priority_regex       *string `tfsdk:"exclude_priority_regex" json:"exclude_priority_regex,omitempty"`
-					Exclude_unit_regex           *string `tfsdk:"exclude_unit_regex" json:"exclude_unit_regex,omitempty"`
-					Log_format                   *string `tfsdk:"log_format" json:"log_format,omitempty"`
-					Source_category              *string `tfsdk:"source_category" json:"source_category,omitempty"`
-					Source_category_key_name     *string `tfsdk:"source_category_key_name" json:"source_category_key_name,omitempty"`
-					Source_category_prefix       *string `tfsdk:"source_category_prefix" json:"source_category_prefix,omitempty"`
-					Source_category_replace_dash *string `tfsdk:"source_category_replace_dash" json:"source_category_replace_dash,omitempty"`
-					Source_host                  *string `tfsdk:"source_host" json:"source_host,omitempty"`
-					Source_host_key_name         *string `tfsdk:"source_host_key_name" json:"source_host_key_name,omitempty"`
-					Source_name                  *string `tfsdk:"source_name" json:"source_name,omitempty"`
-					Source_name_key_name         *string `tfsdk:"source_name_key_name" json:"source_name_key_name,omitempty"`
-					Tracing_annotation_prefix    *string `tfsdk:"tracing_annotation_prefix" json:"tracing_annotation_prefix,omitempty"`
-					Tracing_container_name       *string `tfsdk:"tracing_container_name" json:"tracing_container_name,omitempty"`
-					Tracing_format               *bool   `tfsdk:"tracing_format" json:"tracing_format,omitempty"`
-					Tracing_host                 *string `tfsdk:"tracing_host" json:"tracing_host,omitempty"`
-					Tracing_label_prefix         *string `tfsdk:"tracing_label_prefix" json:"tracing_label_prefix,omitempty"`
-					Tracing_namespace            *string `tfsdk:"tracing_namespace" json:"tracing_namespace,omitempty"`
-					Tracing_pod                  *string `tfsdk:"tracing_pod" json:"tracing_pod,omitempty"`
-					Tracing_pod_id               *string `tfsdk:"tracing_pod_id" json:"tracing_pod_id,omitempty"`
-				} `tfsdk:"sumologic" json:"sumologic,omitempty"`
 				Tag_normaliser *struct {
 					Format    *string `tfsdk:"format" json:"format,omitempty"`
 					Match_tag *string `tfsdk:"match_tag" json:"match_tag,omitempty"`
@@ -856,12 +765,13 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config_hot_reload" json:"configHotReload,omitempty"`
-			CoroStackSize           *int64             `tfsdk:"coro_stack_size" json:"coroStackSize,omitempty"`
-			CustomConfigSecret      *string            `tfsdk:"custom_config_secret" json:"customConfigSecret,omitempty"`
-			CustomParsers           *string            `tfsdk:"custom_parsers" json:"customParsers,omitempty"`
-			DaemonsetAnnotations    *map[string]string `tfsdk:"daemonset_annotations" json:"daemonsetAnnotations,omitempty"`
-			DisableKubernetesFilter *bool              `tfsdk:"disable_kubernetes_filter" json:"disableKubernetesFilter,omitempty"`
-			DnsConfig               *struct {
+			CoroStackSize                 *int64             `tfsdk:"coro_stack_size" json:"coroStackSize,omitempty"`
+			CustomConfigSecret            *string            `tfsdk:"custom_config_secret" json:"customConfigSecret,omitempty"`
+			CustomParsers                 *string            `tfsdk:"custom_parsers" json:"customParsers,omitempty"`
+			DaemonsetAnnotations          *map[string]string `tfsdk:"daemonset_annotations" json:"daemonsetAnnotations,omitempty"`
+			DisableKubernetesFilter       *bool              `tfsdk:"disable_kubernetes_filter" json:"disableKubernetesFilter,omitempty"`
+			DisableVarLibDockerContainers *bool              `tfsdk:"disable_var_lib_docker_containers" json:"disableVarLibDockerContainers,omitempty"`
+			DnsConfig                     *struct {
 				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 				Options     *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -871,6 +781,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
 			DnsPolicy      *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 			EnableUpstream *bool   `tfsdk:"enable_upstream" json:"enableUpstream,omitempty"`
+			EnabledIPv6    *bool   `tfsdk:"enabled_i_pv6" json:"enabledIPv6,omitempty"`
 			EnvVars        *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -913,6 +824,12 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Private_ip        *bool   `tfsdk:"private_ip" json:"private_ip,omitempty"`
 				Vpc_id            *bool   `tfsdk:"vpc_id" json:"vpc_id,omitempty"`
 			} `tfsdk:"filter_aws" json:"filterAws,omitempty"`
+			FilterGrep *struct {
+				Exclude   *[]string `tfsdk:"exclude" json:"Exclude,omitempty"`
+				LogicalOp *string   `tfsdk:"logical_op" json:"LogicalOp,omitempty"`
+				Match     *string   `tfsdk:"match" json:"Match,omitempty"`
+				Regex     *[]string `tfsdk:"regex" json:"Regex,omitempty"`
+			} `tfsdk:"filter_grep" json:"filterGrep,omitempty"`
 			FilterKubernetes *struct {
 				Annotations                   *string `tfsdk:"annotations" json:"Annotations,omitempty"`
 				Buffer_Size                   *string `tfsdk:"buffer__size" json:"Buffer_Size,omitempty"`
@@ -1023,8 +940,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					} `tfsdk:"set" json:"Set,omitempty"`
 				} `tfsdk:"rules" json:"rules,omitempty"`
 			} `tfsdk:"filter_modify" json:"filterModify,omitempty"`
-			Flush          *int64 `tfsdk:"flush" json:"flush,omitempty"`
-			ForwardOptions *struct {
+			Flush                    *int64 `tfsdk:"flush" json:"flush,omitempty"`
+			ForceHotReloadAfterGrace *bool  `tfsdk:"force_hot_reload_after_grace" json:"forceHotReloadAfterGrace,omitempty"`
+			ForwardOptions           *struct {
 				Require_ack_response     *bool   `tfsdk:"require_ack_response" json:"Require_ack_response,omitempty"`
 				Retry_Limit              *string `tfsdk:"retry__limit" json:"Retry_Limit,omitempty"`
 				Send_options             *bool   `tfsdk:"send_options" json:"Send_options,omitempty"`
@@ -1048,34 +966,35 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"image" json:"image,omitempty"`
 			InputTail *struct {
-				Buffer_Chunk_Size  *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
-				Buffer_Max_Size    *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
-				DB                 *string   `tfsdk:"db" json:"DB,omitempty"`
-				DB_journal_mode    *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
-				DB_locking         *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
-				DB_Sync            *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
-				Docker_Mode        *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
-				Docker_Mode_Flush  *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
-				Docker_Mode_Parser *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
-				Exclude_Path       *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
-				Ignore_Older       *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
-				Key                *string   `tfsdk:"key" json:"Key,omitempty"`
-				Mem_Buf_Limit      *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
-				Multiline          *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
-				Multiline_Flush    *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
-				Parser             *string   `tfsdk:"parser" json:"Parser,omitempty"`
-				Parser_Firstline   *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
-				Parser_N           *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
-				Path               *string   `tfsdk:"path" json:"Path,omitempty"`
-				Path_Key           *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
-				Read_From_Head     *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
-				Refresh_Interval   *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
-				Rotate_Wait        *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
-				Skip_Long_Lines    *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
-				Tag                *string   `tfsdk:"tag" json:"Tag,omitempty"`
-				Tag_Regex          *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
-				Multiline_parser   *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
-				Storage_type       *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
+				Buffer_Chunk_Size                 *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
+				Buffer_Max_Size                   *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
+				DB                                *string   `tfsdk:"db" json:"DB,omitempty"`
+				DB_journal_mode                   *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
+				DB_locking                        *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
+				DB_Sync                           *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
+				Docker_Mode                       *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
+				Docker_Mode_Flush                 *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
+				Docker_Mode_Parser                *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
+				Exclude_Path                      *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
+				Ignore_Older                      *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
+				Key                               *string   `tfsdk:"key" json:"Key,omitempty"`
+				Mem_Buf_Limit                     *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
+				Multiline                         *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
+				Multiline_Flush                   *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
+				Parser                            *string   `tfsdk:"parser" json:"Parser,omitempty"`
+				Parser_Firstline                  *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
+				Parser_N                          *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
+				Path                              *string   `tfsdk:"path" json:"Path,omitempty"`
+				Path_Key                          *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
+				Read_From_Head                    *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
+				Refresh_Interval                  *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
+				Rotate_Wait                       *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
+				Skip_Long_Lines                   *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
+				Tag                               *string   `tfsdk:"tag" json:"Tag,omitempty"`
+				Tag_Regex                         *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
+				Multiline_parser                  *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
+				Storage_pause_on_chunks_overlimit *string   `tfsdk:"storage_pause_on_chunks_overlimit" json:"storage.pause_on_chunks_overlimit,omitempty"`
+				Storage_type                      *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
 			} `tfsdk:"input_tail" json:"inputTail,omitempty"`
 			Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			LivenessDefaultCheck *bool              `tfsdk:"liveness_default_check" json:"livenessDefaultCheck,omitempty"`
@@ -1311,6 +1230,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
 			Security *struct {
+				CreateOpenShiftSCC *bool `tfsdk:"create_open_shift_scc" json:"createOpenShiftSCC,omitempty"`
 				PodSecurityContext *struct {
 					AppArmorProfile *struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -1321,6 +1241,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1785,8 +1706,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"config_reloader_resources" json:"configReloaderResources,omitempty"`
-			DisablePvc *bool `tfsdk:"disable_pvc" json:"disablePvc,omitempty"`
-			DnsConfig  *struct {
+			ConfigReloaderUseGracefulReloadWebhook *bool `tfsdk:"config_reloader_use_graceful_reload_webhook" json:"configReloaderUseGracefulReloadWebhook,omitempty"`
+			DisablePvc                             *bool `tfsdk:"disable_pvc" json:"disablePvc,omitempty"`
+			DnsConfig                              *struct {
 				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 				Options     *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -1796,6 +1718,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
 			DnsPolicy                *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 			EnableMsgpackTimeSupport *bool   `tfsdk:"enable_msgpack_time_support" json:"enableMsgpackTimeSupport,omitempty"`
+			EnabledIPv6              *bool   `tfsdk:"enabled_i_pv6" json:"enabledIPv6,omitempty"`
 			EnvVars                  *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -2252,6 +2175,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Replicas            *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"scaling" json:"scaling,omitempty"`
 			Security *struct {
+				CreateOpenShiftSCC *bool `tfsdk:"create_open_shift_scc" json:"createOpenShiftSCC,omitempty"`
 				PodSecurityContext *struct {
 					AppArmorProfile *struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -2262,6 +2186,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2427,6 +2352,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 							Port *string `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+					StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 				} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 				LivenessProbe *struct {
 					Exec *struct {
@@ -2677,73 +2603,6 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Use_entire_record    *bool   `tfsdk:"use_entire_record" json:"use_entire_record,omitempty"`
 				Use_record_as_seed   *bool   `tfsdk:"use_record_as_seed" json:"use_record_as_seed,omitempty"`
 			} `tfsdk:"elasticsearch_genid" json:"elasticsearch_genid,omitempty"`
-			EnhanceK8s *struct {
-				Api_groups        *[]string `tfsdk:"api_groups" json:"api_groups,omitempty"`
-				Bearer_token_file *string   `tfsdk:"bearer_token_file" json:"bearer_token_file,omitempty"`
-				Ca_file           *struct {
-					MountFrom *struct {
-						SecretKeyRef *struct {
-							Key      *string `tfsdk:"key" json:"key,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-					Value     *string `tfsdk:"value" json:"value,omitempty"`
-					ValueFrom *struct {
-						SecretKeyRef *struct {
-							Key      *string `tfsdk:"key" json:"key,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-				} `tfsdk:"ca_file" json:"ca_file,omitempty"`
-				Cache_refresh           *int64 `tfsdk:"cache_refresh" json:"cache_refresh,omitempty"`
-				Cache_refresh_variation *int64 `tfsdk:"cache_refresh_variation" json:"cache_refresh_variation,omitempty"`
-				Cache_size              *int64 `tfsdk:"cache_size" json:"cache_size,omitempty"`
-				Cache_ttl               *int64 `tfsdk:"cache_ttl" json:"cache_ttl,omitempty"`
-				Client_cert             *struct {
-					MountFrom *struct {
-						SecretKeyRef *struct {
-							Key      *string `tfsdk:"key" json:"key,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-					Value     *string `tfsdk:"value" json:"value,omitempty"`
-					ValueFrom *struct {
-						SecretKeyRef *struct {
-							Key      *string `tfsdk:"key" json:"key,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-				} `tfsdk:"client_cert" json:"client_cert,omitempty"`
-				Client_key *struct {
-					MountFrom *struct {
-						SecretKeyRef *struct {
-							Key      *string `tfsdk:"key" json:"key,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-					Value     *string `tfsdk:"value" json:"value,omitempty"`
-					ValueFrom *struct {
-						SecretKeyRef *struct {
-							Key      *string `tfsdk:"key" json:"key,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
-							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-				} `tfsdk:"client_key" json:"client_key,omitempty"`
-				Core_api_versions *[]string `tfsdk:"core_api_versions" json:"core_api_versions,omitempty"`
-				Data_type         *string   `tfsdk:"data_type" json:"data_type,omitempty"`
-				In_namespace_path *[]string `tfsdk:"in_namespace_path" json:"in_namespace_path,omitempty"`
-				In_pod_path       *[]string `tfsdk:"in_pod_path" json:"in_pod_path,omitempty"`
-				Kubernetes_url    *string   `tfsdk:"kubernetes_url" json:"kubernetes_url,omitempty"`
-				Secret_dir        *string   `tfsdk:"secret_dir" json:"secret_dir,omitempty"`
-				Ssl_partial_chain *bool     `tfsdk:"ssl_partial_chain" json:"ssl_partial_chain,omitempty"`
-				Verify_ssl        *bool     `tfsdk:"verify_ssl" json:"verify_ssl,omitempty"`
-			} `tfsdk:"enhance_k8s" json:"enhanceK8s,omitempty"`
 			Geoip *struct {
 				Backend_library         *string              `tfsdk:"backend_library" json:"backend_library,omitempty"`
 				Geoip2_database         *string              `tfsdk:"geoip2_database" json:"geoip2_database,omitempty"`
@@ -2815,6 +2674,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 					Format                 *string `tfsdk:"format" json:"format,omitempty"`
 					Format_firstline       *string `tfsdk:"format_firstline" json:"format_firstline,omitempty"`
+					Format_key             *string `tfsdk:"format_key" json:"format_key,omitempty"`
 					Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 					Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 					Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -2855,6 +2715,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Estimate_current_event *bool   `tfsdk:"estimate_current_event" json:"estimate_current_event,omitempty"`
 						Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 						Format                 *string `tfsdk:"format" json:"format,omitempty"`
+						Format_name            *string `tfsdk:"format_name" json:"format_name,omitempty"`
 						Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 						Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 						Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -2911,6 +2772,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 					Format                 *string `tfsdk:"format" json:"format,omitempty"`
 					Format_firstline       *string `tfsdk:"format_firstline" json:"format_firstline,omitempty"`
+					Format_key             *string `tfsdk:"format_key" json:"format_key,omitempty"`
 					Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 					Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 					Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -2951,6 +2813,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Estimate_current_event *bool   `tfsdk:"estimate_current_event" json:"estimate_current_event,omitempty"`
 						Expression             *string `tfsdk:"expression" json:"expression,omitempty"`
 						Format                 *string `tfsdk:"format" json:"format,omitempty"`
+						Format_name            *string `tfsdk:"format_name" json:"format_name,omitempty"`
 						Grok_failure_key       *string `tfsdk:"grok_failure_key" json:"grok_failure_key,omitempty"`
 						Grok_name_key          *string `tfsdk:"grok_name_key" json:"grok_name_key,omitempty"`
 						Grok_pattern           *string `tfsdk:"grok_pattern" json:"grok_pattern,omitempty"`
@@ -3023,34 +2886,6 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			Stdout *struct {
 				Output_type *string `tfsdk:"output_type" json:"output_type,omitempty"`
 			} `tfsdk:"stdout" json:"stdout,omitempty"`
-			Sumologic *struct {
-				Collector_key_name           *string `tfsdk:"collector_key_name" json:"collector_key_name,omitempty"`
-				Collector_value              *string `tfsdk:"collector_value" json:"collector_value,omitempty"`
-				Exclude_container_regex      *string `tfsdk:"exclude_container_regex" json:"exclude_container_regex,omitempty"`
-				Exclude_facility_regex       *string `tfsdk:"exclude_facility_regex" json:"exclude_facility_regex,omitempty"`
-				Exclude_host_regex           *string `tfsdk:"exclude_host_regex" json:"exclude_host_regex,omitempty"`
-				Exclude_namespace_regex      *string `tfsdk:"exclude_namespace_regex" json:"exclude_namespace_regex,omitempty"`
-				Exclude_pod_regex            *string `tfsdk:"exclude_pod_regex" json:"exclude_pod_regex,omitempty"`
-				Exclude_priority_regex       *string `tfsdk:"exclude_priority_regex" json:"exclude_priority_regex,omitempty"`
-				Exclude_unit_regex           *string `tfsdk:"exclude_unit_regex" json:"exclude_unit_regex,omitempty"`
-				Log_format                   *string `tfsdk:"log_format" json:"log_format,omitempty"`
-				Source_category              *string `tfsdk:"source_category" json:"source_category,omitempty"`
-				Source_category_key_name     *string `tfsdk:"source_category_key_name" json:"source_category_key_name,omitempty"`
-				Source_category_prefix       *string `tfsdk:"source_category_prefix" json:"source_category_prefix,omitempty"`
-				Source_category_replace_dash *string `tfsdk:"source_category_replace_dash" json:"source_category_replace_dash,omitempty"`
-				Source_host                  *string `tfsdk:"source_host" json:"source_host,omitempty"`
-				Source_host_key_name         *string `tfsdk:"source_host_key_name" json:"source_host_key_name,omitempty"`
-				Source_name                  *string `tfsdk:"source_name" json:"source_name,omitempty"`
-				Source_name_key_name         *string `tfsdk:"source_name_key_name" json:"source_name_key_name,omitempty"`
-				Tracing_annotation_prefix    *string `tfsdk:"tracing_annotation_prefix" json:"tracing_annotation_prefix,omitempty"`
-				Tracing_container_name       *string `tfsdk:"tracing_container_name" json:"tracing_container_name,omitempty"`
-				Tracing_format               *bool   `tfsdk:"tracing_format" json:"tracing_format,omitempty"`
-				Tracing_host                 *string `tfsdk:"tracing_host" json:"tracing_host,omitempty"`
-				Tracing_label_prefix         *string `tfsdk:"tracing_label_prefix" json:"tracing_label_prefix,omitempty"`
-				Tracing_namespace            *string `tfsdk:"tracing_namespace" json:"tracing_namespace,omitempty"`
-				Tracing_pod                  *string `tfsdk:"tracing_pod" json:"tracing_pod,omitempty"`
-				Tracing_pod_id               *string `tfsdk:"tracing_pod_id" json:"tracing_pod_id,omitempty"`
-			} `tfsdk:"sumologic" json:"sumologic,omitempty"`
 			Tag_normaliser *struct {
 				Format    *string `tfsdk:"format" json:"format,omitempty"`
 				Match_tag *string `tfsdk:"match_tag" json:"match_tag,omitempty"`
@@ -3399,6 +3234,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 												Port *string `tfsdk:"port" json:"port,omitempty"`
 											} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 										} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+										StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 									} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 									LivenessProbe *struct {
 										Exec *struct {
@@ -3657,6 +3493,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 												Port *string `tfsdk:"port" json:"port,omitempty"`
 											} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 										} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+										StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 									} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 									LivenessProbe *struct {
 										Exec *struct {
@@ -3917,6 +3754,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 												Port *string `tfsdk:"port" json:"port,omitempty"`
 											} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 										} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+										StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 									} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 									LivenessProbe *struct {
 										Exec *struct {
@@ -4101,6 +3939,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 									RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 									RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 									RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+									SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 									SeLinuxOptions      *struct {
 										Level *string `tfsdk:"level" json:"level,omitempty"`
 										Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -4537,34 +4376,35 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				} `tfsdk:"forward_options" json:"forwardOptions,omitempty"`
 				Grace     *int64 `tfsdk:"grace" json:"grace,omitempty"`
 				InputTail *struct {
-					Buffer_Chunk_Size  *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
-					Buffer_Max_Size    *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
-					DB                 *string   `tfsdk:"db" json:"DB,omitempty"`
-					DB_journal_mode    *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
-					DB_locking         *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
-					DB_Sync            *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
-					Docker_Mode        *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
-					Docker_Mode_Flush  *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
-					Docker_Mode_Parser *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
-					Exclude_Path       *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
-					Ignore_Older       *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
-					Key                *string   `tfsdk:"key" json:"Key,omitempty"`
-					Mem_Buf_Limit      *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
-					Multiline          *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
-					Multiline_Flush    *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
-					Parser             *string   `tfsdk:"parser" json:"Parser,omitempty"`
-					Parser_Firstline   *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
-					Parser_N           *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
-					Path               *string   `tfsdk:"path" json:"Path,omitempty"`
-					Path_Key           *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
-					Read_From_Head     *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
-					Refresh_Interval   *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
-					Rotate_Wait        *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
-					Skip_Long_Lines    *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
-					Tag                *string   `tfsdk:"tag" json:"Tag,omitempty"`
-					Tag_Regex          *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
-					Multiline_parser   *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
-					Storage_type       *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
+					Buffer_Chunk_Size                 *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
+					Buffer_Max_Size                   *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
+					DB                                *string   `tfsdk:"db" json:"DB,omitempty"`
+					DB_journal_mode                   *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
+					DB_locking                        *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
+					DB_Sync                           *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
+					Docker_Mode                       *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
+					Docker_Mode_Flush                 *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
+					Docker_Mode_Parser                *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
+					Exclude_Path                      *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
+					Ignore_Older                      *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
+					Key                               *string   `tfsdk:"key" json:"Key,omitempty"`
+					Mem_Buf_Limit                     *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
+					Multiline                         *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
+					Multiline_Flush                   *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
+					Parser                            *string   `tfsdk:"parser" json:"Parser,omitempty"`
+					Parser_Firstline                  *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
+					Parser_N                          *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
+					Path                              *string   `tfsdk:"path" json:"Path,omitempty"`
+					Path_Key                          *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
+					Read_From_Head                    *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
+					Refresh_Interval                  *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
+					Rotate_Wait                       *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
+					Skip_Long_Lines                   *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
+					Tag                               *string   `tfsdk:"tag" json:"Tag,omitempty"`
+					Tag_Regex                         *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
+					Multiline_parser                  *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
+					Storage_pause_on_chunks_overlimit *string   `tfsdk:"storage_pause_on_chunks_overlimit" json:"storage.pause_on_chunks_overlimit,omitempty"`
+					Storage_type                      *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
 				} `tfsdk:"input_tail" json:"inputTail,omitempty"`
 				LivenessDefaultCheck *bool   `tfsdk:"liveness_default_check" json:"livenessDefaultCheck,omitempty"`
 				LogLevel             *string `tfsdk:"log_level" json:"logLevel,omitempty"`
@@ -4768,6 +4608,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					} `tfsdk:"secret" json:"secret,omitempty"`
 				} `tfsdk:"positiondb" json:"positiondb,omitempty"`
 				Security *struct {
+					CreateOpenShiftSCC *bool `tfsdk:"create_open_shift_scc" json:"createOpenShiftSCC,omitempty"`
 					PodSecurityContext *struct {
 						AppArmorProfile *struct {
 							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -4778,6 +4619,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -4868,6 +4710,11 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			} `tfsdk:"node_agent_fluentbit" json:"nodeAgentFluentbit,omitempty"`
 			Profile *string `tfsdk:"profile" json:"profile,omitempty"`
 		} `tfsdk:"node_agents" json:"nodeAgents,omitempty"`
+		RouteConfig *struct {
+			DisableLoggingRoute            *bool              `tfsdk:"disable_logging_route" json:"disableLoggingRoute,omitempty"`
+			EnableTelemetryControllerRoute *bool              `tfsdk:"enable_telemetry_controller_route" json:"enableTelemetryControllerRoute,omitempty"`
+			TenantLabels                   *map[string]string `tfsdk:"tenant_labels" json:"tenantLabels,omitempty"`
+		} `tfsdk:"route_config" json:"routeConfig,omitempty"`
 		SkipInvalidResources *bool `tfsdk:"skip_invalid_resources" json:"skipInvalidResources,omitempty"`
 		SyslogNG             *struct {
 			BufferVolumeMetrics *struct {
@@ -5255,6 +5102,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -5513,6 +5361,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -5773,6 +5622,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -5957,6 +5807,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -6778,6 +6629,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 											Port *string `tfsdk:"port" json:"port,omitempty"`
 										} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 									} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+									StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 								} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 								LivenessProbe *struct {
 									Exec *struct {
@@ -7036,6 +6888,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 											Port *string `tfsdk:"port" json:"port,omitempty"`
 										} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 									} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+									StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 								} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 								LivenessProbe *struct {
 									Exec *struct {
@@ -7296,6 +7149,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 											Port *string `tfsdk:"port" json:"port,omitempty"`
 										} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 									} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+									StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 								} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 								LivenessProbe *struct {
 									Exec *struct {
@@ -7480,6 +7334,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 								RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 								RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 								RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+								SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 								SeLinuxOptions      *struct {
 									Level *string `tfsdk:"level" json:"level,omitempty"`
 									Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -8382,434 +8237,6 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 											Computed: false,
 										},
 
-										"enhance_k8s": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"api_groups": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"bearer_token_file": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"ca_file": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"mount_from": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"cache_refresh": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"cache_refresh_variation": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"cache_size": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"cache_ttl": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"client_cert": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"mount_from": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"client_key": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"mount_from": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-
-														"value": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"value_from": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"secret_key_ref": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"optional": schema.BoolAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"core_api_versions": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"data_type": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"in_namespace_path": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"in_pod_path": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"kubernetes_url": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"secret_dir": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"ssl_partial_chain": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"verify_ssl": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"geoip": schema.SingleNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -9276,6 +8703,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 															Computed:            false,
 														},
 
+														"format_key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"grok_failure_key": schema.StringAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -9547,6 +8982,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																	},
 
 																	"format": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"format_name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -9954,6 +9397,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																Computed:            false,
 															},
 
+															"format_key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"grok_failure_key": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -10225,6 +9676,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																		},
 
 																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format_name": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -10750,223 +10209,6 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"output_type": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"sumologic": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"collector_key_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"collector_value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_container_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_facility_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_host_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_namespace_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_pod_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_priority_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"exclude_unit_regex": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"log_format": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_category": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_category_key_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_category_prefix": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_category_replace_dash": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_host": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_host_key_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"source_name_key_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_annotation_prefix": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_container_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_format": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_host": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_label_prefix": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_namespace": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_pod": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"tracing_pod_id": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -13638,6 +12880,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"disable_var_lib_docker_containers": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"dns_config": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -13701,6 +12951,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"enable_upstream": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enabled_i_pv6": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -13988,6 +13246,52 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									"vpc_id": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"filter_grep": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exclude": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"logical_op": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("legacy", "AND", "OR"),
+										},
+									},
+
+									"match": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"regex": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -14731,6 +14035,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"force_hot_reload_after_grace": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"forward_options": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -15106,6 +14418,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Description:         "",
 										MarkdownDescription: "",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"storage_pause_on_chunks_overlimit": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -16746,6 +16066,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"create_open_shift_scc": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod_security_context": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -16808,6 +16136,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -19975,6 +19311,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Computed: false,
 							},
 
+							"config_reloader_use_graceful_reload_webhook": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"disable_pvc": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -20046,6 +19390,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"enable_msgpack_time_support": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enabled_i_pv6": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -23182,6 +22534,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"create_open_shift_scc": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod_security_context": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -23244,6 +22604,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -24334,6 +23702,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"stop_signal": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 											Required: false,
@@ -26074,434 +25450,6 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									Computed: false,
 								},
 
-								"enhance_k8s": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Attributes: map[string]schema.Attribute{
-										"api_groups": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"bearer_token_file": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"ca_file": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"mount_from": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"optional": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"value_from": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"optional": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"cache_refresh": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cache_refresh_variation": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cache_size": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"cache_ttl": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"client_cert": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"mount_from": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"optional": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"value_from": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"optional": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"client_key": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"mount_from": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"optional": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"value_from": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Attributes: map[string]schema.Attribute{
-														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
-															Attributes: map[string]schema.Attribute{
-																"key": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-
-																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"optional": schema.BoolAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"core_api_versions": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"data_type": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"in_namespace_path": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"in_pod_path": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"kubernetes_url": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"secret_dir": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"ssl_partial_chain": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"verify_ssl": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
 								"geoip": schema.SingleNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -26968,6 +25916,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Computed:            false,
 												},
 
+												"format_key": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"grok_failure_key": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -27239,6 +26195,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 															},
 
 															"format": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"format_name": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
 																Required:            false,
@@ -27646,6 +26610,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 														Computed:            false,
 													},
 
+													"format_key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"grok_failure_key": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -27917,6 +26889,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																},
 
 																"format": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"format_name": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,
@@ -28442,223 +27422,6 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"output_type": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"sumologic": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Attributes: map[string]schema.Attribute{
-										"collector_key_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"collector_value": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_container_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_facility_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_host_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_namespace_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_pod_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_priority_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"exclude_unit_regex": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"log_format": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_category": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_category_key_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_category_prefix": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_category_replace_dash": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_host": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_host_key_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"source_name_key_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_annotation_prefix": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_container_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_format": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_host": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_label_prefix": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_namespace": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_pod": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"tracing_pod_id": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -30972,6 +29735,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																								Optional: true,
 																								Computed: false,
 																							},
+
+																							"stop_signal": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
 																						},
 																						Required: false,
 																						Optional: true,
@@ -32691,6 +31462,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																								Required: false,
 																								Optional: true,
 																								Computed: false,
+																							},
+
+																							"stop_signal": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
 																							},
 																						},
 																						Required: false,
@@ -34429,6 +33208,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																								Optional: true,
 																								Computed: false,
 																							},
+
+																							"stop_signal": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
 																						},
 																						Required: false,
 																						Optional: true,
@@ -35689,6 +34476,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																				},
 
 																				"run_as_user": schema.Int64Attribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"se_linux_change_policy": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,
@@ -38892,6 +37687,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Computed:            false,
 												},
 
+												"storage_pause_on_chunks_overlimit": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"storage_type": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -40324,6 +39127,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 											Description:         "",
 											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
+												"create_open_shift_scc": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"pod_security_context": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -40386,6 +39197,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 														},
 
 														"run_as_user": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"se_linux_change_policy": schema.StringAttribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -41001,6 +39820,40 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 									Optional:            true,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"route_config": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"disable_logging_route": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_telemetry_controller_route": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tenant_labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -43627,6 +42480,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -45346,6 +44207,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 													},
 													Required: false,
@@ -47084,6 +45953,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -48344,6 +47221,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -53912,6 +52797,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																					Optional: true,
 																					Computed: false,
 																				},
+
+																				"stop_signal": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
 																			},
 																			Required: false,
 																			Optional: true,
@@ -55631,6 +54524,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"stop_signal": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 																			},
 																			Required: false,
@@ -57369,6 +56270,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																					Optional: true,
 																					Computed: false,
 																				},
+
+																				"stop_signal": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
 																			},
 																			Required: false,
 																			Optional: true,
@@ -58629,6 +57538,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 																	},
 
 																	"run_as_user": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"se_linux_change_policy": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,

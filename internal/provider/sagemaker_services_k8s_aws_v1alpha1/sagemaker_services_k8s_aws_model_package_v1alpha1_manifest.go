@@ -923,8 +923,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"inference_specification": schema.SingleNestedAttribute{
-						Description:         "Specifies details about inference jobs that can be run with models based on this model package, including the following: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
-						MarkdownDescription: "Specifies details about inference jobs that can be run with models based on this model package, including the following: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
+						Description:         "Specifies details about inference jobs that you can run with models based on this model package, including the following information: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
+						MarkdownDescription: "Specifies details about inference jobs that you can run with models based on this model package, including the following information: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
 						Attributes: map[string]schema.Attribute{
 							"containers": schema.ListNestedAttribute{
 								Description:         "",

@@ -129,8 +129,8 @@ func (r *ElasticacheServicesK8SAwsSnapshotV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SnapshotSpec defines the desired state of Snapshot. Represents a copy of an entire Redis cluster as of the time when the snapshot was taken.",
-				MarkdownDescription: "SnapshotSpec defines the desired state of Snapshot. Represents a copy of an entire Redis cluster as of the time when the snapshot was taken.",
+				Description:         "SnapshotSpec defines the desired state of Snapshot. Represents a copy of an entire Valkey or Redis OSS cluster as of the time when the snapshot was taken.",
+				MarkdownDescription: "SnapshotSpec defines the desired state of Snapshot. Represents a copy of an entire Valkey or Redis OSS cluster as of the time when the snapshot was taken.",
 				Attributes: map[string]schema.Attribute{
 					"cache_cluster_id": schema.StringAttribute{
 						Description:         "The identifier of an existing cluster. The snapshot is created from this cluster.",

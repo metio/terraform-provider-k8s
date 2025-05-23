@@ -465,7 +465,8 @@ type Apps3ScaleNetApimanagerV1Alpha1ManifestData struct {
 		} `tfsdk:"apicast" json:"apicast,omitempty"`
 		AppLabel *string `tfsdk:"app_label" json:"appLabel,omitempty"`
 		Backend  *struct {
-			CronSpec *struct {
+			BackendRedisTLSEnabled *bool `tfsdk:"backend_redis_tls_enabled" json:"backendRedisTLSEnabled,omitempty"`
+			CronSpec               *struct {
 				Affinity *struct {
 					NodeAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
@@ -803,7 +804,8 @@ type Apps3ScaleNetApimanagerV1Alpha1ManifestData struct {
 					WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 			} `tfsdk:"listener_spec" json:"listenerSpec,omitempty"`
-			RedisAffinity *struct {
+			QueuesRedisTLSEnabled *bool `tfsdk:"queues_redis_tls_enabled" json:"queuesRedisTLSEnabled,omitempty"`
+			RedisAffinity         *struct {
 				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						Preference *struct {
@@ -2573,6 +2575,8 @@ type Apps3ScaleNetApimanagerV1Alpha1ManifestData struct {
 					WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 			} `tfsdk:"sphinx_spec" json:"sphinxSpec,omitempty"`
+			SystemDatabaseTLSEnabled *bool `tfsdk:"system_database_tls_enabled" json:"systemDatabaseTLSEnabled,omitempty"`
+			SystemRedisTLSEnabled    *bool `tfsdk:"system_redis_tls_enabled" json:"systemRedisTLSEnabled,omitempty"`
 		} `tfsdk:"system" json:"system,omitempty"`
 		TenantName     *string `tfsdk:"tenant_name" json:"tenantName,omitempty"`
 		WildcardDomain *string `tfsdk:"wildcard_domain" json:"wildcardDomain,omitempty"`
@@ -2910,6 +2914,7 @@ type Apps3ScaleNetApimanagerV1Alpha1ManifestData struct {
 				TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 				WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 			} `tfsdk:"database_topology_spread_constraints" json:"databaseTopologySpreadConstraints,omitempty"`
+			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			PostgreSQLImage *string `tfsdk:"postgre_sql_image" json:"postgreSQLImage,omitempty"`
 			QueSpec         *struct {
@@ -3080,6 +3085,7 @@ type Apps3ScaleNetApimanagerV1Alpha1ManifestData struct {
 					WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 			} `tfsdk:"que_spec" json:"queSpec,omitempty"`
+			ZyncDatabaseTLSEnabled *bool `tfsdk:"zync_database_tls_enabled" json:"zyncDatabaseTLSEnabled,omitempty"`
 		} `tfsdk:"zync" json:"zync,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -6007,6 +6013,14 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"backend_redis_tls_enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cron_spec": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -8301,6 +8315,14 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"queues_redis_tls_enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"redis_affinity": schema.SingleNestedAttribute{
@@ -20241,6 +20263,22 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Optional: true,
 								Computed: false,
 							},
+
+							"system_database_tls_enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"system_redis_tls_enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -22530,6 +22568,14 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Computed: false,
 							},
 
+							"enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"image": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -23684,6 +23730,14 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"zync_database_tls_enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

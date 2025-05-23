@@ -253,16 +253,19 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta2Manifest) Schema(_ c
 						MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
-								Description:         "The hostname on which the API server is serving.",
-								MarkdownDescription: "The hostname on which the API server is serving.",
+								Description:         "host is the hostname on which the API server is serving.",
+								MarkdownDescription: "host is the hostname on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(512),
+								},
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "The port on which the API server is serving.",
-								MarkdownDescription: "The port on which the API server is serving.",
+								Description:         "port is the port on which the API server is serving.",
+								MarkdownDescription: "port is the port on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -664,8 +667,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta2Manifest) Schema(_ c
 					},
 
 					"network": schema.SingleNestedAttribute{
-						Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
-						MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
+						Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist system will check DHCP network with given Network.name, if that also not exist, it will create a new DHCP service and name will be DHCPSERVER<Network.Name>_Private. Network.RegEx is not yet supported and system will ignore the value.",
+						MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist system will check DHCP network with given Network.name, if that also not exist, it will create a new DHCP service and name will be DHCPSERVER<Network.Name>_Private. Network.RegEx is not yet supported and system will ignore the value.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "ID of resource",

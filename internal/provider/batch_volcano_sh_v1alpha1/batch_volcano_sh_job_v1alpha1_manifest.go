@@ -376,7 +376,8 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
 							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -633,7 +634,8 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
 							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -893,7 +895,8 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
 							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -994,12 +997,18 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 						ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 					} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 					ResourceClaims *[]struct {
-						Name   *string `tfsdk:"name" json:"name,omitempty"`
-						Source *struct {
-							ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
-							ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
-						} `tfsdk:"source" json:"source,omitempty"`
+						Name                      *string `tfsdk:"name" json:"name,omitempty"`
+						ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+						ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 					} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
+					Resources *struct {
+						Claims *[]struct {
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
+						} `tfsdk:"claims" json:"claims,omitempty"`
+						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+					} `tfsdk:"resources" json:"resources,omitempty"`
 					RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 					SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -1016,6 +1025,7 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1026,8 +1036,9 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 							Type             *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-						SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-						Sysctls            *[]struct {
+						SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+						SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+						Sysctls                  *[]struct {
 							Name  *string `tfsdk:"name" json:"name,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1226,6 +1237,10 @@ type BatchVolcanoShJobV1Alpha1ManifestData struct {
 							Path *string `tfsdk:"path" json:"path,omitempty"`
 							Type *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"host_path" json:"hostPath,omitempty"`
+						Image *struct {
+							PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+							Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+						} `tfsdk:"image" json:"image,omitempty"`
 						Iscsi *struct {
 							ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 							ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1551,6 +1566,9 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("*", "PodPending", "PodRunning", "PodFailed", "PodEvicted", "Unknown", "TaskCompleted", "OutOfSync", "CommandIssued", "JobUpdated", "TaskFailed"),
+									},
 								},
 
 								"events": schema.ListAttribute{
@@ -1690,6 +1708,9 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("*", "PodPending", "PodRunning", "PodFailed", "PodEvicted", "Unknown", "TaskCompleted", "OutOfSync", "CommandIssued", "JobUpdated", "TaskFailed"),
+												},
 											},
 
 											"events": schema.ListAttribute{
@@ -3724,6 +3745,14 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 																					Optional:            false,
 																					Computed:            false,
 																				},
+
+																				"request": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
 																			},
 																		},
 																		Required: false,
@@ -5434,6 +5463,14 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"request": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
 																					Computed:            false,
 																				},
 																			},
@@ -7173,6 +7210,14 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 																					Optional:            false,
 																					Computed:            false,
 																				},
+
+																				"request": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
 																			},
 																		},
 																		Required: false,
@@ -7875,19 +7920,46 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 																Computed:            false,
 															},
 
-															"source": schema.SingleNestedAttribute{
+															"resource_claim_name": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"resource_claim_template_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"resources": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"claims": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
-																	"resource_claim_name": schema.StringAttribute{
+																	"name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																	},
 
-																	"resource_claim_template_name": schema.StringAttribute{
+																	"request": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -7895,10 +7967,28 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 																		Computed:            false,
 																	},
 																},
-																Required: false,
-																Optional: true,
-																Computed: false,
 															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"limits": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"requests": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 													},
 													Required: false,
@@ -8018,6 +8108,14 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 															Computed:            false,
 														},
 
+														"se_linux_change_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"se_linux_options": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -8088,6 +8186,14 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 															Description:         "",
 															MarkdownDescription: "",
 															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"supplemental_groups_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -9436,6 +9542,31 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 																Computed: false,
 															},
 
+															"image": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"pull_policy": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"reference": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"iscsi": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -10464,6 +10595,9 @@ func (r *BatchVolcanoShJobV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("none", "best-effort", "restricted", "single-numa-node"),
+									},
 								},
 							},
 						},

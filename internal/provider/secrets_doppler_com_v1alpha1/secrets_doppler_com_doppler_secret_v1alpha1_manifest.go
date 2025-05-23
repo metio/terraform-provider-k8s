@@ -47,9 +47,11 @@ type SecretsDopplerComDopplerSecretV1Alpha1ManifestData struct {
 		Format        *string `tfsdk:"format" json:"format,omitempty"`
 		Host          *string `tfsdk:"host" json:"host,omitempty"`
 		ManagedSecret *struct {
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Type      *string `tfsdk:"type" json:"type,omitempty"`
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Type        *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"managed_secret" json:"managedSecret,omitempty"`
 		NameTransformer *string `tfsdk:"name_transformer" json:"nameTransformer,omitempty"`
 		Processors      *struct {
@@ -175,6 +177,24 @@ func (r *SecretsDopplerComDopplerSecretV1Alpha1Manifest) Schema(_ context.Contex
 						Description:         "The Kubernetes secret where the operator will store and sync the fetched secrets",
 						MarkdownDescription: "The Kubernetes secret where the operator will store and sync the fetched secrets",
 						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Annotations to add or update on the managed secret",
+								MarkdownDescription: "Annotations to add or update on the managed secret",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels to add or update on the managed secret",
+								MarkdownDescription: "Labels to add or update on the managed secret",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"name": schema.StringAttribute{
 								Description:         "The name of the Secret resource",
 								MarkdownDescription: "The name of the Secret resource",

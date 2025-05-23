@@ -43,9 +43,11 @@ type LonghornIoBackupBackingImageV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-		SyncRequestedAt *string            `tfsdk:"sync_requested_at" json:"syncRequestedAt,omitempty"`
-		UserCreated     *bool              `tfsdk:"user_created" json:"userCreated,omitempty"`
+		BackingImage     *string            `tfsdk:"backing_image" json:"backingImage,omitempty"`
+		BackupTargetName *string            `tfsdk:"backup_target_name" json:"backupTargetName,omitempty"`
+		Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		SyncRequestedAt  *string            `tfsdk:"sync_requested_at" json:"syncRequestedAt,omitempty"`
+		UserCreated      *bool              `tfsdk:"user_created" json:"userCreated,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -126,6 +128,22 @@ func (r *LonghornIoBackupBackingImageV1Beta2Manifest) Schema(_ context.Context, 
 				Description:         "BackupBackingImageSpec defines the desired state of the Longhorn backing image backup",
 				MarkdownDescription: "BackupBackingImageSpec defines the desired state of the Longhorn backing image backup",
 				Attributes: map[string]schema.Attribute{
+					"backing_image": schema.StringAttribute{
+						Description:         "The backing image name.",
+						MarkdownDescription: "The backing image name.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+					},
+
+					"backup_target_name": schema.StringAttribute{
+						Description:         "The backup target name.",
+						MarkdownDescription: "The backup target name.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"labels": schema.MapAttribute{
 						Description:         "The labels of backing image backup.",
 						MarkdownDescription: "The labels of backing image backup.",
@@ -147,8 +165,8 @@ func (r *LonghornIoBackupBackingImageV1Beta2Manifest) Schema(_ context.Context, 
 					},
 
 					"user_created": schema.BoolAttribute{
-						Description:         "Is this CR created by user through API or UI. Required",
-						MarkdownDescription: "Is this CR created by user through API or UI. Required",
+						Description:         "Is this CR created by user through API or UI.",
+						MarkdownDescription: "Is this CR created by user through API or UI.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

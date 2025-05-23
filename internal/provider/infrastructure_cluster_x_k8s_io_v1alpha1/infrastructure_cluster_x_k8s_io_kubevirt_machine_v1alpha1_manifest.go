@@ -170,9 +170,6 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
-								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
-								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -612,6 +609,9 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 										Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 									} `tfsdk:"vpindex" json:"vpindex,omitempty"`
 								} `tfsdk:"hyperv" json:"hyperv,omitempty"`
+								HypervPassthrough *struct {
+									Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+								} `tfsdk:"hyperv_passthrough" json:"hypervPassthrough,omitempty"`
 								Kvm *struct {
 									Hidden *bool `tfsdk:"hidden" json:"hidden,omitempty"`
 								} `tfsdk:"kvm" json:"kvm,omitempty"`
@@ -648,6 +648,9 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								Serial *string `tfsdk:"serial" json:"serial,omitempty"`
 								Uuid   *string `tfsdk:"uuid" json:"uuid,omitempty"`
 							} `tfsdk:"firmware" json:"firmware,omitempty"`
+							IoThreads *struct {
+								SupplementalPoolThreadCount *int64 `tfsdk:"supplemental_pool_thread_count" json:"supplementalPoolThreadCount,omitempty"`
+							} `tfsdk:"io_threads" json:"ioThreads,omitempty"`
 							IoThreadsPolicy *string `tfsdk:"io_threads_policy" json:"ioThreadsPolicy,omitempty"`
 							LaunchSecurity  *struct {
 								Sev *struct {
@@ -870,6 +873,7 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 						} `tfsdk:"volumes" json:"volumes,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 				} `tfsdk:"template" json:"template,omitempty"`
+				UpdateVolumesStrategy *string `tfsdk:"update_volumes_strategy" json:"updateVolumesStrategy,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"virtual_machine_template" json:"virtualMachineTemplate,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -965,8 +969,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1335,8 +1339,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"volume_attributes_class_name": schema.StringAttribute{
-																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1820,25 +1824,6 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	Description:         "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	MarkdownDescription: "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	Attributes: map[string]schema.Attribute{
-																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																			NestedObject: schema.NestedAttributeObject{
-																				Attributes: map[string]schema.Attribute{
-																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						Required:            true,
-																						Optional:            false,
-																						Computed:            false,
-																					},
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
 																		"limits": schema.MapAttribute{
 																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -2072,8 +2057,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 									},
 
 									"running": schema.BoolAttribute{
-										Description:         "Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy",
-										MarkdownDescription: "Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy",
+										Description:         "Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy Deprecated: VirtualMachineInstance field 'Running' is now deprecated, please use RunStrategy instead.",
+										MarkdownDescription: "Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy Deprecated: VirtualMachineInstance field 'Running' is now deprecated, please use RunStrategy instead.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2513,8 +2498,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"match_label_keys": schema.ListAttribute{
-																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2522,8 +2507,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"mismatch_label_keys": schema.ListAttribute{
-																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2680,8 +2665,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2689,8 +2674,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"mismatch_label_keys": schema.ListAttribute{
-																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2847,8 +2832,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"match_label_keys": schema.ListAttribute{
-																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2856,8 +2841,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"mismatch_label_keys": schema.ListAttribute{
-																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -3014,8 +2999,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3023,8 +3008,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"mismatch_label_keys": schema.ListAttribute{
-																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3145,16 +3130,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Required.",
-																			MarkdownDescription: "Required.",
+																			Description:         "Name is this DNS resolver option's name. Required.",
+																			MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"value": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Value is this DNS resolver option's value.",
+																			MarkdownDescription: "Value is this DNS resolver option's value.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4140,8 +4125,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"macvtap": schema.MapAttribute{
-																					Description:         "Deprecated, please refer to Kubevirt user guide for alternatives.",
-																					MarkdownDescription: "Deprecated, please refer to Kubevirt user guide for alternatives.",
+																					Description:         "DeprecatedMacvtap is an alias to the deprecated Macvtap interface, please refer to Kubevirt user guide for alternatives. Deprecated: Removed in v1.3",
+																					MarkdownDescription: "DeprecatedMacvtap is an alias to the deprecated Macvtap interface, please refer to Kubevirt user guide for alternatives. Deprecated: Removed in v1.3",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4158,8 +4143,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"model": schema.StringAttribute{
-																					Description:         "Interface model. One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio. TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51",
-																					MarkdownDescription: "Interface model. One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio. TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51",
+																					Description:         "Interface model. One of: e1000, e1000e, igb, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio.",
+																					MarkdownDescription: "Interface model. One of: e1000, e1000e, igb, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4174,8 +4159,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"passt": schema.MapAttribute{
-																					Description:         "Deprecated, please refer to Kubevirt user guide for alternatives.",
-																					MarkdownDescription: "Deprecated, please refer to Kubevirt user guide for alternatives.",
+																					Description:         "DeprecatedPasst is an alias to the deprecated Passt interface, please refer to Kubevirt user guide for alternatives. Deprecated: Removed in v1.3",
+																					MarkdownDescription: "DeprecatedPasst is an alias to the deprecated Passt interface, please refer to Kubevirt user guide for alternatives. Deprecated: Removed in v1.3",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4226,8 +4211,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"slirp": schema.MapAttribute{
-																					Description:         "InterfaceSlirp connects to a given network using QEMU user networking mode.",
-																					MarkdownDescription: "InterfaceSlirp connects to a given network using QEMU user networking mode.",
+																					Description:         "DeprecatedSlirp is an alias to the deprecated Slirp interface Deprecated: Removed in v1.3",
+																					MarkdownDescription: "DeprecatedSlirp is an alias to the deprecated Slirp interface Deprecated: Removed in v1.3",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4244,8 +4229,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"state": schema.StringAttribute{
-																					Description:         "State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.",
-																					MarkdownDescription: "State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.",
+																					Description:         "State represents the requested operational state of the interface. The supported values are: 'absent', expressing a request to remove the interface. 'down', expressing a request to set the link down. 'up', expressing a request to set the link up. Empty value functions as 'up'.",
+																					MarkdownDescription: "State represents the requested operational state of the interface. The supported values are: 'absent', expressing a request to remove the interface. 'down', expressing a request to set the link down. 'up', expressing a request to set the link up. Empty value functions as 'up'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4705,6 +4690,23 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		Computed: false,
 																	},
 
+																	"hyperv_passthrough": schema.SingleNestedAttribute{
+																		Description:         "This enables all supported hyperv flags automatically. Bear in mind that if this enabled hyperV features cannot be enabled explicitly. In addition, a Virtual Machine using it will be non-migratable.",
+																		MarkdownDescription: "This enables all supported hyperv flags automatically. Bear in mind that if this enabled hyperV features cannot be enabled explicitly. In addition, a Virtual Machine using it will be non-migratable.",
+																		Attributes: map[string]schema.Attribute{
+																			"enabled": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"kvm": schema.SingleNestedAttribute{
 																		Description:         "Configure how KVM presence is exposed to the guest.",
 																		MarkdownDescription: "Configure how KVM presence is exposed to the guest.",
@@ -4910,6 +4912,23 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	"uuid": schema.StringAttribute{
 																		Description:         "UUID reported by the vmi bios. Defaults to a random generated uid.",
 																		MarkdownDescription: "UUID reported by the vmi bios. Defaults to a random generated uid.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"io_threads": schema.SingleNestedAttribute{
+																Description:         "IOThreads specifies the IOThreads options.",
+																MarkdownDescription: "IOThreads specifies the IOThreads options.",
+																Attributes: map[string]schema.Attribute{
+																	"supplemental_pool_thread_count": schema.Int64Attribute{
+																		Description:         "SupplementalPoolThreadCount specifies how many iothreads are allocated for the supplementalPool policy.",
+																		MarkdownDescription: "SupplementalPoolThreadCount specifies how many iothreads are allocated for the supplementalPool policy.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5235,8 +5254,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 															},
 
 															"tcp_socket": schema.SingleNestedAttribute{
-																Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+																MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5490,8 +5509,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 															},
 
 															"tcp_socket": schema.SingleNestedAttribute{
-																Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+																MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
 																Attributes: map[string]schema.Attribute{
 																	"host": schema.StringAttribute{
 																		Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5762,8 +5781,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "NetworkDataSecretRef references a k8s secret that contains config drive networkdata.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5779,8 +5798,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "UserDataSecretRef references a k8s secret that contains config drive userdata.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5837,8 +5856,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "NetworkDataSecretRef references a k8s secret that contains NoCloud networkdata.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5854,8 +5873,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "UserDataSecretRef references a k8s secret that contains NoCloud userdata.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5892,8 +5911,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	MarkdownDescription: "ConfigMapSource represents a reference to a ConfigMap in the same namespace. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5974,8 +5993,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.",
-																			MarkdownDescription: "Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.",
+																			Description:         "Name of both the DataVolume and the PVC in the same namespace.",
+																			MarkdownDescription: "Name of both the DataVolume and the PVC in the same namespace.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -6322,8 +6341,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "ConfigMap references a ConfigMap that contains Sysprep answer file named autounattend.xml that should be attached as disk of CDROM type.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -6339,8 +6358,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "Secret references a k8s Secret that contains Sysprep answer file named autounattend.xml that should be attached as disk of CDROM type.",
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -6370,6 +6389,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 										Required: true,
 										Optional: false,
 										Computed: false,
+									},
+
+									"update_volumes_strategy": schema.StringAttribute{
+										Description:         "UpdateVolumesStrategy is the strategy to apply on volumes updates",
+										MarkdownDescription: "UpdateVolumesStrategy is the strategy to apply on volumes updates",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

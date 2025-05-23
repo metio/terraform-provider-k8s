@@ -364,6 +364,7 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 			CpuEvictBEUsageThresholdPercent    *int64  `tfsdk:"cpu_evict_be_usage_threshold_percent" json:"cpuEvictBEUsageThresholdPercent,omitempty"`
 			CpuEvictPolicy                     *string `tfsdk:"cpu_evict_policy" json:"cpuEvictPolicy,omitempty"`
 			CpuEvictTimeWindowSeconds          *int64  `tfsdk:"cpu_evict_time_window_seconds" json:"cpuEvictTimeWindowSeconds,omitempty"`
+			CpuSuppressMinPercent              *int64  `tfsdk:"cpu_suppress_min_percent" json:"cpuSuppressMinPercent,omitempty"`
 			CpuSuppressPolicy                  *string `tfsdk:"cpu_suppress_policy" json:"cpuSuppressPolicy,omitempty"`
 			CpuSuppressThresholdPercent        *int64  `tfsdk:"cpu_suppress_threshold_percent" json:"cpuSuppressThresholdPercent,omitempty"`
 			Enable                             *bool   `tfsdk:"enable" json:"enable,omitempty"`
@@ -3084,6 +3085,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"cpu_suppress_min_percent": schema.Int64Attribute{
+								Description:         "cpu suppress min percentage (0,100)",
+								MarkdownDescription: "cpu suppress min percentage (0,100)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(100),
+								},
 							},
 
 							"cpu_suppress_policy": schema.StringAttribute{

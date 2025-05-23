@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -43,7 +44,8 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		FilterTags *struct {
+		DigestReflectionPolicy *string `tfsdk:"digest_reflection_policy" json:"digestReflectionPolicy,omitempty"`
+		FilterTags             *struct {
 			Extract *string `tfsdk:"extract" json:"extract,omitempty"`
 			Pattern *string `tfsdk:"pattern" json:"pattern,omitempty"`
 		} `tfsdk:"filter_tags" json:"filterTags,omitempty"`
@@ -51,7 +53,8 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta2ManifestData struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"image_repository_ref" json:"imageRepositoryRef,omitempty"`
-		Policy *struct {
+		Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+		Policy   *struct {
 			Alphabetical *struct {
 				Order *string `tfsdk:"order" json:"order,omitempty"`
 			} `tfsdk:"alphabetical" json:"alphabetical,omitempty"`
@@ -142,6 +145,17 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 				Description:         "ImagePolicySpec defines the parameters for calculating the ImagePolicy.",
 				MarkdownDescription: "ImagePolicySpec defines the parameters for calculating the ImagePolicy.",
 				Attributes: map[string]schema.Attribute{
+					"digest_reflection_policy": schema.StringAttribute{
+						Description:         "DigestReflectionPolicy governs the setting of the '.status.latestRef.digest' field. Never: The digest field will always be set to the empty string. IfNotPresent: The digest field will be set to the digest of the elected latest image if the field is empty and the image did not change. Always: The digest field will always be set to the digest of the elected latest image. Default: Never.",
+						MarkdownDescription: "DigestReflectionPolicy governs the setting of the '.status.latestRef.digest' field. Never: The digest field will always be set to the empty string. IfNotPresent: The digest field will be set to the digest of the elected latest image if the field is empty and the image did not change. Always: The digest field will always be set to the digest of the elected latest image. Default: Never.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Always", "IfNotPresent", "Never"),
+						},
+					},
+
 					"filter_tags": schema.SingleNestedAttribute{
 						Description:         "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
 						MarkdownDescription: "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
@@ -190,6 +204,17 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"interval": schema.StringAttribute{
+						Description:         "Interval is the length of time to wait between refreshing the digest of the latest tag when the reflection policy is set to 'Always'. Defaults to 10m.",
+						MarkdownDescription: "Interval is the length of time to wait between refreshing the digest of the latest tag when the reflection policy is set to 'Always'. Defaults to 10m.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
+						},
 					},
 
 					"policy": schema.SingleNestedAttribute{

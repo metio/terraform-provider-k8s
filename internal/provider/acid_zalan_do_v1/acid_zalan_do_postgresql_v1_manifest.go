@@ -189,12 +189,15 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 		Streams *[]struct {
 			ApplicationId  *string            `tfsdk:"application_id" json:"applicationId,omitempty"`
 			BatchSize      *int64             `tfsdk:"batch_size" json:"batchSize,omitempty"`
+			Cpu            *string            `tfsdk:"cpu" json:"cpu,omitempty"`
 			Database       *string            `tfsdk:"database" json:"database,omitempty"`
 			EnableRecovery *bool              `tfsdk:"enable_recovery" json:"enableRecovery,omitempty"`
 			Filter         *map[string]string `tfsdk:"filter" json:"filter,omitempty"`
+			Memory         *string            `tfsdk:"memory" json:"memory,omitempty"`
 			Tables         *struct {
 				EventType         *string `tfsdk:"event_type" json:"eventType,omitempty"`
 				IdColumn          *string `tfsdk:"id_column" json:"idColumn,omitempty"`
+				IgnoreRecovery    *bool   `tfsdk:"ignore_recovery" json:"ignoreRecovery,omitempty"`
 				PayloadColumn     *string `tfsdk:"payload_column" json:"payloadColumn,omitempty"`
 				RecoveryEventType *string `tfsdk:"recovery_event_type" json:"recoveryEventType,omitempty"`
 			} `tfsdk:"tables" json:"tables,omitempty"`
@@ -1080,7 +1083,7 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("12", "13", "14", "15", "16"),
+									stringvalidator.OneOf("13", "14", "15", "16", "17"),
 								},
 							},
 						},
@@ -1392,6 +1395,17 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 									Computed:            false,
 								},
 
+								"cpu": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+									},
+								},
+
 								"database": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -1417,6 +1431,17 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 									Computed:            false,
 								},
 
+								"memory": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+									},
+								},
+
 								"tables": schema.SingleNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -1430,6 +1455,14 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 										},
 
 										"id_column": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ignore_recovery": schema.BoolAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

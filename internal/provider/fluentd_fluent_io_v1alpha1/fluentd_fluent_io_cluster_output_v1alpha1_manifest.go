@@ -240,10 +240,12 @@ type FluentdFluentIoClusterOutputV1Alpha1ManifestData struct {
 				Path              *string `tfsdk:"path" json:"path,omitempty"`
 				Port              *int64  `tfsdk:"port" json:"port,omitempty"`
 				ReconnectOnError  *bool   `tfsdk:"reconnect_on_error" json:"reconnectOnError,omitempty"`
+				ReloadAfter       *int64  `tfsdk:"reload_after" json:"reloadAfter,omitempty"`
 				ReloadConnections *bool   `tfsdk:"reload_connections" json:"reloadConnections,omitempty"`
 				ReloadOnFailure   *bool   `tfsdk:"reload_on_failure" json:"reloadOnFailure,omitempty"`
 				RequestTimeout    *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
 				Scheme            *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SnifferClassName  *string `tfsdk:"sniffer_class_name" json:"snifferClassName,omitempty"`
 				SslVerify         *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
 				SuppressTypeName  *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
 				TemplateOverwrite *bool   `tfsdk:"template_overwrite" json:"templateOverwrite,omitempty"`
@@ -315,10 +317,12 @@ type FluentdFluentIoClusterOutputV1Alpha1ManifestData struct {
 				Path              *string `tfsdk:"path" json:"path,omitempty"`
 				Port              *int64  `tfsdk:"port" json:"port,omitempty"`
 				ReconnectOnError  *bool   `tfsdk:"reconnect_on_error" json:"reconnectOnError,omitempty"`
+				ReloadAfter       *int64  `tfsdk:"reload_after" json:"reloadAfter,omitempty"`
 				ReloadConnections *bool   `tfsdk:"reload_connections" json:"reloadConnections,omitempty"`
 				ReloadOnFailure   *bool   `tfsdk:"reload_on_failure" json:"reloadOnFailure,omitempty"`
 				RequestTimeout    *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
 				Scheme            *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SnifferClassName  *string `tfsdk:"sniffer_class_name" json:"snifferClassName,omitempty"`
 				SslVerify         *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
 				SuppressTypeName  *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
 				TemplateOverwrite *bool   `tfsdk:"template_overwrite" json:"templateOverwrite,omitempty"`
@@ -496,6 +500,7 @@ type FluentdFluentIoClusterOutputV1Alpha1ManifestData struct {
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"username" json:"username,omitempty"`
 				} `tfsdk:"auth" json:"auth,omitempty"`
+				Compress                     *string `tfsdk:"compress" json:"compress,omitempty"`
 				ContentType                  *string `tfsdk:"content_type" json:"contentType,omitempty"`
 				Endpoint                     *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
 				ErrorResponseAsUnrecoverable *bool   `tfsdk:"error_response_as_unrecoverable" json:"errorResponseAsUnrecoverable,omitempty"`
@@ -582,6 +587,9 @@ type FluentdFluentIoClusterOutputV1Alpha1ManifestData struct {
 				TlsPrivateKeyFile *string `tfsdk:"tls_private_key_file" json:"tlsPrivateKeyFile,omitempty"`
 				Url               *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"loki" json:"loki,omitempty"`
+			NullPlugin *struct {
+				NeverFlush *bool `tfsdk:"never_flush" json:"neverFlush,omitempty"`
+			} `tfsdk:"null_plugin" json:"nullPlugin,omitempty"`
 			Opensearch *struct {
 				Host           *string `tfsdk:"host" json:"host,omitempty"`
 				Hosts          *string `tfsdk:"hosts" json:"hosts,omitempty"`
@@ -2149,6 +2157,14 @@ func (r *FluentdFluentIoClusterOutputV1Alpha1Manifest) Schema(_ context.Context,
 											Computed:            false,
 										},
 
+										"reload_after": schema.Int64Attribute{
+											Description:         "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											MarkdownDescription: "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"reload_connections": schema.BoolAttribute{
 											Description:         "Optional, Automatically reload connection after 10000 documents (default: true)",
 											MarkdownDescription: "Optional, Automatically reload connection after 10000 documents (default: true)",
@@ -2179,6 +2195,14 @@ func (r *FluentdFluentIoClusterOutputV1Alpha1Manifest) Schema(_ context.Context,
 										"scheme": schema.StringAttribute{
 											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
 											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sniffer_class_name": schema.StringAttribute{
+											Description:         "Optional, Provide a different sniffer class name",
+											MarkdownDescription: "Optional, Provide a different sniffer class name",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2644,6 +2668,14 @@ func (r *FluentdFluentIoClusterOutputV1Alpha1Manifest) Schema(_ context.Context,
 											Computed:            false,
 										},
 
+										"reload_after": schema.Int64Attribute{
+											Description:         "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											MarkdownDescription: "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"reload_connections": schema.BoolAttribute{
 											Description:         "Optional, Automatically reload connection after 10000 documents (default: true)",
 											MarkdownDescription: "Optional, Automatically reload connection after 10000 documents (default: true)",
@@ -2674,6 +2706,14 @@ func (r *FluentdFluentIoClusterOutputV1Alpha1Manifest) Schema(_ context.Context,
 										"scheme": schema.StringAttribute{
 											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
 											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sniffer_class_name": schema.StringAttribute{
+											Description:         "Optional, Provide a different sniffer class name",
+											MarkdownDescription: "Optional, Provide a different sniffer class name",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3887,6 +3927,17 @@ func (r *FluentdFluentIoClusterOutputV1Alpha1Manifest) Schema(_ context.Context,
 											Computed: false,
 										},
 
+										"compress": schema.StringAttribute{
+											Description:         "Compress enables the given compression method for HTTP requests.",
+											MarkdownDescription: "Compress enables the given compression method for HTTP requests.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("text", "gzip"),
+											},
+										},
+
 										"content_type": schema.StringAttribute{
 											Description:         "ContentType defines Content-Type for HTTP request. out_http automatically set Content-Type for built-in formatters when this parameter is not specified.",
 											MarkdownDescription: "ContentType defines Content-Type for HTTP request. out_http automatically set Content-Type for built-in formatters when this parameter is not specified.",
@@ -4494,6 +4545,23 @@ func (r *FluentdFluentIoClusterOutputV1Alpha1Manifest) Schema(_ context.Context,
 											MarkdownDescription: "Loki URL.",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"null_plugin": schema.SingleNestedAttribute{
+									Description:         "null plugin",
+									MarkdownDescription: "null plugin",
+									Attributes: map[string]schema.Attribute{
+										"never_flush": schema.BoolAttribute{
+											Description:         "NeverFlush for testing to simulate the output plugin that never succeeds to flush.",
+											MarkdownDescription: "NeverFlush for testing to simulate the output plugin that never succeeds to flush.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},

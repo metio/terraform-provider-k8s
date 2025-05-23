@@ -463,8 +463,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BucketSpec defines the desired state of Bucket. In terms of implementation, a Bucket is a resource. An Amazon S3 bucket name is globally unique, and the namespace is shared by all Amazon Web Services accounts.",
-				MarkdownDescription: "BucketSpec defines the desired state of Bucket. In terms of implementation, a Bucket is a resource. An Amazon S3 bucket name is globally unique, and the namespace is shared by all Amazon Web Services accounts.",
+				Description:         "BucketSpec defines the desired state of Bucket. In terms of implementation, a Bucket is a resource.",
+				MarkdownDescription: "BucketSpec defines the desired state of Bucket. In terms of implementation, a Bucket is a resource.",
 				Attributes: map[string]schema.Attribute{
 					"accelerate": schema.SingleNestedAttribute{
 						Description:         "Container for setting the transfer acceleration state.",
@@ -484,8 +484,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"acl": schema.StringAttribute{
-						Description:         "The canned ACL to apply to the bucket.",
-						MarkdownDescription: "The canned ACL to apply to the bucket.",
+						Description:         "The canned ACL to apply to the bucket. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "The canned ACL to apply to the bucket. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -771,8 +771,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"apply_server_side_encryption_by_default": schema.SingleNestedAttribute{
-											Description:         "Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied. If you don't specify a customer managed key at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key in your Amazon Web Services account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3 uses this KMS key for SSE-KMS. For more information, see PUT Bucket encryption (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html) in the Amazon S3 API Reference.",
-											MarkdownDescription: "Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied. If you don't specify a customer managed key at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key in your Amazon Web Services account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3 uses this KMS key for SSE-KMS. For more information, see PUT Bucket encryption (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html) in the Amazon S3 API Reference.",
+											Description:         "Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied. For more information, see PutBucketEncryption (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html). * General purpose buckets - If you don't specify a customer managed key at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key (aws/s3) in your Amazon Web Services account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3 uses this KMS key for SSE-KMS. * Directory buckets - Your SSE-KMS configuration can only support 1 customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) per directory bucket for the lifetime of the bucket. The Amazon Web Services managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) (aws/s3) isn't supported. * Directory buckets - For directory buckets, there are only two supported options for server-side encryption: SSE-S3 and SSE-KMS.",
+											MarkdownDescription: "Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied. For more information, see PutBucketEncryption (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html). * General purpose buckets - If you don't specify a customer managed key at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key (aws/s3) in your Amazon Web Services account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3 uses this KMS key for SSE-KMS. * Directory buckets - Your SSE-KMS configuration can only support 1 customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) per directory bucket for the lifetime of the bucket. The Amazon Web Services managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) (aws/s3) isn't supported. * Directory buckets - For directory buckets, there are only two supported options for server-side encryption: SSE-S3 and SSE-KMS.",
 											Attributes: map[string]schema.Attribute{
 												"kms_master_key_id": schema.StringAttribute{
 													Description:         "",
@@ -815,40 +815,40 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"grant_full_control": schema.StringAttribute{
-						Description:         "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
-						MarkdownDescription: "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
+						Description:         "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"grant_read": schema.StringAttribute{
-						Description:         "Allows grantee to list the objects in the bucket.",
-						MarkdownDescription: "Allows grantee to list the objects in the bucket.",
+						Description:         "Allows grantee to list the objects in the bucket. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "Allows grantee to list the objects in the bucket. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"grant_read_acp": schema.StringAttribute{
-						Description:         "Allows grantee to read the bucket ACL.",
-						MarkdownDescription: "Allows grantee to read the bucket ACL.",
+						Description:         "Allows grantee to read the bucket ACL. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "Allows grantee to read the bucket ACL. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"grant_write": schema.StringAttribute{
-						Description:         "Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects.",
-						MarkdownDescription: "Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects.",
+						Description:         "Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"grant_write_acp": schema.StringAttribute{
-						Description:         "Allows grantee to write the ACL for the applicable bucket.",
-						MarkdownDescription: "Allows grantee to write the ACL for the applicable bucket.",
+						Description:         "Allows grantee to write the ACL for the applicable bucket. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "Allows grantee to write the ACL for the applicable bucket. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1158,8 +1158,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"abort_incomplete_multipart_upload": schema.SingleNestedAttribute{
-											Description:         "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload. For more information, see Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload. For more information, see Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the Amazon S3 User Guide.",
+											Description:         "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload. For more information, see Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload. For more information, see Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"days_after_initiation": schema.Int64Attribute{
 													Description:         "",
@@ -1175,8 +1175,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"expiration": schema.SingleNestedAttribute{
-											Description:         "Container for the expiration for the lifecycle of the object.",
-											MarkdownDescription: "Container for the expiration for the lifecycle of the object.",
+											Description:         "Container for the expiration for the lifecycle of the object. For more information see, Managing your storage lifecycle (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Container for the expiration for the lifecycle of the object. For more information see, Managing your storage lifecycle (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"date": schema.StringAttribute{
 													Description:         "",
@@ -1211,8 +1211,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter must have exactly one of Prefix, Tag, or And specified.",
-											MarkdownDescription: "The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter must have exactly one of Prefix, Tag, or And specified.",
+											Description:         "The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter can have exactly one of Prefix, Tag, ObjectSizeGreaterThan, ObjectSizeLessThan, or And specified. If the Filter element is left empty, the Lifecycle Rule applies to all objects in the bucket.",
+											MarkdownDescription: "The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter can have exactly one of Prefix, Tag, ObjectSizeGreaterThan, ObjectSizeLessThan, or And specified. If the Filter element is left empty, the Lifecycle Rule applies to all objects in the bucket.",
 											Attributes: map[string]schema.Attribute{
 												"and": schema.SingleNestedAttribute{
 													Description:         "This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates. The Lifecycle Rule will apply to any object matching all of the predicates configured inside the And operator.",
@@ -1337,8 +1337,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"noncurrent_version_expiration": schema.SingleNestedAttribute{
-											Description:         "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime.",
-											MarkdownDescription: "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime.",
+											Description:         "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime. This parameter applies to general purpose buckets only. It is not supported for directory bucket lifecycle configurations.",
+											MarkdownDescription: "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime. This parameter applies to general purpose buckets only. It is not supported for directory bucket lifecycle configurations.",
 											Attributes: map[string]schema.Attribute{
 												"newer_noncurrent_versions": schema.Int64Attribute{
 													Description:         "",
@@ -1685,8 +1685,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the bucket to create.",
-						MarkdownDescription: "The name of the bucket to create.",
+						Description:         "The name of the bucket to create. General purpose buckets - For information about bucket naming restrictions, see Bucket naming rules (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) in the Amazon S3 User Guide. Directory buckets - When you use this operation with a directory bucket, you must use path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name . Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format bucket-base-name--zone-id--x-s3 (for example, DOC-EXAMPLE-BUCKET--usw2-az1--x-s3). For information about bucket naming restrictions, see Directory bucket naming rules (https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html) in the Amazon S3 User Guide",
+						MarkdownDescription: "The name of the bucket to create. General purpose buckets - For information about bucket naming restrictions, see Bucket naming rules (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) in the Amazon S3 User Guide. Directory buckets - When you use this operation with a directory bucket, you must use path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name . Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format bucket-base-name--zone-id--x-s3 (for example, DOC-EXAMPLE-BUCKET--usw2-az1--x-s3). For information about bucket naming restrictions, see Directory bucket naming rules (https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html) in the Amazon S3 User Guide",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -1711,8 +1711,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
+											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring event notifications using object key name filtering (https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring event notifications using object key name filtering (https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.SingleNestedAttribute{
 													Description:         "A container for object key name prefix and suffix filtering rules.",
@@ -1792,8 +1792,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
+											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring event notifications using object key name filtering (https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring event notifications using object key name filtering (https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.SingleNestedAttribute{
 													Description:         "A container for object key name prefix and suffix filtering rules.",
@@ -1873,8 +1873,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
+											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring event notifications using object key name filtering (https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring event notifications using object key name filtering (https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.SingleNestedAttribute{
 													Description:         "A container for object key name prefix and suffix filtering rules.",
@@ -1945,8 +1945,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"object_lock_enabled_for_bucket": schema.BoolAttribute{
-						Description:         "Specifies whether you want S3 Object Lock to be enabled for the new bucket.",
-						MarkdownDescription: "Specifies whether you want S3 Object Lock to be enabled for the new bucket.",
+						Description:         "Specifies whether you want S3 Object Lock to be enabled for the new bucket. This functionality is not supported for directory buckets.",
+						MarkdownDescription: "Specifies whether you want S3 Object Lock to be enabled for the new bucket. This functionality is not supported for directory buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1970,8 +1970,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"object_ownership": schema.StringAttribute{
-											Description:         "The container element for object ownership for a bucket's ownership controls. BucketOwnerPreferred - Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. ObjectWriter - The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longer affect permissions. The bucket owner automatically owns and has full control over every object in the bucket. The bucket only accepts PUT requests that don't specify an ACL or bucket owner full control ACLs, such as the bucket-owner-full-control canned ACL or an equivalent form of this ACL expressed in the XML format.",
-											MarkdownDescription: "The container element for object ownership for a bucket's ownership controls. BucketOwnerPreferred - Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. ObjectWriter - The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longer affect permissions. The bucket owner automatically owns and has full control over every object in the bucket. The bucket only accepts PUT requests that don't specify an ACL or bucket owner full control ACLs, such as the bucket-owner-full-control canned ACL or an equivalent form of this ACL expressed in the XML format.",
+											Description:         "The container element for object ownership for a bucket's ownership controls. BucketOwnerPreferred - Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. ObjectWriter - The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longer affect permissions. The bucket owner automatically owns and has full control over every object in the bucket. The bucket only accepts PUT requests that don't specify an ACL or specify bucket owner full control ACLs (such as the predefined bucket-owner-full-control canned ACL or a custom ACL in XML format that grants the same permissions). By default, ObjectOwnership is set to BucketOwnerEnforced and ACLs are disabled. We recommend keeping ACLs disabled, except in uncommon use cases where you must control access for each object individually. For more information about S3 Object Ownership, see Controlling ownership of objects and disabling ACLs for your bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html) in the Amazon S3 User Guide. This functionality is not supported for directory buckets. Directory buckets use the bucket owner enforced setting for S3 Object Ownership.",
+											MarkdownDescription: "The container element for object ownership for a bucket's ownership controls. BucketOwnerPreferred - Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. ObjectWriter - The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longer affect permissions. The bucket owner automatically owns and has full control over every object in the bucket. The bucket only accepts PUT requests that don't specify an ACL or specify bucket owner full control ACLs (such as the predefined bucket-owner-full-control canned ACL or a custom ACL in XML format that grants the same permissions). By default, ObjectOwnership is set to BucketOwnerEnforced and ACLs are disabled. We recommend keeping ACLs disabled, except in uncommon use cases where you must control access for each object individually. For more information about S3 Object Ownership, see Controlling ownership of objects and disabling ACLs for your bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html) in the Amazon S3 User Guide. This functionality is not supported for directory buckets. Directory buckets use the bucket owner enforced setting for S3 Object Ownership.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1989,8 +1989,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"policy": schema.StringAttribute{
-						Description:         "The bucket policy as a JSON document.",
-						MarkdownDescription: "The bucket policy as a JSON document.",
+						Description:         "The bucket policy as a JSON document. For directory buckets, the only IAM action supported in the bucket policy is s3express:CreateSession.",
+						MarkdownDescription: "The bucket policy as a JSON document. For directory buckets, the only IAM action supported in the bucket policy is s3express:CreateSession.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2109,8 +2109,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"encryption_configuration": schema.SingleNestedAttribute{
-													Description:         "Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects.",
-													MarkdownDescription: "Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects.",
+													Description:         "Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects. If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester’s account. This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket owner.",
+													MarkdownDescription: "Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects. If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester’s account. This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket owner.",
 													Attributes: map[string]schema.Attribute{
 														"replica_kms_key_id": schema.StringAttribute{
 															Description:         "",
@@ -2207,8 +2207,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"existing_object_replication": schema.SingleNestedAttribute{
-											Description:         "Optional configuration to replicate existing source bucket objects. For more information, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication) in the Amazon S3 User Guide.",
-											MarkdownDescription: "Optional configuration to replicate existing source bucket objects. For more information, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication) in the Amazon S3 User Guide.",
+											Description:         "Optional configuration to replicate existing source bucket objects. This parameter is no longer supported. To replicate existing objects, see Replicating existing objects with S3 Batch Replication (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Optional configuration to replicate existing source bucket objects. This parameter is no longer supported. To replicate existing objects, see Replicating existing objects with S3 Batch Replication (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"status": schema.StringAttribute{
 													Description:         "",

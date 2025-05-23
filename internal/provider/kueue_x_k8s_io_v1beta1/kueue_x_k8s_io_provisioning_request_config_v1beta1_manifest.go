@@ -43,9 +43,20 @@ type KueueXK8SIoProvisioningRequestConfigV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ManagedResources      *[]string          `tfsdk:"managed_resources" json:"managedResources,omitempty"`
-		Parameters            *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
-		ProvisioningClassName *string            `tfsdk:"provisioning_class_name" json:"provisioningClassName,omitempty"`
+		ManagedResources *[]string          `tfsdk:"managed_resources" json:"managedResources,omitempty"`
+		Parameters       *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
+		PodSetUpdates    *struct {
+			NodeSelector *[]struct {
+				Key                              *string `tfsdk:"key" json:"key,omitempty"`
+				ValueFromProvisioningClassDetail *string `tfsdk:"value_from_provisioning_class_detail" json:"valueFromProvisioningClassDetail,omitempty"`
+			} `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		} `tfsdk:"pod_set_updates" json:"podSetUpdates,omitempty"`
+		ProvisioningClassName *string `tfsdk:"provisioning_class_name" json:"provisioningClassName,omitempty"`
+		RetryStrategy         *struct {
+			BackoffBaseSeconds *int64 `tfsdk:"backoff_base_seconds" json:"backoffBaseSeconds,omitempty"`
+			BackoffLimitCount  *int64 `tfsdk:"backoff_limit_count" json:"backoffLimitCount,omitempty"`
+			BackoffMaxSeconds  *int64 `tfsdk:"backoff_max_seconds" json:"backoffMaxSeconds,omitempty"`
+		} `tfsdk:"retry_strategy" json:"retryStrategy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -132,6 +143,51 @@ func (r *KueueXK8SIoProvisioningRequestConfigV1Beta1Manifest) Schema(_ context.C
 						Computed:            false,
 					},
 
+					"pod_set_updates": schema.SingleNestedAttribute{
+						Description:         "podSetUpdates specifies the update of the workload's PodSetUpdates which are used to target the provisioned nodes.",
+						MarkdownDescription: "podSetUpdates specifies the update of the workload's PodSetUpdates which are used to target the provisioned nodes.",
+						Attributes: map[string]schema.Attribute{
+							"node_selector": schema.ListNestedAttribute{
+								Description:         "nodeSelector specifies the list of updates for the NodeSelector.",
+								MarkdownDescription: "nodeSelector specifies the list of updates for the NodeSelector.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "key specifies the key for the NodeSelector.",
+											MarkdownDescription: "key specifies the key for the NodeSelector.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(317),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`), ""),
+											},
+										},
+
+										"value_from_provisioning_class_detail": schema.StringAttribute{
+											Description:         "valueFromProvisioningClassDetail specifies the key of the ProvisioningRequest.status.provisioningClassDetails from which the value is used for the update.",
+											MarkdownDescription: "valueFromProvisioningClassDetail specifies the key of the ProvisioningRequest.status.provisioningClassDetails from which the value is used for the update.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(32768),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"provisioning_class_name": schema.StringAttribute{
 						Description:         "ProvisioningClassName describes the different modes of provisioning the resources. Check autoscaling.x-k8s.io ProvisioningRequestSpec.ProvisioningClassName for details.",
 						MarkdownDescription: "ProvisioningClassName describes the different modes of provisioning the resources. Check autoscaling.x-k8s.io ProvisioningRequestSpec.ProvisioningClassName for details.",
@@ -142,6 +198,39 @@ func (r *KueueXK8SIoProvisioningRequestConfigV1Beta1Manifest) Schema(_ context.C
 							stringvalidator.LengthAtMost(253),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 						},
+					},
+
+					"retry_strategy": schema.SingleNestedAttribute{
+						Description:         "retryStrategy defines strategy for retrying ProvisioningRequest. If null, then the default configuration is applied with the following parameter values: backoffLimitCount: 3 backoffBaseSeconds: 60 - 1 min backoffMaxSeconds: 1800 - 30 mins To switch off retry mechanism set retryStrategy.backoffLimitCount to 0.",
+						MarkdownDescription: "retryStrategy defines strategy for retrying ProvisioningRequest. If null, then the default configuration is applied with the following parameter values: backoffLimitCount: 3 backoffBaseSeconds: 60 - 1 min backoffMaxSeconds: 1800 - 30 mins To switch off retry mechanism set retryStrategy.backoffLimitCount to 0.",
+						Attributes: map[string]schema.Attribute{
+							"backoff_base_seconds": schema.Int64Attribute{
+								Description:         "BackoffBaseSeconds defines the base for the exponential backoff for re-queuing an evicted workload. Defaults to 60.",
+								MarkdownDescription: "BackoffBaseSeconds defines the base for the exponential backoff for re-queuing an evicted workload. Defaults to 60.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"backoff_limit_count": schema.Int64Attribute{
+								Description:         "BackoffLimitCount defines the maximum number of re-queuing retries. Once the number is reached, the workload is deactivated ('.spec.activate'='false'). Every backoff duration is about 'b*2^(n-1)+Rand' where: - 'b' represents the base set by 'BackoffBaseSeconds' parameter, - 'n' represents the 'workloadStatus.requeueState.count', - 'Rand' represents the random jitter. During this time, the workload is taken as an inadmissible and other workloads will have a chance to be admitted. By default, the consecutive requeue delays are around: (60s, 120s, 240s, ...). Defaults to 3.",
+								MarkdownDescription: "BackoffLimitCount defines the maximum number of re-queuing retries. Once the number is reached, the workload is deactivated ('.spec.activate'='false'). Every backoff duration is about 'b*2^(n-1)+Rand' where: - 'b' represents the base set by 'BackoffBaseSeconds' parameter, - 'n' represents the 'workloadStatus.requeueState.count', - 'Rand' represents the random jitter. During this time, the workload is taken as an inadmissible and other workloads will have a chance to be admitted. By default, the consecutive requeue delays are around: (60s, 120s, 240s, ...). Defaults to 3.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"backoff_max_seconds": schema.Int64Attribute{
+								Description:         "BackoffMaxSeconds defines the maximum backoff time to re-queue an evicted workload. Defaults to 1800.",
+								MarkdownDescription: "BackoffMaxSeconds defines the maximum backoff time to re-queue an evicted workload. Defaults to 1800.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

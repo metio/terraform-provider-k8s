@@ -67,6 +67,7 @@ type Metal3IoBareMetalHostV1Alpha1ManifestData struct {
 			Method *string `tfsdk:"method" json:"method,omitempty"`
 		} `tfsdk:"custom_deploy" json:"customDeploy,omitempty"`
 		Description           *string `tfsdk:"description" json:"description,omitempty"`
+		DisablePowerOff       *bool   `tfsdk:"disable_power_off" json:"disablePowerOff,omitempty"`
 		ExternallyProvisioned *bool   `tfsdk:"externally_provisioned" json:"externallyProvisioned,omitempty"`
 		Firmware              *struct {
 			SimultaneousMultithreadingEnabled *bool `tfsdk:"simultaneous_multithreading_enabled" json:"simultaneousMultithreadingEnabled,omitempty"`
@@ -306,8 +307,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -359,8 +360,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"custom_deploy": schema.SingleNestedAttribute{
-						Description:         "A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Settings this field triggers provisioning.",
-						MarkdownDescription: "A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Settings this field triggers provisioning.",
+						Description:         "A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Setting this field triggers provisioning.",
+						MarkdownDescription: "A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Setting this field triggers provisioning.",
 						Attributes: map[string]schema.Attribute{
 							"method": schema.StringAttribute{
 								Description:         "Custom deploy method name. This name is specific to the deploy ramdisk used. If you don't have a custom deploy ramdisk, you shouldn't use CustomDeploy.",
@@ -378,6 +379,14 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					"description": schema.StringAttribute{
 						Description:         "Description is a human-entered text used to help identify the host.",
 						MarkdownDescription: "Description is a human-entered text used to help identify the host.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disable_power_off": schema.BoolAttribute{
+						Description:         "When set to true, power off of the node will be disabled, instead, a reboot will be used in place of power on/off",
+						MarkdownDescription: "When set to true, power off of the node will be disabled, instead, a reboot will be used in place of power on/off",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -480,8 +489,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"meta_data": schema.SingleNestedAttribute{
-						Description:         "MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, the operater will generate metadata for the host, so most users do not need to set this field.",
-						MarkdownDescription: "MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, the operater will generate metadata for the host, so most users do not need to set this field.",
+						Description:         "MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, metadata will be generated for the host, so most users do not need to set this field.",
+						MarkdownDescription: "MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, metadata will be generated for the host, so most users do not need to set this field.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "name is unique within a namespace to reference a secret resource.",
@@ -530,8 +539,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"online": schema.BoolAttribute{
-						Description:         "Should the host be powered on? Changing this value will trigger a change in power state of the host.",
-						MarkdownDescription: "Should the host be powered on? Changing this value will trigger a change in power state of the host.",
+						Description:         "Should the host be powered on? If the host is currently in a stable state (e.g. provisioned), its power state will be forced to match this value.",
+						MarkdownDescription: "Should the host be powered on? If the host is currently in a stable state (e.g. provisioned), its power state will be forced to match this value.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -630,8 +639,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"software_raid_volumes": schema.ListNestedAttribute{
-								Description:         "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting node in case of a disk failure. Software RAID will always be deleted.",
-								MarkdownDescription: "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting node in case of a disk failure. Software RAID will always be deleted.",
+								Description:         "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted.",
+								MarkdownDescription: "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"level": schema.StringAttribute{

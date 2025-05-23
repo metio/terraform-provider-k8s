@@ -66,9 +66,12 @@ type TrinoStackableTechTrinoCatalogV1Alpha1ManifestData struct {
 							} `tfsdk:"scope" json:"scope,omitempty"`
 							SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 						} `tfsdk:"credentials" json:"credentials,omitempty"`
-						Host *string `tfsdk:"host" json:"host,omitempty"`
-						Port *int64  `tfsdk:"port" json:"port,omitempty"`
-						Tls  *struct {
+						Host   *string `tfsdk:"host" json:"host,omitempty"`
+						Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+						Region *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"region" json:"region,omitempty"`
+						Tls *struct {
 							Verification *struct {
 								None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
 								Server *struct {
@@ -126,9 +129,12 @@ type TrinoStackableTechTrinoCatalogV1Alpha1ManifestData struct {
 							} `tfsdk:"scope" json:"scope,omitempty"`
 							SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 						} `tfsdk:"credentials" json:"credentials,omitempty"`
-						Host *string `tfsdk:"host" json:"host,omitempty"`
-						Port *int64  `tfsdk:"port" json:"port,omitempty"`
-						Tls  *struct {
+						Host   *string `tfsdk:"host" json:"host,omitempty"`
+						Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+						Region *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"region" json:"region,omitempty"`
+						Tls *struct {
 							Verification *struct {
 								None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
 								Server *struct {
@@ -162,9 +168,12 @@ type TrinoStackableTechTrinoCatalogV1Alpha1ManifestData struct {
 							} `tfsdk:"scope" json:"scope,omitempty"`
 							SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
 						} `tfsdk:"credentials" json:"credentials,omitempty"`
-						Host *string `tfsdk:"host" json:"host,omitempty"`
-						Port *int64  `tfsdk:"port" json:"port,omitempty"`
-						Tls  *struct {
+						Host   *string `tfsdk:"host" json:"host,omitempty"`
+						Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+						Region *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"region" json:"region,omitempty"`
+						Tls *struct {
 							Verification *struct {
 								None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
 								Server *struct {
@@ -182,6 +191,7 @@ type TrinoStackableTechTrinoCatalogV1Alpha1ManifestData struct {
 			Tpcds *map[string]string `tfsdk:"tpcds" json:"tpcds,omitempty"`
 			Tpch  *map[string]string `tfsdk:"tpch" json:"tpch,omitempty"`
 		} `tfsdk:"connector" json:"connector,omitempty"`
+		ExperimentalConfigRemovals *[]string `tfsdk:"experimental_config_removals" json:"experimentalConfigRemovals,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -418,6 +428,23 @@ func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Schema(_ context.Contex
 														Validators: []validator.Int64{
 															int64validator.AtLeast(0),
 														},
+													},
+
+													"region": schema.SingleNestedAttribute{
+														Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+														MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 
 													"tls": schema.SingleNestedAttribute{
@@ -791,6 +818,23 @@ func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Schema(_ context.Contex
 														},
 													},
 
+													"region": schema.SingleNestedAttribute{
+														Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+														MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"tls": schema.SingleNestedAttribute{
 														Description:         "Use a TLS connection. If not specified no TLS will be used.",
 														MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
@@ -1012,6 +1056,23 @@ func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Schema(_ context.Contex
 														},
 													},
 
+													"region": schema.SingleNestedAttribute{
+														Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+														MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"tls": schema.SingleNestedAttribute{
 														Description:         "Use a TLS connection. If not specified no TLS will be used.",
 														MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
@@ -1118,6 +1179,15 @@ func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Schema(_ context.Contex
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"experimental_config_removals": schema.ListAttribute{
+						Description:         "List of config properties which should be removed. This is helpful, because Trino fails to start in case you have any unused config properties. The removals are executed after the 'configOverrides'. This field is experimental, and might be replaced by a more generic mechanism to edit config properties",
+						MarkdownDescription: "List of config properties which should be removed. This is helpful, because Trino fails to start in case you have any unused config properties. The removals are executed after the 'configOverrides'. This field is experimental, and might be replaced by a more generic mechanism to edit config properties",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: true,

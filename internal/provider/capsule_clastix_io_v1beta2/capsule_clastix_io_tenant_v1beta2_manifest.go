@@ -57,6 +57,7 @@ type CapsuleClastixIoTenantV1Beta2ManifestData struct {
 			AllowedRegex *string   `tfsdk:"allowed_regex" json:"allowedRegex,omitempty"`
 		} `tfsdk:"container_registries" json:"containerRegistries,omitempty"`
 		Cordoned          *bool     `tfsdk:"cordoned" json:"cordoned,omitempty"`
+		ForceTenantPrefix *bool     `tfsdk:"force_tenant_prefix" json:"forceTenantPrefix,omitempty"`
 		ImagePullPolicies *[]string `tfsdk:"image_pull_policies" json:"imagePullPolicies,omitempty"`
 		IngressOptions    *struct {
 			AllowWildcardHostnames *bool `tfsdk:"allow_wildcard_hostnames" json:"allowWildcardHostnames,omitempty"`
@@ -94,6 +95,18 @@ type CapsuleClastixIoTenantV1Beta2ManifestData struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"additional_metadata" json:"additionalMetadata,omitempty"`
+			AdditionalMetadataList *[]struct {
+				Annotations       *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				NamespaceSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+			} `tfsdk:"additional_metadata_list" json:"additionalMetadataList,omitempty"`
 			ForbiddenAnnotations *struct {
 				Denied      *[]string `tfsdk:"denied" json:"denied,omitempty"`
 				DeniedRegex *string   `tfsdk:"denied_regex" json:"deniedRegex,omitempty"`
@@ -220,6 +233,7 @@ type CapsuleClastixIoTenantV1Beta2ManifestData struct {
 		RuntimeClasses *struct {
 			Allowed          *[]string `tfsdk:"allowed" json:"allowed,omitempty"`
 			AllowedRegex     *string   `tfsdk:"allowed_regex" json:"allowedRegex,omitempty"`
+			Default          *string   `tfsdk:"default" json:"default,omitempty"`
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -419,6 +433,14 @@ func (r *CapsuleClastixIoTenantV1Beta2Manifest) Schema(_ context.Context, _ data
 					"cordoned": schema.BoolAttribute{
 						Description:         "Toggling the Tenant resources cordoning, when enable resources cannot be deleted.",
 						MarkdownDescription: "Toggling the Tenant resources cordoning, when enable resources cannot be deleted.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"force_tenant_prefix": schema.BoolAttribute{
+						Description:         "Use this if you want to disable/enable the Tenant name prefix to specific Tenants, overriding global forceTenantPrefix in CapsuleConfiguration. When set to 'true', it enforces Namespaces created for this Tenant to be named with the Tenant name prefix, separated by a dash (i.e. for Tenant 'foo', namespace names must be prefixed with 'foo-'), this is useful to avoid Namespace name collision. When set to 'false', it allows Namespaces created for this Tenant to be named anything. Overrides CapsuleConfiguration global forceTenantPrefix for the Tenant only. If unset, Tenant uses CapsuleConfiguration's forceTenantPrefix Optional",
+						MarkdownDescription: "Use this if you want to disable/enable the Tenant name prefix to specific Tenants, overriding global forceTenantPrefix in CapsuleConfiguration. When set to 'true', it enforces Namespaces created for this Tenant to be named with the Tenant name prefix, separated by a dash (i.e. for Tenant 'foo', namespace names must be prefixed with 'foo-'), this is useful to avoid Namespace name collision. When set to 'false', it allows Namespaces created for this Tenant to be named anything. Overrides CapsuleConfiguration global forceTenantPrefix for the Tenant only. If unset, Tenant uses CapsuleConfiguration's forceTenantPrefix Optional",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -674,6 +696,89 @@ func (r *CapsuleClastixIoTenantV1Beta2Manifest) Schema(_ context.Context, _ data
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"additional_metadata_list": schema.ListNestedAttribute{
+								Description:         "Specifies additional labels and annotations the Capsule operator places on any Namespace resource in the Tenant via a list. Optional.",
+								MarkdownDescription: "Specifies additional labels and annotations the Capsule operator places on any Namespace resource in the Tenant via a list. Optional.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"annotations": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace_selector": schema.SingleNestedAttribute{
+											Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+											MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
 									},
 								},
 								Required: false,
@@ -1524,6 +1629,14 @@ func (r *CapsuleClastixIoTenantV1Beta2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"allowed_regex": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"default": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

@@ -70,6 +70,7 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 			Max_age       *string `tfsdk:"max_age" json:"max_age,omitempty"`
 			Prompt        *string `tfsdk:"prompt" json:"prompt,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
+		Pkce_mode      *string   `tfsdk:"pkce_mode" json:"pkce_mode,omitempty"`
 		Prompt         *string   `tfsdk:"prompt" json:"prompt,omitempty"`
 		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
 		Redirect_url   *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
@@ -353,6 +354,14 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"pkce_mode": schema.StringAttribute{
+						Description:         "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						MarkdownDescription: "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"prompt": schema.StringAttribute{

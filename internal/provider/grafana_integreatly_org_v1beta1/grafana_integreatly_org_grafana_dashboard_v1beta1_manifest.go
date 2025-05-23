@@ -111,6 +111,7 @@ type GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1ManifestData struct {
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"plugins" json:"plugins,omitempty"`
 		ResyncPeriod     *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
+		Uid              *string `tfsdk:"uid" json:"uid,omitempty"`
 		Url              *string `tfsdk:"url" json:"url,omitempty"`
 		UrlAuthorization *struct {
 			BasicAuth *struct {
@@ -207,16 +208,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 				MarkdownDescription: "GrafanaDashboardSpec defines the desired state of GrafanaDashboard",
 				Attributes: map[string]schema.Attribute{
 					"allow_cross_namespace_import": schema.BoolAttribute{
-						Description:         "allow to import this resources from an operator in a different namespace",
-						MarkdownDescription: "allow to import this resources from an operator in a different namespace",
+						Description:         "Allow the Operator to match this resource with Grafanas outside the current namespace",
+						MarkdownDescription: "Allow the Operator to match this resource with Grafanas outside the current namespace",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"config_map_ref": schema.SingleNestedAttribute{
-						Description:         "dashboard from configmap",
-						MarkdownDescription: "dashboard from configmap",
+						Description:         "model from configmap",
+						MarkdownDescription: "model from configmap",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key to select.",
@@ -248,8 +249,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 					},
 
 					"content_cache_duration": schema.StringAttribute{
-						Description:         "Cache duration for dashboards fetched from URLs",
-						MarkdownDescription: "Cache duration for dashboards fetched from URLs",
+						Description:         "Cache duration for models fetched from URLs",
+						MarkdownDescription: "Cache duration for models fetched from URLs",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -373,8 +374,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Inline evn value",
-									MarkdownDescription: "Inline evn value",
+									Description:         "Inline env value",
+									MarkdownDescription: "Inline env value",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -511,8 +512,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 					},
 
 					"gzip_json": schema.StringAttribute{
-						Description:         "GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.",
-						MarkdownDescription: "GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.",
+						Description:         "GzipJson the model's JSON compressed with Gzip. Base64-encoded when in YAML.",
+						MarkdownDescription: "GzipJson the model's JSON compressed with Gzip. Base64-encoded when in YAML.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -522,8 +523,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 					},
 
 					"instance_selector": schema.SingleNestedAttribute{
-						Description:         "selects Grafanas for import",
-						MarkdownDescription: "selects Grafanas for import",
+						Description:         "Selects Grafana instances for import",
+						MarkdownDescription: "Selects Grafana instances for import",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -576,8 +577,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 					},
 
 					"json": schema.StringAttribute{
-						Description:         "dashboard json",
-						MarkdownDescription: "dashboard json",
+						Description:         "model json",
+						MarkdownDescription: "model json",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -656,8 +657,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 					},
 
 					"resync_period": schema.StringAttribute{
-						Description:         "how often the dashboard is refreshed, defaults to 5m if not set",
-						MarkdownDescription: "how often the dashboard is refreshed, defaults to 5m if not set",
+						Description:         "How often the resource is synced, defaults to 10m0s if not set",
+						MarkdownDescription: "How often the resource is synced, defaults to 10m0s if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -666,17 +667,29 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 						},
 					},
 
+					"uid": schema.StringAttribute{
+						Description:         "Manually specify the uid, overwrites uids already present in the json model. Can be any string consisting of alphanumeric characters, - and _ with a maximum length of 40.",
+						MarkdownDescription: "Manually specify the uid, overwrites uids already present in the json model. Can be any string consisting of alphanumeric characters, - and _ with a maximum length of 40.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(40),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9-_]+$`), ""),
+						},
+					},
+
 					"url": schema.StringAttribute{
-						Description:         "dashboard url",
-						MarkdownDescription: "dashboard url",
+						Description:         "model url",
+						MarkdownDescription: "model url",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"url_authorization": schema.SingleNestedAttribute{
-						Description:         "authorization options for dashboard from url",
-						MarkdownDescription: "authorization options for dashboard from url",
+						Description:         "authorization options for model from url",
+						MarkdownDescription: "authorization options for model from url",
 						Attributes: map[string]schema.Attribute{
 							"basic_auth": schema.SingleNestedAttribute{
 								Description:         "",
@@ -758,8 +771,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 						Computed: false,
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},
