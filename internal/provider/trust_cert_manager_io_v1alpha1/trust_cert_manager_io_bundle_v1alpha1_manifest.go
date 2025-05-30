@@ -44,9 +44,10 @@ type TrustCertManagerIoBundleV1Alpha1ManifestData struct {
 	Spec *struct {
 		Sources *[]struct {
 			ConfigMap *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Selector *struct {
+				IncludeAllKeys *bool   `tfsdk:"include_all_keys" json:"includeAllKeys,omitempty"`
+				Key            *string `tfsdk:"key" json:"key,omitempty"`
+				Name           *string `tfsdk:"name" json:"name,omitempty"`
+				Selector       *struct {
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
 						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -57,9 +58,10 @@ type TrustCertManagerIoBundleV1Alpha1ManifestData struct {
 			} `tfsdk:"config_map" json:"configMap,omitempty"`
 			InLine *string `tfsdk:"in_line" json:"inLine,omitempty"`
 			Secret *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Selector *struct {
+				IncludeAllKeys *bool   `tfsdk:"include_all_keys" json:"includeAllKeys,omitempty"`
+				Key            *string `tfsdk:"key" json:"key,omitempty"`
+				Name           *string `tfsdk:"name" json:"name,omitempty"`
+				Selector       *struct {
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
 						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -79,16 +81,30 @@ type TrustCertManagerIoBundleV1Alpha1ManifestData struct {
 				Pkcs12 *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
 					Password *string `tfsdk:"password" json:"password,omitempty"`
+					Profile  *string `tfsdk:"profile" json:"profile,omitempty"`
 				} `tfsdk:"pkcs12" json:"pkcs12,omitempty"`
 			} `tfsdk:"additional_formats" json:"additionalFormats,omitempty"`
 			ConfigMap *struct {
-				Key *string `tfsdk:"key" json:"key,omitempty"`
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Metadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				} `tfsdk:"metadata" json:"metadata,omitempty"`
 			} `tfsdk:"config_map" json:"configMap,omitempty"`
 			NamespaceSelector *struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 			Secret *struct {
-				Key *string `tfsdk:"key" json:"key,omitempty"`
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Metadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				} `tfsdk:"metadata" json:"metadata,omitempty"`
 			} `tfsdk:"secret" json:"secret,omitempty"`
 		} `tfsdk:"target" json:"target,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -165,15 +181,26 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config_map": schema.SingleNestedAttribute{
-									Description:         "ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to a list of ConfigMap's 'data' key using label selector, in the trust Namespace.",
-									MarkdownDescription: "ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to a list of ConfigMap's 'data' key using label selector, in the trust Namespace.",
+									Description:         "ConfigMap is a reference (by name) to a ConfigMap's 'data' key(s), or to a list of ConfigMap's 'data' key(s) using label selector, in the trust Namespace.",
+									MarkdownDescription: "ConfigMap is a reference (by name) to a ConfigMap's 'data' key(s), or to a list of ConfigMap's 'data' key(s) using label selector, in the trust Namespace.",
 									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "Key is the key of the entry in the object's 'data' field to be used.",
-											MarkdownDescription: "Key is the key of the entry in the object's 'data' field to be used.",
-											Required:            true,
-											Optional:            false,
+										"include_all_keys": schema.BoolAttribute{
+											Description:         "IncludeAllKeys is a flag to include all keys in the object's 'data' field to be used. False by default. This field must not be true when 'Key' is set.",
+											MarkdownDescription: "IncludeAllKeys is a flag to include all keys in the object's 'data' field to be used. False by default. This field must not be true when 'Key' is set.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "Key of the entry in the object's 'data' field to be used.",
+											MarkdownDescription: "Key of the entry in the object's 'data' field to be used.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"name": schema.StringAttribute{
@@ -182,6 +209,9 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"selector": schema.SingleNestedAttribute{
@@ -252,15 +282,26 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"secret": schema.SingleNestedAttribute{
-									Description:         "Secret is a reference (by name) to a Secret's 'data' key, or to a list of Secret's 'data' key using label selector, in the trust Namespace.",
-									MarkdownDescription: "Secret is a reference (by name) to a Secret's 'data' key, or to a list of Secret's 'data' key using label selector, in the trust Namespace.",
+									Description:         "Secret is a reference (by name) to a Secret's 'data' key(s), or to a list of Secret's 'data' key(s) using label selector, in the trust Namespace.",
+									MarkdownDescription: "Secret is a reference (by name) to a Secret's 'data' key(s), or to a list of Secret's 'data' key(s) using label selector, in the trust Namespace.",
 									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Description:         "Key is the key of the entry in the object's 'data' field to be used.",
-											MarkdownDescription: "Key is the key of the entry in the object's 'data' field to be used.",
-											Required:            true,
-											Optional:            false,
+										"include_all_keys": schema.BoolAttribute{
+											Description:         "IncludeAllKeys is a flag to include all keys in the object's 'data' field to be used. False by default. This field must not be true when 'Key' is set.",
+											MarkdownDescription: "IncludeAllKeys is a flag to include all keys in the object's 'data' field to be used. False by default. This field must not be true when 'Key' is set.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "Key of the entry in the object's 'data' field to be used.",
+											MarkdownDescription: "Key of the entry in the object's 'data' field to be used.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"name": schema.StringAttribute{
@@ -269,6 +310,9 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"selector": schema.SingleNestedAttribute{
@@ -353,8 +397,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "AdditionalFormats specifies any additional formats to write to the target",
 								Attributes: map[string]schema.Attribute{
 									"jks": schema.SingleNestedAttribute{
-										Description:         "JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
-										MarkdownDescription: "JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
+										Description:         "JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords Deprecated: Writing JKS is subject for removal. Please migrate to PKCS12. PKCS#12 trust stores created by trust-manager are compatible with Java.",
+										MarkdownDescription: "JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords Deprecated: Writing JKS is subject for removal. Please migrate to PKCS12. PKCS#12 trust stores created by trust-manager are compatible with Java.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -362,6 +406,9 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"password": schema.StringAttribute{
@@ -382,8 +429,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"pkcs12": schema.SingleNestedAttribute{
-										Description:         "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password.",
-										MarkdownDescription: "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password.",
+										Description:         "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
+										MarkdownDescription: "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -391,6 +438,9 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"password": schema.StringAttribute{
@@ -401,6 +451,17 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.LengthAtMost(128),
+												},
+											},
+
+											"profile": schema.StringAttribute{
+												Description:         "Profile specifies the certificate encryption algorithms and the HMAC algorithm used to create the PKCS12 trust store. If provided, allowed values are: 'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20. 'LegacyDES': Less secure algorithm. Use this option for maximal compatibility. 'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms (e.g. because of company policy). Default value is 'LegacyRC2' for backward compatibility.",
+												MarkdownDescription: "Profile specifies the certificate encryption algorithms and the HMAC algorithm used to create the PKCS12 trust store. If provided, allowed values are: 'LegacyRC2': Deprecated. Not supported by default in OpenSSL 3 or Java 20. 'LegacyDES': Less secure algorithm. Use this option for maximal compatibility. 'Modern2023': Secure algorithm. Use this option in case you have to always use secure algorithms (e.g. because of company policy). Default value is 'LegacyRC2' for backward compatibility.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("LegacyRC2", "LegacyDES", "Modern2023"),
 												},
 											},
 										},
@@ -424,6 +485,36 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"metadata": schema.SingleNestedAttribute{
+										Description:         "Metadata is an optional set of labels and annotations to be copied to the target.",
+										MarkdownDescription: "Metadata is an optional set of labels and annotations to be copied to the target.",
+										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "Annotations is a key value map to be copied to the target.",
+												MarkdownDescription: "Annotations is a key value map to be copied to the target.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "Labels is a key value map to be copied to the target.",
+												MarkdownDescription: "Labels is a key value map to be copied to the target.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -435,9 +526,45 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 								Description:         "NamespaceSelector will, if set, only sync the target resource in Namespaces which match the selector.",
 								MarkdownDescription: "NamespaceSelector will, if set, only sync the target resource in Namespaces which match the selector.",
 								Attributes: map[string]schema.Attribute{
+									"match_expressions": schema.ListNestedAttribute{
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "key is the label key that the selector applies to.",
+													MarkdownDescription: "key is the label key that the selector applies to.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"operator": schema.StringAttribute{
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"values": schema.ListAttribute{
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"match_labels": schema.MapAttribute{
-										Description:         "MatchLabels matches on the set of labels that must be present on a Namespace for the Bundle target to be synced there.",
-										MarkdownDescription: "MatchLabels matches on the set of labels that must be present on a Namespace for the Bundle target to be synced there.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -459,6 +586,36 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"metadata": schema.SingleNestedAttribute{
+										Description:         "Metadata is an optional set of labels and annotations to be copied to the target.",
+										MarkdownDescription: "Metadata is an optional set of labels and annotations to be copied to the target.",
+										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "Annotations is a key value map to be copied to the target.",
+												MarkdownDescription: "Annotations is a key value map to be copied to the target.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "Labels is a key value map to be copied to the target.",
+												MarkdownDescription: "Labels is a key value map to be copied to the target.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,

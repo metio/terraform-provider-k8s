@@ -46,7 +46,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 			ComponentName        *string `tfsdk:"component_name" json:"componentName,omitempty"`
 			ResourceRequirements *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -61,7 +62,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -71,7 +73,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -89,7 +92,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -99,7 +103,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -109,6 +114,36 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 				} `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"elasticsearch_metrics_deployment" json:"elasticsearchMetricsDeployment,omitempty"`
+		EsGatewayDeployment *struct {
+			Spec *struct {
+				Template *struct {
+					Spec *struct {
+						Containers *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Resources *struct {
+								Claims *[]struct {
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
+								} `tfsdk:"claims" json:"claims,omitempty"`
+								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+							} `tfsdk:"resources" json:"resources,omitempty"`
+						} `tfsdk:"containers" json:"containers,omitempty"`
+						InitContainers *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Resources *struct {
+								Claims *[]struct {
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
+								} `tfsdk:"claims" json:"claims,omitempty"`
+								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+							} `tfsdk:"resources" json:"resources,omitempty"`
+						} `tfsdk:"init_containers" json:"initContainers,omitempty"`
+					} `tfsdk:"spec" json:"spec,omitempty"`
+				} `tfsdk:"template" json:"template,omitempty"`
+			} `tfsdk:"spec" json:"spec,omitempty"`
+		} `tfsdk:"es_gateway_deployment" json:"esGatewayDeployment,omitempty"`
 		Indices *struct {
 			Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		} `tfsdk:"indices" json:"indices,omitempty"`
@@ -120,7 +155,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -130,7 +166,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -148,7 +185,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -158,7 +196,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -179,7 +218,8 @@ type OperatorTigeraIoLogStorageV1ManifestData struct {
 			} `tfsdk:"node_sets" json:"nodeSets,omitempty"`
 			ResourceRequirements *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -294,6 +334,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 														Optional:            false,
 														Computed:            false,
 													},
+
+													"request": schema.StringAttribute{
+														Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -387,6 +435,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -450,6 +506,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -556,6 +620,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -622,6 +694,202 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"limits": schema.MapAttribute{
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"requests": schema.MapAttribute{
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"es_gateway_deployment": schema.SingleNestedAttribute{
+						Description:         "ESGatewayDeployment configures the es-gateway Deployment.",
+						MarkdownDescription: "ESGatewayDeployment configures the es-gateway Deployment.",
+						Attributes: map[string]schema.Attribute{
+							"spec": schema.SingleNestedAttribute{
+								Description:         "Spec is the specification of the es-gateway Deployment.",
+								MarkdownDescription: "Spec is the specification of the es-gateway Deployment.",
+								Attributes: map[string]schema.Attribute{
+									"template": schema.SingleNestedAttribute{
+										Description:         "Template describes the es-gateway Deployment pod that will be created.",
+										MarkdownDescription: "Template describes the es-gateway Deployment pod that will be created.",
+										Attributes: map[string]schema.Attribute{
+											"spec": schema.SingleNestedAttribute{
+												Description:         "Spec is the es-gateway Deployment's PodSpec.",
+												MarkdownDescription: "Spec is the es-gateway Deployment's PodSpec.",
+												Attributes: map[string]schema.Attribute{
+													"containers": schema.ListNestedAttribute{
+														Description:         "Containers is a list of es-gateway containers. If specified, this overrides the specified es-gateway Deployment containers. If omitted, the es-gateway Deployment will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of es-gateway containers. If specified, this overrides the specified es-gateway Deployment containers. If omitted, the es-gateway Deployment will use its default values for its containers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name is an enum which identifies the es-gateway Deployment container by name. Supported values are: tigera-secure-es-gateway",
+																	MarkdownDescription: "Name is an enum which identifies the es-gateway Deployment container by name. Supported values are: tigera-secure-es-gateway",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("tigera-secure-es-gateway"),
+																	},
+																},
+
+																"resources": schema.SingleNestedAttribute{
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named es-gateway Deployment container's resources. If omitted, the es-gateway Deployment will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named es-gateway Deployment container's resources. If omitted, the es-gateway Deployment will use its default value for this container's resources.",
+																	Attributes: map[string]schema.Attribute{
+																		"claims": schema.ListNestedAttribute{
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"limits": schema.MapAttribute{
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"requests": schema.MapAttribute{
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"init_containers": schema.ListNestedAttribute{
+														Description:         "InitContainers is a list of es-gateway init containers. If specified, this overrides the specified es-gateway Deployment init containers. If omitted, the es-gateway Deployment will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of es-gateway init containers. If specified, this overrides the specified es-gateway Deployment init containers. If omitted, the es-gateway Deployment will use its default values for its init containers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name is an enum which identifies the es-gateway Deployment init container by name. Supported values are: tigera-secure-elasticsearch-cert-key-cert-provisioner",
+																	MarkdownDescription: "Name is an enum which identifies the es-gateway Deployment init container by name. Supported values are: tigera-secure-elasticsearch-cert-key-cert-provisioner",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("tigera-secure-elasticsearch-cert-key-cert-provisioner"),
+																	},
+																},
+
+																"resources": schema.SingleNestedAttribute{
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named es-gateway Deployment init container's resources. If omitted, the es-gateway Deployment will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named es-gateway Deployment init container's resources. If omitted, the es-gateway Deployment will use its default value for this init container's resources.",
+																	Attributes: map[string]schema.Attribute{
+																		"claims": schema.ListNestedAttribute{
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -745,6 +1013,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -811,6 +1087,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -917,6 +1201,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -983,6 +1275,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -1113,6 +1413,14 @@ func (r *OperatorTigeraIoLogStorageV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

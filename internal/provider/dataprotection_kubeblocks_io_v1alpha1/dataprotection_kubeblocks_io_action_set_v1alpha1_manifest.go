@@ -85,11 +85,15 @@ type DataprotectionKubeblocksIoActionSetV1Alpha1ManifestData struct {
 				Command *[]string `tfsdk:"command" json:"command,omitempty"`
 				Image   *string   `tfsdk:"image" json:"image,omitempty"`
 			} `tfsdk:"pre_delete" json:"preDelete,omitempty"`
+			WithParameters *[]string `tfsdk:"with_parameters" json:"withParameters,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
-		BackupType *string            `tfsdk:"backup_type" json:"backupType,omitempty"`
-		Env        *map[string]string `tfsdk:"env" json:"env,omitempty"`
-		EnvFrom    *map[string]string `tfsdk:"env_from" json:"envFrom,omitempty"`
-		Restore    *struct {
+		BackupType       *string            `tfsdk:"backup_type" json:"backupType,omitempty"`
+		Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+		EnvFrom          *map[string]string `tfsdk:"env_from" json:"envFrom,omitempty"`
+		ParametersSchema *struct {
+			OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" json:"openAPIV3Schema,omitempty"`
+		} `tfsdk:"parameters_schema" json:"parametersSchema,omitempty"`
+		Restore *struct {
 			BaseBackupRequired *bool `tfsdk:"base_backup_required" json:"baseBackupRequired,omitempty"`
 			PostReady          *[]struct {
 				Exec *struct {
@@ -111,6 +115,7 @@ type DataprotectionKubeblocksIoActionSetV1Alpha1ManifestData struct {
 				OnError            *string   `tfsdk:"on_error" json:"onError,omitempty"`
 				RunOnTargetPodNode *bool     `tfsdk:"run_on_target_pod_node" json:"runOnTargetPodNode,omitempty"`
 			} `tfsdk:"prepare_data" json:"prepareData,omitempty"`
+			WithParameters *[]string `tfsdk:"with_parameters" json:"withParameters,omitempty"`
 		} `tfsdk:"restore" json:"restore,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -481,6 +486,15 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 								Optional: true,
 								Computed: false,
 							},
+
+							"with_parameters": schema.ListAttribute{
+								Description:         "Specifies the parameters used by the backup action",
+								MarkdownDescription: "Specifies the parameters used by the backup action",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -488,8 +502,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"backup_type": schema.StringAttribute{
-						Description:         "Specifies the backup type. Supported values include: - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc. Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
-						MarkdownDescription: "Specifies the backup type. Supported values include: - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc. Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
+						Description:         "Specifies the backup type. Supported values include: - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc. - 'Selective' back up data more precisely, use custom parameters, such as specific databases or tables. Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
+						MarkdownDescription: "Specifies the backup type. Supported values include: - 'Full' for a full backup. - 'Incremental' back up data that have changed since the last backup (either full or incremental). - 'Differential' back up data that has changed since the last full backup. - 'Continuous' back up transaction logs continuously, such as MySQL binlog, PostgreSQL WAL, etc. - 'Selective' back up data more precisely, use custom parameters, such as specific databases or tables. Continuous backup is essential for implementing Point-in-Time Recovery (PITR).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -511,6 +525,24 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"parameters_schema": schema.SingleNestedAttribute{
+						Description:         "Specifies the schema of parameters in backups and restores before their usage.",
+						MarkdownDescription: "Specifies the schema of parameters in backups and restores before their usage.",
+						Attributes: map[string]schema.Attribute{
+							"open_apiv3_schema": schema.MapAttribute{
+								Description:         "Defines the schema for parameters using the OpenAPI v3. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.",
+								MarkdownDescription: "Defines the schema for parameters using the OpenAPI v3. The supported property types include: - string - number - integer - array: Note that only items of string type are supported.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"restore": schema.SingleNestedAttribute{
@@ -669,6 +701,15 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"with_parameters": schema.ListAttribute{
+								Description:         "Specifies the parameters used by the restore action",
+								MarkdownDescription: "Specifies the parameters used by the restore action",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

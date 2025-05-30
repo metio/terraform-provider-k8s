@@ -68,8 +68,9 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Username_claim            *string            `tfsdk:"username_claim" json:"username_claim,omitempty"`
 			} `tfsdk:"openid" json:"openid,omitempty"`
 			Openshift *struct {
-				Token_inactivity_timeout *int64 `tfsdk:"token_inactivity_timeout" json:"token_inactivity_timeout,omitempty"`
-				Token_max_age            *int64 `tfsdk:"token_max_age" json:"token_max_age,omitempty"`
+				Redirect_uris            *[]string `tfsdk:"redirect_uris" json:"redirect_uris,omitempty"`
+				Token_inactivity_timeout *int64    `tfsdk:"token_inactivity_timeout" json:"token_inactivity_timeout,omitempty"`
+				Token_max_age            *int64    `tfsdk:"token_max_age" json:"token_max_age,omitempty"`
 			} `tfsdk:"openshift" json:"openshift,omitempty"`
 			Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
 		} `tfsdk:"auth" json:"auth,omitempty"`
@@ -124,6 +125,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Config *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				Policy *string            `tfsdk:"policy" json:"policy,omitempty"`
 			} `tfsdk:"dns" json:"dns,omitempty"`
+			Extra_labels *map[string]string `tfsdk:"extra_labels" json:"extra_labels,omitempty"`
 			Host_aliases *[]struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -155,20 +157,37 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Sampler_rate      *string `tfsdk:"sampler_rate" json:"sampler_rate,omitempty"`
 				Time_field_format *string `tfsdk:"time_field_format" json:"time_field_format,omitempty"`
 			} `tfsdk:"logger" json:"logger,omitempty"`
-			Namespace           *string              `tfsdk:"namespace" json:"namespace,omitempty"`
-			Node_selector       *map[string]string   `tfsdk:"node_selector" json:"node_selector,omitempty"`
-			Pod_annotations     *map[string]string   `tfsdk:"pod_annotations" json:"pod_annotations,omitempty"`
-			Pod_labels          *map[string]string   `tfsdk:"pod_labels" json:"pod_labels,omitempty"`
-			Priority_class_name *string              `tfsdk:"priority_class_name" json:"priority_class_name,omitempty"`
-			Replicas            *int64               `tfsdk:"replicas" json:"replicas,omitempty"`
-			Resources           *map[string]string   `tfsdk:"resources" json:"resources,omitempty"`
-			Secret_name         *string              `tfsdk:"secret_name" json:"secret_name,omitempty"`
-			Security_context    *map[string]string   `tfsdk:"security_context" json:"security_context,omitempty"`
-			Service_annotations *map[string]string   `tfsdk:"service_annotations" json:"service_annotations,omitempty"`
-			Service_type        *string              `tfsdk:"service_type" json:"service_type,omitempty"`
-			Tolerations         *[]map[string]string `tfsdk:"tolerations" json:"tolerations,omitempty"`
-			Version_label       *string              `tfsdk:"version_label" json:"version_label,omitempty"`
-			View_only_mode      *bool                `tfsdk:"view_only_mode" json:"view_only_mode,omitempty"`
+			Namespace           *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Node_selector       *map[string]string `tfsdk:"node_selector" json:"node_selector,omitempty"`
+			Pod_annotations     *map[string]string `tfsdk:"pod_annotations" json:"pod_annotations,omitempty"`
+			Pod_labels          *map[string]string `tfsdk:"pod_labels" json:"pod_labels,omitempty"`
+			Priority_class_name *string            `tfsdk:"priority_class_name" json:"priority_class_name,omitempty"`
+			Probes              *struct {
+				Liveness *struct {
+					Initial_delay_seconds *int64 `tfsdk:"initial_delay_seconds" json:"initial_delay_seconds,omitempty"`
+					Period_seconds        *int64 `tfsdk:"period_seconds" json:"period_seconds,omitempty"`
+				} `tfsdk:"liveness" json:"liveness,omitempty"`
+				Readiness *struct {
+					Initial_delay_seconds *int64 `tfsdk:"initial_delay_seconds" json:"initial_delay_seconds,omitempty"`
+					Period_seconds        *int64 `tfsdk:"period_seconds" json:"period_seconds,omitempty"`
+				} `tfsdk:"readiness" json:"readiness,omitempty"`
+				Startup *struct {
+					Failure_threshold     *int64 `tfsdk:"failure_threshold" json:"failure_threshold,omitempty"`
+					Initial_delay_seconds *int64 `tfsdk:"initial_delay_seconds" json:"initial_delay_seconds,omitempty"`
+					Period_seconds        *int64 `tfsdk:"period_seconds" json:"period_seconds,omitempty"`
+				} `tfsdk:"startup" json:"startup,omitempty"`
+			} `tfsdk:"probes" json:"probes,omitempty"`
+			Remote_cluster_resources_only *bool                `tfsdk:"remote_cluster_resources_only" json:"remote_cluster_resources_only,omitempty"`
+			Replicas                      *int64               `tfsdk:"replicas" json:"replicas,omitempty"`
+			Resources                     *map[string]string   `tfsdk:"resources" json:"resources,omitempty"`
+			Secret_name                   *string              `tfsdk:"secret_name" json:"secret_name,omitempty"`
+			Security_context              *map[string]string   `tfsdk:"security_context" json:"security_context,omitempty"`
+			Service_annotations           *map[string]string   `tfsdk:"service_annotations" json:"service_annotations,omitempty"`
+			Service_type                  *string              `tfsdk:"service_type" json:"service_type,omitempty"`
+			Tolerations                   *[]map[string]string `tfsdk:"tolerations" json:"tolerations,omitempty"`
+			Topology_spread_constraints   *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topology_spread_constraints,omitempty"`
+			Version_label                 *string              `tfsdk:"version_label" json:"version_label,omitempty"`
+			View_only_mode                *bool                `tfsdk:"view_only_mode" json:"view_only_mode,omitempty"`
 		} `tfsdk:"deployment" json:"deployment,omitempty"`
 		Extensions *[]struct {
 			Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -248,9 +267,10 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					Class_name *string `tfsdk:"class_name" json:"class_name,omitempty"`
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"gateway_api_classes" json:"gateway_api_classes,omitempty"`
-				Ingress_gateway_namespace *string `tfsdk:"ingress_gateway_namespace" json:"ingress_gateway_namespace,omitempty"`
-				Istio_api_enabled         *bool   `tfsdk:"istio_api_enabled" json:"istio_api_enabled,omitempty"`
-				Istio_canary_revision     *struct {
+				Gateway_api_classes_label_selector *string `tfsdk:"gateway_api_classes_label_selector" json:"gateway_api_classes_label_selector,omitempty"`
+				Ingress_gateway_namespace          *string `tfsdk:"ingress_gateway_namespace" json:"ingress_gateway_namespace,omitempty"`
+				Istio_api_enabled                  *bool   `tfsdk:"istio_api_enabled" json:"istio_api_enabled,omitempty"`
+				Istio_canary_revision              *struct {
 					Current *string `tfsdk:"current" json:"current,omitempty"`
 					Upgrade *string `tfsdk:"upgrade" json:"upgrade,omitempty"`
 				} `tfsdk:"istio_canary_revision" json:"istio_canary_revision,omitempty"`
@@ -262,6 +282,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Istiod_pod_monitoring_port             *int64  `tfsdk:"istiod_pod_monitoring_port" json:"istiod_pod_monitoring_port,omitempty"`
 				Root_namespace                         *string `tfsdk:"root_namespace" json:"root_namespace,omitempty"`
 				Url_service_version                    *string `tfsdk:"url_service_version" json:"url_service_version,omitempty"`
+				Validation_reconcile_interval          *string `tfsdk:"validation_reconcile_interval" json:"validation_reconcile_interval,omitempty"`
 			} `tfsdk:"istio" json:"istio,omitempty"`
 			Prometheus *struct {
 				Auth *struct {
@@ -297,18 +318,21 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 					Use_kiali_token      *bool   `tfsdk:"use_kiali_token" json:"use_kiali_token,omitempty"`
 					Username             *string `tfsdk:"username" json:"username,omitempty"`
 				} `tfsdk:"auth" json:"auth,omitempty"`
-				Custom_headers     *map[string]string `tfsdk:"custom_headers" json:"custom_headers,omitempty"`
-				Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-				External_url       *string            `tfsdk:"external_url" json:"external_url,omitempty"`
-				Grpc_port          *int64             `tfsdk:"grpc_port" json:"grpc_port,omitempty"`
-				Health_check_url   *string            `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
-				Internal_url       *string            `tfsdk:"internal_url" json:"internal_url,omitempty"`
-				Is_core            *bool              `tfsdk:"is_core" json:"is_core,omitempty"`
-				Namespace_selector *bool              `tfsdk:"namespace_selector" json:"namespace_selector,omitempty"`
-				Provider           *string            `tfsdk:"provider" json:"provider,omitempty"`
-				Query_scope        *map[string]string `tfsdk:"query_scope" json:"query_scope,omitempty"`
-				Query_timeout      *int64             `tfsdk:"query_timeout" json:"query_timeout,omitempty"`
-				Tempo_config       *struct {
+				Custom_headers        *map[string]string `tfsdk:"custom_headers" json:"custom_headers,omitempty"`
+				Disable_version_check *bool              `tfsdk:"disable_version_check" json:"disable_version_check,omitempty"`
+				Enabled               *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				External_url          *string            `tfsdk:"external_url" json:"external_url,omitempty"`
+				Grpc_port             *int64             `tfsdk:"grpc_port" json:"grpc_port,omitempty"`
+				Health_check_url      *string            `tfsdk:"health_check_url" json:"health_check_url,omitempty"`
+				Internal_url          *string            `tfsdk:"internal_url" json:"internal_url,omitempty"`
+				Is_core               *bool              `tfsdk:"is_core" json:"is_core,omitempty"`
+				Namespace_selector    *bool              `tfsdk:"namespace_selector" json:"namespace_selector,omitempty"`
+				Provider              *string            `tfsdk:"provider" json:"provider,omitempty"`
+				Query_scope           *map[string]string `tfsdk:"query_scope" json:"query_scope,omitempty"`
+				Query_timeout         *int64             `tfsdk:"query_timeout" json:"query_timeout,omitempty"`
+				Tempo_config          *struct {
+					Cache_capacity *int64  `tfsdk:"cache_capacity" json:"cache_capacity,omitempty"`
+					Cache_enabled  *bool   `tfsdk:"cache_enabled" json:"cache_enabled,omitempty"`
 					Datasource_uid *string `tfsdk:"datasource_uid" json:"datasource_uid,omitempty"`
 					Org_id         *string `tfsdk:"org_id" json:"org_id,omitempty"`
 					Url_format     *string `tfsdk:"url_format" json:"url_format,omitempty"`
@@ -362,10 +386,14 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 						Description *string `tfsdk:"description" json:"description,omitempty"`
 						Expression  *string `tfsdk:"expression" json:"expression,omitempty"`
 					} `tfsdk:"hide_options" json:"hide_options,omitempty"`
+					Settings *struct {
+						Animation *string `tfsdk:"animation" json:"animation,omitempty"`
+					} `tfsdk:"settings" json:"settings,omitempty"`
 					Traffic *struct {
-						Grpc *string `tfsdk:"grpc" json:"grpc,omitempty"`
-						Http *string `tfsdk:"http" json:"http,omitempty"`
-						Tcp  *string `tfsdk:"tcp" json:"tcp,omitempty"`
+						Ambient *string `tfsdk:"ambient" json:"ambient,omitempty"`
+						Grpc    *string `tfsdk:"grpc" json:"grpc,omitempty"`
+						Http    *string `tfsdk:"http" json:"http,omitempty"`
+						Tcp     *string `tfsdk:"tcp" json:"tcp,omitempty"`
 					} `tfsdk:"traffic" json:"traffic,omitempty"`
 				} `tfsdk:"graph" json:"graph,omitempty"`
 				I18n *struct {
@@ -399,6 +427,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Skip_wildcard_gateway_hosts *bool     `tfsdk:"skip_wildcard_gateway_hosts" json:"skip_wildcard_gateway_hosts,omitempty"`
 			} `tfsdk:"validations" json:"validations,omitempty"`
 		} `tfsdk:"kiali_feature_flags" json:"kiali_feature_flags,omitempty"`
+		Kiali_internal    *map[string]string `tfsdk:"kiali_internal" json:"kiali_internal,omitempty"`
 		Kubernetes_config *struct {
 			Burst                          *int64    `tfsdk:"burst" json:"burst,omitempty"`
 			Cache_duration                 *int64    `tfsdk:"cache_duration" json:"cache_duration,omitempty"`
@@ -438,6 +467,7 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 			Profiler *struct {
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"profiler" json:"profiler,omitempty"`
+			Require_auth     *bool   `tfsdk:"require_auth" json:"require_auth,omitempty"`
 			Web_fqdn         *string `tfsdk:"web_fqdn" json:"web_fqdn,omitempty"`
 			Web_history_mode *string `tfsdk:"web_history_mode" json:"web_history_mode,omitempty"`
 			Web_port         *string `tfsdk:"web_port" json:"web_port,omitempty"`
@@ -527,8 +557,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 				MarkdownDescription: "This is the CRD for the resources called Kiali CRs. The Kiali Operator will watch for resources of this type and when it detects a Kiali CR has been added, deleted, or modified, it will install, uninstall, and update the associated Kiali Server installation. The settings here will configure the Kiali Server as well as the Kiali Operator. All of these settings will be stored in the Kiali ConfigMap. Do not modify the ConfigMap; it will be managed by the Kiali Operator. Only modify the Kiali CR when you want to change a configuration setting.",
 				Attributes: map[string]schema.Attribute{
 					"additional_display_details": schema.ListNestedAttribute{
-						Description:         "A list of additional details that Kiali will look for in annotations. When found on any workload or service, Kiali will display the additional details in the respective workload or service details page. This is typically used to inject some CI metadata or documentation links into Kiali views. For example, by default, Kiali will recognize these annotations on a service or workload (e.g. a Deployment, StatefulSet, etc.): ''' annotations: kiali.io/api-spec: http://list/to/my/api/doc kiali.io/api-type: rest ''' Note that if you change this setting for your own custom annotations, keep in mind that it would override the current default. So you would have to add the default setting as shown in the example CR if you want to preserve the default links. ",
-						MarkdownDescription: "A list of additional details that Kiali will look for in annotations. When found on any workload or service, Kiali will display the additional details in the respective workload or service details page. This is typically used to inject some CI metadata or documentation links into Kiali views. For example, by default, Kiali will recognize these annotations on a service or workload (e.g. a Deployment, StatefulSet, etc.): ''' annotations: kiali.io/api-spec: http://list/to/my/api/doc kiali.io/api-type: rest ''' Note that if you change this setting for your own custom annotations, keep in mind that it would override the current default. So you would have to add the default setting as shown in the example CR if you want to preserve the default links. ",
+						Description:         "A list of additional details that Kiali will look for in annotations. When found on any workload or service, Kiali will display the additional details in the respective workload or service details page. This is typically used to inject some CI metadata or documentation links into Kiali views. For example, by default, Kiali will recognize these annotations on a service or workload (e.g. a Deployment, StatefulSet, etc.): ''' spec: annotations: kiali.io/api-spec: http://list/to/my/api/doc kiali.io/api-type: rest ''' Note that if you change this setting for your own custom annotations, keep in mind that it would override the current default. So you would have to add the default setting as shown in the example CR if you want to preserve the default links. ",
+						MarkdownDescription: "A list of additional details that Kiali will look for in annotations. When found on any workload or service, Kiali will display the additional details in the respective workload or service details page. This is typically used to inject some CI metadata or documentation links into Kiali views. For example, by default, Kiali will recognize these annotations on a service or workload (e.g. a Deployment, StatefulSet, etc.): ''' spec: annotations: kiali.io/api-spec: http://list/to/my/api/doc kiali.io/api-type: rest ''' Note that if you change this setting for your own custom annotations, keep in mind that it would override the current default. So you would have to add the default setting as shown in the example CR if you want to preserve the default links. ",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"annotation": schema.StringAttribute{
@@ -701,6 +731,15 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Description:         "To learn more about these settings and how to configure the OpenShift authentication strategy, read the documentation at https://kiali.io/docs/configuration/authentication/openshift/",
 								MarkdownDescription: "To learn more about these settings and how to configure the OpenShift authentication strategy, read the documentation at https://kiali.io/docs/configuration/authentication/openshift/",
 								Attributes: map[string]schema.Attribute{
+									"redirect_uris": schema.ListAttribute{
+										Description:         "The OAuthClient redirect URIs. You normally do not have to set this unless you are creating remote cluster resources (see 'deployment.remote_cluster_resources_only') with 'auth.strategy' set to 'openshift'.",
+										MarkdownDescription: "The OAuthClient redirect URIs. You normally do not have to set this unless you are creating remote cluster resources (see 'deployment.remote_cluster_resources_only') with 'auth.strategy' set to 'openshift'.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"token_inactivity_timeout": schema.Int64Attribute{
 										Description:         "Timeout that overrides the default OpenShift token inactivity timeout. This value represents the maximum amount of time in seconds that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. If 0, the Kiali tokens never timeout. OpenShift may have a minimum allowed value - see the OpenShift documentation specific for the version of OpenShift you are using. WARNING: existing tokens will not be affected by changing this setting.",
 										MarkdownDescription: "Timeout that overrides the default OpenShift token inactivity timeout. This value represents the maximum amount of time in seconds that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. If 0, the Kiali tokens never timeout. OpenShift may have a minimum allowed value - see the OpenShift documentation specific for the version of OpenShift you are using. WARNING: existing tokens will not be affected by changing this setting.",
@@ -843,8 +882,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 					},
 
 					"custom_dashboards": schema.ListAttribute{
-						Description:         "A list of user-defined custom monitoring dashboards that you can use to generate metrics charts for your applications. The server has some built-in dashboards; if you define a custom dashboard here with the same name as a built-in dashboard, your custom dashboard takes precedence and will overwrite the built-in dashboard. You can disable one or more of the built-in dashboards by simply defining an empty dashboard. An example of an additional user-defined dashboard, ''' - name: myapp title: My App Metrics items: - chart: name: 'Thread Count' spans: 4 metricName: 'thread-count' dataType: 'raw' ''' An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard), ''' - name: envoy ''' To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/ ",
-						MarkdownDescription: "A list of user-defined custom monitoring dashboards that you can use to generate metrics charts for your applications. The server has some built-in dashboards; if you define a custom dashboard here with the same name as a built-in dashboard, your custom dashboard takes precedence and will overwrite the built-in dashboard. You can disable one or more of the built-in dashboards by simply defining an empty dashboard. An example of an additional user-defined dashboard, ''' - name: myapp title: My App Metrics items: - chart: name: 'Thread Count' spans: 4 metricName: 'thread-count' dataType: 'raw' ''' An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard), ''' - name: envoy ''' To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/ ",
+						Description:         "A list of user-defined custom monitoring dashboards that you can use to generate metrics charts for your applications. The server has some built-in dashboards; if you define a custom dashboard here with the same name as a built-in dashboard, your custom dashboard takes precedence and will overwrite the built-in dashboard. You can disable one or more of the built-in dashboards by simply defining an empty dashboard. An example of an additional user-defined dashboard, ''' spec: custom_dashboards: - name: myapp title: My App Metrics items: - chart: name: 'Thread Count' spans: 4 metricName: 'thread-count' dataType: 'raw' ''' An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard), ''' spec: custom_dashboards: - name: envoy ''' To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/ ",
+						MarkdownDescription: "A list of user-defined custom monitoring dashboards that you can use to generate metrics charts for your applications. The server has some built-in dashboards; if you define a custom dashboard here with the same name as a built-in dashboard, your custom dashboard takes precedence and will overwrite the built-in dashboard. You can disable one or more of the built-in dashboards by simply defining an empty dashboard. An example of an additional user-defined dashboard, ''' spec: custom_dashboards: - name: myapp title: My App Metrics items: - chart: name: 'Thread Count' spans: 4 metricName: 'thread-count' dataType: 'raw' ''' An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard), ''' spec: custom_dashboards: - name: envoy ''' To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/ ",
 						ElementType:         types.MapType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -945,8 +984,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"custom_secrets": schema.ListNestedAttribute{
-								Description:         "Defines additional secrets that are to be mounted in the Kiali pod. These are useful to contain certs that are used by Kiali to securely connect to third party systems (for example, see 'external_services.tracing.auth.ca_file'). These secrets must be created by an external mechanism. Kiali will not generate these secrets; it is assumed these secrets are externally managed. You can define 0, 1, or more secrets. An example configuration is, ''' custom_secrets: - name: mysecret mount: /mysecret-path - name: my-other-secret mount: /my-other-secret-location optional: true ''' ",
-								MarkdownDescription: "Defines additional secrets that are to be mounted in the Kiali pod. These are useful to contain certs that are used by Kiali to securely connect to third party systems (for example, see 'external_services.tracing.auth.ca_file'). These secrets must be created by an external mechanism. Kiali will not generate these secrets; it is assumed these secrets are externally managed. You can define 0, 1, or more secrets. An example configuration is, ''' custom_secrets: - name: mysecret mount: /mysecret-path - name: my-other-secret mount: /my-other-secret-location optional: true ''' ",
+								Description:         "Defines additional secrets that are to be mounted in the Kiali pod. These are useful to contain certs that are used by Kiali to securely connect to third party systems (for example, see 'external_services.tracing.auth.ca_file'). These secrets must be created by an external mechanism. Kiali will not generate these secrets; it is assumed these secrets are externally managed. You can define 0, 1, or more secrets. An example configuration is, ''' spec: deployment: custom_secrets: - name: mysecret mount: /mysecret-path - name: my-other-secret mount: /my-other-secret-location optional: true ''' ",
+								MarkdownDescription: "Defines additional secrets that are to be mounted in the Kiali pod. These are useful to contain certs that are used by Kiali to securely connect to third party systems (for example, see 'external_services.tracing.auth.ca_file'). These secrets must be created by an external mechanism. Kiali will not generate these secrets; it is assumed these secrets are externally managed. You can define 0, 1, or more secrets. An example configuration is, ''' spec: deployment: custom_secrets: - name: mysecret mount: /mysecret-path - name: my-other-secret mount: /my-other-secret-location optional: true ''' ",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"csi": schema.MapAttribute{
@@ -1091,9 +1130,18 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Computed: false,
 							},
 
+							"extra_labels": schema.MapAttribute{
+								Description:         "Extra name/value pairs to be added to the labels of all resources created by the operator. These are added to the labels the operator creates by default. These will not overwrite labels that the operator creates itself. For example, if you set 'app.kubernetes.io/name' as an extra label, it will be silently ignored because that is one of the labels the operator creates on all resources. ",
+								MarkdownDescription: "Extra name/value pairs to be added to the labels of all resources created by the operator. These are added to the labels the operator creates by default. These will not overwrite labels that the operator creates itself. For example, if you set 'app.kubernetes.io/name' as an extra label, it will be silently ignored because that is one of the labels the operator creates on all resources. ",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"host_aliases": schema.ListNestedAttribute{
-								Description:         "This is content for the Kubernetes 'hostAliases' setting for the Kiali server. This allows you to modify the Kiali server pod '/etc/hosts' file. A typical way to configure this setting is, ''' host_aliases: - ip: 192.168.1.100 hostnames: - 'foo.local' - 'bar.local' ''' For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases ",
-								MarkdownDescription: "This is content for the Kubernetes 'hostAliases' setting for the Kiali server. This allows you to modify the Kiali server pod '/etc/hosts' file. A typical way to configure this setting is, ''' host_aliases: - ip: 192.168.1.100 hostnames: - 'foo.local' - 'bar.local' ''' For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases ",
+								Description:         "This is content for the Kubernetes 'hostAliases' setting for the Kiali server. This allows you to modify the Kiali server pod '/etc/hosts' file. A typical way to configure this setting is, ''' spec: deployment: host_aliases: - ip: 192.168.1.100 hostnames: - 'foo.local' - 'bar.local' ''' For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases ",
+								MarkdownDescription: "This is content for the Kubernetes 'hostAliases' setting for the Kiali server. This allows you to modify the Kiali server pod '/etc/hosts' file. A typical way to configure this setting is, ''' spec: deployment: host_aliases: - ip: 192.168.1.100 hostnames: - 'foo.local' - 'bar.local' ''' For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases ",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hostnames": schema.ListAttribute{
@@ -1120,8 +1168,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"hpa": schema.SingleNestedAttribute{
-								Description:         "Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod. A typical way to configure HPA for Kiali is, ''' hpa: api_version: 'autoscaling/v2' spec: maxReplicas: 2 minReplicas: 1 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 50 ''' ",
-								MarkdownDescription: "Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod. A typical way to configure HPA for Kiali is, ''' hpa: api_version: 'autoscaling/v2' spec: maxReplicas: 2 minReplicas: 1 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 50 ''' ",
+								Description:         "Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod. A typical way to configure HPA for Kiali is, ''' spec: deployment: hpa: api_version: 'autoscaling/v2' spec: maxReplicas: 2 minReplicas: 1 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 50 ''' ",
+								MarkdownDescription: "Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod. A typical way to configure HPA for Kiali is, ''' spec: deployment: hpa: api_version: 'autoscaling/v2' spec: maxReplicas: 2 minReplicas: 1 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 50 ''' ",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "A specific HPA API version that can be specified in case there is some HPA feature you want to use that is only supported in that specific version. If value is an empty string, an attempt will be made to determine a valid version.",
@@ -1216,8 +1264,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"override_yaml": schema.SingleNestedAttribute{
-										Description:         "Because an Ingress into a cluster can vary wildly in its desired configuration, this setting provides a way to override complete portions of the Ingress resource configuration (Ingress on Kubernetes and Route on OpenShift). It is up to the user to ensure this override YAML configuration is valid and supports the cluster environment since the operator will blindly copy this custom configuration into the resource it creates. This setting is not used if 'deployment.ingress.enabled' is set to 'false'. Note that only 'metadata.annotations' and 'spec' is valid and only they will be used to override those same sections in the created resource. You can define either one or both. Note that 'override_yaml.metadata.labels' is not allowed - you cannot override the labels; to add labels to the default set of labels, use the 'deployment.ingress.additional_labels' setting. Example, ''' override_yaml: metadata: annotations: nginx.ingress.kubernetes.io/secure-backends: 'true' nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS' spec: rules: - http: paths: - path: /kiali pathType: Prefix backend: service name: 'kiali' port: number: 20001 ''' ",
-										MarkdownDescription: "Because an Ingress into a cluster can vary wildly in its desired configuration, this setting provides a way to override complete portions of the Ingress resource configuration (Ingress on Kubernetes and Route on OpenShift). It is up to the user to ensure this override YAML configuration is valid and supports the cluster environment since the operator will blindly copy this custom configuration into the resource it creates. This setting is not used if 'deployment.ingress.enabled' is set to 'false'. Note that only 'metadata.annotations' and 'spec' is valid and only they will be used to override those same sections in the created resource. You can define either one or both. Note that 'override_yaml.metadata.labels' is not allowed - you cannot override the labels; to add labels to the default set of labels, use the 'deployment.ingress.additional_labels' setting. Example, ''' override_yaml: metadata: annotations: nginx.ingress.kubernetes.io/secure-backends: 'true' nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS' spec: rules: - http: paths: - path: /kiali pathType: Prefix backend: service name: 'kiali' port: number: 20001 ''' ",
+										Description:         "Because an Ingress into a cluster can vary wildly in its desired configuration, this setting provides a way to override complete portions of the Ingress resource configuration (Ingress on Kubernetes and Route on OpenShift). It is up to the user to ensure this override YAML configuration is valid and supports the cluster environment since the operator will blindly copy this custom configuration into the resource it creates. This setting is not used if 'deployment.ingress.enabled' is set to 'false'. Note that only 'metadata.annotations' and 'spec' is valid and only they will be used to override those same sections in the created resource. You can define either one or both. Note that 'override_yaml.metadata.labels' is not allowed - you cannot override the labels; to add labels to the default set of labels, use the 'deployment.ingress.additional_labels' setting. Example, ''' spec: deployment: ingress: override_yaml: metadata: annotations: nginx.ingress.kubernetes.io/secure-backends: 'true' nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS' spec: rules: - http: paths: - path: /kiali pathType: Prefix backend: service name: 'kiali' port: number: 20001 ''' ",
+										MarkdownDescription: "Because an Ingress into a cluster can vary wildly in its desired configuration, this setting provides a way to override complete portions of the Ingress resource configuration (Ingress on Kubernetes and Route on OpenShift). It is up to the user to ensure this override YAML configuration is valid and supports the cluster environment since the operator will blindly copy this custom configuration into the resource it creates. This setting is not used if 'deployment.ingress.enabled' is set to 'false'. Note that only 'metadata.annotations' and 'spec' is valid and only they will be used to override those same sections in the created resource. You can define either one or both. Note that 'override_yaml.metadata.labels' is not allowed - you cannot override the labels; to add labels to the default set of labels, use the 'deployment.ingress.additional_labels' setting. Example, ''' spec: deployment: ingress: override_yaml: metadata: annotations: nginx.ingress.kubernetes.io/secure-backends: 'true' nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS' spec: rules: - http: paths: - path: /kiali pathType: Prefix backend: service name: 'kiali' port: number: 20001 ''' ",
 										Attributes: map[string]schema.Attribute{
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "",
@@ -1332,8 +1380,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"pod_annotations": schema.MapAttribute{
-								Description:         "Custom annotations to be created on the Kiali pod.",
-								MarkdownDescription: "Custom annotations to be created on the Kiali pod.",
+								Description:         "Custom annotations to be created on the Kiali pod. By default, the following annotation is applied: ''' proxy.istio.io/config: '{ 'holdApplicationUntilProxyStarts': true }' ''' If you define your own pod_annotations, they will overwrite this default. To retain the default behavior while adding your own annotations, make sure to include this value alongside your custom annotations. ",
+								MarkdownDescription: "Custom annotations to be created on the Kiali pod. By default, the following annotation is applied: ''' proxy.istio.io/config: '{ 'holdApplicationUntilProxyStarts': true }' ''' If you define your own pod_annotations, they will overwrite this default. To retain the default behavior while adding your own annotations, make sure to include this value alongside your custom annotations. ",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1357,6 +1405,106 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Computed:            false,
 							},
 
+							"probes": schema.SingleNestedAttribute{
+								Description:         "Configures the liveness, readiness, and startup probes of the Kiali pod.",
+								MarkdownDescription: "Configures the liveness, readiness, and startup probes of the Kiali pod.",
+								Attributes: map[string]schema.Attribute{
+									"liveness": schema.SingleNestedAttribute{
+										Description:         "Configures the liveness probe of the Kiali pod.",
+										MarkdownDescription: "Configures the liveness probe of the Kiali pod.",
+										Attributes: map[string]schema.Attribute{
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"readiness": schema.SingleNestedAttribute{
+										Description:         "Configures the readiness probe of the Kiali pod.",
+										MarkdownDescription: "Configures the readiness probe of the Kiali pod.",
+										Attributes: map[string]schema.Attribute{
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"startup": schema.SingleNestedAttribute{
+										Description:         "Configures the startup probe of the Kiali pod.",
+										MarkdownDescription: "Configures the startup probe of the Kiali pod.",
+										Attributes: map[string]schema.Attribute{
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"remote_cluster_resources_only": schema.BoolAttribute{
+								Description:         "When 'true', only those resources necessary for a remote Kiali Server to access this cluster are created (such as the service account and roles/bindings). There will be no Kiali Server deployment/pod created when this is 'true'.",
+								MarkdownDescription: "When 'true', only those resources necessary for a remote Kiali Server to access this cluster are created (such as the service account and roles/bindings). There will be no Kiali Server deployment/pod created when this is 'true'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"replicas": schema.Int64Attribute{
 								Description:         "The replica count for the Kiail deployment. If 'deployment.hpa' is specified, this setting is ignored.",
 								MarkdownDescription: "The replica count for the Kiail deployment. If 'deployment.hpa' is specified, this setting is ignored.",
@@ -1366,8 +1514,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"resources": schema.MapAttribute{
-								Description:         "Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container). If you set this to an empty dict ('{}') then no resources will be defined in the Deployment. If you do not set this at all, the default is, ''' requests: cpu: '10m' memory: '64Mi' limits: memory: '1Gi' ''' ",
-								MarkdownDescription: "Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container). If you set this to an empty dict ('{}') then no resources will be defined in the Deployment. If you do not set this at all, the default is, ''' requests: cpu: '10m' memory: '64Mi' limits: memory: '1Gi' ''' ",
+								Description:         "Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container). If you set this to an empty dict ('{}') then no resources will be defined in the Deployment. If you do not set this at all, the default is, ''' spec: deployment: resources: requests: cpu: '10m' memory: '64Mi' limits: memory: '1Gi' ''' ",
+								MarkdownDescription: "Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container). If you set this to an empty dict ('{}') then no resources will be defined in the Deployment. If you do not set this at all, the default is, ''' spec: deployment: resources: requests: cpu: '10m' memory: '64Mi' limits: memory: '1Gi' ''' ",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1411,6 +1559,15 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							"tolerations": schema.ListAttribute{
 								Description:         "A list of tolerations which declare which node taints Kiali can tolerate. See the Kubernetes documentation on Taints and Tolerations for more details.",
 								MarkdownDescription: "A list of tolerations which declare which node taints Kiali can tolerate. See the Kubernetes documentation on Taints and Tolerations for more details.",
+								ElementType:         types.MapType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"topology_spread_constraints": schema.ListAttribute{
+								Description:         "A list of constraints which control how the Kiali pods are spread across your cluster to help achieve high availability as well as efficient resource utilization. See the Kubernetes documentation on Topology Spread Constraints for more details.",
+								MarkdownDescription: "A list of constraints which control how the Kiali pods are spread across your cluster to help achieve high availability as well as efficient resource utilization. See the Kubernetes documentation on Topology Spread Constraints for more details.",
 								ElementType:         types.MapType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -1980,6 +2137,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Computed: false,
 									},
 
+									"gateway_api_classes_label_selector": schema.StringAttribute{
+										Description:         "Label selector for auto-discovering K8s Gateway API Classes. Used if 'gateway_api_classes' is unset. When left empty then all K8s Gateway API Classes will be loaded.",
+										MarkdownDescription: "Label selector for auto-discovering K8s Gateway API Classes. Used if 'gateway_api_classes' is unset. When left empty then all K8s Gateway API Classes will be loaded.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"ingress_gateway_namespace": schema.StringAttribute{
 										Description:         "The namespace where Istio IngressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.",
 										MarkdownDescription: "The namespace where Istio IngressGateway component is read for a status check. When left empty, then 'istio_namespace' value is used.",
@@ -2080,6 +2245,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									"url_service_version": schema.StringAttribute{
 										Description:         "The Istio service used to determine the Istio version. If empty, assumes the URL for the well-known Istio version endpoint.",
 										MarkdownDescription: "The Istio service used to determine the Istio version. If empty, assumes the URL for the well-known Istio version endpoint.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"validation_reconcile_interval": schema.StringAttribute{
+										Description:         "Configures how often Kiali will validate Istio configuration. Validations cannot be disabled at the moment but you can set this to a long period of time. Accepts a golang duration string e.g. '1h' or '30m'.",
+										MarkdownDescription: "Configures how often Kiali will validate Istio configuration. Validations cannot be disabled at the moment but you can set this to a long period of time. Accepts a golang duration string e.g. '1h' or '30m'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2341,6 +2514,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Computed:            false,
 									},
 
+									"disable_version_check": schema.BoolAttribute{
+										Description:         "When true, the version of the Tracing backend will not be retrieved. This will mean Kiali will not be able to display the version of your Tracing component in the Kiali UI. This may be needed in order to avoid Kiali reporting errors in cases where the full version endpoint is not accessible or is unknown. A common use case is when using Jaeger with gRPC and the HTTP endpoint is not deployed in the standard port (80). Defaults to 'false'",
+										MarkdownDescription: "When true, the version of the Tracing backend will not be retrieved. This will mean Kiali will not be able to display the version of your Tracing component in the Kiali UI. This may be needed in order to avoid Kiali reporting errors in cases where the full version endpoint is not accessible or is unknown. A common use case is when using Jaeger with gRPC and the HTTP endpoint is not deployed in the standard port (80). Defaults to 'false'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enabled": schema.BoolAttribute{
 										Description:         "When true, connections to the Tracing server are enabled. 'internal_url' and/or 'external_url' need to be provided.",
 										MarkdownDescription: "When true, connections to the Tracing server are enabled. 'internal_url' and/or 'external_url' need to be provided.",
@@ -2426,6 +2607,22 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 										Description:         "Settings used to configure the access url to the Tempo Datasource in Grafana.",
 										MarkdownDescription: "Settings used to configure the access url to the Tempo Datasource in Grafana.",
 										Attributes: map[string]schema.Attribute{
+											"cache_capacity": schema.Int64Attribute{
+												Description:         "When 'cache_enabled' is true, the number of traces saved in the cache. 200 by default.",
+												MarkdownDescription: "When 'cache_enabled' is true, the number of traces saved in the cache. 200 by default.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"cache_enabled": schema.BoolAttribute{
+												Description:         "A FIFO cache with the last 'cache_capacity' traces viewed.",
+												MarkdownDescription: "A FIFO cache with the last 'cache_capacity' traces viewed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"datasource_uid": schema.StringAttribute{
 												Description:         "The unique identifier (uid) of the Tempo datasource in Grafana.",
 												MarkdownDescription: "The unique identifier (uid) of the Tempo datasource in Grafana.",
@@ -2615,8 +2812,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 						MarkdownDescription: "Defines specific labels used by Istio that Kiali needs to know about.",
 						Attributes: map[string]schema.Attribute{
 							"app_label_name": schema.StringAttribute{
-								Description:         "The name of the label used to define what application a workload belongs to. This is typically something like 'app' or 'app.kubernetes.io/name'.",
-								MarkdownDescription: "The name of the label used to define what application a workload belongs to. This is typically something like 'app' or 'app.kubernetes.io/name'.",
+								Description:         "If using a single scheme for app/version labeling, set this to the app label name being used. This is typically 'app' or 'app.kubernetes.io/name'. The default is unset, and Kiali will handle mixed schemes.",
+								MarkdownDescription: "If using a single scheme for app/version labeling, set this to the app label name being used. This is typically 'app' or 'app.kubernetes.io/name'. The default is unset, and Kiali will handle mixed schemes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2655,8 +2852,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"version_label_name": schema.StringAttribute{
-								Description:         "The name of the label used to define what version of the application a workload belongs to. This is typically something like 'version' or 'app.kubernetes.io/version'.",
-								MarkdownDescription: "The name of the label used to define what version of the application a workload belongs to. This is typically something like 'version' or 'app.kubernetes.io/version'.",
+								Description:         "If using a single scheme for app/version labeling, set this to the version label name being used. This is typically 'version' or 'app.kubernetes.io/version'. The default is unset, and Kiali will handle mixed schemes.",
+								MarkdownDescription: "If using a single scheme for app/version labeling, set this to the version label name being used. This is typically 'version' or 'app.kubernetes.io/version'. The default is unset, and Kiali will handle mixed schemes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2790,10 +2987,41 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 												Computed: false,
 											},
 
+											"settings": schema.SingleNestedAttribute{
+												Description:         "Various presentation options.",
+												MarkdownDescription: "Various presentation options.",
+												Attributes: map[string]schema.Attribute{
+													"animation": schema.StringAttribute{
+														Description:         "The traffic animation style. Value must be one of: 'dash' or 'point'. Default is 'point'.",
+														MarkdownDescription: "The traffic animation style. Value must be one of: 'dash' or 'point'. Default is 'point'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("dash", "point"),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"traffic": schema.SingleNestedAttribute{
 												Description:         "These settings determine which rates are used to determine graph traffic.",
 												MarkdownDescription: "These settings determine which rates are used to determine graph traffic.",
 												Attributes: map[string]schema.Attribute{
+													"ambient": schema.StringAttribute{
+														Description:         "Ambient traffic is reported by ztunnel and/or waypoints. Value must be one of: 'none', 'total', 'waypoint', or 'ztunnel'.",
+														MarkdownDescription: "Ambient traffic is reported by ztunnel and/or waypoints. Value must be one of: 'none', 'total', 'waypoint', or 'ztunnel'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("none", "total", "waypoint", "ztunnel"),
+														},
+													},
+
 													"grpc": schema.StringAttribute{
 														Description:         "gRPC traffic is measured in requests or sent/received/total messages. Value must be one of: 'none', 'requests', 'sent', 'received', or 'total'.",
 														MarkdownDescription: "gRPC traffic is measured in requests or sent/received/total messages. Value must be one of: 'none', 'requests', 'sent', 'received', or 'total'.",
@@ -2904,8 +3132,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"metrics_inbound": schema.SingleNestedAttribute{
-										Description:         "Additional label aggregation for inbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' metrics_inbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
-										MarkdownDescription: "Additional label aggregation for inbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' metrics_inbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
+										Description:         "Additional label aggregation for inbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' spec: kiali_feature_flags: ui_defaults: metrics_inbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
+										MarkdownDescription: "Additional label aggregation for inbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' spec: kiali_feature_flags: ui_defaults: metrics_inbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
 										Attributes: map[string]schema.Attribute{
 											"aggregations": schema.ListNestedAttribute{
 												Description:         "",
@@ -2940,8 +3168,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"metrics_outbound": schema.SingleNestedAttribute{
-										Description:         "Additional label aggregation for outbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' metrics_outbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
-										MarkdownDescription: "Additional label aggregation for outbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' metrics_outbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
+										Description:         "Additional label aggregation for outbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' spec: kiali_feature_flags: ui_defaults: metrics_outbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
+										MarkdownDescription: "Additional label aggregation for outbound metric pages in detail pages. You will see these configurations in the 'Metric Settings' drop-down. An example, ''' spec: kiali_feature_flags: ui_defaults: metrics_outbound: aggregations: - display_name: Istio Network label: topology_istio_io_network - display_name: Istio Revision label: istio_io_rev ''' ",
 										Attributes: map[string]schema.Attribute{
 											"aggregations": schema.ListNestedAttribute{
 												Description:         "",
@@ -2996,13 +3224,13 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"refresh_interval": schema.StringAttribute{
-										Description:         "The automatic refresh interval for pages offering automatic refresh. Value must be one of: 'pause', '10s', '15s', '30s', '1m', '5m' or '15m'",
-										MarkdownDescription: "The automatic refresh interval for pages offering automatic refresh. Value must be one of: 'pause', '10s', '15s', '30s', '1m', '5m' or '15m'",
+										Description:         "The automatic refresh interval for pages offering automatic refresh. 'Manual' requires user action even for initial page load. Value must be one of: 'pause', 'manual', '10s', '15s', '30s', '1m', '5m' or '15m'",
+										MarkdownDescription: "The automatic refresh interval for pages offering automatic refresh. 'Manual' requires user action even for initial page load. Value must be one of: 'pause', 'manual', '10s', '15s', '30s', '1m', '5m' or '15m'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("pause", "10s", "15s", "30s", "1m", "5m", "15m"),
+											stringvalidator.OneOf("pause", "manual", "10s", "15s", "30s", "1m", "5m", "15m"),
 										},
 									},
 								},
@@ -3040,6 +3268,15 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"kiali_internal": schema.MapAttribute{
+						Description:         "Unstructured section for internal testing and debugging features.",
+						MarkdownDescription: "Unstructured section for internal testing and debugging features.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"kubernetes_config": schema.SingleNestedAttribute{
@@ -3300,6 +3537,14 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"require_auth": schema.BoolAttribute{
+								Description:         "When true, the /api endpoint will require users to authenticate themselves. When false, users need not authenticate with Kiali in order to get basic runtime info about the server via the /api endpoint. This setting is ignored if auth.strategy is 'anonymous'.",
+								MarkdownDescription: "When true, the /api endpoint will require users to authenticate themselves. When false, users need not authenticate with Kiali in order to get basic runtime info about the server via the /api endpoint. This setting is ignored if auth.strategy is 'anonymous'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"web_fqdn": schema.StringAttribute{

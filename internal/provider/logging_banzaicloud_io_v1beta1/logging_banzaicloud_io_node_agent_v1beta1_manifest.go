@@ -370,6 +370,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 											Port *string `tfsdk:"port" json:"port,omitempty"`
 										} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 									} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+									StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 								} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 								LivenessProbe *struct {
 									Exec *struct {
@@ -628,6 +629,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 											Port *string `tfsdk:"port" json:"port,omitempty"`
 										} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 									} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+									StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 								} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 								LivenessProbe *struct {
 									Exec *struct {
@@ -888,6 +890,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 											Port *string `tfsdk:"port" json:"port,omitempty"`
 										} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 									} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+									StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 								} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 								LivenessProbe *struct {
 									Exec *struct {
@@ -1072,6 +1075,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 								RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 								RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 								RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+								SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 								SeLinuxOptions      *struct {
 									Level *string `tfsdk:"level" json:"level,omitempty"`
 									Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1508,34 +1512,35 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 			} `tfsdk:"forward_options" json:"forwardOptions,omitempty"`
 			Grace     *int64 `tfsdk:"grace" json:"grace,omitempty"`
 			InputTail *struct {
-				Buffer_Chunk_Size  *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
-				Buffer_Max_Size    *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
-				DB                 *string   `tfsdk:"db" json:"DB,omitempty"`
-				DB_journal_mode    *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
-				DB_locking         *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
-				DB_Sync            *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
-				Docker_Mode        *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
-				Docker_Mode_Flush  *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
-				Docker_Mode_Parser *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
-				Exclude_Path       *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
-				Ignore_Older       *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
-				Key                *string   `tfsdk:"key" json:"Key,omitempty"`
-				Mem_Buf_Limit      *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
-				Multiline          *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
-				Multiline_Flush    *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
-				Parser             *string   `tfsdk:"parser" json:"Parser,omitempty"`
-				Parser_Firstline   *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
-				Parser_N           *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
-				Path               *string   `tfsdk:"path" json:"Path,omitempty"`
-				Path_Key           *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
-				Read_From_Head     *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
-				Refresh_Interval   *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
-				Rotate_Wait        *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
-				Skip_Long_Lines    *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
-				Tag                *string   `tfsdk:"tag" json:"Tag,omitempty"`
-				Tag_Regex          *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
-				Multiline_parser   *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
-				Storage_type       *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
+				Buffer_Chunk_Size                 *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
+				Buffer_Max_Size                   *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
+				DB                                *string   `tfsdk:"db" json:"DB,omitempty"`
+				DB_journal_mode                   *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
+				DB_locking                        *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
+				DB_Sync                           *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
+				Docker_Mode                       *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
+				Docker_Mode_Flush                 *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
+				Docker_Mode_Parser                *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
+				Exclude_Path                      *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
+				Ignore_Older                      *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
+				Key                               *string   `tfsdk:"key" json:"Key,omitempty"`
+				Mem_Buf_Limit                     *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
+				Multiline                         *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
+				Multiline_Flush                   *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
+				Parser                            *string   `tfsdk:"parser" json:"Parser,omitempty"`
+				Parser_Firstline                  *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
+				Parser_N                          *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
+				Path                              *string   `tfsdk:"path" json:"Path,omitempty"`
+				Path_Key                          *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
+				Read_From_Head                    *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
+				Refresh_Interval                  *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
+				Rotate_Wait                       *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
+				Skip_Long_Lines                   *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
+				Tag                               *string   `tfsdk:"tag" json:"Tag,omitempty"`
+				Tag_Regex                         *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
+				Multiline_parser                  *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
+				Storage_pause_on_chunks_overlimit *string   `tfsdk:"storage_pause_on_chunks_overlimit" json:"storage.pause_on_chunks_overlimit,omitempty"`
+				Storage_type                      *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
 			} `tfsdk:"input_tail" json:"inputTail,omitempty"`
 			LivenessDefaultCheck *bool   `tfsdk:"liveness_default_check" json:"livenessDefaultCheck,omitempty"`
 			LogLevel             *string `tfsdk:"log_level" json:"logLevel,omitempty"`
@@ -1739,6 +1744,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 				} `tfsdk:"secret" json:"secret,omitempty"`
 			} `tfsdk:"positiondb" json:"positiondb,omitempty"`
 			Security *struct {
+				CreateOpenShiftSCC *bool `tfsdk:"create_open_shift_scc" json:"createOpenShiftSCC,omitempty"`
 				PodSecurityContext *struct {
 					AppArmorProfile *struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -1749,6 +1755,7 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -4065,6 +4072,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																					Optional: true,
 																					Computed: false,
 																				},
+
+																				"stop_signal": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
 																			},
 																			Required: false,
 																			Optional: true,
@@ -5784,6 +5799,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"stop_signal": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 																			},
 																			Required: false,
@@ -7522,6 +7545,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																					Optional: true,
 																					Computed: false,
 																				},
+
+																				"stop_signal": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
 																			},
 																			Required: false,
 																			Optional: true,
@@ -8782,6 +8813,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"run_as_user": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"se_linux_change_policy": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -11985,6 +12024,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 										Computed:            false,
 									},
 
+									"storage_pause_on_chunks_overlimit": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"storage_type": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -13417,6 +13464,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"create_open_shift_scc": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod_security_context": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -13479,6 +13534,14 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,

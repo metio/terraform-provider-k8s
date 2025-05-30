@@ -43,9 +43,17 @@ type SlothSlokDevPrometheusServiceLevelV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-		Service *string            `tfsdk:"service" json:"service,omitempty"`
-		Slos    *[]struct {
+		Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		Service    *string            `tfsdk:"service" json:"service,omitempty"`
+		SloPlugins *struct {
+			Chain *[]struct {
+				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				Id       *string            `tfsdk:"id" json:"id,omitempty"`
+				Priority *int64             `tfsdk:"priority" json:"priority,omitempty"`
+			} `tfsdk:"chain" json:"chain,omitempty"`
+			OverridePrevious *bool `tfsdk:"override_previous" json:"overridePrevious,omitempty"`
+		} `tfsdk:"slo_plugins" json:"sloPlugins,omitempty"`
+		Slos *[]struct {
 			Alerting *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -65,7 +73,15 @@ type SlothSlokDevPrometheusServiceLevelV1ManifestData struct {
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
 			Objective   *float64           `tfsdk:"objective" json:"objective,omitempty"`
-			Sli         *struct {
+			Plugins     *struct {
+				Chain *[]struct {
+					Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
+					Id       *string            `tfsdk:"id" json:"id,omitempty"`
+					Priority *int64             `tfsdk:"priority" json:"priority,omitempty"`
+				} `tfsdk:"chain" json:"chain,omitempty"`
+				OverridePrevious *bool `tfsdk:"override_previous" json:"overridePrevious,omitempty"`
+			} `tfsdk:"plugins" json:"plugins,omitempty"`
+			Sli *struct {
 				Events *struct {
 					ErrorQuery *string `tfsdk:"error_query" json:"errorQuery,omitempty"`
 					TotalQuery *string `tfsdk:"total_query" json:"totalQuery,omitempty"`
@@ -174,6 +190,59 @@ func (r *SlothSlokDevPrometheusServiceLevelV1Manifest) Schema(_ context.Context,
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"slo_plugins": schema.SingleNestedAttribute{
+						Description:         "SLOPlugins will be added to the SLO generation plugin chain of all SLOs.",
+						MarkdownDescription: "SLOPlugins will be added to the SLO generation plugin chain of all SLOs.",
+						Attributes: map[string]schema.Attribute{
+							"chain": schema.ListNestedAttribute{
+								Description:         "chain ths the list of plugin chain to add to the SLO generation.",
+								MarkdownDescription: "chain ths the list of plugin chain to add to the SLO generation.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config": schema.MapAttribute{
+											Description:         "Config is the configuration used on the plugin instance creation.",
+											MarkdownDescription: "Config is the configuration used on the plugin instance creation.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"id": schema.StringAttribute{
+											Description:         "ID is the ID of the plugin to load .",
+											MarkdownDescription: "ID is the ID of the plugin to load .",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"priority": schema.Int64Attribute{
+											Description:         "Priority is the priority of the plugin in the chain. The lower the number the higher the priority. The first plugin will be the one with the lowest priority. The default plugins loaded by Sloth use '0' priority. If you want to execute plugins before the default ones, you can use negative priority. It is recommended to use round gaps of numbers like 10, 100, 1000, -200, -1000...",
+											MarkdownDescription: "Priority is the priority of the plugin in the chain. The lower the number the higher the priority. The first plugin will be the one with the lowest priority. The default plugins loaded by Sloth use '0' priority. If you want to execute plugins before the default ones, you can use negative priority. It is recommended to use round gaps of numbers like 10, 100, 1000, -200, -1000...",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"override_previous": schema.BoolAttribute{
+								Description:         "OverridePrevious will override the previous SLO plugins declared. Depending on where is this SLO plugins block declared will override: - If declared at SLO group level: Overrides the default plugins. - If declared at SLO level: Overrides the default + SLO group plugins. The declaration order is default plugins -> SLO Group plugins -> SLO plugins.",
+								MarkdownDescription: "OverridePrevious will override the previous SLO plugins declared. Depending on where is this SLO plugins block declared will override: - If declared at SLO group level: Overrides the default plugins. - If declared at SLO level: Overrides the default + SLO group plugins. The declaration order is default plugins -> SLO Group plugins -> SLO plugins.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"slos": schema.ListNestedAttribute{
@@ -320,6 +389,59 @@ func (r *SlothSlokDevPrometheusServiceLevelV1Manifest) Schema(_ context.Context,
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+								},
+
+								"plugins": schema.SingleNestedAttribute{
+									Description:         "Plugins will be added along the group SLO plugins declared in the spec root level and Sloth default plugins.",
+									MarkdownDescription: "Plugins will be added along the group SLO plugins declared in the spec root level and Sloth default plugins.",
+									Attributes: map[string]schema.Attribute{
+										"chain": schema.ListNestedAttribute{
+											Description:         "chain ths the list of plugin chain to add to the SLO generation.",
+											MarkdownDescription: "chain ths the list of plugin chain to add to the SLO generation.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"config": schema.MapAttribute{
+														Description:         "Config is the configuration used on the plugin instance creation.",
+														MarkdownDescription: "Config is the configuration used on the plugin instance creation.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"id": schema.StringAttribute{
+														Description:         "ID is the ID of the plugin to load .",
+														MarkdownDescription: "ID is the ID of the plugin to load .",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"priority": schema.Int64Attribute{
+														Description:         "Priority is the priority of the plugin in the chain. The lower the number the higher the priority. The first plugin will be the one with the lowest priority. The default plugins loaded by Sloth use '0' priority. If you want to execute plugins before the default ones, you can use negative priority. It is recommended to use round gaps of numbers like 10, 100, 1000, -200, -1000...",
+														MarkdownDescription: "Priority is the priority of the plugin in the chain. The lower the number the higher the priority. The first plugin will be the one with the lowest priority. The default plugins loaded by Sloth use '0' priority. If you want to execute plugins before the default ones, you can use negative priority. It is recommended to use round gaps of numbers like 10, 100, 1000, -200, -1000...",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"override_previous": schema.BoolAttribute{
+											Description:         "OverridePrevious will override the previous SLO plugins declared. Depending on where is this SLO plugins block declared will override: - If declared at SLO group level: Overrides the default plugins. - If declared at SLO level: Overrides the default + SLO group plugins. The declaration order is default plugins -> SLO Group plugins -> SLO plugins.",
+											MarkdownDescription: "OverridePrevious will override the previous SLO plugins declared. Depending on where is this SLO plugins block declared will override: - If declared at SLO group level: Overrides the default plugins. - If declared at SLO level: Overrides the default + SLO group plugins. The declaration order is default plugins -> SLO Group plugins -> SLO plugins.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"sli": schema.SingleNestedAttribute{

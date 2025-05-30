@@ -138,16 +138,19 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta1Manifest) Schema(_ c
 						MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
-								Description:         "The hostname on which the API server is serving.",
-								MarkdownDescription: "The hostname on which the API server is serving.",
+								Description:         "host is the hostname on which the API server is serving.",
+								MarkdownDescription: "host is the hostname on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(512),
+								},
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "The port on which the API server is serving.",
-								MarkdownDescription: "The port on which the API server is serving.",
+								Description:         "port is the port on which the API server is serving.",
+								MarkdownDescription: "port is the port on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

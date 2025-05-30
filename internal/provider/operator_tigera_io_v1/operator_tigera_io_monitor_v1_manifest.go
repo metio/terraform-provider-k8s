@@ -47,7 +47,8 @@ type OperatorTigeraIoMonitorV1ManifestData struct {
 			Spec *struct {
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -97,7 +98,8 @@ type OperatorTigeraIoMonitorV1ManifestData struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
 							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -105,7 +107,8 @@ type OperatorTigeraIoMonitorV1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					Resources *struct {
 						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -205,6 +208,14 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															Optional:            false,
 															Computed:            false,
 														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -279,8 +290,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -332,51 +343,51 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"action": schema.StringAttribute{
-																Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
-																MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+																Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+																MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase"),
+																	stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase", "keepequal", "KeepEqual", "dropequal", "DropEqual"),
 																},
 															},
 
 															"modulus": schema.Int64Attribute{
-																Description:         "Modulus to take of the hash of the source label values.",
-																MarkdownDescription: "Modulus to take of the hash of the source label values.",
+																Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+																MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"regex": schema.StringAttribute{
-																Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-																MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+																Description:         "Regular expression against which the extracted value is matched.",
+																MarkdownDescription: "Regular expression against which the extracted value is matched.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"replacement": schema.StringAttribute{
-																Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-																MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+																Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+																MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"separator": schema.StringAttribute{
-																Description:         "Separator placed between concatenated source label values. default is ';'.",
-																MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+																Description:         "Separator is the string between concatenated SourceLabels.",
+																MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"source_labels": schema.ListAttribute{
-																Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
-																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+																Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -384,8 +395,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"target_label": schema.StringAttribute{
-																Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-																MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+																Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+																MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -412,51 +423,51 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"action": schema.StringAttribute{
-																Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
-																MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+																Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+																MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase"),
+																	stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase", "keepequal", "KeepEqual", "dropequal", "DropEqual"),
 																},
 															},
 
 															"modulus": schema.Int64Attribute{
-																Description:         "Modulus to take of the hash of the source label values.",
-																MarkdownDescription: "Modulus to take of the hash of the source label values.",
+																Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+																MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"regex": schema.StringAttribute{
-																Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-																MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+																Description:         "Regular expression against which the extracted value is matched.",
+																MarkdownDescription: "Regular expression against which the extracted value is matched.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"replacement": schema.StringAttribute{
-																Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-																MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+																Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+																MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"separator": schema.StringAttribute{
-																Description:         "Separator placed between concatenated source label values. default is ';'.",
-																MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+																Description:         "Separator is the string between concatenated SourceLabels.",
+																MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"source_labels": schema.ListAttribute{
-																Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
-																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+																Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -464,8 +475,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"target_label": schema.StringAttribute{
-																Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-																MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+																Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+																MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -557,6 +568,14 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 																				Optional:            false,
 																				Computed:            false,
 																			},
+
+																			"request": schema.StringAttribute{
+																				Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																				MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
 																		},
 																	},
 																	Required: false,
@@ -607,6 +626,14 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																	Required:            true,
 																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"request": schema.StringAttribute{
+																	Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																	MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
 																},
 															},

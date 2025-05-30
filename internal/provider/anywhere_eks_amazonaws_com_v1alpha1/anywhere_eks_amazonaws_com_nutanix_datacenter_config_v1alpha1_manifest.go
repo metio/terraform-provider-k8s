@@ -44,7 +44,8 @@ type AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AdditionalTrustBundle *string `tfsdk:"additional_trust_bundle" json:"additionalTrustBundle,omitempty"`
+		AdditionalTrustBundle *string   `tfsdk:"additional_trust_bundle" json:"additionalTrustBundle,omitempty"`
+		CcmExcludeNodeIPs     *[]string `tfsdk:"ccm_exclude_node_i_ps" json:"ccmExcludeNodeIPs,omitempty"`
 		CredentialRef         *struct {
 			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -154,6 +155,15 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Schema(
 						Computed:            false,
 					},
 
+					"ccm_exclude_node_i_ps": schema.ListAttribute{
+						Description:         "CcmExcludeIPs is the optional list of IP addresses that should be excluded from the CCM IP pool for nodes. List should be valid IP addresses and IP address ranges.",
+						MarkdownDescription: "CcmExcludeIPs is the optional list of IP addresses that should be excluded from the CCM IP pool for nodes. List should be valid IP addresses and IP address ranges.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"credential_ref": schema.SingleNestedAttribute{
 						Description:         "CredentialRef is the reference to the secret name that contains the credentials for the Nutanix Prism Central. The namespace for the secret is assumed to be a constant i.e. eksa-system.",
 						MarkdownDescription: "CredentialRef is the reference to the secret name that contains the credentials for the Nutanix Prism Central. The namespace for the secret is assumed to be a constant i.e. eksa-system.",
@@ -223,8 +233,8 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Schema(
 											Computed:            false,
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -274,8 +284,8 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Schema(
 											},
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 

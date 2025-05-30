@@ -150,8 +150,9 @@ type K8UpIoCheckV1ManifestData struct {
 				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"backend" json:"backend,omitempty"`
-		FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
-		KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
+		ClusterName            *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+		FailedJobsHistoryLimit *int64  `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
+		KeepJobs               *int64  `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
 		PodConfigRef           *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
@@ -989,6 +990,14 @@ func (r *K8UpIoCheckV1Manifest) Schema(_ context.Context, _ datasource.SchemaReq
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"cluster_name": schema.StringAttribute{
+						Description:         "ClusterName sets the kubernetes cluster name to send to pushgateway for grouping metrics",
+						MarkdownDescription: "ClusterName sets the kubernetes cluster name to send to pushgateway for grouping metrics",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"failed_jobs_history_limit": schema.Int64Attribute{

@@ -48,6 +48,7 @@ type KinesisServicesK8SAwsStreamV1Alpha1ManifestData struct {
 		StreamModeDetails *struct {
 			StreamMode *string `tfsdk:"stream_mode" json:"streamMode,omitempty"`
 		} `tfsdk:"stream_mode_details" json:"streamModeDetails,omitempty"`
+		Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -159,6 +160,15 @@ func (r *KinesisServicesK8SAwsStreamV1Alpha1Manifest) Schema(_ context.Context, 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"tags": schema.MapAttribute{
+						Description:         "A set of up to 10 key-value pairs to use to create the tags.",
+						MarkdownDescription: "A set of up to 10 key-value pairs to use to create the tags.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

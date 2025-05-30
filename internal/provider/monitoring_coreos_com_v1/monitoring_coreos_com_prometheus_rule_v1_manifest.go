@@ -45,11 +45,12 @@ type MonitoringCoreosComPrometheusRuleV1ManifestData struct {
 
 	Spec *struct {
 		Groups *[]struct {
-			Interval                  *string `tfsdk:"interval" json:"interval,omitempty"`
-			Limit                     *int64  `tfsdk:"limit" json:"limit,omitempty"`
-			Name                      *string `tfsdk:"name" json:"name,omitempty"`
-			Partial_response_strategy *string `tfsdk:"partial_response_strategy" json:"partial_response_strategy,omitempty"`
-			Query_offset              *string `tfsdk:"query_offset" json:"query_offset,omitempty"`
+			Interval                  *string            `tfsdk:"interval" json:"interval,omitempty"`
+			Labels                    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Limit                     *int64             `tfsdk:"limit" json:"limit,omitempty"`
+			Name                      *string            `tfsdk:"name" json:"name,omitempty"`
+			Partial_response_strategy *string            `tfsdk:"partial_response_strategy" json:"partial_response_strategy,omitempty"`
+			Query_offset              *string            `tfsdk:"query_offset" json:"query_offset,omitempty"`
 			Rules                     *[]struct {
 				Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
 				Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -154,6 +155,15 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, 
 									Validators: []validator.String{
 										stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
 									},
+								},
+
+								"labels": schema.MapAttribute{
+									Description:         "Labels to add or overwrite before storing the result for its rules. The labels defined at the rule level take precedence. It requires Prometheus >= 3.0.0. The field is ignored for Thanos Ruler.",
+									MarkdownDescription: "Labels to add or overwrite before storing the result for its rules. The labels defined at the rule level take precedence. It requires Prometheus >= 3.0.0. The field is ignored for Thanos Ruler.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"limit": schema.Int64Attribute{

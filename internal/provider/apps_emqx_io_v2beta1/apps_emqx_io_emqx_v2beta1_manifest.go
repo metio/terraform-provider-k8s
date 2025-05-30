@@ -1147,6 +1147,8 @@ type AppsEmqxIoEmqxV2Beta1ManifestData struct {
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+				MaxUnavailable     *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				MinAvailable       *string            `tfsdk:"min_available" json:"minAvailable,omitempty"`
 				NodeName           *string            `tfsdk:"node_name" json:"nodeName,omitempty"`
 				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 				PodSecurityContext *struct {
@@ -2485,6 +2487,8 @@ type AppsEmqxIoEmqxV2Beta1ManifestData struct {
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+				MaxUnavailable     *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				MinAvailable       *string            `tfsdk:"min_available" json:"minAvailable,omitempty"`
 				NodeName           *string            `tfsdk:"node_name" json:"nodeName,omitempty"`
 				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 				PodSecurityContext *struct {
@@ -10043,6 +10047,22 @@ func (r *AppsEmqxIoEmqxV2Beta1Manifest) Schema(_ context.Context, _ datasource.S
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_available": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"node_name": schema.StringAttribute{
@@ -19023,6 +19043,22 @@ func (r *AppsEmqxIoEmqxV2Beta1Manifest) Schema(_ context.Context, _ datasource.S
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_available": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"node_name": schema.StringAttribute{

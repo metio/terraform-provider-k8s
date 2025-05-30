@@ -88,6 +88,7 @@ type AcmeCertManagerIoChallengeV1ManifestData struct {
 					ManagedIdentity *struct {
 						ClientID   *string `tfsdk:"client_id" json:"clientID,omitempty"`
 						ResourceID *string `tfsdk:"resource_id" json:"resourceID,omitempty"`
+						TenantID   *string `tfsdk:"tenant_id" json:"tenantID,omitempty"`
 					} `tfsdk:"managed_identity" json:"managedIdentity,omitempty"`
 					ResourceGroupName *string `tfsdk:"resource_group_name" json:"resourceGroupName,omitempty"`
 					SubscriptionID    *string `tfsdk:"subscription_id" json:"subscriptionID,omitempty"`
@@ -629,8 +630,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"dns_name": schema.StringAttribute{
-						Description:         "dnsName is the identifier that this challenge is for, e.g. example.com. If the requested DNSName is a 'wildcard', this field MUST be set to the non-wildcard domain, e.g. for '*.example.com', it must be 'example.com'.",
-						MarkdownDescription: "dnsName is the identifier that this challenge is for, e.g. example.com. If the requested DNSName is a 'wildcard', this field MUST be set to the non-wildcard domain, e.g. for '*.example.com', it must be 'example.com'.",
+						Description:         "dnsName is the identifier that this challenge is for, e.g., example.com. If the requested DNSName is a 'wildcard', this field MUST be set to the non-wildcard domain, e.g., for '*.example.com', it must be 'example.com'.",
+						MarkdownDescription: "dnsName is the identifier that this challenge is for, e.g., example.com. If the requested DNSName is a 'wildcard', this field MUST be set to the non-wildcard domain, e.g., for '*.example.com', it must be 'example.com'.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -880,16 +881,24 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 												MarkdownDescription: "Auth: Azure Workload Identity or Azure Managed Service Identity: Settings to enable Azure Workload Identity or Azure Managed Service Identity If set, ClientID, ClientSecret and TenantID must not be set.",
 												Attributes: map[string]schema.Attribute{
 													"client_id": schema.StringAttribute{
-														Description:         "client ID of the managed identity, can not be used at the same time as resourceID",
-														MarkdownDescription: "client ID of the managed identity, can not be used at the same time as resourceID",
+														Description:         "client ID of the managed identity, cannot be used at the same time as resourceID",
+														MarkdownDescription: "client ID of the managed identity, cannot be used at the same time as resourceID",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"resource_id": schema.StringAttribute{
-														Description:         "resource ID of the managed identity, can not be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
-														MarkdownDescription: "resource ID of the managed identity, can not be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+														Description:         "resource ID of the managed identity, cannot be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+														MarkdownDescription: "resource ID of the managed identity, cannot be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"tenant_id": schema.StringAttribute{
+														Description:         "tenant ID of the managed identity, cannot be used at the same time as resourceID",
+														MarkdownDescription: "tenant ID of the managed identity, cannot be used at the same time as resourceID",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1289,8 +1298,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
 										Attributes: map[string]schema.Attribute{
 											"config": schema.MapAttribute{
-												Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
-												MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+												Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g., credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+												MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g., credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1306,8 +1315,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"solver_name": schema.StringAttribute{
-												Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
-												MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+												Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g., 'cloudflare'.",
+												MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g., 'cloudflare'.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1324,8 +1333,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"http01": schema.SingleNestedAttribute{
-								Description:         "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g. '*.example.com') using the HTTP01 challenge mechanism.",
-								MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g. '*.example.com') using the HTTP01 challenge mechanism.",
+								Description:         "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g., '*.example.com') using the HTTP01 challenge mechanism.",
+								MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g., '*.example.com') using the HTTP01 challenge mechanism.",
 								Attributes: map[string]schema.Attribute{
 									"gateway_http_route": schema.SingleNestedAttribute{
 										Description:         "The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.",

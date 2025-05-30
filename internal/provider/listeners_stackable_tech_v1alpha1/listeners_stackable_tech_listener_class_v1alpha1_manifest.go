@@ -115,13 +115,13 @@ func (r *ListenersStackableTechListenerClassV1Alpha1Manifest) Schema(_ context.C
 				MarkdownDescription: "Defines a policy for how [Listeners](https://docs.stackable.tech/home/nightly/listener-operator/listener) should be exposed. Read the [ListenerClass documentation](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass) for more information.",
 				Attributes: map[string]schema.Attribute{
 					"preferred_address_type": schema.StringAttribute{
-						Description:         "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.",
-						MarkdownDescription: "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.",
+						Description:         "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). Can also be set to 'HostnameConservative', which will use 'IP' for 'NodePort' service types, but 'Hostname' for everything else. The other type will be used if the preferred type is not available. Defaults to 'HostnameConservative'.",
+						MarkdownDescription: "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). Can also be set to 'HostnameConservative', which will use 'IP' for 'NodePort' service types, but 'Hostname' for everything else. The other type will be used if the preferred type is not available. Defaults to 'HostnameConservative'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("Hostname", "IP"),
+							stringvalidator.OneOf("Hostname", "IP", "HostnameConservative"),
 						},
 					},
 

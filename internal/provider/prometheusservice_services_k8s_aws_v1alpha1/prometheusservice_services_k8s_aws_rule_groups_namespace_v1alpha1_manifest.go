@@ -142,16 +142,16 @@ func (r *PrometheusserviceServicesK8SAwsRuleGroupsNamespaceV1Alpha1Manifest) Sch
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The rule groups namespace name.",
-						MarkdownDescription: "The rule groups namespace name.",
+						Description:         "The name for the new rule groups namespace.",
+						MarkdownDescription: "The name for the new rule groups namespace.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Optional, user-provided tags for this rule groups namespace.",
-						MarkdownDescription: "Optional, user-provided tags for this rule groups namespace.",
+						Description:         "The list of tag keys and values to associate with the rule groups namespace.",
+						MarkdownDescription: "The list of tag keys and values to associate with the rule groups namespace.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -159,8 +159,8 @@ func (r *PrometheusserviceServicesK8SAwsRuleGroupsNamespaceV1Alpha1Manifest) Sch
 					},
 
 					"workspace_id": schema.StringAttribute{
-						Description:         "The ID of the workspace in which to create the rule group namespace.",
-						MarkdownDescription: "The ID of the workspace in which to create the rule group namespace.",
+						Description:         "The ID of the workspace to add the rule groups namespace.",
+						MarkdownDescription: "The ID of the workspace to add the rule groups namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -56,7 +56,42 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 				Subscription    *string   `tfsdk:"subscription" json:"subscription,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
 		} `tfsdk:"azure" json:"azure,omitempty"`
-		Bot_name *string `tfsdk:"bot_name" json:"bot_name,omitempty"`
+		Azure_devops *struct {
+			Allow *[]struct {
+				Definition_id      *string `tfsdk:"definition_id" json:"definition_id,omitempty"`
+				Pipeline_name      *string `tfsdk:"pipeline_name" json:"pipeline_name,omitempty"`
+				Project_id         *string `tfsdk:"project_id" json:"project_id,omitempty"`
+				Project_name       *string `tfsdk:"project_name" json:"project_name,omitempty"`
+				Repository_ref     *string `tfsdk:"repository_ref" json:"repository_ref,omitempty"`
+				Repository_uri     *string `tfsdk:"repository_uri" json:"repository_uri,omitempty"`
+				Repository_version *string `tfsdk:"repository_version" json:"repository_version,omitempty"`
+				Sub                *string `tfsdk:"sub" json:"sub,omitempty"`
+			} `tfsdk:"allow" json:"allow,omitempty"`
+			Organization_id *string `tfsdk:"organization_id" json:"organization_id,omitempty"`
+		} `tfsdk:"azure_devops" json:"azure_devops,omitempty"`
+		Bitbucket *struct {
+			Allow *[]struct {
+				Branch_name                 *string `tfsdk:"branch_name" json:"branch_name,omitempty"`
+				Deployment_environment_uuid *string `tfsdk:"deployment_environment_uuid" json:"deployment_environment_uuid,omitempty"`
+				Repository_uuid             *string `tfsdk:"repository_uuid" json:"repository_uuid,omitempty"`
+				Workspace_uuid              *string `tfsdk:"workspace_uuid" json:"workspace_uuid,omitempty"`
+			} `tfsdk:"allow" json:"allow,omitempty"`
+			Audience              *string `tfsdk:"audience" json:"audience,omitempty"`
+			Identity_provider_url *string `tfsdk:"identity_provider_url" json:"identity_provider_url,omitempty"`
+		} `tfsdk:"bitbucket" json:"bitbucket,omitempty"`
+		Bot_name      *string `tfsdk:"bot_name" json:"bot_name,omitempty"`
+		Bound_keypair *struct {
+			Onboarding *struct {
+				Initial_public_key   *string `tfsdk:"initial_public_key" json:"initial_public_key,omitempty"`
+				Must_register_before *string `tfsdk:"must_register_before" json:"must_register_before,omitempty"`
+				Registration_secret  *string `tfsdk:"registration_secret" json:"registration_secret,omitempty"`
+			} `tfsdk:"onboarding" json:"onboarding,omitempty"`
+			Recovery *struct {
+				Limit *int64  `tfsdk:"limit" json:"limit,omitempty"`
+				Mode  *string `tfsdk:"mode" json:"mode,omitempty"`
+			} `tfsdk:"recovery" json:"recovery,omitempty"`
+			Rotate_after *string `tfsdk:"rotate_after" json:"rotate_after,omitempty"`
+		} `tfsdk:"bound_keypair" json:"bound_keypair,omitempty"`
 		Circleci *struct {
 			Allow *[]struct {
 				Context_id *string `tfsdk:"context_id" json:"context_id,omitempty"`
@@ -84,6 +119,7 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 			} `tfsdk:"allow" json:"allow,omitempty"`
 			Enterprise_server_host *string `tfsdk:"enterprise_server_host" json:"enterprise_server_host,omitempty"`
 			Enterprise_slug        *string `tfsdk:"enterprise_slug" json:"enterprise_slug,omitempty"`
+			Static_jwks            *string `tfsdk:"static_jwks" json:"static_jwks,omitempty"`
 		} `tfsdk:"github" json:"github,omitempty"`
 		Gitlab *struct {
 			Allow *[]struct {
@@ -104,7 +140,8 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 				User_id               *string `tfsdk:"user_id" json:"user_id,omitempty"`
 				User_login            *string `tfsdk:"user_login" json:"user_login,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
-			Domain *string `tfsdk:"domain" json:"domain,omitempty"`
+			Domain      *string `tfsdk:"domain" json:"domain,omitempty"`
+			Static_jwks *string `tfsdk:"static_jwks" json:"static_jwks,omitempty"`
 		} `tfsdk:"gitlab" json:"gitlab,omitempty"`
 		Join_method *string `tfsdk:"join_method" json:"join_method,omitempty"`
 		Kubernetes  *struct {
@@ -116,6 +153,13 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 			} `tfsdk:"static_jwks" json:"static_jwks,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
+		Oracle *struct {
+			Allow *[]struct {
+				Parent_compartments *[]string `tfsdk:"parent_compartments" json:"parent_compartments,omitempty"`
+				Regions             *[]string `tfsdk:"regions" json:"regions,omitempty"`
+				Tenancy             *string   `tfsdk:"tenancy" json:"tenancy,omitempty"`
+			} `tfsdk:"allow" json:"allow,omitempty"`
+		} `tfsdk:"oracle" json:"oracle,omitempty"`
 		Roles     *[]string `tfsdk:"roles" json:"roles,omitempty"`
 		Spacelift *struct {
 			Allow *[]struct {
@@ -318,12 +362,253 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 						Computed: false,
 					},
 
+					"azure_devops": schema.SingleNestedAttribute{
+						Description:         "AzureDevops allows the configuration of options specific to the 'azure_devops' join method.",
+						MarkdownDescription: "AzureDevops allows the configuration of options specific to the 'azure_devops' join method.",
+						Attributes: map[string]schema.Attribute{
+							"allow": schema.ListNestedAttribute{
+								Description:         "Allow is a list of TokenRules, nodes using this token must match one allow rule to use this token. At least one allow rule must be specified.",
+								MarkdownDescription: "Allow is a list of TokenRules, nodes using this token must match one allow rule to use this token. At least one allow rule must be specified.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"definition_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"pipeline_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"project_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"project_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repository_ref": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repository_uri": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repository_version": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"organization_id": schema.StringAttribute{
+								Description:         "OrganizationID specifies the UUID of the Azure DevOps organization that this join token will grant access to. This is used to identify the correct issuer verification of the ID token. This is a required field.",
+								MarkdownDescription: "OrganizationID specifies the UUID of the Azure DevOps organization that this join token will grant access to. This is used to identify the correct issuer verification of the ID token. This is a required field.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"bitbucket": schema.SingleNestedAttribute{
+						Description:         "Bitbucket allows the configuration of options specific to the 'bitbucket' join method.",
+						MarkdownDescription: "Bitbucket allows the configuration of options specific to the 'bitbucket' join method.",
+						Attributes: map[string]schema.Attribute{
+							"allow": schema.ListNestedAttribute{
+								Description:         "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								MarkdownDescription: "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"branch_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"deployment_environment_uuid": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repository_uuid": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"workspace_uuid": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"audience": schema.StringAttribute{
+								Description:         "Audience is a Bitbucket-specified audience value for this token. It is unique to each Bitbucket repository, and must be set to the value as written in the Pipelines -> OpenID Connect section of the repository settings.",
+								MarkdownDescription: "Audience is a Bitbucket-specified audience value for this token. It is unique to each Bitbucket repository, and must be set to the value as written in the Pipelines -> OpenID Connect section of the repository settings.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"identity_provider_url": schema.StringAttribute{
+								Description:         "IdentityProviderURL is a Bitbucket-specified issuer URL for incoming OIDC tokens. It is unique to each Bitbucket repository, and must be set to the value as written in the Pipelines -> OpenID Connect section of the repository settings.",
+								MarkdownDescription: "IdentityProviderURL is a Bitbucket-specified issuer URL for incoming OIDC tokens. It is unique to each Bitbucket repository, and must be set to the value as written in the Pipelines -> OpenID Connect section of the repository settings.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"bot_name": schema.StringAttribute{
 						Description:         "BotName is the name of the bot this token grants access to, if any",
 						MarkdownDescription: "BotName is the name of the bot this token grants access to, if any",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"bound_keypair": schema.SingleNestedAttribute{
+						Description:         "BoundKeypair allows the configuration of options specific to the 'bound_keypair' join method.",
+						MarkdownDescription: "BoundKeypair allows the configuration of options specific to the 'bound_keypair' join method.",
+						Attributes: map[string]schema.Attribute{
+							"onboarding": schema.SingleNestedAttribute{
+								Description:         "Onboarding contains parameters related to initial onboarding and keypair registration.",
+								MarkdownDescription: "Onboarding contains parameters related to initial onboarding and keypair registration.",
+								Attributes: map[string]schema.Attribute{
+									"initial_public_key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"must_register_before": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											validators.DateTime64Validator(),
+										},
+									},
+
+									"registration_secret": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"recovery": schema.SingleNestedAttribute{
+								Description:         "Recovery contains parameters related to recovery after identity expiration.",
+								MarkdownDescription: "Recovery contains parameters related to recovery after identity expiration.",
+								Attributes: map[string]schema.Attribute{
+									"limit": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"mode": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"rotate_after": schema.StringAttribute{
+								Description:         "RotateAfter is an optional timestamp that forces clients to perform a keypair rotation on the next join or recovery attempt after the given date. If 'LastRotatedAt' is unset or before this timestamp, a rotation will be requested. It is recommended to set this value to the current timestamp if a rotation should be triggered on the next join attempt.",
+								MarkdownDescription: "RotateAfter is an optional timestamp that forces clients to perform a keypair rotation on the next join or recovery attempt after the given date. If 'LastRotatedAt' is unset or before this timestamp, a rotation will be requested. It is recommended to set this value to the current timestamp if a rotation should be triggered on the next join attempt.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									validators.DateTime64Validator(),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"circleci": schema.SingleNestedAttribute{
@@ -511,6 +796,14 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"static_jwks": schema.StringAttribute{
+								Description:         "StaticJWKS disables fetching of the GHES signing keys via the JWKS/OIDC endpoints, and allows them to be directly specified. This allows joining from GitHub Actions in GHES instances that are not reachable by the Teleport Auth Service.",
+								MarkdownDescription: "StaticJWKS disables fetching of the GHES signing keys via the JWKS/OIDC endpoints, and allows them to be directly specified. This allows joining from GitHub Actions in GHES instances that are not reachable by the Teleport Auth Service.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -667,6 +960,14 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"static_jwks": schema.StringAttribute{
+								Description:         "StaticJWKS disables fetching of the GitLab signing keys via the JWKS/OIDC endpoints, and allows them to be directly specified. This allows joining from GitLab CI instances that are not reachable by the Teleport Auth Service.",
+								MarkdownDescription: "StaticJWKS disables fetching of the GitLab signing keys via the JWKS/OIDC endpoints, and allows them to be directly specified. This allows joining from GitLab CI instances that are not reachable by the Teleport Auth Service.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -727,6 +1028,52 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"oracle": schema.SingleNestedAttribute{
+						Description:         "Oracle allows the configuration of options specific to the 'oracle' join method.",
+						MarkdownDescription: "Oracle allows the configuration of options specific to the 'oracle' join method.",
+						Attributes: map[string]schema.Attribute{
+							"allow": schema.ListNestedAttribute{
+								Description:         "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								MarkdownDescription: "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"parent_compartments": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"regions": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"tenancy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

@@ -262,6 +262,7 @@ type FluentbitFluentIoCollectorV1Alpha2ManifestData struct {
 			Resources       *[]string `tfsdk:"resources" json:"resources,omitempty"`
 			Verbs           *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 		} `tfsdk:"rbac_rules" json:"rbacRules,omitempty"`
+		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
 			Claims *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -2233,6 +2234,14 @@ func (r *FluentbitFluentIoCollectorV1Alpha2Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"replicas": schema.Int64Attribute{
+						Description:         "Replicas is the number of collector replicas to deploy",
+						MarkdownDescription: "Replicas is the number of collector replicas to deploy",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"resources": schema.SingleNestedAttribute{

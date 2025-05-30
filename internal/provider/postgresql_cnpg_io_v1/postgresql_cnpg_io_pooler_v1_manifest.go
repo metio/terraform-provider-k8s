@@ -1049,6 +1049,14 @@ type PostgresqlCnpgIoPoolerV1ManifestData struct {
 					ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
 					ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 				} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
 				RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 				SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -1065,6 +1073,7 @@ type PostgresqlCnpgIoPoolerV1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2067,8 +2076,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 									},
 
 									"traffic_distribution": schema.StringAttribute{
-										Description:         "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
-										MarkdownDescription: "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
+										Description:         "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is a beta field and requires enabling ServiceTrafficDistribution feature.",
+										MarkdownDescription: "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is a beta field and requires enabling ServiceTrafficDistribution feature.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3306,8 +3315,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 															MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3324,8 +3333,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3392,8 +3401,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -3409,8 +3418,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3443,8 +3452,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 															MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3461,8 +3470,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3529,8 +3538,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -3546,8 +3555,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3585,8 +3594,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3611,8 +3620,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3636,8 +3645,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3728,8 +3737,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3837,8 +3846,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3863,8 +3872,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3888,8 +3897,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3980,8 +3989,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4343,8 +4352,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4369,8 +4378,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4394,8 +4403,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4486,8 +4495,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4698,16 +4707,16 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Required.",
-															MarkdownDescription: "Required.",
+															Description:         "Name is this DNS resolver option's name. Required.",
+															MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"value": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Value is this DNS resolver option's value.",
+															MarkdownDescription: "Value is this DNS resolver option's value.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -5026,8 +5035,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 															MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5044,8 +5053,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5112,8 +5121,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -5129,8 +5138,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5163,8 +5172,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 															MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5181,8 +5190,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5249,8 +5258,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -5266,8 +5275,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5305,8 +5314,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5331,8 +5340,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5356,8 +5365,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5448,8 +5457,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5557,8 +5566,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5583,8 +5592,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5608,8 +5617,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5700,8 +5709,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6063,8 +6072,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6089,8 +6098,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6114,8 +6123,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6206,8 +6215,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6771,8 +6780,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 															MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6789,8 +6798,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6857,8 +6866,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -6874,8 +6883,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6908,8 +6917,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 															MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 															Attributes: map[string]schema.Attribute{
 																"exec": schema.SingleNestedAttribute{
-																	Description:         "Exec specifies the action to take.",
-																	MarkdownDescription: "Exec specifies the action to take.",
+																	Description:         "Exec specifies a command to execute in the container.",
+																	MarkdownDescription: "Exec specifies a command to execute in the container.",
 																	Attributes: map[string]schema.Attribute{
 																		"command": schema.ListAttribute{
 																			Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6926,8 +6935,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"http_get": schema.SingleNestedAttribute{
-																	Description:         "HTTPGet specifies the http request to perform.",
-																	MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																	Description:         "HTTPGet specifies an HTTP GET request to perform.",
+																	MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6994,8 +7003,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"sleep": schema.SingleNestedAttribute{
-																	Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-																	MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+																	Description:         "Sleep represents a duration that the container should sleep.",
+																	MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 																	Attributes: map[string]schema.Attribute{
 																		"seconds": schema.Int64Attribute{
 																			Description:         "Seconds is the number of seconds to sleep.",
@@ -7011,8 +7020,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 																},
 
 																"tcp_socket": schema.SingleNestedAttribute{
-																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																	Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+																	MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 																	Attributes: map[string]schema.Attribute{
 																		"host": schema.StringAttribute{
 																			Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7050,8 +7059,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -7076,8 +7085,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7101,8 +7110,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7193,8 +7202,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7302,8 +7311,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -7328,8 +7337,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7353,8 +7362,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7445,8 +7454,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7808,8 +7817,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -7834,8 +7843,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "GRPC specifies an action involving a GRPC port.",
-															MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+															Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+															MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7859,8 +7868,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7951,8 +7960,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "TCPSocket specifies an action involving a TCP port.",
-															MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+															Description:         "TCPSocket specifies a connection to a TCP port.",
+															MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -8265,6 +8274,60 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 										Computed: false,
 									},
 
+									"resources": schema.SingleNestedAttribute{
+										Description:         "Resources is the total amount of CPU and Memory resources required by all containers in the pod. It supports specifying Requests and Limits for 'cpu' and 'memory' resource names only. ResourceClaims are not supported. This field enables fine-grained control over resource allocation for the entire pod, allowing resource sharing among containers in a pod. This is an alpha field and requires enabling the PodLevelResources feature gate.",
+										MarkdownDescription: "Resources is the total amount of CPU and Memory resources required by all containers in the pod. It supports specifying Requests and Limits for 'cpu' and 'memory' resource names only. ResourceClaims are not supported. This field enables fine-grained control over resource allocation for the entire pod, allowing resource sharing among containers in a pod. This is an alpha field and requires enabling the PodLevelResources feature gate.",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"restart_policy": schema.StringAttribute{
 										Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
 										MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
@@ -8372,6 +8435,14 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 											"run_as_user": schema.Int64Attribute{
 												Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -8760,8 +8831,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws_elastic_block_store": schema.SingleNestedAttribute{
-													Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-													MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -8801,8 +8872,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"azure_disk": schema.SingleNestedAttribute{
-													Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-													MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+													Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+													MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"caching_mode": schema.StringAttribute{
 															Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -8858,8 +8929,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"azure_file": schema.SingleNestedAttribute{
-													Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-													MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+													Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+													MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"read_only": schema.BoolAttribute{
 															Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -8891,8 +8962,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"cephfs": schema.SingleNestedAttribute{
-													Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-													MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+													Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+													MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"monitors": schema.ListAttribute{
 															Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -8958,8 +9029,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"cinder": schema.SingleNestedAttribute{
-													Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-													MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+													Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+													MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -9076,8 +9147,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"csi": schema.SingleNestedAttribute{
-													Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-													MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+													Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+													MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 													Attributes: map[string]schema.Attribute{
 														"driver": schema.StringAttribute{
 															Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -9545,8 +9616,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"flex_volume": schema.SingleNestedAttribute{
-													Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-													MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+													Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+													MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 													Attributes: map[string]schema.Attribute{
 														"driver": schema.StringAttribute{
 															Description:         "driver is the name of the driver to use for this volume.",
@@ -9604,8 +9675,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"flocker": schema.SingleNestedAttribute{
-													Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-													MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+													Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+													MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"dataset_name": schema.StringAttribute{
 															Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -9629,8 +9700,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"gce_persistent_disk": schema.SingleNestedAttribute{
-													Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-													MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -9670,8 +9741,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"git_repo": schema.SingleNestedAttribute{
-													Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-													MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+													Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+													MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 													Attributes: map[string]schema.Attribute{
 														"directory": schema.StringAttribute{
 															Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -9703,8 +9774,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"glusterfs": schema.SingleNestedAttribute{
-													Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-													MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+													Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+													MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 													Attributes: map[string]schema.Attribute{
 														"endpoints": schema.StringAttribute{
 															Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -9959,8 +10030,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"photon_persistent_disk": schema.SingleNestedAttribute{
-													Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-													MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+													Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+													MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -9984,8 +10055,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"portworx_volume": schema.SingleNestedAttribute{
-													Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-													MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+													Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+													MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -10387,8 +10458,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"quobyte": schema.SingleNestedAttribute{
-													Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-													MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+													Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+													MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"group": schema.StringAttribute{
 															Description:         "group to map volume access to Default is no group",
@@ -10444,8 +10515,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"rbd": schema.SingleNestedAttribute{
-													Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-													MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+													Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+													MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -10527,8 +10598,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"scale_io": schema.SingleNestedAttribute{
-													Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-													MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+													Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+													MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -10693,8 +10764,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"storageos": schema.SingleNestedAttribute{
-													Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-													MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+													Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+													MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -10751,8 +10822,8 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"vsphere_volume": schema.SingleNestedAttribute{
-													Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-													MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+													Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+													MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -10814,7 +10885,7 @@ func (r *PostgresqlCnpgIoPoolerV1Manifest) Schema(_ context.Context, _ datasourc
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("rw", "ro"),
+							stringvalidator.OneOf("rw", "ro", "r"),
 						},
 					},
 				},
