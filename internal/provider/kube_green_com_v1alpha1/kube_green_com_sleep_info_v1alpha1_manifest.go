@@ -65,7 +65,7 @@ type KubeGreenComSleepInfoV1Alpha1ManifestData struct {
 		SleepAt             *string `tfsdk:"sleep_at" json:"sleepAt,omitempty"`
 		SuspendCronJobs     *bool   `tfsdk:"suspend_cron_jobs" json:"suspendCronJobs,omitempty"`
 		SuspendDeployments  *bool   `tfsdk:"suspend_deployments" json:"suspendDeployments,omitempty"`
-		SuspendStatefulsets *bool   `tfsdk:"suspend_statefulsets" json:"suspendStatefulsets,omitempty"`
+		SuspendStatefulSets *bool   `tfsdk:"suspend_stateful_sets" json:"suspendStatefulSets,omitempty"`
 		TimeZone            *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
 		WakeUpAt            *string `tfsdk:"wake_up_at" json:"wakeUpAt,omitempty"`
 		Weekdays            *string `tfsdk:"weekdays" json:"weekdays,omitempty"`
@@ -150,8 +150,8 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "SleepInfoSpec defines the desired state of SleepInfo",
 				Attributes: map[string]schema.Attribute{
 					"exclude_ref": schema.ListNestedAttribute{
-						Description:         "ExcludeRef define the resource to exclude from the sleep.",
-						MarkdownDescription: "ExcludeRef define the resource to exclude from the sleep.",
+						Description:         "ExcludeRef define the resource to exclude from the sleep. Exclusion rules are evaluated in AND condition.",
+						MarkdownDescription: "ExcludeRef define the resource to exclude from the sleep. Exclusion rules are evaluated in AND condition.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
@@ -194,8 +194,8 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"include_ref": schema.ListNestedAttribute{
-						Description:         "IncludeRef define the resource to include from the sleep.",
-						MarkdownDescription: "IncludeRef define the resource to include from the sleep.",
+						Description:         "IncludeRef define the resource to include from the sleep. Inclusion rules are evaluated in AND condition.",
+						MarkdownDescription: "IncludeRef define the resource to include from the sleep. Inclusion rules are evaluated in AND condition.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
@@ -305,7 +305,7 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
-					"suspend_statefulsets": schema.BoolAttribute{
+					"suspend_stateful_sets": schema.BoolAttribute{
 						Description:         "If SuspendStatefulSets is set to false, on sleep the statefulset of the namespace will not be suspended. By default StatefulSet will be suspended.",
 						MarkdownDescription: "If SuspendStatefulSets is set to false, on sleep the statefulset of the namespace will not be suspended. By default StatefulSet will be suspended.",
 						Required:            false,

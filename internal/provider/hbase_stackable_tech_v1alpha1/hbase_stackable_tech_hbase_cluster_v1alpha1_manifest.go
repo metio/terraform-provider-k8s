@@ -86,7 +86,6 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
-				HbaseOpts               *string `tfsdk:"hbase_opts" json:"hbaseOpts,omitempty"`
 				HbaseRootdir            *string `tfsdk:"hbase_rootdir" json:"hbaseRootdir,omitempty"`
 				Logging                 *struct {
 					Containers *struct {
@@ -105,7 +104,8 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				Resources *struct {
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -117,10 +117,15 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -136,7 +141,6 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
 					GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
-					HbaseOpts               *string `tfsdk:"hbase_opts" json:"hbaseOpts,omitempty"`
 					HbaseRootdir            *string `tfsdk:"hbase_rootdir" json:"hbaseRootdir,omitempty"`
 					Logging                 *struct {
 						Containers *struct {
@@ -155,7 +159,8 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					Resources *struct {
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -167,10 +172,15 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"masters" json:"masters,omitempty"`
 		RegionServers *struct {
@@ -183,7 +193,6 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
-				HbaseOpts               *string `tfsdk:"hbase_opts" json:"hbaseOpts,omitempty"`
 				HbaseRootdir            *string `tfsdk:"hbase_rootdir" json:"hbaseRootdir,omitempty"`
 				Logging                 *struct {
 					Containers *struct {
@@ -202,7 +211,14 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				Resources *struct {
+				RegionMover *struct {
+					Ack                    *bool     `tfsdk:"ack" json:"ack,omitempty"`
+					AdditionalMoverOptions *[]string `tfsdk:"additional_mover_options" json:"additionalMoverOptions,omitempty"`
+					MaxThreads             *int64    `tfsdk:"max_threads" json:"maxThreads,omitempty"`
+					RunBeforeShutdown      *bool     `tfsdk:"run_before_shutdown" json:"runBeforeShutdown,omitempty"`
+				} `tfsdk:"region_mover" json:"regionMover,omitempty"`
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -214,10 +230,15 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -233,7 +254,6 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
 					GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
-					HbaseOpts               *string `tfsdk:"hbase_opts" json:"hbaseOpts,omitempty"`
 					HbaseRootdir            *string `tfsdk:"hbase_rootdir" json:"hbaseRootdir,omitempty"`
 					Logging                 *struct {
 						Containers *struct {
@@ -252,7 +272,14 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					Resources *struct {
+					RegionMover *struct {
+						Ack                    *bool     `tfsdk:"ack" json:"ack,omitempty"`
+						AdditionalMoverOptions *[]string `tfsdk:"additional_mover_options" json:"additionalMoverOptions,omitempty"`
+						MaxThreads             *int64    `tfsdk:"max_threads" json:"maxThreads,omitempty"`
+						RunBeforeShutdown      *bool     `tfsdk:"run_before_shutdown" json:"runBeforeShutdown,omitempty"`
+					} `tfsdk:"region_mover" json:"regionMover,omitempty"`
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -264,10 +291,15 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"region_servers" json:"regionServers,omitempty"`
 		RestServers *struct {
@@ -280,7 +312,6 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
-				HbaseOpts               *string `tfsdk:"hbase_opts" json:"hbaseOpts,omitempty"`
 				HbaseRootdir            *string `tfsdk:"hbase_rootdir" json:"hbaseRootdir,omitempty"`
 				Logging                 *struct {
 					Containers *struct {
@@ -299,7 +330,8 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				Resources *struct {
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -311,10 +343,15 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -330,7 +367,6 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
 					GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
-					HbaseOpts               *string `tfsdk:"hbase_opts" json:"hbaseOpts,omitempty"`
 					HbaseRootdir            *string `tfsdk:"hbase_rootdir" json:"hbaseRootdir,omitempty"`
 					Logging                 *struct {
 						Containers *struct {
@@ -349,7 +385,8 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					Resources *struct {
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -361,10 +398,15 @@ type HbaseStackableTechHbaseClusterV1Alpha1ManifestData struct {
 						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"rest_servers" json:"restServers,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -589,8 +631,8 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -635,8 +677,8 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -720,14 +762,6 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 									"graceful_shutdown_timeout": schema.StringAttribute{
 										Description:         "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
 										MarkdownDescription: "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"hbase_opts": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -844,6 +878,14 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed: false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -934,6 +976,42 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -1052,14 +1130,6 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"hbase_opts": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"hbase_rootdir": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -1171,6 +1241,14 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1261,6 +1339,42 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{
@@ -1363,14 +1477,6 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"hbase_opts": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"hbase_rootdir": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -1482,6 +1588,59 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed: false,
 									},
 
+									"region_mover": schema.SingleNestedAttribute{
+										Description:         "Before terminating a region server pod, the RegionMover tool can be invoked to transfer local regions to other servers. This may cause a lot of network traffic in the Kubernetes cluster if the entire HBase stacklet is being restarted. The operator will compute a timeout period for the region move that will not exceed the graceful shutdown timeout.",
+										MarkdownDescription: "Before terminating a region server pod, the RegionMover tool can be invoked to transfer local regions to other servers. This may cause a lot of network traffic in the Kubernetes cluster if the entire HBase stacklet is being restarted. The operator will compute a timeout period for the region move that will not exceed the graceful shutdown timeout.",
+										Attributes: map[string]schema.Attribute{
+											"ack": schema.BoolAttribute{
+												Description:         "If enabled (default), the region mover will confirm that regions are available on the source as well as the target pods before and after the move.",
+												MarkdownDescription: "If enabled (default), the region mover will confirm that regions are available on the source as well as the target pods before and after the move.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"additional_mover_options": schema.ListAttribute{
+												Description:         "Additional options to pass to the region mover.",
+												MarkdownDescription: "Additional options to pass to the region mover.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_threads": schema.Int64Attribute{
+												Description:         "Maximum number of threads to use for moving regions.",
+												MarkdownDescription: "Maximum number of threads to use for moving regions.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
+											},
+
+											"run_before_shutdown": schema.BoolAttribute{
+												Description:         "Move local regions to other servers before terminating a region server's pod.",
+												MarkdownDescription: "Move local regions to other servers before terminating a region server's pod.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1572,6 +1731,42 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -1690,14 +1885,6 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"hbase_opts": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"hbase_rootdir": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -1809,6 +1996,59 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
+											"region_mover": schema.SingleNestedAttribute{
+												Description:         "Before terminating a region server pod, the RegionMover tool can be invoked to transfer local regions to other servers. This may cause a lot of network traffic in the Kubernetes cluster if the entire HBase stacklet is being restarted. The operator will compute a timeout period for the region move that will not exceed the graceful shutdown timeout.",
+												MarkdownDescription: "Before terminating a region server pod, the RegionMover tool can be invoked to transfer local regions to other servers. This may cause a lot of network traffic in the Kubernetes cluster if the entire HBase stacklet is being restarted. The operator will compute a timeout period for the region move that will not exceed the graceful shutdown timeout.",
+												Attributes: map[string]schema.Attribute{
+													"ack": schema.BoolAttribute{
+														Description:         "If enabled (default), the region mover will confirm that regions are available on the source as well as the target pods before and after the move.",
+														MarkdownDescription: "If enabled (default), the region mover will confirm that regions are available on the source as well as the target pods before and after the move.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"additional_mover_options": schema.ListAttribute{
+														Description:         "Additional options to pass to the region mover.",
+														MarkdownDescription: "Additional options to pass to the region mover.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"max_threads": schema.Int64Attribute{
+														Description:         "Maximum number of threads to use for moving regions.",
+														MarkdownDescription: "Maximum number of threads to use for moving regions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+
+													"run_before_shutdown": schema.BoolAttribute{
+														Description:         "Move local regions to other servers before terminating a region server's pod.",
+														MarkdownDescription: "Move local regions to other servers before terminating a region server's pod.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1899,6 +2139,42 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{
@@ -2001,14 +2277,6 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"hbase_opts": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"hbase_rootdir": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -2120,6 +2388,14 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed: false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -2210,6 +2486,42 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -2328,14 +2640,6 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"hbase_opts": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"hbase_rootdir": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -2447,6 +2751,14 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -2537,6 +2849,42 @@ func (r *HbaseStackableTechHbaseClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

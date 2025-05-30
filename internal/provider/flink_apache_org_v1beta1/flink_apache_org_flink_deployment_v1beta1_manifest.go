@@ -60,6 +60,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 		Job *struct {
 			AllowNonRestoredState  *bool     `tfsdk:"allow_non_restored_state" json:"allowNonRestoredState,omitempty"`
 			Args                   *[]string `tfsdk:"args" json:"args,omitempty"`
+			AutoscalerResetNonce   *int64    `tfsdk:"autoscaler_reset_nonce" json:"autoscalerResetNonce,omitempty"`
 			CheckpointTriggerNonce *int64    `tfsdk:"checkpoint_trigger_nonce" json:"checkpointTriggerNonce,omitempty"`
 			EntryClass             *string   `tfsdk:"entry_class" json:"entryClass,omitempty"`
 			InitialSavepointPath   *string   `tfsdk:"initial_savepoint_path" json:"initialSavepointPath,omitempty"`
@@ -4872,7 +4873,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16", "v1_17", "v1_18", "v1_19", "v1_20"),
+							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16", "v1_17", "v1_18", "v1_19", "v1_20", "v2_0"),
 						},
 					},
 
@@ -4979,6 +4980,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"autoscaler_reset_nonce": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

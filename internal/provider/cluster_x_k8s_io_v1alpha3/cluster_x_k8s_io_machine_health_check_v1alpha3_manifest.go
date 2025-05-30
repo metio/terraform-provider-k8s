@@ -145,12 +145,12 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of machine health check policy",
-				MarkdownDescription: "Specification of machine health check policy",
+				Description:         "spec is the specification of machine health check policy",
+				MarkdownDescription: "spec is the specification of machine health check policy",
 				Attributes: map[string]schema.Attribute{
 					"cluster_name": schema.StringAttribute{
-						Description:         "ClusterName is the name of the Cluster this object belongs to.",
-						MarkdownDescription: "ClusterName is the name of the Cluster this object belongs to.",
+						Description:         "clusterName is the name of the Cluster this object belongs to.",
+						MarkdownDescription: "clusterName is the name of the Cluster this object belongs to.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -160,24 +160,24 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Schema(_ context.Conte
 					},
 
 					"max_unhealthy": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
-						MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
+						Description:         "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy.",
+						MarkdownDescription: "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_startup_timeout": schema.StringAttribute{
-						Description:         "Machines older than this duration without a node will be considered to have failed and will be remediated.",
-						MarkdownDescription: "Machines older than this duration without a node will be considered to have failed and will be remediated.",
+						Description:         "nodeStartupTimeout is the duration after which machines without a node will be considered to have failed and will be remediated.",
+						MarkdownDescription: "nodeStartupTimeout is the duration after which machines without a node will be considered to have failed and will be remediated.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"remediation_template": schema.SingleNestedAttribute{
-						Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-						MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+						Description:         "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+						MarkdownDescription: "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -241,8 +241,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Schema(_ context.Conte
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Label selector to match machines whose health will be exercised",
-						MarkdownDescription: "Label selector to match machines whose health will be exercised",
+						Description:         "selector is the label selector to match machines whose health will be exercised",
+						MarkdownDescription: "selector is the label selector to match machines whose health will be exercised",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -295,13 +295,13 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Schema(_ context.Conte
 					},
 
 					"unhealthy_conditions": schema.ListNestedAttribute{
-						Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-						MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+						Description:         "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+						MarkdownDescription: "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"status": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "status of the condition, one of True, False, Unknown.",
+									MarkdownDescription: "status of the condition, one of True, False, Unknown.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -311,16 +311,16 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Schema(_ context.Conte
 								},
 
 								"timeout": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
+									MarkdownDescription: "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "type of Node condition",
+									MarkdownDescription: "type of Node condition",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

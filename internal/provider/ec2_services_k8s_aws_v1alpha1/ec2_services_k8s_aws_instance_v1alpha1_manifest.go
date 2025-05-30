@@ -77,7 +77,7 @@ type Ec2ServicesK8SAwsInstanceV1Alpha1ManifestData struct {
 		DisableAPITermination   *bool `tfsdk:"disable_api_termination" json:"disableAPITermination,omitempty"`
 		EbsOptimized            *bool `tfsdk:"ebs_optimized" json:"ebsOptimized,omitempty"`
 		ElasticGPUSpecification *[]struct {
-			Type_ *string `tfsdk:"type_" json:"type_,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"elastic_gpu_specification" json:"elasticGPUSpecification,omitempty"`
 		ElasticInferenceAccelerators *[]struct {
 			Count *int64  `tfsdk:"count" json:"count,omitempty"`
@@ -115,7 +115,13 @@ type Ec2ServicesK8SAwsInstanceV1Alpha1ManifestData struct {
 		LaunchTemplate *struct {
 			LaunchTemplateID   *string `tfsdk:"launch_template_id" json:"launchTemplateID,omitempty"`
 			LaunchTemplateName *string `tfsdk:"launch_template_name" json:"launchTemplateName,omitempty"`
-			Version            *string `tfsdk:"version" json:"version,omitempty"`
+			LaunchTemplateRef  *struct {
+				From *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"from" json:"from,omitempty"`
+			} `tfsdk:"launch_template_ref" json:"launchTemplateRef,omitempty"`
+			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"launch_template" json:"launchTemplate,omitempty"`
 		LicenseSpecifications *[]struct {
 			LicenseConfigurationARN *string `tfsdk:"license_configuration_arn" json:"licenseConfigurationARN,omitempty"`
@@ -184,7 +190,13 @@ type Ec2ServicesK8SAwsInstanceV1Alpha1ManifestData struct {
 		SecurityGroupIDs *[]string `tfsdk:"security_group_i_ds" json:"securityGroupIDs,omitempty"`
 		SecurityGroups   *[]string `tfsdk:"security_groups" json:"securityGroups,omitempty"`
 		SubnetID         *string   `tfsdk:"subnet_id" json:"subnetID,omitempty"`
-		Tags             *[]struct {
+		SubnetRef        *struct {
+			From *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"subnet_ref" json:"subnetRef,omitempty"`
+		Tags *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -386,8 +398,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"capacity_reservation_specification": schema.SingleNestedAttribute{
-						Description:         "Information about the Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to open, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).",
-						MarkdownDescription: "Information about the Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to open, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).",
+						Description:         "Information about the Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to open, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, and tenancy).",
+						MarkdownDescription: "Information about the Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to open, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, and tenancy).",
 						Attributes: map[string]schema.Attribute{
 							"capacity_reservation_preference": schema.StringAttribute{
 								Description:         "",
@@ -494,11 +506,11 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"elastic_gpu_specification": schema.ListNestedAttribute{
-						Description:         "An elastic GPU to associate with the instance. An Elastic GPU is a GPU resource that you can attach to your Windows instance to accelerate the graphics performance of your applications. For more information, see Amazon EC2 Elastic GPUs (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html) in the Amazon EC2 User Guide.",
-						MarkdownDescription: "An elastic GPU to associate with the instance. An Elastic GPU is a GPU resource that you can attach to your Windows instance to accelerate the graphics performance of your applications. For more information, see Amazon EC2 Elastic GPUs (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html) in the Amazon EC2 User Guide.",
+						Description:         "An elastic GPU to associate with the instance. Amazon Elastic Graphics reached end of life on January 8, 2024.",
+						MarkdownDescription: "An elastic GPU to associate with the instance. Amazon Elastic Graphics reached end of life on January 8, 2024.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"type_": schema.StringAttribute{
+								"type": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,
@@ -513,8 +525,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"elastic_inference_accelerators": schema.ListNestedAttribute{
-						Description:         "An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads. You cannot specify accelerators from different generations in the same request.",
-						MarkdownDescription: "An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads. You cannot specify accelerators from different generations in the same request.",
+						Description:         "An elastic inference accelerator to associate with the instance. Amazon Elastic Inference is no longer available.",
+						MarkdownDescription: "An elastic inference accelerator to associate with the instance. Amazon Elastic Inference is no longer available.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"count": schema.Int64Attribute{
@@ -557,8 +569,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"hibernation_options": schema.SingleNestedAttribute{
-						Description:         "Indicates whether an instance is enabled for hibernation. For more information, see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the Amazon EC2 User Guide. You can't enable hibernation and Amazon Web Services Nitro Enclaves on the same instance.",
-						MarkdownDescription: "Indicates whether an instance is enabled for hibernation. For more information, see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the Amazon EC2 User Guide. You can't enable hibernation and Amazon Web Services Nitro Enclaves on the same instance.",
+						Description:         "Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the hibernation prerequisites (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see Hibernate your Amazon EC2 instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the Amazon EC2 User Guide. You can't enable hibernation and Amazon Web Services Nitro Enclaves on the same instance.",
+						MarkdownDescription: "Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the hibernation prerequisites (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see Hibernate your Amazon EC2 instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the Amazon EC2 User Guide. You can't enable hibernation and Amazon Web Services Nitro Enclaves on the same instance.",
 						Attributes: map[string]schema.Attribute{
 							"configured": schema.BoolAttribute{
 								Description:         "",
@@ -684,24 +696,24 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"instance_type": schema.StringAttribute{
-						Description:         "The instance type. For more information, see Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the Amazon EC2 User Guide. Default: m1.small",
-						MarkdownDescription: "The instance type. For more information, see Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the Amazon EC2 User Guide. Default: m1.small",
+						Description:         "The instance type. For more information, see Amazon EC2 instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the Amazon EC2 User Guide.",
+						MarkdownDescription: "The instance type. For more information, see Amazon EC2 instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the Amazon EC2 User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv6_address_count": schema.Int64Attribute{
-						Description:         "[EC2-VPC] The number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
-						MarkdownDescription: "[EC2-VPC] The number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
+						Description:         "The number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
+						MarkdownDescription: "The number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv6_addresses": schema.ListNestedAttribute{
-						Description:         "[EC2-VPC] The IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
-						MarkdownDescription: "[EC2-VPC] The IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
+						Description:         "The IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
+						MarkdownDescription: "The IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch. You cannot specify this option and the network interfaces option in the same request.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ipv6_address": schema.StringAttribute{
@@ -735,8 +747,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"launch_template": schema.SingleNestedAttribute{
-						Description:         "The launch template to use to launch the instances. Any parameters that you specify in RunInstances override the same parameters in the launch template. You can specify either the name or ID of a launch template, but not both.",
-						MarkdownDescription: "The launch template to use to launch the instances. Any parameters that you specify in RunInstances override the same parameters in the launch template. You can specify either the name or ID of a launch template, but not both.",
+						Description:         "The launch template. Any additional parameters that you specify for the new instance overwrite the corresponding parameters included in the launch template.",
+						MarkdownDescription: "The launch template. Any additional parameters that you specify for the new instance overwrite the corresponding parameters included in the launch template.",
 						Attributes: map[string]schema.Attribute{
 							"launch_template_id": schema.StringAttribute{
 								Description:         "",
@@ -752,6 +764,40 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"launch_template_ref": schema.SingleNestedAttribute{
+								Description:         "Reference field for LaunchTemplateID",
+								MarkdownDescription: "Reference field for LaunchTemplateID",
+								Attributes: map[string]schema.Attribute{
+									"from": schema.SingleNestedAttribute{
+										Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"version": schema.StringAttribute{
@@ -804,8 +850,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"max_count": schema.Int64Attribute{
-						Description:         "The maximum number of instances to launch. If you specify more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above MinCount. Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ.",
-						MarkdownDescription: "The maximum number of instances to launch. If you specify more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above MinCount. Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ.",
+						Description:         "The maximum number of instances to launch. If you specify a value that is more capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above the specified minimum count. Constraints: Between 1 and the quota for the specified instance type for your account for this Region. For more information, see Amazon EC2 instance type quotas (https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html).",
+						MarkdownDescription: "The maximum number of instances to launch. If you specify a value that is more capacity than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above the specified minimum count. Constraints: Between 1 and the quota for the specified instance type for your account for this Region. For more information, see Amazon EC2 instance type quotas (https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -861,8 +907,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"min_count": schema.Int64Attribute{
-						Description:         "The minimum number of instances to launch. If you specify a minimum that is more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches no instances. Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 General FAQ.",
-						MarkdownDescription: "The minimum number of instances to launch. If you specify a minimum that is more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches no instances. Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 General FAQ.",
+						Description:         "The minimum number of instances to launch. If you specify a value that is more capacity than Amazon EC2 can provide in the target Availability Zone, Amazon EC2 does not launch any instances. Constraints: Between 1 and the quota for the specified instance type for your account for this Region. For more information, see Amazon EC2 instance type quotas (https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html).",
+						MarkdownDescription: "The minimum number of instances to launch. If you specify a value that is more capacity than Amazon EC2 can provide in the target Availability Zone, Amazon EC2 does not launch any instances. Constraints: Between 1 and the quota for the specified instance type for your account for this Region. For more information, see Amazon EC2 instance type quotas (https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -886,8 +932,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"network_interfaces": schema.ListNestedAttribute{
-						Description:         "The network interfaces to associate with the instance. If you specify a network interface, you must specify any security groups and subnets as part of the network interface.",
-						MarkdownDescription: "The network interfaces to associate with the instance. If you specify a network interface, you must specify any security groups and subnets as part of the network interface.",
+						Description:         "The network interfaces to associate with the instance.",
+						MarkdownDescription: "The network interfaces to associate with the instance.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"associate_carrier_ip_address": schema.BoolAttribute{
@@ -1166,8 +1212,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"private_dns_name_options": schema.SingleNestedAttribute{
-						Description:         "The options for the instance hostname. The default values are inherited from the subnet.",
-						MarkdownDescription: "The options for the instance hostname. The default values are inherited from the subnet.",
+						Description:         "The options for the instance hostname. The default values are inherited from the subnet. Applies only if creating a network interface, not attaching an existing one.",
+						MarkdownDescription: "The options for the instance hostname. The default values are inherited from the subnet. Applies only if creating a network interface, not attaching an existing one.",
 						Attributes: map[string]schema.Attribute{
 							"enable_resource_name_dnsaaaa_record": schema.BoolAttribute{
 								Description:         "",
@@ -1199,8 +1245,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"private_ip_address": schema.StringAttribute{
-						Description:         "[EC2-VPC] The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet. Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request. You cannot specify this option and the network interfaces option in the same request.",
-						MarkdownDescription: "[EC2-VPC] The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet. Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request. You cannot specify this option and the network interfaces option in the same request.",
+						Description:         "The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet. Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request. You cannot specify this option and the network interfaces option in the same request.",
+						MarkdownDescription: "The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet. Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request. You cannot specify this option and the network interfaces option in the same request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1215,8 +1261,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"security_group_i_ds": schema.ListAttribute{
-						Description:         "The IDs of the security groups. You can create a security group using CreateSecurityGroup (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSecurityGroup.html). If you specify a network interface, you must specify any security groups as part of the network interface.",
-						MarkdownDescription: "The IDs of the security groups. You can create a security group using CreateSecurityGroup (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSecurityGroup.html). If you specify a network interface, you must specify any security groups as part of the network interface.",
+						Description:         "The IDs of the security groups. You can create a security group using CreateSecurityGroup (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSecurityGroup.html). If you specify a network interface, you must specify any security groups as part of the network interface instead of using this parameter.",
+						MarkdownDescription: "The IDs of the security groups. You can create a security group using CreateSecurityGroup (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSecurityGroup.html). If you specify a network interface, you must specify any security groups as part of the network interface instead of using this parameter.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1224,8 +1270,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"security_groups": schema.ListAttribute{
-						Description:         "[EC2-Classic, default VPC] The names of the security groups. For a nondefault VPC, you must use security group IDs instead. If you specify a network interface, you must specify any security groups as part of the network interface. Default: Amazon EC2 uses the default security group.",
-						MarkdownDescription: "[EC2-Classic, default VPC] The names of the security groups. For a nondefault VPC, you must use security group IDs instead. If you specify a network interface, you must specify any security groups as part of the network interface. Default: Amazon EC2 uses the default security group.",
+						Description:         "[Default VPC] The names of the security groups. If you specify a network interface, you must specify any security groups as part of the network interface instead of using this parameter. Default: Amazon EC2 uses the default security group.",
+						MarkdownDescription: "[Default VPC] The names of the security groups. If you specify a network interface, you must specify any security groups as part of the network interface instead of using this parameter. Default: Amazon EC2 uses the default security group.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1233,11 +1279,45 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"subnet_id": schema.StringAttribute{
-						Description:         "[EC2-VPC] The ID of the subnet to launch the instance into. If you specify a network interface, you must specify any subnets as part of the network interface.",
-						MarkdownDescription: "[EC2-VPC] The ID of the subnet to launch the instance into. If you specify a network interface, you must specify any subnets as part of the network interface.",
+						Description:         "The ID of the subnet to launch the instance into. If you specify a network interface, you must specify any subnets as part of the network interface instead of using this parameter.",
+						MarkdownDescription: "The ID of the subnet to launch the instance into. If you specify a network interface, you must specify any subnets as part of the network interface instead of using this parameter.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"subnet_ref": schema.SingleNestedAttribute{
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						Attributes: map[string]schema.Attribute{
+							"from": schema.SingleNestedAttribute{
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tags": schema.ListNestedAttribute{
@@ -1268,8 +1348,8 @@ func (r *Ec2ServicesK8SAwsInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"user_data": schema.StringAttribute{
-						Description:         "The user data script to make available to the instance. For more information, see Run commands on your Linux instance at launch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) and Run commands on your Windows instance at launch (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text. User data is limited to 16 KB.",
-						MarkdownDescription: "The user data script to make available to the instance. For more information, see Run commands on your Linux instance at launch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) and Run commands on your Windows instance at launch (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text. User data is limited to 16 KB.",
+						Description:         "The user data to make available to the instance. User data must be base64-encoded. Depending on the tool or SDK that you're using, the base64-encoding might be performed for you. For more information, see Work with instance user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-add-user-data.html).",
+						MarkdownDescription: "The user data to make available to the instance. User data must be base64-encoded. Depending on the tool or SDK that you're using, the base64-encoding might be performed for you. For more information, see Work with instance user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-add-user-data.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

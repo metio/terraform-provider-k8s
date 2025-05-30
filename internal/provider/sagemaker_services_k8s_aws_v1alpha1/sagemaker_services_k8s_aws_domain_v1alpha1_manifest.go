@@ -755,12 +755,12 @@ func (r *SagemakerServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context.Context
 							},
 
 							"space_storage_settings": schema.SingleNestedAttribute{
-								Description:         "The default storage settings for a private space.",
-								MarkdownDescription: "The default storage settings for a private space.",
+								Description:         "The default storage settings for a space.",
+								MarkdownDescription: "The default storage settings for a space.",
 								Attributes: map[string]schema.Attribute{
 									"default_ebs_storage_settings": schema.SingleNestedAttribute{
-										Description:         "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
-										MarkdownDescription: "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
+										Description:         "A collection of default EBS storage settings that apply to spaces created within a domain or user profile.",
+										MarkdownDescription: "A collection of default EBS storage settings that apply to spaces created within a domain or user profile.",
 										Attributes: map[string]schema.Attribute{
 											"default_ebs_volume_size_in_gb": schema.Int64Attribute{
 												Description:         "",
@@ -1002,8 +1002,8 @@ func (r *SagemakerServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"kms_key_id": schema.StringAttribute{
-						Description:         "SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.",
-						MarkdownDescription: "SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.",
+						Description:         "SageMaker uses Amazon Web Services KMS to encrypt EFS and EBS volumes attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.",
+						MarkdownDescription: "SageMaker uses Amazon Web Services KMS to encrypt EFS and EBS volumes attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

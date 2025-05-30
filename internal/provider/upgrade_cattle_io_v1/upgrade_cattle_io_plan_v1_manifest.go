@@ -77,7 +77,8 @@ type UpgradeCattleIoPlanV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		Prepare *struct {
+		PostCompleteDelay *string `tfsdk:"post_complete_delay" json:"postCompleteDelay,omitempty"`
+		Prepare           *struct {
 			Args    *[]string `tfsdk:"args" json:"args,omitempty"`
 			Command *[]string `tfsdk:"command" json:"command,omitempty"`
 			EnvFrom *[]struct {
@@ -249,6 +250,12 @@ type UpgradeCattleIoPlanV1ManifestData struct {
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 		} `tfsdk:"upgrade" json:"upgrade,omitempty"`
 		Version *string `tfsdk:"version" json:"version,omitempty"`
+		Window  *struct {
+			Days      *[]string `tfsdk:"days" json:"days,omitempty"`
+			EndTime   *string   `tfsdk:"end_time" json:"endTime,omitempty"`
+			StartTime *string   `tfsdk:"start_time" json:"startTime,omitempty"`
+			TimeZone  *string   `tfsdk:"time_zone" json:"timeZone,omitempty"`
+		} `tfsdk:"window" json:"window,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -567,6 +574,14 @@ func (r *UpgradeCattleIoPlanV1Manifest) Schema(_ context.Context, _ datasource.S
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"post_complete_delay": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"prepare": schema.SingleNestedAttribute{
@@ -1715,6 +1730,48 @@ func (r *UpgradeCattleIoPlanV1Manifest) Schema(_ context.Context, _ datasource.S
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"window": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"days": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"end_time": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"start_time": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"time_zone": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

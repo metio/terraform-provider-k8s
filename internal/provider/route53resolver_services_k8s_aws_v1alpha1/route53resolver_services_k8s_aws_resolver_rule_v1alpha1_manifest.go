@@ -206,8 +206,8 @@ func (r *Route53ResolverServicesK8SAwsResolverRuleV1Alpha1Manifest) Schema(_ con
 					"domain_name": schema.StringAttribute{
 						Description:         "DNS queries for this domain name are forwarded to the IP addresses that you specify in TargetIps. If a query matches multiple Resolver rules (example.com and www.example.com), outbound DNS queries are routed using the Resolver rule that contains the most specific domain name (www.example.com).",
 						MarkdownDescription: "DNS queries for this domain name are forwarded to the IP addresses that you specify in TargetIps. If a query matches multiple Resolver rules (example.com and www.example.com), outbound DNS queries are routed using the Resolver rule that contains the most specific domain name (www.example.com).",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -263,8 +263,8 @@ func (r *Route53ResolverServicesK8SAwsResolverRuleV1Alpha1Manifest) Schema(_ con
 					},
 
 					"target_i_ps": schema.ListNestedAttribute{
-						Description:         "The IPs that you want Resolver to forward DNS queries to. You can specify only IPv4 addresses. Separate IP addresses with a space. TargetIps is available only when the value of Rule type is FORWARD.",
-						MarkdownDescription: "The IPs that you want Resolver to forward DNS queries to. You can specify only IPv4 addresses. Separate IP addresses with a space. TargetIps is available only when the value of Rule type is FORWARD.",
+						Description:         "The IPs that you want Resolver to forward DNS queries to. You can specify either Ipv4 or Ipv6 addresses but not both in the same rule. Separate IP addresses with a space. TargetIps is available only when the value of Rule type is FORWARD.",
+						MarkdownDescription: "The IPs that you want Resolver to forward DNS queries to. You can specify either Ipv4 or Ipv6 addresses but not both in the same rule. Separate IP addresses with a space. TargetIps is available only when the value of Rule type is FORWARD.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ip": schema.StringAttribute{

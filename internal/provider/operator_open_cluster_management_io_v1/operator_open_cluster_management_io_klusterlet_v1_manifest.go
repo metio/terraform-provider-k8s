@@ -81,7 +81,11 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 			} `tfsdk:"bootstrap_kube_configs" json:"bootstrapKubeConfigs,omitempty"`
 			ClientCertExpirationSeconds *int64             `tfsdk:"client_cert_expiration_seconds" json:"clientCertExpirationSeconds,omitempty"`
 			ClusterAnnotations          *map[string]string `tfsdk:"cluster_annotations" json:"clusterAnnotations,omitempty"`
-			FeatureGates                *[]struct {
+			ClusterClaimConfiguration   *struct {
+				MaxCustomClusterClaims       *int64    `tfsdk:"max_custom_cluster_claims" json:"maxCustomClusterClaims,omitempty"`
+				ReservedClusterClaimSuffixes *[]string `tfsdk:"reserved_cluster_claim_suffixes" json:"reservedClusterClaimSuffixes,omitempty"`
+			} `tfsdk:"cluster_claim_configuration" json:"clusterClaimConfiguration,omitempty"`
+			FeatureGates *[]struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
@@ -99,7 +103,8 @@ type OperatorOpenClusterManagementIoKlusterletV1ManifestData struct {
 		ResourceRequirement       *struct {
 			ResourceRequirements *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -232,8 +237,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 								"url": schema.StringAttribute{
 									Description:         "URL is the url of apiserver endpoint of the managed cluster.",
 									MarkdownDescription: "URL is the url of apiserver endpoint of the managed cluster.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},
@@ -402,14 +407,14 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 														"name": schema.StringAttribute{
 															Description:         "Name is the name of the secret.",
 															MarkdownDescription: "Name is the name of the secret.",
-															Required:            false,
-															Optional:            true,
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
 												},
-												Required: false,
-												Optional: true,
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 										},
@@ -421,8 +426,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 									"type": schema.StringAttribute{
 										Description:         "Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
 										MarkdownDescription: "Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.OneOf("None", "LocalSecrets"),
@@ -449,6 +454,32 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"cluster_claim_configuration": schema.SingleNestedAttribute{
+								Description:         "ClusterClaimConfiguration represents the configuration of ClusterClaim Effective only when the 'ClusterClaim' feature gate is enabled.",
+								MarkdownDescription: "ClusterClaimConfiguration represents the configuration of ClusterClaim Effective only when the 'ClusterClaim' feature gate is enabled.",
+								Attributes: map[string]schema.Attribute{
+									"max_custom_cluster_claims": schema.Int64Attribute{
+										Description:         "Maximum number of custom ClusterClaims allowed.",
+										MarkdownDescription: "Maximum number of custom ClusterClaims allowed.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"reserved_cluster_claim_suffixes": schema.ListAttribute{
+										Description:         "Custom suffixes for reserved ClusterClaims.",
+										MarkdownDescription: "Custom suffixes for reserved ClusterClaims.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"feature_gates": schema.ListNestedAttribute{
@@ -504,8 +535,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 									"auth_type": schema.StringAttribute{
 										Description:         "Type of the authentication used by managedcluster to register as well as pull work from hub. Possible values are csr and awsirsa.",
 										MarkdownDescription: "Type of the authentication used by managedcluster to register as well as pull work from hub. Possible values are csr and awsirsa.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.OneOf("csr", "awsirsa"),
@@ -519,22 +550,24 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 											"hub_cluster_arn": schema.StringAttribute{
 												Description:         "The arn of the hub cluster (ie: an EKS cluster). This will be required to pass information to hub, which hub will use to create IAM identities for this klusterlet. Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1.",
 												MarkdownDescription: "The arn of the hub cluster (ie: an EKS cluster). This will be required to pass information to hub, which hub will use to create IAM identities for this klusterlet. Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.LengthAtLeast(1),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^arn:aws:eks:([a-zA-Z0-9-]+):(\d{12}):cluster/([a-zA-Z0-9-]+)$`), ""),
 												},
 											},
 
 											"managed_cluster_arn": schema.StringAttribute{
 												Description:         "The arn of the managed cluster (ie: an EKS cluster). This will be required to generate the md5hash which will be used as a suffix to create IAM role on hub as well as used by kluslerlet-agent, to assume role suffixed with the md5hash, on startup. Example - arn:eks:us-west-2:12345678910:cluster/managed-cluster1.",
 												MarkdownDescription: "The arn of the managed cluster (ie: an EKS cluster). This will be required to generate the md5hash which will be used as a suffix to create IAM role on hub as well as used by kluslerlet-agent, to assume role suffixed with the md5hash, on startup. Example - arn:eks:us-west-2:12345678910:cluster/managed-cluster1.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 												Validators: []validator.String{
 													stringvalidator.LengthAtLeast(1),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^arn:aws:eks:([a-zA-Z0-9-]+):(\d{12}):cluster/([a-zA-Z0-9-]+)$`), ""),
 												},
 											},
 										},
@@ -579,6 +612,14 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

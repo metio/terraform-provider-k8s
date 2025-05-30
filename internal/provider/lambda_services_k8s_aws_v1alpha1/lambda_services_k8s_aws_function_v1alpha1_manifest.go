@@ -100,13 +100,19 @@ type LambdaServicesK8SAwsFunctionV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
-		Layers                       *[]string `tfsdk:"layers" json:"layers,omitempty"`
-		MemorySize                   *int64    `tfsdk:"memory_size" json:"memorySize,omitempty"`
-		Name                         *string   `tfsdk:"name" json:"name,omitempty"`
-		PackageType                  *string   `tfsdk:"package_type" json:"packageType,omitempty"`
-		Publish                      *bool     `tfsdk:"publish" json:"publish,omitempty"`
-		ReservedConcurrentExecutions *int64    `tfsdk:"reserved_concurrent_executions" json:"reservedConcurrentExecutions,omitempty"`
-		Role                         *string   `tfsdk:"role" json:"role,omitempty"`
+		Layers        *[]string `tfsdk:"layers" json:"layers,omitempty"`
+		LoggingConfig *struct {
+			ApplicationLogLevel *string `tfsdk:"application_log_level" json:"applicationLogLevel,omitempty"`
+			LogFormat           *string `tfsdk:"log_format" json:"logFormat,omitempty"`
+			LogGroup            *string `tfsdk:"log_group" json:"logGroup,omitempty"`
+			SystemLogLevel      *string `tfsdk:"system_log_level" json:"systemLogLevel,omitempty"`
+		} `tfsdk:"logging_config" json:"loggingConfig,omitempty"`
+		MemorySize                   *int64  `tfsdk:"memory_size" json:"memorySize,omitempty"`
+		Name                         *string `tfsdk:"name" json:"name,omitempty"`
+		PackageType                  *string `tfsdk:"package_type" json:"packageType,omitempty"`
+		Publish                      *bool   `tfsdk:"publish" json:"publish,omitempty"`
+		ReservedConcurrentExecutions *int64  `tfsdk:"reserved_concurrent_executions" json:"reservedConcurrentExecutions,omitempty"`
+		Role                         *string `tfsdk:"role" json:"role,omitempty"`
 		RoleRef                      *struct {
 			From *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -322,8 +328,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"code_signing_config_arn": schema.StringAttribute{
-						Description:         "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.",
-						MarkdownDescription: "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.",
+						Description:         "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configurationincludes a set of signing profiles, which define the trusted publishers for this function.",
+						MarkdownDescription: "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configurationincludes a set of signing profiles, which define the trusted publishers for this function.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -373,8 +379,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"ephemeral_storage": schema.SingleNestedAttribute{
-						Description:         "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB.",
-						MarkdownDescription: "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB.",
+						Description:         "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).",
+						MarkdownDescription: "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).",
 						Attributes: map[string]schema.Attribute{
 							"size": schema.Int64Attribute{
 								Description:         "",
@@ -442,8 +448,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 									},
 
 									"on_success": schema.SingleNestedAttribute{
-										Description:         "A destination for events that were processed successfully.",
-										MarkdownDescription: "A destination for events that were processed successfully.",
+										Description:         "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination.",
+										MarkdownDescription: "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination.",
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.StringAttribute{
 												Description:         "",
@@ -509,8 +515,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"image_config": schema.SingleNestedAttribute{
-						Description:         "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings) that override the values in the container image Dockerfile.",
-						MarkdownDescription: "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings) that override the values in the container image Dockerfile.",
+						Description:         "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms) that override the values in the container image Dockerfile.",
+						MarkdownDescription: "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms) that override the values in the container image Dockerfile.",
 						Attributes: map[string]schema.Attribute{
 							"command": schema.ListAttribute{
 								Description:         "",
@@ -544,8 +550,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"kms_key_arn": schema.StringAttribute{
-						Description:         "The ARN of the Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.",
-						MarkdownDescription: "The ARN of the Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.",
+						Description:         "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt the following resources: * The function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption). * The function's Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html) snapshots. * When used with SourceKMSKeyArn, the unzipped version of the .zip deployment package that's used for function invocations. For more information, see Specifying a customer managed key for Lambda (https://docs.aws.amazon.com/lambda/latest/dg/encrypt-zip-package.html#enable-zip-custom-encryption). * The optimized version of the container image that's used for function invocations. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). For more information, see Function lifecycle (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-lifecycle). If you don't provide a customer managed key, Lambda uses an Amazon Web Services owned key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk) or an Amazon Web Services managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).",
+						MarkdownDescription: "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt the following resources: * The function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption). * The function's Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html) snapshots. * When used with SourceKMSKeyArn, the unzipped version of the .zip deployment package that's used for function invocations. For more information, see Specifying a customer managed key for Lambda (https://docs.aws.amazon.com/lambda/latest/dg/encrypt-zip-package.html#enable-zip-custom-encryption). * The optimized version of the container image that's used for function invocations. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). For more information, see Function lifecycle (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-lifecycle). If you don't provide a customer managed key, Lambda uses an Amazon Web Services owned key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk) or an Amazon Web Services managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -594,6 +600,47 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 						Computed:            false,
 					},
 
+					"logging_config": schema.SingleNestedAttribute{
+						Description:         "The function's Amazon CloudWatch Logs configuration settings.",
+						MarkdownDescription: "The function's Amazon CloudWatch Logs configuration settings.",
+						Attributes: map[string]schema.Attribute{
+							"application_log_level": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"log_format": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"log_group": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"system_log_level": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"memory_size": schema.Int64Attribute{
 						Description:         "The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.",
 						MarkdownDescription: "The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.",
@@ -603,8 +650,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						Description:         "The name or ARN of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						MarkdownDescription: "The name or ARN of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -677,8 +724,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"runtime": schema.StringAttribute{
-						Description:         "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive.",
-						MarkdownDescription: "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive.",
+						Description:         "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image. The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see Runtime use after deprecation (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels). For a list of all currently supported runtimes, see Supported runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported).",
+						MarkdownDescription: "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image. The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see Runtime use after deprecation (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels). For a list of all currently supported runtimes, see Supported runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -719,8 +766,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"tracing_config": schema.SingleNestedAttribute{
-						Description:         "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
-						MarkdownDescription: "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
+						Description:         "Set Mode to Active to sample and trace a subset of incoming requests withX-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
+						MarkdownDescription: "Set Mode to Active to sample and trace a subset of incoming requests withX-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
 								Description:         "",

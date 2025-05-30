@@ -142,8 +142,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceV1Alpha1Manifest) Schema(_ conte
 				MarkdownDescription: "NotebookInstanceSpec defines the desired state of NotebookInstance.",
 				Attributes: map[string]schema.Attribute{
 					"accelerator_types": schema.ListAttribute{
-						Description:         "A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook instance. For more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).",
-						MarkdownDescription: "A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook instance. For more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).",
+						Description:         "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of EI instance types to associate with this notebook instance.",
+						MarkdownDescription: "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of EI instance types to associate with this notebook instance.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

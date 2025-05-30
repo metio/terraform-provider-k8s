@@ -131,56 +131,56 @@ func (r *RdsServicesK8SAwsGlobalClusterV1Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "GlobalClusterSpec defines the desired state of GlobalCluster. A data type representing an Aurora global database.",
 				Attributes: map[string]schema.Attribute{
 					"database_name": schema.StringAttribute{
-						Description:         "The name for your database of up to 64 alphanumeric characters. If you do not provide a name, Amazon Aurora will not create a database in the global database cluster you are creating.",
-						MarkdownDescription: "The name for your database of up to 64 alphanumeric characters. If you do not provide a name, Amazon Aurora will not create a database in the global database cluster you are creating.",
+						Description:         "The name for your database of up to 64 alphanumeric characters. If you don't specify a name, Amazon Aurora doesn't create a database in the global database cluster. Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the database name from the source DB cluster.",
+						MarkdownDescription: "The name for your database of up to 64 alphanumeric characters. If you don't specify a name, Amazon Aurora doesn't create a database in the global database cluster. Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the database name from the source DB cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"deletion_protection": schema.BoolAttribute{
-						Description:         "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.",
-						MarkdownDescription: "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.",
+						Description:         "Specifies whether to enable deletion protection for the new global database cluster. The global database can't be deleted when deletion protection is enabled.",
+						MarkdownDescription: "Specifies whether to enable deletion protection for the new global database cluster. The global database can't be deleted when deletion protection is enabled.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"engine": schema.StringAttribute{
-						Description:         "The name of the database engine to be used for this DB cluster.",
-						MarkdownDescription: "The name of the database engine to be used for this DB cluster.",
+						Description:         "The database engine to use for this global database cluster. Valid Values: aurora-mysql | aurora-postgresql Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the engine of the source DB cluster.",
+						MarkdownDescription: "The database engine to use for this global database cluster. Valid Values: aurora-mysql | aurora-postgresql Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the engine of the source DB cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"engine_version": schema.StringAttribute{
-						Description:         "The engine version of the Aurora global database.",
-						MarkdownDescription: "The engine version of the Aurora global database.",
+						Description:         "The engine version to use for this global database cluster. Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the engine version of the source DB cluster.",
+						MarkdownDescription: "The engine version to use for this global database cluster. Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the engine version of the source DB cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"global_cluster_identifier": schema.StringAttribute{
-						Description:         "The cluster identifier of the new global database cluster.",
-						MarkdownDescription: "The cluster identifier of the new global database cluster.",
+						Description:         "The cluster identifier for this global database cluster. This parameter is stored as a lowercase string.",
+						MarkdownDescription: "The cluster identifier for this global database cluster. This parameter is stored as a lowercase string.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"source_db_cluster_identifier": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional.",
+						Description:         "The Amazon Resource Name (ARN) to use as the primary cluster of the global database. If you provide a value for this parameter, don't specify values for the following settings because Amazon Aurora uses the values from the specified source DB cluster: * DatabaseName * Engine * EngineVersion * StorageEncrypted",
+						MarkdownDescription: "The Amazon Resource Name (ARN) to use as the primary cluster of the global database. If you provide a value for this parameter, don't specify values for the following settings because Amazon Aurora uses the values from the specified source DB cluster: * DatabaseName * Engine * EngineVersion * StorageEncrypted",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"storage_encrypted": schema.BoolAttribute{
-						Description:         "The storage encryption setting for the new global database cluster.",
-						MarkdownDescription: "The storage encryption setting for the new global database cluster.",
+						Description:         "Specifies whether to enable storage encryption for the new global database cluster. Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the setting from the source DB cluster.",
+						MarkdownDescription: "Specifies whether to enable storage encryption for the new global database cluster. Constraints: * Can't be specified if SourceDBClusterIdentifier is specified. In this case, Amazon Aurora uses the setting from the source DB cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -128,16 +128,16 @@ func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Manifest) Schema(_ context.Con
 				MarkdownDescription: "VpcLinkSpec defines the desired state of VpcLink. Represents a VPC link.",
 				Attributes: map[string]schema.Attribute{
 					"name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The name of the VPC link.",
+						MarkdownDescription: "The name of the VPC link.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"security_group_i_ds": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "A list of security group IDs for the VPC link.",
+						MarkdownDescription: "A list of security group IDs for the VPC link.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -145,8 +145,8 @@ func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"subnet_i_ds": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "A list of subnet IDs to include in the VPC link.",
+						MarkdownDescription: "A list of subnet IDs to include in the VPC link.",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
@@ -154,8 +154,8 @@ func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "A list of tags.",
+						MarkdownDescription: "A list of tags.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

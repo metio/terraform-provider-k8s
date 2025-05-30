@@ -265,8 +265,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -274,8 +274,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -296,16 +296,19 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 										MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 										Attributes: map[string]schema.Attribute{
 											"host": schema.StringAttribute{
-												Description:         "The hostname on which the API server is serving.",
-												MarkdownDescription: "The hostname on which the API server is serving.",
+												Description:         "host is the hostname on which the API server is serving.",
+												MarkdownDescription: "host is the hostname on which the API server is serving.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(512),
+												},
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "The port on which the API server is serving.",
-												MarkdownDescription: "The port on which the API server is serving.",
+												Description:         "port is the port on which the API server is serving.",
+												MarkdownDescription: "port is the port on which the API server is serving.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -707,8 +710,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 									},
 
 									"network": schema.SingleNestedAttribute{
-										Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
-										MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
+										Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist system will check DHCP network with given Network.name, if that also not exist, it will create a new DHCP service and name will be DHCPSERVER<Network.Name>_Private. Network.RegEx is not yet supported and system will ignore the value.",
+										MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist system will check DHCP network with given Network.name, if that also not exist, it will create a new DHCP service and name will be DHCPSERVER<Network.Name>_Private. Network.RegEx is not yet supported and system will ignore the value.",
 										Attributes: map[string]schema.Attribute{
 											"id": schema.StringAttribute{
 												Description:         "ID of resource",

@@ -52,8 +52,15 @@ type NetworkfirewallServicesK8SAwsFirewallV1Alpha1ManifestData struct {
 		FirewallName                   *string `tfsdk:"firewall_name" json:"firewallName,omitempty"`
 		FirewallPolicyARN              *string `tfsdk:"firewall_policy_arn" json:"firewallPolicyARN,omitempty"`
 		FirewallPolicyChangeProtection *bool   `tfsdk:"firewall_policy_change_protection" json:"firewallPolicyChangeProtection,omitempty"`
-		SubnetChangeProtection         *bool   `tfsdk:"subnet_change_protection" json:"subnetChangeProtection,omitempty"`
-		SubnetMappings                 *[]struct {
+		LoggingConfiguration           *struct {
+			LogDestinationConfigs *[]struct {
+				LogDestination     *map[string]string `tfsdk:"log_destination" json:"logDestination,omitempty"`
+				LogDestinationType *string            `tfsdk:"log_destination_type" json:"logDestinationType,omitempty"`
+				LogType            *string            `tfsdk:"log_type" json:"logType,omitempty"`
+			} `tfsdk:"log_destination_configs" json:"logDestinationConfigs,omitempty"`
+		} `tfsdk:"logging_configuration" json:"loggingConfiguration,omitempty"`
+		SubnetChangeProtection *bool `tfsdk:"subnet_change_protection" json:"subnetChangeProtection,omitempty"`
+		SubnetMappings         *[]struct {
 			IpAddressType *string `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
 			SubnetID      *string `tfsdk:"subnet_id" json:"subnetID,omitempty"`
 		} `tfsdk:"subnet_mappings" json:"subnetMappings,omitempty"`
@@ -205,6 +212,51 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"logging_configuration": schema.SingleNestedAttribute{
+						Description:         "Defines how Network Firewall performs logging for a firewall. If you omit this setting, Network Firewall disables logging for the firewall.",
+						MarkdownDescription: "Defines how Network Firewall performs logging for a firewall. If you omit this setting, Network Firewall disables logging for the firewall.",
+						Attributes: map[string]schema.Attribute{
+							"log_destination_configs": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"log_destination": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"log_destination_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"log_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"subnet_change_protection": schema.BoolAttribute{

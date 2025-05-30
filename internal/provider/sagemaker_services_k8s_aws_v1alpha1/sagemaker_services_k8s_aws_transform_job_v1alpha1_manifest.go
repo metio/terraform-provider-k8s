@@ -211,8 +211,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"environment": schema.MapAttribute{
-						Description:         "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map.",
-						MarkdownDescription: "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map.",
+						Description:         "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables. We support up to 16 key and values entries in the map.",
+						MarkdownDescription: "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables. We support up to 16 key and values entries in the map.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

@@ -782,8 +782,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"rules": schema.StringAttribute{
-						Description:         "A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a RuleGroup object that Network Firewall has populated from your string.",
-						MarkdownDescription: "A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a RuleGroup object that Network Firewall has populated from your string.",
+						Description:         "A string containing stateful rule group rules specifications in Suricata flat format, with one ruleper line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The callresponse returns a RuleGroup object that Network Firewall has populated from your string.",
+						MarkdownDescription: "A string containing stateful rule group rules specifications in Suricata flat format, with one ruleper line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The callresponse returns a RuleGroup object that Network Firewall has populated from your string.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -842,8 +842,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"type_": schema.StringAttribute{
-						Description:         "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.",
-						MarkdownDescription: "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.",
+						Description:         "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it containsstateless rules. If it is stateful, it contains stateful rules.",
+						MarkdownDescription: "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it containsstateless rules. If it is stateful, it contains stateful rules.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

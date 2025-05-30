@@ -46,8 +46,10 @@ type CephRookIoCephClusterV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Annotations *map[string]string            `tfsdk:"annotations" json:"annotations,omitempty"`
-		CephConfig  *map[string]map[string]string `tfsdk:"ceph_config" json:"cephConfig,omitempty"`
+		Annotations          *map[string]string            `tfsdk:"annotations" json:"annotations,omitempty"`
+		CephConfig           *map[string]map[string]string `tfsdk:"ceph_config" json:"cephConfig,omitempty"`
+		CephConfigFromSecret *struct {
+		} `tfsdk:"ceph_config_from_secret" json:"cephConfigFromSecret,omitempty"`
 		CephVersion *struct {
 			AllowUnsupported *bool   `tfsdk:"allow_unsupported" json:"allowUnsupported,omitempty"`
 			Image            *string `tfsdk:"image" json:"image,omitempty"`
@@ -198,9 +200,10 @@ type CephRookIoCephClusterV1ManifestData struct {
 			} `tfsdk:"modules" json:"modules,omitempty"`
 		} `tfsdk:"mgr" json:"mgr,omitempty"`
 		Mon *struct {
-			AllowMultiplePerNode *bool   `tfsdk:"allow_multiple_per_node" json:"allowMultiplePerNode,omitempty"`
-			Count                *int64  `tfsdk:"count" json:"count,omitempty"`
-			FailureDomainLabel   *string `tfsdk:"failure_domain_label" json:"failureDomainLabel,omitempty"`
+			AllowMultiplePerNode *bool     `tfsdk:"allow_multiple_per_node" json:"allowMultiplePerNode,omitempty"`
+			Count                *int64    `tfsdk:"count" json:"count,omitempty"`
+			ExternalMonIDs       *[]string `tfsdk:"external_mon_i_ds" json:"externalMonIDs,omitempty"`
+			FailureDomainLabel   *string   `tfsdk:"failure_domain_label" json:"failureDomainLabel,omitempty"`
 			StretchCluster       *struct {
 				FailureDomainLabel *string `tfsdk:"failure_domain_label" json:"failureDomainLabel,omitempty"`
 				SubFailureDomain   *string `tfsdk:"sub_failure_domain" json:"subFailureDomain,omitempty"`
@@ -405,8 +408,11 @@ type CephRookIoCephClusterV1ManifestData struct {
 			Devices                      *map[string]string `tfsdk:"devices" json:"devices,omitempty"`
 			FlappingRestartIntervalHours *int64             `tfsdk:"flapping_restart_interval_hours" json:"flappingRestartIntervalHours,omitempty"`
 			FullRatio                    *float64           `tfsdk:"full_ratio" json:"fullRatio,omitempty"`
-			NearFullRatio                *float64           `tfsdk:"near_full_ratio" json:"nearFullRatio,omitempty"`
-			Nodes                        *[]struct {
+			Migration                    *struct {
+				Confirmation *string `tfsdk:"confirmation" json:"confirmation,omitempty"`
+			} `tfsdk:"migration" json:"migration,omitempty"`
+			NearFullRatio *float64 `tfsdk:"near_full_ratio" json:"nearFullRatio,omitempty"`
+			Nodes         *[]struct {
 				Config           *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				DeviceFilter     *string            `tfsdk:"device_filter" json:"deviceFilter,omitempty"`
 				DevicePathFilter *string            `tfsdk:"device_path_filter" json:"devicePathFilter,omitempty"`
@@ -462,6 +468,7 @@ type CephRookIoCephClusterV1ManifestData struct {
 				} `tfsdk:"volume_claim_templates" json:"volumeClaimTemplates,omitempty"`
 			} `tfsdk:"nodes" json:"nodes,omitempty"`
 			OnlyApplyOSDPlacement  *bool `tfsdk:"only_apply_osd_placement" json:"onlyApplyOSDPlacement,omitempty"`
+			ScheduleAlways         *bool `tfsdk:"schedule_always" json:"scheduleAlways,omitempty"`
 			StorageClassDeviceSets *[]struct {
 				Config    *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				Count     *int64             `tfsdk:"count" json:"count,omitempty"`
@@ -975,6 +982,15 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"ceph_config_from_secret": schema.SingleNestedAttribute{
+						Description:         "CephConfigFromSecret works exactly like CephConfig but takes config value from Secret Key reference.",
+						MarkdownDescription: "CephConfigFromSecret works exactly like CephConfig but takes config value from Secret Key reference.",
+						Attributes:          map[string]schema.Attribute{},
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"ceph_version": schema.SingleNestedAttribute{
 						Description:         "The version information that instructs Rook to orchestrate a particular version of Ceph.",
 						MarkdownDescription: "The version information that instructs Rook to orchestrate a particular version of Ceph.",
@@ -1280,8 +1296,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"pg_health_check_timeout": schema.Int64Attribute{
-								Description:         "PGHealthCheckTimeout is the time (in minutes) that the operator will wait for the placement groups to become healthy (active+clean) after a drain was completed and OSDs came back up. Rook will continue with the next drain if the timeout exceeds. It only works if managePodBudgets is true. No values or 0 means that the operator will wait until the placement groups are healthy before unblocking the next drain.",
-								MarkdownDescription: "PGHealthCheckTimeout is the time (in minutes) that the operator will wait for the placement groups to become healthy (active+clean) after a drain was completed and OSDs came back up. Rook will continue with the next drain if the timeout exceeds. It only works if managePodBudgets is true. No values or 0 means that the operator will wait until the placement groups are healthy before unblocking the next drain.",
+								Description:         "DEPRECATED: PGHealthCheckTimeout is no longer implemented",
+								MarkdownDescription: "DEPRECATED: PGHealthCheckTimeout is no longer implemented",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1446,8 +1462,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -1472,8 +1488,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -1497,8 +1513,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -1589,8 +1605,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -1656,8 +1672,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -1682,8 +1698,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -1707,8 +1723,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -1799,8 +1815,8 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -1997,6 +2013,15 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 									int64validator.AtLeast(0),
 									int64validator.AtMost(9),
 								},
+							},
+
+							"external_mon_i_ds": schema.ListAttribute{
+								Description:         "ExternalMonIDs - optional list of monitor IDs which are deployed externally and not managed by Rook. If set, Rook will not remove mons with given IDs from quorum. This parameter is used only for local Rook cluster running in normal mode and will be ignored if external or stretched mode is used. leading",
+								MarkdownDescription: "ExternalMonIDs - optional list of monitor IDs which are deployed externally and not managed by Rook. If set, Rook will not remove mons with given IDs from quorum. This parameter is used only for local Rook cluster running in normal mode and will be ignored if external or stretched mode is used. leading",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"failure_domain_label": schema.StringAttribute{
@@ -3419,6 +3444,26 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 								},
 							},
 
+							"migration": schema.SingleNestedAttribute{
+								Description:         "Migration handles the OSD migration",
+								MarkdownDescription: "Migration handles the OSD migration",
+								Attributes: map[string]schema.Attribute{
+									"confirmation": schema.StringAttribute{
+										Description:         "A user confirmation to migrate the OSDs. It destroys each OSD one at a time, cleans up the backing disk and prepares OSD with same ID on that disk",
+										MarkdownDescription: "A user confirmation to migrate the OSDs. It destroys each OSD one at a time, cleans up the backing disk and prepares OSD with same ID on that disk",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^$|^yes-really-migrate-osds$`), ""),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"near_full_ratio": schema.Float64Attribute{
 								Description:         "NearFullRatio is the ratio at which the cluster is considered nearly full and will raise a ceph health warning. Default is 0.85.",
 								MarkdownDescription: "NearFullRatio is the ratio at which the cluster is considered nearly full and will raise a ceph health warning. Default is 0.85.",
@@ -3817,6 +3862,14 @@ func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource
 							"only_apply_osd_placement": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"schedule_always": schema.BoolAttribute{
+								Description:         "Whether to always schedule OSDs on a node even if the node is not currently scheduleable or ready",
+								MarkdownDescription: "Whether to always schedule OSDs on a node even if the node is not currently scheduleable or ready",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
