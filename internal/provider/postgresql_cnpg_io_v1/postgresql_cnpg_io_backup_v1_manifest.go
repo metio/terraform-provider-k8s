@@ -66,8 +66,8 @@ func (r *PostgresqlCnpgIoBackupV1Manifest) Metadata(_ context.Context, request d
 
 func (r *PostgresqlCnpgIoBackupV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Backup is the Schema for the backups API",
-		MarkdownDescription: "Backup is the Schema for the backups API",
+		Description:         "A Backup resource is a request for a PostgreSQL backup by the user.",
+		MarkdownDescription: "A Backup resource is a request for a PostgreSQL backup by the user.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

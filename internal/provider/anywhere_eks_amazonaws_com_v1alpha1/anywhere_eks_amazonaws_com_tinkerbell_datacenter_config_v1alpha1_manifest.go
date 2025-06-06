@@ -44,6 +44,8 @@ type AnywhereEksAmazonawsComTinkerbellDatacenterConfigV1Alpha1ManifestData struc
 
 	Spec *struct {
 		HookImagesURLPath          *string `tfsdk:"hook_images_url_path" json:"hookImagesURLPath,omitempty"`
+		HookIsoURL                 *string `tfsdk:"hook_iso_url" json:"hookIsoURL,omitempty"`
+		IsoBoot                    *bool   `tfsdk:"iso_boot" json:"isoBoot,omitempty"`
 		LoadBalancerInterface      *string `tfsdk:"load_balancer_interface" json:"loadBalancerInterface,omitempty"`
 		OsImageURL                 *string `tfsdk:"os_image_url" json:"osImageURL,omitempty"`
 		SkipLoadBalancerDeployment *bool   `tfsdk:"skip_load_balancer_deployment" json:"skipLoadBalancerDeployment,omitempty"`
@@ -131,6 +133,22 @@ func (r *AnywhereEksAmazonawsComTinkerbellDatacenterConfigV1Alpha1Manifest) Sche
 					"hook_images_url_path": schema.StringAttribute{
 						Description:         "HookImagesURLPath can be used to override the default Hook images path to pull from a local server.",
 						MarkdownDescription: "HookImagesURLPath can be used to override the default Hook images path to pull from a local server.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"hook_iso_url": schema.StringAttribute{
+						Description:         "HookIsoURL is the URL of ISO image that will be used to provision the hardware during one time boot process. It can be used to override the default Hook OS ISO image to pull from a local server.",
+						MarkdownDescription: "HookIsoURL is the URL of ISO image that will be used to provision the hardware during one time boot process. It can be used to override the default Hook OS ISO image to pull from a local server.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"iso_boot": schema.BoolAttribute{
+						Description:         "IsoBoot can be used to indicate that the hardware should boot using an ISO.",
+						MarkdownDescription: "IsoBoot can be used to indicate that the hardware should boot using an ISO.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -7,6 +7,7 @@ package traefik_io_v1alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -45,34 +46,36 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 	Spec *struct {
 		Mirroring *struct {
 			HealthCheck *struct {
-				FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-				Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-				Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
-				Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
-				Method          *string            `tfsdk:"method" json:"method,omitempty"`
-				Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
-				Path            *string            `tfsdk:"path" json:"path,omitempty"`
-				Port            *int64             `tfsdk:"port" json:"port,omitempty"`
-				Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
-				Status          *int64             `tfsdk:"status" json:"status,omitempty"`
-				Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+				FollowRedirects   *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+				Headers           *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+				Hostname          *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+				Interval          *string            `tfsdk:"interval" json:"interval,omitempty"`
+				Method            *string            `tfsdk:"method" json:"method,omitempty"`
+				Mode              *string            `tfsdk:"mode" json:"mode,omitempty"`
+				Path              *string            `tfsdk:"path" json:"path,omitempty"`
+				Port              *int64             `tfsdk:"port" json:"port,omitempty"`
+				Scheme            *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+				Status            *int64             `tfsdk:"status" json:"status,omitempty"`
+				Timeout           *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+				UnhealthyInterval *string            `tfsdk:"unhealthy_interval" json:"unhealthyInterval,omitempty"`
 			} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
 			MaxBodySize *int64  `tfsdk:"max_body_size" json:"maxBodySize,omitempty"`
 			MirrorBody  *bool   `tfsdk:"mirror_body" json:"mirrorBody,omitempty"`
 			Mirrors     *[]struct {
 				HealthCheck *struct {
-					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-					Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
-					Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
-					Method          *string            `tfsdk:"method" json:"method,omitempty"`
-					Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
-					Path            *string            `tfsdk:"path" json:"path,omitempty"`
-					Port            *int64             `tfsdk:"port" json:"port,omitempty"`
-					Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
-					Status          *int64             `tfsdk:"status" json:"status,omitempty"`
-					Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+					FollowRedirects   *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Headers           *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+					Hostname          *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+					Interval          *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Method            *string            `tfsdk:"method" json:"method,omitempty"`
+					Mode              *string            `tfsdk:"mode" json:"mode,omitempty"`
+					Path              *string            `tfsdk:"path" json:"path,omitempty"`
+					Port              *int64             `tfsdk:"port" json:"port,omitempty"`
+					Scheme            *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+					Status            *int64             `tfsdk:"status" json:"status,omitempty"`
+					Timeout           *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+					UnhealthyInterval *string            `tfsdk:"unhealthy_interval" json:"unhealthyInterval,omitempty"`
 				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
@@ -89,9 +92,11 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 				ServersTransport *string `tfsdk:"servers_transport" json:"serversTransport,omitempty"`
 				Sticky           *struct {
 					Cookie *struct {
+						Domain   *string `tfsdk:"domain" json:"domain,omitempty"`
 						HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
 						MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Path     *string `tfsdk:"path" json:"path,omitempty"`
 						SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 						Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
 					} `tfsdk:"cookie" json:"cookie,omitempty"`
@@ -112,9 +117,11 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 			ServersTransport *string `tfsdk:"servers_transport" json:"serversTransport,omitempty"`
 			Sticky           *struct {
 				Cookie *struct {
+					Domain   *string `tfsdk:"domain" json:"domain,omitempty"`
 					HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
 					MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Path     *string `tfsdk:"path" json:"path,omitempty"`
 					SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 					Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
 				} `tfsdk:"cookie" json:"cookie,omitempty"`
@@ -125,17 +132,18 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 		Weighted *struct {
 			Services *[]struct {
 				HealthCheck *struct {
-					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-					Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
-					Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
-					Method          *string            `tfsdk:"method" json:"method,omitempty"`
-					Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
-					Path            *string            `tfsdk:"path" json:"path,omitempty"`
-					Port            *int64             `tfsdk:"port" json:"port,omitempty"`
-					Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
-					Status          *int64             `tfsdk:"status" json:"status,omitempty"`
-					Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+					FollowRedirects   *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Headers           *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+					Hostname          *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+					Interval          *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Method            *string            `tfsdk:"method" json:"method,omitempty"`
+					Mode              *string            `tfsdk:"mode" json:"mode,omitempty"`
+					Path              *string            `tfsdk:"path" json:"path,omitempty"`
+					Port              *int64             `tfsdk:"port" json:"port,omitempty"`
+					Scheme            *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+					Status            *int64             `tfsdk:"status" json:"status,omitempty"`
+					Timeout           *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+					UnhealthyInterval *string            `tfsdk:"unhealthy_interval" json:"unhealthyInterval,omitempty"`
 				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
@@ -151,9 +159,11 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 				ServersTransport *string `tfsdk:"servers_transport" json:"serversTransport,omitempty"`
 				Sticky           *struct {
 					Cookie *struct {
+						Domain   *string `tfsdk:"domain" json:"domain,omitempty"`
 						HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
 						MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Path     *string `tfsdk:"path" json:"path,omitempty"`
 						SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 						Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
 					} `tfsdk:"cookie" json:"cookie,omitempty"`
@@ -163,9 +173,11 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 			} `tfsdk:"services" json:"services,omitempty"`
 			Sticky *struct {
 				Cookie *struct {
+					Domain   *string `tfsdk:"domain" json:"domain,omitempty"`
 					HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
 					MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Path     *string `tfsdk:"path" json:"path,omitempty"`
 					SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 					Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
 				} `tfsdk:"cookie" json:"cookie,omitempty"`
@@ -180,8 +192,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Metadata(_ context.Context, re
 
 func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#kind-traefikservice",
-		MarkdownDescription: "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#kind-traefikservice",
+		Description:         "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.4/routing/providers/kubernetes-crd/#kind-traefikservice",
+		MarkdownDescription: "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.4/routing/providers/kubernetes-crd/#kind-traefikservice",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -285,8 +297,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"interval": schema.StringAttribute{
-										Description:         "Interval defines the frequency of the health check calls. Default: 30s",
-										MarkdownDescription: "Interval defines the frequency of the health check calls. Default: 30s",
+										Description:         "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
+										MarkdownDescription: "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -343,6 +355,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 									"timeout": schema.StringAttribute{
 										Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
 										MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"unhealthy_interval": schema.StringAttribute{
+										Description:         "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
+										MarkdownDescription: "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -415,8 +435,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"interval": schema.StringAttribute{
-													Description:         "Interval defines the frequency of the health check calls. Default: 30s",
-													MarkdownDescription: "Interval defines the frequency of the health check calls. Default: 30s",
+													Description:         "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
+													MarkdownDescription: "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -473,6 +493,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 												"timeout": schema.StringAttribute{
 													Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
 													MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"unhealthy_interval": schema.StringAttribute{
+													Description:         "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
+													MarkdownDescription: "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -584,13 +612,21 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sticky": schema.SingleNestedAttribute{
-											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
-											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
+											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
 											Attributes: map[string]schema.Attribute{
 												"cookie": schema.SingleNestedAttribute{
 													Description:         "Cookie defines the sticky cookie configuration.",
 													MarkdownDescription: "Cookie defines the sticky cookie configuration.",
 													Attributes: map[string]schema.Attribute{
+														"domain": schema.StringAttribute{
+															Description:         "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+															MarkdownDescription: "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"http_only": schema.BoolAttribute{
 															Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 															MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
@@ -600,8 +636,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"max_age": schema.Int64Attribute{
-															Description:         "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
-															MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+															Description:         "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+															MarkdownDescription: "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -615,12 +651,23 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Computed:            false,
 														},
 
+														"path": schema.StringAttribute{
+															Description:         "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+															MarkdownDescription: "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"same_site": schema.StringAttribute{
 															Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 															MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("none", "lax", "strict"),
+															},
 														},
 
 														"secure": schema.BoolAttribute{
@@ -642,11 +689,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-											MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+											Description:         "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
+											MarkdownDescription: "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("wrr", "p2c", "RoundRobin"),
+											},
 										},
 
 										"weight": schema.Int64Attribute{
@@ -655,6 +705,9 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+											},
 										},
 									},
 								},
@@ -745,13 +798,21 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"sticky": schema.SingleNestedAttribute{
-								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
-								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
+								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
 								Attributes: map[string]schema.Attribute{
 									"cookie": schema.SingleNestedAttribute{
 										Description:         "Cookie defines the sticky cookie configuration.",
 										MarkdownDescription: "Cookie defines the sticky cookie configuration.",
 										Attributes: map[string]schema.Attribute{
+											"domain": schema.StringAttribute{
+												Description:         "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+												MarkdownDescription: "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"http_only": schema.BoolAttribute{
 												Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 												MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
@@ -761,8 +822,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"max_age": schema.Int64Attribute{
-												Description:         "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
-												MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+												Description:         "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+												MarkdownDescription: "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -776,12 +837,23 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 												Computed:            false,
 											},
 
+											"path": schema.StringAttribute{
+												Description:         "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+												MarkdownDescription: "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"same_site": schema.StringAttribute{
 												Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 												MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("none", "lax", "strict"),
+												},
 											},
 
 											"secure": schema.BoolAttribute{
@@ -803,11 +875,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"strategy": schema.StringAttribute{
-								Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-								MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+								Description:         "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
+								MarkdownDescription: "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("wrr", "p2c", "RoundRobin"),
+								},
 							},
 
 							"weight": schema.Int64Attribute{
@@ -816,6 +891,9 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 						},
 						Required: false,
@@ -862,8 +940,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"interval": schema.StringAttribute{
-													Description:         "Interval defines the frequency of the health check calls. Default: 30s",
-													MarkdownDescription: "Interval defines the frequency of the health check calls. Default: 30s",
+													Description:         "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
+													MarkdownDescription: "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -920,6 +998,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 												"timeout": schema.StringAttribute{
 													Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
 													MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"unhealthy_interval": schema.StringAttribute{
+													Description:         "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
+													MarkdownDescription: "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1023,13 +1109,21 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sticky": schema.SingleNestedAttribute{
-											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
-											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
+											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
 											Attributes: map[string]schema.Attribute{
 												"cookie": schema.SingleNestedAttribute{
 													Description:         "Cookie defines the sticky cookie configuration.",
 													MarkdownDescription: "Cookie defines the sticky cookie configuration.",
 													Attributes: map[string]schema.Attribute{
+														"domain": schema.StringAttribute{
+															Description:         "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+															MarkdownDescription: "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"http_only": schema.BoolAttribute{
 															Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 															MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
@@ -1039,8 +1133,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"max_age": schema.Int64Attribute{
-															Description:         "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
-															MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+															Description:         "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+															MarkdownDescription: "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1054,12 +1148,23 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Computed:            false,
 														},
 
+														"path": schema.StringAttribute{
+															Description:         "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+															MarkdownDescription: "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"same_site": schema.StringAttribute{
 															Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 															MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("none", "lax", "strict"),
+															},
 														},
 
 														"secure": schema.BoolAttribute{
@@ -1081,11 +1186,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-											MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+											Description:         "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
+											MarkdownDescription: "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("wrr", "p2c", "RoundRobin"),
+											},
 										},
 
 										"weight": schema.Int64Attribute{
@@ -1094,6 +1202,9 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+											},
 										},
 									},
 								},
@@ -1103,13 +1214,21 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"sticky": schema.SingleNestedAttribute{
-								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
-								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.4/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.4/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
 								Attributes: map[string]schema.Attribute{
 									"cookie": schema.SingleNestedAttribute{
 										Description:         "Cookie defines the sticky cookie configuration.",
 										MarkdownDescription: "Cookie defines the sticky cookie configuration.",
 										Attributes: map[string]schema.Attribute{
+											"domain": schema.StringAttribute{
+												Description:         "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+												MarkdownDescription: "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"http_only": schema.BoolAttribute{
 												Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 												MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
@@ -1119,8 +1238,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"max_age": schema.Int64Attribute{
-												Description:         "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
-												MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+												Description:         "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+												MarkdownDescription: "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1134,12 +1253,23 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 												Computed:            false,
 											},
 
+											"path": schema.StringAttribute{
+												Description:         "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+												MarkdownDescription: "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"same_site": schema.StringAttribute{
 												Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 												MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("none", "lax", "strict"),
+												},
 											},
 
 											"secure": schema.BoolAttribute{

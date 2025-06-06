@@ -222,16 +222,16 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 				MarkdownDescription: "UserProfileSpec defines the desired state of UserProfile.",
 				Attributes: map[string]schema.Attribute{
 					"domain_id": schema.StringAttribute{
-						Description:         "The ID of the associated Domain.",
-						MarkdownDescription: "The ID of the associated Domain.",
+						Description:         "The ID of the associated Domain. Regex Pattern: '^d-(-*[a-z0-9]){1,61}$'",
+						MarkdownDescription: "The ID of the associated Domain. Regex Pattern: '^d-(-*[a-z0-9]){1,61}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"single_sign_on_user_identifier": schema.StringAttribute{
-						Description:         "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.",
-						MarkdownDescription: "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.",
+						Description:         "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. Regex Pattern: '^UserName$'",
+						MarkdownDescription: "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. Regex Pattern: '^UserName$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -273,8 +273,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"user_profile_name": schema.StringAttribute{
-						Description:         "A name for the UserProfile. This value is not case sensitive.",
-						MarkdownDescription: "A name for the UserProfile. This value is not case sensitive.",
+						Description:         "A name for the UserProfile. This value is not case sensitive. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "A name for the UserProfile. This value is not case sensitive. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -767,12 +767,12 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"space_storage_settings": schema.SingleNestedAttribute{
-								Description:         "The default storage settings for a private space.",
-								MarkdownDescription: "The default storage settings for a private space.",
+								Description:         "The default storage settings for a space.",
+								MarkdownDescription: "The default storage settings for a space.",
 								Attributes: map[string]schema.Attribute{
 									"default_ebs_storage_settings": schema.SingleNestedAttribute{
-										Description:         "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
-										MarkdownDescription: "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
+										Description:         "A collection of default EBS storage settings that apply to spaces created within a domain or user profile.",
+										MarkdownDescription: "A collection of default EBS storage settings that apply to spaces created within a domain or user profile.",
 										Attributes: map[string]schema.Attribute{
 											"default_ebs_volume_size_in_gb": schema.Int64Attribute{
 												Description:         "",

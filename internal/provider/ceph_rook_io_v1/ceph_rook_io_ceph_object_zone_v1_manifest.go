@@ -153,6 +153,7 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 			PoolPlacements   *[]struct {
 				DataNonECPoolName *string `tfsdk:"data_non_ec_pool_name" json:"dataNonECPoolName,omitempty"`
 				DataPoolName      *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
+				Default           *bool   `tfsdk:"default" json:"default,omitempty"`
 				MetadataPoolName  *string `tfsdk:"metadata_pool_name" json:"metadataPoolName,omitempty"`
 				Name              *string `tfsdk:"name" json:"name,omitempty"`
 				StorageClasses    *[]struct {
@@ -367,11 +368,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "Mode is the mirroring mode: either pool or image",
-										MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+										Description:         "Mode is the mirroring mode: pool, image or init-only.",
+										MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pool", "image", "init-only"),
+										},
 									},
 
 									"peers": schema.SingleNestedAttribute{
@@ -725,11 +729,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "Mode is the mirroring mode: either pool or image",
-										MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+										Description:         "Mode is the mirroring mode: pool, image or init-only.",
+										MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pool", "image", "init-only"),
+										},
 									},
 
 									"peers": schema.SingleNestedAttribute{
@@ -1018,6 +1025,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 											Validators: []validator.String{
 												stringvalidator.LengthAtLeast(1),
 											},
+										},
+
+										"default": schema.BoolAttribute{
+											Description:         "Sets given placement as default. Only one placement in the list can be marked as default. Default is false.",
+											MarkdownDescription: "Sets given placement as default. Only one placement in the list can be marked as default. Default is false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"metadata_pool_name": schema.StringAttribute{

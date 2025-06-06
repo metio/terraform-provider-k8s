@@ -109,12 +109,12 @@ func (r *CrdProjectcalicoOrgTierV1Manifest) Schema(_ context.Context, _ datasour
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "TierSpec contains the specification for a security policy tier resource.",
-				MarkdownDescription: "TierSpec contains the specification for a security policy tier resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"default_action": schema.StringAttribute{
-						Description:         "DefaultAction specifies the action applied to workloads selected by a policy in the tier, but not rule matched the workload's traffic. [Default: Deny]",
-						MarkdownDescription: "DefaultAction specifies the action applied to workloads selected by a policy in the tier, but not rule matched the workload's traffic. [Default: Deny]",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -124,8 +124,8 @@ func (r *CrdProjectcalicoOrgTierV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"order": schema.Float64Attribute{
-						Description:         "Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order. If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last. Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.",
-						MarkdownDescription: "Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order. If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last. Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

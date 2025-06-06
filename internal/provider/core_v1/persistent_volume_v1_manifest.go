@@ -706,8 +706,8 @@ func (r *PersistentVolumeV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"csi": schema.SingleNestedAttribute{
-						Description:         "Represents storage that is managed by an external CSI volume driver (Beta feature)",
-						MarkdownDescription: "Represents storage that is managed by an external CSI volume driver (Beta feature)",
+						Description:         "Represents storage that is managed by an external CSI volume driver",
+						MarkdownDescription: "Represents storage that is managed by an external CSI volume driver",
 						Attributes: map[string]schema.Attribute{
 							"controller_expand_secret_ref": schema.SingleNestedAttribute{
 								Description:         "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
@@ -1246,8 +1246,8 @@ func (r *PersistentVolumeV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"local": schema.SingleNestedAttribute{
-						Description:         "Local represents directly-attached storage with node affinity (Beta feature)",
-						MarkdownDescription: "Local represents directly-attached storage with node affinity (Beta feature)",
+						Description:         "Local represents directly-attached storage with node affinity",
+						MarkdownDescription: "Local represents directly-attached storage with node affinity",
 						Attributes: map[string]schema.Attribute{
 							"fs_type": schema.StringAttribute{
 								Description:         "fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default value is to auto-select a filesystem if unspecified.",

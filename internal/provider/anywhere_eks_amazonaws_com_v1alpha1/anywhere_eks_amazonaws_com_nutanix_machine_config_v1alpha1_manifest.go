@@ -48,7 +48,8 @@ type AnywhereEksAmazonawsComNutanixMachineConfigV1Alpha1ManifestData struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"additional_categories" json:"additionalCategories,omitempty"`
-		Cluster *struct {
+		BootType *string `tfsdk:"boot_type" json:"bootType,omitempty"`
+		Cluster  *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 			Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
@@ -170,16 +171,16 @@ func (r *AnywhereEksAmazonawsComNutanixMachineConfigV1Alpha1Manifest) Schema(_ c
 								"key": schema.StringAttribute{
 									Description:         "key is the Key of the category in the Prism Central.",
 									MarkdownDescription: "key is the Key of the category in the Prism Central.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
 									Description:         "value is the category value linked to the key in the Prism Central.",
 									MarkdownDescription: "value is the category value linked to the key in the Prism Central.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},
@@ -187,6 +188,17 @@ func (r *AnywhereEksAmazonawsComNutanixMachineConfigV1Alpha1Manifest) Schema(_ c
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"boot_type": schema.StringAttribute{
+						Description:         "BootType defines the boot type of the VM. Allowed values: legacy, uefi",
+						MarkdownDescription: "BootType defines the boot type of the VM. Allowed values: legacy, uefi",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("legacy", "uefi"),
+						},
 					},
 
 					"cluster": schema.SingleNestedAttribute{

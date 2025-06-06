@@ -54,6 +54,7 @@ type SriovnetworkOpenshiftIoSriovNetworkNodeStateV1ManifestData struct {
 				Uplinks *[]struct {
 					Interface *struct {
 						ExternalIDs *map[string]string `tfsdk:"external_i_ds" json:"externalIDs,omitempty"`
+						MtuRequest  *int64             `tfsdk:"mtu_request" json:"mtuRequest,omitempty"`
 						Options     *map[string]string `tfsdk:"options" json:"options,omitempty"`
 						OtherConfig *map[string]string `tfsdk:"other_config" json:"otherConfig,omitempty"`
 						Type        *string            `tfsdk:"type" json:"type,omitempty"`
@@ -81,6 +82,9 @@ type SriovnetworkOpenshiftIoSriovNetworkNodeStateV1ManifestData struct {
 				VfRange      *string `tfsdk:"vf_range" json:"vfRange,omitempty"`
 			} `tfsdk:"vf_groups" json:"vfGroups,omitempty"`
 		} `tfsdk:"interfaces" json:"interfaces,omitempty"`
+		System *struct {
+			RdmaMode *string `tfsdk:"rdma_mode" json:"rdmaMode,omitempty"`
+		} `tfsdk:"system" json:"system,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -226,6 +230,14 @@ func (r *SriovnetworkOpenshiftIoSriovNetworkNodeStateV1Manifest) Schema(_ contex
 																Description:         "external_ids field in the Interface table in OVSDB",
 																MarkdownDescription: "external_ids field in the Interface table in OVSDB",
 																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"mtu_request": schema.Int64Attribute{
+																Description:         "mtu_request field in the Interface table in OVSDB",
+																MarkdownDescription: "mtu_request field in the Interface table in OVSDB",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -421,6 +433,26 @@ func (r *SriovnetworkOpenshiftIoSriovNetworkNodeStateV1Manifest) Schema(_ contex
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"system": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"rdma_mode": schema.StringAttribute{
+								Description:         "RDMA subsystem. Allowed value 'shared', 'exclusive'.",
+								MarkdownDescription: "RDMA subsystem. Allowed value 'shared', 'exclusive'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("shared", "exclusive"),
 								},
 							},
 						},

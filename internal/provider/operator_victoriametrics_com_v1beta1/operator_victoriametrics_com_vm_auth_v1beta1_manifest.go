@@ -43,23 +43,28 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Affinity                *map[string]string `tfsdk:"affinity" json:"affinity,omitempty"`
-		ConfigMaps              *[]string          `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		Affinity                  *map[string]string `tfsdk:"affinity" json:"affinity,omitempty"`
+		ConfigMaps                *[]string          `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		ConfigReloadAuthKeySecret *struct {
+			Key      *string `tfsdk:"key" json:"key,omitempty"`
+			Name     *string `tfsdk:"name" json:"name,omitempty"`
+			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+		} `tfsdk:"config_reload_auth_key_secret" json:"configReloadAuthKeySecret,omitempty"`
 		ConfigReloaderExtraArgs *map[string]string `tfsdk:"config_reloader_extra_args" json:"configReloaderExtraArgs,omitempty"`
 		ConfigReloaderImageTag  *string            `tfsdk:"config_reloader_image_tag" json:"configReloaderImageTag,omitempty"`
 		ConfigReloaderResources *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"config_reloader_resources" json:"configReloaderResources,omitempty"`
-		ConfigSecret             *string              `tfsdk:"config_secret" json:"configSecret,omitempty"`
-		Containers               *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-		Default_url              *[]string            `tfsdk:"default_url" json:"default_url,omitempty"`
-		DisableSelfServiceScrape *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
-		Discover_backend_ips     *bool                `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
-		DnsConfig                *struct {
+		ConfigSecret                        *string              `tfsdk:"config_secret" json:"configSecret,omitempty"`
+		Containers                          *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		DisableAutomountServiceAccountToken *bool                `tfsdk:"disable_automount_service_account_token" json:"disableAutomountServiceAccountToken,omitempty"`
+		DisableSelfServiceScrape            *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+		DnsConfig                           *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -67,12 +72,29 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 			} `tfsdk:"options" json:"options,omitempty"`
 			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-		DnsPolicy                  *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-		Drop_src_path_prefix_parts *int64               `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
-		ExtraArgs                  *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-		ExtraEnvs                  *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
-		Headers                    *[]string            `tfsdk:"headers" json:"headers,omitempty"`
-		HostAliases                *[]struct {
+		DnsPolicy      *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+		ExternalConfig *struct {
+			LocalPath *string `tfsdk:"local_path" json:"localPath,omitempty"`
+			SecretRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+		} `tfsdk:"external_config" json:"externalConfig,omitempty"`
+		ExtraArgs     *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+		ExtraEnvs     *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+		ExtraEnvsFrom *[]struct {
+			ConfigMapRef *struct {
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+			Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+			SecretRef *struct {
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+		} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
+		HostAliases *[]struct {
 			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
@@ -121,28 +143,29 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 			TlsHosts      *[]string          `tfsdk:"tls_hosts" json:"tlsHosts,omitempty"`
 			TlsSecretName *string            `tfsdk:"tls_secret_name" json:"tlsSecretName,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
-		InitContainers *[]map[string]string `tfsdk:"init_containers" json:"initContainers,omitempty"`
-		Ip_filters     *struct {
-			Allow_list *[]string `tfsdk:"allow_list" json:"allow_list,omitempty"`
-			Deny_list  *[]string `tfsdk:"deny_list" json:"deny_list,omitempty"`
-		} `tfsdk:"ip_filters" json:"ip_filters,omitempty"`
-		License *struct {
-			Key    *string `tfsdk:"key" json:"key,omitempty"`
-			KeyRef *struct {
+		InitContainers     *[]map[string]string `tfsdk:"init_containers" json:"initContainers,omitempty"`
+		InternalListenPort *string              `tfsdk:"internal_listen_port" json:"internalListenPort,omitempty"`
+		License            *struct {
+			ForceOffline *bool   `tfsdk:"force_offline" json:"forceOffline,omitempty"`
+			Key          *string `tfsdk:"key" json:"key,omitempty"`
+			KeyRef       *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
+			ReloadInterval *string `tfsdk:"reload_interval" json:"reloadInterval,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
-		LivenessProbe           *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-		Load_balancing_policy   *string            `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
-		LogFormat               *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
-		LogLevel                *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-		Max_concurrent_requests *int64             `tfsdk:"max_concurrent_requests" json:"max_concurrent_requests,omitempty"`
-		MinReadySeconds         *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		NodeSelector            *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		Paused                  *bool              `tfsdk:"paused" json:"paused,omitempty"`
-		PodDisruptionBudget     *struct {
+		LivenessProbe   *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+		LogFormat       *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+		LogLevel        *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+		ManagedMetadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"managed_metadata" json:"managedMetadata,omitempty"`
+		MinReadySeconds     *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		Paused              *bool              `tfsdk:"paused" json:"paused,omitempty"`
+		PodDisruptionBudget *struct {
 			MaxUnavailable *string            `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string            `tfsdk:"min_available" json:"minAvailable,omitempty"`
 			SelectorLabels *map[string]string `tfsdk:"selector_labels" json:"selectorLabels,omitempty"`
@@ -161,13 +184,12 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 		ReplicaCount   *int64             `tfsdk:"replica_count" json:"replicaCount,omitempty"`
 		Resources      *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
-		Response_headers          *[]string          `tfsdk:"response_headers" json:"response_headers,omitempty"`
-		Retry_status_codes        *[]string          `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
 		RevisionHistoryLimitCount *int64             `tfsdk:"revision_history_limit_count" json:"revisionHistoryLimitCount,omitempty"`
 		RuntimeClassName          *string            `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 		SchedulerName             *string            `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -187,64 +209,83 @@ type OperatorVictoriametricsComVmauthV1Beta1ManifestData struct {
 		} `tfsdk:"service_spec" json:"serviceSpec,omitempty"`
 		StartupProbe                  *map[string]string `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
-		TlsConfig                     *struct {
-			Ca *struct {
-				ConfigMap *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"config_map" json:"configMap,omitempty"`
-				Secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"secret" json:"secret,omitempty"`
-			} `tfsdk:"ca" json:"ca,omitempty"`
-			CaFile *string `tfsdk:"ca_file" json:"caFile,omitempty"`
-			Cert   *struct {
-				ConfigMap *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"config_map" json:"configMap,omitempty"`
-				Secret *struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"secret" json:"secret,omitempty"`
-			} `tfsdk:"cert" json:"cert,omitempty"`
-			CertFile           *string `tfsdk:"cert_file" json:"certFile,omitempty"`
-			InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
-			KeyFile            *string `tfsdk:"key_file" json:"keyFile,omitempty"`
-			KeySecret          *struct {
-				Key      *string `tfsdk:"key" json:"key,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"key_secret" json:"keySecret,omitempty"`
-			ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
-		} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
-		Tolerations *[]struct {
+		Tolerations                   *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
 			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
-		TopologySpreadConstraints *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
-		UnauthorizedAccessConfig  *[]struct {
+		TopologySpreadConstraints  *[]map[string]string `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+		UnauthorizedAccessConfig   *map[string]string   `tfsdk:"unauthorized_access_config" json:"unauthorizedAccessConfig,omitempty"`
+		UnauthorizedUserAccessSpec *struct {
+			Default_url                *[]string `tfsdk:"default_url" json:"default_url,omitempty"`
 			Discover_backend_ips       *bool     `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
 			Drop_src_path_prefix_parts *int64    `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
+			Dump_request_on_errors     *bool     `tfsdk:"dump_request_on_errors" json:"dump_request_on_errors,omitempty"`
 			Headers                    *[]string `tfsdk:"headers" json:"headers,omitempty"`
-			Load_balancing_policy      *string   `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
-			Response_headers           *[]string `tfsdk:"response_headers" json:"response_headers,omitempty"`
-			Retry_status_codes         *[]string `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
-			Src_headers                *[]string `tfsdk:"src_headers" json:"src_headers,omitempty"`
-			Src_hosts                  *[]string `tfsdk:"src_hosts" json:"src_hosts,omitempty"`
-			Src_paths                  *[]string `tfsdk:"src_paths" json:"src_paths,omitempty"`
-			Src_query_args             *[]string `tfsdk:"src_query_args" json:"src_query_args,omitempty"`
-			Url_prefix                 *[]string `tfsdk:"url_prefix" json:"url_prefix,omitempty"`
-		} `tfsdk:"unauthorized_access_config" json:"unauthorizedAccessConfig,omitempty"`
+			Ip_filters                 *struct {
+				Allow_list *[]string `tfsdk:"allow_list" json:"allow_list,omitempty"`
+				Deny_list  *[]string `tfsdk:"deny_list" json:"deny_list,omitempty"`
+			} `tfsdk:"ip_filters" json:"ip_filters,omitempty"`
+			Load_balancing_policy   *string            `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
+			Max_concurrent_requests *int64             `tfsdk:"max_concurrent_requests" json:"max_concurrent_requests,omitempty"`
+			Metric_labels           *map[string]string `tfsdk:"metric_labels" json:"metric_labels,omitempty"`
+			Response_headers        *[]string          `tfsdk:"response_headers" json:"response_headers,omitempty"`
+			Retry_status_codes      *[]string          `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
+			TlsConfig               *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				CaFile *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+				Cert   *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				CertFile           *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+				InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeyFile            *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+			Url_map *[]struct {
+				Discover_backend_ips       *bool              `tfsdk:"discover_backend_ips" json:"discover_backend_ips,omitempty"`
+				Drop_src_path_prefix_parts *int64             `tfsdk:"drop_src_path_prefix_parts" json:"drop_src_path_prefix_parts,omitempty"`
+				Headers                    *[]string          `tfsdk:"headers" json:"headers,omitempty"`
+				Load_balancing_policy      *string            `tfsdk:"load_balancing_policy" json:"load_balancing_policy,omitempty"`
+				Response_headers           *[]string          `tfsdk:"response_headers" json:"response_headers,omitempty"`
+				Retry_status_codes         *[]string          `tfsdk:"retry_status_codes" json:"retry_status_codes,omitempty"`
+				Src_headers                *[]string          `tfsdk:"src_headers" json:"src_headers,omitempty"`
+				Src_hosts                  *[]string          `tfsdk:"src_hosts" json:"src_hosts,omitempty"`
+				Src_paths                  *[]string          `tfsdk:"src_paths" json:"src_paths,omitempty"`
+				Src_query_args             *[]string          `tfsdk:"src_query_args" json:"src_query_args,omitempty"`
+				Url_prefix                 *map[string]string `tfsdk:"url_prefix" json:"url_prefix,omitempty"`
+			} `tfsdk:"url_map" json:"url_map,omitempty"`
+			Url_prefix *map[string]string `tfsdk:"url_prefix" json:"url_prefix,omitempty"`
+		} `tfsdk:"unauthorized_user_access_spec" json:"unauthorizedUserAccessSpec,omitempty"`
 		UseDefaultResources   *bool `tfsdk:"use_default_resources" json:"useDefaultResources,omitempty"`
+		UseProxyProtocol      *bool `tfsdk:"use_proxy_protocol" json:"useProxyProtocol,omitempty"`
 		UseStrictSecurity     *bool `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
 		UseVMConfigReloader   *bool `tfsdk:"use_vm_config_reloader" json:"useVMConfigReloader,omitempty"`
 		UserNamespaceSelector *struct {
@@ -371,6 +412,39 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"config_reload_auth_key_secret": schema.SingleNestedAttribute{
+						Description:         "ConfigReloadAuthKeySecret defines optional secret reference authKey for /-/reload API requests. Given secret reference will be added to the application and vm-config-reloader as volume available since v0.57.0 version",
+						MarkdownDescription: "ConfigReloadAuthKeySecret defines optional secret reference authKey for /-/reload API requests. Given secret reference will be added to the application and vm-config-reloader as volume available since v0.57.0 version",
+						Attributes: map[string]schema.Attribute{
+							"key": schema.StringAttribute{
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"optional": schema.BoolAttribute{
+								Description:         "Specify whether the Secret or its key must be defined",
+								MarkdownDescription: "Specify whether the Secret or its key must be defined",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"config_reloader_extra_args": schema.MapAttribute{
 						Description:         "ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'",
 						MarkdownDescription: "ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'",
@@ -404,6 +478,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 											Optional:            false,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -435,8 +517,8 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"config_secret": schema.StringAttribute{
-						Description:         "ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAuth object, which contains auth configuration for vmauth, configuration must be inside secret key: config.yaml. It must be created and managed manually. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders",
-						MarkdownDescription: "ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAuth object, which contains auth configuration for vmauth, configuration must be inside secret key: config.yaml. It must be created and managed manually. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders",
+						Description:         "ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAuth object, which contains auth configuration for vmauth, configuration must be inside secret key: config.yaml. It must be created and managed manually. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders Deprecated, use externalConfig.secretRef instead",
+						MarkdownDescription: "ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAuth object, which contains auth configuration for vmauth, configuration must be inside secret key: config.yaml. It must be created and managed manually. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders Deprecated, use externalConfig.secretRef instead",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -451,10 +533,9 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"default_url": schema.ListAttribute{
-						Description:         "DefaultURLs backend url for non-matching paths filter usually used for default backend with error message",
-						MarkdownDescription: "DefaultURLs backend url for non-matching paths filter usually used for default backend with error message",
-						ElementType:         types.StringType,
+					"disable_automount_service_account_token": schema.BoolAttribute{
+						Description:         "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+						MarkdownDescription: "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -463,14 +544,6 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 					"disable_self_service_scrape": schema.BoolAttribute{
 						Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
 						MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"discover_backend_ips": schema.BoolAttribute{
-						Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
-						MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -495,16 +568,16 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Required.",
-											MarkdownDescription: "Required.",
+											Description:         "Name is this DNS resolver option's name. Required.",
+											MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Value is this DNS resolver option's value.",
+											MarkdownDescription: "Value is this DNS resolver option's value.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -538,12 +611,54 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"drop_src_path_prefix_parts": schema.Int64Attribute{
-						Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
-						MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+					"external_config": schema.SingleNestedAttribute{
+						Description:         "ExternalConfig defines a source of external VMAuth configuration. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders",
+						MarkdownDescription: "ExternalConfig defines a source of external VMAuth configuration. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders",
+						Attributes: map[string]schema.Attribute{
+							"local_path": schema.StringAttribute{
+								Description:         "LocalPath contains static path to a config, which is managed externally for cases when using secrets is not applicable, e.g.: Vault sidecar.",
+								MarkdownDescription: "LocalPath contains static path to a config, which is managed externally for cases when using secrets is not applicable, e.g.: Vault sidecar.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"secret_ref": schema.SingleNestedAttribute{
+								Description:         "SecretRef defines selector for externally managed secret which contains configuration",
+								MarkdownDescription: "SecretRef defines selector for externally managed secret which contains configuration",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"extra_args": schema.MapAttribute{
@@ -564,13 +679,73 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"headers": schema.ListAttribute{
-						Description:         "Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
-						MarkdownDescription: "Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+					"extra_envs_from": schema.ListNestedAttribute{
+						Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+						MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"config_map_ref": schema.SingleNestedAttribute{
+									Description:         "The ConfigMap to select from",
+									MarkdownDescription: "The ConfigMap to select from",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the ConfigMap must be defined",
+											MarkdownDescription: "Specify whether the ConfigMap must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"prefix": schema.StringAttribute{
+									Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"secret_ref": schema.SingleNestedAttribute{
+									Description:         "The Secret to select from",
+									MarkdownDescription: "The Secret to select from",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret must be defined",
+											MarkdownDescription: "Specify whether the Secret must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"host_aliases": schema.ListNestedAttribute{
@@ -648,8 +823,8 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -905,37 +1080,26 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"ip_filters": schema.SingleNestedAttribute{
-						Description:         "IPFilters defines per target src ip filters supported only with enterprise version of [vmauth](https://docs.victoriametrics.com/vmauth/#ip-filters)",
-						MarkdownDescription: "IPFilters defines per target src ip filters supported only with enterprise version of [vmauth](https://docs.victoriametrics.com/vmauth/#ip-filters)",
-						Attributes: map[string]schema.Attribute{
-							"allow_list": schema.ListAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"deny_list": schema.ListAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
+					"internal_listen_port": schema.StringAttribute{
+						Description:         "InternalListenPort instructs vmauth to serve internal routes at given port available from v0.56.0 operator and v1.111.0 vmauth version related doc https://docs.victoriametrics.com/vmauth/#security",
+						MarkdownDescription: "InternalListenPort instructs vmauth to serve internal routes at given port available from v0.56.0 operator and v1.111.0 vmauth version related doc https://docs.victoriametrics.com/vmauth/#security",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"license": schema.SingleNestedAttribute{
 						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						Attributes: map[string]schema.Attribute{
+							"force_offline": schema.BoolAttribute{
+								Description:         "Enforce offline verification of the license key.",
+								MarkdownDescription: "Enforce offline verification of the license key.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"key": schema.StringAttribute{
 								Description:         "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
 								MarkdownDescription: "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
@@ -957,8 +1121,8 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -976,6 +1140,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 								Optional: true,
 								Computed: false,
 							},
+
+							"reload_interval": schema.StringAttribute{
+								Description:         "Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.",
+								MarkdownDescription: "Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -989,17 +1161,6 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-					},
-
-					"load_balancing_policy": schema.StringAttribute{
-						Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
-						MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("least_loaded", "first_available"),
-						},
 					},
 
 					"log_format": schema.StringAttribute{
@@ -1024,17 +1185,36 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						},
 					},
 
-					"max_concurrent_requests": schema.Int64Attribute{
-						Description:         "MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth",
-						MarkdownDescription: "MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+					"managed_metadata": schema.SingleNestedAttribute{
+						Description:         "ManagedMetadata defines metadata that will be added to the all objects created by operator for the given CustomResource",
+						MarkdownDescription: "ManagedMetadata defines metadata that will be added to the all objects created by operator for the given CustomResource",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+								MarkdownDescription: "Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
-						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						Description:         "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						MarkdownDescription: "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1194,6 +1374,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 											Optional:            false,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -1222,24 +1410,6 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"response_headers": schema.ListAttribute{
-						Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
-						MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"retry_status_codes": schema.ListAttribute{
-						Description:         "RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]",
-						MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
 					},
 
 					"revision_history_limit_count": schema.Int64Attribute{
@@ -1387,238 +1557,6 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"tls_config": schema.SingleNestedAttribute{
-						Description:         "TLSConfig specifies TLSConfig configuration parameters.",
-						MarkdownDescription: "TLSConfig specifies TLSConfig configuration parameters.",
-						Attributes: map[string]schema.Attribute{
-							"ca": schema.SingleNestedAttribute{
-								Description:         "Stuct containing the CA cert to use for the targets.",
-								MarkdownDescription: "Stuct containing the CA cert to use for the targets.",
-								Attributes: map[string]schema.Attribute{
-									"config_map": schema.SingleNestedAttribute{
-										Description:         "ConfigMap containing data to use for the targets.",
-										MarkdownDescription: "ConfigMap containing data to use for the targets.",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key to select.",
-												MarkdownDescription: "The key to select.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the ConfigMap or its key must be defined",
-												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret": schema.SingleNestedAttribute{
-										Description:         "Secret containing data to use for the targets.",
-										MarkdownDescription: "Secret containing data to use for the targets.",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from. Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ca_file": schema.StringAttribute{
-								Description:         "Path to the CA cert in the container to use for the targets.",
-								MarkdownDescription: "Path to the CA cert in the container to use for the targets.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"cert": schema.SingleNestedAttribute{
-								Description:         "Struct containing the client cert file for the targets.",
-								MarkdownDescription: "Struct containing the client cert file for the targets.",
-								Attributes: map[string]schema.Attribute{
-									"config_map": schema.SingleNestedAttribute{
-										Description:         "ConfigMap containing data to use for the targets.",
-										MarkdownDescription: "ConfigMap containing data to use for the targets.",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key to select.",
-												MarkdownDescription: "The key to select.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the ConfigMap or its key must be defined",
-												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret": schema.SingleNestedAttribute{
-										Description:         "Secret containing data to use for the targets.",
-										MarkdownDescription: "Secret containing data to use for the targets.",
-										Attributes: map[string]schema.Attribute{
-											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from. Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"optional": schema.BoolAttribute{
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cert_file": schema.StringAttribute{
-								Description:         "Path to the client cert file in the container for the targets.",
-								MarkdownDescription: "Path to the client cert file in the container for the targets.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"insecure_skip_verify": schema.BoolAttribute{
-								Description:         "Disable target certificate validation.",
-								MarkdownDescription: "Disable target certificate validation.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"key_file": schema.StringAttribute{
-								Description:         "Path to the client key file in the container for the targets.",
-								MarkdownDescription: "Path to the client key file in the container for the targets.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"key_secret": schema.SingleNestedAttribute{
-								Description:         "Secret containing the client key file for the targets.",
-								MarkdownDescription: "Secret containing the client key file for the targets.",
-								Attributes: map[string]schema.Attribute{
-									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from. Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-									},
-
-									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"optional": schema.BoolAttribute{
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"server_name": schema.StringAttribute{
-								Description:         "Used to verify the hostname for the targets.",
-								MarkdownDescription: "Used to verify the hostname for the targets.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"tolerations": schema.ListNestedAttribute{
 						Description:         "Tolerations If specified, the pod's tolerations.",
 						MarkdownDescription: "Tolerations If specified, the pod's tolerations.",
@@ -1679,109 +1617,483 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"unauthorized_access_config": schema.ListNestedAttribute{
-						Description:         "UnauthorizedAccessConfig configures access for un authorized users",
-						MarkdownDescription: "UnauthorizedAccessConfig configures access for un authorized users",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"discover_backend_ips": schema.BoolAttribute{
-									Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
-									MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+					"unauthorized_access_config": schema.MapAttribute{
+						Description:         "UnauthorizedAccessConfig configures access for un authorized users Deprecated, use unauthorizedUserAccessSpec instead will be removed at v1.0 release",
+						MarkdownDescription: "UnauthorizedAccessConfig configures access for un authorized users Deprecated, use unauthorizedUserAccessSpec instead will be removed at v1.0 release",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
 
-								"drop_src_path_prefix_parts": schema.Int64Attribute{
-									Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
-									MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+					"unauthorized_user_access_spec": schema.SingleNestedAttribute{
+						Description:         "UnauthorizedUserAccessSpec defines unauthorized_user config section of vmauth config",
+						MarkdownDescription: "UnauthorizedUserAccessSpec defines unauthorized_user config section of vmauth config",
+						Attributes: map[string]schema.Attribute{
+							"default_url": schema.ListAttribute{
+								Description:         "DefaultURLs backend url for non-matching paths filter usually used for default backend with error message",
+								MarkdownDescription: "DefaultURLs backend url for non-matching paths filter usually used for default backend with error message",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 
-								"headers": schema.ListAttribute{
-									Description:         "RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
-									MarkdownDescription: "RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+							"discover_backend_ips": schema.BoolAttribute{
+								Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+								MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 
-								"load_balancing_policy": schema.StringAttribute{
-									Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
-									MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.OneOf("least_loaded", "first_available"),
+							"drop_src_path_prefix_parts": schema.Int64Attribute{
+								Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
+								MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"dump_request_on_errors": schema.BoolAttribute{
+								Description:         "DumpRequestOnErrors instructs vmauth to return detailed request params to the client if routing rules don't allow to forward request to the backends. Useful for debugging 'src_hosts' and 'src_headers' based routing rules available since v1.107.0 vmauth version",
+								MarkdownDescription: "DumpRequestOnErrors instructs vmauth to return detailed request params to the client if routing rules don't allow to forward request to the backends. Useful for debugging 'src_hosts' and 'src_headers' based routing rules available since v1.107.0 vmauth version",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"headers": schema.ListAttribute{
+								Description:         "Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
+								MarkdownDescription: "Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ip_filters": schema.SingleNestedAttribute{
+								Description:         "IPFilters defines per target src ip filters supported only with enterprise version of [vmauth](https://docs.victoriametrics.com/vmauth/#ip-filters)",
+								MarkdownDescription: "IPFilters defines per target src ip filters supported only with enterprise version of [vmauth](https://docs.victoriametrics.com/vmauth/#ip-filters)",
+								Attributes: map[string]schema.Attribute{
+									"allow_list": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"deny_list": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-								"response_headers": schema.ListAttribute{
-									Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
-									MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
+							"load_balancing_policy": schema.StringAttribute{
+								Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
+								MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("least_loaded", "first_available"),
 								},
+							},
 
-								"retry_status_codes": schema.ListAttribute{
-									Description:         "RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]",
-									MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+							"max_concurrent_requests": schema.Int64Attribute{
+								Description:         "MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth",
+								MarkdownDescription: "MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 
-								"src_headers": schema.ListAttribute{
-									Description:         "SrcHeaders is an optional list of headers, which must match request headers.",
-									MarkdownDescription: "SrcHeaders is an optional list of headers, which must match request headers.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+							"metric_labels": schema.MapAttribute{
+								Description:         "MetricLabels - additional labels for metrics exported by vmauth for given user.",
+								MarkdownDescription: "MetricLabels - additional labels for metrics exported by vmauth for given user.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 
-								"src_hosts": schema.ListAttribute{
-									Description:         "SrcHosts is an optional list of regular expressions, which must match the request hostname.",
-									MarkdownDescription: "SrcHosts is an optional list of regular expressions, which must match the request hostname.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+							"response_headers": schema.ListAttribute{
+								Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
+								MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 
-								"src_paths": schema.ListAttribute{
-									Description:         "SrcPaths is an optional list of regular expressions, which must match the request path.",
-									MarkdownDescription: "SrcPaths is an optional list of regular expressions, which must match the request path.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+							"retry_status_codes": schema.ListAttribute{
+								Description:         "RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]",
+								MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 
-								"src_query_args": schema.ListAttribute{
-									Description:         "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
-									MarkdownDescription: "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+							"tls_config": schema.SingleNestedAttribute{
+								Description:         "TLSConfig defines tls configuration for the backend connection",
+								MarkdownDescription: "TLSConfig defines tls configuration for the backend connection",
+								Attributes: map[string]schema.Attribute{
+									"ca": schema.SingleNestedAttribute{
+										Description:         "Struct containing the CA cert to use for the targets.",
+										MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"config_map": schema.SingleNestedAttribute{
+												Description:         "ConfigMap containing data to use for the targets.",
+												MarkdownDescription: "ConfigMap containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key to select.",
+														MarkdownDescription: "The key to select.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
 
-								"url_prefix": schema.ListAttribute{
-									Description:         "UrlPrefix contains backend url prefixes for the proxied request url.",
-									MarkdownDescription: "UrlPrefix contains backend url prefixes for the proxied request url.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the ConfigMap or its key must be defined",
+														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": schema.SingleNestedAttribute{
+												Description:         "Secret containing data to use for the targets.",
+												MarkdownDescription: "Secret containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ca_file": schema.StringAttribute{
+										Description:         "Path to the CA cert in the container to use for the targets.",
+										MarkdownDescription: "Path to the CA cert in the container to use for the targets.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cert": schema.SingleNestedAttribute{
+										Description:         "Struct containing the client cert file for the targets.",
+										MarkdownDescription: "Struct containing the client cert file for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"config_map": schema.SingleNestedAttribute{
+												Description:         "ConfigMap containing data to use for the targets.",
+												MarkdownDescription: "ConfigMap containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key to select.",
+														MarkdownDescription: "The key to select.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the ConfigMap or its key must be defined",
+														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": schema.SingleNestedAttribute{
+												Description:         "Secret containing data to use for the targets.",
+												MarkdownDescription: "Secret containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cert_file": schema.StringAttribute{
+										Description:         "Path to the client cert file in the container for the targets.",
+										MarkdownDescription: "Path to the client cert file in the container for the targets.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"insecure_skip_verify": schema.BoolAttribute{
+										Description:         "Disable target certificate validation.",
+										MarkdownDescription: "Disable target certificate validation.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_file": schema.StringAttribute{
+										Description:         "Path to the client key file in the container for the targets.",
+										MarkdownDescription: "Path to the client key file in the container for the targets.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing the client key file for the targets.",
+										MarkdownDescription: "Secret containing the client key file for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"server_name": schema.StringAttribute{
+										Description:         "Used to verify the hostname for the targets.",
+										MarkdownDescription: "Used to verify the hostname for the targets.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"url_map": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"discover_backend_ips": schema.BoolAttribute{
+											Description:         "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+											MarkdownDescription: "DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"drop_src_path_prefix_parts": schema.Int64Attribute{
+											Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
+											MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"headers": schema.ListAttribute{
+											Description:         "RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
+											MarkdownDescription: "RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"load_balancing_policy": schema.StringAttribute{
+											Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
+											MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See [here](https://docs.victoriametrics.com/vmauth#load-balancing) for more details (default 'least_loaded')",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("least_loaded", "first_available"),
+											},
+										},
+
+										"response_headers": schema.ListAttribute{
+											Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
+											MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"retry_status_codes": schema.ListAttribute{
+											Description:         "RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]",
+											MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"src_headers": schema.ListAttribute{
+											Description:         "SrcHeaders is an optional list of headers, which must match request headers.",
+											MarkdownDescription: "SrcHeaders is an optional list of headers, which must match request headers.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"src_hosts": schema.ListAttribute{
+											Description:         "SrcHosts is an optional list of regular expressions, which must match the request hostname.",
+											MarkdownDescription: "SrcHosts is an optional list of regular expressions, which must match the request hostname.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"src_paths": schema.ListAttribute{
+											Description:         "SrcPaths is an optional list of regular expressions, which must match the request path.",
+											MarkdownDescription: "SrcPaths is an optional list of regular expressions, which must match the request path.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"src_query_args": schema.ListAttribute{
+											Description:         "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
+											MarkdownDescription: "SrcQueryArgs is an optional list of query args, which must match request URL query args.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"url_prefix": schema.MapAttribute{
+											Description:         "UrlPrefix contains backend url prefixes for the proxied request url. URLPrefix defines prefix prefix for destination",
+											MarkdownDescription: "UrlPrefix contains backend url prefixes for the proxied request url. URLPrefix defines prefix prefix for destination",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"url_prefix": schema.MapAttribute{
+								Description:         "URLPrefix defines prefix prefix for destination",
+								MarkdownDescription: "URLPrefix defines prefix prefix for destination",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -1792,6 +2104,14 @@ func (r *OperatorVictoriametricsComVmauthV1Beta1Manifest) Schema(_ context.Conte
 					"use_default_resources": schema.BoolAttribute{
 						Description:         "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
 						MarkdownDescription: "UseDefaultResources controls resource settings By default, operator sets built-in resource requirements",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"use_proxy_protocol": schema.BoolAttribute{
+						Description:         "UseProxyProtocol enables proxy protocol for vmauth https://www.haproxy.org/download/2.3/doc/proxy-protocol.txt",
+						MarkdownDescription: "UseProxyProtocol enables proxy protocol for vmauth https://www.haproxy.org/download/2.3/doc/proxy-protocol.txt",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

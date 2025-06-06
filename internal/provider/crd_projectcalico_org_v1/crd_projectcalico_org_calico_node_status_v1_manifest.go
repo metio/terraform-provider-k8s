@@ -110,12 +110,12 @@ func (r *CrdProjectcalicoOrgCalicoNodeStatusV1Manifest) Schema(_ context.Context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CalicoNodeStatusSpec contains the specification for a CalicoNodeStatus resource.",
-				MarkdownDescription: "CalicoNodeStatusSpec contains the specification for a CalicoNodeStatus resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"classes": schema.ListAttribute{
-						Description:         "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
-						MarkdownDescription: "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -123,16 +123,16 @@ func (r *CrdProjectcalicoOrgCalicoNodeStatusV1Manifest) Schema(_ context.Context
 					},
 
 					"node": schema.StringAttribute{
-						Description:         "The node name identifies the Calico node instance for node status.",
-						MarkdownDescription: "The node name identifies the Calico node instance for node status.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"update_period_seconds": schema.Int64Attribute{
-						Description:         "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
-						MarkdownDescription: "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

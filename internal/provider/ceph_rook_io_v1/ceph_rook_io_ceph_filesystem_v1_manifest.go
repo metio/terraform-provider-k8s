@@ -121,6 +121,7 @@ type CephRookIoCephFilesystemV1ManifestData struct {
 					StartTime *string `tfsdk:"start_time" json:"startTime,omitempty"`
 				} `tfsdk:"snapshot_schedules" json:"snapshotSchedules,omitempty"`
 			} `tfsdk:"mirroring" json:"mirroring,omitempty"`
+			Name       *string            `tfsdk:"name" json:"name,omitempty"`
 			Parameters *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
 			Quotas     *struct {
 				MaxBytes   *int64  `tfsdk:"max_bytes" json:"maxBytes,omitempty"`
@@ -396,6 +397,7 @@ type CephRookIoCephFilesystemV1ManifestData struct {
 			} `tfsdk:"snapshot_schedules" json:"snapshotSchedules,omitempty"`
 		} `tfsdk:"mirroring" json:"mirroring,omitempty"`
 		PreserveFilesystemOnDelete *bool `tfsdk:"preserve_filesystem_on_delete" json:"preserveFilesystemOnDelete,omitempty"`
+		PreservePoolNames          *bool `tfsdk:"preserve_pool_names" json:"preservePoolNames,omitempty"`
 		PreservePoolsOnDelete      *bool `tfsdk:"preserve_pools_on_delete" json:"preservePoolsOnDelete,omitempty"`
 		StatusCheck                *struct {
 			Mirror *struct {
@@ -600,11 +602,14 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Mode is the mirroring mode: either pool or image",
-											MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+											Description:         "Mode is the mirroring mode: pool, image or init-only.",
+											MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("pool", "image", "init-only"),
+											},
 										},
 
 										"peers": schema.SingleNestedAttribute{
@@ -967,11 +972,14 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "Mode is the mirroring mode: either pool or image",
-										MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+										Description:         "Mode is the mirroring mode: pool, image or init-only.",
+										MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pool", "image", "init-only"),
+										},
 									},
 
 									"peers": schema.SingleNestedAttribute{
@@ -1030,6 +1038,14 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the pool",
+								MarkdownDescription: "Name of the pool",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"parameters": schema.MapAttribute{
@@ -1269,8 +1285,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -1295,8 +1311,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -1320,8 +1336,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -1412,8 +1428,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2592,8 +2608,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2618,8 +2634,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -2643,8 +2659,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -2735,8 +2751,8 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2890,6 +2906,14 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 					"preserve_filesystem_on_delete": schema.BoolAttribute{
 						Description:         "Preserve the fs in the cluster on CephFilesystem CR deletion. Setting this to true automatically implies PreservePoolsOnDelete is true.",
 						MarkdownDescription: "Preserve the fs in the cluster on CephFilesystem CR deletion. Setting this to true automatically implies PreservePoolsOnDelete is true.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"preserve_pool_names": schema.BoolAttribute{
+						Description:         "Preserve pool names as specified",
+						MarkdownDescription: "Preserve pool names as specified",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

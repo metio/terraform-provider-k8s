@@ -49,22 +49,41 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 				CacheActiveTimeout *string `tfsdk:"cache_active_timeout" json:"cacheActiveTimeout,omitempty"`
 				CacheMaxFlows      *int64  `tfsdk:"cache_max_flows" json:"cacheMaxFlows,omitempty"`
 				Debug              *struct {
-					Env *map[string]string `tfsdk:"env" json:"env,omitempty"`
+					CapOverride *[]string          `tfsdk:"cap_override" json:"capOverride,omitempty"`
+					Env         *map[string]string `tfsdk:"env" json:"env,omitempty"`
 				} `tfsdk:"debug" json:"debug,omitempty"`
 				ExcludeInterfaces *[]string `tfsdk:"exclude_interfaces" json:"excludeInterfaces,omitempty"`
 				Features          *[]string `tfsdk:"features" json:"features,omitempty"`
 				FlowFilter        *struct {
-					Action      *string `tfsdk:"action" json:"action,omitempty"`
-					Cidr        *string `tfsdk:"cidr" json:"cidr,omitempty"`
-					DestPorts   *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
-					Direction   *string `tfsdk:"direction" json:"direction,omitempty"`
-					Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
-					IcmpCode    *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
-					IcmpType    *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
-					PeerIP      *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
-					PktDrops    *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
-					Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
-					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					Action    *string `tfsdk:"action" json:"action,omitempty"`
+					Cidr      *string `tfsdk:"cidr" json:"cidr,omitempty"`
+					DestPorts *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
+					Direction *string `tfsdk:"direction" json:"direction,omitempty"`
+					Enable    *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IcmpCode  *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+					IcmpType  *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+					PeerCIDR  *string `tfsdk:"peer_cidr" json:"peerCIDR,omitempty"`
+					PeerIP    *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
+					PktDrops  *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
+					Ports     *string `tfsdk:"ports" json:"ports,omitempty"`
+					Protocol  *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					Rules     *[]struct {
+						Action      *string `tfsdk:"action" json:"action,omitempty"`
+						Cidr        *string `tfsdk:"cidr" json:"cidr,omitempty"`
+						DestPorts   *string `tfsdk:"dest_ports" json:"destPorts,omitempty"`
+						Direction   *string `tfsdk:"direction" json:"direction,omitempty"`
+						IcmpCode    *int64  `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+						IcmpType    *int64  `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+						PeerCIDR    *string `tfsdk:"peer_cidr" json:"peerCIDR,omitempty"`
+						PeerIP      *string `tfsdk:"peer_ip" json:"peerIP,omitempty"`
+						PktDrops    *bool   `tfsdk:"pkt_drops" json:"pktDrops,omitempty"`
+						Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
+						Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+						Sampling    *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
+						SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
+						TcpFlags    *string `tfsdk:"tcp_flags" json:"tcpFlags,omitempty"`
+					} `tfsdk:"rules" json:"rules,omitempty"`
+					Sampling    *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
 					SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
 					TcpFlags    *string `tfsdk:"tcp_flags" json:"tcpFlags,omitempty"`
 				} `tfsdk:"flow_filter" json:"flowFilter,omitempty"`
@@ -380,10 +399,20 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 			ConversationHeartbeatInterval  *string `tfsdk:"conversation_heartbeat_interval" json:"conversationHeartbeatInterval,omitempty"`
 			ConversationTerminatingTimeout *string `tfsdk:"conversation_terminating_timeout" json:"conversationTerminatingTimeout,omitempty"`
 			Debug                          *struct {
-				Env *map[string]string `tfsdk:"env" json:"env,omitempty"`
+				CapOverride *[]string          `tfsdk:"cap_override" json:"capOverride,omitempty"`
+				Env         *map[string]string `tfsdk:"env" json:"env,omitempty"`
 			} `tfsdk:"debug" json:"debug,omitempty"`
-			DropUnusedFields        *bool   `tfsdk:"drop_unused_fields" json:"dropUnusedFields,omitempty"`
-			EnableKubeProbes        *bool   `tfsdk:"enable_kube_probes" json:"enableKubeProbes,omitempty"`
+			Deduper *struct {
+				Mode     *string `tfsdk:"mode" json:"mode,omitempty"`
+				Sampling *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
+			} `tfsdk:"deduper" json:"deduper,omitempty"`
+			DropUnusedFields *bool `tfsdk:"drop_unused_fields" json:"dropUnusedFields,omitempty"`
+			EnableKubeProbes *bool `tfsdk:"enable_kube_probes" json:"enableKubeProbes,omitempty"`
+			Filters          *[]struct {
+				OutputTarget *string `tfsdk:"output_target" json:"outputTarget,omitempty"`
+				Query        *string `tfsdk:"query" json:"query,omitempty"`
+				Sampling     *int64  `tfsdk:"sampling" json:"sampling,omitempty"`
+			} `tfsdk:"filters" json:"filters,omitempty"`
 			HealthPort              *int64  `tfsdk:"health_port" json:"healthPort,omitempty"`
 			ImagePullPolicy         *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			KafkaConsumerAutoscaler *struct {
@@ -655,6 +684,15 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										Description:         "'debug' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 										MarkdownDescription: "'debug' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 										Attributes: map[string]schema.Attribute{
+											"cap_override": schema.ListAttribute{
+												Description:         "Linux capabilities override, when not running as privileged. Default capabilities are BPF, PERFMON and NET_ADMIN.",
+												MarkdownDescription: "Linux capabilities override, when not running as privileged. Default capabilities are BPF, PERFMON and NET_ADMIN.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"env": schema.MapAttribute{
 												Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
 												MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
@@ -679,8 +717,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"features": schema.ListAttribute{
-										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': enable the Network events monitoring feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged.",
-										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': enable the Network events monitoring feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged.",
+										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': Enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': Enable the DNS tracking feature.<br> - 'FlowRTT': Enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': Enable the network events monitoring feature, such as correlating flows and network policies. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. IMPORTANT: This feature is available as a Technology Preview.<br> - 'PacketTranslation': Enable enriching flows with packet translation information, such as Service NAT.<br> - 'EbpfManager': [Unsupported (*)]. Use eBPF Manager to manage NetObserv eBPF programs. Pre-requisite: the eBPF Manager operator (or upstream bpfman operator) must be installed.<br> - 'UDNMapping': Enable interfaces mapping to User Defined Networks (UDN). <br> This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. - 'IPSec', to track flows between nodes with IPsec encryption. <br>",
+										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': Enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': Enable the DNS tracking feature.<br> - 'FlowRTT': Enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': Enable the network events monitoring feature, such as correlating flows and network policies. This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. IMPORTANT: This feature is available as a Technology Preview.<br> - 'PacketTranslation': Enable enriching flows with packet translation information, such as Service NAT.<br> - 'EbpfManager': [Unsupported (*)]. Use eBPF Manager to manage NetObserv eBPF programs. Pre-requisite: the eBPF Manager operator (or upstream bpfman operator) must be installed.<br> - 'UDNMapping': Enable interfaces mapping to User Defined Networks (UDN). <br> This feature requires mounting the kernel debug filesystem, so the eBPF agent pods must run as privileged. It requires using the OVN-Kubernetes network plugin with the Observability feature. - 'IPSec', to track flows between nodes with IPsec encryption. <br>",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -692,8 +730,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'flowFilter' defines the eBPF agent configuration regarding flow filtering",
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
-												Description:         "Action defines the action to perform on the flows that match the filter.",
-												MarkdownDescription: "Action defines the action to perform on the flows that match the filter.",
+												Description:         "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
+												MarkdownDescription: "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -703,24 +741,24 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"cidr": schema.StringAttribute{
-												Description:         "CIDR defines the IP CIDR to filter flows by. Example: 10.10.10.0/24 or 100:100:100:100::/64",
-												MarkdownDescription: "CIDR defines the IP CIDR to filter flows by. Example: 10.10.10.0/24 or 100:100:100:100::/64",
+												Description:         "'cidr' defines the IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+												MarkdownDescription: "'cidr' defines the IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"dest_ports": schema.StringAttribute{
-												Description:         "DestPorts defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, destPorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "DestPorts defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, destPorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"direction": schema.StringAttribute{
-												Description:         "Direction defines the direction to filter flows by.",
-												MarkdownDescription: "Direction defines the direction to filter flows by.",
+												Description:         "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
+												MarkdownDescription: "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -730,56 +768,64 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"enable": schema.BoolAttribute{
-												Description:         "Set 'enable' to 'true' to enable eBPF flow filtering feature.",
-												MarkdownDescription: "Set 'enable' to 'true' to enable eBPF flow filtering feature.",
+												Description:         "Set 'enable' to 'true' to enable the eBPF flow filtering feature.",
+												MarkdownDescription: "Set 'enable' to 'true' to enable the eBPF flow filtering feature.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"icmp_code": schema.Int64Attribute{
-												Description:         "ICMPCode defines the ICMP code to filter flows by.",
-												MarkdownDescription: "ICMPCode defines the ICMP code to filter flows by.",
+												Description:         "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
+												MarkdownDescription: "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"icmp_type": schema.Int64Attribute{
-												Description:         "ICMPType defines the ICMP type to filter flows by.",
-												MarkdownDescription: "ICMPType defines the ICMP type to filter flows by.",
+												Description:         "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+												MarkdownDescription: "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"peer_cidr": schema.StringAttribute{
+												Description:         "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+												MarkdownDescription: "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"peer_ip": schema.StringAttribute{
-												Description:         "PeerIP defines the IP address to filter flows by. Example: 10.10.10.10",
-												MarkdownDescription: "PeerIP defines the IP address to filter flows by. Example: 10.10.10.10",
+												Description:         "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
+												MarkdownDescription: "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"pkt_drops": schema.BoolAttribute{
-												Description:         "'pktDrops', to filter flows with packet drops",
-												MarkdownDescription: "'pktDrops', to filter flows with packet drops",
+												Description:         "'pktDrops' optionally filters only flows containing packet drops.",
+												MarkdownDescription: "'pktDrops' optionally filters only flows containing packet drops.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ports": schema.StringAttribute{
-												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports. To filter a single port, set a single port as an integer value. For example, ports: 80. To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports. To filter a single port, set a single port as an integer value. For example, ports: 80. To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"protocol": schema.StringAttribute{
-												Description:         "Protocol defines the protocol to filter flows by.",
-												MarkdownDescription: "Protocol defines the protocol to filter flows by.",
+												Description:         "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
+												MarkdownDescription: "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -788,17 +834,160 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 												},
 											},
 
+											"rules": schema.ListNestedAttribute{
+												Description:         "'rules' defines a list of filtering rules on the eBPF Agents. When filtering is enabled, by default, flows that don't match any rule are rejected. To change the default, you can define a rule that accepts everything: '{ action: 'Accept', cidr: '0.0.0.0/0' }', and then refine with rejecting rules.",
+												MarkdownDescription: "'rules' defines a list of filtering rules on the eBPF Agents. When filtering is enabled, by default, flows that don't match any rule are rejected. To change the default, you can define a rule that accepts everything: '{ action: 'Accept', cidr: '0.0.0.0/0' }', and then refine with rejecting rules.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"action": schema.StringAttribute{
+															Description:         "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
+															MarkdownDescription: "'action' defines the action to perform on the flows that match the filter. The available options are 'Accept', which is the default, and 'Reject'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Accept", "Reject"),
+															},
+														},
+
+														"cidr": schema.StringAttribute{
+															Description:         "'cidr' defines the IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															MarkdownDescription: "'cidr' defines the IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"dest_ports": schema.StringAttribute{
+															Description:         "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															MarkdownDescription: "'destPorts' optionally defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'destPorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'destPorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"direction": schema.StringAttribute{
+															Description:         "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
+															MarkdownDescription: "'direction' optionally defines a direction to filter flows by. The available options are 'Ingress' and 'Egress'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Ingress", "Egress"),
+															},
+														},
+
+														"icmp_code": schema.Int64Attribute{
+															Description:         "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
+															MarkdownDescription: "'icmpCode', for Internet Control Message Protocol (ICMP) traffic, optionally defines the ICMP code to filter flows by.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"icmp_type": schema.Int64Attribute{
+															Description:         "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+															MarkdownDescription: "'icmpType', for ICMP traffic, optionally defines the ICMP type to filter flows by.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"peer_cidr": schema.StringAttribute{
+															Description:         "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															MarkdownDescription: "'peerCIDR' defines the Peer IP CIDR to filter flows by. Examples: '10.10.10.0/24' or '100:100:100:100::/64'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"peer_ip": schema.StringAttribute{
+															Description:         "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
+															MarkdownDescription: "'peerIP' optionally defines the remote IP address to filter flows by. Example: '10.10.10.10'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"pkt_drops": schema.BoolAttribute{
+															Description:         "'pktDrops' optionally filters only flows containing packet drops.",
+															MarkdownDescription: "'pktDrops' optionally filters only flows containing packet drops.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"ports": schema.StringAttribute{
+															Description:         "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															MarkdownDescription: "'ports' optionally defines the ports to filter flows by. It is used both for source and destination ports. To filter a single port, set a single port as an integer value. For example, 'ports: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'ports: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"protocol": schema.StringAttribute{
+															Description:         "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
+															MarkdownDescription: "'protocol' optionally defines a protocol to filter flows by. The available options are 'TCP', 'UDP', 'ICMP', 'ICMPv6', and 'SCTP'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("TCP", "UDP", "ICMP", "ICMPv6", "SCTP"),
+															},
+														},
+
+														"sampling": schema.Int64Attribute{
+															Description:         "'sampling' sampling rate for the matched flow",
+															MarkdownDescription: "'sampling' sampling rate for the matched flow",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"source_ports": schema.StringAttribute{
+															Description:         "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															MarkdownDescription: "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"tcp_flags": schema.StringAttribute{
+															Description:         "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
+															MarkdownDescription: "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("SYN", "SYN-ACK", "ACK", "FIN", "RST", "URG", "ECE", "CWR", "FIN-ACK", "RST-ACK"),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sampling": schema.Int64Attribute{
+												Description:         "'sampling' sampling rate for the matched flow",
+												MarkdownDescription: "'sampling' sampling rate for the matched flow",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"source_ports": schema.StringAttribute{
-												Description:         "SourcePorts defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, sourcePorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
-												MarkdownDescription: "SourcePorts defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, sourcePorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												Description:         "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "'sourcePorts' optionally defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, 'sourcePorts: 80'. To filter a range of ports, use a 'start-end' range in string format. For example, 'sourcePorts: '80-100''. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"tcp_flags": schema.StringAttribute{
-												Description:         "'tcpFlags' defines the TCP flags to filter flows by.",
-												MarkdownDescription: "'tcpFlags' defines the TCP flags to filter flows by.",
+												Description:         "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
+												MarkdownDescription: "'tcpFlags' optionally defines TCP flags to filter flows by. In addition to the standard flags (RFC-9293), you can also filter by one of the three following combinations: 'SYN-ACK', 'FIN-ACK', and 'RST-ACK'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1023,8 +1212,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"privileged": schema.BoolAttribute{
-										Description:         "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
-										MarkdownDescription: "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
+										Description:         "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
+										MarkdownDescription: "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3015,6 +3204,15 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 								Description:         "'debug' allows setting some aspects of the internal configuration of the flow processor. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 								MarkdownDescription: "'debug' allows setting some aspects of the internal configuration of the flow processor. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 								Attributes: map[string]schema.Attribute{
+									"cap_override": schema.ListAttribute{
+										Description:         "Linux capabilities override, when not running as privileged. Default capabilities are BPF, PERFMON and NET_ADMIN.",
+										MarkdownDescription: "Linux capabilities override, when not running as privileged. Default capabilities are BPF, PERFMON and NET_ADMIN.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"env": schema.MapAttribute{
 										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
 										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
@@ -3022,6 +3220,37 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"deduper": schema.SingleNestedAttribute{
+								Description:         "'deduper' allows to sample or drop flows identified as duplicates, in order to save on resource usage.",
+								MarkdownDescription: "'deduper' allows to sample or drop flows identified as duplicates, in order to save on resource usage.",
+								Attributes: map[string]schema.Attribute{
+									"mode": schema.StringAttribute{
+										Description:         "Set the Processor deduper mode (de-duplication). It comes in addition to the Agent deduper because the Agent cannot de-duplicate same flows reported from different nodes.<br> - Use 'Drop' to drop every flow considered as duplicates, allowing saving more on resource usage but potentially loosing some information such as the network interfaces used from peer.<br> - Use 'Sample' to randomly keep only 1 flow on 50 (by default) among the ones considered as duplicates. This is a compromise between dropping every duplicates or keeping every duplicates. This sampling action comes in addition to the Agent-based sampling. If both Agent and Processor sampling are 50, the combined sampling is 1:2500.<br> - Use 'Disabled' to turn off Processor-based de-duplication.<br>",
+										MarkdownDescription: "Set the Processor deduper mode (de-duplication). It comes in addition to the Agent deduper because the Agent cannot de-duplicate same flows reported from different nodes.<br> - Use 'Drop' to drop every flow considered as duplicates, allowing saving more on resource usage but potentially loosing some information such as the network interfaces used from peer.<br> - Use 'Sample' to randomly keep only 1 flow on 50 (by default) among the ones considered as duplicates. This is a compromise between dropping every duplicates or keeping every duplicates. This sampling action comes in addition to the Agent-based sampling. If both Agent and Processor sampling are 50, the combined sampling is 1:2500.<br> - Use 'Disabled' to turn off Processor-based de-duplication.<br>",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Disabled", "Drop", "Sample"),
+										},
+									},
+
+									"sampling": schema.Int64Attribute{
+										Description:         "'sampling' is the sampling rate when deduper 'mode' is 'Sample'.",
+										MarkdownDescription: "'sampling' is the sampling rate when deduper 'mode' is 'Sample'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
 									},
 								},
 								Required: false,
@@ -3043,6 +3272,47 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"filters": schema.ListNestedAttribute{
+								Description:         "'filters' let you define custom filters to limit the amount of generated flows.",
+								MarkdownDescription: "'filters' let you define custom filters to limit the amount of generated flows.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"output_target": schema.StringAttribute{
+											Description:         "If specified, this filters only target a single output: 'Loki', 'Metrics' or 'Exporters'. By default, all outputs are targeted.",
+											MarkdownDescription: "If specified, this filters only target a single output: 'Loki', 'Metrics' or 'Exporters'. By default, all outputs are targeted.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("", "Loki", "Metrics", "Exporters"),
+											},
+										},
+
+										"query": schema.StringAttribute{
+											Description:         "A query that selects the network flows to keep. More information about this query language in https://github.com/netobserv/flowlogs-pipeline/blob/main/docs/filtering.md.",
+											MarkdownDescription: "A query that selects the network flows to keep. More information about this query language in https://github.com/netobserv/flowlogs-pipeline/blob/main/docs/filtering.md.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sampling": schema.Int64Attribute{
+											Description:         "'sampling' is an optional sampling rate to apply to this filter.",
+											MarkdownDescription: "'sampling' is an optional sampling rate to apply to this filter.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"health_port": schema.Int64Attribute{

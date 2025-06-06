@@ -60,8 +60,11 @@ type BmcTinkerbellOrgMachineV1Alpha1ManifestData struct {
 					CipherSuite *string `tfsdk:"cipher_suite" json:"cipherSuite,omitempty"`
 					Port        *int64  `tfsdk:"port" json:"port,omitempty"`
 				} `tfsdk:"ipmitool" json:"ipmitool,omitempty"`
-				Redfish *struct {
-					Port *int64 `tfsdk:"port" json:"port,omitempty"`
+				PreferredOrder *[]string `tfsdk:"preferred_order" json:"preferredOrder,omitempty"`
+				Redfish        *struct {
+					Port         *int64  `tfsdk:"port" json:"port,omitempty"`
+					SystemName   *string `tfsdk:"system_name" json:"systemName,omitempty"`
+					UseBasicAuth *bool   `tfsdk:"use_basic_auth" json:"useBasicAuth,omitempty"`
 				} `tfsdk:"redfish" json:"redfish,omitempty"`
 				Rpc *struct {
 					ConsumerURL  *string `tfsdk:"consumer_url" json:"consumerURL,omitempty"`
@@ -247,8 +250,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 											"port": schema.Int64Attribute{
 												Description:         "Port that intelAMT will use for calls.",
 												MarkdownDescription: "Port that intelAMT will use for calls.",
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},
@@ -282,6 +285,15 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Computed: false,
 									},
 
+									"preferred_order": schema.ListAttribute{
+										Description:         "PreferredOrder allows customizing the order that BMC providers are called. Providers added to this list will be moved to the front of the default order. Provider names are case insensitive. The default order is: ipmitool, asrockrack, gofish, intelamt, dell, supermicro, openbmc.",
+										MarkdownDescription: "PreferredOrder allows customizing the order that BMC providers are called. Providers added to this list will be moved to the front of the default order. Provider names are case insensitive. The default order is: ipmitool, asrockrack, gofish, intelamt, dell, supermicro, openbmc.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"redfish": schema.SingleNestedAttribute{
 										Description:         "Redfish contains the options to customize the Redfish provider.",
 										MarkdownDescription: "Redfish contains the options to customize the Redfish provider.",
@@ -289,8 +301,24 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 											"port": schema.Int64Attribute{
 												Description:         "Port that redfish will use for calls.",
 												MarkdownDescription: "Port that redfish will use for calls.",
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"system_name": schema.StringAttribute{
+												Description:         "SystemName is the name of the system to use for redfish calls. With redfish implementations that manage multiple systems via a single endpoint, this allows for specifying the system to manage.",
+												MarkdownDescription: "SystemName is the name of the system to use for redfish calls. With redfish implementations that manage multiple systems via a single endpoint, this allows for specifying the system to manage.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"use_basic_auth": schema.BoolAttribute{
+												Description:         "UseBasicAuth for redfish calls. The default is false which means token based auth is used.",
+												MarkdownDescription: "UseBasicAuth for redfish calls. The default is false which means token based auth is used.",
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},

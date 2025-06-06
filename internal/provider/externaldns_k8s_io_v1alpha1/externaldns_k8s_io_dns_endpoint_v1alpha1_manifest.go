@@ -64,8 +64,8 @@ func (r *ExternaldnsK8SIoDnsendpointV1Alpha1Manifest) Metadata(_ context.Context
 
 func (r *ExternaldnsK8SIoDnsendpointV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "",
-		MarkdownDescription: "",
+		Description:         "DNSEndpoint is a contract that a user-specified CRD must implement to be used as a source for external-dns. The user-specified CRD should also have the status sub-resource.",
+		MarkdownDescription: "DNSEndpoint is a contract that a user-specified CRD must implement to be used as a source for external-dns. The user-specified CRD should also have the status sub-resource.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

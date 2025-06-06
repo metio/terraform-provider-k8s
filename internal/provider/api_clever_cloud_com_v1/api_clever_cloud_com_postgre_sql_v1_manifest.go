@@ -177,7 +177,7 @@ func (r *ApiCleverCloudComPostgreSqlV1Manifest) Schema(_ context.Context, _ data
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.Int64{
-									int64validator.OneOf(14, 13, 12, 11, 10),
+									int64validator.OneOf(11, 12, 13, 14, 15, 16, 17),
 								},
 							},
 						},

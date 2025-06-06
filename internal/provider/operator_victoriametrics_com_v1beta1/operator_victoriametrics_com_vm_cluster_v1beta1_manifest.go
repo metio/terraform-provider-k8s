@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -49,25 +50,38 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		License *struct {
-			Key    *string `tfsdk:"key" json:"key,omitempty"`
-			KeyRef *struct {
+			ForceOffline *bool   `tfsdk:"force_offline" json:"forceOffline,omitempty"`
+			Key          *string `tfsdk:"key" json:"key,omitempty"`
+			KeyRef       *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
+			ReloadInterval *string `tfsdk:"reload_interval" json:"reloadInterval,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
-		Paused             *bool   `tfsdk:"paused" json:"paused,omitempty"`
-		ReplicationFactor  *int64  `tfsdk:"replication_factor" json:"replicationFactor,omitempty"`
+		ManagedMetadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"managed_metadata" json:"managedMetadata,omitempty"`
+		Paused               *bool  `tfsdk:"paused" json:"paused,omitempty"`
+		ReplicationFactor    *int64 `tfsdk:"replication_factor" json:"replicationFactor,omitempty"`
+		RequestsLoadBalancer *struct {
+			DisableInsertBalancing *bool              `tfsdk:"disable_insert_balancing" json:"disableInsertBalancing,omitempty"`
+			DisableSelectBalancing *bool              `tfsdk:"disable_select_balancing" json:"disableSelectBalancing,omitempty"`
+			Enabled                *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Spec                   *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+		} `tfsdk:"requests_load_balancer" json:"requestsLoadBalancer,omitempty"`
 		RetentionPeriod    *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		UseStrictSecurity  *bool   `tfsdk:"use_strict_security" json:"useStrictSecurity,omitempty"`
 		Vminsert           *struct {
-			Affinity                 *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
-			ClusterNativeListenPort  *string              `tfsdk:"cluster_native_listen_port" json:"clusterNativeListenPort,omitempty"`
-			ConfigMaps               *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-			Containers               *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-			DisableSelfServiceScrape *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
-			DnsConfig                *struct {
+			Affinity                            *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
+			ClusterNativeListenPort             *string              `tfsdk:"cluster_native_listen_port" json:"clusterNativeListenPort,omitempty"`
+			ConfigMaps                          *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+			Containers                          *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+			DisableAutomountServiceAccountToken *bool                `tfsdk:"disable_automount_service_account_token" json:"disableAutomountServiceAccountToken,omitempty"`
+			DisableSelfServiceScrape            *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+			DnsConfig                           *struct {
 				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 				Options     *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -75,9 +89,20 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				} `tfsdk:"options" json:"options,omitempty"`
 				Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-			DnsPolicy   *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-			ExtraArgs   *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-			ExtraEnvs   *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			DnsPolicy     *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			ExtraArgs     *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+			ExtraEnvs     *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			ExtraEnvsFrom *[]struct {
+				ConfigMapRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+				Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+				SecretRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
 			HostAliases *[]struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -124,7 +149,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			ReplicaCount   *int64             `tfsdk:"replica_count" json:"replicaCount,omitempty"`
 			Resources      *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -176,65 +202,13 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			Affinity       *map[string]string `tfsdk:"affinity" json:"affinity,omitempty"`
 			CacheMountPath *string            `tfsdk:"cache_mount_path" json:"cacheMountPath,omitempty"`
 			ClaimTemplates *[]struct {
-				ApiVersion *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
-				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Metadata   *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
-				Spec       *struct {
-					AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					DataSource  *struct {
-						ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-						Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-					} `tfsdk:"data_source" json:"dataSource,omitempty"`
-					DataSourceRef *struct {
-						ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-						Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
-					Resources *struct {
-						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
-						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
-					} `tfsdk:"resources" json:"resources,omitempty"`
-					Selector *struct {
-						MatchExpressions *[]struct {
-							Key      *string   `tfsdk:"key" json:"key,omitempty"`
-							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-					} `tfsdk:"selector" json:"selector,omitempty"`
-					StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-					VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
-					VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-					VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
-				} `tfsdk:"spec" json:"spec,omitempty"`
-				Status *struct {
-					AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
-					AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-					Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-					Conditions                *[]struct {
-						LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
-						LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
-						Message            *string `tfsdk:"message" json:"message,omitempty"`
-						Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
-						Status             *string `tfsdk:"status" json:"status,omitempty"`
-						Type               *string `tfsdk:"type" json:"type,omitempty"`
-					} `tfsdk:"conditions" json:"conditions,omitempty"`
-					CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
-					ModifyVolumeStatus               *struct {
-						Status                          *string `tfsdk:"status" json:"status,omitempty"`
-						TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
-					} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
-					Phase *string `tfsdk:"phase" json:"phase,omitempty"`
-				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"claim_templates" json:"claimTemplates,omitempty"`
-			ClusterNativeListenPort  *string              `tfsdk:"cluster_native_listen_port" json:"clusterNativeListenPort,omitempty"`
-			ConfigMaps               *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-			Containers               *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-			DisableSelfServiceScrape *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
-			DnsConfig                *struct {
+			ClusterNativeListenPort             *string              `tfsdk:"cluster_native_listen_port" json:"clusterNativeListenPort,omitempty"`
+			ConfigMaps                          *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+			Containers                          *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+			DisableAutomountServiceAccountToken *bool                `tfsdk:"disable_automount_service_account_token" json:"disableAutomountServiceAccountToken,omitempty"`
+			DisableSelfServiceScrape            *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+			DnsConfig                           *struct {
 				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 				Options     *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -242,9 +216,20 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				} `tfsdk:"options" json:"options,omitempty"`
 				Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-			DnsPolicy   *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-			ExtraArgs   *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-			ExtraEnvs   *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			DnsPolicy     *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			ExtraArgs     *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+			ExtraEnvs     *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			ExtraEnvsFrom *[]struct {
+				ConfigMapRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+				Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+				SecretRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
 			HostAliases *[]struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -293,7 +278,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			ReplicaCount   *int64             `tfsdk:"replica_count" json:"replicaCount,omitempty"`
 			Resources      *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -404,66 +390,13 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			Volumes *[]map[string]string `tfsdk:"volumes" json:"volumes,omitempty"`
 		} `tfsdk:"vmselect" json:"vmselect,omitempty"`
 		Vmstorage *struct {
-			Affinity       *map[string]string `tfsdk:"affinity" json:"affinity,omitempty"`
-			ClaimTemplates *[]struct {
-				ApiVersion *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
-				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Metadata   *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
-				Spec       *struct {
-					AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					DataSource  *struct {
-						ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-						Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-					} `tfsdk:"data_source" json:"dataSource,omitempty"`
-					DataSourceRef *struct {
-						ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-						Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
-						Name      *string `tfsdk:"name" json:"name,omitempty"`
-						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
-					Resources *struct {
-						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
-						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
-					} `tfsdk:"resources" json:"resources,omitempty"`
-					Selector *struct {
-						MatchExpressions *[]struct {
-							Key      *string   `tfsdk:"key" json:"key,omitempty"`
-							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-					} `tfsdk:"selector" json:"selector,omitempty"`
-					StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-					VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
-					VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-					VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
-				} `tfsdk:"spec" json:"spec,omitempty"`
-				Status *struct {
-					AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
-					AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-					Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-					Conditions                *[]struct {
-						LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
-						LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
-						Message            *string `tfsdk:"message" json:"message,omitempty"`
-						Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
-						Status             *string `tfsdk:"status" json:"status,omitempty"`
-						Type               *string `tfsdk:"type" json:"type,omitempty"`
-					} `tfsdk:"conditions" json:"conditions,omitempty"`
-					CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
-					ModifyVolumeStatus               *struct {
-						Status                          *string `tfsdk:"status" json:"status,omitempty"`
-						TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
-					} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
-					Phase *string `tfsdk:"phase" json:"phase,omitempty"`
-				} `tfsdk:"status" json:"status,omitempty"`
-			} `tfsdk:"claim_templates" json:"claimTemplates,omitempty"`
-			ConfigMaps               *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-			Containers               *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-			DisableSelfServiceScrape *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
-			DnsConfig                *struct {
+			Affinity                            *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
+			ClaimTemplates                      *[]map[string]string `tfsdk:"claim_templates" json:"claimTemplates,omitempty"`
+			ConfigMaps                          *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+			Containers                          *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+			DisableAutomountServiceAccountToken *bool                `tfsdk:"disable_automount_service_account_token" json:"disableAutomountServiceAccountToken,omitempty"`
+			DisableSelfServiceScrape            *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+			DnsConfig                           *struct {
 				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 				Options     *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -471,9 +404,20 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				} `tfsdk:"options" json:"options,omitempty"`
 				Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 			} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-			DnsPolicy   *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-			ExtraArgs   *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-			ExtraEnvs   *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			DnsPolicy     *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			ExtraArgs     *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+			ExtraEnvs     *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			ExtraEnvsFrom *[]struct {
+				ConfigMapRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+				Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+				SecretRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
 			HostAliases *[]struct {
 				Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 				Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -515,7 +459,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 			ReplicaCount   *int64             `tfsdk:"replica_count" json:"replicaCount,omitempty"`
 			Resources      *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -598,6 +543,17 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+				ExtraEnvsFrom *[]struct {
+					ConfigMapRef *struct {
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+					Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+					SecretRef *struct {
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+				} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
 				Image *struct {
 					PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 					Repository *string `tfsdk:"repository" json:"repository,omitempty"`
@@ -608,7 +564,8 @@ type OperatorVictoriametricsComVmclusterV1Beta1ManifestData struct {
 				Port      *string `tfsdk:"port" json:"port,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -745,8 +702,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -762,6 +719,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						Attributes: map[string]schema.Attribute{
+							"force_offline": schema.BoolAttribute{
+								Description:         "Enforce offline verification of the license key.",
+								MarkdownDescription: "Enforce offline verification of the license key.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"key": schema.StringAttribute{
 								Description:         "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
 								MarkdownDescription: "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
@@ -783,8 +748,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -801,6 +766,41 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"reload_interval": schema.StringAttribute{
+								Description:         "Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.",
+								MarkdownDescription: "Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"managed_metadata": schema.SingleNestedAttribute{
+						Description:         "ManagedMetadata defines metadata that will be added to the all objects created by operator for the given CustomResource",
+						MarkdownDescription: "ManagedMetadata defines metadata that will be added to the all objects created by operator for the given CustomResource",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+								MarkdownDescription: "Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -824,12 +824,57 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"requests_load_balancer": schema.SingleNestedAttribute{
+						Description:         "RequestsLoadBalancer configures load-balancing for vminsert and vmselect requests. It helps to evenly spread load across pods. Usually it's not possible with Kubernetes TCP-based services. See more [here](https://docs.victoriametrics.com/operator/resources/vmcluster/#requests-load-balancing)",
+						MarkdownDescription: "RequestsLoadBalancer configures load-balancing for vminsert and vmselect requests. It helps to evenly spread load across pods. Usually it's not possible with Kubernetes TCP-based services. See more [here](https://docs.victoriametrics.com/operator/resources/vmcluster/#requests-load-balancing)",
+						Attributes: map[string]schema.Attribute{
+							"disable_insert_balancing": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_select_balancing": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"spec": schema.MapAttribute{
+								Description:         "VMAuthLoadBalancerSpec defines configuration spec for VMAuth used as load-balancer for VMCluster component",
+								MarkdownDescription: "VMAuthLoadBalancerSpec defines configuration spec for VMAuth used as load-balancer for VMCluster component",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"retention_period": schema.StringAttribute{
-						Description:         "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)",
-						MarkdownDescription: "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)",
-						Required:            true,
-						Optional:            false,
+						Description:         "RetentionPeriod defines how long to retain stored metrics, specified as a duration (e.g., '1d', '1w', '1m'). Data with timestamps outside the RetentionPeriod is automatically deleted. The minimum allowed value is 1d, or 24h. The default value is 1 (one month). See [retention](https://docs.victoriametrics.com/victoriametrics/single-server-victoriametrics/#retention) docs for details.",
+						MarkdownDescription: "RetentionPeriod defines how long to retain stored metrics, specified as a duration (e.g., '1d', '1w', '1m'). Data with timestamps outside the RetentionPeriod is automatically deleted. The minimum allowed value is 1d, or 24h. The default value is 1 (one month). See [retention](https://docs.victoriametrics.com/victoriametrics/single-server-victoriametrics/#retention) docs for details.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(h|d|w|y)?$`), ""),
+						},
 					},
 
 					"service_account_name": schema.StringAttribute{
@@ -887,6 +932,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 
+							"disable_automount_service_account_token": schema.BoolAttribute{
+								Description:         "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+								MarkdownDescription: "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"disable_self_service_scrape": schema.BoolAttribute{
 								Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
 								MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
@@ -914,16 +967,16 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -973,6 +1026,75 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"extra_envs_from": schema.ListNestedAttribute{
+								Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map_ref": schema.SingleNestedAttribute{
+											Description:         "The ConfigMap to select from",
+											MarkdownDescription: "The ConfigMap to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the ConfigMap must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"prefix": schema.StringAttribute{
+											Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_ref": schema.SingleNestedAttribute{
+											Description:         "The Secret to select from",
+											MarkdownDescription: "The Secret to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret must be defined",
+													MarkdownDescription: "Specify whether the Secret must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"host_aliases": schema.ListNestedAttribute{
@@ -1059,8 +1181,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1154,8 +1276,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"min_ready_seconds": schema.Int64Attribute{
-								Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
-								MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+								Description:         "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+								MarkdownDescription: "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1313,6 +1435,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -1668,8 +1798,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"vmselect": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "VMSelect defines configuration section for vmselect components of the victoria-metrics cluster",
+						MarkdownDescription: "VMSelect defines configuration section for vmselect components of the victoria-metrics cluster",
 						Attributes: map[string]schema.Attribute{
 							"affinity": schema.MapAttribute{
 								Description:         "Affinity If specified, the pod's scheduling constraints.",
@@ -1692,388 +1822,7 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Description:         "ClaimTemplates allows adding additional VolumeClaimTemplates for StatefulSet",
 								MarkdownDescription: "ClaimTemplates allows adding additional VolumeClaimTemplates for StatefulSet",
 								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"api_version": schema.StringAttribute{
-											Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-											MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"kind": schema.StringAttribute{
-											Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"metadata": schema.MapAttribute{
-											Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-											MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"spec": schema.SingleNestedAttribute{
-											Description:         "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											MarkdownDescription: "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											Attributes: map[string]schema.Attribute{
-												"access_modes": schema.ListAttribute{
-													Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"data_source": schema.SingleNestedAttribute{
-													Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-													MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-													Attributes: map[string]schema.Attribute{
-														"api_group": schema.StringAttribute{
-															Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"kind": schema.StringAttribute{
-															Description:         "Kind is the type of resource being referenced",
-															MarkdownDescription: "Kind is the type of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"name": schema.StringAttribute{
-															Description:         "Name is the name of resource being referenced",
-															MarkdownDescription: "Name is the name of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"data_source_ref": schema.SingleNestedAttribute{
-													Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-													MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-													Attributes: map[string]schema.Attribute{
-														"api_group": schema.StringAttribute{
-															Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"kind": schema.StringAttribute{
-															Description:         "Kind is the type of resource being referenced",
-															MarkdownDescription: "Kind is the type of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"name": schema.StringAttribute{
-															Description:         "Name is the name of resource being referenced",
-															MarkdownDescription: "Name is the name of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"namespace": schema.StringAttribute{
-															Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-															MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"resources": schema.SingleNestedAttribute{
-													Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-													MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-													Attributes: map[string]schema.Attribute{
-														"limits": schema.MapAttribute{
-															Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"requests": schema.MapAttribute{
-															Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"selector": schema.SingleNestedAttribute{
-													Description:         "selector is a label query over volumes to consider for binding.",
-													MarkdownDescription: "selector is a label query over volumes to consider for binding.",
-													Attributes: map[string]schema.Attribute{
-														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															NestedObject: schema.NestedAttributeObject{
-																Attributes: map[string]schema.Attribute{
-																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
-																		Required:            true,
-																		Optional:            false,
-																		Computed:            false,
-																	},
-
-																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		Required:            true,
-																		Optional:            false,
-																		Computed:            false,
-																	},
-
-																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-
-														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"storage_class_name": schema.StringAttribute{
-													Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-													MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"volume_attributes_class_name": schema.StringAttribute{
-													Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-													MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"volume_mode": schema.StringAttribute{
-													Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-													MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"volume_name": schema.StringAttribute{
-													Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
-													MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"status": schema.SingleNestedAttribute{
-											Description:         "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											MarkdownDescription: "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											Attributes: map[string]schema.Attribute{
-												"access_modes": schema.ListAttribute{
-													Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"allocated_resource_statuses": schema.MapAttribute{
-													Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"allocated_resources": schema.MapAttribute{
-													Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"capacity": schema.MapAttribute{
-													Description:         "capacity represents the actual resources of the underlying volume.",
-													MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"conditions": schema.ListNestedAttribute{
-													Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
-													MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"last_probe_time": schema.StringAttribute{
-																Description:         "lastProbeTime is the time we probed the condition.",
-																MarkdownDescription: "lastProbeTime is the time we probed the condition.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-																Validators: []validator.String{
-																	validators.DateTime64Validator(),
-																},
-															},
-
-															"last_transition_time": schema.StringAttribute{
-																Description:         "lastTransitionTime is the time the condition transitioned from one status to another.",
-																MarkdownDescription: "lastTransitionTime is the time the condition transitioned from one status to another.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-																Validators: []validator.String{
-																	validators.DateTime64Validator(),
-																},
-															},
-
-															"message": schema.StringAttribute{
-																Description:         "message is the human-readable message indicating details about last transition.",
-																MarkdownDescription: "message is the human-readable message indicating details about last transition.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"reason": schema.StringAttribute{
-																Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
-																MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"status": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-
-															"type": schema.StringAttribute{
-																Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"current_volume_attributes_class_name": schema.StringAttribute{
-													Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"modify_volume_status": schema.SingleNestedAttribute{
-													Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													Attributes: map[string]schema.Attribute{
-														"status": schema.StringAttribute{
-															Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
-															MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"target_volume_attributes_class_name": schema.StringAttribute{
-															Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
-															MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"phase": schema.StringAttribute{
-													Description:         "phase represents the current phase of PersistentVolumeClaim.",
-													MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-									},
+									Attributes: map[string]schema.Attribute{},
 								},
 								Required: false,
 								Optional: true,
@@ -2106,6 +1855,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 
+							"disable_automount_service_account_token": schema.BoolAttribute{
+								Description:         "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+								MarkdownDescription: "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"disable_self_service_scrape": schema.BoolAttribute{
 								Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
 								MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
@@ -2133,16 +1890,16 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2192,6 +1949,75 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"extra_envs_from": schema.ListNestedAttribute{
+								Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map_ref": schema.SingleNestedAttribute{
+											Description:         "The ConfigMap to select from",
+											MarkdownDescription: "The ConfigMap to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the ConfigMap must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"prefix": schema.StringAttribute{
+											Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_ref": schema.SingleNestedAttribute{
+											Description:         "The Secret to select from",
+											MarkdownDescription: "The Secret to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret must be defined",
+													MarkdownDescription: "Specify whether the Secret must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"host_aliases": schema.ListNestedAttribute{
@@ -2278,8 +2104,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2332,8 +2158,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"min_ready_seconds": schema.Int64Attribute{
-								Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
-								MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+								Description:         "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+								MarkdownDescription: "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2542,6 +2368,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -2972,8 +2806,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 													},
 
 													"volume_attributes_class_name": schema.StringAttribute{
-														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3084,16 +2918,16 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 																},
 
 																"status": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
+																	MarkdownDescription: "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																	MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
+																	Description:         "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
+																	MarkdownDescription: "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3106,16 +2940,16 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 													},
 
 													"current_volume_attributes_class_name": schema.StringAttribute{
-														Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
-														MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+														Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+														MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"modify_volume_status": schema.SingleNestedAttribute{
-														Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
-														MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+														Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+														MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
 														Attributes: map[string]schema.Attribute{
 															"status": schema.StringAttribute{
 																Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
@@ -3339,396 +3173,13 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 
-							"claim_templates": schema.ListNestedAttribute{
+							"claim_templates": schema.ListAttribute{
 								Description:         "ClaimTemplates allows adding additional VolumeClaimTemplates for StatefulSet",
 								MarkdownDescription: "ClaimTemplates allows adding additional VolumeClaimTemplates for StatefulSet",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"api_version": schema.StringAttribute{
-											Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-											MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"kind": schema.StringAttribute{
-											Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"metadata": schema.MapAttribute{
-											Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-											MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-											ElementType:         types.StringType,
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"spec": schema.SingleNestedAttribute{
-											Description:         "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											MarkdownDescription: "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											Attributes: map[string]schema.Attribute{
-												"access_modes": schema.ListAttribute{
-													Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"data_source": schema.SingleNestedAttribute{
-													Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-													MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-													Attributes: map[string]schema.Attribute{
-														"api_group": schema.StringAttribute{
-															Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"kind": schema.StringAttribute{
-															Description:         "Kind is the type of resource being referenced",
-															MarkdownDescription: "Kind is the type of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"name": schema.StringAttribute{
-															Description:         "Name is the name of resource being referenced",
-															MarkdownDescription: "Name is the name of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"data_source_ref": schema.SingleNestedAttribute{
-													Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-													MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-													Attributes: map[string]schema.Attribute{
-														"api_group": schema.StringAttribute{
-															Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"kind": schema.StringAttribute{
-															Description:         "Kind is the type of resource being referenced",
-															MarkdownDescription: "Kind is the type of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"name": schema.StringAttribute{
-															Description:         "Name is the name of resource being referenced",
-															MarkdownDescription: "Name is the name of resource being referenced",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"namespace": schema.StringAttribute{
-															Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-															MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"resources": schema.SingleNestedAttribute{
-													Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-													MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-													Attributes: map[string]schema.Attribute{
-														"limits": schema.MapAttribute{
-															Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"requests": schema.MapAttribute{
-															Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"selector": schema.SingleNestedAttribute{
-													Description:         "selector is a label query over volumes to consider for binding.",
-													MarkdownDescription: "selector is a label query over volumes to consider for binding.",
-													Attributes: map[string]schema.Attribute{
-														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															NestedObject: schema.NestedAttributeObject{
-																Attributes: map[string]schema.Attribute{
-																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
-																		Required:            true,
-																		Optional:            false,
-																		Computed:            false,
-																	},
-
-																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		Required:            true,
-																		Optional:            false,
-																		Computed:            false,
-																	},
-
-																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-															},
-															Required: false,
-															Optional: true,
-															Computed: false,
-														},
-
-														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"storage_class_name": schema.StringAttribute{
-													Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-													MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"volume_attributes_class_name": schema.StringAttribute{
-													Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-													MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"volume_mode": schema.StringAttribute{
-													Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-													MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"volume_name": schema.StringAttribute{
-													Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
-													MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"status": schema.SingleNestedAttribute{
-											Description:         "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											MarkdownDescription: "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											Attributes: map[string]schema.Attribute{
-												"access_modes": schema.ListAttribute{
-													Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"allocated_resource_statuses": schema.MapAttribute{
-													Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"allocated_resources": schema.MapAttribute{
-													Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"capacity": schema.MapAttribute{
-													Description:         "capacity represents the actual resources of the underlying volume.",
-													MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"conditions": schema.ListNestedAttribute{
-													Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
-													MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"last_probe_time": schema.StringAttribute{
-																Description:         "lastProbeTime is the time we probed the condition.",
-																MarkdownDescription: "lastProbeTime is the time we probed the condition.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-																Validators: []validator.String{
-																	validators.DateTime64Validator(),
-																},
-															},
-
-															"last_transition_time": schema.StringAttribute{
-																Description:         "lastTransitionTime is the time the condition transitioned from one status to another.",
-																MarkdownDescription: "lastTransitionTime is the time the condition transitioned from one status to another.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-																Validators: []validator.String{
-																	validators.DateTime64Validator(),
-																},
-															},
-
-															"message": schema.StringAttribute{
-																Description:         "message is the human-readable message indicating details about last transition.",
-																MarkdownDescription: "message is the human-readable message indicating details about last transition.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"reason": schema.StringAttribute{
-																Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
-																MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"status": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-
-															"type": schema.StringAttribute{
-																Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"current_volume_attributes_class_name": schema.StringAttribute{
-													Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"modify_volume_status": schema.SingleNestedAttribute{
-													Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
-													Attributes: map[string]schema.Attribute{
-														"status": schema.StringAttribute{
-															Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
-															MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-														},
-
-														"target_volume_attributes_class_name": schema.StringAttribute{
-															Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
-															MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
-												"phase": schema.StringAttribute{
-													Description:         "phase represents the current phase of PersistentVolumeClaim.",
-													MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+								ElementType:         types.MapType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"config_maps": schema.ListAttribute{
@@ -3744,6 +3195,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Description:         "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
 								MarkdownDescription: "Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.",
 								ElementType:         types.MapType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_automount_service_account_token": schema.BoolAttribute{
+								Description:         "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+								MarkdownDescription: "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3776,16 +3235,16 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3835,6 +3294,75 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"extra_envs_from": schema.ListNestedAttribute{
+								Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map_ref": schema.SingleNestedAttribute{
+											Description:         "The ConfigMap to select from",
+											MarkdownDescription: "The ConfigMap to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the ConfigMap must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"prefix": schema.StringAttribute{
+											Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_ref": schema.SingleNestedAttribute{
+											Description:         "The Secret to select from",
+											MarkdownDescription: "The Secret to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret must be defined",
+													MarkdownDescription: "Specify whether the Secret must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"host_aliases": schema.ListNestedAttribute{
@@ -3912,8 +3440,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3984,8 +3512,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 							},
 
 							"min_ready_seconds": schema.Int64Attribute{
-								Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
-								MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+								Description:         "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+								MarkdownDescription: "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4143,6 +3671,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -4480,8 +4016,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4603,8 +4139,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4694,8 +4230,8 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4712,6 +4248,75 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"extra_envs_from": schema.ListNestedAttribute{
+										Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+										MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"config_map_ref": schema.SingleNestedAttribute{
+													Description:         "The ConfigMap to select from",
+													MarkdownDescription: "The ConfigMap to select from",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"prefix": schema.StringAttribute{
+													Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+													MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"secret_ref": schema.SingleNestedAttribute{
+													Description:         "The Secret to select from",
+													MarkdownDescription: "The Secret to select from",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret must be defined",
+															MarkdownDescription: "Specify whether the Secret must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 													},
 													Required: false,
@@ -4802,6 +4407,14 @@ func (r *OperatorVictoriametricsComVmclusterV1Beta1Manifest) Schema(_ context.Co
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
