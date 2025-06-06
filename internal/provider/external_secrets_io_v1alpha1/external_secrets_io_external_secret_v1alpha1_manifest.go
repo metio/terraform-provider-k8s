@@ -18,6 +18,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -223,11 +224,16 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"secret_key": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The key in the Kubernetes Secret to store the value.",
+									MarkdownDescription: "The key in the Kubernetes Secret to store the value.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(253),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+									},
 								},
 							},
 						},
@@ -300,14 +306,22 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("SecretStore", "ClusterSecretStore"),
+								},
 							},
 
 							"name": schema.StringAttribute{
 								Description:         "Name of the SecretStore resource",
 								MarkdownDescription: "Name of the SecretStore resource",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(253),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+								},
 							},
 						},
 						Required: true,
@@ -320,8 +334,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
 						Attributes: map[string]schema.Attribute{
 							"creation_policy": schema.StringAttribute{
-								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
-								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+								Description:         "CreationPolicy defines rules on how to create the resulting Secret. Defaults to 'Owner'",
+								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret. Defaults to 'Owner'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -339,11 +353,16 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
-								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+								Description:         "The name of the Secret resource to be managed. Defaults to the .metadata.name of the ExternalSecret resource",
+								MarkdownDescription: "The name of the Secret resource to be managed. Defaults to the .metadata.name of the ExternalSecret resource",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(253),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+								},
 							},
 
 							"template": schema.SingleNestedAttribute{
@@ -407,16 +426,21 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"items": schema.ListNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "A list of keys in the ConfigMap/Secret to use as templates for Secret data",
+															MarkdownDescription: "A list of keys in the ConfigMap/Secret to use as templates for Secret data",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "A key in the ConfigMap/Secret",
+																		MarkdownDescription: "A key in the ConfigMap/Secret",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.LengthAtLeast(1),
+																			stringvalidator.LengthAtMost(253),
+																			stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																		},
 																	},
 																},
 															},
@@ -426,11 +450,16 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "The name of the ConfigMap/Secret resource",
+															MarkdownDescription: "The name of the ConfigMap/Secret resource",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+																stringvalidator.LengthAtMost(253),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+															},
 														},
 													},
 													Required: false,
@@ -446,16 +475,21 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"items": schema.ListNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "A list of keys in the ConfigMap/Secret to use as templates for Secret data",
+															MarkdownDescription: "A list of keys in the ConfigMap/Secret to use as templates for Secret data",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "A key in the ConfigMap/Secret",
+																		MarkdownDescription: "A key in the ConfigMap/Secret",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.LengthAtLeast(1),
+																			stringvalidator.LengthAtMost(253),
+																			stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																		},
 																	},
 																},
 															},
@@ -465,11 +499,16 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "The name of the ConfigMap/Secret resource",
+															MarkdownDescription: "The name of the ConfigMap/Secret resource",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+																stringvalidator.LengthAtMost(253),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+															},
 														},
 													},
 													Required: false,

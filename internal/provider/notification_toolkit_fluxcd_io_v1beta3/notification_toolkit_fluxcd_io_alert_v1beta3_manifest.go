@@ -200,7 +200,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta3Manifest) Schema(_ context.Conte
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(53),
+										stringvalidator.LengthAtMost(253),
 									},
 								},
 
@@ -212,7 +212,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta3Manifest) Schema(_ context.Conte
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(53),
+										stringvalidator.LengthAtMost(253),
 									},
 								},
 							},
@@ -258,8 +258,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta3Manifest) Schema(_ context.Conte
 					},
 
 					"summary": schema.StringAttribute{
-						Description:         "Summary holds a short description of the impact and affected cluster.",
-						MarkdownDescription: "Summary holds a short description of the impact and affected cluster.",
+						Description:         "Summary holds a short description of the impact and affected cluster. Deprecated: Use EventMetadata instead.",
+						MarkdownDescription: "Summary holds a short description of the impact and affected cluster. Deprecated: Use EventMetadata instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

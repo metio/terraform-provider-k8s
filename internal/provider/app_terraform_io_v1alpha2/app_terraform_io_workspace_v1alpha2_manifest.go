@@ -50,6 +50,7 @@ type AppTerraformIoWorkspaceV1Alpha2ManifestData struct {
 		} `tfsdk:"agent_pool" json:"agentPool,omitempty"`
 		AllowDestroyPlan     *bool   `tfsdk:"allow_destroy_plan" json:"allowDestroyPlan,omitempty"`
 		ApplyMethod          *string `tfsdk:"apply_method" json:"applyMethod,omitempty"`
+		ApplyRunTrigger      *string `tfsdk:"apply_run_trigger" json:"applyRunTrigger,omitempty"`
 		DeletionPolicy       *string `tfsdk:"deletion_policy" json:"deletionPolicy,omitempty"`
 		Description          *string `tfsdk:"description" json:"description,omitempty"`
 		EnvironmentVariables *[]struct {
@@ -152,11 +153,18 @@ type AppTerraformIoWorkspaceV1Alpha2ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 		} `tfsdk:"token" json:"token,omitempty"`
+		VariableSets *[]struct {
+			Id   *string `tfsdk:"id" json:"id,omitempty"`
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"variable_sets" json:"variableSets,omitempty"`
 		VersionControl *struct {
-			Branch           *string `tfsdk:"branch" json:"branch,omitempty"`
-			OAuthTokenID     *string `tfsdk:"o_auth_token_id" json:"oAuthTokenID,omitempty"`
-			Repository       *string `tfsdk:"repository" json:"repository,omitempty"`
-			SpeculativePlans *bool   `tfsdk:"speculative_plans" json:"speculativePlans,omitempty"`
+			Branch             *string   `tfsdk:"branch" json:"branch,omitempty"`
+			EnableFileTriggers *bool     `tfsdk:"enable_file_triggers" json:"enableFileTriggers,omitempty"`
+			OAuthTokenID       *string   `tfsdk:"o_auth_token_id" json:"oAuthTokenID,omitempty"`
+			Repository         *string   `tfsdk:"repository" json:"repository,omitempty"`
+			SpeculativePlans   *bool     `tfsdk:"speculative_plans" json:"speculativePlans,omitempty"`
+			TriggerPatterns    *[]string `tfsdk:"trigger_patterns" json:"triggerPatterns,omitempty"`
+			TriggerPrefixes    *[]string `tfsdk:"trigger_prefixes" json:"triggerPrefixes,omitempty"`
 		} `tfsdk:"version_control" json:"versionControl,omitempty"`
 		WorkingDirectory *string `tfsdk:"working_directory" json:"workingDirectory,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -168,8 +176,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Metadata(_ context.Context, re
 
 func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Workspace is the Schema for the workspaces API",
-		MarkdownDescription: "Workspace is the Schema for the workspaces API",
+		Description:         "Workspace manages HCP Terraform Workspaces. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces",
+		MarkdownDescription: "Workspace manages HCP Terraform Workspaces. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -289,9 +297,20 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 						},
 					},
 
+					"apply_run_trigger": schema.StringAttribute{
+						Description:         "Specifies the type of apply, whether manual or auto Must be of value 'auto' or 'manual' Default: 'manual' More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply",
+						MarkdownDescription: "Specifies the type of apply, whether manual or auto Must be of value 'auto' or 'manual' Default: 'manual' More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(auto|manual)$`), ""),
+						},
+					},
+
 					"deletion_policy": schema.StringAttribute{
-						Description:         "The Deletion Policy specifies the behavior of the custom resource and its associated workspace when the custom resource is deleted. - 'retain': When the custom resource is deleted, the associated workspace is retained. - 'soft': Attempts to delete the associated workspace only if it does not contain any managed resources. - 'destroy': Executes a destroy operation to remove all resources managed by the associated workspace. Once the destruction of these resources is successful, the workspace itself is deleted, followed by the removal of the custom resource. - 'force': Forcefully and immediately deletes the workspace and the custom resource. Default: 'retain'.",
-						MarkdownDescription: "The Deletion Policy specifies the behavior of the custom resource and its associated workspace when the custom resource is deleted. - 'retain': When the custom resource is deleted, the associated workspace is retained. - 'soft': Attempts to delete the associated workspace only if it does not contain any managed resources. - 'destroy': Executes a destroy operation to remove all resources managed by the associated workspace. Once the destruction of these resources is successful, the workspace itself is deleted, followed by the removal of the custom resource. - 'force': Forcefully and immediately deletes the workspace and the custom resource. Default: 'retain'.",
+						Description:         "The Deletion Policy specifies the behavior of the custom resource and its associated workspace when the custom resource is deleted. - 'retain': When you delete the custom resource, the operator does not delete the workspace. - 'soft': Attempts to delete the associated workspace only if it does not contain any managed resources. - 'destroy': Executes a destroy operation to remove all resources managed by the associated workspace. Once the destruction of these resources is successful, the operator deletes the workspace, and then deletes the custom resource. - 'force': Forcefully and immediately deletes the workspace and the custom resource. Default: 'retain'.",
+						MarkdownDescription: "The Deletion Policy specifies the behavior of the custom resource and its associated workspace when the custom resource is deleted. - 'retain': When you delete the custom resource, the operator does not delete the workspace. - 'soft': Attempts to delete the associated workspace only if it does not contain any managed resources. - 'destroy': Executes a destroy operation to remove all resources managed by the associated workspace. Once the destruction of these resources is successful, the operator deletes the workspace, and then deletes the custom resource. - 'force': Forcefully and immediately deletes the workspace and the custom resource. Default: 'retain'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -382,8 +401,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -415,8 +434,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -971,8 +990,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1004,8 +1023,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1063,8 +1082,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1088,6 +1107,39 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"variable_sets": schema.ListNestedAttribute{
+						Description:         "HCP Terraform variable sets let you reuse variables in an efficient and centralized way. More information - https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets",
+						MarkdownDescription: "HCP Terraform variable sets let you reuse variables in an efficient and centralized way. More information - https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"id": schema.StringAttribute{
+									Description:         "ID of the variable set. Must match pattern: 'varset-[a-zA-Z0-9]+$' More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets",
+									MarkdownDescription: "ID of the variable set. Must match pattern: 'varset-[a-zA-Z0-9]+$' More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`varset-[a-zA-Z0-9]+$`), ""),
+									},
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name of the variable set. More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets",
+									MarkdownDescription: "Name of the variable set. More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"version_control": schema.SingleNestedAttribute{
 						Description:         "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. More information: - https://www.terraform.io/cloud-docs/run/ui - https://www.terraform.io/cloud-docs/vcs",
 						MarkdownDescription: "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. More information: - https://www.terraform.io/cloud-docs/run/ui - https://www.terraform.io/cloud-docs/vcs",
@@ -1101,6 +1153,14 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Validators: []validator.String{
 									stringvalidator.LengthAtLeast(1),
 								},
+							},
+
+							"enable_file_triggers": schema.BoolAttribute{
+								Description:         "File triggers allow you to queue runs in HCP Terraform when files in your VCS repository change. Default: 'false'. More informarion: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/vcs#automatic-run-triggering",
+								MarkdownDescription: "File triggers allow you to queue runs in HCP Terraform when files in your VCS repository change. Default: 'false'. More informarion: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/vcs#automatic-run-triggering",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"o_auth_token_id": schema.StringAttribute{
@@ -1128,6 +1188,24 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"speculative_plans": schema.BoolAttribute{
 								Description:         "Whether this workspace allows automatic speculative plans on PR. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans",
 								MarkdownDescription: "Whether this workspace allows automatic speculative plans on PR. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"trigger_patterns": schema.ListAttribute{
+								Description:         "The list of pattern triggers that will queue runs in HCP Terraform when files in your VCS repository change. 'spec.versionControl.fileTriggersEnabled' must be set to 'true'. More informarion: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/vcs#automatic-run-triggering",
+								MarkdownDescription: "The list of pattern triggers that will queue runs in HCP Terraform when files in your VCS repository change. 'spec.versionControl.fileTriggersEnabled' must be set to 'true'. More informarion: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/vcs#automatic-run-triggering",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"trigger_prefixes": schema.ListAttribute{
+								Description:         "The list of pattern prefixes that will queue runs in HCP Terraform when files in your VCS repository change. 'spec.versionControl.fileTriggersEnabled' must be set to 'true'. More informarion: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/vcs#automatic-run-triggering",
+								MarkdownDescription: "The list of pattern prefixes that will queue runs in HCP Terraform when files in your VCS repository change. 'spec.versionControl.fileTriggersEnabled' must be set to 'true'. More informarion: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/vcs#automatic-run-triggering",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

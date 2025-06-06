@@ -153,28 +153,28 @@ func (r *ClusterXK8SIoClusterV1Alpha3Manifest) Schema(_ context.Context, _ datas
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterSpec defines the desired state of Cluster.",
-				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.",
+				Description:         "spec is the desired state of Cluster.",
+				MarkdownDescription: "spec is the desired state of Cluster.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_network": schema.SingleNestedAttribute{
-						Description:         "Cluster network configuration.",
-						MarkdownDescription: "Cluster network configuration.",
+						Description:         "clusterNetwork is the cluster network configuration.",
+						MarkdownDescription: "clusterNetwork is the cluster network configuration.",
 						Attributes: map[string]schema.Attribute{
 							"api_server_port": schema.Int64Attribute{
-								Description:         "APIServerPort specifies the port the API Server should bind to. Defaults to 6443.",
-								MarkdownDescription: "APIServerPort specifies the port the API Server should bind to. Defaults to 6443.",
+								Description:         "apiServerPort specifies the port the API Server should bind to. Defaults to 6443.",
+								MarkdownDescription: "apiServerPort specifies the port the API Server should bind to. Defaults to 6443.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pods": schema.SingleNestedAttribute{
-								Description:         "The network ranges from which Pod networks are allocated.",
-								MarkdownDescription: "The network ranges from which Pod networks are allocated.",
+								Description:         "pods is the network ranges from which Pod networks are allocated.",
+								MarkdownDescription: "pods is the network ranges from which Pod networks are allocated.",
 								Attributes: map[string]schema.Attribute{
 									"cidr_blocks": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "cidrBlocks is a list of CIDR blocks.",
+										MarkdownDescription: "cidrBlocks is a list of CIDR blocks.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -187,20 +187,20 @@ func (r *ClusterXK8SIoClusterV1Alpha3Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"service_domain": schema.StringAttribute{
-								Description:         "Domain name for services.",
-								MarkdownDescription: "Domain name for services.",
+								Description:         "serviceDomain is the domain name for services.",
+								MarkdownDescription: "serviceDomain is the domain name for services.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"services": schema.SingleNestedAttribute{
-								Description:         "The network ranges from which service VIPs are allocated.",
-								MarkdownDescription: "The network ranges from which service VIPs are allocated.",
+								Description:         "services is the network ranges from which service VIPs are allocated.",
+								MarkdownDescription: "services is the network ranges from which service VIPs are allocated.",
 								Attributes: map[string]schema.Attribute{
 									"cidr_blocks": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "cidrBlocks is a list of CIDR blocks.",
+										MarkdownDescription: "cidrBlocks is a list of CIDR blocks.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -218,20 +218,20 @@ func (r *ClusterXK8SIoClusterV1Alpha3Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"control_plane_endpoint": schema.SingleNestedAttribute{
-						Description:         "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
-						MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
+						Description:         "controlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
+						MarkdownDescription: "controlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
-								Description:         "The hostname on which the API server is serving.",
-								MarkdownDescription: "The hostname on which the API server is serving.",
+								Description:         "host is the hostname on which the API server is serving.",
+								MarkdownDescription: "host is the hostname on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "The port on which the API server is serving.",
-								MarkdownDescription: "The port on which the API server is serving.",
+								Description:         "port is the port on which the API server is serving.",
+								MarkdownDescription: "port is the port on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -243,8 +243,8 @@ func (r *ClusterXK8SIoClusterV1Alpha3Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"control_plane_ref": schema.SingleNestedAttribute{
-						Description:         "ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.",
-						MarkdownDescription: "ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.",
+						Description:         "controlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.",
+						MarkdownDescription: "controlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -308,8 +308,8 @@ func (r *ClusterXK8SIoClusterV1Alpha3Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"infrastructure_ref": schema.SingleNestedAttribute{
-						Description:         "InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.",
-						MarkdownDescription: "InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.",
+						Description:         "infrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.",
+						MarkdownDescription: "infrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -373,8 +373,8 @@ func (r *ClusterXK8SIoClusterV1Alpha3Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"paused": schema.BoolAttribute{
-						Description:         "Paused can be used to prevent controllers from processing the Cluster and all its associated objects.",
-						MarkdownDescription: "Paused can be used to prevent controllers from processing the Cluster and all its associated objects.",
+						Description:         "paused can be used to prevent controllers from processing the Cluster and all its associated objects.",
+						MarkdownDescription: "paused can be used to prevent controllers from processing the Cluster and all its associated objects.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

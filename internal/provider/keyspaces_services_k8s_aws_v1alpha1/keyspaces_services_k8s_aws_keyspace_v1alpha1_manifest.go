@@ -133,8 +133,8 @@ func (r *KeyspacesServicesK8SAwsKeyspaceV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "KeyspaceSpec defines the desired state of Keyspace.",
 				Attributes: map[string]schema.Attribute{
 					"keyspace_name": schema.StringAttribute{
-						Description:         "The name of the keyspace to be created.",
-						MarkdownDescription: "The name of the keyspace to be created.",
+						Description:         "The name of the keyspace to be created. Regex Pattern: '^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$'",
+						MarkdownDescription: "The name of the keyspace to be created. Regex Pattern: '^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

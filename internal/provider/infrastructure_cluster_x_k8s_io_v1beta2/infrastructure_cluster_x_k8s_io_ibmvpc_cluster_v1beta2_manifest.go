@@ -54,6 +54,14 @@ type InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2ManifestData struct {
 				DefaultPoolName *string `tfsdk:"default_pool_name" json:"defaultPoolName,omitempty"`
 				Port            *int64  `tfsdk:"port" json:"port,omitempty"`
 				Protocol        *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				Selector        *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"selector" json:"selector,omitempty"`
 			} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
 			BackendPools *[]struct {
 				Algorithm     *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
@@ -105,6 +113,14 @@ type InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2ManifestData struct {
 					DefaultPoolName *string `tfsdk:"default_pool_name" json:"defaultPoolName,omitempty"`
 					Port            *int64  `tfsdk:"port" json:"port,omitempty"`
 					Protocol        *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					Selector        *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"selector" json:"selector,omitempty"`
 				} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
 				BackendPools *[]struct {
 					Algorithm     *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
@@ -275,16 +291,19 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 						MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
-								Description:         "The hostname on which the API server is serving.",
-								MarkdownDescription: "The hostname on which the API server is serving.",
+								Description:         "host is the hostname on which the API server is serving.",
+								MarkdownDescription: "host is the hostname on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(512),
+								},
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "The port on which the API server is serving.",
-								MarkdownDescription: "The port on which the API server is serving.",
+								Description:         "port is the port on which the API server is serving.",
+								MarkdownDescription: "port is the port on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -338,6 +357,60 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 											Validators: []validator.String{
 												stringvalidator.OneOf("http", "https", "tcp", "udp"),
 											},
+										},
+
+										"selector": schema.SingleNestedAttribute{
+											Description:         "The selector is used to find IBMPowerVSMachines with matching labels. If the label matches, the machine is then added to the load balancer listener configuration.",
+											MarkdownDescription: "The selector is used to find IBMPowerVSMachines with matching labels. If the label matches, the machine is then added to the load balancer listener configuration.",
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 									},
 								},
@@ -772,6 +845,60 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 														Validators: []validator.String{
 															stringvalidator.OneOf("http", "https", "tcp", "udp"),
 														},
+													},
+
+													"selector": schema.SingleNestedAttribute{
+														Description:         "The selector is used to find IBMPowerVSMachines with matching labels. If the label matches, the machine is then added to the load balancer listener configuration.",
+														MarkdownDescription: "The selector is used to find IBMPowerVSMachines with matching labels. If the label matches, the machine is then added to the load balancer listener configuration.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 											},

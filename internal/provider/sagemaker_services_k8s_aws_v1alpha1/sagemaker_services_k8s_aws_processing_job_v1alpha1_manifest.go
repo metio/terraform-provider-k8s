@@ -613,8 +613,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"processing_job_name": schema.StringAttribute{
-						Description:         "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
-						MarkdownDescription: "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
+						Description:         "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -765,8 +765,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

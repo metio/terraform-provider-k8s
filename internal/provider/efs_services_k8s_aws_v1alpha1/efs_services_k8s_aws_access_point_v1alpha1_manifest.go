@@ -148,8 +148,8 @@ func (r *EfsServicesK8SAwsAccessPointV1Alpha1Manifest) Schema(_ context.Context,
 				MarkdownDescription: "AccessPointSpec defines the desired state of AccessPoint.",
 				Attributes: map[string]schema.Attribute{
 					"file_system_id": schema.StringAttribute{
-						Description:         "The ID of the EFS file system that the access point provides access to.",
-						MarkdownDescription: "The ID of the EFS file system that the access point provides access to.",
+						Description:         "The ID of the EFS file system that the access point provides access to. Regex Pattern: '^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$'",
+						MarkdownDescription: "The ID of the EFS file system that the access point provides access to. Regex Pattern: '^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

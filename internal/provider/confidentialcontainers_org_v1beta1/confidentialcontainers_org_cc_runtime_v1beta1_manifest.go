@@ -50,10 +50,14 @@ type ConfidentialcontainersOrgCcRuntimeV1Beta1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"cc_node_selector" json:"ccNodeSelector,omitempty"`
+		CcTolerations *[]struct {
+			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+			Key               *string `tfsdk:"key" json:"key,omitempty"`
+			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+			Value             *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"cc_tolerations" json:"ccTolerations,omitempty"`
 		Config *struct {
-			ImagePullSecret *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
-			} `tfsdk:"image_pull_secret" json:"ImagePullSecret,omitempty"`
 			CleanupCmd              *[]string `tfsdk:"cleanup_cmd" json:"cleanupCmd,omitempty"`
 			Debug                   *bool     `tfsdk:"debug" json:"debug,omitempty"`
 			DefaultRuntimeClassName *string   `tfsdk:"default_runtime_class_name" json:"defaultRuntimeClassName,omitempty"`
@@ -82,9 +86,12 @@ type ConfidentialcontainersOrgCcRuntimeV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"environment_variables" json:"environmentVariables,omitempty"`
-			GuestInitrdImage      *string            `tfsdk:"guest_initrd_image" json:"guestInitrdImage,omitempty"`
-			GuestKernelImage      *string            `tfsdk:"guest_kernel_image" json:"guestKernelImage,omitempty"`
-			ImagePullPolicy       *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			GuestInitrdImage *string `tfsdk:"guest_initrd_image" json:"guestInitrdImage,omitempty"`
+			GuestKernelImage *string `tfsdk:"guest_kernel_image" json:"guestKernelImage,omitempty"`
+			ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			ImagePullSecret  *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secret" json:"imagePullSecret,omitempty"`
 			InstallCmd            *[]string          `tfsdk:"install_cmd" json:"installCmd,omitempty"`
 			InstallDoneLabel      *map[string]string `tfsdk:"install_done_label" json:"installDoneLabel,omitempty"`
 			InstallType           *string            `tfsdk:"install_type" json:"installType,omitempty"`
@@ -249,6 +256,10 @@ type ConfidentialcontainersOrgCcRuntimeV1Beta1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Image *struct {
+					PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+					Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+				} `tfsdk:"image" json:"image,omitempty"`
 				Iscsi *struct {
 					ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 					ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -591,6 +602,10 @@ type ConfidentialcontainersOrgCcRuntimeV1Beta1ManifestData struct {
 						Path *string `tfsdk:"path" json:"path,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"host_path" json:"hostPath,omitempty"`
+					Image *struct {
+						PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+						Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+					} `tfsdk:"image" json:"image,omitempty"`
 					Iscsi *struct {
 						ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 						ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -932,6 +947,10 @@ type ConfidentialcontainersOrgCcRuntimeV1Beta1ManifestData struct {
 						Path *string `tfsdk:"path" json:"path,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"host_path" json:"hostPath,omitempty"`
+					Image *struct {
+						PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+						Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+					} `tfsdk:"image" json:"image,omitempty"`
 					Iscsi *struct {
 						ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 						ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1216,27 +1235,61 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 						Computed: false,
 					},
 
+					"cc_tolerations": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"effect": schema.StringAttribute{
+									Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"key": schema.StringAttribute{
+									Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"operator": schema.StringAttribute{
+									Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+									MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"toleration_seconds": schema.Int64Attribute{
+									Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+									MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"config": schema.SingleNestedAttribute{
 						Description:         "CcInstallConfig is a placeholder struct",
 						MarkdownDescription: "CcInstallConfig is a placeholder struct",
 						Attributes: map[string]schema.Attribute{
-							"image_pull_secret": schema.SingleNestedAttribute{
-								Description:         "This specifies the registry secret to pull of the container images",
-								MarkdownDescription: "This specifies the registry secret to pull of the container images",
-								Attributes: map[string]schema.Attribute{
-									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"cleanup_cmd": schema.ListAttribute{
 								Description:         "This specifies the command for cleanup on the nodes",
 								MarkdownDescription: "This specifies the command for cleanup on the nodes",
@@ -1446,6 +1499,23 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"image_pull_secret": schema.SingleNestedAttribute{
+								Description:         "This specifies the registry secret to pull of the container images",
+								MarkdownDescription: "This specifies the registry secret to pull of the container images",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"install_cmd": schema.ListAttribute{
 								Description:         "This specifies the command for installation of the runtime on the nodes",
 								MarkdownDescription: "This specifies the command for installation of the runtime on the nodes",
@@ -1548,8 +1618,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"aws_elastic_block_store": schema.SingleNestedAttribute{
-											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -1589,8 +1659,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"azure_disk": schema.SingleNestedAttribute{
-											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"caching_mode": schema.StringAttribute{
 													Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -1646,8 +1716,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"azure_file": schema.SingleNestedAttribute{
-											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"read_only": schema.BoolAttribute{
 													Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -1679,8 +1749,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"cephfs": schema.SingleNestedAttribute{
-											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"monitors": schema.ListAttribute{
 													Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -1746,8 +1816,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"cinder": schema.SingleNestedAttribute{
-											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -1864,8 +1934,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"csi": schema.SingleNestedAttribute{
-											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -2243,8 +2313,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 																},
 
 																"volume_attributes_class_name": schema.StringAttribute{
-																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2333,8 +2403,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"flex_volume": schema.SingleNestedAttribute{
-											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the driver to use for this volume.",
@@ -2392,8 +2462,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"flocker": schema.SingleNestedAttribute{
-											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"dataset_name": schema.StringAttribute{
 													Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -2417,8 +2487,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"gce_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -2458,8 +2528,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"git_repo": schema.SingleNestedAttribute{
-											Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-											MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 											Attributes: map[string]schema.Attribute{
 												"directory": schema.StringAttribute{
 													Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -2491,8 +2561,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"glusterfs": schema.SingleNestedAttribute{
-											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 											Attributes: map[string]schema.Attribute{
 												"endpoints": schema.StringAttribute{
 													Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -2538,6 +2608,31 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												"type": schema.StringAttribute{
 													Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 													MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"image": schema.SingleNestedAttribute{
+											Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+											MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+											Attributes: map[string]schema.Attribute{
+												"pull_policy": schema.StringAttribute{
+													Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"reference": schema.StringAttribute{
+													Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+													MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2722,8 +2817,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"photon_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2747,8 +2842,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"portworx_volume": schema.SingleNestedAttribute{
-											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2792,8 +2887,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"sources": schema.ListNestedAttribute{
-													Description:         "sources is the list of volume projections",
-													MarkdownDescription: "sources is the list of volume projections",
+													Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+													MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"cluster_trust_bundle": schema.SingleNestedAttribute{
@@ -3150,8 +3245,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"quobyte": schema.SingleNestedAttribute{
-											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"group": schema.StringAttribute{
 													Description:         "group to map volume access to Default is no group",
@@ -3207,8 +3302,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"rbd": schema.SingleNestedAttribute{
-											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -3290,8 +3385,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"scale_io": schema.SingleNestedAttribute{
-											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -3456,8 +3551,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"storageos": schema.SingleNestedAttribute{
-											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -3514,8 +3609,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										},
 
 										"vsphere_volume": schema.SingleNestedAttribute{
-											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -3830,8 +3925,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws_elastic_block_store": schema.SingleNestedAttribute{
-													Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-													MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -3871,8 +3966,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"azure_disk": schema.SingleNestedAttribute{
-													Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-													MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+													Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+													MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"caching_mode": schema.StringAttribute{
 															Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -3928,8 +4023,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"azure_file": schema.SingleNestedAttribute{
-													Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-													MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+													Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+													MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"read_only": schema.BoolAttribute{
 															Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -3961,8 +4056,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"cephfs": schema.SingleNestedAttribute{
-													Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-													MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+													Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+													MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"monitors": schema.ListAttribute{
 															Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -4028,8 +4123,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"cinder": schema.SingleNestedAttribute{
-													Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-													MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+													Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+													MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -4146,8 +4241,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"csi": schema.SingleNestedAttribute{
-													Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-													MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+													Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+													MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 													Attributes: map[string]schema.Attribute{
 														"driver": schema.StringAttribute{
 															Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -4525,8 +4620,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 																		},
 
 																		"volume_attributes_class_name": schema.StringAttribute{
-																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4615,8 +4710,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"flex_volume": schema.SingleNestedAttribute{
-													Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-													MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+													Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+													MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 													Attributes: map[string]schema.Attribute{
 														"driver": schema.StringAttribute{
 															Description:         "driver is the name of the driver to use for this volume.",
@@ -4674,8 +4769,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"flocker": schema.SingleNestedAttribute{
-													Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-													MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+													Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+													MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"dataset_name": schema.StringAttribute{
 															Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -4699,8 +4794,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"gce_persistent_disk": schema.SingleNestedAttribute{
-													Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-													MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -4740,8 +4835,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"git_repo": schema.SingleNestedAttribute{
-													Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-													MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+													Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+													MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 													Attributes: map[string]schema.Attribute{
 														"directory": schema.StringAttribute{
 															Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -4773,8 +4868,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"glusterfs": schema.SingleNestedAttribute{
-													Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-													MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+													Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+													MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 													Attributes: map[string]schema.Attribute{
 														"endpoints": schema.StringAttribute{
 															Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -4820,6 +4915,31 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 														"type": schema.StringAttribute{
 															Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 															MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"image": schema.SingleNestedAttribute{
+													Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+													MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+													Attributes: map[string]schema.Attribute{
+														"pull_policy": schema.StringAttribute{
+															Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+															MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"reference": schema.StringAttribute{
+															Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+															MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -5004,8 +5124,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"photon_persistent_disk": schema.SingleNestedAttribute{
-													Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-													MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+													Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+													MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -5029,8 +5149,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"portworx_volume": schema.SingleNestedAttribute{
-													Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-													MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+													Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+													MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -5074,8 +5194,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 														},
 
 														"sources": schema.ListNestedAttribute{
-															Description:         "sources is the list of volume projections",
-															MarkdownDescription: "sources is the list of volume projections",
+															Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+															MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"cluster_trust_bundle": schema.SingleNestedAttribute{
@@ -5432,8 +5552,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"quobyte": schema.SingleNestedAttribute{
-													Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-													MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+													Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+													MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"group": schema.StringAttribute{
 															Description:         "group to map volume access to Default is no group",
@@ -5489,8 +5609,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"rbd": schema.SingleNestedAttribute{
-													Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-													MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+													Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+													MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -5572,8 +5692,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"scale_io": schema.SingleNestedAttribute{
-													Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-													MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+													Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+													MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -5738,8 +5858,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"storageos": schema.SingleNestedAttribute{
-													Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-													MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+													Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+													MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -5796,8 +5916,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"vsphere_volume": schema.SingleNestedAttribute{
-													Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-													MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+													Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+													MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -6101,8 +6221,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"aws_elastic_block_store": schema.SingleNestedAttribute{
-													Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-													MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -6142,8 +6262,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"azure_disk": schema.SingleNestedAttribute{
-													Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-													MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+													Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+													MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"caching_mode": schema.StringAttribute{
 															Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -6199,8 +6319,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"azure_file": schema.SingleNestedAttribute{
-													Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-													MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+													Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+													MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"read_only": schema.BoolAttribute{
 															Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -6232,8 +6352,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"cephfs": schema.SingleNestedAttribute{
-													Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-													MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+													Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+													MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"monitors": schema.ListAttribute{
 															Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -6299,8 +6419,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"cinder": schema.SingleNestedAttribute{
-													Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-													MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+													Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+													MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -6417,8 +6537,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"csi": schema.SingleNestedAttribute{
-													Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-													MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+													Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+													MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 													Attributes: map[string]schema.Attribute{
 														"driver": schema.StringAttribute{
 															Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -6796,8 +6916,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 																		},
 
 																		"volume_attributes_class_name": schema.StringAttribute{
-																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -6886,8 +7006,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"flex_volume": schema.SingleNestedAttribute{
-													Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-													MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+													Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+													MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 													Attributes: map[string]schema.Attribute{
 														"driver": schema.StringAttribute{
 															Description:         "driver is the name of the driver to use for this volume.",
@@ -6945,8 +7065,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"flocker": schema.SingleNestedAttribute{
-													Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-													MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+													Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+													MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"dataset_name": schema.StringAttribute{
 															Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -6970,8 +7090,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"gce_persistent_disk": schema.SingleNestedAttribute{
-													Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-													MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -7011,8 +7131,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"git_repo": schema.SingleNestedAttribute{
-													Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-													MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+													Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+													MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 													Attributes: map[string]schema.Attribute{
 														"directory": schema.StringAttribute{
 															Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -7044,8 +7164,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"glusterfs": schema.SingleNestedAttribute{
-													Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-													MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+													Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+													MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 													Attributes: map[string]schema.Attribute{
 														"endpoints": schema.StringAttribute{
 															Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -7091,6 +7211,31 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 														"type": schema.StringAttribute{
 															Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 															MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"image": schema.SingleNestedAttribute{
+													Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+													MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+													Attributes: map[string]schema.Attribute{
+														"pull_policy": schema.StringAttribute{
+															Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+															MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"reference": schema.StringAttribute{
+															Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+															MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7275,8 +7420,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"photon_persistent_disk": schema.SingleNestedAttribute{
-													Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-													MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+													Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+													MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -7300,8 +7445,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"portworx_volume": schema.SingleNestedAttribute{
-													Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-													MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+													Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+													MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -7345,8 +7490,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 														},
 
 														"sources": schema.ListNestedAttribute{
-															Description:         "sources is the list of volume projections",
-															MarkdownDescription: "sources is the list of volume projections",
+															Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+															MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"cluster_trust_bundle": schema.SingleNestedAttribute{
@@ -7703,8 +7848,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"quobyte": schema.SingleNestedAttribute{
-													Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-													MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+													Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+													MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"group": schema.StringAttribute{
 															Description:         "group to map volume access to Default is no group",
@@ -7760,8 +7905,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"rbd": schema.SingleNestedAttribute{
-													Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-													MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+													Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+													MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -7843,8 +7988,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"scale_io": schema.SingleNestedAttribute{
-													Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-													MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+													Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+													MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -8009,8 +8154,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"storageos": schema.SingleNestedAttribute{
-													Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-													MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+													Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+													MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -8067,8 +8212,8 @@ func (r *ConfidentialcontainersOrgCcRuntimeV1Beta1Manifest) Schema(_ context.Con
 												},
 
 												"vsphere_volume": schema.SingleNestedAttribute{
-													Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-													MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+													Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+													MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 													Attributes: map[string]schema.Attribute{
 														"fs_type": schema.StringAttribute{
 															Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",

@@ -58,9 +58,11 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1ManifestData struct {
 					NotPrincipals        *[]string `tfsdk:"not_principals" json:"notPrincipals,omitempty"`
 					NotRemoteIpBlocks    *[]string `tfsdk:"not_remote_ip_blocks" json:"notRemoteIpBlocks,omitempty"`
 					NotRequestPrincipals *[]string `tfsdk:"not_request_principals" json:"notRequestPrincipals,omitempty"`
+					NotServiceAccounts   *[]string `tfsdk:"not_service_accounts" json:"notServiceAccounts,omitempty"`
 					Principals           *[]string `tfsdk:"principals" json:"principals,omitempty"`
 					RemoteIpBlocks       *[]string `tfsdk:"remote_ip_blocks" json:"remoteIpBlocks,omitempty"`
 					RequestPrincipals    *[]string `tfsdk:"request_principals" json:"requestPrincipals,omitempty"`
+					ServiceAccounts      *[]string `tfsdk:"service_accounts" json:"serviceAccounts,omitempty"`
 				} `tfsdk:"source" json:"source,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 			To *[]struct {
@@ -281,6 +283,15 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 														Computed:            false,
 													},
 
+													"not_service_accounts": schema.ListAttribute{
+														Description:         "Optional.",
+														MarkdownDescription: "Optional.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"principals": schema.ListAttribute{
 														Description:         "Optional.",
 														MarkdownDescription: "Optional.",
@@ -300,6 +311,15 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 													},
 
 													"request_principals": schema.ListAttribute{
+														Description:         "Optional.",
+														MarkdownDescription: "Optional.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"service_accounts": schema.ListAttribute{
 														Description:         "Optional.",
 														MarkdownDescription: "Optional.",
 														ElementType:         types.StringType,

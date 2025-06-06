@@ -238,8 +238,20 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 			} `tfsdk:"deployment" json:"deployment,omitempty"`
 			MirrorMakerContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -499,6 +511,15 @@ type KafkaStrimziIoKafkaMirrorMakerV1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Csi *struct {
+						Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
+						FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
+						NodePublishSecretRef *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"node_publish_secret_ref" json:"nodePublishSecretRef,omitempty"`
+						ReadOnly         *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+						VolumeAttributes *map[string]string `tfsdk:"volume_attributes" json:"volumeAttributes,omitempty"`
+					} `tfsdk:"csi" json:"csi,omitempty"`
 					EmptyDir *struct {
 						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 						SizeLimit *struct {
@@ -1996,6 +2017,81 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -3755,6 +3851,65 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest) Schema(_ context.Context
 														"optional": schema.BoolAttribute{
 															Description:         "",
 															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"csi": schema.SingleNestedAttribute{
+													Description:         "CSIVolumeSource object to use to populate the volume.",
+													MarkdownDescription: "CSIVolumeSource object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"driver": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"fs_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"node_publish_secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
 															Computed:            false,

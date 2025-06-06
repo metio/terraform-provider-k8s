@@ -141,12 +141,12 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 90 to 2555 days (about three months to up to seven years). To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).",
-				MarkdownDescription: "EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 90 to 2555 days (about three months to up to seven years). To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).",
+				Description:         "EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account. To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake-concepts.html#adv-event-selectors).",
+				MarkdownDescription: "EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account. To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake-concepts.html#adv-event-selectors).",
 				Attributes: map[string]schema.Attribute{
 					"advanced_event_selectors": schema.ListNestedAttribute{
-						Description:         "The advanced event selectors to use to select the events for the data store. For more information about how to use advanced event selectors, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide.",
-						MarkdownDescription: "The advanced event selectors to use to select the events for the data store. For more information about how to use advanced event selectors, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide.",
+						Description:         "The advanced event selectors to use to select the events for the data store. You can configure up to five advanced event selectors for each event data store. For more information about how to use advanced event selectors to log CloudTrail events, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide. For more information about how to use advanced event selectors to include Config configuration items in your event data store, see Create an event data store for Config configuration items (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/lake-eds-cli.html#lake-cli-create-eds-config) in the CloudTrail User Guide. For more information about how to use advanced event selectors to include events outside of Amazon Web Services events in your event data store, see Create an integration to log events from outside Amazon Web Services (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/lake-integrations-cli.html#lake-cli-create-integration) in the CloudTrail User Guide.",
+						MarkdownDescription: "The advanced event selectors to use to select the events for the data store. You can configure up to five advanced event selectors for each event data store. For more information about how to use advanced event selectors to log CloudTrail events, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide. For more information about how to use advanced event selectors to include Config configuration items in your event data store, see Create an event data store for Config configuration items (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/lake-eds-cli.html#lake-cli-create-eds-config) in the CloudTrail User Guide. For more information about how to use advanced event selectors to include events outside of Amazon Web Services events in your event data store, see Create an integration to log events from outside Amazon Web Services (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/lake-integrations-cli.html#lake-cli-create-integration) in the CloudTrail User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"field_selectors": schema.ListNestedAttribute{
@@ -237,16 +237,16 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"multi_region_enabled": schema.BoolAttribute{
-						Description:         "Specifies whether the event data store includes events from all regions, or only from the region in which the event data store is created.",
-						MarkdownDescription: "Specifies whether the event data store includes events from all regions, or only from the region in which the event data store is created.",
+						Description:         "Specifies whether the event data store includes events from all Regions, or only from the Region in which the event data store is created.",
+						MarkdownDescription: "Specifies whether the event data store includes events from all Regions, or only from the Region in which the event data store is created.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the event data store.",
-						MarkdownDescription: "The name of the event data store.",
+						Description:         "The name of the event data store. Regex Pattern: '^[a-zA-Z0-9._-]+$'",
+						MarkdownDescription: "The name of the event data store. Regex Pattern: '^[a-zA-Z0-9._-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -261,8 +261,8 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"retention_period": schema.Int64Attribute{
-						Description:         "The retention period of the event data store, in days. You can set a retention period of up to 2555 days, the equivalent of seven years.",
-						MarkdownDescription: "The retention period of the event data store, in days. You can set a retention period of up to 2555 days, the equivalent of seven years.",
+						Description:         "The retention period of the event data store, in days. If BillingMode is set to EXTENDABLE_RETENTION_PRICING, you can set a retention period of up to 3653 days, the equivalent of 10 years. If BillingMode is set to FIXED_RETENTION_PRICING, you can set a retention period of up to 2557 days, the equivalent of seven years. CloudTrail Lake determines whether to retain an event by checking if the eventTime of the event is within the specified retention period. For example, if you set a retention period of 90 days, CloudTrail will remove events when the eventTime is older than 90 days. If you plan to copy trail events to this event data store, we recommend that you consider both the age of the events that you want to copy as well as how long you want to keep the copied events in your event data store. For example, if you copy trail events that are 5 years old and specify a retention period of 7 years, the event data store will retain those events for two years.",
+						MarkdownDescription: "The retention period of the event data store, in days. If BillingMode is set to EXTENDABLE_RETENTION_PRICING, you can set a retention period of up to 3653 days, the equivalent of 10 years. If BillingMode is set to FIXED_RETENTION_PRICING, you can set a retention period of up to 2557 days, the equivalent of seven years. CloudTrail Lake determines whether to retain an event by checking if the eventTime of the event is within the specified retention period. For example, if you set a retention period of 90 days, CloudTrail will remove events when the eventTime is older than 90 days. If you plan to copy trail events to this event data store, we recommend that you consider both the age of the events that you want to copy as well as how long you want to keep the copied events in your event data store. For example, if you copy trail events that are 5 years old and specify a retention period of 7 years, the event data store will retain those events for two years.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

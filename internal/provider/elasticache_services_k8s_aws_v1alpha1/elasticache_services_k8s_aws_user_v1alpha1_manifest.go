@@ -138,16 +138,16 @@ func (r *ElasticacheServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"access_string": schema.StringAttribute{
-						Description:         "Access permissions string used for this user.",
-						MarkdownDescription: "Access permissions string used for this user.",
+						Description:         "Access permissions string used for this user. Regex Pattern: 'S'",
+						MarkdownDescription: "Access permissions string used for this user. Regex Pattern: 'S'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"engine": schema.StringAttribute{
-						Description:         "The current supported value is Redis.",
-						MarkdownDescription: "The current supported value is Redis.",
+						Description:         "The current supported value is Redis. Regex Pattern: '^[a-zA-Z]*$'",
+						MarkdownDescription: "The current supported value is Redis. Regex Pattern: '^[a-zA-Z]*$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -224,8 +224,8 @@ func (r *ElasticacheServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"user_id": schema.StringAttribute{
-						Description:         "The ID of the user.",
-						MarkdownDescription: "The ID of the user.",
+						Description:         "The ID of the user. Regex Pattern: '^[a-zA-Z][a-zA-Z0-9-]*$'",
+						MarkdownDescription: "The ID of the user. Regex Pattern: '^[a-zA-Z][a-zA-Z0-9-]*$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

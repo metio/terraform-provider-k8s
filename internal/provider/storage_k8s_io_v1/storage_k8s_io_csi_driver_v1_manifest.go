@@ -42,13 +42,14 @@ type StorageK8SIoCsidriverV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AttachRequired    *bool   `tfsdk:"attach_required" json:"attachRequired,omitempty"`
-		FsGroupPolicy     *string `tfsdk:"fs_group_policy" json:"fsGroupPolicy,omitempty"`
-		PodInfoOnMount    *bool   `tfsdk:"pod_info_on_mount" json:"podInfoOnMount,omitempty"`
-		RequiresRepublish *bool   `tfsdk:"requires_republish" json:"requiresRepublish,omitempty"`
-		SeLinuxMount      *bool   `tfsdk:"se_linux_mount" json:"seLinuxMount,omitempty"`
-		StorageCapacity   *bool   `tfsdk:"storage_capacity" json:"storageCapacity,omitempty"`
-		TokenRequests     *[]struct {
+		AttachRequired                     *bool   `tfsdk:"attach_required" json:"attachRequired,omitempty"`
+		FsGroupPolicy                      *string `tfsdk:"fs_group_policy" json:"fsGroupPolicy,omitempty"`
+		NodeAllocatableUpdatePeriodSeconds *int64  `tfsdk:"node_allocatable_update_period_seconds" json:"nodeAllocatableUpdatePeriodSeconds,omitempty"`
+		PodInfoOnMount                     *bool   `tfsdk:"pod_info_on_mount" json:"podInfoOnMount,omitempty"`
+		RequiresRepublish                  *bool   `tfsdk:"requires_republish" json:"requiresRepublish,omitempty"`
+		SeLinuxMount                       *bool   `tfsdk:"se_linux_mount" json:"seLinuxMount,omitempty"`
+		StorageCapacity                    *bool   `tfsdk:"storage_capacity" json:"storageCapacity,omitempty"`
+		TokenRequests                      *[]struct {
 			Audience          *string `tfsdk:"audience" json:"audience,omitempty"`
 			ExpirationSeconds *int64  `tfsdk:"expiration_seconds" json:"expirationSeconds,omitempty"`
 		} `tfsdk:"token_requests" json:"tokenRequests,omitempty"`
@@ -132,6 +133,14 @@ func (r *StorageK8SIoCsidriverV1Manifest) Schema(_ context.Context, _ datasource
 					"fs_group_policy": schema.StringAttribute{
 						Description:         "fsGroupPolicy defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field was immutable in Kubernetes < 1.29 and now is mutable. Defaults to ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce.",
 						MarkdownDescription: "fsGroupPolicy defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field was immutable in Kubernetes < 1.29 and now is mutable. Defaults to ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"node_allocatable_update_period_seconds": schema.Int64Attribute{
+						Description:         "nodeAllocatableUpdatePeriodSeconds specifies the interval between periodic updates of the CSINode allocatable capacity for this driver. When set, both periodic updates and updates triggered by capacity-related failures are enabled. If not set, no updates occur (neither periodic nor upon detecting capacity-related failures), and the allocatable.count remains static. The minimum allowed value for this field is 10 seconds. This is an alpha feature and requires the MutableCSINodeAllocatableCount feature gate to be enabled. This field is mutable.",
+						MarkdownDescription: "nodeAllocatableUpdatePeriodSeconds specifies the interval between periodic updates of the CSINode allocatable capacity for this driver. When set, both periodic updates and updates triggered by capacity-related failures are enabled. If not set, no updates occur (neither periodic nor upon detecting capacity-related failures), and the allocatable.count remains static. The minimum allowed value for this field is 10 seconds. This is an alpha feature and requires the MutableCSINodeAllocatableCount feature gate to be enabled. This field is mutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
