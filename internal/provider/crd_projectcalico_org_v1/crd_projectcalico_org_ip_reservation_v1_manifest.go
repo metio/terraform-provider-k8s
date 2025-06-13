@@ -108,12 +108,12 @@ func (r *CrdProjectcalicoOrgIpreservationV1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPReservationSpec contains the specification for an IPReservation resource.",
-				MarkdownDescription: "IPReservationSpec contains the specification for an IPReservation resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"reserved_cidrs": schema.ListAttribute{
-						Description:         "ReservedCIDRs is a list of CIDRs and/or IP addresses that Calico IPAM will exclude from new allocations.",
-						MarkdownDescription: "ReservedCIDRs is a list of CIDRs and/or IP addresses that Calico IPAM will exclude from new allocations.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

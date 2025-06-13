@@ -46,6 +46,16 @@ type SecretsStackableTechSecretClassV1Alpha1ManifestData struct {
 	Spec *struct {
 		Backend *struct {
 			AutoTls *struct {
+				AdditionalTrustRoots *[]struct {
+					ConfigMap *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"additional_trust_roots" json:"additionalTrustRoots,omitempty"`
 				Ca *struct {
 					AutoGenerate          *bool   `tfsdk:"auto_generate" json:"autoGenerate,omitempty"`
 					CaCertificateLifetime *string `tfsdk:"ca_certificate_lifetime" json:"caCertificateLifetime,omitempty"`
@@ -67,12 +77,18 @@ type SecretsStackableTechSecretClassV1Alpha1ManifestData struct {
 					Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"issuer" json:"issuer,omitempty"`
+				KeyGeneration *struct {
+					Rsa *struct {
+						Length *int64 `tfsdk:"length" json:"length,omitempty"`
+					} `tfsdk:"rsa" json:"rsa,omitempty"`
+				} `tfsdk:"key_generation" json:"keyGeneration,omitempty"`
 			} `tfsdk:"experimental_cert_manager" json:"experimentalCertManager,omitempty"`
 			K8sSearch *struct {
 				SearchNamespace *struct {
 					Name *string            `tfsdk:"name" json:"name,omitempty"`
 					Pod  *map[string]string `tfsdk:"pod" json:"pod,omitempty"`
 				} `tfsdk:"search_namespace" json:"searchNamespace,omitempty"`
+				TrustStoreConfigMapName *string `tfsdk:"trust_store_config_map_name" json:"trustStoreConfigMapName,omitempty"`
 			} `tfsdk:"k8s_search" json:"k8sSearch,omitempty"`
 			KerberosKeytab *struct {
 				Admin *struct {
@@ -182,6 +198,67 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Conte
 								Description:         "The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and key pair will be generated and signed for each Pod, keys or certificates are never reused.",
 								MarkdownDescription: "The ['autoTls' backend](https://docs.stackable.tech/home/nightly/secret-operator/secretclass#backend-autotls) issues a TLS certificate signed by the Secret Operator. The certificate authority can be provided by the administrator, or managed automatically by the Secret Operator. A new certificate and key pair will be generated and signed for each Pod, keys or certificates are never reused.",
 								Attributes: map[string]schema.Attribute{
+									"additional_trust_roots": schema.ListNestedAttribute{
+										Description:         "Additional trust roots which are added to the provided 'ca.crt' file.",
+										MarkdownDescription: "Additional trust roots which are added to the provided 'ca.crt' file.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "Reference (name and namespace) to a Kubernetes ConfigMap object where additional certificates are stored. The extensions of the keys denote its contents: A key suffixed with '.crt' contains a stack of base64 encoded DER certificates, a key suffixed with '.der' contains a binary DER certificate.",
+													MarkdownDescription: "Reference (name and namespace) to a Kubernetes ConfigMap object where additional certificates are stored. The extensions of the keys denote its contents: A key suffixed with '.crt' contains a stack of base64 encoded DER certificates, a key suffixed with '.der' contains a binary DER certificate.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the ConfigMap being referred to.",
+															MarkdownDescription: "Name of the ConfigMap being referred to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "Namespace of the ConfigMap being referred to.",
+															MarkdownDescription: "Namespace of the ConfigMap being referred to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Reference (name and namespace) to a Kubernetes Secret object where additional certificates are stored. The extensions of the keys denote its contents: A key suffixed with '.crt' contains a stack of base64 encoded DER certificates, a key suffixed with '.der' contains a binary DER certificate.",
+													MarkdownDescription: "Reference (name and namespace) to a Kubernetes Secret object where additional certificates are stored. The extensions of the keys denote its contents: A key suffixed with '.crt' contains a stack of base64 encoded DER certificates, a key suffixed with '.der' contains a binary DER certificate.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the Secret being referred to.",
+															MarkdownDescription: "Name of the Secret being referred to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "Namespace of the Secret being referred to.",
+															MarkdownDescription: "Namespace of the Secret being referred to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"ca": schema.SingleNestedAttribute{
 										Description:         "Configures the certificate authority used to issue Pod certificates.",
 										MarkdownDescription: "Configures the certificate authority used to issue Pod certificates.",
@@ -313,6 +390,35 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Conte
 										Optional: false,
 										Computed: false,
 									},
+
+									"key_generation": schema.SingleNestedAttribute{
+										Description:         "The algorithm used to generate a key pair and required configuration settings. Currently only RSA and a key length of 2048, 3072 or 4096 bits can be configured.",
+										MarkdownDescription: "The algorithm used to generate a key pair and required configuration settings. Currently only RSA and a key length of 2048, 3072 or 4096 bits can be configured.",
+										Attributes: map[string]schema.Attribute{
+											"rsa": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"length": schema.Int64Attribute{
+														Description:         "The amount of bits used for generating the RSA keypair. Currently, '2048', '3072' and '4096' are supported. Defaults to '2048' bits.",
+														MarkdownDescription: "The amount of bits used for generating the RSA keypair. Currently, '2048', '3072' and '4096' are supported. Defaults to '2048' bits.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.OneOf(2048, 3072, 4096),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -347,6 +453,14 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Conte
 										Required: true,
 										Optional: false,
 										Computed: false,
+									},
+
+									"trust_store_config_map_name": schema.StringAttribute{
+										Description:         "Name of a ConfigMap that contains the information required to validate against this SecretClass. Resolved relative to 'search_namespace'. Required to request a TrustStore for this SecretClass.",
+										MarkdownDescription: "Name of a ConfigMap that contains the information required to validate against this SecretClass. Resolved relative to 'search_namespace'. Required to request a TrustStore for this SecretClass.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

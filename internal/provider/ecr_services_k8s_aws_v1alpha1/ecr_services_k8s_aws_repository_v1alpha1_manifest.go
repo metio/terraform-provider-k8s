@@ -198,8 +198,8 @@ func (r *EcrServicesK8SAwsRepositoryV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name to use for the repository. The repository name may be specified on its own (such as nginx-web-app) or it can be prepended with a namespace to group the repository into a category (such as project-a/nginx-web-app).",
-						MarkdownDescription: "The name to use for the repository. The repository name may be specified on its own (such as nginx-web-app) or it can be prepended with a namespace to group the repository into a category (such as project-a/nginx-web-app).",
+						Description:         "The name to use for the repository. The repository name may be specified on its own (such as nginx-web-app) or it can be prepended with a namespace to group the repository into a category (such as project-a/nginx-web-app). The repository name must start with a letter and can only contain lowercase letters, numbers, hyphens, underscores, and forward slashes. Regex Pattern: '^(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*$'",
+						MarkdownDescription: "The name to use for the repository. The repository name may be specified on its own (such as nginx-web-app) or it can be prepended with a namespace to group the repository into a category (such as project-a/nginx-web-app). The repository name must start with a letter and can only contain lowercase letters, numbers, hyphens, underscores, and forward slashes. Regex Pattern: '^(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -214,8 +214,8 @@ func (r *EcrServicesK8SAwsRepositoryV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"registry_id": schema.StringAttribute{
-						Description:         "The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.",
-						MarkdownDescription: "The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.",
+						Description:         "The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed. Regex Pattern: '^[0-9]{12}$'",
+						MarkdownDescription: "The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed. Regex Pattern: '^[0-9]{12}$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

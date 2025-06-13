@@ -282,6 +282,9 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Manifest) Schema(_ context.Context,
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(256),
+									},
 								},
 
 								"number": schema.Int64Attribute{
@@ -302,6 +305,9 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Manifest) Schema(_ context.Context,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(256),
+									},
 								},
 
 								"target_port": schema.Int64Attribute{
@@ -360,8 +366,8 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

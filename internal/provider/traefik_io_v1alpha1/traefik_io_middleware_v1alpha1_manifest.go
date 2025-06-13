@@ -7,6 +7,7 @@ package traefik_io_v1alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -92,17 +93,18 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			Query   *string `tfsdk:"query" json:"query,omitempty"`
 			Service *struct {
 				HealthCheck *struct {
-					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
-					Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-					Hostname        *string            `tfsdk:"hostname" json:"hostname,omitempty"`
-					Interval        *string            `tfsdk:"interval" json:"interval,omitempty"`
-					Method          *string            `tfsdk:"method" json:"method,omitempty"`
-					Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
-					Path            *string            `tfsdk:"path" json:"path,omitempty"`
-					Port            *int64             `tfsdk:"port" json:"port,omitempty"`
-					Scheme          *string            `tfsdk:"scheme" json:"scheme,omitempty"`
-					Status          *int64             `tfsdk:"status" json:"status,omitempty"`
-					Timeout         *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+					FollowRedirects   *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Headers           *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+					Hostname          *string            `tfsdk:"hostname" json:"hostname,omitempty"`
+					Interval          *string            `tfsdk:"interval" json:"interval,omitempty"`
+					Method            *string            `tfsdk:"method" json:"method,omitempty"`
+					Mode              *string            `tfsdk:"mode" json:"mode,omitempty"`
+					Path              *string            `tfsdk:"path" json:"path,omitempty"`
+					Port              *int64             `tfsdk:"port" json:"port,omitempty"`
+					Scheme            *string            `tfsdk:"scheme" json:"scheme,omitempty"`
+					Status            *int64             `tfsdk:"status" json:"status,omitempty"`
+					Timeout           *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+					UnhealthyInterval *string            `tfsdk:"unhealthy_interval" json:"unhealthyInterval,omitempty"`
 				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
@@ -118,9 +120,11 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 				ServersTransport *string `tfsdk:"servers_transport" json:"serversTransport,omitempty"`
 				Sticky           *struct {
 					Cookie *struct {
+						Domain   *string `tfsdk:"domain" json:"domain,omitempty"`
 						HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
 						MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Path     *string `tfsdk:"path" json:"path,omitempty"`
 						SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 						Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
 					} `tfsdk:"cookie" json:"cookie,omitempty"`
@@ -128,7 +132,8 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 				Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
 				Weight   *int64  `tfsdk:"weight" json:"weight,omitempty"`
 			} `tfsdk:"service" json:"service,omitempty"`
-			Status *[]string `tfsdk:"status" json:"status,omitempty"`
+			Status         *[]string          `tfsdk:"status" json:"status,omitempty"`
+			StatusRewrites *map[string]string `tfsdk:"status_rewrites" json:"statusRewrites,omitempty"`
 		} `tfsdk:"errors" json:"errors,omitempty"`
 		ForwardAuth *struct {
 			AddAuthCookiesToResponse *[]string `tfsdk:"add_auth_cookies_to_response" json:"addAuthCookiesToResponse,omitempty"`
@@ -136,6 +141,11 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 			AuthRequestHeaders       *[]string `tfsdk:"auth_request_headers" json:"authRequestHeaders,omitempty"`
 			AuthResponseHeaders      *[]string `tfsdk:"auth_response_headers" json:"authResponseHeaders,omitempty"`
 			AuthResponseHeadersRegex *string   `tfsdk:"auth_response_headers_regex" json:"authResponseHeadersRegex,omitempty"`
+			ForwardBody              *bool     `tfsdk:"forward_body" json:"forwardBody,omitempty"`
+			HeaderField              *string   `tfsdk:"header_field" json:"headerField,omitempty"`
+			MaxBodySize              *int64    `tfsdk:"max_body_size" json:"maxBodySize,omitempty"`
+			PreserveLocationHeader   *bool     `tfsdk:"preserve_location_header" json:"preserveLocationHeader,omitempty"`
+			PreserveRequestMethod    *bool     `tfsdk:"preserve_request_method" json:"preserveRequestMethod,omitempty"`
 			Tls                      *struct {
 				CaOptional         *bool   `tfsdk:"ca_optional" json:"caOptional,omitempty"`
 				CaSecret           *string `tfsdk:"ca_secret" json:"caSecret,omitempty"`
@@ -241,9 +251,25 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 		} `tfsdk:"pass_tls_client_cert" json:"passTLSClientCert,omitempty"`
 		Plugin    *map[string]string `tfsdk:"plugin" json:"plugin,omitempty"`
 		RateLimit *struct {
-			Average         *int64  `tfsdk:"average" json:"average,omitempty"`
-			Burst           *int64  `tfsdk:"burst" json:"burst,omitempty"`
-			Period          *string `tfsdk:"period" json:"period,omitempty"`
+			Average *int64  `tfsdk:"average" json:"average,omitempty"`
+			Burst   *int64  `tfsdk:"burst" json:"burst,omitempty"`
+			Period  *string `tfsdk:"period" json:"period,omitempty"`
+			Redis   *struct {
+				Db             *int64    `tfsdk:"db" json:"db,omitempty"`
+				DialTimeout    *string   `tfsdk:"dial_timeout" json:"dialTimeout,omitempty"`
+				Endpoints      *[]string `tfsdk:"endpoints" json:"endpoints,omitempty"`
+				MaxActiveConns *int64    `tfsdk:"max_active_conns" json:"maxActiveConns,omitempty"`
+				MinIdleConns   *int64    `tfsdk:"min_idle_conns" json:"minIdleConns,omitempty"`
+				PoolSize       *int64    `tfsdk:"pool_size" json:"poolSize,omitempty"`
+				ReadTimeout    *string   `tfsdk:"read_timeout" json:"readTimeout,omitempty"`
+				Secret         *string   `tfsdk:"secret" json:"secret,omitempty"`
+				Tls            *struct {
+					CaSecret           *string `tfsdk:"ca_secret" json:"caSecret,omitempty"`
+					CertSecret         *string `tfsdk:"cert_secret" json:"certSecret,omitempty"`
+					InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				} `tfsdk:"tls" json:"tls,omitempty"`
+				WriteTimeout *string `tfsdk:"write_timeout" json:"writeTimeout,omitempty"`
+			} `tfsdk:"redis" json:"redis,omitempty"`
 			SourceCriterion *struct {
 				IpStrategy *struct {
 					Depth       *int64    `tfsdk:"depth" json:"depth,omitempty"`
@@ -291,8 +317,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Metadata(_ context.Context, reques
 
 func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Middleware is the CRD implementation of a Traefik Middleware. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/overview/",
-		MarkdownDescription: "Middleware is the CRD implementation of a Traefik Middleware. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/overview/",
+		Description:         "Middleware is the CRD implementation of a Traefik Middleware. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/overview/",
+		MarkdownDescription: "Middleware is the CRD implementation of a Traefik Middleware. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/overview/",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -363,8 +389,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "MiddlewareSpec defines the desired state of a Middleware.",
 				Attributes: map[string]schema.Attribute{
 					"add_prefix": schema.SingleNestedAttribute{
-						Description:         "AddPrefix holds the add prefix middleware configuration. This middleware updates the path of a request before forwarding it. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/addprefix/",
-						MarkdownDescription: "AddPrefix holds the add prefix middleware configuration. This middleware updates the path of a request before forwarding it. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/addprefix/",
+						Description:         "AddPrefix holds the add prefix middleware configuration. This middleware updates the path of a request before forwarding it. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/addprefix/",
+						MarkdownDescription: "AddPrefix holds the add prefix middleware configuration. This middleware updates the path of a request before forwarding it. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/addprefix/",
 						Attributes: map[string]schema.Attribute{
 							"prefix": schema.StringAttribute{
 								Description:         "Prefix is the string to add before the current path in the requested URL. It should include a leading slash (/).",
@@ -380,12 +406,12 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"basic_auth": schema.SingleNestedAttribute{
-						Description:         "BasicAuth holds the basic auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/basicauth/",
-						MarkdownDescription: "BasicAuth holds the basic auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/basicauth/",
+						Description:         "BasicAuth holds the basic auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/basicauth/",
+						MarkdownDescription: "BasicAuth holds the basic auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/basicauth/",
 						Attributes: map[string]schema.Attribute{
 							"header_field": schema.StringAttribute{
-								Description:         "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/basicauth/#headerfield",
-								MarkdownDescription: "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/basicauth/#headerfield",
+								Description:         "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/basicauth/#headerfield",
+								MarkdownDescription: "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/basicauth/#headerfield",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -421,8 +447,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"buffering": schema.SingleNestedAttribute{
-						Description:         "Buffering holds the buffering middleware configuration. This middleware retries or limits the size of requests that can be forwarded to backends. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/buffering/#maxrequestbodybytes",
-						MarkdownDescription: "Buffering holds the buffering middleware configuration. This middleware retries or limits the size of requests that can be forwarded to backends. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/buffering/#maxrequestbodybytes",
+						Description:         "Buffering holds the buffering middleware configuration. This middleware retries or limits the size of requests that can be forwarded to backends. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/buffering/#maxrequestbodybytes",
+						MarkdownDescription: "Buffering holds the buffering middleware configuration. This middleware retries or limits the size of requests that can be forwarded to backends. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/buffering/#maxrequestbodybytes",
 						Attributes: map[string]schema.Attribute{
 							"max_request_body_bytes": schema.Int64Attribute{
 								Description:         "MaxRequestBodyBytes defines the maximum allowed body size for the request (in bytes). If the request exceeds the allowed size, it is not forwarded to the service, and the client gets a 413 (Request Entity Too Large) response. Default: 0 (no maximum).",
@@ -457,8 +483,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"retry_expression": schema.StringAttribute{
-								Description:         "RetryExpression defines the retry conditions. It is a logical combination of functions with operators AND (&&) and OR (||). More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/buffering/#retryexpression",
-								MarkdownDescription: "RetryExpression defines the retry conditions. It is a logical combination of functions with operators AND (&&) and OR (||). More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/buffering/#retryexpression",
+								Description:         "RetryExpression defines the retry conditions. It is a logical combination of functions with operators AND (&&) and OR (||). More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/buffering/#retryexpression",
+								MarkdownDescription: "RetryExpression defines the retry conditions. It is a logical combination of functions with operators AND (&&) and OR (||). More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/buffering/#retryexpression",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -470,8 +496,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"chain": schema.SingleNestedAttribute{
-						Description:         "Chain holds the configuration of the chain middleware. This middleware enables to define reusable combinations of other pieces of middleware. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/chain/",
-						MarkdownDescription: "Chain holds the configuration of the chain middleware. This middleware enables to define reusable combinations of other pieces of middleware. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/chain/",
+						Description:         "Chain holds the configuration of the chain middleware. This middleware enables to define reusable combinations of other pieces of middleware. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/chain/",
+						MarkdownDescription: "Chain holds the configuration of the chain middleware. This middleware enables to define reusable combinations of other pieces of middleware. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/chain/",
 						Attributes: map[string]schema.Attribute{
 							"middlewares": schema.ListNestedAttribute{
 								Description:         "Middlewares is the list of MiddlewareRef which composes the chain.",
@@ -547,6 +573,10 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(100),
+									int64validator.AtMost(599),
+								},
 							},
 						},
 						Required: false,
@@ -555,8 +585,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"compress": schema.SingleNestedAttribute{
-						Description:         "Compress holds the compress middleware configuration. This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/compress/",
-						MarkdownDescription: "Compress holds the compress middleware configuration. This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/compress/",
+						Description:         "Compress holds the compress middleware configuration. This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/compress/",
+						MarkdownDescription: "Compress holds the compress middleware configuration. This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/compress/",
 						Attributes: map[string]schema.Attribute{
 							"default_encoding": schema.StringAttribute{
 								Description:         "DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').",
@@ -599,6 +629,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 						},
 						Required: false,
@@ -624,12 +657,12 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"digest_auth": schema.SingleNestedAttribute{
-						Description:         "DigestAuth holds the digest auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/digestauth/",
-						MarkdownDescription: "DigestAuth holds the digest auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/digestauth/",
+						Description:         "DigestAuth holds the digest auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/digestauth/",
+						MarkdownDescription: "DigestAuth holds the digest auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/digestauth/",
 						Attributes: map[string]schema.Attribute{
 							"header_field": schema.StringAttribute{
-								Description:         "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/basicauth/#headerfield",
-								MarkdownDescription: "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/basicauth/#headerfield",
+								Description:         "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/basicauth/#headerfield",
+								MarkdownDescription: "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/basicauth/#headerfield",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -665,20 +698,20 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"errors": schema.SingleNestedAttribute{
-						Description:         "ErrorPage holds the custom error middleware configuration. This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/errorpages/",
-						MarkdownDescription: "ErrorPage holds the custom error middleware configuration. This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/errorpages/",
+						Description:         "ErrorPage holds the custom error middleware configuration. This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/errorpages/",
+						MarkdownDescription: "ErrorPage holds the custom error middleware configuration. This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/errorpages/",
 						Attributes: map[string]schema.Attribute{
 							"query": schema.StringAttribute{
-								Description:         "Query defines the URL for the error page (hosted by service). The {status} variable can be used in order to insert the status code in the URL.",
-								MarkdownDescription: "Query defines the URL for the error page (hosted by service). The {status} variable can be used in order to insert the status code in the URL.",
+								Description:         "Query defines the URL for the error page (hosted by service). The {status} variable can be used in order to insert the status code in the URL. The {originalStatus} variable can be used in order to insert the upstream status code in the URL. The {url} variable can be used in order to insert the escaped request URL.",
+								MarkdownDescription: "Query defines the URL for the error page (hosted by service). The {status} variable can be used in order to insert the status code in the URL. The {originalStatus} variable can be used in order to insert the upstream status code in the URL. The {url} variable can be used in order to insert the escaped request URL.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"service": schema.SingleNestedAttribute{
-								Description:         "Service defines the reference to a Kubernetes Service that will serve the error page. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/errorpages/#service",
-								MarkdownDescription: "Service defines the reference to a Kubernetes Service that will serve the error page. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/errorpages/#service",
+								Description:         "Service defines the reference to a Kubernetes Service that will serve the error page. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/errorpages/#service",
+								MarkdownDescription: "Service defines the reference to a Kubernetes Service that will serve the error page. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/errorpages/#service",
 								Attributes: map[string]schema.Attribute{
 									"health_check": schema.SingleNestedAttribute{
 										Description:         "Healthcheck defines health checks for ExternalName services.",
@@ -710,8 +743,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"interval": schema.StringAttribute{
-												Description:         "Interval defines the frequency of the health check calls. Default: 30s",
-												MarkdownDescription: "Interval defines the frequency of the health check calls. Default: 30s",
+												Description:         "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
+												MarkdownDescription: "Interval defines the frequency of the health check calls for healthy targets. Default: 30s",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -768,6 +801,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											"timeout": schema.StringAttribute{
 												Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
 												MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"unhealthy_interval": schema.StringAttribute{
+												Description:         "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
+												MarkdownDescription: "UnhealthyInterval defines the frequency of the health check calls for unhealthy targets. When UnhealthyInterval is not defined, it defaults to the Interval value. Default: 30s",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -871,13 +912,21 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"sticky": schema.SingleNestedAttribute{
-										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
-										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
+										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
+										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.4/routing/services/#sticky-sessions",
 										Attributes: map[string]schema.Attribute{
 											"cookie": schema.SingleNestedAttribute{
 												Description:         "Cookie defines the sticky cookie configuration.",
 												MarkdownDescription: "Cookie defines the sticky cookie configuration.",
 												Attributes: map[string]schema.Attribute{
+													"domain": schema.StringAttribute{
+														Description:         "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+														MarkdownDescription: "Domain defines the host to which the cookie will be sent. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#domaindomain-value",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"http_only": schema.BoolAttribute{
 														Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 														MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
@@ -887,8 +936,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"max_age": schema.Int64Attribute{
-														Description:         "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
-														MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+														Description:         "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+														MarkdownDescription: "MaxAge defines the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -902,12 +951,23 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														Computed:            false,
 													},
 
+													"path": schema.StringAttribute{
+														Description:         "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+														MarkdownDescription: "Path defines the path that must exist in the requested URL for the browser to send the Cookie header. When not provided the cookie will be sent on every request to the domain. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#pathpath-value",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"same_site": schema.StringAttribute{
 														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("none", "lax", "strict"),
+														},
 													},
 
 													"secure": schema.BoolAttribute{
@@ -929,11 +989,14 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"strategy": schema.StringAttribute{
-										Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-										MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+										Description:         "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
+										MarkdownDescription: "Strategy defines the load balancing strategy between the servers. Supported values are: wrr (Weighed round-robin) and p2c (Power of two choices). RoundRobin value is deprecated and supported for backward compatibility.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("wrr", "p2c", "RoundRobin"),
+										},
 									},
 
 									"weight": schema.Int64Attribute{
@@ -942,6 +1005,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
 									},
 								},
 								Required: false,
@@ -957,6 +1023,15 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"status_rewrites": schema.MapAttribute{
+								Description:         "StatusRewrites defines a mapping of status codes that should be returned instead of the original error status codes. For example: '418': 404 or '410-418': 404",
+								MarkdownDescription: "StatusRewrites defines a mapping of status codes that should be returned instead of the original error status codes. For example: '418': 404 or '410-418': 404",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -964,8 +1039,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"forward_auth": schema.SingleNestedAttribute{
-						Description:         "ForwardAuth holds the forward auth middleware configuration. This middleware delegates the request authentication to a Service. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/forwardauth/",
-						MarkdownDescription: "ForwardAuth holds the forward auth middleware configuration. This middleware delegates the request authentication to a Service. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/forwardauth/",
+						Description:         "ForwardAuth holds the forward auth middleware configuration. This middleware delegates the request authentication to a Service. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/forwardauth/",
+						MarkdownDescription: "ForwardAuth holds the forward auth middleware configuration. This middleware delegates the request authentication to a Service. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/forwardauth/",
 						Attributes: map[string]schema.Attribute{
 							"add_auth_cookies_to_response": schema.ListAttribute{
 								Description:         "AddAuthCookiesToResponse defines the list of cookies to copy from the authentication server response to the response.",
@@ -1003,8 +1078,48 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"auth_response_headers_regex": schema.StringAttribute{
-								Description:         "AuthResponseHeadersRegex defines the regex to match headers to copy from the authentication server response and set on forwarded request, after stripping all headers that match the regex. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/forwardauth/#authresponseheadersregex",
-								MarkdownDescription: "AuthResponseHeadersRegex defines the regex to match headers to copy from the authentication server response and set on forwarded request, after stripping all headers that match the regex. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/forwardauth/#authresponseheadersregex",
+								Description:         "AuthResponseHeadersRegex defines the regex to match headers to copy from the authentication server response and set on forwarded request, after stripping all headers that match the regex. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/forwardauth/#authresponseheadersregex",
+								MarkdownDescription: "AuthResponseHeadersRegex defines the regex to match headers to copy from the authentication server response and set on forwarded request, after stripping all headers that match the regex. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/forwardauth/#authresponseheadersregex",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"forward_body": schema.BoolAttribute{
+								Description:         "ForwardBody defines whether to send the request body to the authentication server.",
+								MarkdownDescription: "ForwardBody defines whether to send the request body to the authentication server.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"header_field": schema.StringAttribute{
+								Description:         "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/forwardauth/#headerfield",
+								MarkdownDescription: "HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/forwardauth/#headerfield",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_body_size": schema.Int64Attribute{
+								Description:         "MaxBodySize defines the maximum body size in bytes allowed to be forwarded to the authentication server.",
+								MarkdownDescription: "MaxBodySize defines the maximum body size in bytes allowed to be forwarded to the authentication server.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"preserve_location_header": schema.BoolAttribute{
+								Description:         "PreserveLocationHeader defines whether to forward the Location header to the client as is or prefix it with the domain name of the authentication server.",
+								MarkdownDescription: "PreserveLocationHeader defines whether to forward the Location header to the client as is or prefix it with the domain name of the authentication server.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"preserve_request_method": schema.BoolAttribute{
+								Description:         "PreserveRequestMethod defines whether to preserve the original request method while forwarding the request to the authentication server.",
+								MarkdownDescription: "PreserveRequestMethod defines whether to preserve the original request method while forwarding the request to the authentication server.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1083,8 +1198,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"headers": schema.SingleNestedAttribute{
-						Description:         "Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/headers/#customrequestheaders",
-						MarkdownDescription: "Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/headers/#customrequestheaders",
+						Description:         "Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/headers/#customrequestheaders",
+						MarkdownDescription: "Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/headers/#customrequestheaders",
 						Attributes: map[string]schema.Attribute{
 							"access_control_allow_credentials": schema.BoolAttribute{
 								Description:         "AccessControlAllowCredentials defines whether the request can include user credentials.",
@@ -1358,6 +1473,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 						},
 						Required: false,
@@ -1366,8 +1484,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"in_flight_req": schema.SingleNestedAttribute{
-						Description:         "InFlightReq holds the in-flight request middleware configuration. This middleware limits the number of requests being processed and served concurrently. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/inflightreq/",
-						MarkdownDescription: "InFlightReq holds the in-flight request middleware configuration. This middleware limits the number of requests being processed and served concurrently. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/inflightreq/",
+						Description:         "InFlightReq holds the in-flight request middleware configuration. This middleware limits the number of requests being processed and served concurrently. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/inflightreq/",
+						MarkdownDescription: "InFlightReq holds the in-flight request middleware configuration. This middleware limits the number of requests being processed and served concurrently. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/inflightreq/",
 						Attributes: map[string]schema.Attribute{
 							"amount": schema.Int64Attribute{
 								Description:         "Amount defines the maximum amount of allowed simultaneous in-flight request. The middleware responds with HTTP 429 Too Many Requests if there are already amount requests in progress (based on the same sourceCriterion strategy).",
@@ -1375,15 +1493,18 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"source_criterion": schema.SingleNestedAttribute{
-								Description:         "SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the requestHost. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/inflightreq/#sourcecriterion",
-								MarkdownDescription: "SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the requestHost. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/inflightreq/#sourcecriterion",
+								Description:         "SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the requestHost. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/inflightreq/#sourcecriterion",
+								MarkdownDescription: "SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the requestHost. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/inflightreq/#sourcecriterion",
 								Attributes: map[string]schema.Attribute{
 									"ip_strategy": schema.SingleNestedAttribute{
-										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
-										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
+										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
+										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
 										Attributes: map[string]schema.Attribute{
 											"depth": schema.Int64Attribute{
 												Description:         "Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).",
@@ -1391,6 +1512,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
 											},
 
 											"excluded_i_ps": schema.ListAttribute{
@@ -1442,12 +1566,12 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"ip_allow_list": schema.SingleNestedAttribute{
-						Description:         "IPAllowList holds the IP allowlist middleware configuration. This middleware limits allowed requests based on the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/",
-						MarkdownDescription: "IPAllowList holds the IP allowlist middleware configuration. This middleware limits allowed requests based on the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/",
+						Description:         "IPAllowList holds the IP allowlist middleware configuration. This middleware limits allowed requests based on the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/",
+						MarkdownDescription: "IPAllowList holds the IP allowlist middleware configuration. This middleware limits allowed requests based on the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/",
 						Attributes: map[string]schema.Attribute{
 							"ip_strategy": schema.SingleNestedAttribute{
-								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
-								MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
+								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
+								MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
 								Attributes: map[string]schema.Attribute{
 									"depth": schema.Int64Attribute{
 										Description:         "Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).",
@@ -1455,6 +1579,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
 									},
 
 									"excluded_i_ps": schema.ListAttribute{
@@ -1506,8 +1633,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "Deprecated: please use IPAllowList instead.",
 						Attributes: map[string]schema.Attribute{
 							"ip_strategy": schema.SingleNestedAttribute{
-								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
-								MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
+								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
+								MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
 								Attributes: map[string]schema.Attribute{
 									"depth": schema.Int64Attribute{
 										Description:         "Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).",
@@ -1515,6 +1642,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+										},
 									},
 
 									"excluded_i_ps": schema.ListAttribute{
@@ -1554,8 +1684,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"pass_tls_client_cert": schema.SingleNestedAttribute{
-						Description:         "PassTLSClientCert holds the pass TLS client cert middleware configuration. This middleware adds the selected data from the passed client TLS certificate to a header. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/passtlsclientcert/",
-						MarkdownDescription: "PassTLSClientCert holds the pass TLS client cert middleware configuration. This middleware adds the selected data from the passed client TLS certificate to a header. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/passtlsclientcert/",
+						Description:         "PassTLSClientCert holds the pass TLS client cert middleware configuration. This middleware adds the selected data from the passed client TLS certificate to a header. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/passtlsclientcert/",
+						MarkdownDescription: "PassTLSClientCert holds the pass TLS client cert middleware configuration. This middleware adds the selected data from the passed client TLS certificate to a header. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/passtlsclientcert/",
 						Attributes: map[string]schema.Attribute{
 							"info": schema.SingleNestedAttribute{
 								Description:         "Info selects the specific client certificate details you want to add to the X-Forwarded-Tls-Client-Cert-Info header.",
@@ -1759,8 +1889,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"rate_limit": schema.SingleNestedAttribute{
-						Description:         "RateLimit holds the rate limit configuration. This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ratelimit/",
-						MarkdownDescription: "RateLimit holds the rate limit configuration. This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ratelimit/",
+						Description:         "RateLimit holds the rate limit configuration. This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ratelimit/",
+						MarkdownDescription: "RateLimit holds the rate limit configuration. This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ratelimit/",
 						Attributes: map[string]schema.Attribute{
 							"average": schema.Int64Attribute{
 								Description:         "Average is the maximum rate, by default in requests/s, allowed for the given source. It defaults to 0, which means no rate limiting. The rate is actually defined by dividing Average by Period. So for a rate below 1req/s, one needs to define a Period larger than a second.",
@@ -1768,6 +1898,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"burst": schema.Int64Attribute{
@@ -1776,6 +1909,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"period": schema.StringAttribute{
@@ -1786,13 +1922,128 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Computed:            false,
 							},
 
+							"redis": schema.SingleNestedAttribute{
+								Description:         "Redis hold the configs of Redis as bucket in rate limiter.",
+								MarkdownDescription: "Redis hold the configs of Redis as bucket in rate limiter.",
+								Attributes: map[string]schema.Attribute{
+									"db": schema.Int64Attribute{
+										Description:         "DB defines the Redis database that will be selected after connecting to the server.",
+										MarkdownDescription: "DB defines the Redis database that will be selected after connecting to the server.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dial_timeout": schema.StringAttribute{
+										Description:         "DialTimeout sets the timeout for establishing new connections. Default value is 5 seconds.",
+										MarkdownDescription: "DialTimeout sets the timeout for establishing new connections. Default value is 5 seconds.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"endpoints": schema.ListAttribute{
+										Description:         "Endpoints contains either a single address or a seed list of host:port addresses. Default value is ['localhost:6379'].",
+										MarkdownDescription: "Endpoints contains either a single address or a seed list of host:port addresses. Default value is ['localhost:6379'].",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_active_conns": schema.Int64Attribute{
+										Description:         "MaxActiveConns defines the maximum number of connections allocated by the pool at a given time. Default value is 0, meaning there is no limit.",
+										MarkdownDescription: "MaxActiveConns defines the maximum number of connections allocated by the pool at a given time. Default value is 0, meaning there is no limit.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_idle_conns": schema.Int64Attribute{
+										Description:         "MinIdleConns defines the minimum number of idle connections. Default value is 0, and idle connections are not closed by default.",
+										MarkdownDescription: "MinIdleConns defines the minimum number of idle connections. Default value is 0, and idle connections are not closed by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pool_size": schema.Int64Attribute{
+										Description:         "PoolSize defines the initial number of socket connections. If the pool runs out of available connections, additional ones will be created beyond PoolSize. This can be limited using MaxActiveConns. // Default value is 0, meaning 10 connections per every available CPU as reported by runtime.GOMAXPROCS.",
+										MarkdownDescription: "PoolSize defines the initial number of socket connections. If the pool runs out of available connections, additional ones will be created beyond PoolSize. This can be limited using MaxActiveConns. // Default value is 0, meaning 10 connections per every available CPU as reported by runtime.GOMAXPROCS.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"read_timeout": schema.StringAttribute{
+										Description:         "ReadTimeout defines the timeout for socket read operations. Default value is 3 seconds.",
+										MarkdownDescription: "ReadTimeout defines the timeout for socket read operations. Default value is 3 seconds.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"secret": schema.StringAttribute{
+										Description:         "Secret defines the name of the referenced Kubernetes Secret containing Redis credentials.",
+										MarkdownDescription: "Secret defines the name of the referenced Kubernetes Secret containing Redis credentials.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tls": schema.SingleNestedAttribute{
+										Description:         "TLS defines TLS-specific configurations, including the CA, certificate, and key, which can be provided as a file path or file content.",
+										MarkdownDescription: "TLS defines TLS-specific configurations, including the CA, certificate, and key, which can be provided as a file path or file content.",
+										Attributes: map[string]schema.Attribute{
+											"ca_secret": schema.StringAttribute{
+												Description:         "CASecret is the name of the referenced Kubernetes Secret containing the CA to validate the server certificate. The CA certificate is extracted from key 'tls.ca' or 'ca.crt'.",
+												MarkdownDescription: "CASecret is the name of the referenced Kubernetes Secret containing the CA to validate the server certificate. The CA certificate is extracted from key 'tls.ca' or 'ca.crt'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"cert_secret": schema.StringAttribute{
+												Description:         "CertSecret is the name of the referenced Kubernetes Secret containing the client certificate. The client certificate is extracted from the keys 'tls.crt' and 'tls.key'.",
+												MarkdownDescription: "CertSecret is the name of the referenced Kubernetes Secret containing the client certificate. The client certificate is extracted from the keys 'tls.crt' and 'tls.key'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"insecure_skip_verify": schema.BoolAttribute{
+												Description:         "InsecureSkipVerify defines whether the server certificates should be validated.",
+												MarkdownDescription: "InsecureSkipVerify defines whether the server certificates should be validated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"write_timeout": schema.StringAttribute{
+										Description:         "WriteTimeout defines the timeout for socket write operations. Default value is 3 seconds.",
+										MarkdownDescription: "WriteTimeout defines the timeout for socket write operations. Default value is 3 seconds.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"source_criterion": schema.SingleNestedAttribute{
 								Description:         "SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the request's remote address field (as an ipStrategy).",
 								MarkdownDescription: "SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the request's remote address field (as an ipStrategy).",
 								Attributes: map[string]schema.Attribute{
 									"ip_strategy": schema.SingleNestedAttribute{
-										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
-										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/ipallowlist/#ipstrategy",
+										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
+										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/ipallowlist/#ipstrategy",
 										Attributes: map[string]schema.Attribute{
 											"depth": schema.Int64Attribute{
 												Description:         "Depth tells Traefik to use the X-Forwarded-For header and take the IP located at the depth position (starting from the right).",
@@ -1800,6 +2051,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
 											},
 
 											"excluded_i_ps": schema.ListAttribute{
@@ -1851,8 +2105,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"redirect_regex": schema.SingleNestedAttribute{
-						Description:         "RedirectRegex holds the redirect regex middleware configuration. This middleware redirects a request using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/redirectregex/#regex",
-						MarkdownDescription: "RedirectRegex holds the redirect regex middleware configuration. This middleware redirects a request using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/redirectregex/#regex",
+						Description:         "RedirectRegex holds the redirect regex middleware configuration. This middleware redirects a request using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/redirectregex/#regex",
+						MarkdownDescription: "RedirectRegex holds the redirect regex middleware configuration. This middleware redirects a request using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/redirectregex/#regex",
 						Attributes: map[string]schema.Attribute{
 							"permanent": schema.BoolAttribute{
 								Description:         "Permanent defines whether the redirection is permanent (301).",
@@ -1884,8 +2138,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"redirect_scheme": schema.SingleNestedAttribute{
-						Description:         "RedirectScheme holds the redirect scheme middleware configuration. This middleware redirects requests from a scheme/port to another. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/redirectscheme/",
-						MarkdownDescription: "RedirectScheme holds the redirect scheme middleware configuration. This middleware redirects requests from a scheme/port to another. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/redirectscheme/",
+						Description:         "RedirectScheme holds the redirect scheme middleware configuration. This middleware redirects requests from a scheme/port to another. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/redirectscheme/",
+						MarkdownDescription: "RedirectScheme holds the redirect scheme middleware configuration. This middleware redirects requests from a scheme/port to another. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/redirectscheme/",
 						Attributes: map[string]schema.Attribute{
 							"permanent": schema.BoolAttribute{
 								Description:         "Permanent defines whether the redirection is permanent (301).",
@@ -1917,8 +2171,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"replace_path": schema.SingleNestedAttribute{
-						Description:         "ReplacePath holds the replace path middleware configuration. This middleware replaces the path of the request URL and store the original path in an X-Replaced-Path header. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/replacepath/",
-						MarkdownDescription: "ReplacePath holds the replace path middleware configuration. This middleware replaces the path of the request URL and store the original path in an X-Replaced-Path header. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/replacepath/",
+						Description:         "ReplacePath holds the replace path middleware configuration. This middleware replaces the path of the request URL and store the original path in an X-Replaced-Path header. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/replacepath/",
+						MarkdownDescription: "ReplacePath holds the replace path middleware configuration. This middleware replaces the path of the request URL and store the original path in an X-Replaced-Path header. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/replacepath/",
 						Attributes: map[string]schema.Attribute{
 							"path": schema.StringAttribute{
 								Description:         "Path defines the path to use as replacement in the request URL.",
@@ -1934,8 +2188,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"replace_path_regex": schema.SingleNestedAttribute{
-						Description:         "ReplacePathRegex holds the replace path regex middleware configuration. This middleware replaces the path of a URL using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/replacepathregex/",
-						MarkdownDescription: "ReplacePathRegex holds the replace path regex middleware configuration. This middleware replaces the path of a URL using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/replacepathregex/",
+						Description:         "ReplacePathRegex holds the replace path regex middleware configuration. This middleware replaces the path of a URL using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/replacepathregex/",
+						MarkdownDescription: "ReplacePathRegex holds the replace path regex middleware configuration. This middleware replaces the path of a URL using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/replacepathregex/",
 						Attributes: map[string]schema.Attribute{
 							"regex": schema.StringAttribute{
 								Description:         "Regex defines the regular expression used to match and capture the path from the request URL.",
@@ -1959,8 +2213,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"retry": schema.SingleNestedAttribute{
-						Description:         "Retry holds the retry middleware configuration. This middleware reissues requests a given number of times to a backend server if that server does not reply. As soon as the server answers, the middleware stops retrying, regardless of the response status. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/retry/",
-						MarkdownDescription: "Retry holds the retry middleware configuration. This middleware reissues requests a given number of times to a backend server if that server does not reply. As soon as the server answers, the middleware stops retrying, regardless of the response status. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/retry/",
+						Description:         "Retry holds the retry middleware configuration. This middleware reissues requests a given number of times to a backend server if that server does not reply. As soon as the server answers, the middleware stops retrying, regardless of the response status. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/retry/",
+						MarkdownDescription: "Retry holds the retry middleware configuration. This middleware reissues requests a given number of times to a backend server if that server does not reply. As soon as the server answers, the middleware stops retrying, regardless of the response status. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/retry/",
 						Attributes: map[string]schema.Attribute{
 							"attempts": schema.Int64Attribute{
 								Description:         "Attempts defines how many times the request should be retried.",
@@ -1968,6 +2222,9 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"initial_interval": schema.StringAttribute{
@@ -1984,8 +2241,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"strip_prefix": schema.SingleNestedAttribute{
-						Description:         "StripPrefix holds the strip prefix middleware configuration. This middleware removes the specified prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/stripprefix/",
-						MarkdownDescription: "StripPrefix holds the strip prefix middleware configuration. This middleware removes the specified prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/stripprefix/",
+						Description:         "StripPrefix holds the strip prefix middleware configuration. This middleware removes the specified prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/stripprefix/",
+						MarkdownDescription: "StripPrefix holds the strip prefix middleware configuration. This middleware removes the specified prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/stripprefix/",
 						Attributes: map[string]schema.Attribute{
 							"force_slash": schema.BoolAttribute{
 								Description:         "Deprecated: ForceSlash option is deprecated, please remove any usage of this option. ForceSlash ensures that the resulting stripped path is not the empty string, by replacing it with / when necessary. Default: true.",
@@ -2010,8 +2267,8 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"strip_prefix_regex": schema.SingleNestedAttribute{
-						Description:         "StripPrefixRegex holds the strip prefix regex middleware configuration. This middleware removes the matching prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/stripprefixregex/",
-						MarkdownDescription: "StripPrefixRegex holds the strip prefix regex middleware configuration. This middleware removes the matching prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.2/middlewares/http/stripprefixregex/",
+						Description:         "StripPrefixRegex holds the strip prefix regex middleware configuration. This middleware removes the matching prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/stripprefixregex/",
+						MarkdownDescription: "StripPrefixRegex holds the strip prefix regex middleware configuration. This middleware removes the matching prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.4/middlewares/http/stripprefixregex/",
 						Attributes: map[string]schema.Attribute{
 							"regex": schema.ListAttribute{
 								Description:         "Regex defines the regular expression to match the path prefix from the request URL.",

@@ -58,9 +58,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
 			ToCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"to_cidr_set" json:"toCIDRSet,omitempty"`
 			ToEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -190,9 +198,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
 			ToCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"to_cidr_set" json:"toCIDRSet,omitempty"`
 			ToEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -270,9 +286,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
 			FromCIDR    *[]string `tfsdk:"from_cidr" json:"fromCIDR,omitempty"`
 			FromCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"from_cidr_set" json:"fromCIDRSet,omitempty"`
 			FromEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -381,9 +405,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 		IngressDeny *[]struct {
 			FromCIDR    *[]string `tfsdk:"from_cidr" json:"fromCIDR,omitempty"`
 			FromCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"from_cidr_set" json:"fromCIDRSet,omitempty"`
 			FromEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -460,9 +492,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
 			ToCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"to_cidr_set" json:"toCIDRSet,omitempty"`
 			ToEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -592,9 +632,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
 			ToCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"to_cidr_set" json:"toCIDRSet,omitempty"`
 			ToEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -672,9 +720,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
 			FromCIDR    *[]string `tfsdk:"from_cidr" json:"fromCIDR,omitempty"`
 			FromCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"from_cidr_set" json:"fromCIDRSet,omitempty"`
 			FromEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -783,9 +839,17 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 		IngressDeny *[]struct {
 			FromCIDR    *[]string `tfsdk:"from_cidr" json:"fromCIDR,omitempty"`
 			FromCIDRSet *[]struct {
-				Cidr         *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				CidrGroupRef *string   `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
-				Except       *[]string `tfsdk:"except" json:"except,omitempty"`
+				Cidr              *string `tfsdk:"cidr" json:"cidr,omitempty"`
+				CidrGroupRef      *string `tfsdk:"cidr_group_ref" json:"cidrGroupRef,omitempty"`
+				CidrGroupSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"cidr_group_selector" json:"cidrGroupSelector,omitempty"`
+				Except *[]string `tfsdk:"except" json:"except,omitempty"`
 			} `tfsdk:"from_cidr_set" json:"fromCIDRSet,omitempty"`
 			FromEndpoints *[]struct {
 				MatchExpressions *[]struct {
@@ -1035,6 +1099,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												},
 											},
 
+											"cidr_group_selector": schema.SingleNestedAttribute{
+												Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																	},
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"except": schema.ListAttribute{
 												Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 												MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
@@ -1130,17 +1251,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
+													stringvalidator.LengthAtMost(255),
 													stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_]+[.]?)+$`), ""),
 												},
 											},
 
 											"match_pattern": schema.StringAttribute{
-												Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
-												MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+												Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+												MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
+													stringvalidator.LengthAtMost(255),
 													stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_*]+[.]?)+$`), ""),
 												},
 											},
@@ -1452,17 +1575,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
+																		stringvalidator.LengthAtMost(255),
 																		stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_]+[.]?)+$`), ""),
 																	},
 																},
 
 																"match_pattern": schema.StringAttribute{
-																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
-																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
+																		stringvalidator.LengthAtMost(255),
 																		stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_*]+[.]?)+$`), ""),
 																	},
 																},
@@ -1795,8 +1920,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 								},
 
 								"to_services": schema.ListNestedAttribute{
-									Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
-									MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+									Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
+									MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"k8s_service": schema.SingleNestedAttribute{
@@ -1988,6 +2113,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													stringvalidator.LengthAtMost(253),
 													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 												},
+											},
+
+											"cidr_group_selector": schema.SingleNestedAttribute{
+												Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																	},
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"except": schema.ListAttribute{
@@ -2303,8 +2485,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 								},
 
 								"to_services": schema.ListNestedAttribute{
-									Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
-									MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+									Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
+									MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"k8s_service": schema.SingleNestedAttribute{
@@ -2557,6 +2739,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													stringvalidator.LengthAtMost(253),
 													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 												},
+											},
+
+											"cidr_group_selector": schema.SingleNestedAttribute{
+												Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																	},
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"except": schema.ListAttribute{
@@ -3043,17 +3282,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
+																		stringvalidator.LengthAtMost(255),
 																		stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_]+[.]?)+$`), ""),
 																	},
 																},
 
 																"match_pattern": schema.StringAttribute{
-																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
-																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																	Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																	MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
+																		stringvalidator.LengthAtMost(255),
 																		stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_*]+[.]?)+$`), ""),
 																	},
 																},
@@ -3369,6 +3610,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													stringvalidator.LengthAtMost(253),
 													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 												},
+											},
+
+											"cidr_group_selector": schema.SingleNestedAttribute{
+												Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																	},
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"except": schema.ListAttribute{
@@ -3940,6 +4238,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													},
 												},
 
+												"cidr_group_selector": schema.SingleNestedAttribute{
+													Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																		},
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"except": schema.ListAttribute{
 													Description:         "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
 													MarkdownDescription: "ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.",
@@ -4035,17 +4390,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
+														stringvalidator.LengthAtMost(255),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_]+[.]?)+$`), ""),
 													},
 												},
 
 												"match_pattern": schema.StringAttribute{
-													Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
-													MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+													Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+													MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
+														stringvalidator.LengthAtMost(255),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_*]+[.]?)+$`), ""),
 													},
 												},
@@ -4357,17 +4714,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																		Optional:            true,
 																		Computed:            false,
 																		Validators: []validator.String{
+																			stringvalidator.LengthAtMost(255),
 																			stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_]+[.]?)+$`), ""),
 																		},
 																	},
 
 																	"match_pattern": schema.StringAttribute{
-																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
-																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																		Validators: []validator.String{
+																			stringvalidator.LengthAtMost(255),
 																			stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_*]+[.]?)+$`), ""),
 																		},
 																	},
@@ -4700,8 +5059,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 									},
 
 									"to_services": schema.ListNestedAttribute{
-										Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
-										MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+										Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
+										MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"k8s_service": schema.SingleNestedAttribute{
@@ -4893,6 +5252,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 														stringvalidator.LengthAtMost(253),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 													},
+												},
+
+												"cidr_group_selector": schema.SingleNestedAttribute{
+													Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																		},
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"except": schema.ListAttribute{
@@ -5208,8 +5624,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 									},
 
 									"to_services": schema.ListNestedAttribute{
-										Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
-										MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors. Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service",
+										Description:         "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
+										MarkdownDescription: "ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"k8s_service": schema.SingleNestedAttribute{
@@ -5462,6 +5878,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 														stringvalidator.LengthAtMost(253),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 													},
+												},
+
+												"cidr_group_selector": schema.SingleNestedAttribute{
+													Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																		},
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"except": schema.ListAttribute{
@@ -5948,17 +6421,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																		Optional:            true,
 																		Computed:            false,
 																		Validators: []validator.String{
+																			stringvalidator.LengthAtMost(255),
 																			stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_]+[.]?)+$`), ""),
 																		},
 																	},
 
 																	"match_pattern": schema.StringAttribute{
-																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
-																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																		Description:         "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
+																		MarkdownDescription: "MatchPattern allows using wildcards to match DNS names. All wildcards are case insensitive. The wildcards are: - '*' matches 0 or more DNS valid characters, and may occur anywhere in the pattern. As a special case a '*' as the leftmost character, without a following '.' matches all subdomains as well as the name to the right. A trailing '.' is automatically added when missing. Examples: '*.cilium.io' matches subdomains of cilium at that level www.cilium.io and blog.cilium.io match, cilium.io and google.com do not '*cilium.io' matches cilium.io and all subdomains ends with 'cilium.io' except those containing '.' separator, subcilium.io and sub-cilium.io match, www.cilium.io and blog.cilium.io does not sub*.cilium.io matches subdomains of cilium where the subdomain component begins with 'sub' sub.cilium.io and subdomain.cilium.io match, www.cilium.io, blog.cilium.io, cilium.io and google.com do not",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																		Validators: []validator.String{
+																			stringvalidator.LengthAtMost(255),
 																			stringvalidator.RegexMatches(regexp.MustCompile(`^([-a-zA-Z0-9_*]+[.]?)+$`), ""),
 																		},
 																	},
@@ -6274,6 +6749,63 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 														stringvalidator.LengthAtMost(253),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 													},
+												},
+
+												"cidr_group_selector": schema.SingleNestedAttribute{
+													Description:         "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													MarkdownDescription: "CIDRGroupSelector selects CiliumCIDRGroups by their labels, rather than by name.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																		},
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"except": schema.ListAttribute{

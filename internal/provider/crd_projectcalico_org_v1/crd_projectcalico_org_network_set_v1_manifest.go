@@ -53,8 +53,8 @@ func (r *CrdProjectcalicoOrgNetworkSetV1Manifest) Metadata(_ context.Context, re
 
 func (r *CrdProjectcalicoOrgNetworkSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "NetworkSet is the Namespaced-equivalent of the GlobalNetworkSet.",
-		MarkdownDescription: "NetworkSet is the Namespaced-equivalent of the GlobalNetworkSet.",
+		Description:         "",
+		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -121,12 +121,12 @@ func (r *CrdProjectcalicoOrgNetworkSetV1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NetworkSetSpec contains the specification for a NetworkSet resource.",
-				MarkdownDescription: "NetworkSetSpec contains the specification for a NetworkSet resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"nets": schema.ListAttribute{
-						Description:         "The list of IP networks that belong to this set.",
-						MarkdownDescription: "The list of IP networks that belong to this set.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

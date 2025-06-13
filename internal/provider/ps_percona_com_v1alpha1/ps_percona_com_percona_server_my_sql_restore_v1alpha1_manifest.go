@@ -242,6 +242,7 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1781,6 +1782,14 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,

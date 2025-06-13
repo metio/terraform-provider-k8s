@@ -52,6 +52,9 @@ type DiscoveryK8SIoEndpointSliceV1ManifestData struct {
 		} `tfsdk:"conditions" json:"conditions,omitempty"`
 		DeprecatedTopology *map[string]string `tfsdk:"deprecated_topology" json:"deprecatedTopology,omitempty"`
 		Hints              *struct {
+			ForNodes *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"for_nodes" json:"forNodes,omitempty"`
 			ForZones *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"for_zones" json:"forZones,omitempty"`
@@ -83,8 +86,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Metadata(_ context.Context, requ
 
 func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.",
-		MarkdownDescription: "EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.",
+		Description:         "EndpointSlice represents a set of service endpoints. Most EndpointSlices are created by the EndpointSlice controller to represent the Pods selected by Service objects. For a given service there may be multiple EndpointSlice objects which must be joined to produce the full set of endpoints; you can find all of the slices for a given service by listing EndpointSlices in the service's namespace whose 'kubernetes.io/service-name' label contains the service's name.",
+		MarkdownDescription: "EndpointSlice represents a set of service endpoints. Most EndpointSlices are created by the EndpointSlice controller to represent the Pods selected by Service objects. For a given service there may be multiple EndpointSlice objects which must be joined to produce the full set of endpoints; you can find all of the slices for a given service by listing EndpointSlices in the service's namespace whose 'kubernetes.io/service-name' label contains the service's name.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -151,8 +154,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ data
 			},
 
 			"address_type": schema.StringAttribute{
-				Description:         "addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name.",
-				MarkdownDescription: "addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name.",
+				Description:         "addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name. (Deprecated) The EndpointSlice controller only generates, and kube-proxy only processes, slices of addressType 'IPv4' and 'IPv6'. No semantics are defined for the 'FQDN' type.",
+				MarkdownDescription: "addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name. (Deprecated) The EndpointSlice controller only generates, and kube-proxy only processes, slices of addressType 'IPv4' and 'IPv6'. No semantics are defined for the 'FQDN' type.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,
@@ -164,8 +167,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ data
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"addresses": schema.ListAttribute{
-							Description:         "addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100. These are all assumed to be fungible and clients may choose to only use the first element. Refer to: https://issue.k8s.io/106267",
-							MarkdownDescription: "addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100. These are all assumed to be fungible and clients may choose to only use the first element. Refer to: https://issue.k8s.io/106267",
+							Description:         "addresses of this endpoint. For EndpointSlices of addressType 'IPv4' or 'IPv6', the values are IP addresses in canonical form. The syntax and semantics of other addressType values are not defined. This must contain at least one address but no more than 100. EndpointSlices generated by the EndpointSlice controller will always have exactly 1 address. No semantics are defined for additional addresses beyond the first, and kube-proxy does not look at them.",
+							MarkdownDescription: "addresses of this endpoint. For EndpointSlices of addressType 'IPv4' or 'IPv6', the values are IP addresses in canonical form. The syntax and semantics of other addressType values are not defined. This must contain at least one address but no more than 100. EndpointSlices generated by the EndpointSlice controller will always have exactly 1 address. No semantics are defined for additional addresses beyond the first, and kube-proxy does not look at them.",
 							ElementType:         types.StringType,
 							Required:            true,
 							Optional:            false,
@@ -177,24 +180,24 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ data
 							MarkdownDescription: "EndpointConditions represents the current condition of an endpoint.",
 							Attributes: map[string]schema.Attribute{
 								"ready": schema.BoolAttribute{
-									Description:         "ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be 'true' for terminating endpoints, except when the normal readiness behavior is being explicitly overridden, for example when the associated Service has set the publishNotReadyAddresses flag.",
-									MarkdownDescription: "ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be 'true' for terminating endpoints, except when the normal readiness behavior is being explicitly overridden, for example when the associated Service has set the publishNotReadyAddresses flag.",
+									Description:         "ready indicates that this endpoint is ready to receive traffic, according to whatever system is managing the endpoint. A nil value should be interpreted as 'true'. In general, an endpoint should be marked ready if it is serving and not terminating, though this can be overridden in some cases, such as when the associated Service has set the publishNotReadyAddresses flag.",
+									MarkdownDescription: "ready indicates that this endpoint is ready to receive traffic, according to whatever system is managing the endpoint. A nil value should be interpreted as 'true'. In general, an endpoint should be marked ready if it is serving and not terminating, though this can be overridden in some cases, such as when the associated Service has set the publishNotReadyAddresses flag.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"serving": schema.BoolAttribute{
-									Description:         "serving is identical to ready except that it is set regardless of the terminating state of endpoints. This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition.",
-									MarkdownDescription: "serving is identical to ready except that it is set regardless of the terminating state of endpoints. This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition.",
+									Description:         "serving indicates that this endpoint is able to receive traffic, according to whatever system is managing the endpoint. For endpoints backed by pods, the EndpointSlice controller will mark the endpoint as serving if the pod's Ready condition is True. A nil value should be interpreted as 'true'.",
+									MarkdownDescription: "serving indicates that this endpoint is able to receive traffic, according to whatever system is managing the endpoint. For endpoints backed by pods, the EndpointSlice controller will mark the endpoint as serving if the pod's Ready condition is True. A nil value should be interpreted as 'true'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"terminating": schema.BoolAttribute{
-									Description:         "terminating indicates that this endpoint is terminating. A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating.",
-									MarkdownDescription: "terminating indicates that this endpoint is terminating. A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating.",
+									Description:         "terminating indicates that this endpoint is terminating. A nil value should be interpreted as 'false'.",
+									MarkdownDescription: "terminating indicates that this endpoint is terminating. A nil value should be interpreted as 'false'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -218,9 +221,28 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ data
 							Description:         "EndpointHints provides hints describing how an endpoint should be consumed.",
 							MarkdownDescription: "EndpointHints provides hints describing how an endpoint should be consumed.",
 							Attributes: map[string]schema.Attribute{
+								"for_nodes": schema.ListNestedAttribute{
+									Description:         "forNodes indicates the node(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries. This is an Alpha feature and is only used when the PreferSameTrafficDistribution feature gate is enabled.",
+									MarkdownDescription: "forNodes indicates the node(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries. This is an Alpha feature and is only used when the PreferSameTrafficDistribution feature gate is enabled.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "name represents the name of the node.",
+												MarkdownDescription: "name represents the name of the node.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"for_zones": schema.ListNestedAttribute{
-									Description:         "forZones indicates the zone(s) this endpoint should be consumed by to enable topology aware routing.",
-									MarkdownDescription: "forZones indicates the zone(s) this endpoint should be consumed by to enable topology aware routing.",
+									Description:         "forZones indicates the zone(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries.",
+									MarkdownDescription: "forZones indicates the zone(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
@@ -338,8 +360,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ data
 			},
 
 			"ports": schema.ListNestedAttribute{
-				Description:         "ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates 'all ports'. Each slice may include a maximum of 100 ports.",
-				MarkdownDescription: "ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates 'all ports'. Each slice may include a maximum of 100 ports.",
+				Description:         "ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. Each slice may include a maximum of 100 ports. Services always have at least 1 port, so EndpointSlices generated by the EndpointSlice controller will likewise always have at least 1 port. EndpointSlices used for other purposes may have an empty ports list.",
+				MarkdownDescription: "ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. Each slice may include a maximum of 100 ports. Services always have at least 1 port, so EndpointSlices generated by the EndpointSlice controller will likewise always have at least 1 port. EndpointSlices used for other purposes may have an empty ports list.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"app_protocol": schema.StringAttribute{
@@ -359,8 +381,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ data
 						},
 
 						"port": schema.Int64Attribute{
-							Description:         "port represents the port number of the endpoint. If this is not specified, ports are not restricted and must be interpreted in the context of the specific consumer.",
-							MarkdownDescription: "port represents the port number of the endpoint. If this is not specified, ports are not restricted and must be interpreted in the context of the specific consumer.",
+							Description:         "port represents the port number of the endpoint. If the EndpointSlice is derived from a Kubernetes service, this must be set to the service's target port. EndpointSlices used for other purposes may have a nil port.",
+							MarkdownDescription: "port represents the port number of the endpoint. If the EndpointSlice is derived from a Kubernetes service, this must be set to the service's target port. EndpointSlices used for other purposes may have a nil port.",
 							Required:            false,
 							Optional:            true,
 							Computed:            false,

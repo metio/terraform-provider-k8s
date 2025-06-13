@@ -52,10 +52,29 @@ type NifiStackableTechNifiClusterV1Alpha1ManifestData struct {
 					ExtraScopes             *[]string `tfsdk:"extra_scopes" json:"extraScopes,omitempty"`
 				} `tfsdk:"oidc" json:"oidc,omitempty"`
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
+			Authorization *struct {
+				Opa *struct {
+					Cache *struct {
+						EntryTimeToLive *string `tfsdk:"entry_time_to_live" json:"entryTimeToLive,omitempty"`
+						MaxEntries      *int64  `tfsdk:"max_entries" json:"maxEntries,omitempty"`
+					} `tfsdk:"cache" json:"cache,omitempty"`
+					ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+					Package       *string `tfsdk:"package" json:"package,omitempty"`
+				} `tfsdk:"opa" json:"opa,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
 			CreateReportingTaskJob *struct {
 				Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
 			} `tfsdk:"create_reporting_task_job" json:"createReportingTaskJob,omitempty"`
+			CustomComponentsGitSync *[]struct {
+				Branch            *string            `tfsdk:"branch" json:"branch,omitempty"`
+				CredentialsSecret *string            `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
+				Depth             *int64             `tfsdk:"depth" json:"depth,omitempty"`
+				GitFolder         *string            `tfsdk:"git_folder" json:"gitFolder,omitempty"`
+				GitSyncConf       *map[string]string `tfsdk:"git_sync_conf" json:"gitSyncConf,omitempty"`
+				Repo              *string            `tfsdk:"repo" json:"repo,omitempty"`
+				Wait              *string            `tfsdk:"wait" json:"wait,omitempty"`
+			} `tfsdk:"custom_components_git_sync" json:"customComponentsGitSync,omitempty"`
 			ExtraVolumes    *[]map[string]string `tfsdk:"extra_volumes" json:"extraVolumes,omitempty"`
 			HostHeaderCheck *struct {
 				AdditionalAllowedHosts *[]string `tfsdk:"additional_allowed_hosts" json:"additionalAllowedHosts,omitempty"`
@@ -114,7 +133,8 @@ type NifiStackableTechNifiClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				Resources *struct {
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -187,10 +207,15 @@ type NifiStackableTechNifiClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -223,7 +248,8 @@ type NifiStackableTechNifiClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					Resources *struct {
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -296,10 +322,15 @@ type NifiStackableTechNifiClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"nodes" json:"nodes,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -311,8 +342,8 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Metadata(_ context.Contex
 
 func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Auto-generated derived type for NifiSpec via 'CustomResource'",
-		MarkdownDescription: "Auto-generated derived type for NifiSpec via 'CustomResource'",
+		Description:         "Auto-generated derived type for NifiClusterSpec via 'CustomResource'",
+		MarkdownDescription: "Auto-generated derived type for NifiClusterSpec via 'CustomResource'",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -387,13 +418,13 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 						MarkdownDescription: "Settings that affect all roles and role groups. The settings in the 'clusterConfig' are cluster wide settings that do not need to be configurable at role or role group level.",
 						Attributes: map[string]schema.Attribute{
 							"authentication": schema.ListNestedAttribute{
-								Description:         "Authentication options for NiFi (required). Read more about authentication in the [security documentation](https://docs.stackable.tech/home/nightly/nifi/usage_guide/security).",
-								MarkdownDescription: "Authentication options for NiFi (required). Read more about authentication in the [security documentation](https://docs.stackable.tech/home/nightly/nifi/usage_guide/security).",
+								Description:         "Authentication options for NiFi (required). Read more about authentication in the [security documentation](https://docs.stackable.tech/home/nightly/nifi/usage_guide/security#authentication).",
+								MarkdownDescription: "Authentication options for NiFi (required). Read more about authentication in the [security documentation](https://docs.stackable.tech/home/nightly/nifi/usage_guide/security#authentication).",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication_class": schema.StringAttribute{
-											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
-											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
+											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
+											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -412,8 +443,8 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 												},
 
 												"extra_scopes": schema.ListAttribute{
-													Description:         "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
-													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
+													Description:         "An optional list of extra scopes which get merged with the scopes defined in the 'AuthenticationClass'.",
+													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the 'AuthenticationClass'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -428,6 +459,68 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 								},
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"authorization": schema.SingleNestedAttribute{
+								Description:         "Authorization options. Learn more in the [NiFi authorization usage guide](https://docs.stackable.tech/home/nightly/nifi/usage-guide/security#authorization).",
+								MarkdownDescription: "Authorization options. Learn more in the [NiFi authorization usage guide](https://docs.stackable.tech/home/nightly/nifi/usage-guide/security#authorization).",
+								Attributes: map[string]schema.Attribute{
+									"opa": schema.SingleNestedAttribute{
+										Description:         "Configure the OPA stacklet [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) and the name of the Rego package containing your authorization rules. Consult the [OPA authorization documentation](https://docs.stackable.tech/home/nightly/concepts/opa) to learn how to deploy Rego authorization rules with OPA.",
+										MarkdownDescription: "Configure the OPA stacklet [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) and the name of the Rego package containing your authorization rules. Consult the [OPA authorization documentation](https://docs.stackable.tech/home/nightly/concepts/opa) to learn how to deploy Rego authorization rules with OPA.",
+										Attributes: map[string]schema.Attribute{
+											"cache": schema.SingleNestedAttribute{
+												Description:         "Least Recently Used (LRU) cache with per-entry time-to-live (TTL) value.",
+												MarkdownDescription: "Least Recently Used (LRU) cache with per-entry time-to-live (TTL) value.",
+												Attributes: map[string]schema.Attribute{
+													"entry_time_to_live": schema.StringAttribute{
+														Description:         "Time to live per entry",
+														MarkdownDescription: "Time to live per entry",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"max_entries": schema.Int64Attribute{
+														Description:         "Maximum number of entries in the cache; If this threshold is reached then the least recently used item is removed.",
+														MarkdownDescription: "Maximum number of entries in the cache; If this threshold is reached then the least recently used item is removed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"config_map_name": schema.StringAttribute{
+												Description:         "The [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) for the OPA stacklet that should be used for authorization requests.",
+												MarkdownDescription: "The [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) for the OPA stacklet that should be used for authorization requests.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"package": schema.StringAttribute{
+												Description:         "The name of the Rego package containing the Rego rules for the product.",
+												MarkdownDescription: "The name of the Rego package containing the Rego rules for the product.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 
@@ -450,6 +543,77 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"custom_components_git_sync": schema.ListNestedAttribute{
+								Description:         "The 'customComponentsGitSync' setting allows configuring custom components to mount via 'git-sync'. Learn more in the documentation for [Loading custom components](https://docs.stackable.tech/home/nightly/nifi/usage_guide/custom-components.html#git_sync).",
+								MarkdownDescription: "The 'customComponentsGitSync' setting allows configuring custom components to mount via 'git-sync'. Learn more in the documentation for [Loading custom components](https://docs.stackable.tech/home/nightly/nifi/usage_guide/custom-components.html#git_sync).",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"branch": schema.StringAttribute{
+											Description:         "The branch to clone; defaults to 'main'. Since git-sync v4.x.x this field is mapped to the flag '--ref'.",
+											MarkdownDescription: "The branch to clone; defaults to 'main'. Since git-sync v4.x.x this field is mapped to the flag '--ref'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"credentials_secret": schema.StringAttribute{
+											Description:         "The name of the Secret used to access the repository if it is not public. The referenced Secret must include two fields: 'user' and 'password'. The 'password' field can either be an actual password (not recommended) or a GitHub token, as described in the git-sync [documentation]. [documentation]: https://github.com/kubernetes/git-sync/tree/v4.2.4?tab=readme-ov-file#manual",
+											MarkdownDescription: "The name of the Secret used to access the repository if it is not public. The referenced Secret must include two fields: 'user' and 'password'. The 'password' field can either be an actual password (not recommended) or a GitHub token, as described in the git-sync [documentation]. [documentation]: https://github.com/kubernetes/git-sync/tree/v4.2.4?tab=readme-ov-file#manual",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"depth": schema.Int64Attribute{
+											Description:         "The depth of syncing, i.e. the number of commits to clone; defaults to 1.",
+											MarkdownDescription: "The depth of syncing, i.e. the number of commits to clone; defaults to 1.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+											},
+										},
+
+										"git_folder": schema.StringAttribute{
+											Description:         "Location in the Git repository containing the resource; defaults to the root folder. It can optionally start with '/', however, no trailing slash is recommended. An empty string ('') or slash ('/') corresponds to the root folder in Git.",
+											MarkdownDescription: "Location in the Git repository containing the resource; defaults to the root folder. It can optionally start with '/', however, no trailing slash is recommended. An empty string ('') or slash ('/') corresponds to the root folder in Git.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"git_sync_conf": schema.MapAttribute{
+											Description:         "A map of optional configuration settings that are listed in the git-sync [documentation]. Also read the git-sync [example] in our documentation. These settings are not verified. [documentation]: https://github.com/kubernetes/git-sync/tree/v4.2.4?tab=readme-ov-file#manual [example]: https://docs.stackable.tech/home/nightly/airflow/usage-guide/mounting-dags#_example",
+											MarkdownDescription: "A map of optional configuration settings that are listed in the git-sync [documentation]. Also read the git-sync [example] in our documentation. These settings are not verified. [documentation]: https://github.com/kubernetes/git-sync/tree/v4.2.4?tab=readme-ov-file#manual [example]: https://docs.stackable.tech/home/nightly/airflow/usage-guide/mounting-dags#_example",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repo": schema.StringAttribute{
+											Description:         "The git repository URL that will be cloned, for example: 'https://github.com/stackabletech/airflow-operator'.",
+											MarkdownDescription: "The git repository URL that will be cloned, for example: 'https://github.com/stackabletech/airflow-operator'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"wait": schema.StringAttribute{
+											Description:         "The synchronization interval, e.g. '20s' or '5m'; defaults to '20s'. Since git-sync v4.x.x this field is mapped to the flag '--period'.",
+											MarkdownDescription: "The synchronization interval, e.g. '20s' or '5m'; defaults to '20s'. Since git-sync v4.x.x this field is mapped to the flag '--period'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -514,7 +678,7 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("nifiArgon2AesGcm128", "nifiArgon2AesGcm256", "nifiBcryptAesGcm128", "nifiBcryptAesGcm256", "nifiPbkdf2AesGcm128", "nifiPbkdf2AesGcm256", "nifiScryptAesGcm128", "nifiScryptAesGcm256"),
+											stringvalidator.OneOf("nifiPbkdf2AesGcm256", "nifiArgon2AesGcm256", "nifiBcryptAesGcm128", "nifiBcryptAesGcm256", "nifiPbkdf2AesGcm128", "nifiArgon2AesGcm128", "nifiScryptAesGcm128", "nifiScryptAesGcm256"),
 										},
 									},
 
@@ -565,10 +729,10 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"zookeeper_config_map_name": schema.StringAttribute{
-								Description:         "NiFi requires a ZooKeeper cluster connection to run. Provide the name of the ZooKeeper [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) here. When using the [Stackable operator for Apache ZooKeeper](https://docs.stackable.tech/home/nightly/zookeeper/) to deploy a ZooKeeper cluster, this will simply be the name of your ZookeeperCluster resource.",
-								MarkdownDescription: "NiFi requires a ZooKeeper cluster connection to run. Provide the name of the ZooKeeper [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) here. When using the [Stackable operator for Apache ZooKeeper](https://docs.stackable.tech/home/nightly/zookeeper/) to deploy a ZooKeeper cluster, this will simply be the name of your ZookeeperCluster resource.",
-								Required:            true,
-								Optional:            false,
+								Description:         "NiFi can either use ZooKeeper or Kubernetes for managing its cluster state. To use ZooKeeper, provide the name of the ZooKeeper [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) here. When using the [Stackable operator for Apache ZooKeeper](https://docs.stackable.tech/home/nightly/zookeeper/) to deploy a ZooKeeper cluster, this will simply be the name of your ZookeeperCluster resource. The Kubernetes provider will be used if this field is unset. Kubernetes is only supported for NiFi 2.x and newer, NiFi 1.x requires ZooKeeper.",
+								MarkdownDescription: "NiFi can either use ZooKeeper or Kubernetes for managing its cluster state. To use ZooKeeper, provide the name of the ZooKeeper [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) here. When using the [Stackable operator for Apache ZooKeeper](https://docs.stackable.tech/home/nightly/zookeeper/) to deploy a ZooKeeper cluster, this will simply be the name of your ZookeeperCluster resource. The Kubernetes provider will be used if this field is unset. Kubernetes is only supported for NiFi 2.x and newer, NiFi 1.x requires ZooKeeper.",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},
@@ -607,8 +771,8 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -653,8 +817,8 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -844,6 +1008,14 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"resources": schema.SingleNestedAttribute{
@@ -1333,6 +1505,42 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 								Computed:            false,
 							},
 
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_overrides": schema.MapAttribute{
 								Description:         "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
 								MarkdownDescription: "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
@@ -1550,6 +1758,14 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. Please note that this can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"resources": schema.SingleNestedAttribute{
@@ -2037,6 +2253,42 @@ func (r *NifiStackableTechNifiClusterV1Alpha1Manifest) Schema(_ context.Context,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

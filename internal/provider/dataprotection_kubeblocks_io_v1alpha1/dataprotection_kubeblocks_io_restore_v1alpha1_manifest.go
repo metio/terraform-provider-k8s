@@ -58,7 +58,11 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"container_resources" json:"containerResources,omitempty"`
-		Env               *map[string]string `tfsdk:"env" json:"env,omitempty"`
+		Env        *map[string]string `tfsdk:"env" json:"env,omitempty"`
+		Parameters *[]struct {
+			Name  *string `tfsdk:"name" json:"name,omitempty"`
+			Value *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"parameters" json:"parameters,omitempty"`
 		PrepareDataConfig *struct {
 			DataSourceRef *struct {
 				MountPath    *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
@@ -360,8 +364,9 @@ type DataprotectionKubeblocksIoRestoreV1Alpha1ManifestData struct {
 							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
 							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-						Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+						MatchLabels           *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						Strategy              *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+						UseParentSelectedPods *bool              `tfsdk:"use_parent_selected_pods" json:"useParentSelectedPods,omitempty"`
 					} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 					VolumeMounts *[]struct {
 						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
@@ -576,6 +581,33 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"parameters": schema.ListNestedAttribute{
+						Description:         "Specifies a list of name-value pairs representing parameters and their corresponding values. Parameters match the schema specified in the 'actionset.spec.parametersSchema'",
+						MarkdownDescription: "Specifies a list of name-value pairs representing parameters and their corresponding values. Parameters match the schema specified in the 'actionset.spec.parametersSchema'",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Represents the name of the parameter.",
+									MarkdownDescription: "Represents the name of the parameter.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "Represents the parameter values.",
+									MarkdownDescription: "Represents the parameter values.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"prepare_data_config": schema.SingleNestedAttribute{
@@ -2623,6 +2655,14 @@ func (r *DataprotectionKubeblocksIoRestoreV1Alpha1Manifest) Schema(_ context.Con
 														Validators: []validator.String{
 															stringvalidator.OneOf("Any", "All"),
 														},
+													},
+
+													"use_parent_selected_pods": schema.BoolAttribute{
+														Description:         "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+														MarkdownDescription: "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 												},
 												Required: true,

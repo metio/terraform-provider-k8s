@@ -115,6 +115,7 @@ type SchemasSchemaheroIoTableV1Alpha4ManifestData struct {
 					Name              *string   `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"json_triggers" json:"json:triggers,omitempty"`
 				PrimaryKey *[]string `tfsdk:"primary_key" json:"primaryKey,omitempty"`
+				Schema     *string   `tfsdk:"schema" json:"schema,omitempty"`
 			} `tfsdk:"cockroachdb" json:"cockroachdb,omitempty"`
 			Mysql *struct {
 				Collation *string `tfsdk:"collation" json:"collation,omitempty"`
@@ -189,6 +190,7 @@ type SchemasSchemaheroIoTableV1Alpha4ManifestData struct {
 					Name              *string   `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"json_triggers" json:"json:triggers,omitempty"`
 				PrimaryKey *[]string `tfsdk:"primary_key" json:"primaryKey,omitempty"`
+				Schema     *string   `tfsdk:"schema" json:"schema,omitempty"`
 			} `tfsdk:"postgres" json:"postgres,omitempty"`
 			Rqlite *struct {
 				Columns *[]struct {
@@ -917,6 +919,14 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"schema": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1424,6 +1434,14 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 										Description:         "",
 										MarkdownDescription: "",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"schema": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

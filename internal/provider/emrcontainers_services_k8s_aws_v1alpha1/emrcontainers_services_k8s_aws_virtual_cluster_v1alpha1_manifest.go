@@ -131,8 +131,8 @@ func (r *EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest) Schema(_ con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VirtualClusterSpec defines the desired state of VirtualCluster. This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service.",
-				MarkdownDescription: "VirtualClusterSpec defines the desired state of VirtualCluster. This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service.",
+				Description:         "VirtualClusterSpec defines the desired state of VirtualCluster. This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an Amazon EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service.",
+				MarkdownDescription: "VirtualClusterSpec defines the desired state of VirtualCluster. This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an Amazon EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service.",
 				Attributes: map[string]schema.Attribute{
 					"container_provider": schema.SingleNestedAttribute{
 						Description:         "The container provider of the virtual cluster.",
@@ -151,8 +151,8 @@ func (r *EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest) Schema(_ con
 								MarkdownDescription: "The information about the container used for a job run or a managed endpoint.",
 								Attributes: map[string]schema.Attribute{
 									"eks_info": schema.SingleNestedAttribute{
-										Description:         "The information about the EKS cluster.",
-										MarkdownDescription: "The information about the EKS cluster.",
+										Description:         "The information about the Amazon EKS cluster.",
+										MarkdownDescription: "The information about the Amazon EKS cluster.",
 										Attributes: map[string]schema.Attribute{
 											"namespace": schema.StringAttribute{
 												Description:         "",
@@ -186,8 +186,8 @@ func (r *EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest) Schema(_ con
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The specified name of the virtual cluster.",
-						MarkdownDescription: "The specified name of the virtual cluster.",
+						Description:         "The specified name of the virtual cluster. Regex Pattern: '^[.-_/#A-Za-z0-9]+$'",
+						MarkdownDescription: "The specified name of the virtual cluster. Regex Pattern: '^[.-_/#A-Za-z0-9]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

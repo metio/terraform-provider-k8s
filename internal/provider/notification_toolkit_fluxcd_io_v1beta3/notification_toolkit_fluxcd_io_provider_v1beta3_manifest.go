@@ -48,16 +48,18 @@ type NotificationToolkitFluxcdIoProviderV1Beta3ManifestData struct {
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
-		Channel   *string `tfsdk:"channel" json:"channel,omitempty"`
-		Interval  *string `tfsdk:"interval" json:"interval,omitempty"`
-		Proxy     *string `tfsdk:"proxy" json:"proxy,omitempty"`
-		SecretRef *struct {
+		Channel          *string `tfsdk:"channel" json:"channel,omitempty"`
+		CommitStatusExpr *string `tfsdk:"commit_status_expr" json:"commitStatusExpr,omitempty"`
+		Interval         *string `tfsdk:"interval" json:"interval,omitempty"`
+		Proxy            *string `tfsdk:"proxy" json:"proxy,omitempty"`
+		SecretRef        *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-		Suspend  *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
-		Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
-		Type     *string `tfsdk:"type" json:"type,omitempty"`
-		Username *string `tfsdk:"username" json:"username,omitempty"`
+		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		Suspend            *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
+		Timeout            *string `tfsdk:"timeout" json:"timeout,omitempty"`
+		Type               *string `tfsdk:"type" json:"type,omitempty"`
+		Username           *string `tfsdk:"username" json:"username,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -177,6 +179,14 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 						},
 					},
 
+					"commit_status_expr": schema.StringAttribute{
+						Description:         "CommitStatusExpr is a CEL expression that evaluates to a string value that can be used to generate a custom commit status message for use with eligible Provider types (github, gitlab, gitea, bitbucketserver, bitbucket, azuredevops). Supported variables are: event, provider, and alert.",
+						MarkdownDescription: "CommitStatusExpr is a CEL expression that evaluates to a string value that can be used to generate a custom commit status message for use with eligible Provider types (github, gitlab, gitea, bitbucketserver, bitbucket, azuredevops). Supported variables are: event, provider, and alert.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"interval": schema.StringAttribute{
 						Description:         "Interval at which to reconcile the Provider with its Secret references. Deprecated and not used in v1beta3.",
 						MarkdownDescription: "Interval at which to reconcile the Provider with its Secret references. Deprecated and not used in v1beta3.",
@@ -215,6 +225,14 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"service_account_name": schema.StringAttribute{
+						Description:         "ServiceAccountName is the name of the service account used to authenticate with services from cloud providers. An error is thrown if a static credential is also defined inside the Secret referenced by the SecretRef.",
+						MarkdownDescription: "ServiceAccountName is the name of the service account used to authenticate with services from cloud providers. An error is thrown if a static credential is also defined inside the Secret referenced by the SecretRef.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"suspend": schema.BoolAttribute{

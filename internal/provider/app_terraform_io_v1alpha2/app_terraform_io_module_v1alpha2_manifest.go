@@ -44,7 +44,8 @@ type AppTerraformIoModuleV1Alpha2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		DestroyOnDeletion *bool `tfsdk:"destroy_on_deletion" json:"destroyOnDeletion,omitempty"`
+		DeletionPolicy    *string `tfsdk:"deletion_policy" json:"deletionPolicy,omitempty"`
+		DestroyOnDeletion *bool   `tfsdk:"destroy_on_deletion" json:"destroyOnDeletion,omitempty"`
 		Module            *struct {
 			Source  *string `tfsdk:"source" json:"source,omitempty"`
 			Version *string `tfsdk:"version" json:"version,omitempty"`
@@ -79,8 +80,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Metadata(_ context.Context, reque
 
 func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
-		MarkdownDescription: "Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
+		Description:         "Module implements API-driven Run Workflows. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
+		MarkdownDescription: "Module implements API-driven Run Workflows. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -150,9 +151,20 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 				Description:         "ModuleSpec defines the desired state of Module.",
 				MarkdownDescription: "ModuleSpec defines the desired state of Module.",
 				Attributes: map[string]schema.Attribute{
+					"deletion_policy": schema.StringAttribute{
+						Description:         "Deletion Policy defines the strategies for resource deletion in the Kubernetes operator. It controls how the operator should handle the deletion of resources when triggered by a user action or system event. There is one possible value: - 'retain': When the custom resource is deleted, the associated module is retained. 'destroyOnDeletion' must be set to false. - 'destroy': Executes a destroy operation. Removes all resources and the module. Default: 'retain'.",
+						MarkdownDescription: "Deletion Policy defines the strategies for resource deletion in the Kubernetes operator. It controls how the operator should handle the deletion of resources when triggered by a user action or system event. There is one possible value: - 'retain': When the custom resource is deleted, the associated module is retained. 'destroyOnDeletion' must be set to false. - 'destroy': Executes a destroy operation. Removes all resources and the module. Default: 'retain'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("retain", "destroy"),
+						},
+					},
+
 					"destroy_on_deletion": schema.BoolAttribute{
-						Description:         "Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.",
-						MarkdownDescription: "Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.",
+						Description:         "DEPRECATED: Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.",
+						MarkdownDescription: "DEPRECATED: Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -269,8 +281,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

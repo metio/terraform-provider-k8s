@@ -1168,7 +1168,7 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ contex
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.Int64{
-							int64validator.AtLeast(10),
+							int64validator.AtLeast(11),
 							int64validator.AtMost(17),
 						},
 					},
@@ -1198,8 +1198,8 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ contex
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1318,7 +1318,7 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ contex
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.Int64{
-							int64validator.AtLeast(10),
+							int64validator.AtLeast(11),
 							int64validator.AtMost(17),
 						},
 					},

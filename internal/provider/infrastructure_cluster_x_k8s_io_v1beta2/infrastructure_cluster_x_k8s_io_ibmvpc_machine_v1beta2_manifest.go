@@ -555,8 +555,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineV1Beta2Manifest) Schema(_ conte
 					},
 
 					"profile": schema.StringAttribute{
-						Description:         "Profile indicates the flavor of instance. Example: bx2-8x32 means 8 vCPUs 32 GB RAM 16 Gbps TODO: add a reference link of profile",
-						MarkdownDescription: "Profile indicates the flavor of instance. Example: bx2-8x32 means 8 vCPUs 32 GB RAM 16 Gbps TODO: add a reference link of profile",
+						Description:         "Profile indicates the flavor of instance. Example: bx2-8x32 means 8 vCPUs 32 GB RAM 16 Gbps",
+						MarkdownDescription: "Profile indicates the flavor of instance. Example: bx2-8x32 means 8 vCPUs 32 GB RAM 16 Gbps",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -604,8 +604,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineV1Beta2Manifest) Schema(_ conte
 					},
 
 					"zone": schema.StringAttribute{
-						Description:         "Zone is the place where the instance should be created. Example: us-south-3 TODO: Actually zone is transparent to user. The field user can access is location. Example: Dallas 2",
-						MarkdownDescription: "Zone is the place where the instance should be created. Example: us-south-3 TODO: Actually zone is transparent to user. The field user can access is location. Example: Dallas 2",
+						Description:         "Zone is the place where the instance should be created. Example: us-south-3",
+						MarkdownDescription: "Zone is the place where the instance should be created. Example: us-south-3",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

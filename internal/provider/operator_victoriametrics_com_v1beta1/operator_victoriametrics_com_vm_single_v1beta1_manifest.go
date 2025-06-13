@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -43,11 +44,12 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Affinity                 *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
-		ConfigMaps               *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
-		Containers               *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
-		DisableSelfServiceScrape *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
-		DnsConfig                *struct {
+		Affinity                            *map[string]string   `tfsdk:"affinity" json:"affinity,omitempty"`
+		ConfigMaps                          *[]string            `tfsdk:"config_maps" json:"configMaps,omitempty"`
+		Containers                          *[]map[string]string `tfsdk:"containers" json:"containers,omitempty"`
+		DisableAutomountServiceAccountToken *bool                `tfsdk:"disable_automount_service_account_token" json:"disableAutomountServiceAccountToken,omitempty"`
+		DisableSelfServiceScrape            *bool                `tfsdk:"disable_self_service_scrape" json:"disableSelfServiceScrape,omitempty"`
+		DnsConfig                           *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -55,9 +57,20 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			} `tfsdk:"options" json:"options,omitempty"`
 			Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
 		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
-		DnsPolicy   *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
-		ExtraArgs   *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
-		ExtraEnvs   *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+		DnsPolicy     *string              `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+		ExtraArgs     *map[string]string   `tfsdk:"extra_args" json:"extraArgs,omitempty"`
+		ExtraEnvs     *[]map[string]string `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+		ExtraEnvsFrom *[]struct {
+			ConfigMapRef *struct {
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+			Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+			SecretRef *struct {
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+		} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
 		HostAliases *[]struct {
 			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -79,16 +92,22 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			OpenTSDBPort     *string `tfsdk:"open_tsdb_port" json:"openTSDBPort,omitempty"`
 		} `tfsdk:"insert_ports" json:"insertPorts,omitempty"`
 		License *struct {
-			Key    *string `tfsdk:"key" json:"key,omitempty"`
-			KeyRef *struct {
+			ForceOffline *bool   `tfsdk:"force_offline" json:"forceOffline,omitempty"`
+			Key          *string `tfsdk:"key" json:"key,omitempty"`
+			KeyRef       *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"key_ref" json:"keyRef,omitempty"`
+			ReloadInterval *string `tfsdk:"reload_interval" json:"reloadInterval,omitempty"`
 		} `tfsdk:"license" json:"license,omitempty"`
 		LivenessProbe   *map[string]string `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 		LogFormat       *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
 		LogLevel        *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+		ManagedMetadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"managed_metadata" json:"managedMetadata,omitempty"`
 		MinReadySeconds *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
 		NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Paused          *bool              `tfsdk:"paused" json:"paused,omitempty"`
@@ -107,7 +126,8 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 		ReplicaCount         *int64             `tfsdk:"replica_count" json:"replicaCount,omitempty"`
 		Resources            *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -175,6 +195,7 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			DedupInterval        *string   `tfsdk:"dedup_interval" json:"dedupInterval,omitempty"`
 			DropInput            *bool     `tfsdk:"drop_input" json:"dropInput,omitempty"`
 			DropInputLabels      *[]string `tfsdk:"drop_input_labels" json:"dropInputLabels,omitempty"`
+			EnableWindows        *bool     `tfsdk:"enable_windows" json:"enableWindows,omitempty"`
 			IgnoreFirstIntervals *int64    `tfsdk:"ignore_first_intervals" json:"ignoreFirstIntervals,omitempty"`
 			IgnoreOldSamples     *bool     `tfsdk:"ignore_old_samples" json:"ignoreOldSamples,omitempty"`
 			KeepInput            *bool     `tfsdk:"keep_input" json:"keepInput,omitempty"`
@@ -182,6 +203,7 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 				By                     *[]string `tfsdk:"by" json:"by,omitempty"`
 				Dedup_interval         *string   `tfsdk:"dedup_interval" json:"dedup_interval,omitempty"`
 				Drop_input_labels      *[]string `tfsdk:"drop_input_labels" json:"drop_input_labels,omitempty"`
+				Enable_windows         *bool     `tfsdk:"enable_windows" json:"enable_windows,omitempty"`
 				Flush_on_shutdown      *bool     `tfsdk:"flush_on_shutdown" json:"flush_on_shutdown,omitempty"`
 				Ignore_first_intervals *int64    `tfsdk:"ignore_first_intervals" json:"ignore_first_intervals,omitempty"`
 				Ignore_old_samples     *bool     `tfsdk:"ignore_old_samples" json:"ignore_old_samples,omitempty"`
@@ -270,6 +292,17 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"extra_envs" json:"extraEnvs,omitempty"`
+			ExtraEnvsFrom *[]struct {
+				ConfigMapRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+				Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+				SecretRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			} `tfsdk:"extra_envs_from" json:"extraEnvsFrom,omitempty"`
 			Image *struct {
 				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
 				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
@@ -280,7 +313,8 @@ type OperatorVictoriametricsComVmsingleV1Beta1ManifestData struct {
 			Port      *string `tfsdk:"port" json:"port,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -419,6 +453,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"disable_automount_service_account_token": schema.BoolAttribute{
+						Description:         "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+						MarkdownDescription: "DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0). Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access. For example, vmagent and vm-config-reloader requires k8s API access. Operator creates volumes with name: 'kube-api-access', which can be used as volumeMount for extraContainers if needed. And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"disable_self_service_scrape": schema.BoolAttribute{
 						Description:         "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
 						MarkdownDescription: "DisableSelfServiceScrape controls creation of VMServiceScrape by operator for the application. Has priority over 'VM_DISABLESELFSERVICESCRAPECREATION' operator env variable",
@@ -446,16 +488,16 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Required.",
-											MarkdownDescription: "Required.",
+											Description:         "Name is this DNS resolver option's name. Required.",
+											MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Value is this DNS resolver option's value.",
+											MarkdownDescription: "Value is this DNS resolver option's value.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -505,6 +547,75 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"extra_envs_from": schema.ListNestedAttribute{
+						Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+						MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"config_map_ref": schema.SingleNestedAttribute{
+									Description:         "The ConfigMap to select from",
+									MarkdownDescription: "The ConfigMap to select from",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the ConfigMap must be defined",
+											MarkdownDescription: "Specify whether the ConfigMap must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"prefix": schema.StringAttribute{
+									Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"secret_ref": schema.SingleNestedAttribute{
+									Description:         "The Secret to select from",
+									MarkdownDescription: "The Secret to select from",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret must be defined",
+											MarkdownDescription: "Specify whether the Secret must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"host_aliases": schema.ListNestedAttribute{
@@ -582,8 +693,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -649,6 +760,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						Description:         "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						MarkdownDescription: "License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See [here](https://docs.victoriametrics.com/enterprise)",
 						Attributes: map[string]schema.Attribute{
+							"force_offline": schema.BoolAttribute{
+								Description:         "Enforce offline verification of the license key.",
+								MarkdownDescription: "Enforce offline verification of the license key.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"key": schema.StringAttribute{
 								Description:         "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
 								MarkdownDescription: "Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise). To request a trial license, [go to](https://victoriametrics.com/products/enterprise/trial)",
@@ -670,8 +789,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -688,6 +807,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"reload_interval": schema.StringAttribute{
+								Description:         "Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.",
+								MarkdownDescription: "Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -726,9 +853,36 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 						},
 					},
 
+					"managed_metadata": schema.SingleNestedAttribute{
+						Description:         "ManagedMetadata defines metadata that will be added to the all objects created by operator for the given CustomResource",
+						MarkdownDescription: "ManagedMetadata defines metadata that will be added to the all objects created by operator for the given CustomResource",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+								MarkdownDescription: "Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
-						MarkdownDescription: "MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						Description:         "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
+						MarkdownDescription: "MinReadySeconds defines a minimum number of seconds to wait before starting update next pod if previous in healthy state Has no effect for VLogs and VMSingle",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -862,6 +1016,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 											Optional:            false,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -893,11 +1055,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"retention_period": schema.StringAttribute{
-						Description:         "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)",
-						MarkdownDescription: "RetentionPeriod for the stored metrics Note VictoriaMetrics has data/ and indexdb/ folders metrics from data/ removed eventually as soon as partition leaves retention period reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)",
-						Required:            true,
-						Optional:            false,
+						Description:         "RetentionPeriod defines how long to retain stored metrics, specified as a duration (e.g., '1d', '1w', '1m'). Data with timestamps outside the RetentionPeriod is automatically deleted. The minimum allowed value is 1d, or 24h. The default value is 1 (one month). See [retention](https://docs.victoriametrics.com/victoriametrics/single-server-victoriametrics/#retention) docs for details.",
+						MarkdownDescription: "RetentionPeriod defines how long to retain stored metrics, specified as a duration (e.g., '1d', '1w', '1m'). Data with timestamps outside the RetentionPeriod is automatically deleted. The minimum allowed value is 1d, or 24h. The default value is 1 (one month). See [retention](https://docs.victoriametrics.com/victoriametrics/single-server-victoriametrics/#retention) docs for details.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(h|d|w|y)?$`), ""),
+						},
 					},
 
 					"revision_history_limit_count": schema.Int64Attribute{
@@ -1030,8 +1195,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"storage": schema.SingleNestedAttribute{
-						Description:         "Storage is the definition of how storage will be used by the VMSingle by default it's empty dir",
-						MarkdownDescription: "Storage is the definition of how storage will be used by the VMSingle by default it's empty dir",
+						Description:         "Storage is the definition of how storage will be used by the VMSingle by default it's empty dir this option is ignored if storageDataPath is set",
+						MarkdownDescription: "Storage is the definition of how storage will be used by the VMSingle by default it's empty dir this option is ignored if storageDataPath is set",
 						Attributes: map[string]schema.Attribute{
 							"access_modes": schema.ListAttribute{
 								Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
@@ -1206,8 +1371,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 							},
 
 							"volume_attributes_class_name": schema.StringAttribute{
-								Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-								MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+								Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+								MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1235,8 +1400,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"storage_data_path": schema.StringAttribute{
-						Description:         "StorageDataPath disables spec.storage option and overrides arg for victoria-metrics binary --storageDataPath, its users responsibility to mount proper device into given path.",
-						MarkdownDescription: "StorageDataPath disables spec.storage option and overrides arg for victoria-metrics binary --storageDataPath, its users responsibility to mount proper device into given path.",
+						Description:         "StorageDataPath disables spec.storage option and overrides arg for victoria-metrics binary --storageDataPath, its users responsibility to mount proper device into given path. It requires to provide spec.volumes and spec.volumeMounts with at least 1 value",
+						MarkdownDescription: "StorageDataPath disables spec.storage option and overrides arg for victoria-metrics binary --storageDataPath, its users responsibility to mount proper device into given path. It requires to provide spec.volumes and spec.volumeMounts with at least 1 value",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1294,8 +1459,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1334,6 +1499,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 								Description:         "labels to drop from samples for aggregator before stream de-duplication and aggregation",
 								MarkdownDescription: "labels to drop from samples for aggregator before stream de-duplication and aggregation",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_windows": schema.BoolAttribute{
+								Description:         "EnableWindows enables aggregating data in separate windows ( available from v0.54.0).",
+								MarkdownDescription: "EnableWindows enables aggregating data in separate windows ( available from v0.54.0).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1389,6 +1562,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 											Description:         "DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples. Labels are dropped before de-duplication and aggregation.",
 											MarkdownDescription: "DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples. Labels are dropped before de-duplication and aggregation.",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"enable_windows": schema.BoolAttribute{
+											Description:         "EnableWindows enables aggregating data in separate windows",
+											MarkdownDescription: "EnableWindows enables aggregating data in separate windows",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1795,8 +1976,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1918,8 +2099,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2009,8 +2190,8 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2027,6 +2208,75 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"extra_envs_from": schema.ListNestedAttribute{
+								Description:         "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								MarkdownDescription: "ExtraEnvsFrom defines source of env variables for the application container could either be secret or configmap",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map_ref": schema.SingleNestedAttribute{
+											Description:         "The ConfigMap to select from",
+											MarkdownDescription: "The ConfigMap to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the ConfigMap must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"prefix": schema.StringAttribute{
+											Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_ref": schema.SingleNestedAttribute{
+											Description:         "The Secret to select from",
+											MarkdownDescription: "The Secret to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret must be defined",
+													MarkdownDescription: "Specify whether the Secret must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 											Required: false,
@@ -2117,6 +2367,14 @@ func (r *OperatorVictoriametricsComVmsingleV1Beta1Manifest) Schema(_ context.Con
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

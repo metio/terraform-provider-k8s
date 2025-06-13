@@ -540,8 +540,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"approval_description": schema.StringAttribute{
-						Description:         "A description for the approval status of the model.",
-						MarkdownDescription: "A description for the approval status of the model.",
+						Description:         "A description for the approval status of the model. Regex Pattern: '.*'",
+						MarkdownDescription: "A description for the approval status of the model. Regex Pattern: '.*'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -556,8 +556,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"client_token": schema.StringAttribute{
-						Description:         "A unique token that guarantees that the call to this API is idempotent.",
-						MarkdownDescription: "A unique token that guarantees that the call to this API is idempotent.",
+						Description:         "A unique token that guarantees that the call to this API is idempotent. Regex Pattern: '^[a-zA-Z0-9-]+$'",
+						MarkdownDescription: "A unique token that guarantees that the call to this API is idempotent. Regex Pattern: '^[a-zA-Z0-9-]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -923,8 +923,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"inference_specification": schema.SingleNestedAttribute{
-						Description:         "Specifies details about inference jobs that can be run with models based on this model package, including the following: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
-						MarkdownDescription: "Specifies details about inference jobs that can be run with models based on this model package, including the following: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
+						Description:         "Specifies details about inference jobs that you can run with models based on this model package, including the following information: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
+						MarkdownDescription: "Specifies details about inference jobs that you can run with models based on this model package, including the following information: * The Amazon ECR paths of containers that contain the inference code and model artifacts. * The instance types that the model package supports for transform jobs and real-time endpoints used for inference. * The input and output content formats that the model package supports for inference.",
 						Attributes: map[string]schema.Attribute{
 							"containers": schema.ListNestedAttribute{
 								Description:         "",
@@ -1460,32 +1460,32 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"model_package_description": schema.StringAttribute{
-						Description:         "A description of the model package.",
-						MarkdownDescription: "A description of the model package.",
+						Description:         "A description of the model package. Regex Pattern: '^[p{L}p{M}p{Z}p{S}p{N}p{P}]*$'",
+						MarkdownDescription: "A description of the model package. Regex Pattern: '^[p{L}p{M}p{Z}p{S}p{N}p{P}]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"model_package_group_name": schema.StringAttribute{
-						Description:         "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to. This parameter is required for versioned models, and does not apply to unversioned models.",
-						MarkdownDescription: "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to. This parameter is required for versioned models, and does not apply to unversioned models.",
+						Description:         "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to. This parameter is required for versioned models, and does not apply to unversioned models. Regex Pattern: '^(arn:aws[a-z-]*:sagemaker:[a-z0-9-]*:[0-9]{12}:[a-z-]*/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$'",
+						MarkdownDescription: "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to. This parameter is required for versioned models, and does not apply to unversioned models. Regex Pattern: '^(arn:aws[a-z-]*:sagemaker:[a-z0-9-]*:[0-9]{12}:[a-z-]*/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"model_package_name": schema.StringAttribute{
-						Description:         "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen). This parameter is required for unversioned models. It is not applicable to versioned models.",
-						MarkdownDescription: "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen). This parameter is required for unversioned models. It is not applicable to versioned models.",
+						Description:         "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen). This parameter is required for unversioned models. It is not applicable to versioned models. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen). This parameter is required for unversioned models. It is not applicable to versioned models. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sample_payload_url": schema.StringAttribute{
-						Description:         "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call.",
-						MarkdownDescription: "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call.",
+						Description:         "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call. Regex Pattern: '^(https|s3)://([^/]+)/?(.*)$'",
+						MarkdownDescription: "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call. Regex Pattern: '^(https|s3)://([^/]+)/?(.*)$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

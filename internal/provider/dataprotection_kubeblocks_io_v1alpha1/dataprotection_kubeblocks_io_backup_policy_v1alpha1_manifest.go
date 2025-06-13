@@ -47,8 +47,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 	Spec *struct {
 		BackoffLimit  *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
 		BackupMethods *[]struct {
-			ActionSetName *string `tfsdk:"action_set_name" json:"actionSetName,omitempty"`
-			Env           *[]struct {
+			ActionSetName    *string `tfsdk:"action_set_name" json:"actionSetName,omitempty"`
+			CompatibleMethod *string `tfsdk:"compatible_method" json:"compatibleMethod,omitempty"`
+			Env              *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -111,8 +112,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
 						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-					Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+					MatchLabels           *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					Strategy              *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+					UseParentSelectedPods *bool              `tfsdk:"use_parent_selected_pods" json:"useParentSelectedPods,omitempty"`
 				} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 				Resources *struct {
 					Excluded *[]string `tfsdk:"excluded" json:"excluded,omitempty"`
@@ -166,8 +168,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
 						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-					Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+					MatchLabels           *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					Strategy              *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+					UseParentSelectedPods *bool              `tfsdk:"use_parent_selected_pods" json:"useParentSelectedPods,omitempty"`
 				} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 				Resources *struct {
 					Excluded *[]string `tfsdk:"excluded" json:"excluded,omitempty"`
@@ -193,8 +196,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"pass_phrase_secret_key_ref" json:"passPhraseSecretKeyRef,omitempty"`
 		} `tfsdk:"encryption_config" json:"encryptionConfig,omitempty"`
-		PathPrefix *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
-		Target     *struct {
+		PathPrefix      *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
+		RetentionPolicy *string `tfsdk:"retention_policy" json:"retentionPolicy,omitempty"`
+		Target          *struct {
 			ConnectionCredential *struct {
 				HostKey     *string `tfsdk:"host_key" json:"hostKey,omitempty"`
 				PasswordKey *string `tfsdk:"password_key" json:"passwordKey,omitempty"`
@@ -221,8 +225,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
 					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-				Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+				MatchLabels           *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				Strategy              *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+				UseParentSelectedPods *bool              `tfsdk:"use_parent_selected_pods" json:"useParentSelectedPods,omitempty"`
 			} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 			Resources *struct {
 				Excluded *[]string `tfsdk:"excluded" json:"excluded,omitempty"`
@@ -265,8 +270,9 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
 					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-				Strategy    *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+				MatchLabels           *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				Strategy              *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+				UseParentSelectedPods *bool              `tfsdk:"use_parent_selected_pods" json:"useParentSelectedPods,omitempty"`
 			} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
 			Resources *struct {
 				Excluded *[]string `tfsdk:"excluded" json:"excluded,omitempty"`
@@ -386,6 +392,17 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"compatible_method": schema.StringAttribute{
+									Description:         "The name of the compatible full backup method, used by incremental backups.",
+									MarkdownDescription: "The name of the compatible full backup method, used by incremental backups.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+									},
 								},
 
 								"env": schema.ListNestedAttribute{
@@ -824,6 +841,14 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 														stringvalidator.OneOf("Any", "All"),
 													},
 												},
+
+												"use_parent_selected_pods": schema.BoolAttribute{
+													Description:         "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+													MarkdownDescription: "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -1204,6 +1229,14 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															stringvalidator.OneOf("Any", "All"),
 														},
 													},
+
+													"use_parent_selected_pods": schema.BoolAttribute{
+														Description:         "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+														MarkdownDescription: "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -1381,6 +1414,17 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"retention_policy": schema.StringAttribute{
+						Description:         "Specifies the backup retention policy. This has a precedence over 'backup.spec.retentionPeriod'.",
+						MarkdownDescription: "Specifies the backup retention policy. This has a precedence over 'backup.spec.retentionPeriod'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("retainLatestBackup", "none"),
+						},
 					},
 
 					"target": schema.SingleNestedAttribute{
@@ -1584,6 +1628,14 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										Validators: []validator.String{
 											stringvalidator.OneOf("Any", "All"),
 										},
+									},
+
+									"use_parent_selected_pods": schema.BoolAttribute{
+										Description:         "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+										MarkdownDescription: "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -1887,6 +1939,14 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											Validators: []validator.String{
 												stringvalidator.OneOf("Any", "All"),
 											},
+										},
+
+										"use_parent_selected_pods": schema.BoolAttribute{
+											Description:         "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+											MarkdownDescription: "UseParentSelectedPods indicates whether to use the pods selected by the parent for backup. If set to true, the backup will use the same pods selected by the parent. And only takes effect when the 'strategy' is set to 'Any'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 									},
 									Required: false,

@@ -120,7 +120,8 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 			} `tfsdk:"plugins" json:"plugins,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -225,7 +226,8 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -248,8 +250,20 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 			} `tfsdk:"build_config" json:"buildConfig,omitempty"`
 			BuildContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -426,7 +440,16 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				EnableServiceLinks *bool `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
+				DnsConfig *struct {
+					Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+					Options     *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"options" json:"options,omitempty"`
+					Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+				} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+				DnsPolicy          *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+				EnableServiceLinks *bool   `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
 				HostAliases        *[]struct {
 					Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 					Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -450,6 +473,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -460,8 +484,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -509,6 +534,15 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Csi *struct {
+						Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
+						FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
+						NodePublishSecretRef *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"node_publish_secret_ref" json:"nodePublishSecretRef,omitempty"`
+						ReadOnly         *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+						VolumeAttributes *map[string]string `tfsdk:"volume_attributes" json:"volumeAttributes,omitempty"`
+					} `tfsdk:"csi" json:"csi,omitempty"`
 					EmptyDir *struct {
 						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 						SizeLimit *struct {
@@ -547,8 +581,20 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 			} `tfsdk:"cluster_role_binding" json:"clusterRoleBinding,omitempty"`
 			ConnectContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -610,8 +656,20 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 			} `tfsdk:"headless_service" json:"headlessService,omitempty"`
 			InitContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -794,7 +852,16 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				EnableServiceLinks *bool `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
+				DnsConfig *struct {
+					Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+					Options     *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"options" json:"options,omitempty"`
+					Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+				} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+				DnsPolicy          *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+				EnableServiceLinks *bool   `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
 				HostAliases        *[]struct {
 					Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 					Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -818,6 +885,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -828,8 +896,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -877,6 +946,15 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Csi *struct {
+						Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
+						FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
+						NodePublishSecretRef *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"node_publish_secret_ref" json:"nodePublishSecretRef,omitempty"`
+						ReadOnly         *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+						VolumeAttributes *map[string]string `tfsdk:"volume_attributes" json:"volumeAttributes,omitempty"`
+					} `tfsdk:"csi" json:"csi,omitempty"`
 					EmptyDir *struct {
 						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 						SizeLimit *struct {
@@ -1387,8 +1465,8 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 								MarkdownDescription: "Configures where should the newly built image be stored. Required.",
 								Attributes: map[string]schema.Attribute{
 									"additional_kaniko_options": schema.ListAttribute{
-										Description:         "Configures additional options which will be passed to the Kaniko executor when building the new Connect image. Allowed options are: --customPlatform, --insecure, --insecure-pull, --insecure-registry, --log-format, --log-timestamp, --registry-mirror, --reproducible, --single-snapshot, --skip-tls-verify, --skip-tls-verify-pull, --skip-tls-verify-registry, --verbosity, --snapshotMode, --use-new-run. These options will be used only on Kubernetes where the Kaniko executor is used. They will be ignored on OpenShift. The options are described in the link:https://github.com/GoogleContainerTools/kaniko[Kaniko GitHub repository^]. Changing this field does not trigger new build of the Kafka Connect image.",
-										MarkdownDescription: "Configures additional options which will be passed to the Kaniko executor when building the new Connect image. Allowed options are: --customPlatform, --insecure, --insecure-pull, --insecure-registry, --log-format, --log-timestamp, --registry-mirror, --reproducible, --single-snapshot, --skip-tls-verify, --skip-tls-verify-pull, --skip-tls-verify-registry, --verbosity, --snapshotMode, --use-new-run. These options will be used only on Kubernetes where the Kaniko executor is used. They will be ignored on OpenShift. The options are described in the link:https://github.com/GoogleContainerTools/kaniko[Kaniko GitHub repository^]. Changing this field does not trigger new build of the Kafka Connect image.",
+										Description:         "Configures additional options which will be passed to the Kaniko executor when building the new Connect image. Allowed options are: --customPlatform, --custom-platform, --insecure, --insecure-pull, --insecure-registry, --log-format, --log-timestamp, --registry-mirror, --reproducible, --single-snapshot, --skip-tls-verify, --skip-tls-verify-pull, --skip-tls-verify-registry, --verbosity, --snapshotMode, --use-new-run, --registry-certificate, --registry-client-cert, --ignore-path. These options will be used only on Kubernetes where the Kaniko executor is used. They will be ignored on OpenShift. The options are described in the link:https://github.com/GoogleContainerTools/kaniko[Kaniko GitHub repository^]. Changing this field does not trigger new build of the Kafka Connect image.",
+										MarkdownDescription: "Configures additional options which will be passed to the Kaniko executor when building the new Connect image. Allowed options are: --customPlatform, --custom-platform, --insecure, --insecure-pull, --insecure-registry, --log-format, --log-timestamp, --registry-mirror, --reproducible, --single-snapshot, --skip-tls-verify, --skip-tls-verify-pull, --skip-tls-verify-registry, --verbosity, --snapshotMode, --use-new-run, --registry-certificate, --registry-client-cert, --ignore-path. These options will be used only on Kubernetes where the Kaniko executor is used. They will be ignored on OpenShift. The options are described in the link:https://github.com/GoogleContainerTools/kaniko[Kaniko GitHub repository^]. Changing this field does not trigger new build of the Kafka Connect image.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1548,6 +1626,14 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -2278,6 +2364,14 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -2435,6 +2529,81 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -3621,6 +3790,71 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 										Computed: false,
 									},
 
+									"dns_config": schema.SingleNestedAttribute{
+										Description:         "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										MarkdownDescription: "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										Attributes: map[string]schema.Attribute{
+											"nameservers": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"options": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"searches": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"dns_policy": schema.StringAttribute{
+										Description:         "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										MarkdownDescription: "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("ClusterFirst", "ClusterFirstWithHostNet", "Default", "None"),
+										},
+									},
+
 									"enable_service_links": schema.BoolAttribute{
 										Description:         "Indicates whether information about services should be injected into Pod's environment variables.",
 										MarkdownDescription: "Indicates whether information about services should be injected into Pod's environment variables.",
@@ -3788,6 +4022,14 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 												Computed:            false,
 											},
 
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"se_linux_options": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -3858,6 +4100,14 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4204,6 +4454,65 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 													Computed: false,
 												},
 
+												"csi": schema.SingleNestedAttribute{
+													Description:         "CSIVolumeSource object to use to populate the volume.",
+													MarkdownDescription: "CSIVolumeSource object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"driver": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"fs_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"node_publish_secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"empty_dir": schema.SingleNestedAttribute{
 													Description:         "EmptyDir to use to populate the volume.",
 													MarkdownDescription: "EmptyDir to use to populate the volume.",
@@ -4453,6 +4762,81 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -4883,6 +5267,81 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -6105,6 +6564,71 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 										Computed: false,
 									},
 
+									"dns_config": schema.SingleNestedAttribute{
+										Description:         "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										MarkdownDescription: "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										Attributes: map[string]schema.Attribute{
+											"nameservers": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"options": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"searches": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"dns_policy": schema.StringAttribute{
+										Description:         "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										MarkdownDescription: "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("ClusterFirst", "ClusterFirstWithHostNet", "Default", "None"),
+										},
+									},
+
 									"enable_service_links": schema.BoolAttribute{
 										Description:         "Indicates whether information about services should be injected into Pod's environment variables.",
 										MarkdownDescription: "Indicates whether information about services should be injected into Pod's environment variables.",
@@ -6272,6 +6796,14 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 												Computed:            false,
 											},
 
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"se_linux_options": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -6342,6 +6874,14 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6678,6 +7218,65 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 														"optional": schema.BoolAttribute{
 															Description:         "",
 															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"csi": schema.SingleNestedAttribute{
+													Description:         "CSIVolumeSource object to use to populate the volume.",
+													MarkdownDescription: "CSIVolumeSource object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"driver": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"fs_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"node_publish_secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
