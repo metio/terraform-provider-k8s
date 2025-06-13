@@ -43,28 +43,43 @@ type SnsServicesK8SAwsTopicV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ContentBasedDeduplication *string `tfsdk:"content_based_deduplication" json:"contentBasedDeduplication,omitempty"`
-		DataProtectionPolicy      *string `tfsdk:"data_protection_policy" json:"dataProtectionPolicy,omitempty"`
-		DeliveryPolicy            *string `tfsdk:"delivery_policy" json:"deliveryPolicy,omitempty"`
-		DisplayName               *string `tfsdk:"display_name" json:"displayName,omitempty"`
-		FifoTopic                 *string `tfsdk:"fifo_topic" json:"fifoTopic,omitempty"`
-		KmsMasterKeyID            *string `tfsdk:"kms_master_key_id" json:"kmsMasterKeyID,omitempty"`
-		KmsMasterKeyRef           *struct {
+		ApplicationFailureFeedbackRoleARN    *string `tfsdk:"application_failure_feedback_role_arn" json:"applicationFailureFeedbackRoleARN,omitempty"`
+		ApplicationSuccessFeedbackRoleARN    *string `tfsdk:"application_success_feedback_role_arn" json:"applicationSuccessFeedbackRoleARN,omitempty"`
+		ApplicationSuccessFeedbackSampleRate *string `tfsdk:"application_success_feedback_sample_rate" json:"applicationSuccessFeedbackSampleRate,omitempty"`
+		ContentBasedDeduplication            *string `tfsdk:"content_based_deduplication" json:"contentBasedDeduplication,omitempty"`
+		DataProtectionPolicy                 *string `tfsdk:"data_protection_policy" json:"dataProtectionPolicy,omitempty"`
+		DeliveryPolicy                       *string `tfsdk:"delivery_policy" json:"deliveryPolicy,omitempty"`
+		DisplayName                          *string `tfsdk:"display_name" json:"displayName,omitempty"`
+		FifoTopic                            *string `tfsdk:"fifo_topic" json:"fifoTopic,omitempty"`
+		FirehoseFailureFeedbackRoleARN       *string `tfsdk:"firehose_failure_feedback_role_arn" json:"firehoseFailureFeedbackRoleARN,omitempty"`
+		FirehoseSuccessFeedbackRoleARN       *string `tfsdk:"firehose_success_feedback_role_arn" json:"firehoseSuccessFeedbackRoleARN,omitempty"`
+		FirehoseSuccessFeedbackSampleRate    *string `tfsdk:"firehose_success_feedback_sample_rate" json:"firehoseSuccessFeedbackSampleRate,omitempty"`
+		HttpFailureFeedbackRoleARN           *string `tfsdk:"http_failure_feedback_role_arn" json:"httpFailureFeedbackRoleARN,omitempty"`
+		HttpSuccessFeedbackRoleARN           *string `tfsdk:"http_success_feedback_role_arn" json:"httpSuccessFeedbackRoleARN,omitempty"`
+		HttpSuccessFeedbackSampleRate        *string `tfsdk:"http_success_feedback_sample_rate" json:"httpSuccessFeedbackSampleRate,omitempty"`
+		KmsMasterKeyID                       *string `tfsdk:"kms_master_key_id" json:"kmsMasterKeyID,omitempty"`
+		KmsMasterKeyRef                      *struct {
 			From *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_master_key_ref" json:"kmsMasterKeyRef,omitempty"`
-		Name      *string `tfsdk:"name" json:"name,omitempty"`
-		Policy    *string `tfsdk:"policy" json:"policy,omitempty"`
-		PolicyRef *struct {
+		LambdaFailureFeedbackRoleARN    *string `tfsdk:"lambda_failure_feedback_role_arn" json:"lambdaFailureFeedbackRoleARN,omitempty"`
+		LambdaSuccessFeedbackRoleARN    *string `tfsdk:"lambda_success_feedback_role_arn" json:"lambdaSuccessFeedbackRoleARN,omitempty"`
+		LambdaSuccessFeedbackSampleRate *string `tfsdk:"lambda_success_feedback_sample_rate" json:"lambdaSuccessFeedbackSampleRate,omitempty"`
+		Name                            *string `tfsdk:"name" json:"name,omitempty"`
+		Policy                          *string `tfsdk:"policy" json:"policy,omitempty"`
+		PolicyRef                       *struct {
 			From *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"policy_ref" json:"policyRef,omitempty"`
-		SignatureVersion *string `tfsdk:"signature_version" json:"signatureVersion,omitempty"`
-		Tags             *[]struct {
+		SignatureVersion             *string `tfsdk:"signature_version" json:"signatureVersion,omitempty"`
+		SqsFailureFeedbackRoleARN    *string `tfsdk:"sqs_failure_feedback_role_arn" json:"sqsFailureFeedbackRoleARN,omitempty"`
+		SqsSuccessFeedbackRoleARN    *string `tfsdk:"sqs_success_feedback_role_arn" json:"sqsSuccessFeedbackRoleARN,omitempty"`
+		SqsSuccessFeedbackSampleRate *string `tfsdk:"sqs_success_feedback_sample_rate" json:"sqsSuccessFeedbackSampleRate,omitempty"`
+		Tags                         *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -149,6 +164,30 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 				Description:         "TopicSpec defines the desired state of Topic. A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use GetTopicAttributes.",
 				MarkdownDescription: "TopicSpec defines the desired state of Topic. A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use GetTopicAttributes.",
 				Attributes: map[string]schema.Attribute{
+					"application_failure_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"application_success_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"application_success_feedback_sample_rate": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"content_based_deduplication": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -182,6 +221,54 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"fifo_topic": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"firehose_failure_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"firehose_success_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"firehose_success_feedback_sample_rate": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"http_failure_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"http_success_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"http_success_feedback_sample_rate": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -229,6 +316,30 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"lambda_failure_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"lambda_success_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"lambda_success_feedback_sample_rate": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
@@ -282,6 +393,30 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"signature_version": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"sqs_failure_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"sqs_success_feedback_role_arn": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"sqs_success_feedback_sample_rate": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

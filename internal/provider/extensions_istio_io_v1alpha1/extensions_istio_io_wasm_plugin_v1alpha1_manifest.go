@@ -165,13 +165,13 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Extend the functionality provided by the Istio proxy through WebAssembly filters. See more details at: https://istio.io/docs/reference/config/proxy_extensions/wasm-plugin.html",
 				Attributes: map[string]schema.Attribute{
 					"fail_strategy": schema.StringAttribute{
-						Description:         "Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN",
-						MarkdownDescription: "Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN",
+						Description:         "Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN, FAIL_RELOAD",
+						MarkdownDescription: "Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN, FAIL_RELOAD",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("FAIL_CLOSE", "FAIL_OPEN"),
+							stringvalidator.OneOf("FAIL_CLOSE", "FAIL_OPEN", "FAIL_RELOAD"),
 						},
 					},
 

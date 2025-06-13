@@ -170,8 +170,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 				MarkdownDescription: "FirewallPolicySpec defines the desired state of FirewallPolicy. The firewall policy defines the behavior of a firewall using a collection of stateless and stateful rule groups and other settings. You can use one firewall policy for multiple firewalls. This, along with FirewallPolicyResponse, define the policy. You can retrieve all objects for a firewall policy by calling DescribeFirewallPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
-						Description:         "A description of the firewall policy.",
-						MarkdownDescription: "A description of the firewall policy.",
+						Description:         "A description of the firewall policy. Regex Pattern: '^.*$'",
+						MarkdownDescription: "A description of the firewall policy. Regex Pattern: '^.*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -426,8 +426,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 					},
 
 					"firewall_policy_name": schema.StringAttribute{
-						Description:         "The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.",
-						MarkdownDescription: "The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.",
+						Description:         "The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it. Regex Pattern: '^[a-zA-Z0-9-]+$'",
+						MarkdownDescription: "The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it. Regex Pattern: '^[a-zA-Z0-9-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

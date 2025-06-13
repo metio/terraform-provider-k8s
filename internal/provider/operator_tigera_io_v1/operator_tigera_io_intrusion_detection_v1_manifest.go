@@ -49,7 +49,8 @@ type OperatorTigeraIoIntrusionDetectionV1ManifestData struct {
 			ComponentName        *string `tfsdk:"component_name" json:"componentName,omitempty"`
 			ResourceRequirements *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -64,7 +65,8 @@ type OperatorTigeraIoIntrusionDetectionV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -82,7 +84,8 @@ type OperatorTigeraIoIntrusionDetectionV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -92,7 +95,8 @@ type OperatorTigeraIoIntrusionDetectionV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -219,6 +223,14 @@ func (r *OperatorTigeraIoIntrusionDetectionV1Manifest) Schema(_ context.Context,
 														Optional:            false,
 														Computed:            false,
 													},
+
+													"request": schema.StringAttribute{
+														Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -309,6 +321,14 @@ func (r *OperatorTigeraIoIntrusionDetectionV1Manifest) Schema(_ context.Context,
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -415,6 +435,14 @@ func (r *OperatorTigeraIoIntrusionDetectionV1Manifest) Schema(_ context.Context,
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -481,6 +509,14 @@ func (r *OperatorTigeraIoIntrusionDetectionV1Manifest) Schema(_ context.Context,
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},

@@ -42,8 +42,9 @@ type AppsKubeedgeIoNodeGroupV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-		Nodes       *[]string          `tfsdk:"nodes" json:"nodes,omitempty"`
+		MatchLabels     *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+		Nodes           *[]string          `tfsdk:"nodes" json:"nodes,omitempty"`
+		TopologyEnabled *bool              `tfsdk:"topology_enabled" json:"topologyEnabled,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -125,6 +126,14 @@ func (r *AppsKubeedgeIoNodeGroupV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "Nodes contains names of all the nodes in the nodegroup.",
 						MarkdownDescription: "Nodes contains names of all the nodes in the nodegroup.",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"topology_enabled": schema.BoolAttribute{
+						Description:         "topologyEnabled indicates whether the topology is enabled for this NodeGroup.",
+						MarkdownDescription: "topologyEnabled indicates whether the topology is enabled for this NodeGroup.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

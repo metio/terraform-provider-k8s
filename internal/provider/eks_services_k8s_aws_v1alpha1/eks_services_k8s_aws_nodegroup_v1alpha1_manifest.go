@@ -200,8 +200,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -180,8 +180,8 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"event_time_feature_name": schema.StringAttribute{
-						Description:         "The name of the feature that stores the EventTime of a Record in a FeatureGroup. An EventTime is a point in time when a new event occurs that corresponds to the creation or update of a Record in a FeatureGroup. All Records in the FeatureGroup must have a corresponding EventTime. An EventTime can be a String or Fractional. * Fractional: EventTime feature values must be a Unix timestamp in seconds. * String: EventTime feature values must be an ISO-8601 string in the format. The following formats are supported yyyy-MM-dd'T'HH:mm:ssZ and yyyy-MM-dd'T'HH:mm:ss.SSSZ where yyyy, MM, and dd represent the year, month, and day respectively and HH, mm, ss, and if applicable, SSS represent the hour, month, second and milliseconds respsectively. 'T' and Z are constants.",
-						MarkdownDescription: "The name of the feature that stores the EventTime of a Record in a FeatureGroup. An EventTime is a point in time when a new event occurs that corresponds to the creation or update of a Record in a FeatureGroup. All Records in the FeatureGroup must have a corresponding EventTime. An EventTime can be a String or Fractional. * Fractional: EventTime feature values must be a Unix timestamp in seconds. * String: EventTime feature values must be an ISO-8601 string in the format. The following formats are supported yyyy-MM-dd'T'HH:mm:ssZ and yyyy-MM-dd'T'HH:mm:ss.SSSZ where yyyy, MM, and dd represent the year, month, and day respectively and HH, mm, ss, and if applicable, SSS represent the hour, month, second and milliseconds respsectively. 'T' and Z are constants.",
+						Description:         "The name of the feature that stores the EventTime of a Record in a FeatureGroup. An EventTime is a point in time when a new event occurs that corresponds to the creation or update of a Record in a FeatureGroup. All Records in the FeatureGroup must have a corresponding EventTime. An EventTime can be a String or Fractional. * Fractional: EventTime feature values must be a Unix timestamp in seconds. * String: EventTime feature values must be an ISO-8601 string in the format. The following formats are supported yyyy-MM-dd'T'HH:mm:ssZ and yyyy-MM-dd'T'HH:mm:ss.SSSZ where yyyy, MM, and dd represent the year, month, and day respectively and HH, mm, ss, and if applicable, SSS represent the hour, month, second and milliseconds respsectively. 'T' and Z are constants. Regex Pattern: '^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}$'",
+						MarkdownDescription: "The name of the feature that stores the EventTime of a Record in a FeatureGroup. An EventTime is a point in time when a new event occurs that corresponds to the creation or update of a Record in a FeatureGroup. All Records in the FeatureGroup must have a corresponding EventTime. An EventTime can be a String or Fractional. * Fractional: EventTime feature values must be a Unix timestamp in seconds. * String: EventTime feature values must be an ISO-8601 string in the format. The following formats are supported yyyy-MM-dd'T'HH:mm:ssZ and yyyy-MM-dd'T'HH:mm:ss.SSSZ where yyyy, MM, and dd represent the year, month, and day respectively and HH, mm, ss, and if applicable, SSS represent the hour, month, second and milliseconds respsectively. 'T' and Z are constants. Regex Pattern: '^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -249,8 +249,8 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"feature_group_name": schema.StringAttribute{
-						Description:         "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start and end with an alphanumeric character. * Can only contain alphanumeric character and hyphens. Spaces are not allowed.",
-						MarkdownDescription: "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start and end with an alphanumeric character. * Can only contain alphanumeric character and hyphens. Spaces are not allowed.",
+						Description:         "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start with an alphanumeric character. * Can only include alphanumeric characters, underscores, and hyphens. Spaces are not allowed. Regex Pattern: '^[a-zA-Z0-9]([_-]*[a-zA-Z0-9]){0,63}$'",
+						MarkdownDescription: "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name: * Must start with an alphanumeric character. * Can only include alphanumeric characters, underscores, and hyphens. Spaces are not allowed. Regex Pattern: '^[a-zA-Z0-9]([_-]*[a-zA-Z0-9]){0,63}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -302,8 +302,8 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"s3_storage_config": schema.SingleNestedAttribute{
-								Description:         "The Amazon Simple Storage (Amazon S3) location and and security configuration for OfflineStore.",
-								MarkdownDescription: "The Amazon Simple Storage (Amazon S3) location and and security configuration for OfflineStore.",
+								Description:         "The Amazon Simple Storage (Amazon S3) location and security configuration for OfflineStore.",
+								MarkdownDescription: "The Amazon Simple Storage (Amazon S3) location and security configuration for OfflineStore.",
 								Attributes: map[string]schema.Attribute{
 									"kms_key_id": schema.StringAttribute{
 										Description:         "",
@@ -407,16 +407,16 @@ func (r *SagemakerServicesK8SAwsFeatureGroupV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"record_identifier_feature_name": schema.StringAttribute{
-						Description:         "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start and end with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.",
-						MarkdownDescription: "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start and end with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.",
+						Description:         "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed. Regex Pattern: '^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}$'",
+						MarkdownDescription: "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name: * Must start with an alphanumeric character. * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed. Regex Pattern: '^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided.",
+						Description:         "The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

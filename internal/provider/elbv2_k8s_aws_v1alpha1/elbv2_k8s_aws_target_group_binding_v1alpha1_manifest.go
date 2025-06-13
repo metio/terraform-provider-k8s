@@ -43,7 +43,10 @@ type Elbv2K8SAwsTargetGroupBindingV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Networking *struct {
+		AssumeRoleExternalId    *string `tfsdk:"assume_role_external_id" json:"assumeRoleExternalId,omitempty"`
+		IamRoleArnToAssume      *string `tfsdk:"iam_role_arn_to_assume" json:"iamRoleArnToAssume,omitempty"`
+		MultiClusterTargetGroup *bool   `tfsdk:"multi_cluster_target_group" json:"multiClusterTargetGroup,omitempty"`
+		Networking              *struct {
 			Ingress *[]struct {
 				From *[]struct {
 					IpBlock *struct {
@@ -63,8 +66,9 @@ type Elbv2K8SAwsTargetGroupBindingV1Alpha1ManifestData struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 			Port *string `tfsdk:"port" json:"port,omitempty"`
 		} `tfsdk:"service_ref" json:"serviceRef,omitempty"`
-		TargetGroupARN *string `tfsdk:"target_group_arn" json:"targetGroupARN,omitempty"`
-		TargetType     *string `tfsdk:"target_type" json:"targetType,omitempty"`
+		TargetGroupARN  *string `tfsdk:"target_group_arn" json:"targetGroupARN,omitempty"`
+		TargetGroupName *string `tfsdk:"target_group_name" json:"targetGroupName,omitempty"`
+		TargetType      *string `tfsdk:"target_type" json:"targetType,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -145,6 +149,30 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Alpha1Manifest) Schema(_ context.Context
 				Description:         "TargetGroupBindingSpec defines the desired state of TargetGroupBinding",
 				MarkdownDescription: "TargetGroupBindingSpec defines the desired state of TargetGroupBinding",
 				Attributes: map[string]schema.Attribute{
+					"assume_role_external_id": schema.StringAttribute{
+						Description:         "IAM Role ARN to assume when calling AWS APIs. Needed to assume a role in another account and prevent the confused deputy problem. https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html",
+						MarkdownDescription: "IAM Role ARN to assume when calling AWS APIs. Needed to assume a role in another account and prevent the confused deputy problem. https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"iam_role_arn_to_assume": schema.StringAttribute{
+						Description:         "IAM Role ARN to assume when calling AWS APIs. Useful if the target group is in a different AWS account",
+						MarkdownDescription: "IAM Role ARN to assume when calling AWS APIs. Useful if the target group is in a different AWS account",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"multi_cluster_target_group": schema.BoolAttribute{
+						Description:         "MultiClusterTargetGroup Denotes if the TargetGroup is shared among multiple clusters",
+						MarkdownDescription: "MultiClusterTargetGroup Denotes if the TargetGroup is shared among multiple clusters",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"networking": schema.SingleNestedAttribute{
 						Description:         "networking provides the networking setup for ELBV2 LoadBalancer to access targets in TargetGroup.",
 						MarkdownDescription: "networking provides the networking setup for ELBV2 LoadBalancer to access targets in TargetGroup.",
@@ -268,8 +296,16 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Alpha1Manifest) Schema(_ context.Context
 					"target_group_arn": schema.StringAttribute{
 						Description:         "targetGroupARN is the Amazon Resource Name (ARN) for the TargetGroup.",
 						MarkdownDescription: "targetGroupARN is the Amazon Resource Name (ARN) for the TargetGroup.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"target_group_name": schema.StringAttribute{
+						Description:         "targetGroupName is the Name of the TargetGroup.",
+						MarkdownDescription: "targetGroupName is the Name of the TargetGroup.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

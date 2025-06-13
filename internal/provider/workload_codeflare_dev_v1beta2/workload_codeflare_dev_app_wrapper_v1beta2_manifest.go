@@ -46,10 +46,13 @@ type WorkloadCodeflareDevAppWrapperV1Beta2ManifestData struct {
 		Components *[]struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			PodSetInfos *[]struct {
-				Annotations  *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-				Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-				Tolerations  *[]struct {
+				Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				SchedulingGates *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
+				Tolerations *[]struct {
 					Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 					Key               *string `tfsdk:"key" json:"key,omitempty"`
 					Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -58,8 +61,9 @@ type WorkloadCodeflareDevAppWrapperV1Beta2ManifestData struct {
 				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			} `tfsdk:"pod_set_infos" json:"podSetInfos,omitempty"`
 			PodSets *[]struct {
-				Path     *string `tfsdk:"path" json:"path,omitempty"`
-				Replicas *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Path        *string            `tfsdk:"path" json:"path,omitempty"`
+				Replicas    *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"pod_sets" json:"podSets,omitempty"`
 			Template *map[string]string `tfsdk:"template" json:"template,omitempty"`
 		} `tfsdk:"components" json:"components,omitempty"`
@@ -191,6 +195,25 @@ func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Schema(_ context.Context
 												Computed:            false,
 											},
 
+											"scheduling_gates": schema.ListNestedAttribute{
+												Description:         "SchedulingGates to be added to the PodSpecTemplate",
+												MarkdownDescription: "SchedulingGates to be added to the PodSpecTemplate",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the scheduling gate. Each scheduling gate must have a unique name field.",
+															MarkdownDescription: "Name of the scheduling gate. Each scheduling gate must have a unique name field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"tolerations": schema.ListNestedAttribute{
 												Description:         "Tolerations to be added to the PodSpecTemplate",
 												MarkdownDescription: "Tolerations to be added to the PodSpecTemplate",
@@ -253,6 +276,15 @@ func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Schema(_ context.Context
 									MarkdownDescription: "DeclaredPodSets for the Component (optional for known PodCreating GVKs)",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "Annotations is an unstructured key value map that may be used to store and retrieve arbitrary metadata about the PodSet to customize its treatment by the AppWrapper controller.",
+												MarkdownDescription: "Annotations is an unstructured key value map that may be used to store and retrieve arbitrary metadata about the PodSet to customize its treatment by the AppWrapper controller.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"path": schema.StringAttribute{
 												Description:         "Path is the path Component.Template to the PodTemplateSpec for this PodSet",
 												MarkdownDescription: "Path is the path Component.Template to the PodTemplateSpec for this PodSet",

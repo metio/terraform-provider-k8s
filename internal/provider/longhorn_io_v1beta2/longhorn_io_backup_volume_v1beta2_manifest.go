@@ -43,7 +43,9 @@ type LonghornIoBackupVolumeV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		SyncRequestedAt *string `tfsdk:"sync_requested_at" json:"syncRequestedAt,omitempty"`
+		BackupTargetName *string `tfsdk:"backup_target_name" json:"backupTargetName,omitempty"`
+		SyncRequestedAt  *string `tfsdk:"sync_requested_at" json:"syncRequestedAt,omitempty"`
+		VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -124,6 +126,14 @@ func (r *LonghornIoBackupVolumeV1Beta2Manifest) Schema(_ context.Context, _ data
 				Description:         "BackupVolumeSpec defines the desired state of the Longhorn backup volume",
 				MarkdownDescription: "BackupVolumeSpec defines the desired state of the Longhorn backup volume",
 				Attributes: map[string]schema.Attribute{
+					"backup_target_name": schema.StringAttribute{
+						Description:         "The backup target name that the backup volume was synced.",
+						MarkdownDescription: "The backup target name that the backup volume was synced.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"sync_requested_at": schema.StringAttribute{
 						Description:         "The time to request run sync the remote backup volume.",
 						MarkdownDescription: "The time to request run sync the remote backup volume.",
@@ -133,6 +143,14 @@ func (r *LonghornIoBackupVolumeV1Beta2Manifest) Schema(_ context.Context, _ data
 						Validators: []validator.String{
 							validators.DateTime64Validator(),
 						},
+					},
+
+					"volume_name": schema.StringAttribute{
+						Description:         "The volume name that the backup volume was used to backup.",
+						MarkdownDescription: "The volume name that the backup volume was used to backup.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

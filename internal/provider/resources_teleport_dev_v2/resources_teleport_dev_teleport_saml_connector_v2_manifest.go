@@ -74,9 +74,10 @@ type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 			Issuer                *string `tfsdk:"issuer" json:"issuer,omitempty"`
 			Sso                   *string `tfsdk:"sso" json:"sso,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
-		Provider                *string `tfsdk:"provider" json:"provider,omitempty"`
-		Service_provider_issuer *string `tfsdk:"service_provider_issuer" json:"service_provider_issuer,omitempty"`
-		Signing_key_pair        *struct {
+		Preferred_request_binding *string `tfsdk:"preferred_request_binding" json:"preferred_request_binding,omitempty"`
+		Provider                  *string `tfsdk:"provider" json:"provider,omitempty"`
+		Service_provider_issuer   *string `tfsdk:"service_provider_issuer" json:"service_provider_issuer,omitempty"`
+		Signing_key_pair          *struct {
 			Cert        *string `tfsdk:"cert" json:"cert,omitempty"`
 			Private_key *string `tfsdk:"private_key" json:"private_key,omitempty"`
 		} `tfsdk:"signing_key_pair" json:"signing_key_pair,omitempty"`
@@ -385,6 +386,14 @@ func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.C
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"preferred_request_binding": schema.StringAttribute{
+						Description:         "PreferredRequestBinding is a preferred SAML request binding method. Value must be either 'http-post' or 'http-redirect'. In general, the SAML identity provider lists request binding methods it supports. And the SAML service provider uses one of the IdP supported request binding method that it prefers. But we never honored request binding value provided by the IdP and always used http-redirect binding as a default. Setting up PreferredRequestBinding value lets us preserve existing auth connector behavior and only use http-post binding if it is explicitly configured.",
+						MarkdownDescription: "PreferredRequestBinding is a preferred SAML request binding method. Value must be either 'http-post' or 'http-redirect'. In general, the SAML identity provider lists request binding methods it supports. And the SAML service provider uses one of the IdP supported request binding method that it prefers. But we never honored request binding value provided by the IdP and always used http-redirect binding as a default. Setting up PreferredRequestBinding value lets us preserve existing auth connector behavior and only use http-post binding if it is explicitly configured.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"provider": schema.StringAttribute{

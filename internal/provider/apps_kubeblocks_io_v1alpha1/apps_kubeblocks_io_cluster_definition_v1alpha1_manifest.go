@@ -1494,7 +1494,8 @@ type AppsKubeblocksIoClusterDefinitionV1Alpha1ManifestData struct {
 					} `tfsdk:"switchover_action" json:"switchoverAction,omitempty"`
 				} `tfsdk:"membership_reconfiguration" json:"membershipReconfiguration,omitempty"`
 				RoleProbe *struct {
-					CustomHandler *[]struct {
+					BuiltinHandlerName *string `tfsdk:"builtin_handler_name" json:"builtinHandlerName,omitempty"`
+					CustomHandler      *[]struct {
 						Args    *[]string `tfsdk:"args" json:"args,omitempty"`
 						Command *[]string `tfsdk:"command" json:"command,omitempty"`
 						Image   *string   `tfsdk:"image" json:"image,omitempty"`
@@ -11524,6 +11525,14 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											Description:         "Defines the method used to probe a role.",
 											MarkdownDescription: "Defines the method used to probe a role.",
 											Attributes: map[string]schema.Attribute{
+												"builtin_handler_name": schema.StringAttribute{
+													Description:         "Specifies the builtin handler name to use to probe the role of the main container. Available handlers include: mysql, postgres, mongodb, redis, etcd, kafka. Use CustomHandler to define a custom role probe function if none of the built-in handlers meet the requirement.",
+													MarkdownDescription: "Specifies the builtin handler name to use to probe the role of the main container. Available handlers include: mysql, postgres, mongodb, redis, etcd, kafka. Use CustomHandler to define a custom role probe function if none of the built-in handlers meet the requirement.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"custom_handler": schema.ListNestedAttribute{
 													Description:         "Defines a custom method for role probing. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential",
 													MarkdownDescription: "Defines a custom method for role probing. Actions defined here are executed in series. Upon completion of all actions, the final output should be a single string representing the role name defined in spec.Roles. The latest [BusyBox](https://busybox.net/) image will be used if Image is not configured. Environment variables can be used in Command: - v_KB_ITS_LAST_STDOUT: stdout from the last action, watch for 'v_' prefix - KB_ITS_USERNAME: username part of the credential - KB_ITS_PASSWORD: password part of the credential",

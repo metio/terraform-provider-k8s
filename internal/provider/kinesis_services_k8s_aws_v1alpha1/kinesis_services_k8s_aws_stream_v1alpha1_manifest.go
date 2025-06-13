@@ -48,6 +48,7 @@ type KinesisServicesK8SAwsStreamV1Alpha1ManifestData struct {
 		StreamModeDetails *struct {
 			StreamMode *string `tfsdk:"stream_mode" json:"streamMode,omitempty"`
 		} `tfsdk:"stream_mode_details" json:"streamModeDetails,omitempty"`
+		Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -129,8 +130,8 @@ func (r *KinesisServicesK8SAwsStreamV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "StreamSpec defines the desired state of Stream.",
 				Attributes: map[string]schema.Attribute{
 					"name": schema.StringAttribute{
-						Description:         "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name.",
-						MarkdownDescription: "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name.",
+						Description:         "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name. Regex Pattern: '^[a-zA-Z0-9_.-]+$'",
+						MarkdownDescription: "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name. Regex Pattern: '^[a-zA-Z0-9_.-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -159,6 +160,15 @@ func (r *KinesisServicesK8SAwsStreamV1Alpha1Manifest) Schema(_ context.Context, 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"tags": schema.MapAttribute{
+						Description:         "A set of up to 10 key-value pairs to use to create the tags.",
+						MarkdownDescription: "A set of up to 10 key-value pairs to use to create the tags.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

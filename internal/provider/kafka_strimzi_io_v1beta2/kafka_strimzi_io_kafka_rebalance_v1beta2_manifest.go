@@ -51,10 +51,14 @@ type KafkaStrimziIoKafkaRebalanceV1Beta2ManifestData struct {
 		ExcludedTopics                          *string   `tfsdk:"excluded_topics" json:"excludedTopics,omitempty"`
 		Goals                                   *[]string `tfsdk:"goals" json:"goals,omitempty"`
 		Mode                                    *string   `tfsdk:"mode" json:"mode,omitempty"`
-		RebalanceDisk                           *bool     `tfsdk:"rebalance_disk" json:"rebalanceDisk,omitempty"`
-		ReplicaMovementStrategies               *[]string `tfsdk:"replica_movement_strategies" json:"replicaMovementStrategies,omitempty"`
-		ReplicationThrottle                     *int64    `tfsdk:"replication_throttle" json:"replicationThrottle,omitempty"`
-		SkipHardGoalCheck                       *bool     `tfsdk:"skip_hard_goal_check" json:"skipHardGoalCheck,omitempty"`
+		MoveReplicasOffVolumes                  *[]struct {
+			BrokerId  *int64    `tfsdk:"broker_id" json:"brokerId,omitempty"`
+			VolumeIds *[]string `tfsdk:"volume_ids" json:"volumeIds,omitempty"`
+		} `tfsdk:"move_replicas_off_volumes" json:"moveReplicasOffVolumes,omitempty"`
+		RebalanceDisk             *bool     `tfsdk:"rebalance_disk" json:"rebalanceDisk,omitempty"`
+		ReplicaMovementStrategies *[]string `tfsdk:"replica_movement_strategies" json:"replicaMovementStrategies,omitempty"`
+		ReplicationThrottle       *int64    `tfsdk:"replication_throttle" json:"replicationThrottle,omitempty"`
+		SkipHardGoalCheck         *bool     `tfsdk:"skip_hard_goal_check" json:"skipHardGoalCheck,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -195,14 +199,42 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Manifest) Schema(_ context.Context, 
 					},
 
 					"mode": schema.StringAttribute{
-						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'. If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster. * 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers. * 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed. ",
-						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'. If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster. * 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers. * 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed. ",
+						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'. If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster. * 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers. * 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed. * 'remove-disks' mode can be used to move data across the volumes within the same broker .",
+						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'. If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster. * 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers. * 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed. * 'remove-disks' mode can be used to move data across the volumes within the same broker .",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("full", "add-brokers", "remove-brokers"),
+							stringvalidator.OneOf("full", "add-brokers", "remove-brokers", "remove-disks"),
 						},
+					},
+
+					"move_replicas_off_volumes": schema.ListNestedAttribute{
+						Description:         "List of brokers and their corresponding volumes from which replicas need to be moved.",
+						MarkdownDescription: "List of brokers and their corresponding volumes from which replicas need to be moved.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"broker_id": schema.Int64Attribute{
+									Description:         "ID of the broker that contains the disk from which you want to move the partition replicas.",
+									MarkdownDescription: "ID of the broker that contains the disk from which you want to move the partition replicas.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"volume_ids": schema.ListAttribute{
+									Description:         "IDs of the disks from which the partition replicas need to be moved.",
+									MarkdownDescription: "IDs of the disks from which the partition replicas need to be moved.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"rebalance_disk": schema.BoolAttribute{

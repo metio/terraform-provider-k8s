@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -135,8 +136,8 @@ func (r *KueueXK8SIoResourceFlavorV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"node_taints": schema.ListNestedAttribute{
-						Description:         "nodeTaints are taints that the nodes associated with this ResourceFlavor have. Workloads' podsets must have tolerations for these nodeTaints in order to get assigned this ResourceFlavor during admission. An example of a nodeTaint is cloud.provider.com/preemptible='true':NoSchedule nodeTaints can be up to 8 elements.",
-						MarkdownDescription: "nodeTaints are taints that the nodes associated with this ResourceFlavor have. Workloads' podsets must have tolerations for these nodeTaints in order to get assigned this ResourceFlavor during admission. An example of a nodeTaint is cloud.provider.com/preemptible='true':NoSchedule nodeTaints can be up to 8 elements.",
+						Description:         "nodeTaints are taints that the nodes associated with this ResourceFlavor have. Workloads' podsets must have tolerations for these nodeTaints in order to get assigned this ResourceFlavor during admission. When this ResourceFlavor has also set the matching tolerations (in .spec.tolerations), then the nodeTaints are not considered during admission. Only the 'NoSchedule' and 'NoExecute' taint effects are evaluated, while 'PreferNoSchedule' is ignored. An example of a nodeTaint is cloud.provider.com/preemptible='true':NoSchedule nodeTaints can be up to 8 elements.",
+						MarkdownDescription: "nodeTaints are taints that the nodes associated with this ResourceFlavor have. Workloads' podsets must have tolerations for these nodeTaints in order to get assigned this ResourceFlavor during admission. When this ResourceFlavor has also set the matching tolerations (in .spec.tolerations), then the nodeTaints are not considered during admission. Only the 'NoSchedule' and 'NoExecute' taint effects are evaluated, while 'PreferNoSchedule' is ignored. An example of a nodeTaint is cloud.provider.com/preemptible='true':NoSchedule nodeTaints can be up to 8 elements.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
@@ -237,6 +238,10 @@ func (r *KueueXK8SIoResourceFlavorV1Beta1Manifest) Schema(_ context.Context, _ d
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(253),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+						},
 					},
 				},
 				Required: false,

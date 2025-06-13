@@ -184,8 +184,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 				MarkdownDescription: "ClusterSpec defines the desired state of Cluster. Contains all of the attributes of a specific cluster.",
 				Attributes: map[string]schema.Attribute{
 					"acl_name": schema.StringAttribute{
-						Description:         "The name of the Access Control List to associate with the cluster.",
-						MarkdownDescription: "The name of the Access Control List to associate with the cluster.",
+						Description:         "The name of the Access Control List to associate with the cluster. Regex Pattern: '^[a-zA-Z][a-zA-Z0-9-]*$'",
+						MarkdownDescription: "The name of the Access Control List to associate with the cluster. Regex Pattern: '^[a-zA-Z][a-zA-Z0-9-]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -242,8 +242,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"engine_version": schema.StringAttribute{
-						Description:         "The version number of the Redis engine to be used for the cluster.",
-						MarkdownDescription: "The version number of the Redis engine to be used for the cluster.",
+						Description:         "The version number of the Redis OSS engine to be used for the cluster.",
+						MarkdownDescription: "The version number of the Redis OSS engine to be used for the cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -258,8 +258,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"maintenance_window": schema.StringAttribute{
-						Description:         "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.",
-						MarkdownDescription: "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.",
+						Description:         "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid values for ddd are: * sun * mon * tue * wed * thu * fri * sat Example: sun:23:00-mon:01:30",
+						MarkdownDescription: "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid values for ddd are: * sun * mon * tue * wed * thu * fri * sat Example: sun:23:00-mon:01:30",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

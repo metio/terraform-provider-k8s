@@ -133,12 +133,12 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterResourceSetSpec defines the desired state of ClusterResourceSet.",
-				MarkdownDescription: "ClusterResourceSetSpec defines the desired state of ClusterResourceSet.",
+				Description:         "spec is the desired state of ClusterResourceSet.",
+				MarkdownDescription: "spec is the desired state of ClusterResourceSet.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_selector": schema.SingleNestedAttribute{
-						Description:         "Label selector for Clusters. The Clusters that are selected by this will be the ones affected by this ClusterResourceSet. It must match the Cluster labels. This field is immutable. Label selector cannot be empty.",
-						MarkdownDescription: "Label selector for Clusters. The Clusters that are selected by this will be the ones affected by this ClusterResourceSet. It must match the Cluster labels. This field is immutable. Label selector cannot be empty.",
+						Description:         "clusterSelector is the label selector for Clusters. The Clusters that are selected by this will be the ones affected by this ClusterResourceSet. It must match the Cluster labels. This field is immutable. Label selector cannot be empty.",
+						MarkdownDescription: "clusterSelector is the label selector for Clusters. The Clusters that are selected by this will be the ones affected by this ClusterResourceSet. It must match the Cluster labels. This field is immutable. Label selector cannot be empty.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -191,13 +191,13 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 					},
 
 					"resources": schema.ListNestedAttribute{
-						Description:         "Resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
-						MarkdownDescription: "Resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
+						Description:         "resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
+						MarkdownDescription: "resources is a list of Secrets/ConfigMaps where each contains 1 or more resources to be applied to remote clusters.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
-									Description:         "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
-									MarkdownDescription: "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+									Description:         "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+									MarkdownDescription: "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -207,8 +207,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the resource that is in the same namespace with ClusterResourceSet object.",
-									MarkdownDescription: "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+									Description:         "name of the resource that is in the same namespace with ClusterResourceSet object.",
+									MarkdownDescription: "name of the resource that is in the same namespace with ClusterResourceSet object.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -224,8 +224,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 					},
 
 					"strategy": schema.StringAttribute{
-						Description:         "Strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
-						MarkdownDescription: "Strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
+						Description:         "strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
+						MarkdownDescription: "strategy is the strategy to be used during applying resources. Defaults to ApplyOnce. This field is immutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

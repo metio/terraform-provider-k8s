@@ -7,6 +7,7 @@ package logging_banzaicloud_io_v1beta1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -58,7 +59,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Headers                   *[]string `tfsdk:"headers" json:"headers,omitempty"`
@@ -185,7 +186,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Headers       *[]string `tfsdk:"headers" json:"headers,omitempty"`
@@ -304,7 +305,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Path         *string `tfsdk:"path" json:"path,omitempty"`
@@ -325,7 +326,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Headers       *[]string `tfsdk:"headers" json:"headers,omitempty"`
@@ -441,12 +442,13 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Flags           *[]string `tfsdk:"flags" json:"flags,omitempty"`
 			Flush_lines     *int64    `tfsdk:"flush_lines" json:"flush_lines,omitempty"`
 			Host            *string   `tfsdk:"host" json:"host,omitempty"`
+			Ip_protocol     *int64    `tfsdk:"ip_protocol" json:"ip-protocol,omitempty"`
 			Persist_name    *string   `tfsdk:"persist_name" json:"persist_name,omitempty"`
 			Port            *int64    `tfsdk:"port" json:"port,omitempty"`
 			So_keepalive    *bool     `tfsdk:"so_keepalive" json:"so_keepalive,omitempty"`
@@ -561,7 +563,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Extra_headers *string `tfsdk:"extra_headers" json:"extra_headers,omitempty"`
@@ -672,7 +674,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -680,6 +682,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 			Persist_name  *string            `tfsdk:"persist_name" json:"persist_name,omitempty"`
 			Retries       *int64             `tfsdk:"retries" json:"retries,omitempty"`
 			Template      *string            `tfsdk:"template" json:"template,omitempty"`
+			Tenant_id     *string            `tfsdk:"tenant_id" json:"tenant-id,omitempty"`
 			Time_reopen   *int64             `tfsdk:"time_reopen" json:"time_reopen,omitempty"`
 			Timestamp     *string            `tfsdk:"timestamp" json:"timestamp,omitempty"`
 			Url           *string            `tfsdk:"url" json:"url,omitempty"`
@@ -700,7 +703,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Log_fifo_size *int64  `tfsdk:"log_fifo_size" json:"log-fifo-size,omitempty"`
@@ -753,7 +756,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Headers       *[]string `tfsdk:"headers" json:"headers,omitempty"`
@@ -936,7 +939,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
@@ -972,7 +975,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Host          *string `tfsdk:"host" json:"host,omitempty"`
@@ -1013,7 +1016,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Flush_grace_period   *int64  `tfsdk:"flush_grace_period" json:"flush_grace_period,omitempty"`
@@ -1066,7 +1069,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Event         *string   `tfsdk:"event" json:"event,omitempty"`
@@ -1228,7 +1231,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Headers      *[]string `tfsdk:"headers" json:"headers,omitempty"`
@@ -1334,7 +1337,7 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Persist_name *string `tfsdk:"persist_name" json:"persist_name,omitempty"`
@@ -1424,12 +1427,13 @@ type LoggingBanzaicloudIoSyslogNgoutputV1Beta1ManifestData struct {
 				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
 				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
 				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
-				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Qout_size      *int64  `tfsdk:"qout_size" json:"qout_size,omitempty"`
 				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
 			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
 			Flags           *[]string `tfsdk:"flags" json:"flags,omitempty"`
 			Flush_lines     *int64    `tfsdk:"flush_lines" json:"flush_lines,omitempty"`
 			Host            *string   `tfsdk:"host" json:"host,omitempty"`
+			Ip_protocol     *int64    `tfsdk:"ip_protocol" json:"ip-protocol,omitempty"`
 			Persist_name    *string   `tfsdk:"persist_name" json:"persist_name,omitempty"`
 			Port            *int64    `tfsdk:"port" json:"port,omitempty"`
 			So_keepalive    *bool     `tfsdk:"so_keepalive" json:"so_keepalive,omitempty"`
@@ -1705,7 +1709,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -2530,7 +2534,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -3291,7 +3295,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -3445,7 +3449,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -4182,7 +4186,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -4226,6 +4230,17 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"ip_protocol": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.OneOf(4, 6),
+								},
 							},
 
 							"persist_name": schema.StringAttribute{
@@ -4950,7 +4965,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -5631,7 +5646,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -5686,6 +5701,14 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 							},
 
 							"template": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tenant_id": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -5845,7 +5868,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -6209,7 +6232,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -7360,7 +7383,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -7594,7 +7617,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -7873,7 +7896,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -8248,7 +8271,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -9285,7 +9308,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -9941,7 +9964,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -10503,7 +10526,7 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
-									"q_out_size": schema.Int64Attribute{
+									"qout_size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -10547,6 +10570,17 @@ func (r *LoggingBanzaicloudIoSyslogNgoutputV1Beta1Manifest) Schema(_ context.Con
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"ip_protocol": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.OneOf(4, 6),
+								},
 							},
 
 							"persist_name": schema.StringAttribute{

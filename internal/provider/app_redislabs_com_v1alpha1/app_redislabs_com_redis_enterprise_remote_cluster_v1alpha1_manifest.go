@@ -44,6 +44,7 @@ type AppRedislabsComRedisEnterpriseRemoteClusterV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		ApiFqdnUrl   *string `tfsdk:"api_fqdn_url" json:"apiFqdnUrl,omitempty"`
+		ApiPort      *int64  `tfsdk:"api_port" json:"apiPort,omitempty"`
 		DbFqdnSuffix *string `tfsdk:"db_fqdn_suffix" json:"dbFqdnSuffix,omitempty"`
 		RecName      *string `tfsdk:"rec_name" json:"recName,omitempty"`
 		RecNamespace *string `tfsdk:"rec_namespace" json:"recNamespace,omitempty"`
@@ -133,6 +134,14 @@ func (r *AppRedislabsComRedisEnterpriseRemoteClusterV1Alpha1Manifest) Schema(_ c
 						MarkdownDescription: "The URL of the cluster, will be used for the active-active database URL.",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"api_port": schema.Int64Attribute{
+						Description:         "The port number of the cluster's URL used for connectivity/sync",
+						MarkdownDescription: "The port number of the cluster's URL used for connectivity/sync",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

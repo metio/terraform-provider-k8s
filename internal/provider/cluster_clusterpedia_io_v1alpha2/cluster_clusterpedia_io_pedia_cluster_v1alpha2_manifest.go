@@ -42,7 +42,29 @@ type ClusterClusterpediaIoPediaClusterV1Alpha2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Apiserver              *string `tfsdk:"apiserver" json:"apiserver,omitempty"`
+		Apiserver          *string `tfsdk:"apiserver" json:"apiserver,omitempty"`
+		AuthenticationFrom *struct {
+			Ca *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"ca" json:"ca,omitempty"`
+			Cert *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"cert" json:"cert,omitempty"`
+			Key *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"key" json:"key,omitempty"`
+			Kubeconfig *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+			Token *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"token" json:"token,omitempty"`
+		} `tfsdk:"authentication_from" json:"authenticationFrom,omitempty"`
 		CaData                 *string `tfsdk:"ca_data" json:"caData,omitempty"`
 		CertData               *string `tfsdk:"cert_data" json:"certData,omitempty"`
 		KeyData                *string `tfsdk:"key_data" json:"keyData,omitempty"`
@@ -50,9 +72,10 @@ type ClusterClusterpediaIoPediaClusterV1Alpha2ManifestData struct {
 		ShardingName           *string `tfsdk:"sharding_name" json:"shardingName,omitempty"`
 		SyncAllCustomResources *bool   `tfsdk:"sync_all_custom_resources" json:"syncAllCustomResources,omitempty"`
 		SyncResources          *[]struct {
-			Group     *string   `tfsdk:"group" json:"group,omitempty"`
-			Resources *[]string `tfsdk:"resources" json:"resources,omitempty"`
-			Versions  *[]string `tfsdk:"versions" json:"versions,omitempty"`
+			EventsInvolvedResources *[]string `tfsdk:"events_involved_resources" json:"eventsInvolvedResources,omitempty"`
+			Group                   *string   `tfsdk:"group" json:"group,omitempty"`
+			Resources               *[]string `tfsdk:"resources" json:"resources,omitempty"`
+			Versions                *[]string `tfsdk:"versions" json:"versions,omitempty"`
 		} `tfsdk:"sync_resources" json:"syncResources,omitempty"`
 		SyncResourcesRefName *string `tfsdk:"sync_resources_ref_name" json:"syncResourcesRefName,omitempty"`
 		TokenData            *string `tfsdk:"token_data" json:"tokenData,omitempty"`
@@ -132,6 +155,140 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"authentication_from": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"ca": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cert": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"key": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kubeconfig": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"token": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Namespace string 'json:'namespace''",
+										MarkdownDescription: "Namespace string 'json:'namespace''",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"ca_data": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -197,6 +354,15 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Manifest) Schema(_ context.Con
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"events_involved_resources": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"group": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",

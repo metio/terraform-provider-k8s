@@ -126,16 +126,16 @@ func (r *PrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Manifest) Schema(_ cont
 				MarkdownDescription: "WorkspaceSpec defines the desired state of Workspace.",
 				Attributes: map[string]schema.Attribute{
 					"alias": schema.StringAttribute{
-						Description:         "An optional user-assigned alias for this workspace. This alias is for user reference and does not need to be unique.",
-						MarkdownDescription: "An optional user-assigned alias for this workspace. This alias is for user reference and does not need to be unique.",
+						Description:         "An alias that you assign to this workspace to help you identify it. It does not need to be unique. Blank spaces at the beginning or end of the alias that you specify will be trimmed from the value used.",
+						MarkdownDescription: "An alias that you assign to this workspace to help you identify it. It does not need to be unique. Blank spaces at the beginning or end of the alias that you specify will be trimmed from the value used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Optional, user-provided tags for this workspace.",
-						MarkdownDescription: "Optional, user-provided tags for this workspace.",
+						Description:         "The list of tag keys and values to associate with the workspace.",
+						MarkdownDescription: "The list of tag keys and values to associate with the workspace.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

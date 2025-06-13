@@ -1405,8 +1405,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 															"header_name": schema.StringAttribute{
 																Description:         "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
 																MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
-																Required:            false,
-																Optional:            true,
+																Required:            true,
+																Optional:            false,
 																Computed:            false,
 																Validators: []validator.String{
 																	stringvalidator.LengthAtLeast(1),
@@ -1425,8 +1425,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 															"parameter_name": schema.StringAttribute{
 																Description:         "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
 																MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
-																Required:            false,
-																Optional:            true,
+																Required:            true,
+																Optional:            false,
 																Computed:            false,
 																Validators: []validator.String{
 																	stringvalidator.LengthAtLeast(1),
@@ -1548,8 +1548,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																				"value": schema.StringAttribute{
 																					Description:         "Value defines the value of the descriptor entry.",
 																					MarkdownDescription: "Value defines the value of the descriptor entry.",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																					Validators: []validator.String{
 																						stringvalidator.LengthAtLeast(1),
@@ -1577,8 +1577,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																				"descriptor_key": schema.StringAttribute{
 																					Description:         "DescriptorKey defines the key to use on the descriptor entry.",
 																					MarkdownDescription: "DescriptorKey defines the key to use on the descriptor entry.",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																					Validators: []validator.String{
 																						stringvalidator.LengthAtLeast(1),
@@ -1588,8 +1588,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																				"header_name": schema.StringAttribute{
 																					Description:         "HeaderName defines the name of the header to look for on the request.",
 																					MarkdownDescription: "HeaderName defines the name of the header to look for on the request.",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																					Validators: []validator.String{
 																						stringvalidator.LengthAtLeast(1),
@@ -1707,8 +1707,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																				"value": schema.StringAttribute{
 																					Description:         "Value defines the value of the descriptor entry.",
 																					MarkdownDescription: "Value defines the value of the descriptor entry.",
-																					Required:            false,
-																					Optional:            true,
+																					Required:            true,
+																					Optional:            false,
 																					Computed:            false,
 																					Validators: []validator.String{
 																						stringvalidator.LengthAtLeast(1),
@@ -1721,8 +1721,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																		},
 																	},
 																},
-																Required: false,
-																Optional: true,
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 														},
@@ -1954,7 +1954,7 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.Int64{
-												int64validator.OneOf(301, 302),
+												int64validator.OneOf(301, 302, 303, 307, 308),
 											},
 										},
 									},
@@ -2050,8 +2050,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"retry_on": schema.ListAttribute{
-											Description:         "RetryOn specifies the conditions on which to retry a request. Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on): - '5xx' - 'gateway-error' - 'reset' - 'connect-failure' - 'retriable-4xx' - 'refused-stream' - 'retriable-status-codes' - 'retriable-headers' Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on): - 'cancelled' - 'deadline-exceeded' - 'internal' - 'resource-exhausted' - 'unavailable'",
-											MarkdownDescription: "RetryOn specifies the conditions on which to retry a request. Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on): - '5xx' - 'gateway-error' - 'reset' - 'connect-failure' - 'retriable-4xx' - 'refused-stream' - 'retriable-status-codes' - 'retriable-headers' Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on): - 'cancelled' - 'deadline-exceeded' - 'internal' - 'resource-exhausted' - 'unavailable'",
+											Description:         "RetryOn specifies the conditions on which to retry a request. Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on): - '5xx' - 'gateway-error' - 'reset' - 'reset-before-request' - 'connect-failure' - 'envoy-ratelimited' - 'retriable-4xx' - 'refused-stream' - 'retriable-status-codes' - 'retriable-headers' - 'http3-post-connect-failure' Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on): - 'cancelled' - 'deadline-exceeded' - 'internal' - 'resource-exhausted' - 'unavailable'",
+											MarkdownDescription: "RetryOn specifies the conditions on which to retry a request. Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on): - '5xx' - 'gateway-error' - 'reset' - 'reset-before-request' - 'connect-failure' - 'envoy-ratelimited' - 'retriable-4xx' - 'refused-stream' - 'retriable-status-codes' - 'retriable-headers' - 'http3-post-connect-failure' Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on): - 'cancelled' - 'deadline-exceeded' - 'internal' - 'resource-exhausted' - 'unavailable'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2577,8 +2577,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														"header_name": schema.StringAttribute{
 															Description:         "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
 															MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
-															Required:            false,
-															Optional:            true,
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 															Validators: []validator.String{
 																stringvalidator.LengthAtLeast(1),
@@ -2597,8 +2597,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														"parameter_name": schema.StringAttribute{
 															Description:         "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
 															MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
-															Required:            false,
-															Optional:            true,
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 															Validators: []validator.String{
 																stringvalidator.LengthAtLeast(1),
@@ -3451,8 +3451,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																			"value": schema.StringAttribute{
 																				Description:         "Value defines the value of the descriptor entry.",
 																				MarkdownDescription: "Value defines the value of the descriptor entry.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -3480,8 +3480,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																			"descriptor_key": schema.StringAttribute{
 																				Description:         "DescriptorKey defines the key to use on the descriptor entry.",
 																				MarkdownDescription: "DescriptorKey defines the key to use on the descriptor entry.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -3491,8 +3491,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																			"header_name": schema.StringAttribute{
 																				Description:         "HeaderName defines the name of the header to look for on the request.",
 																				MarkdownDescription: "HeaderName defines the name of the header to look for on the request.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -3610,8 +3610,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																			"value": schema.StringAttribute{
 																				Description:         "Value defines the value of the descriptor entry.",
 																				MarkdownDescription: "Value defines the value of the descriptor entry.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -3624,8 +3624,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 																},
 															},
-															Required: false,
-															Optional: true,
+															Required: true,
+															Optional: false,
 															Computed: false,
 														},
 													},

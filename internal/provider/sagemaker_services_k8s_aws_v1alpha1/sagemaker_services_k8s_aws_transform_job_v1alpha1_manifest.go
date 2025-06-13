@@ -211,8 +211,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"environment": schema.MapAttribute{
-						Description:         "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map.",
-						MarkdownDescription: "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map.",
+						Description:         "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables. We support up to 16 key and values entries in the map.",
+						MarkdownDescription: "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables. We support up to 16 key and values entries in the map.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -294,8 +294,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"model_name": schema.StringAttribute{
-						Description:         "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account.",
-						MarkdownDescription: "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account.",
+						Description:         "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?$'",
+						MarkdownDescription: "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -396,8 +396,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"transform_job_name": schema.StringAttribute{
-						Description:         "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
-						MarkdownDescription: "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
+						Description:         "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

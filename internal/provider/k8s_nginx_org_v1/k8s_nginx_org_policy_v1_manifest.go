@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -91,6 +92,7 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			ClientSecret          *string   `tfsdk:"client_secret" json:"clientSecret,omitempty"`
 			EndSessionEndpoint    *string   `tfsdk:"end_session_endpoint" json:"endSessionEndpoint,omitempty"`
 			JwksURI               *string   `tfsdk:"jwks_uri" json:"jwksURI,omitempty"`
+			PkceEnable            *bool     `tfsdk:"pkce_enable" json:"pkceEnable,omitempty"`
 			PostLogoutRedirectURI *string   `tfsdk:"post_logout_redirect_uri" json:"postLogoutRedirectURI,omitempty"`
 			RedirectURI           *string   `tfsdk:"redirect_uri" json:"redirectURI,omitempty"`
 			Scope                 *string   `tfsdk:"scope" json:"scope,omitempty"`
@@ -98,7 +100,14 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			ZoneSyncLeeway        *int64    `tfsdk:"zone_sync_leeway" json:"zoneSyncLeeway,omitempty"`
 		} `tfsdk:"oidc" json:"oidc,omitempty"`
 		RateLimit *struct {
-			Burst      *int64  `tfsdk:"burst" json:"burst,omitempty"`
+			Burst     *int64 `tfsdk:"burst" json:"burst,omitempty"`
+			Condition *struct {
+				Default *bool `tfsdk:"default" json:"default,omitempty"`
+				Jwt     *struct {
+					Claim *string `tfsdk:"claim" json:"claim,omitempty"`
+					Match *string `tfsdk:"match" json:"match,omitempty"`
+				} `tfsdk:"jwt" json:"jwt,omitempty"`
+			} `tfsdk:"condition" json:"condition,omitempty"`
 			Delay      *int64  `tfsdk:"delay" json:"delay,omitempty"`
 			DryRun     *bool   `tfsdk:"dry_run" json:"dryRun,omitempty"`
 			Key        *string `tfsdk:"key" json:"key,omitempty"`
@@ -542,6 +551,14 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Computed:            false,
 							},
 
+							"pkce_enable": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"post_logout_redirect_uri": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -597,6 +614,54 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"condition": schema.SingleNestedAttribute{
+								Description:         "RateLimitCondition defines a condition for a rate limit policy.",
+								MarkdownDescription: "RateLimitCondition defines a condition for a rate limit policy.",
+								Attributes: map[string]schema.Attribute{
+									"default": schema.BoolAttribute{
+										Description:         "sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same JWT condition, only one policy can be the default.",
+										MarkdownDescription: "sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same JWT condition, only one policy can be the default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"jwt": schema.SingleNestedAttribute{
+										Description:         "defines a JWT condition to rate limit against.",
+										MarkdownDescription: "defines a JWT condition to rate limit against.",
+										Attributes: map[string]schema.Attribute{
+											"claim": schema.StringAttribute{
+												Description:         "the JWT claim to be rate limit by. Nested claims should be separated by '.'",
+												MarkdownDescription: "the JWT claim to be rate limit by. Nested claims should be separated by '.'",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([^$\s"'])*$`), ""),
+												},
+											},
+
+											"match": schema.StringAttribute{
+												Description:         "the value of the claim to match against.",
+												MarkdownDescription: "the value of the claim to match against.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([^$\s."'])*$`), ""),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"delay": schema.Int64Attribute{
