@@ -200,7 +200,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta2Manifest) Schema(_ context.Conte
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(53),
+										stringvalidator.LengthAtMost(253),
 									},
 								},
 
@@ -212,7 +212,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta2Manifest) Schema(_ context.Conte
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(53),
+										stringvalidator.LengthAtMost(253),
 									},
 								},
 							},

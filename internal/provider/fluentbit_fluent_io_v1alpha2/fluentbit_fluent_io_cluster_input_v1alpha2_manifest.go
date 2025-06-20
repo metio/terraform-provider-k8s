@@ -184,7 +184,25 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			Port              *int64  `tfsdk:"port" json:"port,omitempty"`
 			ReceiveBufferSize *string `tfsdk:"receive_buffer_size" json:"receiveBufferSize,omitempty"`
 			SourceAddressKey  *string `tfsdk:"source_address_key" json:"sourceAddressKey,omitempty"`
-			UnixPerm          *int64  `tfsdk:"unix_perm" json:"unixPerm,omitempty"`
+			Tls               *struct {
+				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
+				CrtFile     *string `tfsdk:"crt_file" json:"crtFile,omitempty"`
+				Debug       *int64  `tfsdk:"debug" json:"debug,omitempty"`
+				KeyFile     *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+				KeyPassword *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"key_password" json:"keyPassword,omitempty"`
+				Verify *bool   `tfsdk:"verify" json:"verify,omitempty"`
+				Vhost  *string `tfsdk:"vhost" json:"vhost,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
+			UnixPerm *int64 `tfsdk:"unix_perm" json:"unixPerm,omitempty"`
 		} `tfsdk:"syslog" json:"syslog,omitempty"`
 		Systemd *struct {
 			Db                     *string   `tfsdk:"db" json:"db,omitempty"`
@@ -204,6 +222,7 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			BufferChunkSize        *string   `tfsdk:"buffer_chunk_size" json:"bufferChunkSize,omitempty"`
 			BufferMaxSize          *string   `tfsdk:"buffer_max_size" json:"bufferMaxSize,omitempty"`
 			Db                     *string   `tfsdk:"db" json:"db,omitempty"`
+			DbLocking              *bool     `tfsdk:"db_locking" json:"dbLocking,omitempty"`
 			DbSync                 *string   `tfsdk:"db_sync" json:"dbSync,omitempty"`
 			DisableInotifyWatcher  *bool     `tfsdk:"disable_inotify_watcher" json:"disableInotifyWatcher,omitempty"`
 			DockerMode             *bool     `tfsdk:"docker_mode" json:"dockerMode,omitempty"`
@@ -216,6 +235,7 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			Multiline              *bool     `tfsdk:"multiline" json:"multiline,omitempty"`
 			MultilineFlushSeconds  *int64    `tfsdk:"multiline_flush_seconds" json:"multilineFlushSeconds,omitempty"`
 			MultilineParser        *string   `tfsdk:"multiline_parser" json:"multilineParser,omitempty"`
+			OffsetKey              *string   `tfsdk:"offset_key" json:"offsetKey,omitempty"`
 			Parser                 *string   `tfsdk:"parser" json:"parser,omitempty"`
 			ParserFirstline        *string   `tfsdk:"parser_firstline" json:"parserFirstline,omitempty"`
 			ParserN                *[]string `tfsdk:"parser_n" json:"parserN,omitempty"`
@@ -230,6 +250,7 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			StorageType            *string   `tfsdk:"storage_type" json:"storageType,omitempty"`
 			Tag                    *string   `tfsdk:"tag" json:"tag,omitempty"`
 			TagRegex               *string   `tfsdk:"tag_regex" json:"tagRegex,omitempty"`
+			Threaded               *string   `tfsdk:"threaded" json:"threaded,omitempty"`
 		} `tfsdk:"tail" json:"tail,omitempty"`
 		Tcp *struct {
 			BufferSize *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
@@ -1384,6 +1405,125 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 								Computed:            false,
 							},
 
+							"tls": schema.SingleNestedAttribute{
+								Description:         "Specify TLS connector options.",
+								MarkdownDescription: "Specify TLS connector options.",
+								Attributes: map[string]schema.Attribute{
+									"ca_file": schema.StringAttribute{
+										Description:         "Absolute path to CA certificate file",
+										MarkdownDescription: "Absolute path to CA certificate file",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ca_path": schema.StringAttribute{
+										Description:         "Absolute path to scan for certificate files",
+										MarkdownDescription: "Absolute path to scan for certificate files",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"crt_file": schema.StringAttribute{
+										Description:         "Absolute path to Certificate file",
+										MarkdownDescription: "Absolute path to Certificate file",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"debug": schema.Int64Attribute{
+										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.OneOf(0, 1, 2, 3, 4),
+										},
+									},
+
+									"key_file": schema.StringAttribute{
+										Description:         "Absolute path to private Key file",
+										MarkdownDescription: "Absolute path to private Key file",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_password": schema.SingleNestedAttribute{
+										Description:         "Optional password for tls.key_file file",
+										MarkdownDescription: "Optional password for tls.key_file file",
+										Attributes: map[string]schema.Attribute{
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "ValueSource defines how to find a value's key.",
+												MarkdownDescription: "ValueSource defines how to find a value's key.",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "Selects a key of a secret in the pod's namespace",
+														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"verify": schema.BoolAttribute{
+										Description:         "Force certificate validation",
+										MarkdownDescription: "Force certificate validation",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"vhost": schema.StringAttribute{
+										Description:         "Hostname to be used for TLS SNI extension",
+										MarkdownDescription: "Hostname to be used for TLS SNI extension",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"unix_perm": schema.Int64Attribute{
 								Description:         "If Mode is set to unix_tcp or unix_udp, set the permission of the Unix socket file, default: 0644",
 								MarkdownDescription: "If Mode is set to unix_tcp or unix_udp, set the permission of the Unix socket file, default: 0644",
@@ -1555,6 +1695,14 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 								Computed:            false,
 							},
 
+							"db_locking": schema.BoolAttribute{
+								Description:         "Specify that the database will be accessed only by Fluent Bit.",
+								MarkdownDescription: "Specify that the database will be accessed only by Fluent Bit.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"db_sync": schema.StringAttribute{
 								Description:         "Set a default synchronization (I/O) method. Values: Extra, Full, Normal, Off.",
 								MarkdownDescription: "Set a default synchronization (I/O) method. Values: Extra, Full, Normal, Off.",
@@ -1652,6 +1800,14 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							"multiline_parser": schema.StringAttribute{
 								Description:         "This will help to reassembly multiline messages originally split by Docker or CRI Specify one or Multiline Parser definition to apply to the content.",
 								MarkdownDescription: "This will help to reassembly multiline messages originally split by Docker or CRI Specify one or Multiline Parser definition to apply to the content.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"offset_key": schema.StringAttribute{
+								Description:         "If enabled, Fluent Bit appends the offset of the current monitored file as part of the record. The value assigned becomes the key in the map",
+								MarkdownDescription: "If enabled, Fluent Bit appends the offset of the current monitored file as part of the record. The value assigned becomes the key in the map",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1771,6 +1927,14 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							"tag_regex": schema.StringAttribute{
 								Description:         "Set a regex to exctract fields from the file",
 								MarkdownDescription: "Set a regex to exctract fields from the file",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"threaded": schema.StringAttribute{
+								Description:         "Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.",
+								MarkdownDescription: "Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

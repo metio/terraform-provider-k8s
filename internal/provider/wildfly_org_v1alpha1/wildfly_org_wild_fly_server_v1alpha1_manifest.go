@@ -127,6 +127,9 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
@@ -203,11 +206,15 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"data_source" json:"dataSource,omitempty"`
 					DataSourceRef *struct {
-						ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-						Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+						Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 					Resources *struct {
+						Claims *[]struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
@@ -613,8 +620,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"failure_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3 for liveness and readiness probes and 11 for startup probe. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3 for liveness and readiness probes and 11 for startup probe. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -692,8 +699,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"initial_delay_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
-								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 0 seconds for liveness and 10 seconds for readiness and startup probes. Minimum value is 0. Minimum value is 0.",
+								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 0 seconds for liveness and 10 seconds for readiness and startup probes. Minimum value is 0. Minimum value is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -703,8 +710,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"period_seconds": schema.Int64Attribute{
-								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds for liveness, readiness and startup probes. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds for liveness, readiness and startup probes. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -714,8 +721,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"success_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1 for liveness, readiness and startup probes. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1 for liveness, readiness and startup probes. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -725,8 +732,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"timeout_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Description:         "Number of seconds after which the probe times out. Defaults to 1 second for liveness, readiness and startup probes. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second for liveness, readiness and startup probes. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -763,8 +770,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"failure_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3 for liveness and readiness probes and 11 for startup probe. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3 for liveness and readiness probes and 11 for startup probe. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -842,8 +849,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"initial_delay_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
-								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 0 seconds for liveness and 10 seconds for readiness and startup probes. Minimum value is 0. Minimum value is 0.",
+								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 0 seconds for liveness and 10 seconds for readiness and startup probes. Minimum value is 0. Minimum value is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -853,8 +860,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"period_seconds": schema.Int64Attribute{
-								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds for liveness, readiness and startup probes. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds for liveness, readiness and startup probes. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -864,8 +871,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"success_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1 for liveness, readiness and startup probes. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1 for liveness, readiness and startup probes. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -875,8 +882,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"timeout_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Description:         "Number of seconds after which the probe times out. Defaults to 1 second for liveness, readiness and startup probes. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second for liveness, readiness and startup probes. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -905,6 +912,25 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
 						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
 						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"limits": schema.MapAttribute{
 								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1200,8 +1226,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"failure_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3 for liveness and readiness probes and 11 for startup probe. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3 for liveness and readiness probes and 11 for startup probe. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1279,8 +1305,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"initial_delay_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
-								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 0 seconds for liveness and 10 seconds for readiness and startup probes. Minimum value is 0. Minimum value is 0.",
+								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 0 seconds for liveness and 10 seconds for readiness and startup probes. Minimum value is 0. Minimum value is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1290,8 +1316,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"period_seconds": schema.Int64Attribute{
-								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds for liveness, readiness and startup probes. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds for liveness, readiness and startup probes. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1301,8 +1327,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"success_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1 for liveness, readiness and startup probes. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1 for liveness, readiness and startup probes. Minimum value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1312,8 +1338,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"timeout_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Description:         "Number of seconds after which the probe times out. Defaults to 1 second for liveness, readiness and startup probes. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second for liveness, readiness and startup probes. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1399,8 +1425,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"data_source": schema.SingleNestedAttribute{
-												Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-												MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+												Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+												MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
 														Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -1432,8 +1458,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"data_source_ref": schema.SingleNestedAttribute{
-												Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-												MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+												Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+												MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
 														Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -1458,6 +1484,14 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 														Optional:            false,
 														Computed:            false,
 													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+														MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -1468,6 +1502,25 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 												Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												Attributes: map[string]schema.Attribute{
+													"claims": schema.ListNestedAttribute{
+														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"limits": schema.MapAttribute{
 														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",

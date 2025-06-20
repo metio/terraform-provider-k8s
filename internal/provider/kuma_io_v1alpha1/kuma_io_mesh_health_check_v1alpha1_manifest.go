@@ -193,11 +193,11 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -332,16 +332,16 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"healthy_panic_threshold": schema.StringAttribute{
-											Description:         "Allows to configure panic threshold for Envoy cluster. If not specified, the default is 50%. To disable panic mode, set to 0%. Either int or decimal represented as string.",
-											MarkdownDescription: "Allows to configure panic threshold for Envoy cluster. If not specified, the default is 50%. To disable panic mode, set to 0%. Either int or decimal represented as string.",
+											Description:         "Allows to configure panic threshold for Envoy cluster. If not specified, the default is 50%. To disable panic mode, set to 0%. Either int or decimal represented as string. Deprecated: the setting has been moved to MeshCircuitBreaker policy, please use MeshCircuitBreaker policy instead.",
+											MarkdownDescription: "Allows to configure panic threshold for Envoy cluster. If not specified, the default is 50%. To disable panic mode, set to 0%. Either int or decimal represented as string. Deprecated: the setting has been moved to MeshCircuitBreaker policy, please use MeshCircuitBreaker policy instead.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"healthy_threshold": schema.Int64Attribute{
-											Description:         "Number of consecutive healthy checks before considering a host healthy.",
-											MarkdownDescription: "Number of consecutive healthy checks before considering a host healthy.",
+											Description:         "Number of consecutive healthy checks before considering a host healthy. If not specified then the default value is 1",
+											MarkdownDescription: "Number of consecutive healthy checks before considering a host healthy. If not specified then the default value is 1",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -369,8 +369,8 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "The HTTP path which will be requested during the health check (ie. /health)",
-													MarkdownDescription: "The HTTP path which will be requested during the health check (ie. /health)",
+													Description:         "The HTTP path which will be requested during the health check (ie. /health) If not specified then the default value is '/'",
+													MarkdownDescription: "The HTTP path which will be requested during the health check (ie. /health) If not specified then the default value is '/'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -463,8 +463,8 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"interval": schema.StringAttribute{
-											Description:         "Interval between consecutive health checks.",
-											MarkdownDescription: "Interval between consecutive health checks.",
+											Description:         "Interval between consecutive health checks. If not specified then the default value is 1m",
+											MarkdownDescription: "Interval between consecutive health checks. If not specified then the default value is 1m",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -537,16 +537,16 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"timeout": schema.StringAttribute{
-											Description:         "Maximum time to wait for a health check response.",
-											MarkdownDescription: "Maximum time to wait for a health check response.",
+											Description:         "Maximum time to wait for a health check response. If not specified then the default value is 15s",
+											MarkdownDescription: "Maximum time to wait for a health check response. If not specified then the default value is 15s",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"unhealthy_threshold": schema.Int64Attribute{
-											Description:         "Number of consecutive unhealthy checks before considering a host unhealthy.",
-											MarkdownDescription: "Number of consecutive unhealthy checks before considering a host unhealthy.",
+											Description:         "Number of consecutive unhealthy checks before considering a host unhealthy. If not specified then the default value is 5",
+											MarkdownDescription: "Number of consecutive unhealthy checks before considering a host unhealthy. If not specified then the default value is 5",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -564,11 +564,11 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

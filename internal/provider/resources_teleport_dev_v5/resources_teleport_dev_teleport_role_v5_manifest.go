@@ -44,6 +44,10 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 
 	Spec *struct {
 		Allow *struct {
+			Account_assignments *[]struct {
+				Account        *string `tfsdk:"account" json:"account,omitempty"`
+				Permission_set *string `tfsdk:"permission_set" json:"permission_set,omitempty"`
+			} `tfsdk:"account_assignments" json:"account_assignments,omitempty"`
 			App_labels                *map[string]string `tfsdk:"app_labels" json:"app_labels,omitempty"`
 			App_labels_expression     *string            `tfsdk:"app_labels_expression" json:"app_labels_expression,omitempty"`
 			Aws_role_arns             *[]string          `tfsdk:"aws_role_arns" json:"aws_role_arns,omitempty"`
@@ -63,11 +67,14 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			Db_users                     *[]string          `tfsdk:"db_users" json:"db_users,omitempty"`
 			Desktop_groups               *[]string          `tfsdk:"desktop_groups" json:"desktop_groups,omitempty"`
 			Gcp_service_accounts         *[]string          `tfsdk:"gcp_service_accounts" json:"gcp_service_accounts,omitempty"`
-			Group_labels                 *map[string]string `tfsdk:"group_labels" json:"group_labels,omitempty"`
-			Group_labels_expression      *string            `tfsdk:"group_labels_expression" json:"group_labels_expression,omitempty"`
-			Host_groups                  *[]string          `tfsdk:"host_groups" json:"host_groups,omitempty"`
-			Host_sudoers                 *[]string          `tfsdk:"host_sudoers" json:"host_sudoers,omitempty"`
-			Impersonate                  *struct {
+			Github_permissions           *[]struct {
+				Orgs *[]string `tfsdk:"orgs" json:"orgs,omitempty"`
+			} `tfsdk:"github_permissions" json:"github_permissions,omitempty"`
+			Group_labels            *map[string]string `tfsdk:"group_labels" json:"group_labels,omitempty"`
+			Group_labels_expression *string            `tfsdk:"group_labels_expression" json:"group_labels_expression,omitempty"`
+			Host_groups             *[]string          `tfsdk:"host_groups" json:"host_groups,omitempty"`
+			Host_sudoers            *[]string          `tfsdk:"host_sudoers" json:"host_sudoers,omitempty"`
+			Impersonate             *struct {
 				Roles *[]string `tfsdk:"roles" json:"roles,omitempty"`
 				Users *[]string `tfsdk:"users" json:"users,omitempty"`
 				Where *string   `tfsdk:"where" json:"where,omitempty"`
@@ -82,13 +89,17 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			Kubernetes_labels            *map[string]string `tfsdk:"kubernetes_labels" json:"kubernetes_labels,omitempty"`
 			Kubernetes_labels_expression *string            `tfsdk:"kubernetes_labels_expression" json:"kubernetes_labels_expression,omitempty"`
 			Kubernetes_resources         *[]struct {
+				Api_group *string   `tfsdk:"api_group" json:"api_group,omitempty"`
 				Kind      *string   `tfsdk:"kind" json:"kind,omitempty"`
 				Name      *string   `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 				Verbs     *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 			} `tfsdk:"kubernetes_resources" json:"kubernetes_resources,omitempty"`
-			Kubernetes_users       *[]string          `tfsdk:"kubernetes_users" json:"kubernetes_users,omitempty"`
-			Logins                 *[]string          `tfsdk:"logins" json:"logins,omitempty"`
+			Kubernetes_users *[]string `tfsdk:"kubernetes_users" json:"kubernetes_users,omitempty"`
+			Logins           *[]string `tfsdk:"logins" json:"logins,omitempty"`
+			Mcp              *struct {
+				Tools *[]string `tfsdk:"tools" json:"tools,omitempty"`
+			} `tfsdk:"mcp" json:"mcp,omitempty"`
 			Node_labels            *map[string]string `tfsdk:"node_labels" json:"node_labels,omitempty"`
 			Node_labels_expression *string            `tfsdk:"node_labels_expression" json:"node_labels_expression,omitempty"`
 			Request                *struct {
@@ -98,7 +109,14 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 					Roles *[]string `tfsdk:"roles" json:"roles,omitempty"`
 					Value *string   `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"claims_to_roles" json:"claims_to_roles,omitempty"`
-				Max_duration        *string   `tfsdk:"max_duration" json:"max_duration,omitempty"`
+				Kubernetes_resources *[]struct {
+					Api_group *string `tfsdk:"api_group" json:"api_group,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+				} `tfsdk:"kubernetes_resources" json:"kubernetes_resources,omitempty"`
+				Max_duration *string `tfsdk:"max_duration" json:"max_duration,omitempty"`
+				Reason       *struct {
+					Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+				} `tfsdk:"reason" json:"reason,omitempty"`
 				Roles               *[]string `tfsdk:"roles" json:"roles,omitempty"`
 				Search_as_roles     *[]string `tfsdk:"search_as_roles" json:"search_as_roles,omitempty"`
 				Suggested_reviewers *[]string `tfsdk:"suggested_reviewers" json:"suggested_reviewers,omitempty"`
@@ -138,11 +156,17 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 				Ip_sans  *[]string `tfsdk:"ip_sans" json:"ip_sans,omitempty"`
 				Path     *string   `tfsdk:"path" json:"path,omitempty"`
 			} `tfsdk:"spiffe" json:"spiffe,omitempty"`
-			Windows_desktop_labels            *map[string]string `tfsdk:"windows_desktop_labels" json:"windows_desktop_labels,omitempty"`
-			Windows_desktop_labels_expression *string            `tfsdk:"windows_desktop_labels_expression" json:"windows_desktop_labels_expression,omitempty"`
-			Windows_desktop_logins            *[]string          `tfsdk:"windows_desktop_logins" json:"windows_desktop_logins,omitempty"`
+			Windows_desktop_labels              *map[string]string `tfsdk:"windows_desktop_labels" json:"windows_desktop_labels,omitempty"`
+			Windows_desktop_labels_expression   *string            `tfsdk:"windows_desktop_labels_expression" json:"windows_desktop_labels_expression,omitempty"`
+			Windows_desktop_logins              *[]string          `tfsdk:"windows_desktop_logins" json:"windows_desktop_logins,omitempty"`
+			Workload_identity_labels            *map[string]string `tfsdk:"workload_identity_labels" json:"workload_identity_labels,omitempty"`
+			Workload_identity_labels_expression *string            `tfsdk:"workload_identity_labels_expression" json:"workload_identity_labels_expression,omitempty"`
 		} `tfsdk:"allow" json:"allow,omitempty"`
 		Deny *struct {
+			Account_assignments *[]struct {
+				Account        *string `tfsdk:"account" json:"account,omitempty"`
+				Permission_set *string `tfsdk:"permission_set" json:"permission_set,omitempty"`
+			} `tfsdk:"account_assignments" json:"account_assignments,omitempty"`
 			App_labels                *map[string]string `tfsdk:"app_labels" json:"app_labels,omitempty"`
 			App_labels_expression     *string            `tfsdk:"app_labels_expression" json:"app_labels_expression,omitempty"`
 			Aws_role_arns             *[]string          `tfsdk:"aws_role_arns" json:"aws_role_arns,omitempty"`
@@ -162,11 +186,14 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			Db_users                     *[]string          `tfsdk:"db_users" json:"db_users,omitempty"`
 			Desktop_groups               *[]string          `tfsdk:"desktop_groups" json:"desktop_groups,omitempty"`
 			Gcp_service_accounts         *[]string          `tfsdk:"gcp_service_accounts" json:"gcp_service_accounts,omitempty"`
-			Group_labels                 *map[string]string `tfsdk:"group_labels" json:"group_labels,omitempty"`
-			Group_labels_expression      *string            `tfsdk:"group_labels_expression" json:"group_labels_expression,omitempty"`
-			Host_groups                  *[]string          `tfsdk:"host_groups" json:"host_groups,omitempty"`
-			Host_sudoers                 *[]string          `tfsdk:"host_sudoers" json:"host_sudoers,omitempty"`
-			Impersonate                  *struct {
+			Github_permissions           *[]struct {
+				Orgs *[]string `tfsdk:"orgs" json:"orgs,omitempty"`
+			} `tfsdk:"github_permissions" json:"github_permissions,omitempty"`
+			Group_labels            *map[string]string `tfsdk:"group_labels" json:"group_labels,omitempty"`
+			Group_labels_expression *string            `tfsdk:"group_labels_expression" json:"group_labels_expression,omitempty"`
+			Host_groups             *[]string          `tfsdk:"host_groups" json:"host_groups,omitempty"`
+			Host_sudoers            *[]string          `tfsdk:"host_sudoers" json:"host_sudoers,omitempty"`
+			Impersonate             *struct {
 				Roles *[]string `tfsdk:"roles" json:"roles,omitempty"`
 				Users *[]string `tfsdk:"users" json:"users,omitempty"`
 				Where *string   `tfsdk:"where" json:"where,omitempty"`
@@ -181,13 +208,17 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			Kubernetes_labels            *map[string]string `tfsdk:"kubernetes_labels" json:"kubernetes_labels,omitempty"`
 			Kubernetes_labels_expression *string            `tfsdk:"kubernetes_labels_expression" json:"kubernetes_labels_expression,omitempty"`
 			Kubernetes_resources         *[]struct {
+				Api_group *string   `tfsdk:"api_group" json:"api_group,omitempty"`
 				Kind      *string   `tfsdk:"kind" json:"kind,omitempty"`
 				Name      *string   `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string   `tfsdk:"namespace" json:"namespace,omitempty"`
 				Verbs     *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 			} `tfsdk:"kubernetes_resources" json:"kubernetes_resources,omitempty"`
-			Kubernetes_users       *[]string          `tfsdk:"kubernetes_users" json:"kubernetes_users,omitempty"`
-			Logins                 *[]string          `tfsdk:"logins" json:"logins,omitempty"`
+			Kubernetes_users *[]string `tfsdk:"kubernetes_users" json:"kubernetes_users,omitempty"`
+			Logins           *[]string `tfsdk:"logins" json:"logins,omitempty"`
+			Mcp              *struct {
+				Tools *[]string `tfsdk:"tools" json:"tools,omitempty"`
+			} `tfsdk:"mcp" json:"mcp,omitempty"`
 			Node_labels            *map[string]string `tfsdk:"node_labels" json:"node_labels,omitempty"`
 			Node_labels_expression *string            `tfsdk:"node_labels_expression" json:"node_labels_expression,omitempty"`
 			Request                *struct {
@@ -197,7 +228,14 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 					Roles *[]string `tfsdk:"roles" json:"roles,omitempty"`
 					Value *string   `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"claims_to_roles" json:"claims_to_roles,omitempty"`
-				Max_duration        *string   `tfsdk:"max_duration" json:"max_duration,omitempty"`
+				Kubernetes_resources *[]struct {
+					Api_group *string `tfsdk:"api_group" json:"api_group,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+				} `tfsdk:"kubernetes_resources" json:"kubernetes_resources,omitempty"`
+				Max_duration *string `tfsdk:"max_duration" json:"max_duration,omitempty"`
+				Reason       *struct {
+					Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+				} `tfsdk:"reason" json:"reason,omitempty"`
 				Roles               *[]string `tfsdk:"roles" json:"roles,omitempty"`
 				Search_as_roles     *[]string `tfsdk:"search_as_roles" json:"search_as_roles,omitempty"`
 				Suggested_reviewers *[]string `tfsdk:"suggested_reviewers" json:"suggested_reviewers,omitempty"`
@@ -237,9 +275,11 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 				Ip_sans  *[]string `tfsdk:"ip_sans" json:"ip_sans,omitempty"`
 				Path     *string   `tfsdk:"path" json:"path,omitempty"`
 			} `tfsdk:"spiffe" json:"spiffe,omitempty"`
-			Windows_desktop_labels            *map[string]string `tfsdk:"windows_desktop_labels" json:"windows_desktop_labels,omitempty"`
-			Windows_desktop_labels_expression *string            `tfsdk:"windows_desktop_labels_expression" json:"windows_desktop_labels_expression,omitempty"`
-			Windows_desktop_logins            *[]string          `tfsdk:"windows_desktop_logins" json:"windows_desktop_logins,omitempty"`
+			Windows_desktop_labels              *map[string]string `tfsdk:"windows_desktop_labels" json:"windows_desktop_labels,omitempty"`
+			Windows_desktop_labels_expression   *string            `tfsdk:"windows_desktop_labels_expression" json:"windows_desktop_labels_expression,omitempty"`
+			Windows_desktop_logins              *[]string          `tfsdk:"windows_desktop_logins" json:"windows_desktop_logins,omitempty"`
+			Workload_identity_labels            *map[string]string `tfsdk:"workload_identity_labels" json:"workload_identity_labels,omitempty"`
+			Workload_identity_labels_expression *string            `tfsdk:"workload_identity_labels_expression" json:"workload_identity_labels_expression,omitempty"`
 		} `tfsdk:"deny" json:"deny,omitempty"`
 		Options *struct {
 			Cert_extensions *[]struct {
@@ -285,6 +325,14 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			Request_prompt      *string `tfsdk:"request_prompt" json:"request_prompt,omitempty"`
 			Require_session_mfa *string `tfsdk:"require_session_mfa" json:"require_session_mfa,omitempty"`
 			Ssh_file_copy       *bool   `tfsdk:"ssh_file_copy" json:"ssh_file_copy,omitempty"`
+			Ssh_port_forwarding *struct {
+				Local *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"local" json:"local,omitempty"`
+				Remote *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"remote" json:"remote,omitempty"`
+			} `tfsdk:"ssh_port_forwarding" json:"ssh_port_forwarding,omitempty"`
 		} `tfsdk:"options" json:"options,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -370,6 +418,33 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 						Description:         "Allow is the set of conditions evaluated to grant access.",
 						MarkdownDescription: "Allow is the set of conditions evaluated to grant access.",
 						Attributes: map[string]schema.Attribute{
+							"account_assignments": schema.ListNestedAttribute{
+								Description:         "AccountAssignments holds the list of account assignments affected by this condition.",
+								MarkdownDescription: "AccountAssignments holds the list of account assignments affected by this condition.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"account": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"permission_set": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"app_labels": schema.MapAttribute{
 								Description:         "AppLabels is a map of labels used as part of the RBAC system.",
 								MarkdownDescription: "AppLabels is a map of labels used as part of the RBAC system.",
@@ -530,6 +605,26 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"github_permissions": schema.ListNestedAttribute{
+								Description:         "GitHubPermissions defines GitHub integration related permissions.",
+								MarkdownDescription: "GitHubPermissions defines GitHub integration related permissions.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"orgs": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"group_labels": schema.MapAttribute{
 								Description:         "GroupLabels is a map of labels used as part of the RBAC system.",
 								MarkdownDescription: "GroupLabels is a map of labels used as part of the RBAC system.",
@@ -677,9 +772,17 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "KubernetesResources is the Kubernetes Resources this Role grants access to.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"api_group": schema.StringAttribute{
+											Description:         "APIGroup specifies the Kubernetes API group of the Kubernetes resource. It supports wildcards.",
+											MarkdownDescription: "APIGroup specifies the Kubernetes API group of the Kubernetes resource. It supports wildcards.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"kind": schema.StringAttribute{
-											Description:         "Kind specifies the Kubernetes Resource type. At the moment only 'pod' is supported.",
-											MarkdownDescription: "Kind specifies the Kubernetes Resource type. At the moment only 'pod' is supported.",
+											Description:         "Kind specifies the Kubernetes Resource type.",
+											MarkdownDescription: "Kind specifies the Kubernetes Resource type.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -732,6 +835,24 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"mcp": schema.SingleNestedAttribute{
+								Description:         "MCPPermissions defines MCP servers related permissions.",
+								MarkdownDescription: "MCPPermissions defines MCP servers related permissions.",
+								Attributes: map[string]schema.Attribute{
+									"tools": schema.ListAttribute{
+										Description:         "Tools defines the list of tools allowed or denied for this role. Each entry can be a literal string, a glob pattern (e.g. 'prefix_*'), or a regular expression (must start with '^' and end with '$'). If the list is empty, no tools are allowed.",
+										MarkdownDescription: "Tools defines the list of tools allowed or denied for this role. Each entry can be a literal string, a glob pattern (e.g. 'prefix_*'), or a regular expression (must start with '^' and end with '$'). If the list is empty, no tools are allowed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"node_labels": schema.MapAttribute{
@@ -800,12 +921,56 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 										Computed: false,
 									},
 
+									"kubernetes_resources": schema.ListNestedAttribute{
+										Description:         "kubernetes_resources can optionally enforce a requester to request only certain kinds of kube resources. Eg: Users can make request to either a resource kind 'kube_cluster' or any of its subresources like 'namespaces'. This field can be defined such that it prevents a user from requesting 'kube_cluster' and enforce requesting any of its subresources.",
+										MarkdownDescription: "kubernetes_resources can optionally enforce a requester to request only certain kinds of kube resources. Eg: Users can make request to either a resource kind 'kube_cluster' or any of its subresources like 'namespaces'. This field can be defined such that it prevents a user from requesting 'kube_cluster' and enforce requesting any of its subresources.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"api_group": schema.StringAttribute{
+													Description:         "APIGroup specifies the Kubernetes Resource API group.",
+													MarkdownDescription: "APIGroup specifies the Kubernetes Resource API group.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "kind specifies the Kubernetes Resource type.",
+													MarkdownDescription: "kind specifies the Kubernetes Resource type.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"max_duration": schema.StringAttribute{
 										Description:         "MaxDuration is the amount of time the access will be granted for. If this is zero, the default duration is used.",
 										MarkdownDescription: "MaxDuration is the amount of time the access will be granted for. If this is zero, the default duration is used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"reason": schema.SingleNestedAttribute{
+										Description:         "Reason defines settings for the reason for the access provided by the user.",
+										MarkdownDescription: "Reason defines settings for the reason for the access provided by the user.",
+										Attributes: map[string]schema.Attribute{
+											"mode": schema.StringAttribute{
+												Description:         "Mode can be either 'required' or 'optional'. Empty string is treated as 'optional'. If a role has the request reason mode set to 'required', then reason is required for all Access Requests requesting roles or resources allowed by this role. It applies only to users who have this role assigned.",
+												MarkdownDescription: "Mode can be either 'required' or 'optional'. Empty string is treated as 'optional'. If a role has the request reason mode set to 'required', then reason is required for all Access Requests requesting roles or resources allowed by this role. It applies only to users who have this role assigned.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"roles": schema.ListAttribute{
@@ -1119,6 +1284,23 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Description:         "WindowsDesktopLogins is a list of desktop login names allowed/denied for Windows desktops.",
 								MarkdownDescription: "WindowsDesktopLogins is a list of desktop login names allowed/denied for Windows desktops.",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workload_identity_labels": schema.MapAttribute{
+								Description:         "WorkloadIdentityLabels controls whether or not specific WorkloadIdentity resources can be invoked. Further authorization controls exist on the WorkloadIdentity resource itself.",
+								MarkdownDescription: "WorkloadIdentityLabels controls whether or not specific WorkloadIdentity resources can be invoked. Further authorization controls exist on the WorkloadIdentity resource itself.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workload_identity_labels_expression": schema.StringAttribute{
+								Description:         "WorkloadIdentityLabelsExpression is a predicate expression used to allow/deny access to issuing a WorkloadIdentity.",
+								MarkdownDescription: "WorkloadIdentityLabelsExpression is a predicate expression used to allow/deny access to issuing a WorkloadIdentity.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1133,6 +1315,33 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 						Description:         "Deny is the set of conditions evaluated to deny access. Deny takes priority over allow.",
 						MarkdownDescription: "Deny is the set of conditions evaluated to deny access. Deny takes priority over allow.",
 						Attributes: map[string]schema.Attribute{
+							"account_assignments": schema.ListNestedAttribute{
+								Description:         "AccountAssignments holds the list of account assignments affected by this condition.",
+								MarkdownDescription: "AccountAssignments holds the list of account assignments affected by this condition.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"account": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"permission_set": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"app_labels": schema.MapAttribute{
 								Description:         "AppLabels is a map of labels used as part of the RBAC system.",
 								MarkdownDescription: "AppLabels is a map of labels used as part of the RBAC system.",
@@ -1293,6 +1502,26 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"github_permissions": schema.ListNestedAttribute{
+								Description:         "GitHubPermissions defines GitHub integration related permissions.",
+								MarkdownDescription: "GitHubPermissions defines GitHub integration related permissions.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"orgs": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"group_labels": schema.MapAttribute{
 								Description:         "GroupLabels is a map of labels used as part of the RBAC system.",
 								MarkdownDescription: "GroupLabels is a map of labels used as part of the RBAC system.",
@@ -1440,9 +1669,17 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "KubernetesResources is the Kubernetes Resources this Role grants access to.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"api_group": schema.StringAttribute{
+											Description:         "APIGroup specifies the Kubernetes API group of the Kubernetes resource. It supports wildcards.",
+											MarkdownDescription: "APIGroup specifies the Kubernetes API group of the Kubernetes resource. It supports wildcards.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"kind": schema.StringAttribute{
-											Description:         "Kind specifies the Kubernetes Resource type. At the moment only 'pod' is supported.",
-											MarkdownDescription: "Kind specifies the Kubernetes Resource type. At the moment only 'pod' is supported.",
+											Description:         "Kind specifies the Kubernetes Resource type.",
+											MarkdownDescription: "Kind specifies the Kubernetes Resource type.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1495,6 +1732,24 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"mcp": schema.SingleNestedAttribute{
+								Description:         "MCPPermissions defines MCP servers related permissions.",
+								MarkdownDescription: "MCPPermissions defines MCP servers related permissions.",
+								Attributes: map[string]schema.Attribute{
+									"tools": schema.ListAttribute{
+										Description:         "Tools defines the list of tools allowed or denied for this role. Each entry can be a literal string, a glob pattern (e.g. 'prefix_*'), or a regular expression (must start with '^' and end with '$'). If the list is empty, no tools are allowed.",
+										MarkdownDescription: "Tools defines the list of tools allowed or denied for this role. Each entry can be a literal string, a glob pattern (e.g. 'prefix_*'), or a regular expression (must start with '^' and end with '$'). If the list is empty, no tools are allowed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"node_labels": schema.MapAttribute{
@@ -1563,12 +1818,56 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 										Computed: false,
 									},
 
+									"kubernetes_resources": schema.ListNestedAttribute{
+										Description:         "kubernetes_resources can optionally enforce a requester to request only certain kinds of kube resources. Eg: Users can make request to either a resource kind 'kube_cluster' or any of its subresources like 'namespaces'. This field can be defined such that it prevents a user from requesting 'kube_cluster' and enforce requesting any of its subresources.",
+										MarkdownDescription: "kubernetes_resources can optionally enforce a requester to request only certain kinds of kube resources. Eg: Users can make request to either a resource kind 'kube_cluster' or any of its subresources like 'namespaces'. This field can be defined such that it prevents a user from requesting 'kube_cluster' and enforce requesting any of its subresources.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"api_group": schema.StringAttribute{
+													Description:         "APIGroup specifies the Kubernetes Resource API group.",
+													MarkdownDescription: "APIGroup specifies the Kubernetes Resource API group.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "kind specifies the Kubernetes Resource type.",
+													MarkdownDescription: "kind specifies the Kubernetes Resource type.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"max_duration": schema.StringAttribute{
 										Description:         "MaxDuration is the amount of time the access will be granted for. If this is zero, the default duration is used.",
 										MarkdownDescription: "MaxDuration is the amount of time the access will be granted for. If this is zero, the default duration is used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"reason": schema.SingleNestedAttribute{
+										Description:         "Reason defines settings for the reason for the access provided by the user.",
+										MarkdownDescription: "Reason defines settings for the reason for the access provided by the user.",
+										Attributes: map[string]schema.Attribute{
+											"mode": schema.StringAttribute{
+												Description:         "Mode can be either 'required' or 'optional'. Empty string is treated as 'optional'. If a role has the request reason mode set to 'required', then reason is required for all Access Requests requesting roles or resources allowed by this role. It applies only to users who have this role assigned.",
+												MarkdownDescription: "Mode can be either 'required' or 'optional'. Empty string is treated as 'optional'. If a role has the request reason mode set to 'required', then reason is required for all Access Requests requesting roles or resources allowed by this role. It applies only to users who have this role assigned.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"roles": schema.ListAttribute{
@@ -1882,6 +2181,23 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Description:         "WindowsDesktopLogins is a list of desktop login names allowed/denied for Windows desktops.",
 								MarkdownDescription: "WindowsDesktopLogins is a list of desktop login names allowed/denied for Windows desktops.",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workload_identity_labels": schema.MapAttribute{
+								Description:         "WorkloadIdentityLabels controls whether or not specific WorkloadIdentity resources can be invoked. Further authorization controls exist on the WorkloadIdentity resource itself.",
+								MarkdownDescription: "WorkloadIdentityLabels controls whether or not specific WorkloadIdentity resources can be invoked. Further authorization controls exist on the WorkloadIdentity resource itself.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workload_identity_labels_expression": schema.StringAttribute{
+								Description:         "WorkloadIdentityLabelsExpression is a predicate expression used to allow/deny access to issuing a WorkloadIdentity.",
+								MarkdownDescription: "WorkloadIdentityLabelsExpression is a predicate expression used to allow/deny access to issuing a WorkloadIdentity.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2143,8 +2459,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 							},
 
 							"port_forwarding": schema.BoolAttribute{
-								Description:         "PortForwarding defines if the certificate will have 'permit-port-forwarding' in the certificate. PortForwarding is 'yes' if not set, that's why this is a pointer",
-								MarkdownDescription: "PortForwarding defines if the certificate will have 'permit-port-forwarding' in the certificate. PortForwarding is 'yes' if not set, that's why this is a pointer",
+								Description:         "Deprecated: Use SSHPortForwarding instead",
+								MarkdownDescription: "Deprecated: Use SSHPortForwarding instead",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2184,8 +2500,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 							},
 
 							"request_access": schema.StringAttribute{
-								Description:         "RequestAccess defines the request strategy (optional|note|always) where optional is the default.",
-								MarkdownDescription: "RequestAccess defines the request strategy (optional|note|always) where optional is the default.",
+								Description:         "RequestAccess defines the request strategy (optional|reason|always) where optional is the default.",
+								MarkdownDescription: "RequestAccess defines the request strategy (optional|reason|always) where optional is the default.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2213,6 +2529,49 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"ssh_port_forwarding": schema.SingleNestedAttribute{
+								Description:         "SSHPortForwarding configures what types of SSH port forwarding are allowed by a role.",
+								MarkdownDescription: "SSHPortForwarding configures what types of SSH port forwarding are allowed by a role.",
+								Attributes: map[string]schema.Attribute{
+									"local": schema.SingleNestedAttribute{
+										Description:         "Allow local port forwarding.",
+										MarkdownDescription: "Allow local port forwarding.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"remote": schema.SingleNestedAttribute{
+										Description:         "Allow remote port forwarding.",
+										MarkdownDescription: "Allow remote port forwarding.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

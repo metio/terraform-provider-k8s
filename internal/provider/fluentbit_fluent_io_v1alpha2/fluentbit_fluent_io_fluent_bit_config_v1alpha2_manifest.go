@@ -98,7 +98,8 @@ type FluentbitFluentIoFluentBitConfigV1Alpha2ManifestData struct {
 			EmitterMemBufLimit  *string   `tfsdk:"emitter_mem_buf_limit" json:"emitterMemBufLimit,omitempty"`
 			EmitterName         *string   `tfsdk:"emitter_name" json:"emitterName,omitempty"`
 			EmitterStorageType  *string   `tfsdk:"emitter_storage_type" json:"emitterStorageType,omitempty"`
-			FlushSeconds        *int64    `tfsdk:"flush_seconds" json:"flushSeconds,omitempty"`
+			EnableChunkTrace    *bool     `tfsdk:"enable_chunk_trace" json:"enableChunkTrace,omitempty"`
+			FlushSeconds        *float64  `tfsdk:"flush_seconds" json:"flushSeconds,omitempty"`
 			GraceSeconds        *int64    `tfsdk:"grace_seconds" json:"graceSeconds,omitempty"`
 			HcErrorsCount       *int64    `tfsdk:"hc_errors_count" json:"hcErrorsCount,omitempty"`
 			HcPeriod            *int64    `tfsdk:"hc_period" json:"hcPeriod,omitempty"`
@@ -562,7 +563,15 @@ func (r *FluentbitFluentIoFluentBitConfigV1Alpha2Manifest) Schema(_ context.Cont
 								Computed:            false,
 							},
 
-							"flush_seconds": schema.Int64Attribute{
+							"enable_chunk_trace": schema.BoolAttribute{
+								Description:         "Enable input/output tracing on debug images, controlled more granualry via the http API",
+								MarkdownDescription: "Enable input/output tracing on debug images, controlled more granualry via the http API",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"flush_seconds": schema.Float64Attribute{
 								Description:         "Interval to flush output",
 								MarkdownDescription: "Interval to flush output",
 								Required:            false,
@@ -634,7 +643,7 @@ func (r *FluentbitFluentIoFluentBitConfigV1Alpha2Manifest) Schema(_ context.Cont
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|(([A-Fa-f0-9:]+:+)+[A-Fa-f0-9]*)$`), ""),
 								},
 							},
 

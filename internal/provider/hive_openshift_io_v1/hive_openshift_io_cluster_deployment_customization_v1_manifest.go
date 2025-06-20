@@ -44,11 +44,24 @@ type HiveOpenshiftIoClusterDeploymentCustomizationV1ManifestData struct {
 
 	Spec *struct {
 		InstallConfigPatches *[]struct {
-			From  *string `tfsdk:"from" json:"from,omitempty"`
-			Op    *string `tfsdk:"op" json:"op,omitempty"`
-			Path  *string `tfsdk:"path" json:"path,omitempty"`
-			Value *string `tfsdk:"value" json:"value,omitempty"`
+			From      *string `tfsdk:"from" json:"from,omitempty"`
+			Op        *string `tfsdk:"op" json:"op,omitempty"`
+			Path      *string `tfsdk:"path" json:"path,omitempty"`
+			Value     *string `tfsdk:"value" json:"value,omitempty"`
+			ValueJSON *string `tfsdk:"value_json" json:"valueJSON,omitempty"`
 		} `tfsdk:"install_config_patches" json:"installConfigPatches,omitempty"`
+		InstallerManifestPatches *[]struct {
+			ManifestSelector *struct {
+				Glob *string `tfsdk:"glob" json:"glob,omitempty"`
+			} `tfsdk:"manifest_selector" json:"manifestSelector,omitempty"`
+			Patches *[]struct {
+				From      *string `tfsdk:"from" json:"from,omitempty"`
+				Op        *string `tfsdk:"op" json:"op,omitempty"`
+				Path      *string `tfsdk:"path" json:"path,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueJSON *string `tfsdk:"value_json" json:"valueJSON,omitempty"`
+			} `tfsdk:"patches" json:"patches,omitempty"`
+		} `tfsdk:"installer_manifest_patches" json:"installerManifestPatches,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -143,11 +156,14 @@ func (r *HiveOpenshiftIoClusterDeploymentCustomizationV1Manifest) Schema(_ conte
 								},
 
 								"op": schema.StringAttribute{
-									Description:         "Op is the operation to perform: add, remove, replace, move, copy, test",
-									MarkdownDescription: "Op is the operation to perform: add, remove, replace, move, copy, test",
+									Description:         "Op is the operation to perform.",
+									MarkdownDescription: "Op is the operation to perform.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("add", "remove", "replace", "move", "copy", "test"),
+									},
 								},
 
 								"path": schema.StringAttribute{
@@ -159,11 +175,101 @@ func (r *HiveOpenshiftIoClusterDeploymentCustomizationV1Manifest) Schema(_ conte
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Value is the value to be used in the operation",
-									MarkdownDescription: "Value is the value to be used in the operation",
-									Required:            true,
-									Optional:            false,
+									Description:         "Value is the *string* value to be used in the operation. For more complex values, use ValueJSON.",
+									MarkdownDescription: "Value is the *string* value to be used in the operation. For more complex values, use ValueJSON.",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
+								},
+
+								"value_json": schema.StringAttribute{
+									Description:         "ValueJSON is a string representing a JSON object to be used in the operation. As such, internal quotes must be escaped. If nonempty, Value is ignored.",
+									MarkdownDescription: "ValueJSON is a string representing a JSON object to be used in the operation. As such, internal quotes must be escaped. If nonempty, Value is ignored.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"installer_manifest_patches": schema.ListNestedAttribute{
+						Description:         "InstallerManifestPatches is a list of patches to be applied to installer-generated manifests.",
+						MarkdownDescription: "InstallerManifestPatches is a list of patches to be applied to installer-generated manifests.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"manifest_selector": schema.SingleNestedAttribute{
+									Description:         "ManifestSelector identifies one or more manifests to patch",
+									MarkdownDescription: "ManifestSelector identifies one or more manifests to patch",
+									Attributes: map[string]schema.Attribute{
+										"glob": schema.StringAttribute{
+											Description:         "Glob is a file glob (per https://pkg.go.dev/path/filepath#Glob) identifying one or more manifests. Paths should be relative to the installer's working directory. Examples: - openshift/99_role-cloud-creds-secret-reader.yaml - openshift/99_openshift-cluster-api_worker-machineset-*.yaml - */*secret* It is an error if a glob matches zero manifests.",
+											MarkdownDescription: "Glob is a file glob (per https://pkg.go.dev/path/filepath#Glob) identifying one or more manifests. Paths should be relative to the installer's working directory. Examples: - openshift/99_role-cloud-creds-secret-reader.yaml - openshift/99_openshift-cluster-api_worker-machineset-*.yaml - */*secret* It is an error if a glob matches zero manifests.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"patches": schema.ListNestedAttribute{
+									Description:         "Patches is a list of RFC6902 patches to apply to manifests identified by manifestSelector.",
+									MarkdownDescription: "Patches is a list of RFC6902 patches to apply to manifests identified by manifestSelector.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"from": schema.StringAttribute{
+												Description:         "From is the json path to copy or move the value from",
+												MarkdownDescription: "From is the json path to copy or move the value from",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"op": schema.StringAttribute{
+												Description:         "Op is the operation to perform.",
+												MarkdownDescription: "Op is the operation to perform.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("add", "remove", "replace", "move", "copy", "test"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "Path is the json path to the value to be modified",
+												MarkdownDescription: "Path is the json path to the value to be modified",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "Value is the *string* value to be used in the operation. For more complex values, use ValueJSON.",
+												MarkdownDescription: "Value is the *string* value to be used in the operation. For more complex values, use ValueJSON.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_json": schema.StringAttribute{
+												Description:         "ValueJSON is a string representing a JSON object to be used in the operation. As such, internal quotes must be escaped. If nonempty, Value is ignored.",
+												MarkdownDescription: "ValueJSON is a string representing a JSON object to be used in the operation. As such, internal quotes must be escaped. If nonempty, Value is ignored.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
 								},
 							},
 						},

@@ -188,8 +188,8 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"extra_filter_labels": schema.MapAttribute{
-									Description:         "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead",
-									MarkdownDescription: "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead",
+									Description:         "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated: use params instead",
+									MarkdownDescription: "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated: use params instead",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -350,8 +350,8 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite",
-									MarkdownDescription: "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite",
+									Description:         "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite,vlogs",
+									MarkdownDescription: "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite,vlogs",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

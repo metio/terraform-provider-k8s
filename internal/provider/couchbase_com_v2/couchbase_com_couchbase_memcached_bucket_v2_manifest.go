@@ -56,8 +56,8 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Metadata(_ context.Cont
 
 func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
-		MarkdownDescription: "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
+		Description:         "DEPRECATED - Memcached buckets are now deprecated in Couchbase Server and should not be used, they will be removed in a future release. The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
+		MarkdownDescription: "DEPRECATED - Memcached buckets are now deprecated in Couchbase Server and should not be used, they will be removed in a future release. The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

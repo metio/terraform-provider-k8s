@@ -268,8 +268,8 @@ func (r *KeyspacesServicesK8SAwsTableV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"keyspace_name": schema.StringAttribute{
-						Description:         "The name of the keyspace that the table is going to be created in.",
-						MarkdownDescription: "The name of the keyspace that the table is going to be created in.",
+						Description:         "The name of the keyspace that the table is going to be created in. Regex Pattern: '^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$'",
+						MarkdownDescription: "The name of the keyspace that the table is going to be created in. Regex Pattern: '^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -394,8 +394,8 @@ func (r *KeyspacesServicesK8SAwsTableV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"table_name": schema.StringAttribute{
-						Description:         "The name of the table.",
-						MarkdownDescription: "The name of the table.",
+						Description:         "The name of the table. Regex Pattern: '^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$'",
+						MarkdownDescription: "The name of the table. Regex Pattern: '^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

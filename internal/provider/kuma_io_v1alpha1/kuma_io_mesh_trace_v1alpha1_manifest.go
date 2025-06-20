@@ -284,24 +284,24 @@ func (r *KumaIoMeshTraceV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "Sampling configuration. Sampling is the process by which a decision is made on whether to process/export a span or not.",
 								Attributes: map[string]schema.Attribute{
 									"client": schema.StringAttribute{
-										Description:         "Target percentage of requests that will be force traced if the 'x-client-trace-id' header is set. Mirror of client_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L127-L133 Either int or decimal represented as string.",
-										MarkdownDescription: "Target percentage of requests that will be force traced if the 'x-client-trace-id' header is set. Mirror of client_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L127-L133 Either int or decimal represented as string.",
+										Description:         "Target percentage of requests that will be force traced if the 'x-client-trace-id' header is set. Mirror of client_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L127-L133 Either int or decimal represented as string. If not specified then the default value is 100.",
+										MarkdownDescription: "Target percentage of requests that will be force traced if the 'x-client-trace-id' header is set. Mirror of client_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L127-L133 Either int or decimal represented as string. If not specified then the default value is 100.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"overall": schema.StringAttribute{
-										Description:         "Target percentage of requests will be traced after all other sampling checks have been applied (client, force tracing, random sampling). This field functions as an upper limit on the total configured sampling rate. For instance, setting client to 100 but overall to 1 will result in only 1% of client requests with the appropriate headers to be force traced. Mirror of overall_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L142-L150 Either int or decimal represented as string.",
-										MarkdownDescription: "Target percentage of requests will be traced after all other sampling checks have been applied (client, force tracing, random sampling). This field functions as an upper limit on the total configured sampling rate. For instance, setting client to 100 but overall to 1 will result in only 1% of client requests with the appropriate headers to be force traced. Mirror of overall_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L142-L150 Either int or decimal represented as string.",
+										Description:         "Target percentage of requests will be traced after all other sampling checks have been applied (client, force tracing, random sampling). This field functions as an upper limit on the total configured sampling rate. For instance, setting client to 100 but overall to 1 will result in only 1% of client requests with the appropriate headers to be force traced. Mirror of overall_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L142-L150 Either int or decimal represented as string. If not specified then the default value is 100.",
+										MarkdownDescription: "Target percentage of requests will be traced after all other sampling checks have been applied (client, force tracing, random sampling). This field functions as an upper limit on the total configured sampling rate. For instance, setting client to 100 but overall to 1 will result in only 1% of client requests with the appropriate headers to be force traced. Mirror of overall_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L142-L150 Either int or decimal represented as string. If not specified then the default value is 100.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"random": schema.StringAttribute{
-										Description:         "Target percentage of requests that will be randomly selected for trace generation, if not requested by the client or not forced. Mirror of random_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L135-L140 Either int or decimal represented as string.",
-										MarkdownDescription: "Target percentage of requests that will be randomly selected for trace generation, if not requested by the client or not forced. Mirror of random_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L135-L140 Either int or decimal represented as string.",
+										Description:         "Target percentage of requests that will be randomly selected for trace generation, if not requested by the client or not forced. Mirror of random_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L135-L140 Either int or decimal represented as string. If not specified then the default value is 100.",
+										MarkdownDescription: "Target percentage of requests that will be randomly selected for trace generation, if not requested by the client or not forced. Mirror of random_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L135-L140 Either int or decimal represented as string. If not specified then the default value is 100.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -376,11 +376,11 @@ func (r *KumaIoMeshTraceV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 

@@ -51,10 +51,14 @@ type PsmdbPerconaComPerconaServerMongoDbrestoreV1ManifestData struct {
 				EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 				Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
-			Completed            *string            `tfsdk:"completed" json:"completed,omitempty"`
-			Destination          *string            `tfsdk:"destination" json:"destination,omitempty"`
-			Error                *string            `tfsdk:"error" json:"error,omitempty"`
+			Completed   *string `tfsdk:"completed" json:"completed,omitempty"`
+			Destination *string `tfsdk:"destination" json:"destination,omitempty"`
+			Error       *string `tfsdk:"error" json:"error,omitempty"`
+			Filesystem  *struct {
+				Path *string `tfsdk:"path" json:"path,omitempty"`
+			} `tfsdk:"filesystem" json:"filesystem,omitempty"`
 			LastTransition       *string            `tfsdk:"last_transition" json:"lastTransition,omitempty"`
+			LastWriteAt          *string            `tfsdk:"last_write_at" json:"lastWriteAt,omitempty"`
 			LatestRestorableTime *string            `tfsdk:"latest_restorable_time" json:"latestRestorableTime,omitempty"`
 			PbmName              *string            `tfsdk:"pbm_name" json:"pbmName,omitempty"`
 			PbmPod               *string            `tfsdk:"pbm_pod" json:"pbmPod,omitempty"`
@@ -84,6 +88,7 @@ type PsmdbPerconaComPerconaServerMongoDbrestoreV1ManifestData struct {
 				StorageClass   *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
 				UploadPartSize *int64  `tfsdk:"upload_part_size" json:"uploadPartSize,omitempty"`
 			} `tfsdk:"s3" json:"s3,omitempty"`
+			Size        *string `tfsdk:"size" json:"size,omitempty"`
 			Start       *string `tfsdk:"start" json:"start,omitempty"`
 			State       *string `tfsdk:"state" json:"state,omitempty"`
 			StorageName *string `tfsdk:"storage_name" json:"storageName,omitempty"`
@@ -260,7 +265,35 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 								Computed:            false,
 							},
 
+							"filesystem": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"path": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"last_transition": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									validators.DateTime64Validator(),
+								},
+							},
+
+							"last_write_at": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -485,6 +518,14 @@ func (r *PsmdbPerconaComPerconaServerMongoDbrestoreV1Manifest) Schema(_ context.
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"size": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"start": schema.StringAttribute{

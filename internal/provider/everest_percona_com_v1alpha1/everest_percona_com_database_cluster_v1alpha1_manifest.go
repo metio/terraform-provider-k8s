@@ -98,8 +98,9 @@ type EverestPerconaComDatabaseClusterV1Alpha1ManifestData struct {
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
-		Paused *bool `tfsdk:"paused" json:"paused,omitempty"`
-		Proxy  *struct {
+		Paused                  *bool   `tfsdk:"paused" json:"paused,omitempty"`
+		PodSchedulingPolicyName *string `tfsdk:"pod_scheduling_policy_name" json:"podSchedulingPolicyName,omitempty"`
+		Proxy                   *struct {
 			Config *string `tfsdk:"config" json:"config,omitempty"`
 			Expose *struct {
 				IpSourceRanges *[]string `tfsdk:"ip_source_ranges" json:"ipSourceRanges,omitempty"`
@@ -200,8 +201,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "DatabaseClusterSpec defines the desired state of DatabaseCluster.",
 				Attributes: map[string]schema.Attribute{
 					"allow_unsafe_configuration": schema.BoolAttribute{
-						Description:         "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use.",
-						MarkdownDescription: "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use.",
+						Description:         "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use. Deprecated: AllowUnsafeConfiguration will not be supported in the future releases.",
+						MarkdownDescription: "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use. Deprecated: AllowUnsafeConfiguration will not be supported in the future releases.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -212,10 +213,10 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Backup is the backup specification",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
-								Description:         "Enabled is a flag to enable backups",
-								MarkdownDescription: "Enabled is a flag to enable backups",
-								Required:            true,
-								Optional:            false,
+								Description:         "Enabled is a flag to enable backups Deprecated. Please use db.spec.backup.schedules[].enabled to control each schedule separately and db.spec.backup.pitr.enabled to control PITR.",
+								MarkdownDescription: "Enabled is a flag to enable backups Deprecated. Please use db.spec.backup.schedules[].enabled to control each schedule separately and db.spec.backup.pitr.enabled to control PITR.",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -565,6 +566,14 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 					"paused": schema.BoolAttribute{
 						Description:         "Paused is a flag to stop the cluster",
 						MarkdownDescription: "Paused is a flag to stop the cluster",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pod_scheduling_policy_name": schema.StringAttribute{
+						Description:         "PodSchedulingPolicyName is the name of the PodSchedulingPolicy CR that defines rules for DB cluster pods allocation across the cluster.",
+						MarkdownDescription: "PodSchedulingPolicyName is the name of the PodSchedulingPolicy CR that defines rules for DB cluster pods allocation across the cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

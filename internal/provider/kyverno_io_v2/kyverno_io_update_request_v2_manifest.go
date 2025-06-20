@@ -88,6 +88,7 @@ type KyvernoIoUpdateRequestV2ManifestData struct {
 			UserInfo *struct {
 				ClusterRoles *[]string `tfsdk:"cluster_roles" json:"clusterRoles,omitempty"`
 				Roles        *[]string `tfsdk:"roles" json:"roles,omitempty"`
+				Synchronize  *bool     `tfsdk:"synchronize" json:"synchronize,omitempty"`
 				UserInfo     *struct {
 					Extra    *map[string][]string `tfsdk:"extra" json:"extra,omitempty"`
 					Groups   *[]string            `tfsdk:"groups" json:"groups,omitempty"`
@@ -510,6 +511,14 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 										Computed:            false,
 									},
 
+									"synchronize": schema.BoolAttribute{
+										Description:         "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
+										MarkdownDescription: "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"user_info": schema.SingleNestedAttribute{
 										Description:         "UserInfo is the userInfo carried in the admission request.",
 										MarkdownDescription: "UserInfo is the userInfo carried in the admission request.",
@@ -586,7 +595,7 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("mutate", "generate"),
+							stringvalidator.OneOf("mutate", "generate", "cel-generate"),
 						},
 					},
 
