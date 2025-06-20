@@ -18,6 +18,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -550,11 +551,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -563,14 +569,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -597,14 +613,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -626,11 +652,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessID is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -639,14 +670,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -655,15 +696,20 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"access_type": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -672,14 +718,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -688,15 +744,20 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"access_type_param": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -705,14 +766,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -746,11 +817,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "The provider for the CA bundle to use to validate Akeyless Gateway certificate.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key the value inside of the provider type to use, only used with 'Secret' type",
-												MarkdownDescription: "The key the value inside of the provider type to use, only used with 'Secret' type",
+												Description:         "The key where the CA certificate can be found in the Secret or ConfigMap.",
+												MarkdownDescription: "The key where the CA certificate can be found in the Secret or ConfigMap.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+												},
 											},
 
 											"name": schema.StringAttribute{
@@ -759,6 +835,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+												},
 											},
 
 											"namespace": schema.StringAttribute{
@@ -767,6 +848,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+												},
 											},
 
 											"type": schema.StringAttribute{
@@ -851,11 +937,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The AccessKeyID is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -864,14 +955,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: true,
@@ -884,11 +985,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The AccessKeySecret is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -897,14 +1003,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: true,
@@ -969,14 +1085,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -998,11 +1124,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The AccessKeyID is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1011,14 +1142,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1031,11 +1172,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1044,14 +1190,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1117,11 +1273,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "The Azure clientId of the service principle used for authentication.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+														},
 													},
 
 													"name": schema.StringAttribute{
@@ -1130,14 +1291,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+														MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+														},
 													},
 												},
 												Required: false,
@@ -1150,11 +1321,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "The Azure ClientSecret of the service principle used for authentication.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+														},
 													},
 
 													"name": schema.StringAttribute{
@@ -1163,14 +1339,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+														MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+														},
 													},
 												},
 												Required: false,
@@ -1221,14 +1407,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+												},
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+												},
 											},
 										},
 										Required: false,
@@ -1333,11 +1529,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1346,14 +1547,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1413,14 +1624,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: true,
@@ -1471,11 +1692,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "AccessToken is used for authentication.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1484,14 +1710,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1550,11 +1786,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1563,14 +1804,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1617,15 +1868,20 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "has both clientCert and clientKey as secretKeySelector",
 												Attributes: map[string]schema.Attribute{
 													"client_cert": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1634,14 +1890,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1650,15 +1916,20 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"client_key": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1667,14 +1938,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1713,14 +1994,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1741,15 +2032,20 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "use static token to authenticate with",
 												Attributes: map[string]schema.Attribute{
 													"bearer_token": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1758,14 +2054,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -1792,6 +2098,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(63),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+										},
 									},
 
 									"server": schema.SingleNestedAttribute{
@@ -1814,11 +2125,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "see: https://external-secrets.io/v0.4.1/spec/#external-secrets.io/v1alpha1.CAProvider",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key the value inside of the provider type to use, only used with 'Secret' type",
-														MarkdownDescription: "The key the value inside of the provider type to use, only used with 'Secret' type",
+														Description:         "The key where the CA certificate can be found in the Secret or ConfigMap.",
+														MarkdownDescription: "The key where the CA certificate can be found in the Secret or ConfigMap.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+														},
 													},
 
 													"name": schema.StringAttribute{
@@ -1827,6 +2143,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
 													},
 
 													"namespace": schema.StringAttribute{
@@ -1835,6 +2156,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+														},
 													},
 
 													"type": schema.StringAttribute{
@@ -1891,11 +2217,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Fingerprint is the fingerprint of the API private key.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1904,14 +2235,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: true,
@@ -1924,11 +2265,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "PrivateKey is the user's API Signing Key in PEM format, used for authentication.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -1937,14 +2283,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: true,
@@ -2032,14 +2388,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+												},
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+												},
 											},
 										},
 										Required: false,
@@ -2080,11 +2446,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Username / Password is used for authentication.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2093,14 +2464,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2175,11 +2556,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role secret.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2188,14 +2574,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: true,
@@ -2217,11 +2613,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "ClientCert is a certificate to authenticate using the Cert Vault authentication method",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2230,14 +2631,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2250,11 +2661,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "SecretRef to a key in a Secret resource containing client private key to authenticate with Vault using the Cert authentication method",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2263,14 +2679,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2327,14 +2753,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.LengthAtLeast(1),
+																			stringvalidator.LengthAtMost(253),
+																			stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																		},
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																		MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																		Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																		MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.LengthAtLeast(1),
+																			stringvalidator.LengthAtMost(63),
+																			stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																		},
 																	},
 																},
 																Required: true,
@@ -2368,11 +2804,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Vault using the JWT/OIDC authentication method.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2381,14 +2822,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2426,11 +2877,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2439,14 +2895,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2473,14 +2939,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2510,11 +2986,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "SecretRef to a key in a Secret resource containing password for the LDAP user used to authenticate with Vault using the LDAP authentication method",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+																},
 															},
 
 															"name": schema.StringAttribute{
@@ -2523,14 +3004,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(253),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																},
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+																MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+																},
 															},
 														},
 														Required: false,
@@ -2556,11 +3047,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "TokenSecretRef authenticates with Vault by presenting a token.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+														},
 													},
 
 													"name": schema.StringAttribute{
@@ -2569,14 +3065,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+														MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+														},
 													},
 												},
 												Required: false,
@@ -2605,11 +3111,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "The provider for the CA bundle to use to validate Vault server certificate.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key the value inside of the provider type to use, only used with 'Secret' type",
-												MarkdownDescription: "The key the value inside of the provider type to use, only used with 'Secret' type",
+												Description:         "The key where the CA certificate can be found in the Secret or ConfigMap.",
+												MarkdownDescription: "The key where the CA certificate can be found in the Secret or ConfigMap.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+												},
 											},
 
 											"name": schema.StringAttribute{
@@ -2618,6 +3129,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+												},
 											},
 
 											"namespace": schema.StringAttribute{
@@ -2626,6 +3142,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+												},
 											},
 
 											"type": schema.StringAttribute{
@@ -2731,11 +3252,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "The provider for the CA bundle to use to validate webhook server certificate.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key the value inside of the provider type to use, only used with 'Secret' type",
-												MarkdownDescription: "The key the value inside of the provider type to use, only used with 'Secret' type",
+												Description:         "The key where the CA certificate can be found in the Secret or ConfigMap.",
+												MarkdownDescription: "The key where the CA certificate can be found in the Secret or ConfigMap.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+												},
 											},
 
 											"name": schema.StringAttribute{
@@ -2744,6 +3270,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(253),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+												},
 											},
 
 											"namespace": schema.StringAttribute{
@@ -2752,6 +3283,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+												},
 											},
 
 											"type": schema.StringAttribute{
@@ -2822,11 +3358,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													MarkdownDescription: "Secret ref to fill in credentials",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-															MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+															Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+															MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+																stringvalidator.LengthAtMost(253),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+															},
 														},
 
 														"name": schema.StringAttribute{
@@ -2835,14 +3376,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+																stringvalidator.LengthAtMost(253),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+															},
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-															MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+															Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+															MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+																stringvalidator.LengthAtMost(63),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+															},
 														},
 													},
 													Required: true,
@@ -2901,11 +3452,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "The authorized key used for authentication",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+														},
 													},
 
 													"name": schema.StringAttribute{
@@ -2914,14 +3470,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+														MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+														},
 													},
 												},
 												Required: false,
@@ -2939,15 +3505,20 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "The provider for the CA bundle to use to validate Yandex.Cloud server certificate.",
 										Attributes: map[string]schema.Attribute{
 											"cert_secret_ref": schema.SingleNestedAttribute{
-												Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-												MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+												Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+												MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														Description:         "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[-._a-zA-Z0-9]+$`), ""),
+														},
 													},
 
 													"name": schema.StringAttribute{
@@ -2956,14 +3527,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														Description:         "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
+														MarkdownDescription: "The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+														},
 													},
 												},
 												Required: false,

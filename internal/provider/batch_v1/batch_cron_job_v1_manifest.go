@@ -371,6 +371,7 @@ type BatchCronJobV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -629,6 +630,7 @@ type BatchCronJobV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -890,6 +892,7 @@ type BatchCronJobV1ManifestData struct {
 										Port *string `tfsdk:"port" json:"port,omitempty"`
 									} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 								} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+								StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 							} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 							LivenessProbe *struct {
 								Exec *struct {
@@ -1069,6 +1072,14 @@ type BatchCronJobV1ManifestData struct {
 							ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
 							ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 						} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
+						Resources *struct {
+							Claims *[]struct {
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"resources" json:"resources,omitempty"`
 						RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 						SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -1085,6 +1096,7 @@ type BatchCronJobV1ManifestData struct {
 							RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 							RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 							RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+							SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 							SeLinuxOptions      *struct {
 								Level *string `tfsdk:"level" json:"level,omitempty"`
 								Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1851,16 +1863,16 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 									},
 
 									"backoff_limit": schema.Int64Attribute{
-										Description:         "Specifies the number of retries before marking this job failed. Defaults to 6",
-										MarkdownDescription: "Specifies the number of retries before marking this job failed. Defaults to 6",
+										Description:         "Specifies the number of retries before marking this job failed. Defaults to 6, unless backoffLimitPerIndex (only Indexed Job) is specified. When backoffLimitPerIndex is specified, backoffLimit defaults to 2147483647.",
+										MarkdownDescription: "Specifies the number of retries before marking this job failed. Defaults to 6, unless backoffLimitPerIndex (only Indexed Job) is specified. When backoffLimitPerIndex is specified, backoffLimit defaults to 2147483647.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"backoff_limit_per_index": schema.Int64Attribute{
-										Description:         "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
-										MarkdownDescription: "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
+										Description:         "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable.",
+										MarkdownDescription: "Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1899,8 +1911,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 									},
 
 									"max_failed_indexes": schema.Int64Attribute{
-										Description:         "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
-										MarkdownDescription: "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default).",
+										Description:         "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5.",
+										MarkdownDescription: "Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the 'Complete' Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1924,8 +1936,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{
-															Description:         "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod's job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod's index is marked as Failed and will not be restarted. This value is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default). - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
-															MarkdownDescription: "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod's job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod's index is marked as Failed and will not be restarted. This value is beta-level. It can be used when the 'JobBackoffLimitPerIndex' feature gate is enabled (enabled by default). - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
+															Description:         "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod's job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod's index is marked as Failed and will not be restarted. - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
+															MarkdownDescription: "Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod's job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod's index is marked as Failed and will not be restarted. - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2070,8 +2082,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 										MarkdownDescription: "SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes.",
 										Attributes: map[string]schema.Attribute{
 											"rules": schema.ListNestedAttribute{
-												Description:         "rules represents the list of alternative rules for the declaring the Jobs as successful before '.status.succeeded >= .spec.completions'. Once any of the rules are met, the 'SucceededCriteriaMet' condition is added, and the lingering pods are removed. The terminal state for such a Job has the 'Complete' condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.",
-												MarkdownDescription: "rules represents the list of alternative rules for the declaring the Jobs as successful before '.status.succeeded >= .spec.completions'. Once any of the rules are met, the 'SucceededCriteriaMet' condition is added, and the lingering pods are removed. The terminal state for such a Job has the 'Complete' condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.",
+												Description:         "rules represents the list of alternative rules for the declaring the Jobs as successful before '.status.succeeded >= .spec.completions'. Once any of the rules are met, the 'SuccessCriteriaMet' condition is added, and the lingering pods are removed. The terminal state for such a Job has the 'Complete' condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.",
+												MarkdownDescription: "rules represents the list of alternative rules for the declaring the Jobs as successful before '.status.succeeded >= .spec.completions'. Once any of the rules are met, the 'SuccessCriteriaMet' condition is added, and the lingering pods are removed. The terminal state for such a Job has the 'Complete' condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"succeeded_count": schema.Int64Attribute{
@@ -2650,8 +2662,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																						},
 
 																						"match_label_keys": schema.ListAttribute{
-																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2659,8 +2671,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																						},
 
 																						"mismatch_label_keys": schema.ListAttribute{
-																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2817,8 +2829,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2826,8 +2838,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																				},
 
 																				"mismatch_label_keys": schema.ListAttribute{
-																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2921,8 +2933,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																MarkdownDescription: "Pod anti affinity is a group of inter pod anti affinity scheduling rules.",
 																Attributes: map[string]schema.Attribute{
 																	"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2984,8 +2996,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																						},
 
 																						"match_label_keys": schema.ListAttribute{
-																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																							MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2993,8 +3005,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																						},
 
 																						"mismatch_label_keys": schema.ListAttribute{
-																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																							Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																							MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -3151,8 +3163,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3160,8 +3172,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																				},
 
 																				"mismatch_label_keys": schema.ListAttribute{
-																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																					Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																					MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3292,8 +3304,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																				MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																				Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+																				MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -3447,8 +3459,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																},
 
 																"env_from": schema.ListNestedAttribute{
-																	Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-																	MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																	Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																	MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"config_map_ref": schema.SingleNestedAttribute{
@@ -3477,8 +3489,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																			},
 
 																			"prefix": schema.StringAttribute{
-																				Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																				MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																				Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+																				MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3808,6 +3820,14 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																			Optional: true,
 																			Computed: false,
 																		},
+
+																		"stop_signal": schema.StringAttribute{
+																			Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+																			MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -3845,8 +3865,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4097,8 +4117,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4603,8 +4623,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4932,16 +4952,16 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Required.",
-																			MarkdownDescription: "Required.",
+																			Description:         "Name is this DNS resolver option's name. Required.",
+																			MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"value": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "Value is this DNS resolver option's value.",
+																			MarkdownDescription: "Value is this DNS resolver option's value.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5012,8 +5032,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																				MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																				Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+																				MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -5167,8 +5187,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																},
 
 																"env_from": schema.ListNestedAttribute{
-																	Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-																	MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																	Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																	MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"config_map_ref": schema.SingleNestedAttribute{
@@ -5197,8 +5217,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																			},
 
 																			"prefix": schema.StringAttribute{
-																				Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																				MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																				Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+																				MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5528,6 +5548,14 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																			Optional: true,
 																			Computed: false,
 																		},
+
+																		"stop_signal": schema.StringAttribute{
+																			Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+																			MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -5565,8 +5593,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5817,8 +5845,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6323,8 +6351,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6678,8 +6706,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 													},
 
 													"host_network": schema.BoolAttribute{
-														Description:         "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
-														MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
+														Description:         "Host networking requested for this pod. Use the host's network namespace. Default to false.",
+														MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. Default to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6729,8 +6757,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
-														MarkdownDescription: "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+														Description:         "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+														MarkdownDescription: "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"args": schema.ListAttribute{
@@ -6757,8 +6785,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																				MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																				Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+																				MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -6912,8 +6940,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																},
 
 																"env_from": schema.ListNestedAttribute{
-																	Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-																	MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																	Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																	MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"config_map_ref": schema.SingleNestedAttribute{
@@ -6942,8 +6970,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																			},
 
 																			"prefix": schema.StringAttribute{
-																				Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																				MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																				Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+																				MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -7273,6 +7301,14 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																			Optional: true,
 																			Computed: false,
 																		},
+
+																		"stop_signal": schema.StringAttribute{
+																			Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+																			MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -7310,8 +7346,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7562,8 +7598,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -8068,8 +8104,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																		},
 
 																		"grpc": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "GRPCAction specifies an action involving a GRPC service.",
+																			MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 																			Attributes: map[string]schema.Attribute{
 																				"port": schema.Int64Attribute{
 																					Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -8499,6 +8535,60 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 														Computed: false,
 													},
 
+													"resources": schema.SingleNestedAttribute{
+														Description:         "ResourceRequirements describes the compute resource requirements.",
+														MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+														Attributes: map[string]schema.Attribute{
+															"claims": schema.ListNestedAttribute{
+																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"request": schema.StringAttribute{
+																			Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																			MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limits": schema.MapAttribute{
+																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"requests": schema.MapAttribute{
+																Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"restart_policy": schema.StringAttribute{
 														Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
 														MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
@@ -8606,6 +8696,14 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 															"run_as_user": schema.Int64Attribute{
 																Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"se_linux_change_policy": schema.StringAttribute{
+																Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+																MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -8951,16 +9049,16 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																},
 
 																"node_affinity_policy": schema.StringAttribute{
-																	Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-																	MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
+																	MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"node_taints_policy": schema.StringAttribute{
-																	Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-																	MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
+																	MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -9802,8 +9900,8 @@ func (r *BatchCronJobV1Manifest) Schema(_ context.Context, _ datasource.SchemaRe
 																						},
 
 																						"data_source_ref": schema.SingleNestedAttribute{
-																							Description:         "",
-																							MarkdownDescription: "",
+																							Description:         "TypedObjectReference contains enough information to let you locate the typed referenced object",
+																							MarkdownDescription: "TypedObjectReference contains enough information to let you locate the typed referenced object",
 																							Attributes: map[string]schema.Attribute{
 																								"api_group": schema.StringAttribute{
 																									Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",

@@ -99,7 +99,8 @@ type KyvernoIoClusterCleanupPolicyV2ManifestData struct {
 				Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"variable" json:"variable,omitempty"`
 		} `tfsdk:"context" json:"context,omitempty"`
-		Exclude *struct {
+		DeletionPropagationPolicy *string `tfsdk:"deletion_propagation_policy" json:"deletionPropagationPolicy,omitempty"`
+		Exclude                   *struct {
 			All *[]struct {
 				ClusterRoles *[]string `tfsdk:"cluster_roles" json:"clusterRoles,omitempty"`
 				Resources    *struct {
@@ -700,6 +701,17 @@ func (r *KyvernoIoClusterCleanupPolicyV2Manifest) Schema(_ context.Context, _ da
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"deletion_propagation_policy": schema.StringAttribute{
+						Description:         "DeletionPropagationPolicy defines how resources will be deleted (Foreground, Background, Orphan).",
+						MarkdownDescription: "DeletionPropagationPolicy defines how resources will be deleted (Foreground, Background, Orphan).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Foreground", "Background", "Orphan"),
+						},
 					},
 
 					"exclude": schema.SingleNestedAttribute{

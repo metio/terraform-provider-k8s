@@ -52,6 +52,7 @@ type AcmeCertManagerIoOrderV1ManifestData struct {
 			Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name  *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"issuer_ref" json:"issuerRef,omitempty"`
+		Profile *string `tfsdk:"profile" json:"profile,omitempty"`
 		Request *string `tfsdk:"request" json:"request,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -198,6 +199,14 @@ func (r *AcmeCertManagerIoOrderV1Manifest) Schema(_ context.Context, _ datasourc
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"profile": schema.StringAttribute{
+						Description:         "Profile allows requesting a certificate profile from the ACME server. Supported profiles are listed by the server's ACME directory URL.",
+						MarkdownDescription: "Profile allows requesting a certificate profile from the ACME server. Supported profiles are listed by the server's ACME directory URL.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"request": schema.StringAttribute{

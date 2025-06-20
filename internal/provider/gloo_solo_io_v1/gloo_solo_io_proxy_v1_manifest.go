@@ -134,9 +134,64 @@ type GlooSoloIoProxyV1ManifestData struct {
 							AdditionalRequestHeadersToLog   *[]string `tfsdk:"additional_request_headers_to_log" json:"additionalRequestHeadersToLog,omitempty"`
 							AdditionalResponseHeadersToLog  *[]string `tfsdk:"additional_response_headers_to_log" json:"additionalResponseHeadersToLog,omitempty"`
 							AdditionalResponseTrailersToLog *[]string `tfsdk:"additional_response_trailers_to_log" json:"additionalResponseTrailersToLog,omitempty"`
+							FilterStateObjectsToLog         *[]string `tfsdk:"filter_state_objects_to_log" json:"filterStateObjectsToLog,omitempty"`
 							LogName                         *string   `tfsdk:"log_name" json:"logName,omitempty"`
 							StaticClusterName               *string   `tfsdk:"static_cluster_name" json:"staticClusterName,omitempty"`
 						} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
+						OpenTelemetryService *struct {
+							Attributes *struct {
+								Values *[]struct {
+									Key   *string            `tfsdk:"key" json:"key,omitempty"`
+									Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"attributes" json:"attributes,omitempty"`
+							Body      *map[string]string `tfsdk:"body" json:"body,omitempty"`
+							Collector *struct {
+								Authority *string            `tfsdk:"authority" json:"authority,omitempty"`
+								Endpoint  *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+								Headers   *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+								Insecure  *bool              `tfsdk:"insecure" json:"insecure,omitempty"`
+								SslConfig *struct {
+									AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
+									AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
+									OneWayTls          *bool     `tfsdk:"one_way_tls" json:"oneWayTls,omitempty"`
+									Parameters         *struct {
+										CipherSuites           *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
+										EcdhCurves             *[]string `tfsdk:"ecdh_curves" json:"ecdhCurves,omitempty"`
+										MaximumProtocolVersion *string   `tfsdk:"maximum_protocol_version" json:"maximumProtocolVersion,omitempty"`
+										MinimumProtocolVersion *string   `tfsdk:"minimum_protocol_version" json:"minimumProtocolVersion,omitempty"`
+									} `tfsdk:"parameters" json:"parameters,omitempty"`
+									Sds *struct {
+										CallCredentials *struct {
+											FileCredentialSource *struct {
+												Header        *string `tfsdk:"header" json:"header,omitempty"`
+												TokenFileName *string `tfsdk:"token_file_name" json:"tokenFileName,omitempty"`
+											} `tfsdk:"file_credential_source" json:"fileCredentialSource,omitempty"`
+										} `tfsdk:"call_credentials" json:"callCredentials,omitempty"`
+										CertificatesSecretName *string `tfsdk:"certificates_secret_name" json:"certificatesSecretName,omitempty"`
+										ClusterName            *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+										TargetUri              *string `tfsdk:"target_uri" json:"targetUri,omitempty"`
+										ValidationContextName  *string `tfsdk:"validation_context_name" json:"validationContextName,omitempty"`
+									} `tfsdk:"sds" json:"sds,omitempty"`
+									SecretRef *struct {
+										Name      *string `tfsdk:"name" json:"name,omitempty"`
+										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+									Sni      *string `tfsdk:"sni" json:"sni,omitempty"`
+									SslFiles *struct {
+										OcspStaple *string `tfsdk:"ocsp_staple" json:"ocspStaple,omitempty"`
+										RootCa     *string `tfsdk:"root_ca" json:"rootCa,omitempty"`
+										TlsCert    *string `tfsdk:"tls_cert" json:"tlsCert,omitempty"`
+										TlsKey     *string `tfsdk:"tls_key" json:"tlsKey,omitempty"`
+									} `tfsdk:"ssl_files" json:"sslFiles,omitempty"`
+									VerifySubjectAltName *[]string `tfsdk:"verify_subject_alt_name" json:"verifySubjectAltName,omitempty"`
+								} `tfsdk:"ssl_config" json:"sslConfig,omitempty"`
+								Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
+							} `tfsdk:"collector" json:"collector,omitempty"`
+							DisableBuiltinLabels    *bool     `tfsdk:"disable_builtin_labels" json:"disableBuiltinLabels,omitempty"`
+							FilterStateObjectsToLog *[]string `tfsdk:"filter_state_objects_to_log" json:"filterStateObjectsToLog,omitempty"`
+							LogName                 *string   `tfsdk:"log_name" json:"logName,omitempty"`
+						} `tfsdk:"open_telemetry_service" json:"openTelemetryService,omitempty"`
 					} `tfsdk:"access_log" json:"accessLog,omitempty"`
 				} `tfsdk:"access_logging_service" json:"accessLoggingService,omitempty"`
 				ConnectionBalanceConfig *struct {
@@ -215,9 +270,64 @@ type GlooSoloIoProxyV1ManifestData struct {
 							AdditionalRequestHeadersToLog   *[]string `tfsdk:"additional_request_headers_to_log" json:"additionalRequestHeadersToLog,omitempty"`
 							AdditionalResponseHeadersToLog  *[]string `tfsdk:"additional_response_headers_to_log" json:"additionalResponseHeadersToLog,omitempty"`
 							AdditionalResponseTrailersToLog *[]string `tfsdk:"additional_response_trailers_to_log" json:"additionalResponseTrailersToLog,omitempty"`
+							FilterStateObjectsToLog         *[]string `tfsdk:"filter_state_objects_to_log" json:"filterStateObjectsToLog,omitempty"`
 							LogName                         *string   `tfsdk:"log_name" json:"logName,omitempty"`
 							StaticClusterName               *string   `tfsdk:"static_cluster_name" json:"staticClusterName,omitempty"`
 						} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
+						OpenTelemetryService *struct {
+							Attributes *struct {
+								Values *[]struct {
+									Key   *string            `tfsdk:"key" json:"key,omitempty"`
+									Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"attributes" json:"attributes,omitempty"`
+							Body      *map[string]string `tfsdk:"body" json:"body,omitempty"`
+							Collector *struct {
+								Authority *string            `tfsdk:"authority" json:"authority,omitempty"`
+								Endpoint  *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+								Headers   *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+								Insecure  *bool              `tfsdk:"insecure" json:"insecure,omitempty"`
+								SslConfig *struct {
+									AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
+									AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
+									OneWayTls          *bool     `tfsdk:"one_way_tls" json:"oneWayTls,omitempty"`
+									Parameters         *struct {
+										CipherSuites           *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
+										EcdhCurves             *[]string `tfsdk:"ecdh_curves" json:"ecdhCurves,omitempty"`
+										MaximumProtocolVersion *string   `tfsdk:"maximum_protocol_version" json:"maximumProtocolVersion,omitempty"`
+										MinimumProtocolVersion *string   `tfsdk:"minimum_protocol_version" json:"minimumProtocolVersion,omitempty"`
+									} `tfsdk:"parameters" json:"parameters,omitempty"`
+									Sds *struct {
+										CallCredentials *struct {
+											FileCredentialSource *struct {
+												Header        *string `tfsdk:"header" json:"header,omitempty"`
+												TokenFileName *string `tfsdk:"token_file_name" json:"tokenFileName,omitempty"`
+											} `tfsdk:"file_credential_source" json:"fileCredentialSource,omitempty"`
+										} `tfsdk:"call_credentials" json:"callCredentials,omitempty"`
+										CertificatesSecretName *string `tfsdk:"certificates_secret_name" json:"certificatesSecretName,omitempty"`
+										ClusterName            *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+										TargetUri              *string `tfsdk:"target_uri" json:"targetUri,omitempty"`
+										ValidationContextName  *string `tfsdk:"validation_context_name" json:"validationContextName,omitempty"`
+									} `tfsdk:"sds" json:"sds,omitempty"`
+									SecretRef *struct {
+										Name      *string `tfsdk:"name" json:"name,omitempty"`
+										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+									Sni      *string `tfsdk:"sni" json:"sni,omitempty"`
+									SslFiles *struct {
+										OcspStaple *string `tfsdk:"ocsp_staple" json:"ocspStaple,omitempty"`
+										RootCa     *string `tfsdk:"root_ca" json:"rootCa,omitempty"`
+										TlsCert    *string `tfsdk:"tls_cert" json:"tlsCert,omitempty"`
+										TlsKey     *string `tfsdk:"tls_key" json:"tlsKey,omitempty"`
+									} `tfsdk:"ssl_files" json:"sslFiles,omitempty"`
+									VerifySubjectAltName *[]string `tfsdk:"verify_subject_alt_name" json:"verifySubjectAltName,omitempty"`
+								} `tfsdk:"ssl_config" json:"sslConfig,omitempty"`
+								Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
+							} `tfsdk:"collector" json:"collector,omitempty"`
+							DisableBuiltinLabels    *bool     `tfsdk:"disable_builtin_labels" json:"disableBuiltinLabels,omitempty"`
+							FilterStateObjectsToLog *[]string `tfsdk:"filter_state_objects_to_log" json:"filterStateObjectsToLog,omitempty"`
+							LogName                 *string   `tfsdk:"log_name" json:"logName,omitempty"`
+						} `tfsdk:"open_telemetry_service" json:"openTelemetryService,omitempty"`
 					} `tfsdk:"access_log" json:"accessLog,omitempty"`
 				} `tfsdk:"listener_access_logging_service" json:"listenerAccessLoggingService,omitempty"`
 				PerConnectionBufferLimitBytes *int64 `tfsdk:"per_connection_buffer_limit_bytes" json:"perConnectionBufferLimitBytes,omitempty"`
@@ -239,6 +349,7 @@ type GlooSoloIoProxyV1ManifestData struct {
 					Name        *int64  `tfsdk:"name" json:"name,omitempty"`
 					State       *string `tfsdk:"state" json:"state,omitempty"`
 				} `tfsdk:"socket_options" json:"socketOptions,omitempty"`
+				TcpStats *bool `tfsdk:"tcp_stats" json:"tcpStats,omitempty"`
 			} `tfsdk:"options" json:"options,omitempty"`
 			RouteOptions *struct {
 				MaxDirectResponseBodySizeBytes  *int64 `tfsdk:"max_direct_response_body_size_bytes" json:"maxDirectResponseBodySizeBytes,omitempty"`
@@ -965,6 +1076,15 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		Computed:            false,
 																	},
 
+																	"filter_state_objects_to_log": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"log_name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -974,6 +1094,371 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	},
 
 																	"static_cluster_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"open_telemetry_service": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"attributes": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"values": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"value": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"body": schema.MapAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"collector": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"authority": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"endpoint": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"headers": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"insecure": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"ssl_config": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"allow_renegotiation": schema.BoolAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"alpn_protocols": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"one_way_tls": schema.BoolAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"parameters": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"cipher_suites": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"ecdh_curves": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"maximum_protocol_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"minimum_protocol_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sds": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"call_credentials": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"file_credential_source": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"header": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+
+																											"token_file_name": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"certificates_secret_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"cluster_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"target_uri": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"validation_context_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"secret_ref": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sni": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"ssl_files": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"ocsp_staple": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"root_ca": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"tls_cert": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"tls_key": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"verify_subject_alt_name": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"timeout": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"disable_builtin_labels": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"filter_state_objects_to_log": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"log_name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -1489,6 +1974,15 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		Computed:            false,
 																	},
 
+																	"filter_state_objects_to_log": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"log_name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -1498,6 +1992,371 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	},
 
 																	"static_cluster_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"open_telemetry_service": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"attributes": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"values": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"value": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"body": schema.MapAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"collector": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"authority": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"endpoint": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"headers": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"insecure": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"ssl_config": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"allow_renegotiation": schema.BoolAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"alpn_protocols": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"one_way_tls": schema.BoolAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"parameters": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"cipher_suites": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"ecdh_curves": schema.ListAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"maximum_protocol_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"minimum_protocol_version": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sds": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"call_credentials": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"file_credential_source": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"header": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+
+																											"token_file_name": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"certificates_secret_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"cluster_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"target_uri": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"validation_context_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"secret_ref": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"namespace": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"sni": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"ssl_files": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"ocsp_staple": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"root_ca": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"tls_cert": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"tls_key": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"verify_subject_alt_name": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"timeout": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"disable_builtin_labels": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"filter_state_objects_to_log": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"log_name": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -1658,6 +2517,14 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"tcp_stats": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 									},
 									Required: false,

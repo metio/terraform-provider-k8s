@@ -155,8 +155,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"koordinator_priority": schema.Int64Attribute{
-						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
-						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
+						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority. TODO: remove this field, use Labels instead.",
+						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority. TODO: remove this field, use Labels instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

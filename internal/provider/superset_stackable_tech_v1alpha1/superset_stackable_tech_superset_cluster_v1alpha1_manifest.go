@@ -55,12 +55,21 @@ type SupersetStackableTechSupersetClusterV1Alpha1ManifestData struct {
 				UserRegistration     *bool   `tfsdk:"user_registration" json:"userRegistration,omitempty"`
 				UserRegistrationRole *string `tfsdk:"user_registration_role" json:"userRegistrationRole,omitempty"`
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
+			Authorization *struct {
+				RoleMappingFromOpa *struct {
+					Cache *struct {
+						EntryTimeToLive *string `tfsdk:"entry_time_to_live" json:"entryTimeToLive,omitempty"`
+						MaxEntries      *int64  `tfsdk:"max_entries" json:"maxEntries,omitempty"`
+					} `tfsdk:"cache" json:"cache,omitempty"`
+					ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
+					Package       *string `tfsdk:"package" json:"package,omitempty"`
+				} `tfsdk:"role_mapping_from_opa" json:"roleMappingFromOpa,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
 			ClusterOperation *struct {
 				ReconciliationPaused *bool `tfsdk:"reconciliation_paused" json:"reconciliationPaused,omitempty"`
 				Stopped              *bool `tfsdk:"stopped" json:"stopped,omitempty"`
 			} `tfsdk:"cluster_operation" json:"clusterOperation,omitempty"`
 			CredentialsSecret             *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
-			ListenerClass                 *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 			MapboxSecret                  *string `tfsdk:"mapbox_secret" json:"mapboxSecret,omitempty"`
 			VectorAggregatorConfigMapName *string `tfsdk:"vector_aggregator_config_map_name" json:"vectorAggregatorConfigMapName,omitempty"`
 		} `tfsdk:"cluster_config" json:"clusterConfig,omitempty"`
@@ -84,6 +93,7 @@ type SupersetStackableTechSupersetClusterV1Alpha1ManifestData struct {
 					PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
+				ListenerClass           *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 				Logging                 *struct {
 					Containers *struct {
 						Console *struct {
@@ -134,6 +144,7 @@ type SupersetStackableTechSupersetClusterV1Alpha1ManifestData struct {
 						PodAntiAffinity *map[string]string `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
 					GracefulShutdownTimeout *string `tfsdk:"graceful_shutdown_timeout" json:"gracefulShutdownTimeout,omitempty"`
+					ListenerClass           *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 					Logging                 *struct {
 						Containers *struct {
 							Console *struct {
@@ -261,8 +272,8 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication_class": schema.StringAttribute{
-											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
-											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
+											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
+											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -281,8 +292,8 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 												},
 
 												"extra_scopes": schema.ListAttribute{
-													Description:         "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
-													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
+													Description:         "An optional list of extra scopes which get merged with the scopes defined in the 'AuthenticationClass'.",
+													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the 'AuthenticationClass'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -327,6 +338,68 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 								Computed: false,
 							},
 
+							"authorization": schema.SingleNestedAttribute{
+								Description:         "Authorization options for Superset. Currently only role assignment is supported. This means that roles are assigned to users in OPA but, due to the way Superset is implemented, the database also needs to be updated to reflect these assignments. Therefore, user roles and permissions must already exist in the Superset database before they can be assigned to a user. Warning: Any user roles assigned with the Superset UI are discarded.",
+								MarkdownDescription: "Authorization options for Superset. Currently only role assignment is supported. This means that roles are assigned to users in OPA but, due to the way Superset is implemented, the database also needs to be updated to reflect these assignments. Therefore, user roles and permissions must already exist in the Superset database before they can be assigned to a user. Warning: Any user roles assigned with the Superset UI are discarded.",
+								Attributes: map[string]schema.Attribute{
+									"role_mapping_from_opa": schema.SingleNestedAttribute{
+										Description:         "Configure the OPA stacklet [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) and the name of the Rego package containing your authorization rules. Consult the [OPA authorization documentation](https://docs.stackable.tech/home/nightly/concepts/opa) to learn how to deploy Rego authorization rules with OPA.",
+										MarkdownDescription: "Configure the OPA stacklet [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) and the name of the Rego package containing your authorization rules. Consult the [OPA authorization documentation](https://docs.stackable.tech/home/nightly/concepts/opa) to learn how to deploy Rego authorization rules with OPA.",
+										Attributes: map[string]schema.Attribute{
+											"cache": schema.SingleNestedAttribute{
+												Description:         "Configuration for an Superset internal cache for calls to OPA",
+												MarkdownDescription: "Configuration for an Superset internal cache for calls to OPA",
+												Attributes: map[string]schema.Attribute{
+													"entry_time_to_live": schema.StringAttribute{
+														Description:         "Time to live per entry",
+														MarkdownDescription: "Time to live per entry",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"max_entries": schema.Int64Attribute{
+														Description:         "Maximum number of entries in the cache; If this threshold is reached then the least recently used item is removed.",
+														MarkdownDescription: "Maximum number of entries in the cache; If this threshold is reached then the least recently used item is removed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"config_map_name": schema.StringAttribute{
+												Description:         "The [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) for the OPA stacklet that should be used for authorization requests.",
+												MarkdownDescription: "The [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) for the OPA stacklet that should be used for authorization requests.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"package": schema.StringAttribute{
+												Description:         "The name of the Rego package containing the Rego rules for the product.",
+												MarkdownDescription: "The name of the Rego package containing the Rego rules for the product.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"cluster_operation": schema.SingleNestedAttribute{
 								Description:         "Cluster operations like pause reconciliation or cluster stop.",
 								MarkdownDescription: "Cluster operations like pause reconciliation or cluster stop.",
@@ -360,17 +433,6 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 								Computed:            false,
 							},
 
-							"listener_class": schema.StringAttribute{
-								Description:         "This field controls which type of Service the Operator creates for this SupersetCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								MarkdownDescription: "This field controls which type of Service the Operator creates for this SupersetCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("cluster-internal", "external-unstable", "external-stable"),
-								},
-							},
-
 							"mapbox_secret": schema.StringAttribute{
 								Description:         "The name of a Secret object. The Secret should contain a key 'connections.mapboxApiKey'. This is the API key required for map charts to work that use mapbox. The token should be in the JWT format.",
 								MarkdownDescription: "The name of a Secret object. The Secret should contain a key 'connections.mapboxApiKey'. This is the API key required for map charts to work that use mapbox. The token should be in the JWT format.",
@@ -397,8 +459,8 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -443,8 +505,8 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -528,6 +590,14 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 									"graceful_shutdown_timeout": schema.StringAttribute{
 										Description:         "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
 										MarkdownDescription: "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"listener_class": schema.StringAttribute{
+										Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
+										MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -858,6 +928,14 @@ func (r *SupersetStackableTechSupersetClusterV1Alpha1Manifest) Schema(_ context.
 											"graceful_shutdown_timeout": schema.StringAttribute{
 												Description:         "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
 												MarkdownDescription: "Time period Pods have to gracefully shut down, e.g. '30m', '1h' or '2d'. Consult the operator documentation for details.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"listener_class": schema.StringAttribute{
+												Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
+												MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the webserver.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

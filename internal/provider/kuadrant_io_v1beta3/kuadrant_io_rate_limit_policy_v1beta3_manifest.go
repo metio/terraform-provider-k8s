@@ -46,52 +46,61 @@ type KuadrantIoRateLimitPolicyV1Beta3ManifestData struct {
 	Spec *struct {
 		Defaults *struct {
 			Limits *struct {
-				Counters *[]string `tfsdk:"counters" json:"counters,omitempty"`
-				Rates    *[]struct {
-					Duration *int64  `tfsdk:"duration" json:"duration,omitempty"`
-					Limit    *int64  `tfsdk:"limit" json:"limit,omitempty"`
-					Unit     *string `tfsdk:"unit" json:"unit,omitempty"`
+				Counters *[]struct {
+					Expression *string `tfsdk:"expression" json:"expression,omitempty"`
+				} `tfsdk:"counters" json:"counters,omitempty"`
+				Rates *[]struct {
+					Limit  *int64  `tfsdk:"limit" json:"limit,omitempty"`
+					Window *string `tfsdk:"window" json:"window,omitempty"`
 				} `tfsdk:"rates" json:"rates,omitempty"`
 				When *[]struct {
-					Operator *string `tfsdk:"operator" json:"operator,omitempty"`
-					Selector *string `tfsdk:"selector" json:"selector,omitempty"`
-					Value    *string `tfsdk:"value" json:"value,omitempty"`
+					Predicate *string `tfsdk:"predicate" json:"predicate,omitempty"`
 				} `tfsdk:"when" json:"when,omitempty"`
 			} `tfsdk:"limits" json:"limits,omitempty"`
+			Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+			When     *[]struct {
+				Predicate *string `tfsdk:"predicate" json:"predicate,omitempty"`
+			} `tfsdk:"when" json:"when,omitempty"`
 		} `tfsdk:"defaults" json:"defaults,omitempty"`
 		Limits *struct {
-			Counters *[]string `tfsdk:"counters" json:"counters,omitempty"`
-			Rates    *[]struct {
-				Duration *int64  `tfsdk:"duration" json:"duration,omitempty"`
-				Limit    *int64  `tfsdk:"limit" json:"limit,omitempty"`
-				Unit     *string `tfsdk:"unit" json:"unit,omitempty"`
+			Counters *[]struct {
+				Expression *string `tfsdk:"expression" json:"expression,omitempty"`
+			} `tfsdk:"counters" json:"counters,omitempty"`
+			Rates *[]struct {
+				Limit  *int64  `tfsdk:"limit" json:"limit,omitempty"`
+				Window *string `tfsdk:"window" json:"window,omitempty"`
 			} `tfsdk:"rates" json:"rates,omitempty"`
 			When *[]struct {
-				Operator *string `tfsdk:"operator" json:"operator,omitempty"`
-				Selector *string `tfsdk:"selector" json:"selector,omitempty"`
-				Value    *string `tfsdk:"value" json:"value,omitempty"`
+				Predicate *string `tfsdk:"predicate" json:"predicate,omitempty"`
 			} `tfsdk:"when" json:"when,omitempty"`
 		} `tfsdk:"limits" json:"limits,omitempty"`
 		Overrides *struct {
 			Limits *struct {
-				Counters *[]string `tfsdk:"counters" json:"counters,omitempty"`
-				Rates    *[]struct {
-					Duration *int64  `tfsdk:"duration" json:"duration,omitempty"`
-					Limit    *int64  `tfsdk:"limit" json:"limit,omitempty"`
-					Unit     *string `tfsdk:"unit" json:"unit,omitempty"`
+				Counters *[]struct {
+					Expression *string `tfsdk:"expression" json:"expression,omitempty"`
+				} `tfsdk:"counters" json:"counters,omitempty"`
+				Rates *[]struct {
+					Limit  *int64  `tfsdk:"limit" json:"limit,omitempty"`
+					Window *string `tfsdk:"window" json:"window,omitempty"`
 				} `tfsdk:"rates" json:"rates,omitempty"`
 				When *[]struct {
-					Operator *string `tfsdk:"operator" json:"operator,omitempty"`
-					Selector *string `tfsdk:"selector" json:"selector,omitempty"`
-					Value    *string `tfsdk:"value" json:"value,omitempty"`
+					Predicate *string `tfsdk:"predicate" json:"predicate,omitempty"`
 				} `tfsdk:"when" json:"when,omitempty"`
 			} `tfsdk:"limits" json:"limits,omitempty"`
+			Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+			When     *[]struct {
+				Predicate *string `tfsdk:"predicate" json:"predicate,omitempty"`
+			} `tfsdk:"when" json:"when,omitempty"`
 		} `tfsdk:"overrides" json:"overrides,omitempty"`
 		TargetRef *struct {
-			Group *string `tfsdk:"group" json:"group,omitempty"`
-			Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
-			Name  *string `tfsdk:"name" json:"name,omitempty"`
+			Group       *string `tfsdk:"group" json:"group,omitempty"`
+			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name        *string `tfsdk:"name" json:"name,omitempty"`
+			SectionName *string `tfsdk:"section_name" json:"sectionName,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
+		When *[]struct {
+			Predicate *string `tfsdk:"predicate" json:"predicate,omitempty"`
+		} `tfsdk:"when" json:"when,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -169,24 +178,37 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "RateLimitPolicySpec defines the desired state of RateLimitPolicy",
-				MarkdownDescription: "RateLimitPolicySpec defines the desired state of RateLimitPolicy",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"defaults": schema.SingleNestedAttribute{
-						Description:         "Defaults define explicit default values for this policy and for policies inheriting this policy. Defaults are mutually exclusive with implicit defaults defined by RateLimitPolicyCommonSpec.",
-						MarkdownDescription: "Defaults define explicit default values for this policy and for policies inheriting this policy. Defaults are mutually exclusive with implicit defaults defined by RateLimitPolicyCommonSpec.",
+						Description:         "Rules to apply as defaults. Can be overridden by more specific policiy rules lower in the hierarchy and by less specific policy overrides. Use one of: defaults, overrides, or bare set of policy rules (implicit defaults).",
+						MarkdownDescription: "Rules to apply as defaults. Can be overridden by more specific policiy rules lower in the hierarchy and by less specific policy overrides. Use one of: defaults, overrides, or bare set of policy rules (implicit defaults).",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.SingleNestedAttribute{
 								Description:         "Limits holds the struct of limits indexed by a unique name",
 								MarkdownDescription: "Limits holds the struct of limits indexed by a unique name",
 								Attributes: map[string]schema.Attribute{
-									"counters": schema.ListAttribute{
-										Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-										MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
+									"counters": schema.ListNestedAttribute{
+										Description:         "Counters defines additional rate limit counters based on CEL expressions which can reference well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										MarkdownDescription: "Counters defines additional rate limit counters based on CEL expressions which can reference well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"expression": schema.StringAttribute{
+													Description:         "Expression defines one CEL expression Expression can use well known attributes Attributes: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/attributes Well-known selectors: https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors They are named by a dot-separated path (e.g. request.path) Example: 'request.path' -> The path portion of the URL",
+													MarkdownDescription: "Expression defines one CEL expression Expression can use well known attributes Attributes: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/attributes Well-known selectors: https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors They are named by a dot-separated path (e.g. request.path) Example: 'request.path' -> The path portion of the URL",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"rates": schema.ListNestedAttribute{
@@ -194,14 +216,6 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "Rates holds the list of limit rates",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"duration": schema.Int64Attribute{
-													Description:         "Duration defines the time period for which the Limit specified above applies.",
-													MarkdownDescription: "Duration defines the time period for which the Limit specified above applies.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
 												"limit": schema.Int64Attribute{
 													Description:         "Limit defines the max value allowed for a given period of time",
 													MarkdownDescription: "Limit defines the max value allowed for a given period of time",
@@ -210,14 +224,14 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
-												"unit": schema.StringAttribute{
-													Description:         "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
-													MarkdownDescription: "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
+												"window": schema.StringAttribute{
+													Description:         "Window defines the time period for which the Limit specified above applies.",
+													MarkdownDescription: "Window defines the time period for which the Limit specified above applies.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("second", "minute", "hour", "day"),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]{1,5}(h|m|s|ms)){1,4}$`), ""),
 													},
 												},
 											},
@@ -228,45 +242,58 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 									},
 
 									"when": schema.ListNestedAttribute{
-										Description:         "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
-										MarkdownDescription: "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
+										Description:         "When holds a list of 'limit-level' 'Predicate's Called also 'soft' conditions as route selectors must also match",
+										MarkdownDescription: "When holds a list of 'limit-level' 'Predicate's Called also 'soft' conditions as route selectors must also match",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"operator": schema.StringAttribute{
-													Description:         "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
-													MarkdownDescription: "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("eq", "neq", "startswith", "endswith", "incl", "excl", "matches"),
-													},
-												},
-
-												"selector": schema.StringAttribute{
-													Description:         "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-													MarkdownDescription: "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+												"predicate": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.LengthAtLeast(1),
-														stringvalidator.LengthAtMost(253),
 													},
-												},
-
-												"value": schema.StringAttribute{
-													Description:         "The value of reference for the comparison.",
-													MarkdownDescription: "The value of reference for the comparison.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
 												},
 											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"strategy": schema.StringAttribute{
+								Description:         "Strategy defines the merge strategy to apply when merging this policy with other policies.",
+								MarkdownDescription: "Strategy defines the merge strategy to apply when merging this policy with other policies.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("atomic", "merge"),
+								},
+							},
+
+							"when": schema.ListNestedAttribute{
+								Description:         "Overall conditions for the policy to be enforced. If omitted, the policy will be enforced at all requests to the protected routes. If present, all conditions must match for the policy to be enforced.",
+								MarkdownDescription: "Overall conditions for the policy to be enforced. If omitted, the policy will be enforced at all requests to the protected routes. If present, all conditions must match for the policy to be enforced.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"predicate": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
 									},
 								},
 								Required: false,
@@ -283,13 +310,26 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 						Description:         "Limits holds the struct of limits indexed by a unique name",
 						MarkdownDescription: "Limits holds the struct of limits indexed by a unique name",
 						Attributes: map[string]schema.Attribute{
-							"counters": schema.ListAttribute{
-								Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-								MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
+							"counters": schema.ListNestedAttribute{
+								Description:         "Counters defines additional rate limit counters based on CEL expressions which can reference well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+								MarkdownDescription: "Counters defines additional rate limit counters based on CEL expressions which can reference well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"expression": schema.StringAttribute{
+											Description:         "Expression defines one CEL expression Expression can use well known attributes Attributes: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/attributes Well-known selectors: https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors They are named by a dot-separated path (e.g. request.path) Example: 'request.path' -> The path portion of the URL",
+											MarkdownDescription: "Expression defines one CEL expression Expression can use well known attributes Attributes: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/attributes Well-known selectors: https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors They are named by a dot-separated path (e.g. request.path) Example: 'request.path' -> The path portion of the URL",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"rates": schema.ListNestedAttribute{
@@ -297,14 +337,6 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "Rates holds the list of limit rates",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"duration": schema.Int64Attribute{
-											Description:         "Duration defines the time period for which the Limit specified above applies.",
-											MarkdownDescription: "Duration defines the time period for which the Limit specified above applies.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-										},
-
 										"limit": schema.Int64Attribute{
 											Description:         "Limit defines the max value allowed for a given period of time",
 											MarkdownDescription: "Limit defines the max value allowed for a given period of time",
@@ -313,14 +345,14 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 											Computed:            false,
 										},
 
-										"unit": schema.StringAttribute{
-											Description:         "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
-											MarkdownDescription: "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
+										"window": schema.StringAttribute{
+											Description:         "Window defines the time period for which the Limit specified above applies.",
+											MarkdownDescription: "Window defines the time period for which the Limit specified above applies.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("second", "minute", "hour", "day"),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]{1,5}(h|m|s|ms)){1,4}$`), ""),
 											},
 										},
 									},
@@ -331,39 +363,19 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 							},
 
 							"when": schema.ListNestedAttribute{
-								Description:         "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
-								MarkdownDescription: "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
+								Description:         "When holds a list of 'limit-level' 'Predicate's Called also 'soft' conditions as route selectors must also match",
+								MarkdownDescription: "When holds a list of 'limit-level' 'Predicate's Called also 'soft' conditions as route selectors must also match",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"operator": schema.StringAttribute{
-											Description:         "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
-											MarkdownDescription: "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("eq", "neq", "startswith", "endswith", "incl", "excl", "matches"),
-											},
-										},
-
-										"selector": schema.StringAttribute{
-											Description:         "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-											MarkdownDescription: "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										"predicate": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
 												stringvalidator.LengthAtLeast(1),
-												stringvalidator.LengthAtMost(253),
 											},
-										},
-
-										"value": schema.StringAttribute{
-											Description:         "The value of reference for the comparison.",
-											MarkdownDescription: "The value of reference for the comparison.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
 										},
 									},
 								},
@@ -378,20 +390,33 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 					},
 
 					"overrides": schema.SingleNestedAttribute{
-						Description:         "Overrides define override values for this policy and for policies inheriting this policy. Overrides are mutually exclusive with implicit defaults and explicit Defaults defined by RateLimitPolicyCommonSpec.",
-						MarkdownDescription: "Overrides define override values for this policy and for policies inheriting this policy. Overrides are mutually exclusive with implicit defaults and explicit Defaults defined by RateLimitPolicyCommonSpec.",
+						Description:         "Rules to apply as overrides. Override all policy rules lower in the hierarchy. Can be overridden by less specific policy overrides. Use one of: defaults, overrides, or bare set of policy rules (implicit defaults).",
+						MarkdownDescription: "Rules to apply as overrides. Override all policy rules lower in the hierarchy. Can be overridden by less specific policy overrides. Use one of: defaults, overrides, or bare set of policy rules (implicit defaults).",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.SingleNestedAttribute{
 								Description:         "Limits holds the struct of limits indexed by a unique name",
 								MarkdownDescription: "Limits holds the struct of limits indexed by a unique name",
 								Attributes: map[string]schema.Attribute{
-									"counters": schema.ListAttribute{
-										Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-										MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
+									"counters": schema.ListNestedAttribute{
+										Description:         "Counters defines additional rate limit counters based on CEL expressions which can reference well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										MarkdownDescription: "Counters defines additional rate limit counters based on CEL expressions which can reference well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"expression": schema.StringAttribute{
+													Description:         "Expression defines one CEL expression Expression can use well known attributes Attributes: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/attributes Well-known selectors: https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors They are named by a dot-separated path (e.g. request.path) Example: 'request.path' -> The path portion of the URL",
+													MarkdownDescription: "Expression defines one CEL expression Expression can use well known attributes Attributes: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/attributes Well-known selectors: https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors They are named by a dot-separated path (e.g. request.path) Example: 'request.path' -> The path portion of the URL",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"rates": schema.ListNestedAttribute{
@@ -399,14 +424,6 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "Rates holds the list of limit rates",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"duration": schema.Int64Attribute{
-													Description:         "Duration defines the time period for which the Limit specified above applies.",
-													MarkdownDescription: "Duration defines the time period for which the Limit specified above applies.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
 												"limit": schema.Int64Attribute{
 													Description:         "Limit defines the max value allowed for a given period of time",
 													MarkdownDescription: "Limit defines the max value allowed for a given period of time",
@@ -415,14 +432,14 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
-												"unit": schema.StringAttribute{
-													Description:         "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
-													MarkdownDescription: "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
+												"window": schema.StringAttribute{
+													Description:         "Window defines the time period for which the Limit specified above applies.",
+													MarkdownDescription: "Window defines the time period for which the Limit specified above applies.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("second", "minute", "hour", "day"),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]{1,5}(h|m|s|ms)){1,4}$`), ""),
 													},
 												},
 											},
@@ -433,45 +450,58 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 									},
 
 									"when": schema.ListNestedAttribute{
-										Description:         "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
-										MarkdownDescription: "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
+										Description:         "When holds a list of 'limit-level' 'Predicate's Called also 'soft' conditions as route selectors must also match",
+										MarkdownDescription: "When holds a list of 'limit-level' 'Predicate's Called also 'soft' conditions as route selectors must also match",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"operator": schema.StringAttribute{
-													Description:         "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
-													MarkdownDescription: "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("eq", "neq", "startswith", "endswith", "incl", "excl", "matches"),
-													},
-												},
-
-												"selector": schema.StringAttribute{
-													Description:         "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-													MarkdownDescription: "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+												"predicate": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.LengthAtLeast(1),
-														stringvalidator.LengthAtMost(253),
 													},
-												},
-
-												"value": schema.StringAttribute{
-													Description:         "The value of reference for the comparison.",
-													MarkdownDescription: "The value of reference for the comparison.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
 												},
 											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"strategy": schema.StringAttribute{
+								Description:         "Strategy defines the merge strategy to apply when merging this policy with other policies.",
+								MarkdownDescription: "Strategy defines the merge strategy to apply when merging this policy with other policies.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("atomic", "merge"),
+								},
+							},
+
+							"when": schema.ListNestedAttribute{
+								Description:         "Overall conditions for the policy to be enforced. If omitted, the policy will be enforced at all requests to the protected routes. If present, all conditions must match for the policy to be enforced.",
+								MarkdownDescription: "Overall conditions for the policy to be enforced. If omitted, the policy will be enforced at all requests to the protected routes. If present, all conditions must match for the policy to be enforced.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"predicate": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
 									},
 								},
 								Required: false,
@@ -485,8 +515,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef identifies an API object to apply policy to.",
-						MarkdownDescription: "TargetRef identifies an API object to apply policy to.",
+						Description:         "Reference to the object to which this policy applies.",
+						MarkdownDescription: "Reference to the object to which this policy applies.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group is the group of the target resource.",
@@ -524,9 +554,44 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ d
 									stringvalidator.LengthAtMost(253),
 								},
 							},
+
+							"section_name": schema.StringAttribute{
+								Description:         "SectionName is the name of a section within the target resource. When unspecified, this targetRef targets the entire resource. In the following resources, SectionName is interpreted as the following: * Gateway: Listener name * HTTPRoute: HTTPRouteRule name * Service: Port name If a SectionName is specified, but does not exist on the targeted object, the Policy must fail to attach, and the policy implementation should record a 'ResolvedRefs' or similar Condition in the Policy's status.",
+								MarkdownDescription: "SectionName is the name of a section within the target resource. When unspecified, this targetRef targets the entire resource. In the following resources, SectionName is interpreted as the following: * Gateway: Listener name * HTTPRoute: HTTPRouteRule name * Service: Port name If a SectionName is specified, but does not exist on the targeted object, the Policy must fail to attach, and the policy implementation should record a 'ResolvedRefs' or similar Condition in the Policy's status.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(253),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+								},
+							},
 						},
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"when": schema.ListNestedAttribute{
+						Description:         "Overall conditions for the policy to be enforced. If omitted, the policy will be enforced at all requests to the protected routes. If present, all conditions must match for the policy to be enforced.",
+						MarkdownDescription: "Overall conditions for the policy to be enforced. If omitted, the policy will be enforced at all requests to the protected routes. If present, all conditions must match for the policy to be enforced.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"predicate": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				},

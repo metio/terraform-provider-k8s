@@ -54,6 +54,7 @@ type InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1ManifestData struct
 					Host *string `tfsdk:"host" json:"host,omitempty"`
 					Port *int64  `tfsdk:"port" json:"port,omitempty"`
 				} `tfsdk:"control_plane_endpoint" json:"controlPlaneEndpoint,omitempty"`
+				DisableClusterModule  *bool `tfsdk:"disable_cluster_module" json:"disableClusterModule,omitempty"`
 				FailureDomainSelector *struct {
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -216,6 +217,14 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"disable_cluster_module": schema.BoolAttribute{
+										Description:         "DisableClusterModule is used to explicitly turn off the ClusterModule feature. This should work along side NodeAntiAffinity feature flag. If the NodeAntiAffinity feature flag is turned off, this will be disregarded.",
+										MarkdownDescription: "DisableClusterModule is used to explicitly turn off the ClusterModule feature. This should work along side NodeAntiAffinity feature flag. If the NodeAntiAffinity feature flag is turned off, this will be disregarded.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"failure_domain_selector": schema.SingleNestedAttribute{

@@ -88,6 +88,7 @@ type ApiextensionsCrossplaneIoCompositeResourceDefinitionV1ManifestData struct {
 			ShortNames *[]string `tfsdk:"short_names" json:"shortNames,omitempty"`
 			Singular   *string   `tfsdk:"singular" json:"singular,omitempty"`
 		} `tfsdk:"names" json:"names,omitempty"`
+		Scope    *string `tfsdk:"scope" json:"scope,omitempty"`
 		Versions *[]struct {
 			AdditionalPrinterColumns *[]struct {
 				Description *string `tfsdk:"description" json:"description,omitempty"`
@@ -494,6 +495,17 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"scope": schema.StringAttribute{
+						Description:         "Scope of the defined composite resource. Namespaced composite resources are scoped to a single namespace. Cluster scoped composite resource exist outside the scope of any namespace. Neither can be claimed. Legacy cluster scoped composite resources are cluster scoped resources that can be claimed.",
+						MarkdownDescription: "Scope of the defined composite resource. Namespaced composite resources are scoped to a single namespace. Cluster scoped composite resource exist outside the scope of any namespace. Neither can be claimed. Legacy cluster scoped composite resources are cluster scoped resources that can be claimed.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("LegacyCluster", "Namespaced", "Cluster"),
+						},
 					},
 
 					"versions": schema.ListNestedAttribute{

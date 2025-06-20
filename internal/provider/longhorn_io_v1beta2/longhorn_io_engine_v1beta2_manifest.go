@@ -44,12 +44,10 @@ type LonghornIoEngineV1Beta2ManifestData struct {
 
 	Spec *struct {
 		Active                           *bool              `tfsdk:"active" json:"active,omitempty"`
-		BackendStoreDriver               *string            `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
 		BackupVolume                     *string            `tfsdk:"backup_volume" json:"backupVolume,omitempty"`
 		DataEngine                       *string            `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DesireState                      *string            `tfsdk:"desire_state" json:"desireState,omitempty"`
 		DisableFrontend                  *bool              `tfsdk:"disable_frontend" json:"disableFrontend,omitempty"`
-		EngineImage                      *string            `tfsdk:"engine_image" json:"engineImage,omitempty"`
 		Frontend                         *string            `tfsdk:"frontend" json:"frontend,omitempty"`
 		Image                            *string            `tfsdk:"image" json:"image,omitempty"`
 		LogRequested                     *bool              `tfsdk:"log_requested" json:"logRequested,omitempty"`
@@ -153,14 +151,6 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
-					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated:Replaced by field 'dataEngine'.",
-						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"backup_volume": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -196,14 +186,6 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
-					"engine_image": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'image'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"frontend": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -211,7 +193,7 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", ""),
+							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", "ublk", ""),
 						},
 					},
 

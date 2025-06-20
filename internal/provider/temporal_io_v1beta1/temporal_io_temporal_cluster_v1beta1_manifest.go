@@ -50,7 +50,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 			Image     *string `tfsdk:"image" json:"image,omitempty"`
 			Overrides *struct {
 				Deployment *struct {
-					Metadata *struct {
+					JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+					Metadata  *struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -170,9 +171,10 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 			Internode *struct {
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"internode" json:"internode,omitempty"`
-			Provider        *string `tfsdk:"provider" json:"provider,omitempty"`
-			RefreshInterval *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
-			RenewBefore     *string `tfsdk:"renew_before" json:"renewBefore,omitempty"`
+			PermissiveMetrics *bool   `tfsdk:"permissive_metrics" json:"permissiveMetrics,omitempty"`
+			Provider          *string `tfsdk:"provider" json:"provider,omitempty"`
+			RefreshInterval   *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			RenewBefore       *string `tfsdk:"renew_before" json:"renewBefore,omitempty"`
 		} `tfsdk:"m_tls" json:"mTLS,omitempty"`
 		Metrics *struct {
 			Enabled                    *bool                `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -369,11 +371,14 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 								Any        *bool     `tfsdk:"any" json:"any,omitempty"`
 								MatchNames *[]string `tfsdk:"match_names" json:"matchNames,omitempty"`
 							} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
-							PodTargetLabels *[]string `tfsdk:"pod_target_labels" json:"podTargetLabels,omitempty"`
-							SampleLimit     *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
-							ScrapeClass     *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
-							ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
-							Selector        *struct {
+							NativeHistogramBucketLimit     *int64    `tfsdk:"native_histogram_bucket_limit" json:"nativeHistogramBucketLimit,omitempty"`
+							NativeHistogramMinBucketFactor *string   `tfsdk:"native_histogram_min_bucket_factor" json:"nativeHistogramMinBucketFactor,omitempty"`
+							PodTargetLabels                *[]string `tfsdk:"pod_target_labels" json:"podTargetLabels,omitempty"`
+							SampleLimit                    *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+							ScrapeClass                    *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
+							ScrapeClassicHistograms        *bool     `tfsdk:"scrape_classic_histograms" json:"scrapeClassicHistograms,omitempty"`
+							ScrapeProtocols                *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
+							Selector                       *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
 									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -658,7 +663,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				MembershipPort *int64               `tfsdk:"membership_port" json:"membershipPort,omitempty"`
 				Overrides      *struct {
 					Deployment *struct {
-						Metadata *struct {
+						JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+						Metadata  *struct {
 							Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 							Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -690,7 +696,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				MembershipPort *int64               `tfsdk:"membership_port" json:"membershipPort,omitempty"`
 				Overrides      *struct {
 					Deployment *struct {
-						Metadata *struct {
+						JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+						Metadata  *struct {
 							Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 							Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -723,7 +730,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				MembershipPort *int64               `tfsdk:"membership_port" json:"membershipPort,omitempty"`
 				Overrides      *struct {
 					Deployment *struct {
-						Metadata *struct {
+						JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+						Metadata  *struct {
 							Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 							Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -755,7 +763,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				MembershipPort *int64               `tfsdk:"membership_port" json:"membershipPort,omitempty"`
 				Overrides      *struct {
 					Deployment *struct {
-						Metadata *struct {
+						JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+						Metadata  *struct {
 							Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 							Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -783,7 +792,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 			} `tfsdk:"matching" json:"matching,omitempty"`
 			Overrides *struct {
 				Deployment *struct {
-					Metadata *struct {
+					JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+					Metadata  *struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -804,7 +814,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 				MembershipPort *int64               `tfsdk:"membership_port" json:"membershipPort,omitempty"`
 				Overrides      *struct {
 					Deployment *struct {
-						Metadata *struct {
+						JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+						Metadata  *struct {
 							Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 							Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 						} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -845,7 +856,8 @@ type TemporalIoTemporalClusterV1Beta1ManifestData struct {
 			} `tfsdk:"ingress" json:"ingress,omitempty"`
 			Overrides *struct {
 				Deployment *struct {
-					Metadata *struct {
+					JsonPatch *map[string]string `tfsdk:"json_patch" json:"jsonPatch,omitempty"`
+					Metadata  *struct {
 						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					} `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -984,6 +996,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										Description:         "Override configuration for the temporal service Deployment.",
 										MarkdownDescription: "Override configuration for the temporal service Deployment.",
 										Attributes: map[string]schema.Attribute{
+											"json_patch": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -1768,6 +1789,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"permissive_metrics": schema.BoolAttribute{
+								Description:         "PermissiveMetrics allows insecure HTTP requests to the metrics endpoint. This is handy if the metrics collector does not support mTLS. Useless if mTLS provider is not istio",
+								MarkdownDescription: "PermissiveMetrics allows insecure HTTP requests to the metrics endpoint. This is handy if the metrics collector does not support mTLS. Useless if mTLS provider is not istio",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"provider": schema.StringAttribute{
@@ -3169,6 +3198,22 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																Computed: false,
 															},
 
+															"native_histogram_bucket_limit": schema.Int64Attribute{
+																Description:         "If there are more than this many buckets in a native histogram, buckets will be merged to stay within the limit. It requires Prometheus >= v2.45.0.",
+																MarkdownDescription: "If there are more than this many buckets in a native histogram, buckets will be merged to stay within the limit. It requires Prometheus >= v2.45.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"native_histogram_min_bucket_factor": schema.StringAttribute{
+																Description:         "If the growth factor of one bucket to the next is smaller than this, buckets will be merged to increase the factor sufficiently. It requires Prometheus >= v2.50.0.",
+																MarkdownDescription: "If the growth factor of one bucket to the next is smaller than this, buckets will be merged to increase the factor sufficiently. It requires Prometheus >= v2.50.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"pod_target_labels": schema.ListAttribute{
 																Description:         "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
 																MarkdownDescription: "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
@@ -3195,6 +3240,14 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																Validators: []validator.String{
 																	stringvalidator.LengthAtLeast(1),
 																},
+															},
+
+															"scrape_classic_histograms": schema.BoolAttribute{
+																Description:         "Whether to scrape a classic histogram that is also exposed as a native histogram. It requires Prometheus >= v2.45.0.",
+																MarkdownDescription: "Whether to scrape a classic histogram that is also exposed as a native histogram. It requires Prometheus >= v2.45.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
 															},
 
 															"scrape_protocols": schema.ListAttribute{
@@ -5203,6 +5256,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
+													"json_patch": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"metadata": schema.SingleNestedAttribute{
 														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -5409,6 +5471,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
+													"json_patch": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"metadata": schema.SingleNestedAttribute{
 														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -5623,6 +5694,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
+													"json_patch": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"metadata": schema.SingleNestedAttribute{
 														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -5829,6 +5909,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
+													"json_patch": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"metadata": schema.SingleNestedAttribute{
 														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -6006,6 +6095,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										Description:         "Override configuration for the temporal service Deployment.",
 										MarkdownDescription: "Override configuration for the temporal service Deployment.",
 										Attributes: map[string]schema.Attribute{
+											"json_patch": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -6134,6 +6232,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
+													"json_patch": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"metadata": schema.SingleNestedAttribute{
 														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
@@ -6399,6 +6506,15 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										Description:         "Override configuration for the temporal service Deployment.",
 										MarkdownDescription: "Override configuration for the temporal service Deployment.",
 										Attributes: map[string]schema.Attribute{
+											"json_patch": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",

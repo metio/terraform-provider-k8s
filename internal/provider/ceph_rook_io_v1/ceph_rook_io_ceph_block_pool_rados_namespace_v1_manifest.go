@@ -147,8 +147,8 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "Mirroring configuration of CephBlockPoolRadosNamespace",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Mode is the mirroring mode; either pool or image",
-								MarkdownDescription: "Mode is the mirroring mode; either pool or image",
+								Description:         "Mode is the mirroring mode; either pool or image.",
+								MarkdownDescription: "Mode is the mirroring mode; either pool or image.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

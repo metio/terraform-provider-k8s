@@ -240,10 +240,14 @@ type FluentbitFluentIoFluentBitV1Alpha2ManifestData struct {
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 		} `tfsdk:"env_vars" json:"envVars,omitempty"`
 		FluentBitConfigName *string `tfsdk:"fluent_bit_config_name" json:"fluentBitConfigName,omitempty"`
-		HostNetwork         *bool   `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-		Image               *string `tfsdk:"image" json:"image,omitempty"`
-		ImagePullPolicy     *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-		ImagePullSecrets    *[]struct {
+		HostAliases         *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
+		HostNetwork      *bool   `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+		Image            *string `tfsdk:"image" json:"image,omitempty"`
+		ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 		InitContainers *[]struct {
@@ -2667,6 +2671,34 @@ func (r *FluentbitFluentIoFluentBitV1Alpha2Manifest) Schema(_ context.Context, _
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliases is an optional list of IPs and hostnames that will be injected into the pod's hosts file if specified.",
+						MarkdownDescription: "HostAliases is an optional list of IPs and hostnames that will be injected into the pod's hosts file if specified.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"host_network": schema.BoolAttribute{

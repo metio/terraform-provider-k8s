@@ -1050,8 +1050,8 @@ func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Desired state for JuiceFS Fuse",
 						Attributes: map[string]schema.Attribute{
 							"clean_policy": schema.StringAttribute{
-								Description:         "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports two policies: OnDemand and OnRuntimeDeleted OnDemand cleans fuse pod once th fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted Defaults to OnDemand",
-								MarkdownDescription: "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports two policies: OnDemand and OnRuntimeDeleted OnDemand cleans fuse pod once th fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted Defaults to OnDemand",
+								Description:         "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports three policies: OnDemand, OnRuntimeDeleted and OnFuseChangedCleanPolicy OnDemand cleans fuse pod once the fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted OnFuseChangedCleanPolicy cleans fuse pod once the fuse pod on some node is not needed and the fuse in runtime is updated Defaults to OnRuntimeDeleted",
+								MarkdownDescription: "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports three policies: OnDemand, OnRuntimeDeleted and OnFuseChangedCleanPolicy OnDemand cleans fuse pod once the fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted OnFuseChangedCleanPolicy cleans fuse pod once the fuse pod on some node is not needed and the fuse in runtime is updated Defaults to OnRuntimeDeleted",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

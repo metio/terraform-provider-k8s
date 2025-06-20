@@ -67,6 +67,10 @@ type KyvernoIoGlobalContextEntryV2Alpha1ManifestData struct {
 			Resource  *string `tfsdk:"resource" json:"resource,omitempty"`
 			Version   *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"kubernetes_resource" json:"kubernetesResource,omitempty"`
+		Projections *[]struct {
+			JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+			Name     *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"projections" json:"projections,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -296,6 +300,33 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"projections": schema.ListNestedAttribute{
+						Description:         "Projections defines the list of JMESPath expressions to extract values from the cached resource.",
+						MarkdownDescription: "Projections defines the list of JMESPath expressions to extract values from the cached resource.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"jmes_path": schema.StringAttribute{
+									Description:         "JMESPath is the JMESPath expression to extract the value from the cached resource.",
+									MarkdownDescription: "JMESPath is the JMESPath expression to extract the value from the cached resource.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name is the name to use for the extracted value in the context.",
+									MarkdownDescription: "Name is the name to use for the extracted value in the context.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

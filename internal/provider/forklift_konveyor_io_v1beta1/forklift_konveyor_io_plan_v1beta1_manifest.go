@@ -43,9 +43,12 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Archived    *bool   `tfsdk:"archived" json:"archived,omitempty"`
-		Description *string `tfsdk:"description" json:"description,omitempty"`
-		Map         *struct {
+		Archived                 *bool   `tfsdk:"archived" json:"archived,omitempty"`
+		DeleteGuestConversionPod *bool   `tfsdk:"delete_guest_conversion_pod" json:"deleteGuestConversionPod,omitempty"`
+		Description              *string `tfsdk:"description" json:"description,omitempty"`
+		DiskBus                  *string `tfsdk:"disk_bus" json:"diskBus,omitempty"`
+		InstallLegacyDrivers     *bool   `tfsdk:"install_legacy_drivers" json:"installLegacyDrivers,omitempty"`
+		Map                      *struct {
 			Network *struct {
 				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
@@ -65,8 +68,10 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"storage" json:"storage,omitempty"`
 		} `tfsdk:"map" json:"map,omitempty"`
-		PreserveClusterCpuModel *bool `tfsdk:"preserve_cluster_cpu_model" json:"preserveClusterCpuModel,omitempty"`
-		PreserveStaticIPs       *bool `tfsdk:"preserve_static_i_ps" json:"preserveStaticIPs,omitempty"`
+		MigrateSharedDisks      *bool   `tfsdk:"migrate_shared_disks" json:"migrateSharedDisks,omitempty"`
+		NetworkNameTemplate     *string `tfsdk:"network_name_template" json:"networkNameTemplate,omitempty"`
+		PreserveClusterCpuModel *bool   `tfsdk:"preserve_cluster_cpu_model" json:"preserveClusterCpuModel,omitempty"`
+		PreserveStaticIPs       *bool   `tfsdk:"preserve_static_i_ps" json:"preserveStaticIPs,omitempty"`
 		Provider                *struct {
 			Destination *struct {
 				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -87,8 +92,11 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"provider" json:"provider,omitempty"`
-		TargetNamespace *string `tfsdk:"target_namespace" json:"targetNamespace,omitempty"`
-		TransferNetwork *struct {
+		PvcNameTemplate                *string `tfsdk:"pvc_name_template" json:"pvcNameTemplate,omitempty"`
+		PvcNameTemplateUseGenerateName *bool   `tfsdk:"pvc_name_template_use_generate_name" json:"pvcNameTemplateUseGenerateName,omitempty"`
+		SkipGuestConversion            *bool   `tfsdk:"skip_guest_conversion" json:"skipGuestConversion,omitempty"`
+		TargetNamespace                *string `tfsdk:"target_namespace" json:"targetNamespace,omitempty"`
+		TransferNetwork                *struct {
 			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -121,12 +129,17 @@ type ForkliftKonveyorIoPlanV1Beta1ManifestData struct {
 				ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
 				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"luks" json:"luks,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			RootDisk  *string `tfsdk:"root_disk" json:"rootDisk,omitempty"`
-			Type      *string `tfsdk:"type" json:"type,omitempty"`
+			Name                *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace           *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			NetworkNameTemplate *string `tfsdk:"network_name_template" json:"networkNameTemplate,omitempty"`
+			PvcNameTemplate     *string `tfsdk:"pvc_name_template" json:"pvcNameTemplate,omitempty"`
+			RootDisk            *string `tfsdk:"root_disk" json:"rootDisk,omitempty"`
+			TargetName          *string `tfsdk:"target_name" json:"targetName,omitempty"`
+			Type                *string `tfsdk:"type" json:"type,omitempty"`
+			VolumeNameTemplate  *string `tfsdk:"volume_name_template" json:"volumeNameTemplate,omitempty"`
 		} `tfsdk:"vms" json:"vms,omitempty"`
-		Warm *bool `tfsdk:"warm" json:"warm,omitempty"`
+		VolumeNameTemplate *string `tfsdk:"volume_name_template" json:"volumeNameTemplate,omitempty"`
+		Warm               *bool   `tfsdk:"warm" json:"warm,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -215,9 +228,33 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"delete_guest_conversion_pod": schema.BoolAttribute{
+						Description:         "DeleteGuestConversionPod determines if the guest conversion pod should be deleted after successful migration. Note: - If this option is enabled and migration succeeds then the pod will get deleted. However the VM could still not boot and the virt-v2v logs, with additional information, will be deleted alongside guest conversion pod. - If migration fails the conversion pod will remain present even if this option is enabled.",
+						MarkdownDescription: "DeleteGuestConversionPod determines if the guest conversion pod should be deleted after successful migration. Note: - If this option is enabled and migration succeeds then the pod will get deleted. However the VM could still not boot and the virt-v2v logs, with additional information, will be deleted alongside guest conversion pod. - If migration fails the conversion pod will remain present even if this option is enabled.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"description": schema.StringAttribute{
 						Description:         "Description",
 						MarkdownDescription: "Description",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disk_bus": schema.StringAttribute{
+						Description:         "Deprecated: this field will be deprecated in 2.8.",
+						MarkdownDescription: "Deprecated: this field will be deprecated in 2.8.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"install_legacy_drivers": schema.BoolAttribute{
+						Description:         "InstallLegacyDrivers determines whether to install legacy windows drivers in the VM. The following Vm's are lack of SHA-2 support and need legacy drivers: Windows XP (all) Windows Server 2003 Windows Vista (all) Windows Server 2008 Windows 7 (pre-SP1) Windows Server 2008 R2 Behavior: - If set to nil (unset), the system will automatically detect whether the VM requires legacy drivers based on its guest OS type (using IsLegacyWindows). - If set to true, legacy drivers will be installed unconditionally by setting the VIRTIO_WIN environment variable. - If set to false, legacy drivers will be skipped, and the system will fall back to using the standard (SHA-2 signed) drivers. When enabled, legacy drivers are exposed to the virt-v2v conversion process via the VIRTIO_WIN environment variable, which points to the legacy ISO at /usr/local/virtio-win.iso.",
+						MarkdownDescription: "InstallLegacyDrivers determines whether to install legacy windows drivers in the VM. The following Vm's are lack of SHA-2 support and need legacy drivers: Windows XP (all) Windows Server 2003 Windows Vista (all) Windows Server 2008 Windows 7 (pre-SP1) Windows Server 2008 R2 Behavior: - If set to nil (unset), the system will automatically detect whether the VM requires legacy drivers based on its guest OS type (using IsLegacyWindows). - If set to true, legacy drivers will be installed unconditionally by setting the VIRTIO_WIN environment variable. - If set to false, legacy drivers will be skipped, and the system will fall back to using the standard (SHA-2 signed) drivers. When enabled, legacy drivers are exposed to the virt-v2v conversion process via the VIRTIO_WIN environment variable, which points to the legacy ISO at /usr/local/virtio-win.iso.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -240,8 +277,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -305,8 +342,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -362,6 +399,22 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"migrate_shared_disks": schema.BoolAttribute{
+						Description:         "Determines if the plan should migrate shared disks.",
+						MarkdownDescription: "Determines if the plan should migrate shared disks.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"network_name_template": schema.StringAttribute{
+						Description:         "NetworkNameTemplate is a template for generating network interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .NetworkName: If target network is multus, name of the Multus network attachment definition, empty otherwise. - .NetworkNamespace: If target network is multus, namespace where the network attachment definition is located. - .NetworkType: type of the network ('Multus' or 'Pod') - .NetworkIndex: sequential index of the network interface (0-based) The template can be used to customize network interface names based on target network configuration. Note: - This template can be overridden at the individual VM level - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'net-{{.NetworkIndex}}' '{{if eq .NetworkType 'Pod'}}pod{{else}}multus-{{.NetworkIndex}}{{end}}'",
+						MarkdownDescription: "NetworkNameTemplate is a template for generating network interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .NetworkName: If target network is multus, name of the Multus network attachment definition, empty otherwise. - .NetworkNamespace: If target network is multus, namespace where the network attachment definition is located. - .NetworkType: type of the network ('Multus' or 'Pod') - .NetworkIndex: sequential index of the network interface (0-based) The template can be used to customize network interface names based on target network configuration. Note: - This template can be overridden at the individual VM level - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'net-{{.NetworkIndex}}' '{{if eq .NetworkType 'Pod'}}pod{{else}}multus-{{.NetworkIndex}}{{end}}'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"preserve_cluster_cpu_model": schema.BoolAttribute{
 						Description:         "Preserve the CPU model and flags the VM runs with in its oVirt cluster.",
 						MarkdownDescription: "Preserve the CPU model and flags the VM runs with in its oVirt cluster.",
@@ -395,8 +448,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -460,8 +513,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -517,6 +570,30 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"pvc_name_template": schema.StringAttribute{
+						Description:         "PVCNameTemplate is a template for generating PVC names for VM disks. It follows Go template syntax and has access to the following variables: - .VmName: name of the VM - .PlanName: name of the migration plan - .DiskIndex: initial volume index of the disk - .RootDiskIndex: index of the root disk - .Shared: true if the volume is shared by multiple VMs, false otherwise Note: This template can be overridden at the individual VM level. Examples: '{{.VmName}}-disk-{{.DiskIndex}}' '{{if eq .DiskIndex .RootDiskIndex}}root{{else}}data{{end}}-{{.DiskIndex}}' '{{if .Shared}}shared-{{end}}{{.VmName}}-{{.DiskIndex}}'",
+						MarkdownDescription: "PVCNameTemplate is a template for generating PVC names for VM disks. It follows Go template syntax and has access to the following variables: - .VmName: name of the VM - .PlanName: name of the migration plan - .DiskIndex: initial volume index of the disk - .RootDiskIndex: index of the root disk - .Shared: true if the volume is shared by multiple VMs, false otherwise Note: This template can be overridden at the individual VM level. Examples: '{{.VmName}}-disk-{{.DiskIndex}}' '{{if eq .DiskIndex .RootDiskIndex}}root{{else}}data{{end}}-{{.DiskIndex}}' '{{if .Shared}}shared-{{end}}{{.VmName}}-{{.DiskIndex}}'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pvc_name_template_use_generate_name": schema.BoolAttribute{
+						Description:         "PVCNameTemplateUseGenerateName indicates if the PVC name template should use generateName instead of name. Setting this to false will use the name field of the PVCNameTemplate. This is useful when using a template that generates a name without a suffix. For example, if the template is '{{.VmName}}-disk-{{.DiskIndex}}', setting this to false will result in the PVC name being '{{.VmName}}-disk-{{.DiskIndex}}', which may not be unique. but will be more predictable. **DANGER** When set to false, the generated PVC name may not be unique and may cause conflicts.",
+						MarkdownDescription: "PVCNameTemplateUseGenerateName indicates if the PVC name template should use generateName instead of name. Setting this to false will use the name field of the PVCNameTemplate. This is useful when using a template that generates a name without a suffix. For example, if the template is '{{.VmName}}-disk-{{.DiskIndex}}', setting this to false will result in the PVC name being '{{.VmName}}-disk-{{.DiskIndex}}', which may not be unique. but will be more predictable. **DANGER** When set to false, the generated PVC name may not be unique and may cause conflicts.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"skip_guest_conversion": schema.BoolAttribute{
+						Description:         "Determines if the plan should skip the guest conversion.",
+						MarkdownDescription: "Determines if the plan should skip the guest conversion.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"target_namespace": schema.StringAttribute{
 						Description:         "Target namespace.",
 						MarkdownDescription: "Target namespace.",
@@ -538,8 +615,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -613,8 +690,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"field_path": schema.StringAttribute{
-														Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-														MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+														Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+														MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -708,8 +785,8 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"field_path": schema.StringAttribute{
-											Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-											MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+											Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+											MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -776,9 +853,33 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									Computed:            false,
 								},
 
+								"network_name_template": schema.StringAttribute{
+									Description:         "NetworkNameTemplate is a template for generating network interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .NetworkName: If target network is multus, name of the Multus network attachment definition, empty otherwise. - .NetworkNamespace: If target network is multus, namespace where the network attachment definition is located. - .NetworkType: type of the network ('Multus' or 'Pod') - .NetworkIndex: sequential index of the network interface (0-based) The template can be used to customize network interface names based on target network configuration. Note: - This template will override at the plan level template - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'net-{{.NetworkIndex}}' '{{if eq .NetworkType 'Pod'}}pod{{else}}multus-{{.NetworkIndex}}{{end}}'",
+									MarkdownDescription: "NetworkNameTemplate is a template for generating network interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .NetworkName: If target network is multus, name of the Multus network attachment definition, empty otherwise. - .NetworkNamespace: If target network is multus, namespace where the network attachment definition is located. - .NetworkType: type of the network ('Multus' or 'Pod') - .NetworkIndex: sequential index of the network interface (0-based) The template can be used to customize network interface names based on target network configuration. Note: - This template will override at the plan level template - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'net-{{.NetworkIndex}}' '{{if eq .NetworkType 'Pod'}}pod{{else}}multus-{{.NetworkIndex}}{{end}}'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"pvc_name_template": schema.StringAttribute{
+									Description:         "PVCNameTemplate is a template for generating PVC names for VM disks. It follows Go template syntax and has access to the following variables: - .VmName: name of the VM - .PlanName: name of the migration plan - .DiskIndex: initial volume index of the disk - .RootDiskIndex: index of the root disk - .Shared: true if the volume is shared by multiple VMs, false otherwise Note: This template overrides the plan level template. Examples: '{{.VmName}}-disk-{{.DiskIndex}}' '{{if eq .DiskIndex .RootDiskIndex}}root{{else}}data{{end}}-{{.DiskIndex}}' '{{if .Shared}}shared-{{end}}{{.VmName}}-{{.DiskIndex}}'",
+									MarkdownDescription: "PVCNameTemplate is a template for generating PVC names for VM disks. It follows Go template syntax and has access to the following variables: - .VmName: name of the VM - .PlanName: name of the migration plan - .DiskIndex: initial volume index of the disk - .RootDiskIndex: index of the root disk - .Shared: true if the volume is shared by multiple VMs, false otherwise Note: This template overrides the plan level template. Examples: '{{.VmName}}-disk-{{.DiskIndex}}' '{{if eq .DiskIndex .RootDiskIndex}}root{{else}}data{{end}}-{{.DiskIndex}}' '{{if .Shared}}shared-{{end}}{{.VmName}}-{{.DiskIndex}}'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"root_disk": schema.StringAttribute{
 									Description:         "Choose the primary disk the VM boots from",
 									MarkdownDescription: "Choose the primary disk the VM boots from",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"target_name": schema.StringAttribute{
+									Description:         "TargetName specifies a custom name for the VM in the target cluster. If not provided, the original VM name will be used and automatically adjusted to meet k8s DNS1123 requirements. If provided, this exact name will be used instead. The migration will fail if the name is not unique or already in use.",
+									MarkdownDescription: "TargetName specifies a custom name for the VM in the target cluster. If not provided, the original VM name will be used and automatically adjusted to meet k8s DNS1123 requirements. If provided, this exact name will be used instead. The migration will fail if the name is not unique or already in use.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -791,11 +892,27 @@ func (r *ForkliftKonveyorIoPlanV1Beta1Manifest) Schema(_ context.Context, _ data
 									Optional:            true,
 									Computed:            false,
 								},
+
+								"volume_name_template": schema.StringAttribute{
+									Description:         "VolumeNameTemplate is a template for generating volume interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .PVCName: name of the PVC mounted to the VM using this volume - .VolumeIndex: sequential index of the volume interface (0-based) Note: - This template will override at the plan level template - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'disk-{{.VolumeIndex}}' 'pvc-{{.PVCName}}'",
+									MarkdownDescription: "VolumeNameTemplate is a template for generating volume interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .PVCName: name of the PVC mounted to the VM using this volume - .VolumeIndex: sequential index of the volume interface (0-based) Note: - This template will override at the plan level template - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'disk-{{.VolumeIndex}}' 'pvc-{{.PVCName}}'",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"volume_name_template": schema.StringAttribute{
+						Description:         "VolumeNameTemplate is a template for generating volume interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .PVCName: name of the PVC mounted to the VM using this volume - .VolumeIndex: sequential index of the volume interface (0-based) Note: - This template can be overridden at the individual VM level - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'disk-{{.VolumeIndex}}' 'pvc-{{.PVCName}}'",
+						MarkdownDescription: "VolumeNameTemplate is a template for generating volume interface names in the target virtual machine. It follows Go template syntax and has access to the following variables: - .PVCName: name of the PVC mounted to the VM using this volume - .VolumeIndex: sequential index of the volume interface (0-based) Note: - This template can be overridden at the individual VM level - If not specified on VM level and on Plan leverl, default naming conventions will be used Examples: 'disk-{{.VolumeIndex}}' 'pvc-{{.PVCName}}'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"warm": schema.BoolAttribute{

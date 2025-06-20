@@ -44,6 +44,10 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AvailabilityGates *[]struct {
+			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
+			Polarity      *string `tfsdk:"polarity" json:"polarity,omitempty"`
+		} `tfsdk:"availability_gates" json:"availabilityGates,omitempty"`
 		ControlPlane *struct {
 			MachineHealthCheck *struct {
 				MaxUnhealthy        *string `tfsdk:"max_unhealthy" json:"maxUnhealthy,omitempty"`
@@ -85,7 +89,11 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 			NodeDeletionTimeout     *string `tfsdk:"node_deletion_timeout" json:"nodeDeletionTimeout,omitempty"`
 			NodeDrainTimeout        *string `tfsdk:"node_drain_timeout" json:"nodeDrainTimeout,omitempty"`
 			NodeVolumeDetachTimeout *string `tfsdk:"node_volume_detach_timeout" json:"nodeVolumeDetachTimeout,omitempty"`
-			Ref                     *struct {
+			ReadinessGates          *[]struct {
+				ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
+				Polarity      *string `tfsdk:"polarity" json:"polarity,omitempty"`
+			} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
+			Ref *struct {
 				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 				FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 				Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -106,6 +114,9 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"ref" json:"ref,omitempty"`
 		} `tfsdk:"infrastructure" json:"infrastructure,omitempty"`
+		InfrastructureNamingStrategy *struct {
+			Template *string `tfsdk:"template" json:"template,omitempty"`
+		} `tfsdk:"infrastructure_naming_strategy" json:"infrastructureNamingStrategy,omitempty"`
 		Patches *[]struct {
 			Definitions *[]struct {
 				JsonPatches *[]struct {
@@ -223,7 +234,11 @@ type ClusterXK8SIoClusterClassV1Beta1ManifestData struct {
 				NodeDeletionTimeout     *string `tfsdk:"node_deletion_timeout" json:"nodeDeletionTimeout,omitempty"`
 				NodeDrainTimeout        *string `tfsdk:"node_drain_timeout" json:"nodeDrainTimeout,omitempty"`
 				NodeVolumeDetachTimeout *string `tfsdk:"node_volume_detach_timeout" json:"nodeVolumeDetachTimeout,omitempty"`
-				Strategy                *struct {
+				ReadinessGates          *[]struct {
+					ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
+					Polarity      *string `tfsdk:"polarity" json:"polarity,omitempty"`
+				} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
+				Strategy *struct {
 					Remediation *struct {
 						MaxInFlight *string `tfsdk:"max_in_flight" json:"maxInFlight,omitempty"`
 					} `tfsdk:"remediation" json:"remediation,omitempty"`
@@ -380,36 +395,71 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterClassSpec describes the desired state of the ClusterClass.",
-				MarkdownDescription: "ClusterClassSpec describes the desired state of the ClusterClass.",
+				Description:         "spec is the desired state of ClusterClass.",
+				MarkdownDescription: "spec is the desired state of ClusterClass.",
 				Attributes: map[string]schema.Attribute{
+					"availability_gates": schema.ListNestedAttribute{
+						Description:         "availabilityGates specifies additional conditions to include when evaluating Cluster Available condition. NOTE: this field is considered only for computing v1beta2 conditions. NOTE: If a Cluster is using this ClusterClass, and this Cluster defines a custom list of availabilityGates, such list overrides availabilityGates defined in this field.",
+						MarkdownDescription: "availabilityGates specifies additional conditions to include when evaluating Cluster Available condition. NOTE: this field is considered only for computing v1beta2 conditions. NOTE: If a Cluster is using this ClusterClass, and this Cluster defines a custom list of availabilityGates, such list overrides availabilityGates defined in this field.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"condition_type": schema.StringAttribute{
+									Description:         "conditionType refers to a condition with matching type in the Cluster's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as availability gates.",
+									MarkdownDescription: "conditionType refers to a condition with matching type in the Cluster's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as availability gates.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(316),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`), ""),
+									},
+								},
+
+								"polarity": schema.StringAttribute{
+									Description:         "polarity of the conditionType specified in this availabilityGate. Valid values are Positive, Negative and omitted. When omitted, the default behaviour will be Positive. A positive polarity means that the condition should report a true status under normal conditions. A negative polarity means that the condition should report a false status under normal conditions.",
+									MarkdownDescription: "polarity of the conditionType specified in this availabilityGate. Valid values are Positive, Negative and omitted. When omitted, the default behaviour will be Positive. A positive polarity means that the condition should report a true status under normal conditions. A negative polarity means that the condition should report a false status under normal conditions.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("Positive", "Negative"),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"control_plane": schema.SingleNestedAttribute{
-						Description:         "ControlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster.",
-						MarkdownDescription: "ControlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster.",
+						Description:         "controlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster.",
+						MarkdownDescription: "controlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"machine_health_check": schema.SingleNestedAttribute{
-								Description:         "MachineHealthCheck defines a MachineHealthCheck for this ControlPlaneClass. This field is supported if and only if the ControlPlane provider template referenced above is Machine based and supports setting replicas.",
-								MarkdownDescription: "MachineHealthCheck defines a MachineHealthCheck for this ControlPlaneClass. This field is supported if and only if the ControlPlane provider template referenced above is Machine based and supports setting replicas.",
+								Description:         "machineHealthCheck defines a MachineHealthCheck for this ControlPlaneClass. This field is supported if and only if the ControlPlane provider template referenced above is Machine based and supports setting replicas.",
+								MarkdownDescription: "machineHealthCheck defines a MachineHealthCheck for this ControlPlaneClass. This field is supported if and only if the ControlPlane provider template referenced above is Machine based and supports setting replicas.",
 								Attributes: map[string]schema.Attribute{
 									"max_unhealthy": schema.StringAttribute{
-										Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
-										MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
+										Description:         "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy.",
+										MarkdownDescription: "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"node_startup_timeout": schema.StringAttribute{
-										Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
-										MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+										Description:         "nodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+										MarkdownDescription: "nodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"remediation_template": schema.SingleNestedAttribute{
-										Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-										MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+										Description:         "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+										MarkdownDescription: "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "API version of the referent.",
@@ -473,13 +523,13 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"unhealthy_conditions": schema.ListNestedAttribute{
-										Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-										MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+										Description:         "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+										MarkdownDescription: "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"status": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "status of the condition, one of True, False, Unknown.",
+													MarkdownDescription: "status of the condition, one of True, False, Unknown.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -489,16 +539,16 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"timeout": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
+													MarkdownDescription: "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "type of Node condition",
+													MarkdownDescription: "type of Node condition",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -514,12 +564,14 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"unhealthy_range": schema.StringAttribute{
-										Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
-										MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+										Description:         "unhealthyRange specifies the range of unhealthy machines allowed. Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'unhealthyRange'. Takes precedence over maxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+										MarkdownDescription: "unhealthyRange specifies the range of unhealthy machines allowed. Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'unhealthyRange'. Takes precedence over maxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(32),
 											stringvalidator.RegexMatches(regexp.MustCompile(`^\[[0-9]+-[0-9]+\]$`), ""),
 										},
 									},
@@ -530,12 +582,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"machine_infrastructure": schema.SingleNestedAttribute{
-								Description:         "MachineInfrastructure defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas.",
-								MarkdownDescription: "MachineInfrastructure defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas.",
+								Description:         "machineInfrastructure defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas.",
+								MarkdownDescription: "machineInfrastructure defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas.",
 								Attributes: map[string]schema.Attribute{
 									"ref": schema.SingleNestedAttribute{
-										Description:         "Ref is a required reference to a custom resource offered by a provider.",
-										MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+										Description:         "ref is a required reference to a custom resource offered by a provider.",
+										MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "API version of the referent.",
@@ -604,12 +656,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based.",
-								MarkdownDescription: "Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based.",
+								Description:         "metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based.",
+								MarkdownDescription: "metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -617,8 +669,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -631,15 +683,19 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"naming_strategy": schema.SingleNestedAttribute{
-								Description:         "NamingStrategy allows changing the naming pattern used when creating the control plane provider object.",
-								MarkdownDescription: "NamingStrategy allows changing the naming pattern used when creating the control plane provider object.",
+								Description:         "namingStrategy allows changing the naming pattern used when creating the control plane provider object.",
+								MarkdownDescription: "namingStrategy allows changing the naming pattern used when creating the control plane provider object.",
 								Attributes: map[string]schema.Attribute{
 									"template": schema.StringAttribute{
-										Description:         "Template defines the template to use for generating the name of the ControlPlane object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.",
-										MarkdownDescription: "Template defines the template to use for generating the name of the ControlPlane object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.",
+										Description:         "template defines the template to use for generating the name of the ControlPlane object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.",
+										MarkdownDescription: "template defines the template to use for generating the name of the ControlPlane object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(1024),
+										},
 									},
 								},
 								Required: false,
@@ -648,32 +704,67 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"node_deletion_timeout": schema.StringAttribute{
-								Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology.",
-								MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology.",
+								Description:         "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology.",
+								MarkdownDescription: "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"node_drain_timeout": schema.StringAttribute{
-								Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology.",
-								MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology.",
+								Description:         "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology.",
+								MarkdownDescription: "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"node_volume_detach_timeout": schema.StringAttribute{
-								Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology.",
-								MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology.",
+								Description:         "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology.",
+								MarkdownDescription: "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
+							"readiness_gates": schema.ListNestedAttribute{
+								Description:         "readinessGates specifies additional conditions to include when evaluating Machine Ready condition. This field can be used e.g. to instruct the machine controller to include in the computation for Machine's ready computation a condition, managed by an external controllers, reporting the status of special software/hardware installed on the Machine. NOTE: This field is considered only for computing v1beta2 conditions. NOTE: If a Cluster defines a custom list of readinessGates for the control plane, such list overrides readinessGates defined in this field. NOTE: Specific control plane provider implementations might automatically extend the list of readinessGates; e.g. the kubeadm control provider adds ReadinessGates for the APIServerPodHealthy, SchedulerPodHealthy conditions, etc.",
+								MarkdownDescription: "readinessGates specifies additional conditions to include when evaluating Machine Ready condition. This field can be used e.g. to instruct the machine controller to include in the computation for Machine's ready computation a condition, managed by an external controllers, reporting the status of special software/hardware installed on the Machine. NOTE: This field is considered only for computing v1beta2 conditions. NOTE: If a Cluster defines a custom list of readinessGates for the control plane, such list overrides readinessGates defined in this field. NOTE: Specific control plane provider implementations might automatically extend the list of readinessGates; e.g. the kubeadm control provider adds ReadinessGates for the APIServerPodHealthy, SchedulerPodHealthy conditions, etc.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"condition_type": schema.StringAttribute{
+											Description:         "conditionType refers to a condition with matching type in the Machine's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as readiness gates.",
+											MarkdownDescription: "conditionType refers to a condition with matching type in the Machine's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as readiness gates.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(316),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`), ""),
+											},
+										},
+
+										"polarity": schema.StringAttribute{
+											Description:         "polarity of the conditionType specified in this readinessGate. Valid values are Positive, Negative and omitted. When omitted, the default behaviour will be Positive. A positive polarity means that the condition should report a true status under normal conditions. A negative polarity means that the condition should report a false status under normal conditions.",
+											MarkdownDescription: "polarity of the conditionType specified in this readinessGate. Valid values are Positive, Negative and omitted. When omitted, the default behaviour will be Positive. A positive polarity means that the condition should report a true status under normal conditions. A negative polarity means that the condition should report a false status under normal conditions.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Positive", "Negative"),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"ref": schema.SingleNestedAttribute{
-								Description:         "Ref is a required reference to a custom resource offered by a provider.",
-								MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+								Description:         "ref is a required reference to a custom resource offered by a provider.",
+								MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "API version of the referent.",
@@ -742,12 +833,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"infrastructure": schema.SingleNestedAttribute{
-						Description:         "Infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster.",
-						MarkdownDescription: "Infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster.",
+						Description:         "infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster.",
+						MarkdownDescription: "infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster.",
 						Attributes: map[string]schema.Attribute{
 							"ref": schema.SingleNestedAttribute{
-								Description:         "Ref is a required reference to a custom resource offered by a provider.",
-								MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+								Description:         "ref is a required reference to a custom resource offered by a provider.",
+								MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "API version of the referent.",
@@ -815,40 +906,68 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
+					"infrastructure_naming_strategy": schema.SingleNestedAttribute{
+						Description:         "infrastructureNamingStrategy allows changing the naming pattern used when creating the infrastructure object.",
+						MarkdownDescription: "infrastructureNamingStrategy allows changing the naming pattern used when creating the infrastructure object.",
+						Attributes: map[string]schema.Attribute{
+							"template": schema.StringAttribute{
+								Description:         "template defines the template to use for generating the name of the Infrastructure object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.",
+								MarkdownDescription: "template defines the template to use for generating the name of the Infrastructure object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(1024),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"patches": schema.ListNestedAttribute{
-						Description:         "Patches defines the patches which are applied to customize referenced templates of a ClusterClass. Note: Patches will be applied in the order of the array.",
-						MarkdownDescription: "Patches defines the patches which are applied to customize referenced templates of a ClusterClass. Note: Patches will be applied in the order of the array.",
+						Description:         "patches defines the patches which are applied to customize referenced templates of a ClusterClass. Note: Patches will be applied in the order of the array.",
+						MarkdownDescription: "patches defines the patches which are applied to customize referenced templates of a ClusterClass. Note: Patches will be applied in the order of the array.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"definitions": schema.ListNestedAttribute{
-									Description:         "Definitions define inline patches. Note: Patches will be applied in the order of the array. Note: Exactly one of Definitions or External must be set.",
-									MarkdownDescription: "Definitions define inline patches. Note: Patches will be applied in the order of the array. Note: Exactly one of Definitions or External must be set.",
+									Description:         "definitions define inline patches. Note: Patches will be applied in the order of the array. Note: Exactly one of Definitions or External must be set.",
+									MarkdownDescription: "definitions define inline patches. Note: Patches will be applied in the order of the array. Note: Exactly one of Definitions or External must be set.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"json_patches": schema.ListNestedAttribute{
-												Description:         "JSONPatches defines the patches which should be applied on the templates matching the selector. Note: Patches will be applied in the order of the array.",
-												MarkdownDescription: "JSONPatches defines the patches which should be applied on the templates matching the selector. Note: Patches will be applied in the order of the array.",
+												Description:         "jsonPatches defines the patches which should be applied on the templates matching the selector. Note: Patches will be applied in the order of the array.",
+												MarkdownDescription: "jsonPatches defines the patches which should be applied on the templates matching the selector. Note: Patches will be applied in the order of the array.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"op": schema.StringAttribute{
-															Description:         "Op defines the operation of the patch. Note: Only 'add', 'replace' and 'remove' are supported.",
-															MarkdownDescription: "Op defines the operation of the patch. Note: Only 'add', 'replace' and 'remove' are supported.",
+															Description:         "op defines the operation of the patch. Note: Only 'add', 'replace' and 'remove' are supported.",
+															MarkdownDescription: "op defines the operation of the patch. Note: Only 'add', 'replace' and 'remove' are supported.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("add", "replace", "remove"),
+															},
 														},
 
 														"path": schema.StringAttribute{
-															Description:         "Path defines the path of the patch. Note: Only the spec of a template can be patched, thus the path has to start with /spec/. Note: For now the only allowed array modifications are 'append' and 'prepend', i.e.: * for op: 'add': only index 0 (prepend) and - (append) are allowed * for op: 'replace' or 'remove': no indexes are allowed",
-															MarkdownDescription: "Path defines the path of the patch. Note: Only the spec of a template can be patched, thus the path has to start with /spec/. Note: For now the only allowed array modifications are 'append' and 'prepend', i.e.: * for op: 'add': only index 0 (prepend) and - (append) are allowed * for op: 'replace' or 'remove': no indexes are allowed",
+															Description:         "path defines the path of the patch. Note: Only the spec of a template can be patched, thus the path has to start with /spec/. Note: For now the only allowed array modifications are 'append' and 'prepend', i.e.: * for op: 'add': only index 0 (prepend) and - (append) are allowed * for op: 'replace' or 'remove': no indexes are allowed",
+															MarkdownDescription: "path defines the path of the patch. Note: Only the spec of a template can be patched, thus the path has to start with /spec/. Note: For now the only allowed array modifications are 'append' and 'prepend', i.e.: * for op: 'add': only index 0 (prepend) and - (append) are allowed * for op: 'replace' or 'remove': no indexes are allowed",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+																stringvalidator.LengthAtMost(512),
+															},
 														},
 
 														"value": schema.MapAttribute{
-															Description:         "Value defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time. Note: We have to use apiextensionsv1.JSON instead of our JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type (unset type field). Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
-															MarkdownDescription: "Value defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time. Note: We have to use apiextensionsv1.JSON instead of our JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type (unset type field). Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+															Description:         "value defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time. Note: We have to use apiextensionsv1.JSON instead of our JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type (unset type field). Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+															MarkdownDescription: "value defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time. Note: We have to use apiextensionsv1.JSON instead of our JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type (unset type field). Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -856,23 +975,31 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"value_from": schema.SingleNestedAttribute{
-															Description:         "ValueFrom defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time.",
-															MarkdownDescription: "ValueFrom defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time.",
+															Description:         "valueFrom defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time.",
+															MarkdownDescription: "valueFrom defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time.",
 															Attributes: map[string]schema.Attribute{
 																"template": schema.StringAttribute{
-																	Description:         "Template is the Go template to be used to calculate the value. A template can reference variables defined in .spec.variables and builtin variables. Note: The template must evaluate to a valid YAML or JSON value.",
-																	MarkdownDescription: "Template is the Go template to be used to calculate the value. A template can reference variables defined in .spec.variables and builtin variables. Note: The template must evaluate to a valid YAML or JSON value.",
+																	Description:         "template is the Go template to be used to calculate the value. A template can reference variables defined in .spec.variables and builtin variables. Note: The template must evaluate to a valid YAML or JSON value.",
+																	MarkdownDescription: "template is the Go template to be used to calculate the value. A template can reference variables defined in .spec.variables and builtin variables. Note: The template must evaluate to a valid YAML or JSON value.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(10240),
+																	},
 																},
 
 																"variable": schema.StringAttribute{
-																	Description:         "Variable is the variable to be used as value. Variable can be one of the variables defined in .spec.variables or a builtin variable.",
-																	MarkdownDescription: "Variable is the variable to be used as value. Variable can be one of the variables defined in .spec.variables or a builtin variable.",
+																	Description:         "variable is the variable to be used as value. Variable can be one of the variables defined in .spec.variables or a builtin variable.",
+																	MarkdownDescription: "variable is the variable to be used as value. Variable can be one of the variables defined in .spec.variables or a builtin variable.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(256),
+																	},
 																},
 															},
 															Required: false,
@@ -887,52 +1014,60 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"selector": schema.SingleNestedAttribute{
-												Description:         "Selector defines on which templates the patch should be applied.",
-												MarkdownDescription: "Selector defines on which templates the patch should be applied.",
+												Description:         "selector defines on which templates the patch should be applied.",
+												MarkdownDescription: "selector defines on which templates the patch should be applied.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
-														Description:         "APIVersion filters templates by apiVersion.",
-														MarkdownDescription: "APIVersion filters templates by apiVersion.",
+														Description:         "apiVersion filters templates by apiVersion.",
+														MarkdownDescription: "apiVersion filters templates by apiVersion.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(512),
+														},
 													},
 
 													"kind": schema.StringAttribute{
-														Description:         "Kind filters templates by kind.",
-														MarkdownDescription: "Kind filters templates by kind.",
+														Description:         "kind filters templates by kind.",
+														MarkdownDescription: "kind filters templates by kind.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(256),
+														},
 													},
 
 													"match_resources": schema.SingleNestedAttribute{
-														Description:         "MatchResources selects templates based on where they are referenced.",
-														MarkdownDescription: "MatchResources selects templates based on where they are referenced.",
+														Description:         "matchResources selects templates based on where they are referenced.",
+														MarkdownDescription: "matchResources selects templates based on where they are referenced.",
 														Attributes: map[string]schema.Attribute{
 															"control_plane": schema.BoolAttribute{
-																Description:         "ControlPlane selects templates referenced in .spec.ControlPlane. Note: this will match the controlPlane and also the controlPlane machineInfrastructure (depending on the kind and apiVersion).",
-																MarkdownDescription: "ControlPlane selects templates referenced in .spec.ControlPlane. Note: this will match the controlPlane and also the controlPlane machineInfrastructure (depending on the kind and apiVersion).",
+																Description:         "controlPlane selects templates referenced in .spec.ControlPlane. Note: this will match the controlPlane and also the controlPlane machineInfrastructure (depending on the kind and apiVersion).",
+																MarkdownDescription: "controlPlane selects templates referenced in .spec.ControlPlane. Note: this will match the controlPlane and also the controlPlane machineInfrastructure (depending on the kind and apiVersion).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"infrastructure_cluster": schema.BoolAttribute{
-																Description:         "InfrastructureCluster selects templates referenced in .spec.infrastructure.",
-																MarkdownDescription: "InfrastructureCluster selects templates referenced in .spec.infrastructure.",
+																Description:         "infrastructureCluster selects templates referenced in .spec.infrastructure.",
+																MarkdownDescription: "infrastructureCluster selects templates referenced in .spec.infrastructure.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"machine_deployment_class": schema.SingleNestedAttribute{
-																Description:         "MachineDeploymentClass selects templates referenced in specific MachineDeploymentClasses in .spec.workers.machineDeployments.",
-																MarkdownDescription: "MachineDeploymentClass selects templates referenced in specific MachineDeploymentClasses in .spec.workers.machineDeployments.",
+																Description:         "machineDeploymentClass selects templates referenced in specific MachineDeploymentClasses in .spec.workers.machineDeployments.",
+																MarkdownDescription: "machineDeploymentClass selects templates referenced in specific MachineDeploymentClasses in .spec.workers.machineDeployments.",
 																Attributes: map[string]schema.Attribute{
 																	"names": schema.ListAttribute{
-																		Description:         "Names selects templates by class names.",
-																		MarkdownDescription: "Names selects templates by class names.",
+																		Description:         "names selects templates by class names.",
+																		MarkdownDescription: "names selects templates by class names.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -945,12 +1080,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"machine_pool_class": schema.SingleNestedAttribute{
-																Description:         "MachinePoolClass selects templates referenced in specific MachinePoolClasses in .spec.workers.machinePools.",
-																MarkdownDescription: "MachinePoolClass selects templates referenced in specific MachinePoolClasses in .spec.workers.machinePools.",
+																Description:         "machinePoolClass selects templates referenced in specific MachinePoolClasses in .spec.workers.machinePools.",
+																MarkdownDescription: "machinePoolClass selects templates referenced in specific MachinePoolClasses in .spec.workers.machinePools.",
 																Attributes: map[string]schema.Attribute{
 																	"names": schema.ListAttribute{
-																		Description:         "Names selects templates by class names.",
-																		MarkdownDescription: "Names selects templates by class names.",
+																		Description:         "names selects templates by class names.",
+																		MarkdownDescription: "names selects templates by class names.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -979,44 +1114,60 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"description": schema.StringAttribute{
-									Description:         "Description is a human-readable description of this patch.",
-									MarkdownDescription: "Description is a human-readable description of this patch.",
+									Description:         "description is a human-readable description of this patch.",
+									MarkdownDescription: "description is a human-readable description of this patch.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(1024),
+									},
 								},
 
 								"enabled_if": schema.StringAttribute{
-									Description:         "EnabledIf is a Go template to be used to calculate if a patch should be enabled. It can reference variables defined in .spec.variables and builtin variables. The patch will be enabled if the template evaluates to 'true', otherwise it will be disabled. If EnabledIf is not set, the patch will be enabled per default.",
-									MarkdownDescription: "EnabledIf is a Go template to be used to calculate if a patch should be enabled. It can reference variables defined in .spec.variables and builtin variables. The patch will be enabled if the template evaluates to 'true', otherwise it will be disabled. If EnabledIf is not set, the patch will be enabled per default.",
+									Description:         "enabledIf is a Go template to be used to calculate if a patch should be enabled. It can reference variables defined in .spec.variables and builtin variables. The patch will be enabled if the template evaluates to 'true', otherwise it will be disabled. If EnabledIf is not set, the patch will be enabled per default.",
+									MarkdownDescription: "enabledIf is a Go template to be used to calculate if a patch should be enabled. It can reference variables defined in .spec.variables and builtin variables. The patch will be enabled if the template evaluates to 'true', otherwise it will be disabled. If EnabledIf is not set, the patch will be enabled per default.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(256),
+									},
 								},
 
 								"external": schema.SingleNestedAttribute{
-									Description:         "External defines an external patch. Note: Exactly one of Definitions or External must be set.",
-									MarkdownDescription: "External defines an external patch. Note: Exactly one of Definitions or External must be set.",
+									Description:         "external defines an external patch. Note: Exactly one of Definitions or External must be set.",
+									MarkdownDescription: "external defines an external patch. Note: Exactly one of Definitions or External must be set.",
 									Attributes: map[string]schema.Attribute{
 										"discover_variables_extension": schema.StringAttribute{
-											Description:         "DiscoverVariablesExtension references an extension which is called to discover variables.",
-											MarkdownDescription: "DiscoverVariablesExtension references an extension which is called to discover variables.",
+											Description:         "discoverVariablesExtension references an extension which is called to discover variables.",
+											MarkdownDescription: "discoverVariablesExtension references an extension which is called to discover variables.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(512),
+											},
 										},
 
 										"generate_extension": schema.StringAttribute{
-											Description:         "GenerateExtension references an extension which is called to generate patches.",
-											MarkdownDescription: "GenerateExtension references an extension which is called to generate patches.",
+											Description:         "generateExtension references an extension which is called to generate patches.",
+											MarkdownDescription: "generateExtension references an extension which is called to generate patches.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(512),
+											},
 										},
 
 										"settings": schema.MapAttribute{
-											Description:         "Settings defines key value pairs to be passed to the extensions. Values defined here take precedence over the values defined in the corresponding ExtensionConfig.",
-											MarkdownDescription: "Settings defines key value pairs to be passed to the extensions. Values defined here take precedence over the values defined in the corresponding ExtensionConfig.",
+											Description:         "settings defines key value pairs to be passed to the extensions. Values defined here take precedence over the values defined in the corresponding ExtensionConfig.",
+											MarkdownDescription: "settings defines key value pairs to be passed to the extensions. Values defined here take precedence over the values defined in the corresponding ExtensionConfig.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1024,11 +1175,15 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"validate_extension": schema.StringAttribute{
-											Description:         "ValidateExtension references an extension which is called to validate the topology.",
-											MarkdownDescription: "ValidateExtension references an extension which is called to validate the topology.",
+											Description:         "validateExtension references an extension which is called to validate the topology.",
+											MarkdownDescription: "validateExtension references an extension which is called to validate the topology.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(512),
+											},
 										},
 									},
 									Required: false,
@@ -1037,11 +1192,15 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the patch.",
-									MarkdownDescription: "Name of the patch.",
+									Description:         "name of the patch.",
+									MarkdownDescription: "name of the patch.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(256),
+									},
 								},
 							},
 						},
@@ -1051,17 +1210,17 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"variables": schema.ListNestedAttribute{
-						Description:         "Variables defines the variables which can be configured in the Cluster topology and are then used in patches.",
-						MarkdownDescription: "Variables defines the variables which can be configured in the Cluster topology and are then used in patches.",
+						Description:         "variables defines the variables which can be configured in the Cluster topology and are then used in patches.",
+						MarkdownDescription: "variables defines the variables which can be configured in the Cluster topology and are then used in patches.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"metadata": schema.SingleNestedAttribute{
-									Description:         "Metadata is the metadata of a variable. It can be used to add additional data for higher level tools to a ClusterClassVariable. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead.",
-									MarkdownDescription: "Metadata is the metadata of a variable. It can be used to add additional data for higher level tools to a ClusterClassVariable. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead.",
+									Description:         "metadata is the metadata of a variable. It can be used to add additional data for higher level tools to a ClusterClassVariable. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead.",
+									MarkdownDescription: "metadata is the metadata of a variable. It can be used to add additional data for higher level tools to a ClusterClassVariable. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead.",
 									Attributes: map[string]schema.Attribute{
 										"annotations": schema.MapAttribute{
-											Description:         "Annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
-											MarkdownDescription: "Annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
+											Description:         "annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
+											MarkdownDescription: "annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1069,8 +1228,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) variables.",
-											MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) variables.",
+											Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) variables.",
+											MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) variables.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1083,32 +1242,36 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the variable.",
-									MarkdownDescription: "Name of the variable.",
+									Description:         "name of the variable.",
+									MarkdownDescription: "name of the variable.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(256),
+									},
 								},
 
 								"required": schema.BoolAttribute{
-									Description:         "Required specifies if the variable is required. Note: this applies to the variable as a whole and thus the top-level object defined in the schema. If nested fields are required, this will be specified inside the schema.",
-									MarkdownDescription: "Required specifies if the variable is required. Note: this applies to the variable as a whole and thus the top-level object defined in the schema. If nested fields are required, this will be specified inside the schema.",
+									Description:         "required specifies if the variable is required. Note: this applies to the variable as a whole and thus the top-level object defined in the schema. If nested fields are required, this will be specified inside the schema.",
+									MarkdownDescription: "required specifies if the variable is required. Note: this applies to the variable as a whole and thus the top-level object defined in the schema. If nested fields are required, this will be specified inside the schema.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"schema": schema.SingleNestedAttribute{
-									Description:         "Schema defines the schema of the variable.",
-									MarkdownDescription: "Schema defines the schema of the variable.",
+									Description:         "schema defines the schema of the variable.",
+									MarkdownDescription: "schema defines the schema of the variable.",
 									Attributes: map[string]schema.Attribute{
 										"open_apiv3_schema": schema.SingleNestedAttribute{
-											Description:         "OpenAPIV3Schema defines the schema of a variable via OpenAPI v3 schema. The schema is a subset of the schema used in Kubernetes CRDs.",
-											MarkdownDescription: "OpenAPIV3Schema defines the schema of a variable via OpenAPI v3 schema. The schema is a subset of the schema used in Kubernetes CRDs.",
+											Description:         "openAPIV3Schema defines the schema of a variable via OpenAPI v3 schema. The schema is a subset of the schema used in Kubernetes CRDs.",
+											MarkdownDescription: "openAPIV3Schema defines the schema of a variable via OpenAPI v3 schema. The schema is a subset of the schema used in Kubernetes CRDs.",
 											Attributes: map[string]schema.Attribute{
 												"additional_properties": schema.MapAttribute{
-													Description:         "AdditionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "AdditionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "additionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "additionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1116,8 +1279,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"all_of": schema.MapAttribute{
-													Description:         "AllOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "AllOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "allOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "allOf specifies that the variable must validate against all of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1125,8 +1288,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"any_of": schema.MapAttribute{
-													Description:         "AnyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "AnyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "anyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "anyOf specifies that the variable must validate against one or more of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1134,8 +1297,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"default": schema.MapAttribute{
-													Description:         "Default is the default value of the variable. NOTE: Can be set for all types.",
-													MarkdownDescription: "Default is the default value of the variable. NOTE: Can be set for all types.",
+													Description:         "default is the default value of the variable. NOTE: Can be set for all types.",
+													MarkdownDescription: "default is the default value of the variable. NOTE: Can be set for all types.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1143,16 +1306,20 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"description": schema.StringAttribute{
-													Description:         "Description is a human-readable description of this variable.",
-													MarkdownDescription: "Description is a human-readable description of this variable.",
+													Description:         "description is a human-readable description of this variable.",
+													MarkdownDescription: "description is a human-readable description of this variable.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(4096),
+													},
 												},
 
 												"enum": schema.ListAttribute{
-													Description:         "Enum is the list of valid values of the variable. NOTE: Can be set for all types.",
-													MarkdownDescription: "Enum is the list of valid values of the variable. NOTE: Can be set for all types.",
+													Description:         "enum is the list of valid values of the variable. NOTE: Can be set for all types.",
+													MarkdownDescription: "enum is the list of valid values of the variable. NOTE: Can be set for all types.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1160,8 +1327,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"example": schema.MapAttribute{
-													Description:         "Example is an example for this variable.",
-													MarkdownDescription: "Example is an example for this variable.",
+													Description:         "example is an example for this variable.",
+													MarkdownDescription: "example is an example for this variable.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1169,32 +1336,36 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"exclusive_maximum": schema.BoolAttribute{
-													Description:         "ExclusiveMaximum specifies if the Maximum is exclusive. NOTE: Can only be set if type is integer or number.",
-													MarkdownDescription: "ExclusiveMaximum specifies if the Maximum is exclusive. NOTE: Can only be set if type is integer or number.",
+													Description:         "exclusiveMaximum specifies if the Maximum is exclusive. NOTE: Can only be set if type is integer or number.",
+													MarkdownDescription: "exclusiveMaximum specifies if the Maximum is exclusive. NOTE: Can only be set if type is integer or number.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"exclusive_minimum": schema.BoolAttribute{
-													Description:         "ExclusiveMinimum specifies if the Minimum is exclusive. NOTE: Can only be set if type is integer or number.",
-													MarkdownDescription: "ExclusiveMinimum specifies if the Minimum is exclusive. NOTE: Can only be set if type is integer or number.",
+													Description:         "exclusiveMinimum specifies if the Minimum is exclusive. NOTE: Can only be set if type is integer or number.",
+													MarkdownDescription: "exclusiveMinimum specifies if the Minimum is exclusive. NOTE: Can only be set if type is integer or number.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"format": schema.StringAttribute{
-													Description:         "Format is an OpenAPI v3 format string. Unknown formats are ignored. For a list of supported formats please see: (of the k8s.io/apiextensions-apiserver version we're currently using) https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apiserver/validation/formats.go NOTE: Can only be set if type is string.",
-													MarkdownDescription: "Format is an OpenAPI v3 format string. Unknown formats are ignored. For a list of supported formats please see: (of the k8s.io/apiextensions-apiserver version we're currently using) https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apiserver/validation/formats.go NOTE: Can only be set if type is string.",
+													Description:         "format is an OpenAPI v3 format string. Unknown formats are ignored. For a list of supported formats please see: (of the k8s.io/apiextensions-apiserver version we're currently using) https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apiserver/validation/formats.go NOTE: Can only be set if type is string.",
+													MarkdownDescription: "format is an OpenAPI v3 format string. Unknown formats are ignored. For a list of supported formats please see: (of the k8s.io/apiextensions-apiserver version we're currently using) https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apiserver/validation/formats.go NOTE: Can only be set if type is string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(32),
+													},
 												},
 
 												"items": schema.MapAttribute{
-													Description:         "Items specifies fields of an array. NOTE: Can only be set if type is array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "Items specifies fields of an array. NOTE: Can only be set if type is array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "items specifies fields of an array. NOTE: Can only be set if type is array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "items specifies fields of an array. NOTE: Can only be set if type is array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1202,72 +1373,72 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"max_items": schema.Int64Attribute{
-													Description:         "MaxItems is the max length of an array variable. NOTE: Can only be set if type is array.",
-													MarkdownDescription: "MaxItems is the max length of an array variable. NOTE: Can only be set if type is array.",
+													Description:         "maxItems is the max length of an array variable. NOTE: Can only be set if type is array.",
+													MarkdownDescription: "maxItems is the max length of an array variable. NOTE: Can only be set if type is array.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_length": schema.Int64Attribute{
-													Description:         "MaxLength is the max length of a string variable. NOTE: Can only be set if type is string.",
-													MarkdownDescription: "MaxLength is the max length of a string variable. NOTE: Can only be set if type is string.",
+													Description:         "maxLength is the max length of a string variable. NOTE: Can only be set if type is string.",
+													MarkdownDescription: "maxLength is the max length of a string variable. NOTE: Can only be set if type is string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_properties": schema.Int64Attribute{
-													Description:         "MaxProperties is the maximum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
-													MarkdownDescription: "MaxProperties is the maximum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
+													Description:         "maxProperties is the maximum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
+													MarkdownDescription: "maxProperties is the maximum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"maximum": schema.Int64Attribute{
-													Description:         "Maximum is the maximum of an integer or number variable. If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum. If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum. NOTE: Can only be set if type is integer or number.",
-													MarkdownDescription: "Maximum is the maximum of an integer or number variable. If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum. If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum. NOTE: Can only be set if type is integer or number.",
+													Description:         "maximum is the maximum of an integer or number variable. If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum. If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum. NOTE: Can only be set if type is integer or number.",
+													MarkdownDescription: "maximum is the maximum of an integer or number variable. If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum. If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum. NOTE: Can only be set if type is integer or number.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"min_items": schema.Int64Attribute{
-													Description:         "MinItems is the min length of an array variable. NOTE: Can only be set if type is array.",
-													MarkdownDescription: "MinItems is the min length of an array variable. NOTE: Can only be set if type is array.",
+													Description:         "minItems is the min length of an array variable. NOTE: Can only be set if type is array.",
+													MarkdownDescription: "minItems is the min length of an array variable. NOTE: Can only be set if type is array.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"min_length": schema.Int64Attribute{
-													Description:         "MinLength is the min length of a string variable. NOTE: Can only be set if type is string.",
-													MarkdownDescription: "MinLength is the min length of a string variable. NOTE: Can only be set if type is string.",
+													Description:         "minLength is the min length of a string variable. NOTE: Can only be set if type is string.",
+													MarkdownDescription: "minLength is the min length of a string variable. NOTE: Can only be set if type is string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"min_properties": schema.Int64Attribute{
-													Description:         "MinProperties is the minimum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
-													MarkdownDescription: "MinProperties is the minimum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
+													Description:         "minProperties is the minimum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
+													MarkdownDescription: "minProperties is the minimum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"minimum": schema.Int64Attribute{
-													Description:         "Minimum is the minimum of an integer or number variable. If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum. If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum. NOTE: Can only be set if type is integer or number.",
-													MarkdownDescription: "Minimum is the minimum of an integer or number variable. If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum. If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum. NOTE: Can only be set if type is integer or number.",
+													Description:         "minimum is the minimum of an integer or number variable. If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum. If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum. NOTE: Can only be set if type is integer or number.",
+													MarkdownDescription: "minimum is the minimum of an integer or number variable. If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum. If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum. NOTE: Can only be set if type is integer or number.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"not": schema.MapAttribute{
-													Description:         "Not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "Not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "not specifies that the variable must not validate against the subschema. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1275,8 +1446,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"one_of": schema.MapAttribute{
-													Description:         "OneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "OneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "oneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "oneOf specifies that the variable must validate against exactly one of the subschemas in the array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1284,16 +1455,20 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"pattern": schema.StringAttribute{
-													Description:         "Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.",
-													MarkdownDescription: "Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.",
+													Description:         "pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.",
+													MarkdownDescription: "pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(512),
+													},
 												},
 
 												"properties": schema.MapAttribute{
-													Description:         "Properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
-													MarkdownDescription: "Properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													Description:         "properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
+													MarkdownDescription: "properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1301,8 +1476,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"required": schema.ListAttribute{
-													Description:         "Required specifies which fields of an object are required. NOTE: Can only be set if type is object.",
-													MarkdownDescription: "Required specifies which fields of an object are required. NOTE: Can only be set if type is object.",
+													Description:         "required specifies which fields of an object are required. NOTE: Can only be set if type is object.",
+													MarkdownDescription: "required specifies which fields of an object are required. NOTE: Can only be set if type is object.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1310,16 +1485,19 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.",
-													MarkdownDescription: "Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.",
+													Description:         "type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.",
+													MarkdownDescription: "type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("object", "array", "string", "integer", "number", "boolean"),
+													},
 												},
 
 												"unique_items": schema.BoolAttribute{
-													Description:         "UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.",
-													MarkdownDescription: "UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.",
+													Description:         "uniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.",
+													MarkdownDescription: "uniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1334,45 +1512,57 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"x_kubernetes_preserve_unknown_fields": schema.BoolAttribute{
-													Description:         "XPreserveUnknownFields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.",
-													MarkdownDescription: "XPreserveUnknownFields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.",
+													Description:         "x-kubernetes-preserve-unknown-fields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.",
+													MarkdownDescription: "x-kubernetes-preserve-unknown-fields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"x_kubernetes_validations": schema.ListNestedAttribute{
-													Description:         "XValidations describes a list of validation rules written in the CEL expression language.",
-													MarkdownDescription: "XValidations describes a list of validation rules written in the CEL expression language.",
+													Description:         "x-kubernetes-validations describes a list of validation rules written in the CEL expression language.",
+													MarkdownDescription: "x-kubernetes-validations describes a list of validation rules written in the CEL expression language.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"field_path": schema.StringAttribute{
-																Description:         "FieldPath represents the field path returned when the validation fails. It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo' If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList' It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info. Numeric index of array is not supported. For field name which contains special characters, use '['specialName']' to refer the field name. e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'",
-																MarkdownDescription: "FieldPath represents the field path returned when the validation fails. It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo' If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList' It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info. Numeric index of array is not supported. For field name which contains special characters, use '['specialName']' to refer the field name. e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'",
+																Description:         "fieldPath represents the field path returned when the validation fails. It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo' If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList' It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info. Numeric index of array is not supported. For field name which contains special characters, use '['specialName']' to refer the field name. e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'",
+																MarkdownDescription: "fieldPath represents the field path returned when the validation fails. It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo' If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList' It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info. Numeric index of array is not supported. For field name which contains special characters, use '['specialName']' to refer the field name. e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(512),
+																},
 															},
 
 															"message": schema.StringAttribute{
-																Description:         "Message represents the message displayed when validation fails. The message is required if the Rule contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host'",
-																MarkdownDescription: "Message represents the message displayed when validation fails. The message is required if the Rule contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host'",
+																Description:         "message represents the message displayed when validation fails. The message is required if the Rule contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host'",
+																MarkdownDescription: "message represents the message displayed when validation fails. The message is required if the Rule contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(512),
+																},
 															},
 
 															"message_expression": schema.StringAttribute{
-																Description:         "MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: 'x must be less than max ('+string(self.max)+')'",
-																MarkdownDescription: "MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: 'x must be less than max ('+string(self.max)+')'",
+																Description:         "messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: 'x must be less than max ('+string(self.max)+')'",
+																MarkdownDescription: "messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: 'x must be less than max ('+string(self.max)+')'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(1024),
+																},
 															},
 
 															"reason": schema.StringAttribute{
-																Description:         "Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule. The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'. If not set, default to use 'FieldValueInvalid'. All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.",
-																MarkdownDescription: "Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule. The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'. If not set, default to use 'FieldValueInvalid'. All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.",
+																Description:         "reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule. The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'. If not set, default to use 'FieldValueInvalid'. All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.",
+																MarkdownDescription: "reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule. The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'. If not set, default to use 'FieldValueInvalid'. All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1382,11 +1572,15 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"rule": schema.StringAttribute{
-																Description:         "Rule represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec The Rule is scoped to the location of the x-kubernetes-validations extension in the schema. The 'self' variable in the CEL expression is bound to the scoped value. If the Rule is scoped to an object with properties, the accessible properties of the object are field selectable via 'self.field' and field presence can be checked via 'has(self.field)'. If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the map are accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the map are accessible via CEL macros and functions such as 'self.all(...)'. If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros and functions. If the Rule is scoped to a scalar, 'self' is bound to the scalar value. Examples: - Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'} - Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'} - Rule scoped to a string value: {'rule': 'self.startsWith('kube')'} Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CEL expressions. This includes: - Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields. - Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as: - A schema with no type and x-kubernetes-preserve-unknown-fields set to true - An array where the items schema is of an 'unknown type' - An object where the additionalProperties schema is of an 'unknown type' Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'} - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'} - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'} If 'rule' makes use of the 'oldSelf' variable it is implicitly a 'transition rule'. By default, the 'oldSelf' variable is the same type as 'self'. Transition rules by default are applied only on UPDATE requests and are skipped if an old value could not be found.",
-																MarkdownDescription: "Rule represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec The Rule is scoped to the location of the x-kubernetes-validations extension in the schema. The 'self' variable in the CEL expression is bound to the scoped value. If the Rule is scoped to an object with properties, the accessible properties of the object are field selectable via 'self.field' and field presence can be checked via 'has(self.field)'. If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the map are accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the map are accessible via CEL macros and functions such as 'self.all(...)'. If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros and functions. If the Rule is scoped to a scalar, 'self' is bound to the scalar value. Examples: - Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'} - Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'} - Rule scoped to a string value: {'rule': 'self.startsWith('kube')'} Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CEL expressions. This includes: - Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields. - Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as: - A schema with no type and x-kubernetes-preserve-unknown-fields set to true - An array where the items schema is of an 'unknown type' - An object where the additionalProperties schema is of an 'unknown type' Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'} - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'} - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'} If 'rule' makes use of the 'oldSelf' variable it is implicitly a 'transition rule'. By default, the 'oldSelf' variable is the same type as 'self'. Transition rules by default are applied only on UPDATE requests and are skipped if an old value could not be found.",
+																Description:         "rule represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec The Rule is scoped to the location of the x-kubernetes-validations extension in the schema. The 'self' variable in the CEL expression is bound to the scoped value. If the Rule is scoped to an object with properties, the accessible properties of the object are field selectable via 'self.field' and field presence can be checked via 'has(self.field)'. If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the map are accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the map are accessible via CEL macros and functions such as 'self.all(...)'. If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros and functions. If the Rule is scoped to a scalar, 'self' is bound to the scalar value. Examples: - Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'} - Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'} - Rule scoped to a string value: {'rule': 'self.startsWith('kube')'} Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CEL expressions. This includes: - Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields. - Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as: - A schema with no type and x-kubernetes-preserve-unknown-fields set to true - An array where the items schema is of an 'unknown type' - An object where the additionalProperties schema is of an 'unknown type' Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'} - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'} - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'} If 'rule' makes use of the 'oldSelf' variable it is implicitly a 'transition rule'. By default, the 'oldSelf' variable is the same type as 'self'. Transition rules by default are applied only on UPDATE requests and are skipped if an old value could not be found.",
+																MarkdownDescription: "rule represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec The Rule is scoped to the location of the x-kubernetes-validations extension in the schema. The 'self' variable in the CEL expression is bound to the scoped value. If the Rule is scoped to an object with properties, the accessible properties of the object are field selectable via 'self.field' and field presence can be checked via 'has(self.field)'. If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the map are accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the map are accessible via CEL macros and functions such as 'self.all(...)'. If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros and functions. If the Rule is scoped to a scalar, 'self' is bound to the scalar value. Examples: - Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'} - Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'} - Rule scoped to a string value: {'rule': 'self.startsWith('kube')'} Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CEL expressions. This includes: - Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields. - Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as: - A schema with no type and x-kubernetes-preserve-unknown-fields set to true - An array where the items schema is of an 'unknown type' - An object where the additionalProperties schema is of an 'unknown type' Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'} - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'} - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'} If 'rule' makes use of the 'oldSelf' variable it is implicitly a 'transition rule'. By default, the 'oldSelf' variable is the same type as 'self'. Transition rules by default are applied only on UPDATE requests and are skipped if an old value could not be found.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(4096),
+																},
 															},
 														},
 													},
@@ -1396,12 +1590,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"x_metadata": schema.SingleNestedAttribute{
-													Description:         "XMetadata is the metadata of a variable or a nested field within a variable. It can be used to add additional data for higher level tools.",
-													MarkdownDescription: "XMetadata is the metadata of a variable or a nested field within a variable. It can be used to add additional data for higher level tools.",
+													Description:         "x-metadata is the metadata of a variable or a nested field within a variable. It can be used to add additional data for higher level tools.",
+													MarkdownDescription: "x-metadata is the metadata of a variable or a nested field within a variable. It can be used to add additional data for higher level tools.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
-															MarkdownDescription: "Annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
+															Description:         "annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
+															MarkdownDescription: "annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1409,8 +1603,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) variables.",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) variables.",
+															Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) variables.",
+															MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) variables.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1439,53 +1633,61 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"workers": schema.SingleNestedAttribute{
-						Description:         "Workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster.",
-						MarkdownDescription: "Workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster.",
+						Description:         "workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster.",
+						MarkdownDescription: "workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"machine_deployments": schema.ListNestedAttribute{
-								Description:         "MachineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes.",
-								MarkdownDescription: "MachineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes.",
+								Description:         "machineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes.",
+								MarkdownDescription: "machineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"class": schema.StringAttribute{
-											Description:         "Class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.",
-											MarkdownDescription: "Class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.",
+											Description:         "class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.",
+											MarkdownDescription: "class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(256),
+											},
 										},
 
 										"failure_domain": schema.StringAttribute{
-											Description:         "FailureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
-											MarkdownDescription: "FailureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											Description:         "failureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											MarkdownDescription: "failureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(256),
+											},
 										},
 
 										"machine_health_check": schema.SingleNestedAttribute{
-											Description:         "MachineHealthCheck defines a MachineHealthCheck for this MachineDeploymentClass.",
-											MarkdownDescription: "MachineHealthCheck defines a MachineHealthCheck for this MachineDeploymentClass.",
+											Description:         "machineHealthCheck defines a MachineHealthCheck for this MachineDeploymentClass.",
+											MarkdownDescription: "machineHealthCheck defines a MachineHealthCheck for this MachineDeploymentClass.",
 											Attributes: map[string]schema.Attribute{
 												"max_unhealthy": schema.StringAttribute{
-													Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
-													MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
+													Description:         "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy.",
+													MarkdownDescription: "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_startup_timeout": schema.StringAttribute{
-													Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
-													MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+													Description:         "nodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+													MarkdownDescription: "nodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"remediation_template": schema.SingleNestedAttribute{
-													Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-													MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+													Description:         "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+													MarkdownDescription: "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "API version of the referent.",
@@ -1549,13 +1751,13 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"unhealthy_conditions": schema.ListNestedAttribute{
-													Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-													MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+													Description:         "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+													MarkdownDescription: "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"status": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "status of the condition, one of True, False, Unknown.",
+																MarkdownDescription: "status of the condition, one of True, False, Unknown.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1565,16 +1767,16 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"timeout": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
+																MarkdownDescription: "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "type of Node condition",
+																MarkdownDescription: "type of Node condition",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1590,12 +1792,14 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"unhealthy_range": schema.StringAttribute{
-													Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
-													MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+													Description:         "unhealthyRange specifies the range of unhealthy machines allowed. Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'unhealthyRange'. Takes precedence over maxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+													MarkdownDescription: "unhealthyRange specifies the range of unhealthy machines allowed. Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'unhealthyRange'. Takes precedence over maxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(32),
 														stringvalidator.RegexMatches(regexp.MustCompile(`^\[[0-9]+-[0-9]+\]$`), ""),
 													},
 												},
@@ -1606,23 +1810,27 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"min_ready_seconds": schema.Int64Attribute{
-											Description:         "Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
-											MarkdownDescription: "Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											Description:         "minReadySeconds is the minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											MarkdownDescription: "minReadySeconds is the minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"naming_strategy": schema.SingleNestedAttribute{
-											Description:         "NamingStrategy allows changing the naming pattern used when creating the MachineDeployment.",
-											MarkdownDescription: "NamingStrategy allows changing the naming pattern used when creating the MachineDeployment.",
+											Description:         "namingStrategy allows changing the naming pattern used when creating the MachineDeployment.",
+											MarkdownDescription: "namingStrategy allows changing the naming pattern used when creating the MachineDeployment.",
 											Attributes: map[string]schema.Attribute{
 												"template": schema.StringAttribute{
-													Description:         "Template defines the template to use for generating the name of the MachineDeployment object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machineDeployment.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machineDeployment.topologyName': The name of the MachineDeployment topology (Cluster.spec.topology.workers.machineDeployments[].name).",
-													MarkdownDescription: "Template defines the template to use for generating the name of the MachineDeployment object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machineDeployment.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machineDeployment.topologyName': The name of the MachineDeployment topology (Cluster.spec.topology.workers.machineDeployments[].name).",
+													Description:         "template defines the template to use for generating the name of the MachineDeployment object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machineDeployment.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machineDeployment.topologyName': The name of the MachineDeployment topology (Cluster.spec.topology.workers.machineDeployments[].name).",
+													MarkdownDescription: "template defines the template to use for generating the name of the MachineDeployment object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machineDeployment.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machineDeployment.topologyName': The name of the MachineDeployment topology (Cluster.spec.topology.workers.machineDeployments[].name).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(1024),
+													},
 												},
 											},
 											Required: false,
@@ -1631,40 +1839,75 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"node_deletion_timeout": schema.StringAttribute{
-											Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
-											MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											Description:         "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											MarkdownDescription: "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_drain_timeout": schema.StringAttribute{
-											Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
-											MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											Description:         "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											MarkdownDescription: "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_volume_detach_timeout": schema.StringAttribute{
-											Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
-											MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											Description:         "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											MarkdownDescription: "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
+										"readiness_gates": schema.ListNestedAttribute{
+											Description:         "readinessGates specifies additional conditions to include when evaluating Machine Ready condition. This field can be used e.g. to instruct the machine controller to include in the computation for Machine's ready computation a condition, managed by an external controllers, reporting the status of special software/hardware installed on the Machine. NOTE: This field is considered only for computing v1beta2 conditions. NOTE: If a Cluster defines a custom list of readinessGates for a MachineDeployment using this MachineDeploymentClass, such list overrides readinessGates defined in this field.",
+											MarkdownDescription: "readinessGates specifies additional conditions to include when evaluating Machine Ready condition. This field can be used e.g. to instruct the machine controller to include in the computation for Machine's ready computation a condition, managed by an external controllers, reporting the status of special software/hardware installed on the Machine. NOTE: This field is considered only for computing v1beta2 conditions. NOTE: If a Cluster defines a custom list of readinessGates for a MachineDeployment using this MachineDeploymentClass, such list overrides readinessGates defined in this field.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"condition_type": schema.StringAttribute{
+														Description:         "conditionType refers to a condition with matching type in the Machine's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as readiness gates.",
+														MarkdownDescription: "conditionType refers to a condition with matching type in the Machine's condition list. If the conditions doesn't exist, it will be treated as unknown. Note: Both Cluster API conditions or conditions added by 3rd party controllers can be used as readiness gates.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(316),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`), ""),
+														},
+													},
+
+													"polarity": schema.StringAttribute{
+														Description:         "polarity of the conditionType specified in this readinessGate. Valid values are Positive, Negative and omitted. When omitted, the default behaviour will be Positive. A positive polarity means that the condition should report a true status under normal conditions. A negative polarity means that the condition should report a false status under normal conditions.",
+														MarkdownDescription: "polarity of the conditionType specified in this readinessGate. Valid values are Positive, Negative and omitted. When omitted, the default behaviour will be Positive. A positive polarity means that the condition should report a true status under normal conditions. A negative polarity means that the condition should report a false status under normal conditions.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Positive", "Negative"),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"strategy": schema.SingleNestedAttribute{
-											Description:         "The deployment strategy to use to replace existing machines with new ones. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
-											MarkdownDescription: "The deployment strategy to use to replace existing machines with new ones. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											Description:         "strategy is the deployment strategy to use to replace existing machines with new ones. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
+											MarkdownDescription: "strategy is the deployment strategy to use to replace existing machines with new ones. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.",
 											Attributes: map[string]schema.Attribute{
 												"remediation": schema.SingleNestedAttribute{
-													Description:         "Remediation controls the strategy of remediating unhealthy machines and how remediating operations should occur during the lifecycle of the dependant MachineSets.",
-													MarkdownDescription: "Remediation controls the strategy of remediating unhealthy machines and how remediating operations should occur during the lifecycle of the dependant MachineSets.",
+													Description:         "remediation controls the strategy of remediating unhealthy machines and how remediating operations should occur during the lifecycle of the dependant MachineSets.",
+													MarkdownDescription: "remediation controls the strategy of remediating unhealthy machines and how remediating operations should occur during the lifecycle of the dependant MachineSets.",
 													Attributes: map[string]schema.Attribute{
 														"max_in_flight": schema.StringAttribute{
-															Description:         "MaxInFlight determines how many in flight remediations should happen at the same time. Remediation only happens on the MachineSet with the most current revision, while older MachineSets (usually present during rollout operations) aren't allowed to remediate. Note: In general (independent of remediations), unhealthy machines are always prioritized during scale down operations over healthy ones. MaxInFlight can be set to a fixed number or a percentage. Example: when this is set to 20%, the MachineSet controller deletes at most 20% of the desired replicas. If not set, remediation is limited to all machines (bounded by replicas) under the active MachineSet's management.",
-															MarkdownDescription: "MaxInFlight determines how many in flight remediations should happen at the same time. Remediation only happens on the MachineSet with the most current revision, while older MachineSets (usually present during rollout operations) aren't allowed to remediate. Note: In general (independent of remediations), unhealthy machines are always prioritized during scale down operations over healthy ones. MaxInFlight can be set to a fixed number or a percentage. Example: when this is set to 20%, the MachineSet controller deletes at most 20% of the desired replicas. If not set, remediation is limited to all machines (bounded by replicas) under the active MachineSet's management.",
+															Description:         "maxInFlight determines how many in flight remediations should happen at the same time. Remediation only happens on the MachineSet with the most current revision, while older MachineSets (usually present during rollout operations) aren't allowed to remediate. Note: In general (independent of remediations), unhealthy machines are always prioritized during scale down operations over healthy ones. MaxInFlight can be set to a fixed number or a percentage. Example: when this is set to 20%, the MachineSet controller deletes at most 20% of the desired replicas. If not set, remediation is limited to all machines (bounded by replicas) under the active MachineSet's management.",
+															MarkdownDescription: "maxInFlight determines how many in flight remediations should happen at the same time. Remediation only happens on the MachineSet with the most current revision, while older MachineSets (usually present during rollout operations) aren't allowed to remediate. Note: In general (independent of remediations), unhealthy machines are always prioritized during scale down operations over healthy ones. MaxInFlight can be set to a fixed number or a percentage. Example: when this is set to 20%, the MachineSet controller deletes at most 20% of the desired replicas. If not set, remediation is limited to all machines (bounded by replicas) under the active MachineSet's management.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1676,12 +1919,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"rolling_update": schema.SingleNestedAttribute{
-													Description:         "Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.",
-													MarkdownDescription: "Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.",
+													Description:         "rollingUpdate is the rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.",
+													MarkdownDescription: "rollingUpdate is the rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.",
 													Attributes: map[string]schema.Attribute{
 														"delete_policy": schema.StringAttribute{
-															Description:         "DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used",
-															MarkdownDescription: "DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used",
+															Description:         "deletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used",
+															MarkdownDescription: "deletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1691,16 +1934,16 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"max_surge": schema.StringAttribute{
-															Description:         "The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.",
-															MarkdownDescription: "The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.",
+															Description:         "maxSurge is the maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.",
+															MarkdownDescription: "maxSurge is the maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"max_unavailable": schema.StringAttribute{
-															Description:         "The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.",
-															MarkdownDescription: "The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.",
+															Description:         "maxUnavailable is the maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.",
+															MarkdownDescription: "maxUnavailable is the maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1712,8 +1955,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.",
-													MarkdownDescription: "Type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.",
+													Description:         "type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.",
+													MarkdownDescription: "type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1728,16 +1971,16 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"template": schema.SingleNestedAttribute{
-											Description:         "Template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes.",
-											MarkdownDescription: "Template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes.",
+											Description:         "template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes.",
+											MarkdownDescription: "template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes.",
 											Attributes: map[string]schema.Attribute{
 												"bootstrap": schema.SingleNestedAttribute{
-													Description:         "Bootstrap contains the bootstrap template reference to be used for the creation of worker Machines.",
-													MarkdownDescription: "Bootstrap contains the bootstrap template reference to be used for the creation of worker Machines.",
+													Description:         "bootstrap contains the bootstrap template reference to be used for the creation of worker Machines.",
+													MarkdownDescription: "bootstrap contains the bootstrap template reference to be used for the creation of worker Machines.",
 													Attributes: map[string]schema.Attribute{
 														"ref": schema.SingleNestedAttribute{
-															Description:         "Ref is a required reference to a custom resource offered by a provider.",
-															MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+															Description:         "ref is a required reference to a custom resource offered by a provider.",
+															MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -1806,12 +2049,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"infrastructure": schema.SingleNestedAttribute{
-													Description:         "Infrastructure contains the infrastructure template reference to be used for the creation of worker Machines.",
-													MarkdownDescription: "Infrastructure contains the infrastructure template reference to be used for the creation of worker Machines.",
+													Description:         "infrastructure contains the infrastructure template reference to be used for the creation of worker Machines.",
+													MarkdownDescription: "infrastructure contains the infrastructure template reference to be used for the creation of worker Machines.",
 													Attributes: map[string]schema.Attribute{
 														"ref": schema.SingleNestedAttribute{
-															Description:         "Ref is a required reference to a custom resource offered by a provider.",
-															MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+															Description:         "ref is a required reference to a custom resource offered by a provider.",
+															MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -1880,12 +2123,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"metadata": schema.SingleNestedAttribute{
-													Description:         "Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology.",
-													MarkdownDescription: "Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology.",
+													Description:         "metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology.",
+													MarkdownDescription: "metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															Description:         "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															MarkdownDescription: "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1893,8 +2136,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1918,21 +2161,25 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"machine_pools": schema.ListNestedAttribute{
-								Description:         "MachinePools is a list of machine pool classes that can be used to create a set of worker nodes.",
-								MarkdownDescription: "MachinePools is a list of machine pool classes that can be used to create a set of worker nodes.",
+								Description:         "machinePools is a list of machine pool classes that can be used to create a set of worker nodes.",
+								MarkdownDescription: "machinePools is a list of machine pool classes that can be used to create a set of worker nodes.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"class": schema.StringAttribute{
-											Description:         "Class denotes a type of machine pool present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachinePool.",
-											MarkdownDescription: "Class denotes a type of machine pool present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachinePool.",
+											Description:         "class denotes a type of machine pool present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachinePool.",
+											MarkdownDescription: "class denotes a type of machine pool present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachinePool.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(256),
+											},
 										},
 
 										"failure_domains": schema.ListAttribute{
-											Description:         "FailureDomains is the list of failure domains the MachinePool should be attached to. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
-											MarkdownDescription: "FailureDomains is the list of failure domains the MachinePool should be attached to. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											Description:         "failureDomains is the list of failure domains the MachinePool should be attached to. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											MarkdownDescription: "failureDomains is the list of failure domains the MachinePool should be attached to. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1940,23 +2187,27 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"min_ready_seconds": schema.Int64Attribute{
-											Description:         "Minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
-											MarkdownDescription: "Minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											Description:         "minReadySeconds is the minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											MarkdownDescription: "minReadySeconds is the minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"naming_strategy": schema.SingleNestedAttribute{
-											Description:         "NamingStrategy allows changing the naming pattern used when creating the MachinePool.",
-											MarkdownDescription: "NamingStrategy allows changing the naming pattern used when creating the MachinePool.",
+											Description:         "namingStrategy allows changing the naming pattern used when creating the MachinePool.",
+											MarkdownDescription: "namingStrategy allows changing the naming pattern used when creating the MachinePool.",
 											Attributes: map[string]schema.Attribute{
 												"template": schema.StringAttribute{
-													Description:         "Template defines the template to use for generating the name of the MachinePool object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machinePool.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machinePool.topologyName': The name of the MachinePool topology (Cluster.spec.topology.workers.machinePools[].name).",
-													MarkdownDescription: "Template defines the template to use for generating the name of the MachinePool object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machinePool.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machinePool.topologyName': The name of the MachinePool topology (Cluster.spec.topology.workers.machinePools[].name).",
+													Description:         "template defines the template to use for generating the name of the MachinePool object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machinePool.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machinePool.topologyName': The name of the MachinePool topology (Cluster.spec.topology.workers.machinePools[].name).",
+													MarkdownDescription: "template defines the template to use for generating the name of the MachinePool object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machinePool.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machinePool.topologyName': The name of the MachinePool topology (Cluster.spec.topology.workers.machinePools[].name).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(1024),
+													},
 												},
 											},
 											Required: false,
@@ -1965,40 +2216,40 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"node_deletion_timeout": schema.StringAttribute{
-											Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine Pool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
-											MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine Pool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											Description:         "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine Pool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											MarkdownDescription: "nodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine Pool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_drain_timeout": schema.StringAttribute{
-											Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
-											MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											Description:         "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											MarkdownDescription: "nodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_volume_detach_timeout": schema.StringAttribute{
-											Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
-											MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											Description:         "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
+											MarkdownDescription: "nodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"template": schema.SingleNestedAttribute{
-											Description:         "Template is a local struct containing a collection of templates for creation of MachinePools objects representing a pool of worker nodes.",
-											MarkdownDescription: "Template is a local struct containing a collection of templates for creation of MachinePools objects representing a pool of worker nodes.",
+											Description:         "template is a local struct containing a collection of templates for creation of MachinePools objects representing a pool of worker nodes.",
+											MarkdownDescription: "template is a local struct containing a collection of templates for creation of MachinePools objects representing a pool of worker nodes.",
 											Attributes: map[string]schema.Attribute{
 												"bootstrap": schema.SingleNestedAttribute{
-													Description:         "Bootstrap contains the bootstrap template reference to be used for the creation of the Machines in the MachinePool.",
-													MarkdownDescription: "Bootstrap contains the bootstrap template reference to be used for the creation of the Machines in the MachinePool.",
+													Description:         "bootstrap contains the bootstrap template reference to be used for the creation of the Machines in the MachinePool.",
+													MarkdownDescription: "bootstrap contains the bootstrap template reference to be used for the creation of the Machines in the MachinePool.",
 													Attributes: map[string]schema.Attribute{
 														"ref": schema.SingleNestedAttribute{
-															Description:         "Ref is a required reference to a custom resource offered by a provider.",
-															MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+															Description:         "ref is a required reference to a custom resource offered by a provider.",
+															MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -2067,12 +2318,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"infrastructure": schema.SingleNestedAttribute{
-													Description:         "Infrastructure contains the infrastructure template reference to be used for the creation of the MachinePool.",
-													MarkdownDescription: "Infrastructure contains the infrastructure template reference to be used for the creation of the MachinePool.",
+													Description:         "infrastructure contains the infrastructure template reference to be used for the creation of the MachinePool.",
+													MarkdownDescription: "infrastructure contains the infrastructure template reference to be used for the creation of the MachinePool.",
 													Attributes: map[string]schema.Attribute{
 														"ref": schema.SingleNestedAttribute{
-															Description:         "Ref is a required reference to a custom resource offered by a provider.",
-															MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
+															Description:         "ref is a required reference to a custom resource offered by a provider.",
+															MarkdownDescription: "ref is a required reference to a custom resource offered by a provider.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -2141,12 +2392,12 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"metadata": schema.SingleNestedAttribute{
-													Description:         "Metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the topology.",
-													MarkdownDescription: "Metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the topology.",
+													Description:         "metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the topology.",
+													MarkdownDescription: "metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the topology.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															Description:         "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															MarkdownDescription: "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2154,8 +2405,8 @@ func (r *ClusterXK8SIoClusterClassV1Beta1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,

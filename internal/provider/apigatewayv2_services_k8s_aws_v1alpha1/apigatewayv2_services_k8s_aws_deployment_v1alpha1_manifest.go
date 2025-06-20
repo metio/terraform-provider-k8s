@@ -133,8 +133,8 @@ func (r *Apigatewayv2ServicesK8SAwsDeploymentV1Alpha1Manifest) Schema(_ context.
 				MarkdownDescription: "DeploymentSpec defines the desired state of Deployment. An immutable representation of an API that can be called by users. A Deployment must be associated with a Stage for it to be callable over the internet.",
 				Attributes: map[string]schema.Attribute{
 					"api_id": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The API identifier.",
+						MarkdownDescription: "The API identifier.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -175,16 +175,16 @@ func (r *Apigatewayv2ServicesK8SAwsDeploymentV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The description for the deployment resource.",
+						MarkdownDescription: "The description for the deployment resource.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"stage_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The name of the Stage resource for the Deployment resource to create.",
+						MarkdownDescription: "The name of the Stage resource for the Deployment resource to create.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

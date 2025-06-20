@@ -144,8 +144,8 @@ func (r *LambdaServicesK8SAwsLayerVersionV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"compatible_runtimes": schema.ListAttribute{
-						Description:         "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions.",
-						MarkdownDescription: "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions.",
+						Description:         "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).",
+						MarkdownDescription: "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -205,8 +205,8 @@ func (r *LambdaServicesK8SAwsLayerVersionV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"layer_name": schema.StringAttribute{
-						Description:         "The name or Amazon Resource Name (ARN) of the layer.",
-						MarkdownDescription: "The name or Amazon Resource Name (ARN) of the layer.",
+						Description:         "The name or Amazon Resource Name (ARN) of the layer. Regex Pattern: '^(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$'",
+						MarkdownDescription: "The name or Amazon Resource Name (ARN) of the layer. Regex Pattern: '^(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
