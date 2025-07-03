@@ -251,8 +251,8 @@ github.com/onsi/ginkgo/v2 v2.21.0 h1:7rg/4f3rB88pb5obDgNZrNHrQ4e6WpjonchcpuBRnZM
 github.com/onsi/ginkgo/v2 v2.21.0/go.mod h1:7Du3c42kxCUegi0IImZ1wUQzMBVecgIHjR1C+NkhLQo=
 github.com/onsi/gomega v1.35.1 h1:Cwbd75ZBPxFSuZ6T+rN/WCb/gOc6YgFBXLlZLhC7Ds4=
 github.com/onsi/gomega v1.35.1/go.mod h1:PvZbdDc8J6XJEpDK4HCuRBm8a6Fzp9/DmhC9C7yFlog=
-github.com/pb33f/libopenapi v0.22.3 h1:kMHyMUlK5Z4IT2bPnQmaYJabnGP4PbfOU62C097QiYY=
-github.com/pb33f/libopenapi v0.22.3/go.mod h1:utT5sD2/mnN7YK68FfZT5yEPbI1wwRBpSS4Hi0oOrBU=
+github.com/pb33f/libopenapi v0.23.0 h1:gZP1zrtvMwk7spGDTZf4OufKgpOH8M9gHAZ77rf39Oo=
+github.com/pb33f/libopenapi v0.23.0/go.mod h1:utT5sD2/mnN7YK68FfZT5yEPbI1wwRBpSS4Hi0oOrBU=
 github.com/peterbourgon/diskv v2.0.1+incompatible h1:UBdAOUP5p4RWqPBg048CAvpKN+vxiaj6gdUUzhl4XmI=
 github.com/peterbourgon/diskv v2.0.1+incompatible/go.mod h1:uqqh8zWWbv1HBMNONnaR/tNboyR3/BZd58JJSHlUSCU=
 github.com/pjbgf/sha1cd v0.3.2 h1:a9wb0bp1oC2TGwStyn0Umc/IGKQnEgF0vVaZ8QF8eo4=
